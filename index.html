@@ -267,8 +267,8 @@
             
               
                 
-                <a class="post-title-link" href="/2019/12/23/hello/" itemprop="url">
-                  hello
+                <a class="post-title-link" href="/2019/12/23/swiftswift-looping/" itemprop="url">
+                  极速 Swift 教程之四 | 循环
                 </a>
               
             
@@ -281,11 +281,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-12-23T12:47:24+08:00" content="2019-12-23">
+            <time itemprop="dateCreated" datetime="2019-12-23T22:10:55+08:00" content="2019-12-23">
               2019-12-23
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -296,7 +315,7 @@
 
           
           
-             <span id="/2019/12/23/hello/" class="leancloud_visitors" data-flag-title="hello">
+             <span id="/2019/12/23/swiftswift-looping/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之四 | 循环">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -320,7 +339,757 @@
       
         
           
-            <h1 id="你好，世界！"><a href="#你好，世界！" class="headerlink" title="你好，世界！"></a>你好，世界！</h1>
+            <h1 id="For- 循环"><a href="#For- 循环" class="headerlink" title="For 循环"></a>For 循环</h1><p>Swift 有很多种书写循环的方式，它们底层的机制是相同的：重复执行某段代码直到某个条件不再满足。</p>
+<p>最常见的循环是 <code>for</code> 循环：它在数组和范围上循环，每次拉出一个值然后把它赋予一个常量。</p>
+<p>举个例子，这里是一个数字的范围：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="built_in">count</span> = <span class="number">1</span>...<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以用一个 <code>for</code> 循环打印里面的每一个值，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">count</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"数字是 \(number)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组的操作方式也一样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> albums = [<span class="string">"Red"</span>, <span class="string">"1989"</span>, <span class="string">"Reputation"</span>]</span><br><span class="line"><span class="keyword">for</span> album <span class="keyword">in</span> albums &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(album) 在 Apple Music 上有售卖。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你不需要用到 <code>for</code> 循环提供给你的常量，你可以用下划线替代，这样 Swift 就会忽略这个你没有用到的值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="number">5</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Zzz..."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="While- 循环"><a href="#While- 循环" class="headerlink" title="While 循环"></a>While 循环 </h1><p> 第二种书写循环的方式是使用 <code>while</code> ：给定一个检查的条件，循环运行代码直到条件不成立。</p>
+<p>举个例子，我们可以使用 <code>while</code> 循环来模拟一个躲猫猫游戏：从 1 开始数数，数到的数会打印出来。数完 20 个数之后打印 “准备好了没？我来啦！”</p>
+<p>Swift 代码长这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> number &lt;= <span class="number">20</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(number)</span><br><span class="line">  number += <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"准备好了没？我来啦！"</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Repeat- 循环"><a href="#Repeat- 循环" class="headerlink" title="Repeat 循环"></a>Repeat 循环 </h1><p> 第三种循环的写法不常用，它是 <code>repeat</code> 循环。除了把条件检查放在后面，它基本上跟 <code>while</code> 循环是一样的。</p>
+<p>因此，我们可以用 <code>repeat</code> 循环重写我们的躲猫猫游戏：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="number">1</span></span><br><span class="line"><span class="keyword">repeat</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(number)</span><br><span class="line">  number += <span class="number">1</span></span><br><span class="line">&#125; <span class="keyword">while</span> number &lt;= <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"准备好了没？我来啦！"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>因为检查的条件是放在后面，所以 <code>repeat</code> 循环里的代码至少会被执行一次。而 <code>while</code> 循环则是在首次运行前就会检查条件。</p>
+<p>举个例子， 下面代码里的 <code>print ()</code> 函数永远都不会被运行，因为 <code>false</code> 永远是 false ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">false</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"这是 false"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Xcode 会警告我们上面代码中的 <code>print ()</code> 代码永远都不会被执行。</p>
+<p>而在下面这个代码里， <code>print ()</code> 函数则至少运行一次，因为 <code>repeat</code> 只有在条件检查没有通过时才会停止执行：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">repeat</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"这是 false"</span>)</span><br><span class="line">&#125; <span class="keyword">while</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="退出循环"><a href="# 退出循环" class="headerlink" title="退出循环"></a>退出循环 </h1><p> 你可以使用 <code>break</code> 关键字来终止循环。让我们以一个常规的 <code>while</code> 循环为例 —— 火箭发射倒计时：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countDown = <span class="number">10</span></span><br><span class="line"><span class="keyword">while</span> countDown &gt;= <span class="number">0</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(countDown)</span><br><span class="line">  countDown -= <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"发射！"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>想象一下，宇航员感觉这个倒计时过程很无聊，决定跳过后面的数，直接发射：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> countDown &gt;= <span class="number">0</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(countDown)</span><br><span class="line">  <span class="keyword">if</span> countDown == <span class="number">4</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"好无聊啊，让我们直接发射吧！"</span>)</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  countDown -= <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过这次改动，只要 <code>countDown</code> 达到 4 ，那么宇航员的消息就会被打印，剩余的计数将会被忽略。</p>
+<hr>
+<h1 id="退出多重循环"><a href="# 退出多重循环" class="headerlink" title="退出多重循环"></a>退出多重循环 </h1><p> 把循环放在另一个循环里，叫做 * 嵌套 * 循环。有的时候，你会有这种需求：同时跳出内部的循环和外部的循环。</p>
+<p>举个例子， 我们可以用嵌套循环实现一个从 1 到 10 的乘法表：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> product = i * j</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">"\(i) * \(j) 等于 \(product)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果想退出循环，我们需要做两件事。首先，给外层循环加一个标签，像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">outerLoop: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> product = i * j</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">"\(i) * \(j) 等于 \(product)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，在内层循环里添加条件，在条件满足时用 <code>break outerLoop</code> 同时退出内外层循环：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">outerLoop: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> product = i * j</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">"\(i) * \(j) 等于 \(product)"</span>)</span><br><span class="line">    <span class="keyword">if</span> product == <span class="number">50</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"这是一个靶心。"</span>)</span><br><span class="line">      <span class="keyword">break</span> outerLoop</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果只使用 <code>break</code> ，就只能退出内层循环，外层循环会继续运行。</p>
+<hr>
+<h1 id="跳过循环项"><a href="# 跳过循环项" class="headerlink" title="跳过循环项"></a>跳过循环项 </h1><p> 如你所见， <code>break</code> 关键字可以用于退出循环。 但是假如你想要跳过当前项然后继续执行下一次循环，你可以使用 <code>continue</code> 关键字。</p>
+<p>让我们写一个从 1 到 10 的循环，然后利用 Swift 的取余操作符来跳过所有的奇数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">1</span> &#123;</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">print</span>(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="无限循环"><a href="# 无限循环" class="headerlink" title="无限循环"></a>无限循环 </h1><p> 通常来说，我们用 <code>while</code> 循环来实现无限循环：它指的是那种不会自动停止的循环，或者说只有我们想要它停止时才停止的循环。你的智能手机里的 App 都用到了无限循环，因为它们一旦开始运行，就会持续运行，不断地接收输入事件，做出响应。</p>
+<p>最简单的无限循环是用 <code>true</code> 作为条件。 <code>true</code> 使得循环可以无限重复地执行。 ** 警告：** 如果你采用 <code>while true</code> 来实现循环，确保你在循环内会有一个条件检查以退出这个无限循环。</p>
+<p>举个例子， 我们用 <code>while true</code> 来模拟约翰・凯奇的《4’33”》这首歌。这首歌真的很奇葩，因为整个首歌的 4 分 33 秒都是沉默，没声。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">""</span>)</span><br><span class="line">  counter += <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> counter == <span class="number">273</span> &#123;</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们来总结一下。</p>
+<ol>
+<li>循环可以重复执行某段代码，直到条件不再满足。 </li>
+<li>最常见的循环是 <code>for</code> 循环，它内部会计数一个临时的常量来记录循环的次数。 </li>
+<li>如果你用不上这个 <code>for</code> 循环给到你的常量，可以使用下划线来告知 Swift 忽略它。 </li>
+<li>对于 <code>while</code> 循环，你需要显式地提供一个条件检查来决定循环是否执行。 </li>
+<li>尽管和 <code>while</code> 循环很像， <code>repeat</code> 循环至少会执行一次循环体里的代码。 </li>
+<li>你可以用 <code>break</code> 结束循环，但是在嵌套循环里， <code>break</code> 之后还要再加上标签才能跳出特定的外层循环。 </li>
+<li>你可以用 <code>continue</code> 来跳过循环中特定的项。 </li>
+<li>无限循环只有在你要求它停止时才会结束。如果你用了 <code>while true</code> 来实现无限循环，确保你有一个条件检查用于终止循环！ </li>
+</ol>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/23/swiftswift-operators-and-conditions/" itemprop="url">
+                  极速 Swift 教程之三 | 操作符与条件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-23T21:41:32+08:00" content="2019-12-23">
+              2019-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/12/23/swiftswift-operators-and-conditions/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之三 | 操作符与条件">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="算术操作符"><a href="# 算术操作符" class="headerlink" title="算术操作符"></a>算术操作符 </h1><p> 到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 <code>+</code> 和 <code>-</code> 。 Swift 中有大量的操作符。</p>
+<p>下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 <code>var</code> ）：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstScore = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> secondScore = <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>让我们用 <code>+</code> 和 <code>-</code> 把它们相加或者相减：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> total = firstScore + secondScore</span><br><span class="line"><span class="keyword">let</span> difference = firstScore - secondScore</span><br></pre></td></tr></table></figure>
+
+<p>我们还可以用 <code>*</code> 和 <code>/</code> 来执行乘法和除法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> product = firstScore * secondScore</span><br><span class="line"><span class="keyword">let</span> divided = firstScore /secondScore</span><br></pre></td></tr></table></figure>
+
+<p>Swift 有一个用于计算除法的余数的特殊操作符： <code>%</code> 。它可以计算一个数 <code>A</code> 用若干个数 <code>B</code> 填充后，剩余的空间。</p>
+<p>举个例子，如果我们把 <code>secondScore</code> 设置为 4 ，那么当我们做 <code>13 % secondScore</code> 这个操作时，我们会得到 1 ，因为 4 可以填充 13 三次，余数为 1 ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> remainder = <span class="number">13</span> % secondScore</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="操作符重载"><a href="# 操作符重载" class="headerlink" title="操作符重载"></a>操作符重载</h1><p>Swift 支持 “操作符重载”，这是一种简明的说法，具体指的是操作符的行为可以根据它使用时的具体情境来决定。举个例子， <code>+</code> 可以用来相加整数，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> meaningOfLife = <span class="number">42</span></span><br><span class="line"><span class="keyword">let</span> doubleMeaning = <span class="number">42</span> + <span class="number">42</span></span><br></pre></td></tr></table></figure>
+
+<p>同时， <code>+</code> 也可以用来连接字符串，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fakers = <span class="string">"Fakers gonna"</span></span><br><span class="line"><span class="keyword">let</span> action = fakers + <span class="string">"fake"</span></span><br></pre></td></tr></table></figure>
+
+<p>你甚至还可以使用 <code>+</code> 来连接数组，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstHalf = [<span class="string">"John"</span>, <span class="string">"Paul"</span>]</span><br><span class="line"><span class="keyword">let</span> secondHalf = [<span class="string">"George"</span>, <span class="string">"Ringo"</span>]</span><br><span class="line"><span class="keyword">let</span> beatles = firstHalf + secondHalf</span><br></pre></td></tr></table></figure>
+
+<p>记住， Swift 是一门类型安全的语言。这意味着它不允许你混用类型。举个例子，你不能把一个整数加到一个字符串上，因为这么做没有意义。</p>
+<hr>
+<h1 id="复合赋值操作符"><a href="# 复合赋值操作符" class="headerlink" title="复合赋值操作符"></a>复合赋值操作符</h1><p>Swift 提供了一些把操作符和赋值组合起来的速记操作符，以便你可以用一次操作同时完成计算和赋值。它们看起来很像你已经认识的那些操作符，比如 <code>+</code> ，<code>-</code> ，<code>*</code> ，和 <code>/</code> ，不过需要在尾部再加上一个 <code>=</code> ，以表示把计算结果赋给操作数。</p>
+<p>举个例子，如果有人考试考了 95 分，但是需要罚去 5 分，你可以这么写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">95</span></span><br><span class="line">score -= <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>类似地，你可以利用 += 来拼接字符串：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quote = <span class="string">"The rain in Spain falls mainly on the"</span></span><br><span class="line">quote += <span class="string">"Spaniards"</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="比较操作符"><a href="# 比较操作符" class="headerlink" title="比较操作符"></a>比较操作符</h1><p>Swift 提供了几个比较操作符，这些符号的工作方式跟你在数学中使用它们的方式很相似。</p>
+<p>先来两个测试用的变量：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstScore = <span class="number">6</span></span><br><span class="line"><span class="keyword">let</span> secondScore = <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>有两个可以用来检查相等的操作符。 <code>==</code> （发音 “等于”）检查两个值是否相等，而 <code>!=</code> （发音 “不等于”）则检查两个值是否不相等：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firstScore == secondScore</span><br><span class="line">firstScore != secondScore</span><br></pre></td></tr></table></figure>
+
+<p>还有四个用来检查两个值哪一个比较大，哪一个比较小或者相等的操作符。就跟数学里的符号一样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firstScore &lt; secondScore</span><br><span class="line">firstScore &gt;= secondScore</span><br></pre></td></tr></table></figure>
+
+<p>上面的这些操作符用在字符串上也是可以的，因为字符串都有一个自然的字母顺序。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Taylor"</span> &lt;= <span class="string">"Swift"</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="条件"><a href="# 条件" class="headerlink" title="条件"></a>条件 </h1><p> 你现在应该已经意识到你可以使用 <code>if</code> 语句来书写一些条件了。当你给到 Swift 一个条件时，如果条件成立， Swift 会运行你在 <code>if</code> 语句块里写的代码。</p>
+<p>尝试一下。 你可以用上 Swift 最基础的函数，它叫做 <code>print ()</code> ：你提供一些文本给它，它将这些文本打印出来。</p>
+<p>让我们用条件来检测二十一点扑克游戏的赢家：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>花括号 <code>{</code> 和 <code>}</code> 之间的代码，在条件成立时会被执行。如果条件不成立时你想执行另外的代码，可以使用 <code>else</code> 语句：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"普通点数。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你还可以使用 <code>else if</code> 来串联多个条件：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">2</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Aces，好手气！"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"普通点数。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="组合条件"><a href="# 组合条件" class="headerlink" title="组合条件"></a>组合条件</h1><p>Swift 提供两种操作符，以便我们把条件组合在一起，它们是 <code>&amp;&amp;</code>（发音 “与”）和 <code>||</code> （发音 “或”）。</p>
+<p>举个例子，为了检查两个人的年龄是否都超过某个值，我们可以这么写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age1 = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> age2 = <span class="number">21</span></span><br><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> &amp;&amp; age2 &gt; <span class="number">18</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"两个人都超过 18 岁。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的 <code>print ()</code> 调用只有当两个年龄都大于 18 时才会被执行，而给到的两个年龄并不满足都大于 18 。实际上， Swift 并不会真的把两个条件都检查一遍，它不需要检查 <code>age2</code> 是否大于 18 ，因为当它发现 <code>age1</code> 大于 18 这个条件已经不成立时，就不会再继续检查后面的条件。</p>
+<p>与 <code>&amp;&amp;</code> 不同的是，只要有任意一个条件通过测试， <code>||</code> 检查就会被认定为通过。 举个例子，下面的代码在任一年龄大于 18 时就会打印一条消息：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> || age2 &gt; <span class="number">18</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"有一个人超过 18 岁。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以在一个检查中使用多次 <code>&amp;&amp;</code> 和 <code>||</code> ，但是切记不要把条件写得太过复杂，因为那样很难阅读！</p>
+<hr>
+<h1 id="三元操作符"><a href="# 三元操作符" class="headerlink" title="三元操作符"></a>三元操作符</h1><p>Swift 还提供一种不常用的操作符，叫做三元操作符。它的名字源自它可以一次协同三个操作数工作的特点。首先，它会先检查第一个数里指定的条件是否满足，如果满足则返回第二个数，否则返回第三个数。</p>
+<p>三元操作符是把 <code>true</code> 和 <code>false</code> 两种情况一次性考虑进去的符号，它包含问号和冒号两个部分，因此阅读起来更麻烦一些。下面是一些例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(firstCard == secondCard ? <span class="string">"牌是一样的"</span> : <span class="string">"牌不一样"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码检查两张牌是否一样，如果一样则打印 “牌是一样的”，否则打印 “牌不一样”。我们也可以换成常规的条件语句来达到一样的检测效果：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard == secondCard &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"牌是一样的"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"牌不一样"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="switch- 语句"><a href="#switch- 语句" class="headerlink" title="switch 语句"></a>switch 语句 </h1><p> 如果你需要用到多个 <code>if</code> 和 <code>else if</code> ，那你可以使用另一种结构：<code>switch case</code>，它会让你的代码看起来更清晰。采用 <code>switch</code> 语句，你只需要写一次条件，然后列出所有可能的结果，并针对所有的结果编写对应的处理代码。</p>
+<p>让我们来尝试一下，下面是一个值为 <code>sunny</code> 字符串的名叫 <code>weather</code> 的常量：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> weather = <span class="string">"sunny"</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用 <code>switch</code> 语句块来打印下面四种消息中的一种：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得带伞"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得保暖"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得戴墨镜"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"天气不错！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后一条 case 是 <code>default</code> ，它是不能省略的，因为 Swift 需要确保你覆盖了所有可能的 case ，即不能有遗漏的情况。所以只要天气不是 <code>rain</code> ， <code>snow</code> ，或者 <code>sunny</code> ， 默认的情况的 case 就会被运行。</p>
+<p>Swift 只会运行某一个 case 里的代码。如果你希望继续执行下一个 case 的代码，你需要用到 <code>fallthrough</code> 关键字，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得带伞"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得保暖"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得戴墨镜"</span>)</span><br><span class="line">  <span class="keyword">fallthrough</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"天气不错！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="范围操作符"><a href="# 范围操作符" class="headerlink" title="范围操作符"></a>范围操作符</h1><p>Swift 提供了两种方式给我们创建范围： 它们是 <code>..&lt;</code> 和 <code>...</code> 操作符。半开放范围操作符 <code>..&lt;</code> ，创建的范围不包含右边的值。而闭合范围操作符 <code>...</code> ，创建的范围包含右边的值。</p>
+<p>范围 <code>1..&lt;5</code> 包含数字 1 ，2 ，3 和 4 ， 而范围 <code>1...5</code> 包含数字 1 ，2 ，3 ，4 和 5 。</p>
+<p>对于 switch 语句块来说，范围非常有用。因为你可以把它们用于你的每条 case 。举个例子，假设我们根据某人的考试成绩打印不同的消息：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> score = <span class="number">85</span></span><br><span class="line"><span class="keyword">switch</span> score &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>..&lt;<span class="number">50</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你需要加把劲了。"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="number">50</span>..&lt;<span class="number">85</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"做的不错。"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你真棒！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如前面提到的，这里必须有一个 <code>default case</code> 来确保所有的可能都被覆盖到。</p>
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们来总结一下。</p>
+<ul>
+<li>Swift 提供了用于算术和比较的操作符，它们的工作机制就像我们在数学中所熟知的那样。 </li>
+<li>有一些算术操作符的复合变体，它们可以一次性完成算术和赋值两个操作，比如 <code>+=</code> ，<code>-=</code> ，等等。 </li>
+<li>你可以使用 <code>if</code> ， <code>else</code> 和 <code>else if</code> 语句，基于条件判定的结果来运行不同的代码。 </li>
+<li>Swift 提供一个三元操作符，把 <code>true</code> 和 <code>false</code> 两种条件检查和语句块组合在一起。尽管有的时候会看到大家在使用它们，我个人不建议你使用这个操作符。 </li>
+<li>如果你基于同一个值做多种条件判定，那么你可以使用 switch 语句，这么做会使代码更清晰。 </li>
+<li>我们可以用 <code>..&lt;</code> 或者 <code>...</code> 来创建范围，具体用哪一个取决于要不要包含后面那个值，即范围是否闭合。 </li>
+</ul>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/23/swiftswift-complex-types/" itemprop="url">
+                  极速 Swift 教程之二 | 复合类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-23T20:24:41+08:00" content="2019-12-23">
+              2019-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/12/23/swiftswift-complex-types/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之二 | 复合类型">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数组"><a href="# 数组" class="headerlink" title="数组"></a>数组 </h1><p> 数组是用于存储一组值的合集。举个例子，红、绿、蓝是三基色，你可以对它们进行调和从而产生新颜色。因此颜色就可以用一个包含了红、绿、蓝三个值的数组来存储。</p>
+<p>代码上，我们这么书写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> red = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> green = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> blue = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> color = [red, green, blue]</span><br></pre></td></tr></table></figure>
+
+<p>上面的最后一行代码创建了一个数组：它以方括号开始和结束，里面的元素通过逗号分隔。</p>
+<p>你可以通过书写数组名加上内部包含一个数字的方括号来读取数组里的元素。注意：这个数字代表元素在数组里的位置，几乎在所有的计算机编程语言中，这个位置都是从 <code>0</code> 开始的。所以，如果你想读取蓝色，可以这么写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">color [<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<p>小心：如果你尝试读取一个不存在的值， Swift 将会崩溃。例如，试图读取 <code>color [5]</code> 就不是一个好主意。</p>
+<p>另外还要注意的是，如果你想使用类型注解，数组是通过方括号加里面的类型来表示的： <code>[String]</code> ，<code>[Int]</code> ，<code>[Double]</code> 和 <code>[Bool]</code> 。</p>
+<hr>
+<h1 id="集合"><a href="# 集合" class="headerlink" title="集合"></a>集合 </h1><p> 集合跟数组类似，也是存储一组值的合集。但它们有两个区别：集合中的元素是随机存放的，而数组中的元素是顺序存放的。集合中不允许有两个相同的元素，即任何一个元素只能出现一次。数组则没有这个限制。</p>
+<p>你可以直接利用数组来创建一个集合，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = <span class="type">Set</span>([<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>当你在 Playground 中查看 colors 中的元素时，你看到的元素的顺序可能跟你创建 colors 时填写的顺序不同。实际上，这个顺序并非真的是每次都随机生成，只不过很有可能跟你给的顺序不同。</p>
+<p>Swift 内部自有算法来生成这个顺序，但不保证跟你创建集合时传入的顺序一致。所以，通过位置来读取数组中的元素那种方式，对于读取集合中的元素是不适用的。</p>
+<p>如果你试图往集合中插入一个已经存在的元素，重复的这个元素会被忽略。举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors2 = <span class="type">Set</span>([<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>, <span class="string">"red"</span>, <span class="string">"blue"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>最后的 <code>colors2</code> 只会包含 <code>red</code> ，<code>green</code> 和 <code>blue</code> 各一个。</p>
+<hr>
+<h1 id="元组"><a href="# 元组" class="headerlink" title="元组"></a>元组 </h1><p> 元组允许你通过一个值来存储几个值。 听起来跟数组很像，但元组有所不同：你不能往元组中添加或者删除元素 —— 元组的长度是固定的。你不能改变元组中元素的类型 —— 元组创建时内部的元素类型必须是一致的。</p>
+<p>你可以通过位置或者名称来访问元组中的元素。但是 Swift 不允许你访问不存在的位置或者名称。</p>
+<p>元组的创建方式是把一组值放进圆括号中，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = (first: <span class="string">"Taylor"</span>, last: <span class="string">"Swift"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>你可以通过从 0 之类的位置信息来访问元组的元素：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>或者你也可以通过名称来访问元组的元素：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name.first</span><br></pre></td></tr></table></figure>
+<p>在元组创建之后，你可以改变其中元素的值，但是不能改变它们的类型。因此，如果你尝试把 name 改成 (first: “韩梅梅”，age: 25) ，将会遭遇错误。</p>
+<hr>
+<h1 id="数组 -vs- 集合 -vs- 元组"><a href="# 数组 -vs- 集合 -vs- 元组" class="headerlink" title="数组 vs 集合 vs 元组"></a>数组 vs 集合 vs 元组 </h1><p> 数组，集合和元组第一眼看上去很相似，但它们的用途是有区别的。为了帮助你更好地选择，这里有一些规则供参考：</p>
+<p>如果你需要存放的元素是关联在一起被使用的，它们的个数固定，顺序或者名称也相对固定，那么你应当使用元组。举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> address = (门牌号: <span class="number">666</span>, 街道: <span class="string">"朝阳区某街道"</span>, 城市: <span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果你需要一个合集，其中的元素必须是唯一的，或者你可能需要快速地检验合集里有没有包含某个元素，那么你应当使用集合。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> shoppingList = <span class="type">Set</span>([<span class="string">"苹果"</span>, <span class="string">"肉"</span>, <span class="string">"牛奶"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>如果你需要一个合集，其中的元素允许重复，或者合集中元素的顺序对你来说很重要，那么你应当使用数组。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pingpongScores = [<span class="string">"11-7"</span>, <span class="string">"8-11"</span>, <span class="string">"11-9"</span>, <span class="string">"8-11"</span>, <span class="string">"11-5"</span>, <span class="string">"13-11"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>三种类型中，数组是最常用的。</p>
+<hr>
+<h1 id="字典"><a href="# 字典" class="headerlink" title="字典"></a>字典 </h1><p> 字典也是用于存储一组值的合集。但跟数组用整数的位置来访问元素的方式不同的是，在字典里你可以用任何你想要的类型来充当访问标识。</p>
+<p>当然，最常见的存储字典的访问标识是字符串。举个例子，我们可以创建一个基于运动员的名字来访问运动员的身高的字典：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> top3NBAHeights = [</span><br><span class="line">  <span class="string">"马努特 波尔"</span>: <span class="number">2.31</span>,</span><br><span class="line">  <span class="string">"姚明"</span>: <span class="number">2.28</span>,</span><br><span class="line">  <span class="string">"里克 施密茨"</span>: <span class="number">2.23</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>就像数组一样，字典也以方括号开始和结束，里面的元素通过逗号分隔。此外，为了把一个值（例如 2.28）存放到对应的标识（例如 “姚明”）下面，你还得用到一个冒号。</p>
+<p>这些访问标识被称为 “键”，相对应的是 “值”。我们用键来读取值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top3NBAHeights [<span class="string">"姚明"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果你想使用类型注解，数组是通过方括号加里面的键值对类型来表示的，键值对又通过冒号分隔。举个例子， <code>[String: Double]</code> 或者 <code>[String: String]</code> 。</p>
+<h3 id="字典默认值"><a href="# 字典默认值" class="headerlink" title="字典默认值"></a>字典默认值 </h3><p> 如果你试图通过一个不存在于字典中的键读取字典中的值时， Swift 会返回给你一个 nil 。它代表没有东西。当然，这可能就是你想要 Swift 在找不到目标时返回给你的结果。不过，我们还有另外一种选择：当给定的键对应的值不存在时，我们可以指定一个默认的值返回给访问者。</p>
+<p>为了演示这种操作，我们先创建一个包含了两个人最喜欢的冰淇淋的字典：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> favoriteIceCream = [</span><br><span class="line">  <span class="string">"小明"</span>: <span class="string">"巧克力"</span>,</span><br><span class="line">  <span class="string">"小红"</span>: <span class="string">"香草"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>我们可以像这样读取小明最喜欢的冰淇淋：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">favoriteIceCream [<span class="string">"小明"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>但是当我们试图读取小华最喜欢的冰淇淋时，我们会得到一个 nil ，这代表 Swift 没有在字典里找到对应 “小华” 这个键的值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">favoriteIceCream [<span class="string">"小华"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下，我们可以通过指定一个默认值，比如说 “未知”，来解决这个问题。这样做之后， 当 Swift 没有从字典中找到小华最喜欢的冰淇淋时，我们得到的不再是一个 nil ，而是一个 “未知” 字符串。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">favoriteIceCream [<span class="string">"小华"</span>, <span class="keyword">default</span>: <span class="string">"未知"</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="创建空的合集"><a href="# 创建空的合集" class="headerlink" title="创建空的合集"></a>创建空的合集 </h1><p> 数组，集合和字典都属于合集，因为它们都是把分散的值收集起来放在一处的结构。</p>
+<p>如果你想要创建一个空的合集，只需要写上类型名，然后加上一组圆括号。举个例子，创建一个键和值的类型都是 <code>String</code> 的字典，我们可以这样书写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> teams = [<span class="type">String</span>: <span class="type">String</span>]()</span><br></pre></td></tr></table></figure>
+
+<p>之后添加元素，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">teams [<span class="string">"小红"</span>] = <span class="string">"红色"</span></span><br></pre></td></tr></table></figure>
+
+<p>类似的，你可以像这样创建一个 <code>Int</code> 类型的空数组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> results = [<span class="type">Int</span>]()</span><br></pre></td></tr></table></figure>
+
+<p>创建集合是一个例外，方式稍有不同：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> words = <span class="type">Set</span>&lt;<span class="type">String</span>&gt;()</span><br><span class="line"><span class="keyword">var</span> numbers = <span class="type">Set</span>&lt;<span class="type">Int</span>&gt;()</span><br></pre></td></tr></table></figure>
+
+<p>这是因为 Swift 只为字典和数组提供了特殊的语法，其他类型都必须使用尖括号来声明类型信息，就像集合那样。</p>
+<p>当然，也可以不使用特殊语法，通过和集合类似的标准方式创建字典和数组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scores = <span class="type">Dictionary</span>&lt;<span class="type">String</span>, <span class="type">Int</span>&gt;()</span><br><span class="line"><span class="keyword">var</span> results = <span class="type">Array</span>&lt;<span class="type">Int</span>&gt;()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="枚举"><a href="# 枚举" class="headerlink" title="枚举"></a>枚举 </h1><p> 枚举，通常简称 <code>enums</code> ，是一种定义一组高度关联的值的方式。它使得这组关联的值使用起来更方便。为什么这么说呢？</p>
+<p>想象一下，如果你想要写一些代码表示正在做的某件事情的结果，成功或者失败，你选择了使用字符串来表示这个结果：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">"failure"</span></span><br></pre></td></tr></table></figure>
+<p>不过，有人不小心写错了或者采用了不同的拼写，就像下面这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result2 = <span class="string">"failed"</span></span><br><span class="line"><span class="keyword">let</span> result3 = <span class="string">"fail"</span></span><br></pre></td></tr></table></figure>
+
+<p>上面几行表示失败的字符串都各不相同，所以它们代表不一样的东西，无法让你基于失败这一结果的代码被正确执行。</p>
+<p>而有了枚举，我们可以定义一个叫做 <code>Result</code> 的类型，它既可以是 <code>success</code> ，也可以是 <code>failure</code> ，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Result</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> success</span><br><span class="line">  <span class="keyword">case</span> failure</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，当我们再想要表示结果时，只需要从两个值中选择一个：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result4 = <span class="type">Result</span>.failure</span><br></pre></td></tr></table></figure>
+
+<p>这样做的好处是可以避免书写不一致字符串导致跟预期不匹配的情况发生。</p>
+<h3 id="枚举关联值"><a href="# 枚举关联值" class="headerlink" title="枚举关联值"></a>枚举关联值 </h3><p> 除了可以存储简单的值，枚举还可以存储附属于每个 <code>case</code> 的关联值。这个特性使得你可以为枚举附加额外的数据，从而让它们传达更多细微的信息。</p>
+<p>举个例子，我们可以定义一个枚举，它存放了各种各样的活动类型：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> bored</span><br><span class="line">  <span class="keyword">case</span> running</span><br><span class="line">  <span class="keyword">case</span> talking</span><br><span class="line">  <span class="keyword">case</span> singing</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的枚举类型存储的信息，可以让我们知道有人在讲话，但我们不知道讲话的内容，或者可以让我们知道有人在跑步，但我们不知道他们将跑去哪里。</p>
+<p>通过枚举的关联值，我们添加额外的细节：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> bored</span><br><span class="line">  <span class="keyword">case</span> running (destination: <span class="type">String</span>)</span><br><span class="line">  <span class="keyword">case</span> talking (topic: <span class="type">String</span>)</span><br><span class="line">  <span class="keyword">case</span> singing (volume: <span class="type">Int</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们有了更精确的信息。我们可以说某人正在谈论足球：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> talking = <span class="type">Activity</span>.talking (topic: <span class="string">"football"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="枚举原始值"><a href="# 枚举原始值" class="headerlink" title="枚举原始值"></a>枚举原始值 </h3><p> 有的时候你可能想给枚举赋予一些原始值从而让它们可以表达某种含义。这么做可以让你动态地创建枚举，并且以不一样的方式来使用它们。</p>
+<p>举个例子，你可以创建一个名叫 <code>Planet</code> 的枚举，然后让它的每条 case 存储一个整数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> mercury</span><br><span class="line">  <span class="keyword">case</span> venus</span><br><span class="line">  <span class="keyword">case</span> earth</span><br><span class="line">  <span class="keyword">case</span> mars</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Swift 会为这些 case 自动分配一个数字，同样的，是从 0 开始。你可以利用这些数字创建枚举的 case 。举个例子， <code>earth</code> 会被分配到数字 2 ，于是你可以这么创建一个 <code>earth</code> 的 case ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> earth = <span class="type">Planet</span>(rawValue: <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果你自行指定了一个或者几个 case 的原始值， Swift 可能会自动为剩下的 case 生成原始值，只要这些值是可以被 Swift 推断的。比如把地球算作第 2 颗行星来考虑可能不太自然（因为我们一般说它是九大行星中的第 3 颗)，于是你可以这么写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> mercury = <span class="number">1</span></span><br><span class="line">  <span class="keyword">case</span> venus</span><br><span class="line">  <span class="keyword">case</span> earth</span><br><span class="line">  <span class="keyword">case</span> mars</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一来 Swift 就会给 <code>mercury</code> 分配数字 1 ，后面的数字基于前面的往上加， <code>earth</code> 就变成第 3 颗行星了。</p>
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们来总结一下。</p>
+<ul>
+<li>数组，集合，元组和字典让你可以通过单一对象存储一组值。它们实现这一点的方式各有不同，所以你需要根据具体场景来决定采用哪一种结构。</li>
+<li>数组按顺序存储数据，你可以往里面添加或者删除元素，并通过位置来读取。</li>
+<li>集合不按顺序存储数据，所以你不能通过位置来访问，但它提供了元素不重复的特性。</li>
+<li>元组长度固定，你可以给里面的每个元素取名。这样就既可以通过位置，也可以通过名字来读取。</li>
+<li>字典根据键来存储数据，因此读取元素时要用到键。</li>
+<li>枚举是一种分组关联值的方法，帮你避免拼写错误。</li>
+<li>你可以为枚举的每条 <code>case</code> 设置原始值，同时还可以为它们附加关联值来提供额外的信息。</li>
+</ul>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/23/swiftswift-simple-types/" itemprop="url">
+                  极速 Swift 教程之一 | 简单类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-23T17:59:14+08:00" content="2019-12-23">
+              2019-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/12/23/swiftswift-simple-types/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之一 | 简单类型">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="变量"><a href="# 变量" class="headerlink" title="变量"></a>变量 </h1><p> 当你启动 Xcode 时，它会询问你想要做的事情，选择 “Get Started with a Playground” 。 Playground 是一个可以供你输入 Swift 代码并立即看到结果的沙盒环境。</p>
+<p>默认的， Xcode 将提供一个 iOS 编程环境的空白 Playground, 点击 Next，然后再点击 Create ，将 Playground 保存到你的系统桌面。</p>
+<p>在本文中，我将向你介绍 “变量”，它们是你用来存储程序数据的地方。之所以被称为 “变量”，是因为它们可变，即你可以自由地改变它们的值。</p>
+<p>我们将从在 Playground 中的第一行代码开始了解 “变量”，它是一行创建了一个名称为 “str” ， 值为 “Hello, playground” 的字符串变量的代码。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"Hello, playground"</span></span><br></pre></td></tr></table></figure>
+
+<p>这行代码创建了一个名为 <code>str</code> 的新变量，并给它赋值为 “Hello, playground” 。在 Playground 右侧的输出区域你可以看到 “Hello, playground” – 这是 Xcode 在展示我们刚刚给 <code>str</code> 设置的值。</p>
+<p>既然 str 是一个变量，我们就可以改变它:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"Goodbye"</span></span><br></pre></td></tr></table></figure>
+
+<p>第二次的时候，你不需要再写一次 <code>var</code> ，因为这个变量在前面已经被创建过了 – 我们只需要改变它。</p>
+<hr>
+<h1 id="字符串和整型"><a href="# 字符串和整型" class="headerlink" title="字符串和整型"></a>字符串和整型</h1><p>Swift 是一门类型安全的编程语言，类型安全特指的含义包括：每一个变量都必须有一个特定的 “类型”。 Xcode 为我们创建的 str 变量拥有一个由字母组合 “Hello, playground” 组成的字符串，所以 Swift 为这个变量赋予了 <code>String</code> 类型。</p>
+<p>换句话说，如果我们想存储一个人的年龄，那我们可能需要创建这样一个变量：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">38</span></span><br></pre></td></tr></table></figure>
+
+<p>这个变量拥有一个整数， 所以 Swift 赋予它 <code>Int</code> 类型 –  <code>Int</code> 是 “integer” 的简写。如果你的数比较大，Swift 允许使用下划线作为千位分隔符。这些分隔符不会改变数字代表的绝对数值，它们只是让数字阅读起来更方便。</p>
+<p>例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> population = <span class="number">8_000_000</span></span><br></pre></td></tr></table></figure>
+
+<p><code>String</code> 和 <code>Int</code> 是不同的类型，不能混用。因此，你可以把 <code>str</code> 的值改成 “Goodbye”，但你不能把它改成 <code>38</code> ，因为 <code>38</code> 是一个 <code>Int</code> 类型，不是一个 <code>String</code> 类型。</p>
+<hr>
+<h1 id="多行字符串"><a href="# 多行字符串" class="headerlink" title="多行字符串"></a>多行字符串 </h1><p> 标准的 Swift 字符串使用双引号表示，但在双引号之间你不能换行。如果你想要表示多行的字符串，需要使用将双引号首尾的引号个数由一个改成三个，就像下面这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1 = <span class="string">"""</span></span><br><span class="line"><span class="string"> 这个字符串 </span></span><br><span class="line"><span class="string"> 跨越了 </span></span><br><span class="line"><span class="string"> 多行 </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<p>Swift 对于书写这些引号有着特别的规定：开始的三个引号和结束的三个引号都必须独占一行，但它们占的那两行都不会算进最终的字符串里。假如你只是想利用多行字符串来使代码看起来更整洁，你可以通过在每行的行尾添加一个 \ 来确保换行不会进入最终的字符串，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str2 = <span class="string">"""</span></span><br><span class="line"><span class="string"> 这个字符串 \</span></span><br><span class="line"><span class="string"> 看起来跨越了多行， \</span></span><br><span class="line"><span class="string"> 实际上没有 </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="双精度浮点型和布尔型"><a href="# 双精度浮点型和布尔型" class="headerlink" title="双精度浮点型和布尔型"></a>双精度浮点型和布尔型</h1><p>Swift 中还有两种基础的数据类型，它们是双精度浮点数类型和布尔类型，你将会经常用到它们。 <code>Double</code> 被用来代表 “双精度浮点数”，这是表示诸如 38.1, 或者 3.141592654 这样的小数的一种高级的说法。每当你通过一个分数创建一个变量时，Swift 都会自动赋予这个变量 <code>Double</code> 类型。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pi = <span class="number">3.141</span></span><br></pre></td></tr></table></figure>
+
+<p>双精度浮点数有别于整数，也不能混用。至于布尔类型则更简单一些：它们只有 <code>true</code> 和 <code>false</code> 两种值，所以当你用 <code>true</code> 或者 <code>false</code> 创建一个变量时，Swift 会自动赋予这个变量布尔类型。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> awesome = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="字符串插值"><a href="# 字符串插值" class="headerlink" title="字符串插值"></a>字符串插值 </h1><p> 你已经在前面学到了如何在代码中直接输入字符串的值，不过 Swift 还提供了一种被称为 “字符串插值” 的特性。这个特性允许你在字符串值里插入变量，从而动态地给一个 <code>String</code> 类型的变量赋值。在字符串内部，你可以放置任意类型，任意数量的变量。要放置这些变量，你需要以一个反斜杠开始，即 \，然后跟上用圆括号包起来的变量名。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">85</span> </span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"你的分数是 \(score)"</span></span><br></pre></td></tr></table></figure>
+
+<p>你将会在 Playground 的输出区域里看到，上面的操作会把 <code>str</code> 变量的值设置为 “你的分数是 85”。</p>
+<p>多尝试几次，通过字符串插值组合出任何你想要的字符串。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> results = <span class="string">"测试结果如下： \(str)"</span></span><br></pre></td></tr></table></figure>
+
+<p>在之后你还会学到，字符串插值不仅可以用来放置变量，还可以用来运行代码。</p>
+<hr>
+<h1 id="常量"><a href="# 常量" class="headerlink" title="常量"></a>常量 </h1><p> 前面提到变量之所以被称为变量是因为你可以随着时间的推移改变它们，这一点非常有用。不过，有些时候你只需要设置一次值然后就不再改变了，这种情况下我们使用常量。对应给变量用的 <code>var</code> 关键字，常量用 <code>let</code> 关键字表示。 <code>let</code> 关键字用来声明常量，常量的值只能被设置一次，并且无法被修改。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> taylor = <span class="string">"swift"</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你尝试改变常量的值， Xcode 会拒绝运行你的代码。这是一种安全机制，以防止你失手改变一些本来不应该被改变的东西。在书写 Swift 代码的时候，除非你明确想要改变，你应当尽量使用 <code>let</code> 关键字。实际上，如果你用了 <code>var</code> 声明变量但之后都没有再对它进行改变， Xcode 将会发出警告。</p>
+<hr>
+<h1 id="类型注解"><a href="# 类型注解" class="headerlink" title="类型注解"></a>类型注解</h1><p>Swift 基于变量和常量在创建时被赋予的值为它们分配了一个类型。因此，当你书写如下的代码时， Swift 知道这里面包含了一个字符串：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"Hello, playground"</span></span><br></pre></td></tr></table></figure>
+
+<p>它将把 <code>str</code> 当作一个 <code>String</code> 类型，因此之后你就不能再给它赋值一个整数值或者布尔值。这个过程被称为 ** 类型推断 **。 Swift 能够基于你创建一个东西的方式来推断它的类型。  如果你想显式地声明数据的类型而不是依赖 Swift 的类型推断，你可以这么写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> album: <span class="type">String</span> = <span class="string">"Reputation"</span> </span><br><span class="line"><span class="keyword">let</span> year: <span class="type">Int</span> = <span class="number">1989</span> </span><br><span class="line"><span class="keyword">let</span> height: <span class="type">Double</span> = <span class="number">1.78</span> </span><br><span class="line"><span class="keyword">let</span> <span class="keyword">is</span>: <span class="type">Bool</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>留心布尔类型的缩写名是 <code>Bool</code> ，同样地，整数类型也是采用缩写的 <code>Int</code> 。</p>
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们来总结一下。</p>
+<ul>
+<li>我们使用 <code>var</code> 来创建变量，使用 <code>let</code> 来创建常量。如无必要使用变量，应当尽可能地使用常量。 </li>
+<li><code>String</code> 类型通常以双引号来开始和结束。如果你想要字符串能够跨越多行，则需要把引号替换为三个。 </li>
+<li><code>Int</code> 类型存储整数，<code>Double</code> 存储小数，而 <code>Bool</code> 则存储 <code>true</code> 或者 <code>false</code>。 </li>
+<li>字符串插值允许你通过在字符串内部放置其他的变量和常量的方式来创建新的字符串。 </li>
+<li>Swift 通过类型推断来给变量或者常量分配类型，不过你也可以显式地提供类型。 </li>
+</ul>
+<hr>
+
           
         
       
@@ -389,13 +1158,27 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>

@@ -1,0 +1,855 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift, programming," />
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="For 循环Swift 有很多种书写循环的方式，它们底层的机制是相同的：重复执行某段代码直到某个条件不再满足。 最常见的循环是 for 循环：它在数组和范围上循环，每次拉出一个值然后把它赋予一个常量。 举个例子，这里是一个数字的范围： 1let count &#x3D; 1...10  我们可以用一个 for 循环打印里面的每一个值，就像这样： 123for number in count &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极速 Swift 教程之四 | 循环">
+<meta property="og:url" content="http://yoursite.com/2019/12/23/swiftswift-looping/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="For 循环Swift 有很多种书写循环的方式，它们底层的机制是相同的：重复执行某段代码直到某个条件不再满足。 最常见的循环是 for 循环：它在数组和范围上循环，每次拉出一个值然后把它赋予一个常量。 举个例子，这里是一个数字的范围： 1let count &#x3D; 1...10  我们可以用一个 for 循环打印里面的每一个值，就像这样： 123for number in count &amp;#123;">
+<meta property="article:published_time" content="2019-12-23T14:10:55.000Z">
+<meta property="article:modified_time" content="2019-12-23T14:21:38.277Z">
+<meta property="article:author" content="Patrick Lin">
+<meta property="article:tag" content="swift, programming">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'xirong'
+    }
+  };
+</script>
+
+  <title> 极速 Swift 教程之四 | 循环 | The Infinite Game </title>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">The Infinite Game</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The Tech Zone Of Patrick Lin</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                极速 Swift 教程之四 | 循环
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-23T22:10:55+08:00" content="2019-12-23">
+              2019-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/12/23/swiftswift-looping/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之四 | 循环">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="For- 循环"><a href="#For- 循环" class="headerlink" title="For 循环"></a>For 循环</h1><p>Swift 有很多种书写循环的方式，它们底层的机制是相同的：重复执行某段代码直到某个条件不再满足。</p>
+<p>最常见的循环是 <code>for</code> 循环：它在数组和范围上循环，每次拉出一个值然后把它赋予一个常量。</p>
+<p>举个例子，这里是一个数字的范围：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="built_in">count</span> = <span class="number">1</span>...<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以用一个 <code>for</code> 循环打印里面的每一个值，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">count</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"数字是 \(number)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组的操作方式也一样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> albums = [<span class="string">"Red"</span>, <span class="string">"1989"</span>, <span class="string">"Reputation"</span>]</span><br><span class="line"><span class="keyword">for</span> album <span class="keyword">in</span> albums &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(album) 在 Apple Music 上有售卖。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你不需要用到 <code>for</code> 循环提供给你的常量，你可以用下划线替代，这样 Swift 就会忽略这个你没有用到的值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="number">5</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Zzz..."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="While- 循环"><a href="#While- 循环" class="headerlink" title="While 循环"></a>While 循环 </h1><p> 第二种书写循环的方式是使用 <code>while</code> ：给定一个检查的条件，循环运行代码直到条件不成立。</p>
+<p>举个例子，我们可以使用 <code>while</code> 循环来模拟一个躲猫猫游戏：从 1 开始数数，数到的数会打印出来。数完 20 个数之后打印 “准备好了没？我来啦！”</p>
+<p>Swift 代码长这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> number &lt;= <span class="number">20</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(number)</span><br><span class="line">  number += <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"准备好了没？我来啦！"</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Repeat- 循环"><a href="#Repeat- 循环" class="headerlink" title="Repeat 循环"></a>Repeat 循环 </h1><p> 第三种循环的写法不常用，它是 <code>repeat</code> 循环。除了把条件检查放在后面，它基本上跟 <code>while</code> 循环是一样的。</p>
+<p>因此，我们可以用 <code>repeat</code> 循环重写我们的躲猫猫游戏：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="number">1</span></span><br><span class="line"><span class="keyword">repeat</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(number)</span><br><span class="line">  number += <span class="number">1</span></span><br><span class="line">&#125; <span class="keyword">while</span> number &lt;= <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"准备好了没？我来啦！"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>因为检查的条件是放在后面，所以 <code>repeat</code> 循环里的代码至少会被执行一次。而 <code>while</code> 循环则是在首次运行前就会检查条件。</p>
+<p>举个例子， 下面代码里的 <code>print ()</code> 函数永远都不会被运行，因为 <code>false</code> 永远是 false ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">false</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"这是 false"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Xcode 会警告我们上面代码中的 <code>print ()</code> 代码永远都不会被执行。</p>
+<p>而在下面这个代码里， <code>print ()</code> 函数则至少运行一次，因为 <code>repeat</code> 只有在条件检查没有通过时才会停止执行：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">repeat</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"这是 false"</span>)</span><br><span class="line">&#125; <span class="keyword">while</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="退出循环"><a href="# 退出循环" class="headerlink" title="退出循环"></a>退出循环 </h1><p> 你可以使用 <code>break</code> 关键字来终止循环。让我们以一个常规的 <code>while</code> 循环为例 —— 火箭发射倒计时：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countDown = <span class="number">10</span></span><br><span class="line"><span class="keyword">while</span> countDown &gt;= <span class="number">0</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(countDown)</span><br><span class="line">  countDown -= <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"发射！"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>想象一下，宇航员感觉这个倒计时过程很无聊，决定跳过后面的数，直接发射：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> countDown &gt;= <span class="number">0</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(countDown)</span><br><span class="line">  <span class="keyword">if</span> countDown == <span class="number">4</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"好无聊啊，让我们直接发射吧！"</span>)</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  countDown -= <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过这次改动，只要 <code>countDown</code> 达到 4 ，那么宇航员的消息就会被打印，剩余的计数将会被忽略。</p>
+<hr>
+<h1 id="退出多重循环"><a href="# 退出多重循环" class="headerlink" title="退出多重循环"></a>退出多重循环 </h1><p> 把循环放在另一个循环里，叫做 * 嵌套 * 循环。有的时候，你会有这种需求：同时跳出内部的循环和外部的循环。</p>
+<p>举个例子， 我们可以用嵌套循环实现一个从 1 到 10 的乘法表：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> product = i * j</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">"\(i) * \(j) 等于 \(product)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果想退出循环，我们需要做两件事。首先，给外层循环加一个标签，像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">outerLoop: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> product = i * j</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">"\(i) * \(j) 等于 \(product)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，在内层循环里添加条件，在条件满足时用 <code>break outerLoop</code> 同时退出内外层循环：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">outerLoop: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> product = i * j</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">"\(i) * \(j) 等于 \(product)"</span>)</span><br><span class="line">    <span class="keyword">if</span> product == <span class="number">50</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"这是一个靶心。"</span>)</span><br><span class="line">      <span class="keyword">break</span> outerLoop</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果只使用 <code>break</code> ，就只能退出内层循环，外层循环会继续运行。</p>
+<hr>
+<h1 id="跳过循环项"><a href="# 跳过循环项" class="headerlink" title="跳过循环项"></a>跳过循环项 </h1><p> 如你所见， <code>break</code> 关键字可以用于退出循环。 但是假如你想要跳过当前项然后继续执行下一次循环，你可以使用 <code>continue</code> 关键字。</p>
+<p>让我们写一个从 1 到 10 的循环，然后利用 Swift 的取余操作符来跳过所有的奇数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">1</span> &#123;</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">print</span>(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="无限循环"><a href="# 无限循环" class="headerlink" title="无限循环"></a>无限循环 </h1><p> 通常来说，我们用 <code>while</code> 循环来实现无限循环：它指的是那种不会自动停止的循环，或者说只有我们想要它停止时才停止的循环。你的智能手机里的 App 都用到了无限循环，因为它们一旦开始运行，就会持续运行，不断地接收输入事件，做出响应。</p>
+<p>最简单的无限循环是用 <code>true</code> 作为条件。 <code>true</code> 使得循环可以无限重复地执行。 ** 警告：** 如果你采用 <code>while true</code> 来实现循环，确保你在循环内会有一个条件检查以退出这个无限循环。</p>
+<p>举个例子， 我们用 <code>while true</code> 来模拟约翰・凯奇的《4’33”》这首歌。这首歌真的很奇葩，因为整个首歌的 4 分 33 秒都是沉默，没声。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">""</span>)</span><br><span class="line">  counter += <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> counter == <span class="number">273</span> &#123;</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们来总结一下。</p>
+<ol>
+<li>循环可以重复执行某段代码，直到条件不再满足。 </li>
+<li>最常见的循环是 <code>for</code> 循环，它内部会计数一个临时的常量来记录循环的次数。 </li>
+<li>如果你用不上这个 <code>for</code> 循环给到你的常量，可以使用下划线来告知 Swift 忽略它。 </li>
+<li>对于 <code>while</code> 循环，你需要显式地提供一个条件检查来决定循环是否执行。 </li>
+<li>尽管和 <code>while</code> 循环很像， <code>repeat</code> 循环至少会执行一次循环体里的代码。 </li>
+<li>你可以用 <code>break</code> 结束循环，但是在嵌套循环里， <code>break</code> 之后还要再加上标签才能跳出特定的外层循环。 </li>
+<li>你可以用 <code>continue</code> 来跳过循环中特定的项。 </li>
+<li>无限循环只有在你要求它停止时才会结束。如果你用了 <code>while true</code> 来实现无限循环，确保你有一个条件检查用于终止循环！ </li>
+</ol>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_public_account.jpg" alt="Patrick Lin wechat" style="width: 200px; max-width: 100%;"/>
+    <div>更多内容请关注公众号</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>予人玫瑰，手留余香</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat.jpg" alt="Patrick Lin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="Patrick Lin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift-programming/" rel="tag">#swift, programming</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/23/swiftswift-operators-and-conditions/" rel="next" title="极速 Swift 教程之三 | 操作符与条件">
+                <i class="fa fa-chevron-left"></i> 极速 Swift 教程之三 | 操作符与条件
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Patrick Lin" />
+          <p class="site-author-name" itemprop="name">Patrick Lin</p>
+          <p class="site-description motion-element" itemprop="description">人生是一场无限的游戏。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#For- 循环"><span class="nav-number">1.</span> <span class="nav-text">For 循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#While- 循环"><span class="nav-number">2.</span> <span class="nav-text">While 循环 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Repeat- 循环"><span class="nav-number">3.</span> <span class="nav-text">Repeat 循环 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#退出循环"><span class="nav-number">4.</span> <span class="nav-text">退出循环 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#退出多重循环"><span class="nav-number">5.</span> <span class="nav-text">退出多重循环 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跳过循环项"><span class="nav-number">6.</span> <span class="nav-text">跳过循环项 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无限循环"><span class="nav-number">7.</span> <span class="nav-text">无限循环 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结 </span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Patrick Lin</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io" target="_blank" rel="noopener">Hexo</a>
+</div>
+
+<div class="powered-by">
+   闽ICP备15013969号
+</div>
+
+<div class="theme-info">
+  Clone theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next/" target="_blank" rel="noopener">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("HfEUHBkxIxPKFFWsM8E29K81-gzGzoHsz", "j8gTHCF5cxmeGRbV0QIujeUw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

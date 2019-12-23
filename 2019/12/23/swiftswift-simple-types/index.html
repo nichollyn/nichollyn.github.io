@@ -1,0 +1,849 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift, programming," />
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="变量  当你启动 Xcode 时，它会询问你想要做的事情，选择 “Get Started with a Playground” 。 Playground 是一个可以供你输入 Swift 代码并立即看到结果的沙盒环境。 默认的， Xcode 将提供一个 iOS 编程环境的空白 Playground, 点击 Next，然后再点击 Create ，将 Playground 保存到你的系统桌面。 在本文中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极速 Swift 教程之一 | 简单类型">
+<meta property="og:url" content="http://yoursite.com/2019/12/23/swiftswift-simple-types/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="变量  当你启动 Xcode 时，它会询问你想要做的事情，选择 “Get Started with a Playground” 。 Playground 是一个可以供你输入 Swift 代码并立即看到结果的沙盒环境。 默认的， Xcode 将提供一个 iOS 编程环境的空白 Playground, 点击 Next，然后再点击 Create ，将 Playground 保存到你的系统桌面。 在本文中">
+<meta property="article:published_time" content="2019-12-23T09:59:14.000Z">
+<meta property="article:modified_time" content="2019-12-23T13:16:51.924Z">
+<meta property="article:author" content="Patrick Lin">
+<meta property="article:tag" content="swift, programming">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'xirong'
+    }
+  };
+</script>
+
+  <title> 极速 Swift 教程之一 | 简单类型 | The Infinite Game </title>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">The Infinite Game</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The Tech Zone Of Patrick Lin</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                极速 Swift 教程之一 | 简单类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-23T17:59:14+08:00" content="2019-12-23">
+              2019-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/12/23/swiftswift-simple-types/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之一 | 简单类型">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="变量"><a href="# 变量" class="headerlink" title="变量"></a>变量 </h1><p> 当你启动 Xcode 时，它会询问你想要做的事情，选择 “Get Started with a Playground” 。 Playground 是一个可以供你输入 Swift 代码并立即看到结果的沙盒环境。</p>
+<p>默认的， Xcode 将提供一个 iOS 编程环境的空白 Playground, 点击 Next，然后再点击 Create ，将 Playground 保存到你的系统桌面。</p>
+<p>在本文中，我将向你介绍 “变量”，它们是你用来存储程序数据的地方。之所以被称为 “变量”，是因为它们可变，即你可以自由地改变它们的值。</p>
+<p>我们将从在 Playground 中的第一行代码开始了解 “变量”，它是一行创建了一个名称为 “str” ， 值为 “Hello, playground” 的字符串变量的代码。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"Hello, playground"</span></span><br></pre></td></tr></table></figure>
+
+<p>这行代码创建了一个名为 <code>str</code> 的新变量，并给它赋值为 “Hello, playground” 。在 Playground 右侧的输出区域你可以看到 “Hello, playground” – 这是 Xcode 在展示我们刚刚给 <code>str</code> 设置的值。</p>
+<p>既然 str 是一个变量，我们就可以改变它:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"Goodbye"</span></span><br></pre></td></tr></table></figure>
+
+<p>第二次的时候，你不需要再写一次 <code>var</code> ，因为这个变量在前面已经被创建过了 – 我们只需要改变它。</p>
+<hr>
+<h1 id="字符串和整型"><a href="# 字符串和整型" class="headerlink" title="字符串和整型"></a>字符串和整型</h1><p>Swift 是一门类型安全的编程语言，类型安全特指的含义包括：每一个变量都必须有一个特定的 “类型”。 Xcode 为我们创建的 str 变量拥有一个由字母组合 “Hello, playground” 组成的字符串，所以 Swift 为这个变量赋予了 <code>String</code> 类型。</p>
+<p>换句话说，如果我们想存储一个人的年龄，那我们可能需要创建这样一个变量：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">38</span></span><br></pre></td></tr></table></figure>
+
+<p>这个变量拥有一个整数， 所以 Swift 赋予它 <code>Int</code> 类型 –  <code>Int</code> 是 “integer” 的简写。如果你的数比较大，Swift 允许使用下划线作为千位分隔符。这些分隔符不会改变数字代表的绝对数值，它们只是让数字阅读起来更方便。</p>
+<p>例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> population = <span class="number">8_000_000</span></span><br></pre></td></tr></table></figure>
+
+<p><code>String</code> 和 <code>Int</code> 是不同的类型，不能混用。因此，你可以把 <code>str</code> 的值改成 “Goodbye”，但你不能把它改成 <code>38</code> ，因为 <code>38</code> 是一个 <code>Int</code> 类型，不是一个 <code>String</code> 类型。</p>
+<hr>
+<h1 id="多行字符串"><a href="# 多行字符串" class="headerlink" title="多行字符串"></a>多行字符串 </h1><p> 标准的 Swift 字符串使用双引号表示，但在双引号之间你不能换行。如果你想要表示多行的字符串，需要使用将双引号首尾的引号个数由一个改成三个，就像下面这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1 = <span class="string">"""</span></span><br><span class="line"><span class="string"> 这个字符串 </span></span><br><span class="line"><span class="string"> 跨越了 </span></span><br><span class="line"><span class="string"> 多行 </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<p>Swift 对于书写这些引号有着特别的规定：开始的三个引号和结束的三个引号都必须独占一行，但它们占的那两行都不会算进最终的字符串里。假如你只是想利用多行字符串来使代码看起来更整洁，你可以通过在每行的行尾添加一个 \ 来确保换行不会进入最终的字符串，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str2 = <span class="string">"""</span></span><br><span class="line"><span class="string"> 这个字符串 \</span></span><br><span class="line"><span class="string"> 看起来跨越了多行， \</span></span><br><span class="line"><span class="string"> 实际上没有 </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="双精度浮点型和布尔型"><a href="# 双精度浮点型和布尔型" class="headerlink" title="双精度浮点型和布尔型"></a>双精度浮点型和布尔型</h1><p>Swift 中还有两种基础的数据类型，它们是双精度浮点数类型和布尔类型，你将会经常用到它们。 <code>Double</code> 被用来代表 “双精度浮点数”，这是表示诸如 38.1, 或者 3.141592654 这样的小数的一种高级的说法。每当你通过一个分数创建一个变量时，Swift 都会自动赋予这个变量 <code>Double</code> 类型。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pi = <span class="number">3.141</span></span><br></pre></td></tr></table></figure>
+
+<p>双精度浮点数有别于整数，也不能混用。至于布尔类型则更简单一些：它们只有 <code>true</code> 和 <code>false</code> 两种值，所以当你用 <code>true</code> 或者 <code>false</code> 创建一个变量时，Swift 会自动赋予这个变量布尔类型。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> awesome = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="字符串插值"><a href="# 字符串插值" class="headerlink" title="字符串插值"></a>字符串插值 </h1><p> 你已经在前面学到了如何在代码中直接输入字符串的值，不过 Swift 还提供了一种被称为 “字符串插值” 的特性。这个特性允许你在字符串值里插入变量，从而动态地给一个 <code>String</code> 类型的变量赋值。在字符串内部，你可以放置任意类型，任意数量的变量。要放置这些变量，你需要以一个反斜杠开始，即 \，然后跟上用圆括号包起来的变量名。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">85</span> </span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"你的分数是 \(score)"</span></span><br></pre></td></tr></table></figure>
+
+<p>你将会在 Playground 的输出区域里看到，上面的操作会把 <code>str</code> 变量的值设置为 “你的分数是 85”。</p>
+<p>多尝试几次，通过字符串插值组合出任何你想要的字符串。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> results = <span class="string">"测试结果如下： \(str)"</span></span><br></pre></td></tr></table></figure>
+
+<p>在之后你还会学到，字符串插值不仅可以用来放置变量，还可以用来运行代码。</p>
+<hr>
+<h1 id="常量"><a href="# 常量" class="headerlink" title="常量"></a>常量 </h1><p> 前面提到变量之所以被称为变量是因为你可以随着时间的推移改变它们，这一点非常有用。不过，有些时候你只需要设置一次值然后就不再改变了，这种情况下我们使用常量。对应给变量用的 <code>var</code> 关键字，常量用 <code>let</code> 关键字表示。 <code>let</code> 关键字用来声明常量，常量的值只能被设置一次，并且无法被修改。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> taylor = <span class="string">"swift"</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你尝试改变常量的值， Xcode 会拒绝运行你的代码。这是一种安全机制，以防止你失手改变一些本来不应该被改变的东西。在书写 Swift 代码的时候，除非你明确想要改变，你应当尽量使用 <code>let</code> 关键字。实际上，如果你用了 <code>var</code> 声明变量但之后都没有再对它进行改变， Xcode 将会发出警告。</p>
+<hr>
+<h1 id="类型注解"><a href="# 类型注解" class="headerlink" title="类型注解"></a>类型注解</h1><p>Swift 基于变量和常量在创建时被赋予的值为它们分配了一个类型。因此，当你书写如下的代码时， Swift 知道这里面包含了一个字符串：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"Hello, playground"</span></span><br></pre></td></tr></table></figure>
+
+<p>它将把 <code>str</code> 当作一个 <code>String</code> 类型，因此之后你就不能再给它赋值一个整数值或者布尔值。这个过程被称为 ** 类型推断 **。 Swift 能够基于你创建一个东西的方式来推断它的类型。  如果你想显式地声明数据的类型而不是依赖 Swift 的类型推断，你可以这么写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> album: <span class="type">String</span> = <span class="string">"Reputation"</span> </span><br><span class="line"><span class="keyword">let</span> year: <span class="type">Int</span> = <span class="number">1989</span> </span><br><span class="line"><span class="keyword">let</span> height: <span class="type">Double</span> = <span class="number">1.78</span> </span><br><span class="line"><span class="keyword">let</span> <span class="keyword">is</span>: <span class="type">Bool</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>留心布尔类型的缩写名是 <code>Bool</code> ，同样地，整数类型也是采用缩写的 <code>Int</code> 。</p>
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们来总结一下。</p>
+<ul>
+<li>我们使用 <code>var</code> 来创建变量，使用 <code>let</code> 来创建常量。如无必要使用变量，应当尽可能地使用常量。 </li>
+<li><code>String</code> 类型通常以双引号来开始和结束。如果你想要字符串能够跨越多行，则需要把引号替换为三个。 </li>
+<li><code>Int</code> 类型存储整数，<code>Double</code> 存储小数，而 <code>Bool</code> 则存储 <code>true</code> 或者 <code>false</code>。 </li>
+<li>字符串插值允许你通过在字符串内部放置其他的变量和常量的方式来创建新的字符串。 </li>
+<li>Swift 通过类型推断来给变量或者常量分配类型，不过你也可以显式地提供类型。 </li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_public_account.jpg" alt="Patrick Lin wechat" style="width: 200px; max-width: 100%;"/>
+    <div>更多内容请关注公众号</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>予人玫瑰，手留余香</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat.jpg" alt="Patrick Lin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="Patrick Lin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift-programming/" rel="tag">#swift, programming</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/23/swiftswift-complex-types/" rel="prev" title="极速 Swift 教程之二 | 复合类型">
+                极速 Swift 教程之二 | 复合类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Patrick Lin" />
+          <p class="site-author-name" itemprop="name">Patrick Lin</p>
+          <p class="site-description motion-element" itemprop="description">人生是一场无限的游戏。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串和整型"><span class="nav-number">2.</span> <span class="nav-text">字符串和整型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多行字符串"><span class="nav-number">3.</span> <span class="nav-text">多行字符串 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#双精度浮点型和布尔型"><span class="nav-number">4.</span> <span class="nav-text">双精度浮点型和布尔型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串插值"><span class="nav-number">5.</span> <span class="nav-text">字符串插值 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常量"><span class="nav-number">6.</span> <span class="nav-text">常量 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型注解"><span class="nav-number">7.</span> <span class="nav-text">类型注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结 </span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Patrick Lin</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io" target="_blank" rel="noopener">Hexo</a>
+</div>
+
+<div class="powered-by">
+   闽ICP备15013969号
+</div>
+
+<div class="theme-info">
+  Clone theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next/" target="_blank" rel="noopener">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("HfEUHBkxIxPKFFWsM8E29K81-gzGzoHsz", "j8gTHCF5cxmeGRbV0QIujeUw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

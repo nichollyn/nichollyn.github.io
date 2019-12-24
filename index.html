@@ -267,6 +267,783 @@
             
               
                 
+                <a class="post-title-link" href="/2019/12/24/swiftswift-structs/" itemprop="url">
+                  极速 Swift 教程之七 | 结构体
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-24T21:21:46+08:00" content="2019-12-24">
+              2019-12-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/12/24/swiftswift-structs/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之七 | 结构体">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="创建你自己的结构体"><a href="# 创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。<br>Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
+<p>让我们以一个简单的例子开始：创建一个 <code>Sport</code> 结构体，它有一个叫 <code>name</code> 的字符串变量。在结构体中，这种变量被称为 * 属性 * 。因此，这是一个拥有一个属性的结构体。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类型定义完成，现在让我们来创建和使用它的实例：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tennis = <span class="type">Sport</span>(name: <span class="string">"Tennis"</span>)</span><br><span class="line"><span class="built_in">print</span>(tennis.name)</span><br></pre></td></tr></table></figure>
+
+<p><code>name</code> 和 <code>tennis</code> 都是变量，因而我们可以像常规变量那样修改它们：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tennis.name = <span class="string">"Lawn tennis"</span></span><br></pre></td></tr></table></figure>
+
+<p>属性可以像常规变量那样拥有默认值，并且依赖 Swift 的类型推断。</p>
+<hr>
+<h1 id="计算属性"><a href="# 计算属性" class="headerlink" title="计算属性"></a>计算属性 </h1><p> 我们刚刚创建了 <code>Sport</code> 结构体：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它有一个叫 <em>name</em> 的属性，存储 <code>String</code> 类型。这种属性叫做 * 存储 * 属性，因为 Swift 还有另外一种属性，它叫 * 计算 * 属性。这是一种通过运行代码来获得值的属性。</p>
+<p>让我们为 <code>Sport</code> 结构体再增加一个存储属性，然后是一个计算属性。代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> isOlympicSport: <span class="type">Bool</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> olympicStatus: <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> isOlympicSport &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"\(name) 是一项奥林匹克运动。"</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"\(name) 不是一项奥林匹克运动。"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如你所见， <code>olympicStatus</code> 看起来像一个常规的 <code>String</code> ，但它其实是依据其他的属性返回不同的值。</p>
+<p>让我们来创建一个 <code>Sport</code> 实例：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> chessBoxing = <span class="type">Sport</span>(name: <span class="string">"Chessboxing"</span>, isOlympicSport: <span class="literal">false</span>)</span><br><span class="line"><span class="built_in">print</span>(chessBoxing.olympicStatus)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="属性观察者"><a href="# 属性观察者" class="headerlink" title="属性观察者"></a>属性观察者 </h1><p> 属性观察者允许我们可以在属性变化前后运行代码。让我们来写一个名叫 <code>Progress</code> 的结构体，这个结构体追踪一个任务以及它完成的百分比：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Progress</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> task: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> amount: <span class="type">Int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，创建这个结构体的实例，随着时间的推移调整它的进度：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> progress = <span class="type">Progress</span>(task: <span class="string">"加载数据"</span>, amount: <span class="number">0</span>)</span><br><span class="line">progress.amount = <span class="number">30</span></span><br><span class="line">progress.amount = <span class="number">80</span></span><br><span class="line">progress.amount = <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<p>我们期望 Swift 在每一次 <code>amount</code> 改变的时候都打印信息，这里可以用到一个叫 <code>didSet</code> 属性观察者。它可以用于每一次 <code>amount</code> 改变之后运行代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Progress</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> task: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> amount: <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">didSet</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"\(task) 已完成 \(amount)%。"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你还可以用到叫 <code>willSet</code> 的属性观察者。它是在属性改变之前作用，相对来说更不常用。</p>
+<hr>
+<h1 id="方法"><a href="# 方法" class="headerlink" title="方法"></a>方法</h1><p>Struct 的内部可以拥有函数，它们在必要时可以使用结构体的属性。这种函数被称为 * 方法 * ，关键字也是 <code>func</code> 。</p>
+<p>现在我们通过一个叫 <code>City</code> 的结构体来演示。它有一个 <code>population</code> 属性，用于存储城市里的人口。此外，它还有一个 <code>collectTaxes ()</code> 方法，这个方法返回人口数乘以 1000。 由于方法是属于 <code>City</code> 的，它可以读取当前城市的 <code>population</code> 属性。</p>
+<p>代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">City</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> population: <span class="type">Int</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">collectTaxes</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> population * <span class="number">1000</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>基于结构体调用方法的代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> xiamen = <span class="type">City</span>(population: <span class="number">4_110_000</span>)</span><br><span class="line">xiamen.collectTaxes ()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="可变方法"><a href="# 可变方法" class="headerlink" title="可变方法"></a>可变方法 </h1><p> 如果一个结构体拥有一个变量属性，但是这个结构体的实例是以常量的方式创建的，那么在实例中，这个变量属性是不能修改的。这是因为结构体本身已经是常量了，所以它的所有属性也是常量。</p>
+<p>这里面有一个问题， Swift 无从得知你将以常量还是变量的方式使用结构体。所以安全起见， Swift 的默认策略是：不允许你在方法里修改属性，除非你显式地要求这一点。</p>
+<p>当你想要改变属性值时，需要在方法前使用 <code>mutating</code> 关键字，就像这样：</p>
+ <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">makeAnonymous</span><span class="params">()</span></span> &#123;</span><br><span class="line">    name = <span class="string">"Anonymous"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于这个方法改变了属性值，所以 Swift 只会允许这个方法在变量型的 <code>Person</code> 实例上调用。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="type">Person</span>(name: <span class="string">"Ed"</span>)</span><br><span class="line">person.makeAnonymous ()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="String- 的属性和方法"><a href="#String- 的属性和方法" class="headerlink" title="String 的属性和方法"></a>String 的属性和方法 </h1><p> 目前为止我们已经大量地使用了字符串。你发现了吗？其实 <code>String</code> 类型是一个结构体类型。它有许多属性和方法，用于查询和维护字符串本身。</p>
+<p>首先，我们创建一个测试字符串：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> string = <span class="string">"Do or do not, there is no try."</span></span><br></pre></td></tr></table></figure>
+
+<p>你可以用 <code>count</code> 属性来读取这个字符串里的字符数量：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(string.<span class="built_in">count</span>)</span><br></pre></td></tr></table></figure>
+
+<p>字符串有一个 <code>hasPrefix ()</code> 方法，可以用来检测字符串是否以特定字符开头：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(string.hasPrefix (<span class="string">"Do"</span>))</span><br></pre></td></tr></table></figure>
+
+<p>你还可以用 <code>uppercased ()</code> 方法把一个字符串转换成全大写的版本：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(string.uppercased ())</span><br></pre></td></tr></table></figure>
+
+<p>你甚至可以让 Swift 将字符串中的字母重新排序成一个数组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(string.sorted ())</span><br></pre></td></tr></table></figure>
+
+<p>String 类型有大量的属性和方法。 你可以利用 Xcode 的代码补全，用 <code>string.</code> 调取这些选项看一看它们都有些什么能力。</p>
+<hr>
+<h1 id="数组的属性和方法"><a href="# 数组的属性和方法" class="headerlink" title="数组的属性和方法"></a>数组的属性和方法 </h1><p> 数组同样也是结构体，这意味着它们也有可以用来查询和操作数组的属性和方法。</p>
+<p>从一个简单的数组开始：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toys = [<span class="string">"Woody"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>你可以用 <code>count</code> 属性来读取数组的元素个数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(toys.<span class="built_in">count</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果你需要增加一个元素，可以使用 <code>append ()</code> 方法，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toys.append (<span class="string">"Buzz"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>你可以用 <code>firstIndex ()</code> 方法来定位元素在数组里的位置，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toys.firstIndex (of: <span class="string">"Buzz"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码会返回 1 ，因为数组位置从 0 开始计数。</p>
+<p>跟字符串一样，你可以让 Swift 以字母表顺序给数组的元素重新排序。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(toys.sorted ())</span><br></pre></td></tr></table></figure>
+
+<p>最后，如果你想要移除数组里的一个元素，可以使用 <code>remove ()</code> 方法，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toys.remove (at: <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>数组类型也有大量的属性和方法。 你可以利用 Xcode 的代码补全，用 <code>toys.</code> 调取这些选项看一看它们都有些什么能力。</p>
+<hr>
+<h1 id="构造器"><a href="# 构造器" class="headerlink" title="构造器"></a>构造器 </h1><p> 构造器是一种可以用来支持不同方式创建结构体的特殊方法。所有的结构体都有一个默认的构造器，这个构造器被称为 * 逐一成员构造器 * ，它要求你为结构体的每一个属性都提供一个值。</p>
+<p>让我们来声明一个 <code>User</code> 结构体，它有一个属性：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> username: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们创建这个结构体的实例时，我们需要提供一个 <code>username</code> ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = <span class="type">User</span>(username: <span class="string">"Paul"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>当然，我们也可以创建自己的构造器用以替换默认的。举个例子，我们可能希望所有的新用户默认都叫 “Anonymous” ，并且会打印一条信息，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> username: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>() &#123;</span><br><span class="line">    username = <span class="string">"Anonymous"</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"创建新用户！"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你并不需要在构造器前面写 <code>func</code> 关键字，但你必须确保构造器结束前所有的属性都被赋值。</p>
+<p>现在让我们来用上这个没有参数的构造器，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = <span class="type">User</span>()</span><br><span class="line">user.username = <span class="string">"Paul"</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="引用当前实例"><a href="# 引用当前实例" class="headerlink" title="引用当前实例"></a>引用当前实例 </h1><p> 方法的内部，有一个特殊的常量叫 <code>self</code> ，它指向当前正在使用的结构体实例。当你在构造器中遇到参数名和属性名相同的情况时，这个 <code>self</code> 会很有用。</p>
+<p>举个例子，如果你声明一个 <code>Person</code> 的结构体，它有一个 <code>name</code> 属性，并且你尝试写一个接收名为 <code>name</code> 参数的构造器，那么 <code>self</code> 可以帮助你区分属性和参数。 <code>self.name</code> 指代属性，而 <code>name</code> 指代参数。</p>
+<p>代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(name) was born!"</span>)</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="懒加载属性"><a href="# 懒加载属性" class="headerlink" title="懒加载属性"></a>懒加载属性 </h1><p> 作为一种性能优化手段， Swift 允许你在用到的时候才真正创建属性。举个例子，这里有一个叫 <code>FamilyTree</code> 的结构体，它做的工作很容易描述。但理论上为一个人创建族谱可能会是一个很耗时的过程：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FamilyTree</span> </span>&#123;</span><br><span class="line">  <span class="keyword">init</span>() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"创建族谱！"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以在 <code>Person</code> 结构体内将 <code>FamilyTree</code> 作为一个属性来使用，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> familyTree = <span class="type">FamilyTree</span>()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ed = <span class="type">Person</span>(name: <span class="string">"Ed"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>假如某些情况我们并不需要用到某个人的族谱信息呢？我们可以在 <code>familyTree</code> 属性前添加 <code>lazy</code> 关键字， Swift 将会在 <code>familyTree</code> 属性第一次被访问的时候才执行创建代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> familyTree = <span class="type">FamilyTree</span>()</span><br></pre></td></tr></table></figure>
+
+<p>因此，如果你想要看到 “创建族谱！” 这条信息被打印，你至少需要访问 <code>familyTree</code> 属性一次：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ed.familyTree</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="静态属性和方法"><a href="# 静态属性和方法" class="headerlink" title="静态属性和方法"></a>静态属性和方法 </h1><p> 目前为止我们认识的所有属性和方法都是属于独立的结构体实例，这意味着假如我们有一个叫 <code>Student</code> 的结构体，我们可以创建几个 student 实例，每个实例都有各自的属性和方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ed = <span class="type">Student</span>(name: <span class="string">"Ed"</span>)</span><br><span class="line"><span class="keyword">let</span> taylor = <span class="type">Student</span>(name: <span class="string">"Taylor"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>你可以要求 Swift 在不同的结构体实例之间共享属性和方法，这些属性和方法被称为静态属性和静态方法，实现的方式是添加 <em>static</em> 声明。</p>
+<p>现在，让我们给 <code>Student</code> 结构体添加一个静态属性，用以存放班级学生的总数。每当我们创建一个新的 student 实例时，我们将这个属性的数值加 1 ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">var</span> classSize = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="type">Student</span>.classSize += <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>classSize</code> 属性是属于结构体本身而非结构体的实例，因此我们需要用 <code>Student.classSize</code> 来访问它：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="type">Student</span>.classSize)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="访问控制"><a href="# 访问控制" class="headerlink" title="访问控制"></a>访问控制 </h1><p> 访问控制使得我们可以限制哪些代码能够访问属性和方法。这个机制在你想要保护属性免于被直接读取的时候很有用，举个例子：</p>
+<p>我们仍然创建一个 <code>Person</code> 结构体，它有一个 <code>id</code> 属性，用来存放社保 ID：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(id: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.id = id</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ed = <span class="type">Person</span>(id: <span class="string">"12345"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>一旦 person 实例被创建，我们希望它的 <code>id</code> 是私有的。私有的意思是你不能从结构体外部读取它，像 <code>ed.id</code> 这样的代码会变得不合法。</p>
+<p>要做到这一点，你需要用到 <code>private</code> 关键字，像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(id: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.id = id</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这么写之后，只有 <code>Person</code> 内部的方法才能读取 <code>id</code> 属性。举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(id: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.id = id</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">identify</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"我的社保 ID 是 \(id)"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还有一个常见的选项是 <code>public</code> ，它使得所有的其他代码都能够访问到目标属性或者方法。</p>
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们一起来总结一下。</p>
+<ol>
+<li>你可以创建自己的结构体类型，它们有自己的属性和方法。 </li>
+<li>你学习了存储属性，以及每一次通过临时计算得到值的计算属性。 </li>
+<li>当你希望在方法中修改属性时，需要把方法标记成 <code>mutating</code> 。 </li>
+<li>构造器是创建结构体时的特殊方法。默认情况下，你会得到一个逐一成员构造器。不过，如果你想要自行实现构造器的话，需要确保所有的属性都被赋值。 </li>
+<li>你可以在方法中用 <code>self</code> 常量来引用当前正在使用的结构体实例。 </li>
+<li><code>lazy</code> 关键字告诉 Swift 你希望属性在第一次访问时才被创建。 </li>
+<li>可以利用 <code>static</code> 关键字在结构体的所有实例间共享属性和方法。 </li>
+<li>访问控制使得我们可以限制哪些代码能够访问属性和方法。 </li>
+</ol>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/24/swiftswift-closures/" itemprop="url">
+                  极速 Swift 教程之六 | 闭包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-24T21:05:51+08:00" content="2019-12-24">
+              2019-12-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/12/24/swiftswift-closures/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之六 | 闭包">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="创建基本的闭包"><a href="# 创建基本的闭包" class="headerlink" title="创建基本的闭包"></a>创建基本的闭包</h1><p>Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。</p>
+<p>函数的这种用法被称为 * 闭包 * 。虽然工作机制差不多，写法上是有一些小差异的。</p>
+<p>还是以打印信息为例：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要去开车"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码实际上创建了一个匿名的函数，并将这个函数赋给了 <code>driving</code> 。之后你就可以把 <code>driving ()</code> 当作一个常规的函数来用，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driving ()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="在闭包中接收参数"><a href="# 在闭包中接收参数" class="headerlink" title="在闭包中接收参数"></a>在闭包中接收参数 </h1><p> 当你创建闭包的时候，它们并没有名字，也没有提供书写参数的地方。但这并不意味着它们不能接收参数，只不过它们接收参数的方式稍有不同：这些参数是被写在花括号里面的。</p>
+<p>为了让一个闭包接收参数，你需要在花括号之后把这些参数列出来，然后跟上一个 <code>in</code> 关键字。这样就告诉 Swift ，闭包的主体是从哪里开始的。</p>
+<p>举个例子，我们来创建一个闭包，接收一个叫 <code>place</code> 的字符串作为唯一的参数，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123; (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要开车去 \(place)。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数和闭包的一个区别是运行闭包的时候你不会用到参数标签。因此，调用 <code>driving ()</code> 的时候，我们是这样写的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driving (<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="从闭包中返回值"><a href="# 从闭包中返回值" class="headerlink" title="从闭包中返回值"></a>从闭包中返回值 </h1><p> 闭包也能返回值，写法和闭包的参数类似：写在闭包内部， <code>in</code> 关键字前面。</p>
+<p>还是以 <code>driving ()</code> 闭包为例， 让它返回一个字符串。原来的函数是这样的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123; (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要开车去  \(place)。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改成返回字符串而不是直接打印那个字符串，需要 <code>in</code> 之前添加 <code>-&gt; String</code> ，然后像常规函数那样用到 <code>return</code> 关键字:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> drivingWithReturn = &#123; (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们运行这个闭包并且打印出它的返回值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> message = drivingWithReturn (<span class="string">"北京"</span>)</span><br><span class="line"><span class="built_in">print</span>(message)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="闭包作为参数"><a href="# 闭包作为参数" class="headerlink" title="闭包作为参数"></a>闭包作为参数 </h1><p> 既然闭包可以像字符串和整数一样使用，你就可以将它们传入函数。闭包作为参数的语法乍一看一看挺伤脑筋的，让我们慢慢来。</p>
+<p>首先，还是基本的 <code>driving ()</code> 闭包。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们打算把这个闭包传入一个函数，以便函数内部可以运行这个闭包。我们需要把函数的参数类型指定为 <code>() -&gt; Void</code> 。它的意思是 “不接收参数，并且返回 <code>Void</code> ”。在 Swift 中， <code>Void</code> 是什么也没有的意思。</p>
+<p>好了，让我们来写一个 <code>travel ()</code> 函数，接收不同类型的 traveling 动作， 并且在动作前后分别打印信息：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action ()</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在可以用上 <code>driving</code> 闭包了，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">travel (action: driving)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="拖尾闭包语法"><a href="# 拖尾闭包语法" class="headerlink" title="拖尾闭包语法"></a>拖尾闭包语法 </h1><p> 如果一个函数的最后一个参数是闭包， Swift 允许你采用一种被称为 <em>“拖尾闭包语法”</em> 的方式来调用这个闭包。你可以把闭包传入函数之后的花括号里，而不必像传入参数那样。</p>
+<p>又用到我们的 <code>travel ()</code> 函数了。它接收一个 <code>action</code> 闭包。闭包在两个 <code>print ()</code> 调用之间执行:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action ()</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于函数的最后一个参数是闭包，我们可以用拖尾闭包语法来调用 <code>travel ()</code> 函数，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel () &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上，由于函数没有别的参数了，我们还可以将圆括号完全移除：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拖尾闭包语法在 Swift 中非常常见，所以你要适应它。</p>
+<hr>
+<h1 id="使用接收参数的闭包作为函数的参数"><a href="# 使用接收参数的闭包作为函数的参数" class="headerlink" title="使用接收参数的闭包作为函数的参数"></a>使用接收参数的闭包作为函数的参数 </h1><p> 接下来要说到的闭包用法会有点复杂：当你把闭包作为函数参数时，闭包本身也接收参数。</p>
+<p>前面我们用 <code>() -&gt; Void</code> 来表示 “不接收参数，并且什么也不返回 “，但实际上你可以在 <code>()</code> 里填上你任何想要闭包接收的参数类型。</p>
+<p>再次用到 <code>travel ()</code> 函数。函数只接收一个闭包作为参数，但这次闭包会接收一个字符串参数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，当我们采用拖尾闭包语法调用 <code>travel ()</code> 时，我们的闭包代码会要求接收一个字符串：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备开车去 \(place)。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="使用有返回值的闭包作为函数的参数"><a href="# 使用有返回值的闭包作为函数的参数" class="headerlink" title="使用有返回值的闭包作为函数的参数"></a>使用有返回值的闭包作为函数的参数 </h1><p> 我们之前用 <code>() -&gt; Void</code> 来表示 “不接收参数，并且什么也不返回”。你可以把 <code>Void</code> 替换成任意的类型从而让闭包可以返回值。</p>
+<p>还是 <code>travel ()</code> 函数，这次闭包会返回一个字符串。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  <span class="keyword">let</span> description = action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(description)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>仍然用拖尾闭包语法来调用 <code>travel ()</code> ，闭包要求接收一个字符串并且返回一个字符串：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="速记参数名"><a href="# 速记参数名" class="headerlink" title="速记参数名"></a>速记参数名 </h1><p> 前面我们了构建 <code>travel ()</code> 函数。它接收一个闭包作为参数，这个闭包本身接收一个参数并且返回一个字符串，它在两个 <code>print ()</code> 调用之间运行。</p>
+<p>代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  <span class="keyword">let</span> description = action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(description)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以像这样调用 <code>travel ()</code> ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过， Swift 知道提供给闭包的参数必须是一个字符串，所以调用的代码可以简写成这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; place -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Swfit 也知道闭包必须返回一个字符串，于是进一步简写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; place <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于这里的闭包只有一行代码，这行代码肯定是返回值的那行代码，因此 Swift 允许我们把 <code>return</code> 关键字也移除：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; place <span class="keyword">in</span></span><br><span class="line">  <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后， Swift 还提供一种速记语法，让你可以把代码变得更短。我们可以让 Swift 为闭包的参数自动提供一个名字，而不必自行写下 <code>place in</code> 。这些自动生成的名字以 $ 开头，然后跟着一个从 0 开始的整数，就像下面这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123;</span><br><span class="line">  <span class="string">"我要开车去 \($0)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="有多个参数的闭包"><a href="# 有多个参数的闭包" class="headerlink" title="有多个参数的闭包"></a>有多个参数的闭包 </h1><p> 让我们把闭包这个概念一次讲透吧。接下来举一个接收两个参数的闭包的例子。</p>
+<p>将 <code>travel ()</code> 函数改造一下，不仅接收旅行目的地，也接收速度。闭包的类型会变成 <code>(String, Int) -&gt; String</code> ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String, Int)</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。)</span></span><br><span class="line"><span class="string">  let description = action ("</span> 北京 <span class="string">", 60)</span></span><br><span class="line"><span class="string">  print (description)</span></span><br><span class="line"><span class="string">  print ("</span> 我到达目的地了。<span class="string">")</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>再一次用速记闭包参数名来调用函数。由于这次闭包有两个参数了，于是自动参数名分别是 <code>$0</code> 和 <code>$1</code> ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123;</span><br><span class="line">  <span class="string">"我要开车去 \($0)，时速 \($1) 公里每小时。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有些人可能不喜欢用速记参数名，因为它们的语义不是很清晰。你可以根据自己的喜好来决定是否采用它们。不过了解一下这个语法还是必要的，这样读到别人的代码时就不会感到困惑。</p>
+<hr>
+<h1 id="从函数中返回闭包"><a href="# 从函数中返回闭包" class="headerlink" title="从函数中返回闭包"></a>从函数中返回闭包 </h1><p> 就如同你可以把闭包传入函数那样，你也可以从函数中返回闭包。</p>
+<p>返回闭包的语法看起来有点绕，因为用了两次 <code>-&gt;</code> ：第一次用于指定函数的返回值，第二次用于指定闭包的返回值。</p>
+<p>又又又要把 <code>travel ()</code> 函数拉出来了。这次它不接收参数，但返回一个闭包。这个返回的闭包在用的时候必须传入一个字符串，但闭包本身没有返回值。</p>
+<p>Swift 代码长这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"我要动身去 \($0)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们通过调用 <code>travel ()</code> 拿到闭包，然后作为函数来调用：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = travel ()</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>留意下面的代码，它是直接调用 <code>travel ()</code> 的返回值。这个写法虽然在语法上完全没问题，但是可读性较差，建议尽量不要这样写。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result2 = travel ()(<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="捕获变量"><a href="# 捕获变量" class="headerlink" title="捕获变量"></a>捕获变量 </h1><p> 如果你想要使用闭包之外的对象， Swift 会为你 “捕捉” 它们，并把它们和闭包一同存储，以便外部作用域已经失效的情况下闭包内部还可以使用它们。</p>
+<p>最后一次用到 <code>travel ()</code> 函数，它返回一个闭包，这个闭包接收字符串作为唯一的参数并且什么也不返回：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"我准备去 \($0)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用 <code>travel ()</code> 拿到闭包，然后自由使用：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = travel ()</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>闭包捕获变量可以发生在什么情况下呢？举个例子，当 <code>travel ()</code> 函数内创建了一个变量，这个变量需要在闭包里面用到，那么这个变量就会被闭包捕获。比如，我们想知道闭包被调用的次数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> counter = <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"第 \(counter) 次，我将前往 \($0)"</span>)</span><br><span class="line">    counter += <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尽管 <code>counter</code> 变量是在 <code>travel ()</code> 里被创建的，它被闭包捕获，因而会在闭包内部存续。</p>
+<p>当我们多次调用 <code>result (&quot; 北京 &quot;)</code> ，计数器会持续增加：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result (<span class="string">"北京"</span>)</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们来总结一下。</p>
+<ol>
+<li>你可以把闭包赋值给变量，之后再用变量名来调用闭包。 </li>
+<li>闭包和常规函数一样可以接收参数和返回值。 </li>
+<li>你可以将闭包作为参数传入函数，并且这些闭包也可以有自己的参数和返回值。 </li>
+<li>如果函数的最后一个参数是闭包，你可以使用拖尾闭包语法。 </li>
+<li>Swift 为拖尾闭包语法自动生成了 <code>$0</code> 和 <code>$1</code> 这样的速记闭包参数名，但不是所有人都习惯这种速记法。 </li>
+<li>如果你在闭包中使用了外部变量，这些变量将被闭包 “捕捉” 以便后续引用。 </li>
+</ol>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/24/swiftswift-functions/" itemprop="url">
+                  极速 Swift 教程之五 | 函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-24T20:47:22+08:00" content="2019-12-24">
+              2019-12-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/12/24/swiftswift-functions/" class="leancloud_visitors" data-flag-title="极速 Swift 教程之五 | 函数">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="书写函数"><a href="# 书写函数" class="headerlink" title="书写函数"></a>书写函数 </h1><p> 函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。</p>
+<p>用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。</p>
+<p>Swift 的函数以 <code>func</code> 关键字开始，然后跟着函数名，然后是一对圆括号，最后是一对花括号。当函数被运行时，花括号里的代码会被执行。</p>
+<p>一个 <code>printHelp ()</code> 函数长这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printHelp</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">let</span> message = <span class="string">"""</span></span><br><span class="line"><span class="string">  欢迎来到我的 App!</span></span><br><span class="line"><span class="string">  在一个图片的目录下运行这个 App，</span></span><br><span class="line"><span class="string">  它会把所有的图片缩放成缩略图。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">  <span class="built_in">print</span>(message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们用 <code>printHelp ()</code> 来运行它。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printHelp ()</span><br></pre></td></tr></table></figure>
+
+<p>运行一个函数又被称为 * 调用 * 一个函数。</p>
+<hr>
+<h1 id="接收参数"><a href="# 接收参数" class="headerlink" title="接收参数"></a>接收参数 </h1><p> 函数在你调用它们的时候可以被定制，这使得它们的能力更加强大。 Swift 允许你发送值给函数，这些值可以在函数内部使用，从而改变函数的行为。其实之前我们已经见过函数的这个特性：我们把整数和字符串传递给 <code>print ()</code> 函数，就像下面这样。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Hello, world!"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这些被传入函数的值被称为 * 参数 * 。</p>
+<p>为了使你的函数可以接收参数，你需要给参数起个名字，然后加一个冒号，最后再告诉 Swift 这个参数的数据类型。这些都是放在函数名之后的圆括号里面。</p>
+<p>举个例子，我们可以写一个函数，打印任意数字的平方。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(number * number)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码告知 Swift 我们期望接收一个 <code>Int</code> 类型，并且名字叫 <code>number</code> 。这个名字不仅用于函数内部指代参数，也用于运行函数，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">square (number: <span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="返回值"><a href="# 返回值" class="headerlink" title="返回值"></a>返回值 </h1><p> 函数不仅可以接收数据（通过参数），也可以返回数据。为了返回数据，在函数的参数列表之后写一个短横线加一个向右的尖括号，然后提供一个数据类型。这个语法告诉 Swift 函数将返回一个指定类型的数据。</p>
+<p>在函数内，我们用 <code>return</code> 关键字来返回数据。这个时候函数会立即结束，并返回数据，函数内的其他代码都不再执行。</p>
+<p>我们可以重写 <code>square ()</code> 函数，返回平方数而不是直接打印它：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> number * number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们可以通过运行这个函数，拿到返回值并且打印出来：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = square (number: <span class="number">8</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>如果你需要返回多个值，可以使用元组作为返回值的类型。</p>
+<hr>
+<h1 id="参数标签"><a href="# 参数标签" class="headerlink" title="参数标签"></a>参数标签 </h1><p> 前面的 <code>square ()</code> 函数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> number * number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参数名是 <code>number</code> ，我们通过在函数里使用 <code>number</code> 来引用这个参数，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = square (number: <span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Swift 允许我们给参数起两个名字：一个供调用时使用，一个在函数内部使用。书写的时候把两个名字都写上，用空格分隔。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(to name: String)</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello, \(name)!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的参数名是 <code>to name</code> ，在外部调用时用 <code>to</code> ，而内部指代时用 <code>name</code> 。这种方式让参数在函数内部有一个合理的名称，同时在调用时阅读起来也是自然的。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sayHello (to: <span class="string">"Taylor"</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="省略参数标签"><a href="# 省略参数标签" class="headerlink" title="省略参数标签"></a>省略参数标签 </h1><p> 你可能已经注意到我们在使用 <code>print ()</code> 函数时并没有传入任何参数标签。我们会写作 <code>print (&quot;Hello&quot;)</code> ，而不是 <code>print (message:&quot;Hello&quot;)</code> 。</p>
+<p>通过使用下划线 <code>_</code> 作为外部参数标签，你可以在自己的函数里实现一样的效果，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> person: String)</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello, \(person)!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写的话，调用 <code>greet ()</code> 函数时，你就不必传入参数标签了：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greet (<span class="string">"Taylor"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>为了使代码阅读起来更自然，通常我们是需要给参数起一个外部标签名的。举个例子，如果我说设置闹钟 5（ <code>setAlarm (5)</code> ）不写标签的话很难理解这代表什么意思：是要设置一个 5 点钟生效的闹钟呢？还是要激活第 5 个预先设好的闹钟？而像打印这件事，在打印后面直接跟上要打印的内容，本身就是一个清晰的表达，所以可以省略掉参数标签。</p>
+<hr>
+<h1 id="默认参数"><a href="# 默认参数" class="headerlink" title="默认参数"></a>默认参数</h1><p><code>print ()</code> 函数打印文本到屏幕，并且不论你传什么内容给它，它都会在最后添加一个换行。所以多次调用 <code>print ()</code> 的话，那些文本是不会显示在同一行的。</p>
+<p>但是你可以改变 <code>print ()</code> 函数的这个行为：你可以用其他符号，例如空格来取代换行。不过多数情况下，大家都想要换行，因此 <code>print ()</code> 有一个叫 <code>terminator</code> 的参数，它的默认值是换行符。</p>
+<p>通过在参数后面加上一个 <code>=</code> 然后写上一个值，你可以为你自己的函数提供默认参数。 举个例子，我们写一个 <code>greet ()</code> 函数，默认友好问候：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> person: String, nicely: Bool = <span class="literal">true</span>)</span></span> &#123;</span><br><span class="line">  <span class="keyword">if</span> nicely == <span class="literal">true</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"你好， \(person)!"</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"不是吧，又是 \(person) 你小子。"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在 <code>greet ()</code> 函数就有两种调用方式了：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greet (<span class="string">"Taylor"</span>)</span><br><span class="line">greet (<span class="string">"Taylor"</span>, nicely: <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="可变函数"><a href="# 可变函数" class="headerlink" title="可变函数"></a>可变函数 </h1><p> 有一些函数是 * 可变 * 的，可变是指函数可以接收任意多个同类型的参数。例如， <code>print ()</code> 函数实际上就是可变的：如果你传入多个参数，它们会被以空格相连打印在同一行。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Haters"</span>, <span class="string">"gonna"</span>, <span class="string">"hate"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>你可以通过在参数类型之后添加 <code>...</code> ，将一个参数声明成可变参数。因此，一个 <code>Int</code> 参数代表一个整数，而 <code>Int...</code> 则代表 0 个或者更多整数，理论上不限个数。</p>
+<p>在函数内部， Swift 会将这些整数转成一个整数的数组，以方便你遍历它们。</p>
+<p>让我们用 <code>square ()</code> 函数来尝试一下吧：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(numbers: Int...)</span></span> &#123;</span><br><span class="line">  <span class="keyword">for</span> number <span class="keyword">in</span> numbers &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(number) 的平方等于 \(number * number)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们可以用逗号分隔一组数字，把它们全部传入 <code>square ()</code> 函数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">square (numbers: <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="书写会抛出错误的函数"><a href="# 书写会抛出错误的函数" class="headerlink" title="书写会抛出错误的函数"></a>书写会抛出错误的函数 </h1><p> 有的时候函数会运行失败，因为不合理的输入或者函数内部的错误。 Swift 允许我们从函数中抛出错误。实现的方法是在返回值前写一个 <code>throws</code> ，然后在函数出错时使用 <code>throw</code> 关键字抛出错误。</p>
+<p>首先我们需要定义一个 <code>enum</code> ，用于描述我们可能抛出的错误。这些错误必须基于 Swift 已经存在的 <code>Error</code> 类型。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PasswordError</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> obvious</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们来实现一个函数 <code>checkPassword ()</code> ，这个函数检测传入的密码是否合理，当密码过于简单时，我们抛出一个错误提醒用户。具体来说，当密码被设置成 “password” 时，执行 <code>throw PasswordError.obvious</code> 。</p>
+<p>Swift 代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkPassword</span><span class="params">(<span class="number">_</span> password: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> password == <span class="string">"password"</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="type">PasswordError</span>.obvious</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="运行可能会抛出错误的函数"><a href="# 运行可能会抛出错误的函数" class="headerlink" title="运行可能会抛出错误的函数"></a>运行可能会抛出错误的函数</h1><p>Swift 并不期望你在程序运行时遭遇错误，因此它不会让你直接运行可能抛出错误的函数。</p>
+<p>你需要用到三个关键字来运行会抛出错误的函数： <code>do</code> 开启一段可能会遭遇问题的代码， <code>try</code> 放在每一个可能抛出错误的函数前面，最后的 <code>catch</code> 让你可以优雅地处理错误。</p>
+<p>如果 <code>do</code> 语句块里有任何错误抛出，代码执行会直接跳到 <code>catch</code> 语句块。让我们用一个可以触发 <code>checkPassword ()</code> 抛出错误的密码来调用这个函数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> checkPassword (<span class="string">"password"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"这个密码很棒！"</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你不能用这个密码。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当这段代码运行时，“你不能用这个密码。” 会被打印。但” 这个密码很棒！“则不会被打印。这个是由于错误的抛出导致那个打印无法被运行到。</p>
+<hr>
+<h1 id="inout- 参数"><a href="#inout- 参数" class="headerlink" title="inout 参数"></a>inout 参数 </h1><p> 所有传入 Swift 函数的参数默认都是 * 常量 * ，所以你无法更改它们。假如你就是想要在函数内改变这些参数呢？可以用 <code>inout</code> 修饰它们，所有在函数内对它们做出的改变都会影响到它们在函数外的原始值。</p>
+<p>举个例子，如果你想要让一个数翻倍。比如，直接改变那个数，而不是返回一个新的数。你可以像下面这样写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">doubleInPlace</span><span class="params">(number: <span class="keyword">inout</span> Int)</span></span> &#123;</span><br><span class="line">  number *= <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了使用这个可以修改参数的函数，首先要求传入的参数本身不能是常量，因为如果参数本来是常量，即使用 <code>inout</code> 修饰，也无法被修改。其次，在传入函数时，还要用一个 <code>&amp;</code> 符号，放在参数名前面。它是参数以 <code>inout</code> 方式使用的显式标识。</p>
+<p>在代码中，是这么书写的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myNum = <span class="number">10</span> </span><br><span class="line">doubleInPlace (number: &amp;myNum)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 让我们来总结一下。</p>
+<ol>
+<li>函数通过避免重复来帮助我们复用代码。 </li>
+<li>函数可以接收参数，你需要告诉 Swift 每个参数的类型。 </li>
+<li>函数可以返回值，同样需要指定返回值的类型。如果你想返回多个值，可以使用元组。 </li>
+<li>你可以给参数取不同的外部名和内部名，并且可以完全省略外部名。 </li>
+<li>参数可以有默认值，以便你用更少的代码指定常见的特定值。 </li>
+<li>可变参数可以接收零到多个特定的参数， Swift 会把它们转成数组。 </li>
+<li>函数可以抛出错误，但是调用这种函数的时候需要用 <code>try</code> 关键字并且用 <code>catch</code> 来处理错误。 </li>
+<li>你可以用 <code>inout</code> 标记可以在函数内部改变的参数，不过通常来说最好还是返回一个新值。 </li>
+</ol>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2019/12/23/swiftswift-looping/" itemprop="url">
                   极速 Swift 教程之四 | 循环
                 </a>
@@ -1158,7 +1935,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

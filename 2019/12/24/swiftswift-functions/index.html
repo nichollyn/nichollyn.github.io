@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="The Infinite Game">
 <meta property="og:description" content="书写函数  函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。 用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。 Swift 的函数以 func 关键字开始，然后跟着函数名，然后是一对圆括号">
 <meta property="article:published_time" content="2019-12-24T12:47:22.000Z">
-<meta property="article:modified_time" content="2019-12-24T13:38:02.950Z">
+<meta property="article:modified_time" content="2019-12-24T14:08:19.042Z">
 <meta property="article:author" content="Patrick Lin">
 <meta property="article:tag" content="swift, programming">
 <meta name="twitter:card" content="summary">
@@ -397,7 +397,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greet (<span class="string">"Taylor"</span>)</span><br><span class="line">greet (<span class="string">"Taylor"</span>, nicely: <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="可变函数"><a href="# 可变函数" class="headerlink" title="可变函数"></a>可变函数 </h1><p> 有一些函数是 * 可变 * 的，可变是指函数可以接收任意多个同类型的参数。例如， <code>print ()</code> 函数实际上就是可变的：如果你传入多个参数，它们会被以空格相连打印在同一行。</p>
+<h1 id="可变函数"><a href="# 可变函数" class="headerlink" title="可变函数"></a>可变函数 </h1><p> 有一些函数是 <em>可变</em> 的，可变是指函数可以接收任意多个同类型的参数。例如， <code>print ()</code> 函数实际上就是可变的：如果你传入多个参数，它们会被以空格相连打印在同一行。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Haters"</span>, <span class="string">"gonna"</span>, <span class="string">"hate"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>你可以通过在参数类型之后添加 <code>...</code> ，将一个参数声明成可变参数。因此，一个 <code>Int</code> 参数代表一个整数，而 <code>Int...</code> 则代表 0 个或者更多整数，理论上不限个数。</p>
@@ -425,7 +425,7 @@
 
 <p>当这段代码运行时，“你不能用这个密码。” 会被打印。但” 这个密码很棒！“则不会被打印。这个是由于错误的抛出导致那个打印无法被运行到。</p>
 <hr>
-<h1 id="inout- 参数"><a href="#inout- 参数" class="headerlink" title="inout 参数"></a>inout 参数 </h1><p> 所有传入 Swift 函数的参数默认都是 * 常量 * ，所以你无法更改它们。假如你就是想要在函数内改变这些参数呢？可以用 <code>inout</code> 修饰它们，所有在函数内对它们做出的改变都会影响到它们在函数外的原始值。</p>
+<h1 id="inout- 参数"><a href="#inout- 参数" class="headerlink" title="inout 参数"></a>inout 参数 </h1><p> 所有传入 Swift 函数的参数默认都是 <em>常量</em> ，所以你无法更改它们。假如你就是想要在函数内改变这些参数呢？可以用 <code>inout</code> 修饰它们，所有在函数内对它们做出的改变都会影响到它们在函数外的原始值。</p>
 <p>举个例子，如果你想要让一个数翻倍。比如，直接改变那个数，而不是返回一个新的数。你可以像下面这样写：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">doubleInPlace</span><span class="params">(number: <span class="keyword">inout</span> Int)</span></span> &#123;</span><br><span class="line">  number *= <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

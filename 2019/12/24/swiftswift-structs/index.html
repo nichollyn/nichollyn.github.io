@@ -86,14 +86,14 @@
 
 
 
-<meta name="description" content="创建你自己的结构体Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 struct 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。 让我们以一个简单的例子开始：创建一个 Sport 结构体，它有一个叫 name 的字符串变量。在结构体中，这种变量被称为 * 属性 * 。因此，这是一个拥有一个属性的结构体。 123struct Sport">
+<meta name="description" content="创建你自己的结构体Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 struct 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。 让我们以一个简单的例子开始：创建一个 Sport 结构体，它有一个叫 name 的字符串变量。在结构体中，这种变量被称为 属性 。因此，这是一个拥有一个属性的结构体。 123struct Sport &amp;#1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速 Swift 教程之七 | 结构体">
 <meta property="og:url" content="http://yoursite.com/2019/12/24/swiftswift-structs/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="创建你自己的结构体Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 struct 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。 让我们以一个简单的例子开始：创建一个 Sport 结构体，它有一个叫 name 的字符串变量。在结构体中，这种变量被称为 * 属性 * 。因此，这是一个拥有一个属性的结构体。 123struct Sport">
+<meta property="og:description" content="创建你自己的结构体Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 struct 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。 让我们以一个简单的例子开始：创建一个 Sport 结构体，它有一个叫 name 的字符串变量。在结构体中，这种变量被称为 属性 。因此，这是一个拥有一个属性的结构体。 123struct Sport &amp;#1">
 <meta property="article:published_time" content="2019-12-24T13:21:46.000Z">
-<meta property="article:modified_time" content="2019-12-24T13:37:31.767Z">
+<meta property="article:modified_time" content="2019-12-24T14:10:27.331Z">
 <meta property="article:author" content="Patrick Lin">
 <meta property="article:tag" content="swift, programming">
 <meta name="twitter:card" content="summary">
@@ -332,8 +332,8 @@
       
 
       
-        <h1 id="创建你自己的结构体"><a href="# 创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。<br>Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
-<p>让我们以一个简单的例子开始：创建一个 <code>Sport</code> 结构体，它有一个叫 <code>name</code> 的字符串变量。在结构体中，这种变量被称为 * 属性 * 。因此，这是一个拥有一个属性的结构体。</p>
+        <h1 id="创建你自己的结构体"><a href="# 创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
+<p>让我们以一个简单的例子开始：创建一个 <code>Sport</code> 结构体，它有一个叫 <code>name</code> 的字符串变量。在结构体中，这种变量被称为 <em>属性</em> 。因此，这是一个拥有一个属性的结构体。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>类型定义完成，现在让我们来创建和使用它的实例：</p>
@@ -347,7 +347,7 @@
 <h1 id="计算属性"><a href="# 计算属性" class="headerlink" title="计算属性"></a>计算属性 </h1><p> 我们刚刚创建了 <code>Sport</code> 结构体：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>它有一个叫 <em>name</em> 的属性，存储 <code>String</code> 类型。这种属性叫做 * 存储 * 属性，因为 Swift 还有另外一种属性，它叫 * 计算 * 属性。这是一种通过运行代码来获得值的属性。</p>
+<p>它有一个叫 <em>name</em> 的属性，存储 <code>String</code> 类型。这种属性叫做 <em>存储 </em> 属性，因为 Swift 还有另外一种属性，它叫 <em> 计算</em> 属性。这是一种通过运行代码来获得值的属性。</p>
 <p>让我们为 <code>Sport</code> 结构体再增加一个存储属性，然后是一个计算属性。代码如下：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> isOlympicSport: <span class="type">Bool</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> olympicStatus: <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> isOlympicSport &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"\(name) 是一项奥林匹克运动。"</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"\(name) 不是一项奥林匹克运动。"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -367,7 +367,7 @@
 
 <p>你还可以用到叫 <code>willSet</code> 的属性观察者。它是在属性改变之前作用，相对来说更不常用。</p>
 <hr>
-<h1 id="方法"><a href="# 方法" class="headerlink" title="方法"></a>方法</h1><p>Struct 的内部可以拥有函数，它们在必要时可以使用结构体的属性。这种函数被称为 * 方法 * ，关键字也是 <code>func</code> 。</p>
+<h1 id="方法"><a href="# 方法" class="headerlink" title="方法"></a>方法 </h1><p>Struct 的内部可以拥有函数，它们在必要时可以使用结构体的属性。这种函数被称为 <em> 方法</em> ，关键字也是 <code>func</code> 。</p>
 <p>现在我们通过一个叫 <code>City</code> 的结构体来演示。它有一个 <code>population</code> 属性，用于存储城市里的人口。此外，它还有一个 <code>collectTaxes ()</code> 方法，这个方法返回人口数乘以 1000。 由于方法是属于 <code>City</code> 的，它可以读取当前城市的 <code>population</code> 属性。</p>
 <p>代码如下：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">City</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> population: <span class="type">Int</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">collectTaxes</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> population * <span class="number">1000</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -425,7 +425,7 @@
 
 <p>数组类型也有大量的属性和方法。 你可以利用 Xcode 的代码补全，用 <code>toys.</code> 调取这些选项看一看它们都有些什么能力。</p>
 <hr>
-<h1 id="构造器"><a href="# 构造器" class="headerlink" title="构造器"></a>构造器 </h1><p> 构造器是一种可以用来支持不同方式创建结构体的特殊方法。所有的结构体都有一个默认的构造器，这个构造器被称为 * 逐一成员构造器 * ，它要求你为结构体的每一个属性都提供一个值。</p>
+<h1 id="构造器"><a href="# 构造器" class="headerlink" title="构造器"></a>构造器 </h1><p> 构造器是一种可以用来支持不同方式创建结构体的特殊方法。所有的结构体都有一个默认的构造器，这个构造器被称为 <em>逐一成员构造器</em> ，它要求你为结构体的每一个属性都提供一个值。</p>
 <p>让我们来声明一个 <code>User</code> 结构体，它有一个属性：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> username: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -671,7 +671,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建你自己的结构体"><span class="nav-number">1.</span> <span class="nav-text">创建你自己的结构体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算属性"><span class="nav-number">2.</span> <span class="nav-text">计算属性 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性观察者"><span class="nav-number">3.</span> <span class="nav-text">属性观察者 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">4.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可变方法"><span class="nav-number">5.</span> <span class="nav-text">可变方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String- 的属性和方法"><span class="nav-number">6.</span> <span class="nav-text">String 的属性和方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的属性和方法"><span class="nav-number">7.</span> <span class="nav-text">数组的属性和方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造器"><span class="nav-number">8.</span> <span class="nav-text">构造器 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用当前实例"><span class="nav-number">9.</span> <span class="nav-text">引用当前实例 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#懒加载属性"><span class="nav-number">10.</span> <span class="nav-text">懒加载属性 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态属性和方法"><span class="nav-number">11.</span> <span class="nav-text">静态属性和方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问控制"><span class="nav-number">12.</span> <span class="nav-text">访问控制 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">13.</span> <span class="nav-text">总结 </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建你自己的结构体"><span class="nav-number">1.</span> <span class="nav-text">创建你自己的结构体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算属性"><span class="nav-number">2.</span> <span class="nav-text">计算属性 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性观察者"><span class="nav-number">3.</span> <span class="nav-text">属性观察者 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">4.</span> <span class="nav-text">方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可变方法"><span class="nav-number">5.</span> <span class="nav-text">可变方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String- 的属性和方法"><span class="nav-number">6.</span> <span class="nav-text">String 的属性和方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的属性和方法"><span class="nav-number">7.</span> <span class="nav-text">数组的属性和方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造器"><span class="nav-number">8.</span> <span class="nav-text">构造器 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用当前实例"><span class="nav-number">9.</span> <span class="nav-text">引用当前实例 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#懒加载属性"><span class="nav-number">10.</span> <span class="nav-text">懒加载属性 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态属性和方法"><span class="nav-number">11.</span> <span class="nav-text">静态属性和方法 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问控制"><span class="nav-number">12.</span> <span class="nav-text">访问控制 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">13.</span> <span class="nav-text">总结 </span></a></li></ol></div>
             
           </div>
         </section>

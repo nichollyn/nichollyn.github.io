@@ -339,8 +339,8 @@
       
         
           
-            <h1 id="创建你自己的结构体"><a href="# 创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。<br>Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
-<p>让我们以一个简单的例子开始：创建一个 <code>Sport</code> 结构体，它有一个叫 <code>name</code> 的字符串变量。在结构体中，这种变量被称为 * 属性 * 。因此，这是一个拥有一个属性的结构体。</p>
+            <h1 id="创建你自己的结构体"><a href="# 创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
+<p>让我们以一个简单的例子开始：创建一个 <code>Sport</code> 结构体，它有一个叫 <code>name</code> 的字符串变量。在结构体中，这种变量被称为 <em>属性</em> 。因此，这是一个拥有一个属性的结构体。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>类型定义完成，现在让我们来创建和使用它的实例：</p>
@@ -354,7 +354,7 @@
 <h1 id="计算属性"><a href="# 计算属性" class="headerlink" title="计算属性"></a>计算属性 </h1><p> 我们刚刚创建了 <code>Sport</code> 结构体：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>它有一个叫 <em>name</em> 的属性，存储 <code>String</code> 类型。这种属性叫做 * 存储 * 属性，因为 Swift 还有另外一种属性，它叫 * 计算 * 属性。这是一种通过运行代码来获得值的属性。</p>
+<p>它有一个叫 <em>name</em> 的属性，存储 <code>String</code> 类型。这种属性叫做 <em>存储 </em> 属性，因为 Swift 还有另外一种属性，它叫 <em> 计算</em> 属性。这是一种通过运行代码来获得值的属性。</p>
 <p>让我们为 <code>Sport</code> 结构体再增加一个存储属性，然后是一个计算属性。代码如下：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> isOlympicSport: <span class="type">Bool</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> olympicStatus: <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> isOlympicSport &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"\(name) 是一项奥林匹克运动。"</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"\(name) 不是一项奥林匹克运动。"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -374,7 +374,7 @@
 
 <p>你还可以用到叫 <code>willSet</code> 的属性观察者。它是在属性改变之前作用，相对来说更不常用。</p>
 <hr>
-<h1 id="方法"><a href="# 方法" class="headerlink" title="方法"></a>方法</h1><p>Struct 的内部可以拥有函数，它们在必要时可以使用结构体的属性。这种函数被称为 * 方法 * ，关键字也是 <code>func</code> 。</p>
+<h1 id="方法"><a href="# 方法" class="headerlink" title="方法"></a>方法 </h1><p>Struct 的内部可以拥有函数，它们在必要时可以使用结构体的属性。这种函数被称为 <em> 方法</em> ，关键字也是 <code>func</code> 。</p>
 <p>现在我们通过一个叫 <code>City</code> 的结构体来演示。它有一个 <code>population</code> 属性，用于存储城市里的人口。此外，它还有一个 <code>collectTaxes ()</code> 方法，这个方法返回人口数乘以 1000。 由于方法是属于 <code>City</code> 的，它可以读取当前城市的 <code>population</code> 属性。</p>
 <p>代码如下：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">City</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> population: <span class="type">Int</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">collectTaxes</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> population * <span class="number">1000</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -432,7 +432,7 @@
 
 <p>数组类型也有大量的属性和方法。 你可以利用 Xcode 的代码补全，用 <code>toys.</code> 调取这些选项看一看它们都有些什么能力。</p>
 <hr>
-<h1 id="构造器"><a href="# 构造器" class="headerlink" title="构造器"></a>构造器 </h1><p> 构造器是一种可以用来支持不同方式创建结构体的特殊方法。所有的结构体都有一个默认的构造器，这个构造器被称为 * 逐一成员构造器 * ，它要求你为结构体的每一个属性都提供一个值。</p>
+<h1 id="构造器"><a href="# 构造器" class="headerlink" title="构造器"></a>构造器 </h1><p> 构造器是一种可以用来支持不同方式创建结构体的特殊方法。所有的结构体都有一个默认的构造器，这个构造器被称为 <em>逐一成员构造器</em> ，它要求你为结构体的每一个属性都提供一个值。</p>
 <p>让我们来声明一个 <code>User</code> 结构体，它有一个属性：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> username: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -624,7 +624,7 @@
         
           
             <h1 id="创建基本的闭包"><a href="# 创建基本的闭包" class="headerlink" title="创建基本的闭包"></a>创建基本的闭包</h1><p>Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。</p>
-<p>函数的这种用法被称为 * 闭包 * 。虽然工作机制差不多，写法上是有一些小差异的。</p>
+<p>函数的这种用法被称为 <em>闭包</em> 。虽然工作机制差不多，写法上是有一些小差异的。</p>
 <p>还是以打印信息为例：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要去开车"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -677,7 +677,7 @@
 <p>拖尾闭包语法在 Swift 中非常常见，所以你要适应它。</p>
 <hr>
 <h1 id="使用接收参数的闭包作为函数的参数"><a href="# 使用接收参数的闭包作为函数的参数" class="headerlink" title="使用接收参数的闭包作为函数的参数"></a>使用接收参数的闭包作为函数的参数 </h1><p> 接下来要说到的闭包用法会有点复杂：当你把闭包作为函数参数时，闭包本身也接收参数。</p>
-<p>前面我们用 <code>() -&gt; Void</code> 来表示 “不接收参数，并且什么也不返回 “，但实际上你可以在 <code>()</code> 里填上你任何想要闭包接收的参数类型。</p>
+<p>前面我们用 <code>() -&gt; Void</code> 来表示 “不接收参数，并且什么也不返回”，但实际上你可以在 <code>()</code> 里填上你任何想要闭包接收的参数类型。</p>
 <p>再次用到 <code>travel ()</code> 函数。函数只接收一个闭包作为参数，但这次闭包会接收一个字符串参数：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -946,7 +946,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greet (<span class="string">"Taylor"</span>)</span><br><span class="line">greet (<span class="string">"Taylor"</span>, nicely: <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="可变函数"><a href="# 可变函数" class="headerlink" title="可变函数"></a>可变函数 </h1><p> 有一些函数是 * 可变 * 的，可变是指函数可以接收任意多个同类型的参数。例如， <code>print ()</code> 函数实际上就是可变的：如果你传入多个参数，它们会被以空格相连打印在同一行。</p>
+<h1 id="可变函数"><a href="# 可变函数" class="headerlink" title="可变函数"></a>可变函数 </h1><p> 有一些函数是 <em>可变</em> 的，可变是指函数可以接收任意多个同类型的参数。例如， <code>print ()</code> 函数实际上就是可变的：如果你传入多个参数，它们会被以空格相连打印在同一行。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Haters"</span>, <span class="string">"gonna"</span>, <span class="string">"hate"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>你可以通过在参数类型之后添加 <code>...</code> ，将一个参数声明成可变参数。因此，一个 <code>Int</code> 参数代表一个整数，而 <code>Int...</code> 则代表 0 个或者更多整数，理论上不限个数。</p>
@@ -974,7 +974,7 @@
 
 <p>当这段代码运行时，“你不能用这个密码。” 会被打印。但” 这个密码很棒！“则不会被打印。这个是由于错误的抛出导致那个打印无法被运行到。</p>
 <hr>
-<h1 id="inout- 参数"><a href="#inout- 参数" class="headerlink" title="inout 参数"></a>inout 参数 </h1><p> 所有传入 Swift 函数的参数默认都是 * 常量 * ，所以你无法更改它们。假如你就是想要在函数内改变这些参数呢？可以用 <code>inout</code> 修饰它们，所有在函数内对它们做出的改变都会影响到它们在函数外的原始值。</p>
+<h1 id="inout- 参数"><a href="#inout- 参数" class="headerlink" title="inout 参数"></a>inout 参数 </h1><p> 所有传入 Swift 函数的参数默认都是 <em>常量</em> ，所以你无法更改它们。假如你就是想要在函数内改变这些参数呢？可以用 <code>inout</code> 修饰它们，所有在函数内对它们做出的改变都会影响到它们在函数外的原始值。</p>
 <p>举个例子，如果你想要让一个数翻倍。比如，直接改变那个数，而不是返回一个新的数。你可以像下面这样写：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">doubleInPlace</span><span class="params">(number: <span class="keyword">inout</span> Int)</span></span> &#123;</span><br><span class="line">  number *= <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1158,7 +1158,7 @@
 
 <p>通过这次改动，只要 <code>countDown</code> 达到 4 ，那么宇航员的消息就会被打印，剩余的计数将会被忽略。</p>
 <hr>
-<h1 id="退出多重循环"><a href="# 退出多重循环" class="headerlink" title="退出多重循环"></a>退出多重循环 </h1><p> 把循环放在另一个循环里，叫做 * 嵌套 * 循环。有的时候，你会有这种需求：同时跳出内部的循环和外部的循环。</p>
+<h1 id="退出多重循环"><a href="# 退出多重循环" class="headerlink" title="退出多重循环"></a>退出多重循环 </h1><p> 把循环放在另一个循环里，叫做 <em>嵌套</em> 循环。有的时候，你会有这种需求：同时跳出内部的循环和外部的循环。</p>
 <p>举个例子， 我们可以用嵌套循环实现一个从 1 到 10 的乘法表：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> product = i * j</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">"\(i) * \(j) 等于 \(product)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1824,11 +1824,11 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str2 = <span class="string">"""</span></span><br><span class="line"><span class="string"> 这个字符串 \</span></span><br><span class="line"><span class="string"> 看起来跨越了多行， \</span></span><br><span class="line"><span class="string"> 实际上没有 </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="双精度浮点型和布尔型"><a href="# 双精度浮点型和布尔型" class="headerlink" title="双精度浮点型和布尔型"></a>双精度浮点型和布尔型</h1><p>Swift 中还有两种基础的数据类型，它们是双精度浮点数类型和布尔类型，你将会经常用到它们。 <code>Double</code> 被用来代表 “双精度浮点数”，这是表示诸如 38.1, 或者 3.141592654 这样的小数的一种高级的说法。每当你通过一个分数创建一个变量时，Swift 都会自动赋予这个变量 <code>Double</code> 类型。</p>
+<h1 id="双精度浮点型和布尔型"><a href="# 双精度浮点型和布尔型" class="headerlink" title="双精度浮点型和布尔型"></a>双精度浮点型和布尔型</h1><p>Swift 中还有两种基础的数据类型，它们是双精度浮点数类型和布尔类型，你将会经常用到它们。 <code>Double</code> 被用来代表 “双精度浮点数”，这是表示诸如 38.1 , 或者 3.141592654 这样的小数的一种高级的说法。每当你通过一个分数创建一个变量时， Swift 都会自动赋予这个变量 <code>Double</code> 类型。</p>
 <p>举个例子：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pi = <span class="number">3.141</span></span><br></pre></td></tr></table></figure>
 
-<p>双精度浮点数有别于整数，也不能混用。至于布尔类型则更简单一些：它们只有 <code>true</code> 和 <code>false</code> 两种值，所以当你用 <code>true</code> 或者 <code>false</code> 创建一个变量时，Swift 会自动赋予这个变量布尔类型。</p>
+<p>双精度浮点数有别于整数，也不能混用。至于布尔类型则更简单一些：它们只有 <code>true</code> 和 <code>false</code> 两种值，所以当你用 <code>true</code> 或者 <code>false</code> 创建一个变量时， Swift 会自动赋予这个变量布尔类型。</p>
 <p>举个例子：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> awesome = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 

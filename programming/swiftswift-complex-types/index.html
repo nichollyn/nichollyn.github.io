@@ -1,0 +1,815 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift,programming," />
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数组数组是用于存储一组值的合集。举个例子，红、绿、蓝是三基色，你可以对它们进行调和从而产生新颜色。因此颜色就可以用一个包含了红、绿、蓝三个值的数组来存储。 代码上，我们这么书写： 1234let red &#x3D; 1.0let green &#x3D; 1.0let blue &#x3D; 1.0let color &#x3D; [red, green, blue]  上面的最后一行代码创建了一个数组：它以方括号开始和结束，里面的元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极速 Swift 教程之二 | 复合类型">
+<meta property="og:url" content="http://blog.theinfinitegame.com/programming/swiftswift-complex-types/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="数组数组是用于存储一组值的合集。举个例子，红、绿、蓝是三基色，你可以对它们进行调和从而产生新颜色。因此颜色就可以用一个包含了红、绿、蓝三个值的数组来存储。 代码上，我们这么书写： 1234let red &#x3D; 1.0let green &#x3D; 1.0let blue &#x3D; 1.0let color &#x3D; [red, green, blue]  上面的最后一行代码创建了一个数组：它以方括号开始和结束，里面的元">
+<meta property="article:published_time" content="2019-12-23T12:24:41.000Z">
+<meta property="article:modified_time" content="2019-12-25T12:56:55.827Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="swift">
+<meta property="article:tag" content="programming">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'xirong'
+    }
+  };
+</script>
+
+  <title> 极速 Swift 教程之二 | 复合类型 | The Infinite Game </title>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">The Infinite Game</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                极速 Swift 教程之二 | 复合类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-23T20:24:41+08:00" content="2019-12-23">
+              2019-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>数组是用于存储一组值的合集。举个例子，红、绿、蓝是三基色，你可以对它们进行调和从而产生新颜色。因此颜色就可以用一个包含了红、绿、蓝三个值的数组来存储。</p>
+<p>代码上，我们这么书写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> red = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> green = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> blue = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> color = [red, green, blue]</span><br></pre></td></tr></table></figure>
+
+<p>上面的最后一行代码创建了一个数组：它以方括号开始和结束，里面的元素通过逗号分隔。</p>
+<p>你可以通过书写数组名加上内部包含一个数字的方括号来读取数组里的元素。注意：这个数字代表元素在数组里的位置，几乎在所有的计算机编程语言中，这个位置都是从 <code>0</code> 开始的。所以，如果你想读取蓝色，可以这么写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">color [<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<p>小心：如果你尝试读取一个不存在的值， Swift 将会崩溃。例如，试图读取 <code>color [5]</code> 就不是一个好主意。</p>
+<p>另外还要注意的是，如果你想使用类型注解，数组是通过方括号加里面的类型来表示的： <code>[String]</code> ，<code>[Int]</code> ，<code>[Double]</code> 和 <code>[Bool]</code> 。</p>
+<hr>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><p>集合跟数组类似，也是存储一组值的合集。但它们有两个区别：集合中的元素是随机存放的，而数组中的元素是顺序存放的。集合中不允许有两个相同的元素，即任何一个元素只能出现一次。数组则没有这个限制。</p>
+<p>你可以直接利用数组来创建一个集合，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = <span class="type">Set</span>([<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>当你在 Playground 中查看 colors 中的元素时，你看到的元素的顺序可能跟你创建 colors 时填写的顺序不同。实际上，这个顺序并非真的是每次都随机生成，只不过很有可能跟你给的顺序不同。</p>
+<p>Swift 内部自有算法来生成这个顺序，但不保证跟你创建集合时传入的顺序一致。所以，通过位置来读取数组中的元素那种方式，对于读取集合中的元素是不适用的。</p>
+<p>如果你试图往集合中插入一个已经存在的元素，重复的这个元素会被忽略。举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors2 = <span class="type">Set</span>([<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>, <span class="string">"red"</span>, <span class="string">"blue"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>最后的 <code>colors2</code> 只会包含 <code>red</code> ，<code>green</code> 和 <code>blue</code> 各一个。</p>
+<hr>
+<h1 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h1><p>元组允许你通过一个值来存储几个值。 听起来跟数组很像，但元组有所不同：你不能往元组中添加或者删除元素 —— 元组的长度是固定的。你不能改变元组中元素的类型 —— 元组创建时内部的元素类型必须是一致的。</p>
+<p>你可以通过位置或者名称来访问元组中的元素。但是 Swift 不允许你访问不存在的位置或者名称。</p>
+<p>元组的创建方式是把一组值放进圆括号中，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = (first: <span class="string">"Taylor"</span>, last: <span class="string">"Swift"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>你可以通过从 0 之类的位置信息来访问元组的元素：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>或者你也可以通过名称来访问元组的元素：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name.first</span><br></pre></td></tr></table></figure>
+<p>在元组创建之后，你可以改变其中元素的值，但是不能改变它们的类型。因此，如果你尝试把 name 改成 (first: “韩梅梅”，age: 25) ，将会遭遇错误。</p>
+<hr>
+<h1 id="数组-vs-集合-vs-元组"><a href="#数组-vs-集合-vs-元组" class="headerlink" title="数组 vs 集合 vs 元组"></a>数组 vs 集合 vs 元组</h1><p>数组，集合和元组第一眼看上去很相似，但它们的用途是有区别的。为了帮助你更好地选择，这里有一些规则供参考：</p>
+<p>如果你需要存放的元素是关联在一起被使用的，它们的个数固定，顺序或者名称也相对固定，那么你应当使用元组。举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> address = (门牌号: <span class="number">666</span>, 街道: <span class="string">"朝阳区某街道"</span>, 城市: <span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果你需要一个合集，其中的元素必须是唯一的，或者你可能需要快速地检验合集里有没有包含某个元素，那么你应当使用集合。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> shoppingList = <span class="type">Set</span>([<span class="string">"苹果"</span>, <span class="string">"肉"</span>, <span class="string">"牛奶"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>如果你需要一个合集，其中的元素允许重复，或者合集中元素的顺序对你来说很重要，那么你应当使用数组。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pingpongScores = [<span class="string">"11-7"</span>, <span class="string">"8-11"</span>, <span class="string">"11-9"</span>, <span class="string">"8-11"</span>, <span class="string">"11-5"</span>, <span class="string">"13-11"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>三种类型中，数组是最常用的。</p>
+<hr>
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><p>字典也是用于存储一组值的合集。但跟数组用整数的位置来访问元素的方式不同的是，在字典里你可以用任何你想要的类型来充当访问标识。</p>
+<p>当然，最常见的存储字典的访问标识是字符串。举个例子，我们可以创建一个基于运动员的名字来访问运动员的身高的字典：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> top3NBAHeights = [</span><br><span class="line">  <span class="string">"马努特 波尔"</span>: <span class="number">2.31</span>,</span><br><span class="line">  <span class="string">"姚明"</span>: <span class="number">2.28</span>,</span><br><span class="line">  <span class="string">"里克 施密茨"</span>: <span class="number">2.23</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>就像数组一样，字典也以方括号开始和结束，里面的元素通过逗号分隔。此外，为了把一个值（例如 2.28）存放到对应的标识（例如 “姚明”）下面，你还得用到一个冒号。</p>
+<p>这些访问标识被称为 “键”，相对应的是 “值”。我们用键来读取值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top3NBAHeights [<span class="string">"姚明"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果你想使用类型注解，数组是通过方括号加里面的键值对类型来表示的，键值对又通过冒号分隔。举个例子， <code>[String: Double]</code> 或者 <code>[String: String]</code> 。</p>
+<h3 id="字典默认值"><a href="#字典默认值" class="headerlink" title="字典默认值"></a>字典默认值</h3><p>如果你试图通过一个不存在于字典中的键读取字典中的值时， Swift 会返回给你一个 nil 。它代表没有东西。当然，这可能就是你想要 Swift 在找不到目标时返回给你的结果。不过，我们还有另外一种选择：当给定的键对应的值不存在时，我们可以指定一个默认的值返回给访问者。</p>
+<p>为了演示这种操作，我们先创建一个包含了两个人最喜欢的冰淇淋的字典：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> favoriteIceCream = [</span><br><span class="line">  <span class="string">"小明"</span>: <span class="string">"巧克力"</span>,</span><br><span class="line">  <span class="string">"小红"</span>: <span class="string">"香草"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>我们可以像这样读取小明最喜欢的冰淇淋：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">favoriteIceCream [<span class="string">"小明"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>但是当我们试图读取小华最喜欢的冰淇淋时，我们会得到一个 nil ，这代表 Swift 没有在字典里找到对应 “小华” 这个键的值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">favoriteIceCream [<span class="string">"小华"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下，我们可以通过指定一个默认值，比如说 “未知”，来解决这个问题。这样做之后， 当 Swift 没有从字典中找到小华最喜欢的冰淇淋时，我们得到的不再是一个 nil ，而是一个 “未知” 字符串。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">favoriteIceCream [<span class="string">"小华"</span>, <span class="keyword">default</span>: <span class="string">"未知"</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="创建空的合集"><a href="#创建空的合集" class="headerlink" title="创建空的合集"></a>创建空的合集</h1><p>数组，集合和字典都属于合集，因为它们都是把分散的值收集起来放在一处的结构。</p>
+<p>如果你想要创建一个空的合集，只需要写上类型名，然后加上一组圆括号。举个例子，创建一个键和值的类型都是 <code>String</code> 的字典，我们可以这样书写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> teams = [<span class="type">String</span>: <span class="type">String</span>]()</span><br></pre></td></tr></table></figure>
+
+<p>之后添加元素，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">teams [<span class="string">"小红"</span>] = <span class="string">"红色"</span></span><br></pre></td></tr></table></figure>
+
+<p>类似的，你可以像这样创建一个 <code>Int</code> 类型的空数组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> results = [<span class="type">Int</span>]()</span><br></pre></td></tr></table></figure>
+
+<p>创建集合是一个例外，方式稍有不同：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> words = <span class="type">Set</span>&lt;<span class="type">String</span>&gt;()</span><br><span class="line"><span class="keyword">var</span> numbers = <span class="type">Set</span>&lt;<span class="type">Int</span>&gt;()</span><br></pre></td></tr></table></figure>
+
+<p>这是因为 Swift 只为字典和数组提供了特殊的语法，其他类型都必须使用尖括号来声明类型信息，就像集合那样。</p>
+<p>当然，也可以不使用特殊语法，通过和集合类似的标准方式创建字典和数组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scores = <span class="type">Dictionary</span>&lt;<span class="type">String</span>, <span class="type">Int</span>&gt;()</span><br><span class="line"><span class="keyword">var</span> results = <span class="type">Array</span>&lt;<span class="type">Int</span>&gt;()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><p>枚举，通常简称 <code>enums</code> ，是一种定义一组高度关联的值的方式。它使得这组关联的值使用起来更方便。为什么这么说呢？</p>
+<p>想象一下，如果你想要写一些代码表示正在做的某件事情的结果，成功或者失败，你选择了使用字符串来表示这个结果：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">"failure"</span></span><br></pre></td></tr></table></figure>
+<p>不过，有人不小心写错了或者采用了不同的拼写，就像下面这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result2 = <span class="string">"failed"</span></span><br><span class="line"><span class="keyword">let</span> result3 = <span class="string">"fail"</span></span><br></pre></td></tr></table></figure>
+
+<p>上面几行表示失败的字符串都各不相同，所以它们代表不一样的东西，无法让你基于失败这一结果的代码被正确执行。</p>
+<p>而有了枚举，我们可以定义一个叫做 <code>Result</code> 的类型，它既可以是 <code>success</code> ，也可以是 <code>failure</code> ，就像这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Result</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> success</span><br><span class="line">  <span class="keyword">case</span> failure</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，当我们再想要表示结果时，只需要从两个值中选择一个：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result4 = <span class="type">Result</span>.failure</span><br></pre></td></tr></table></figure>
+
+<p>这样做的好处是可以避免书写不一致字符串导致跟预期不匹配的情况发生。</p>
+<h3 id="枚举关联值"><a href="#枚举关联值" class="headerlink" title="枚举关联值"></a>枚举关联值</h3><p>除了可以存储简单的值，枚举还可以存储附属于每个 <code>case</code> 的关联值。这个特性使得你可以为枚举附加额外的数据，从而让它们传达更多细微的信息。</p>
+<p>举个例子，我们可以定义一个枚举，它存放了各种各样的活动类型：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> bored</span><br><span class="line">  <span class="keyword">case</span> running</span><br><span class="line">  <span class="keyword">case</span> talking</span><br><span class="line">  <span class="keyword">case</span> singing</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的枚举类型存储的信息，可以让我们知道有人在讲话，但我们不知道讲话的内容，或者可以让我们知道有人在跑步，但我们不知道他们将跑去哪里。</p>
+<p>通过枚举的关联值，我们添加额外的细节：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> bored</span><br><span class="line">  <span class="keyword">case</span> running (destination: <span class="type">String</span>)</span><br><span class="line">  <span class="keyword">case</span> talking (topic: <span class="type">String</span>)</span><br><span class="line">  <span class="keyword">case</span> singing (volume: <span class="type">Int</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们有了更精确的信息。我们可以说某人正在谈论足球：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> talking = <span class="type">Activity</span>.talking (topic: <span class="string">"football"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="枚举原始值"><a href="#枚举原始值" class="headerlink" title="枚举原始值"></a>枚举原始值</h3><p>有的时候你可能想给枚举赋予一些原始值从而让它们可以表达某种含义。这么做可以让你动态地创建枚举，并且以不一样的方式来使用它们。</p>
+<p>举个例子，你可以创建一个名叫 <code>Planet</code> 的枚举，然后让它的每条 case 存储一个整数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> mercury</span><br><span class="line">  <span class="keyword">case</span> venus</span><br><span class="line">  <span class="keyword">case</span> earth</span><br><span class="line">  <span class="keyword">case</span> mars</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Swift 会为这些 case 自动分配一个数字，同样的，是从 0 开始。你可以利用这些数字创建枚举的 case 。举个例子， <code>earth</code> 会被分配到数字 2 ，于是你可以这么创建一个 <code>earth</code> 的 case ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> earth = <span class="type">Planet</span>(rawValue: <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果你自行指定了一个或者几个 case 的原始值， Swift 可能会自动为剩下的 case 生成原始值，只要这些值是可以被 Swift 推断的。比如把地球算作第 2 颗行星来考虑可能不太自然（因为我们一般说它是九大行星中的第 3 颗)，于是你可以这么写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> mercury = <span class="number">1</span></span><br><span class="line">  <span class="keyword">case</span> venus</span><br><span class="line">  <span class="keyword">case</span> earth</span><br><span class="line">  <span class="keyword">case</span> mars</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一来 Swift 就会给 <code>mercury</code> 分配数字 1 ，后面的数字基于前面的往上加， <code>earth</code> 就变成第 3 颗行星了。</p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>让我们来总结一下。</p>
+<ul>
+<li>数组，集合，元组和字典让你可以通过单一对象存储一组值。它们实现这一点的方式各有不同，所以你需要根据具体场景来决定采用哪一种结构。</li>
+<li>数组按顺序存储数据，你可以往里面添加或者删除元素，并通过位置来读取。</li>
+<li>集合不按顺序存储数据，所以你不能通过位置来访问，但它提供了元素不重复的特性。</li>
+<li>元组长度固定，你可以给里面的每个元素取名。这样就既可以通过位置，也可以通过名字来读取。</li>
+<li>字典根据键来存储数据，因此读取元素时要用到键。</li>
+<li>枚举是一种分组关联值的方法，帮你避免拼写错误。</li>
+<li>你可以为枚举的每条 <code>case</code> 设置原始值，同时还可以为它们附加关联值来提供额外的信息。</li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat_public_account.jpg" alt="猫克杯 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>更多内容请关注公众号</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>予人玫瑰，手留余香</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat.jpg" alt="猫克杯 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="猫克杯 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag">#swift</a>
+          
+            <a href="/tags/programming/" rel="tag">#programming</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/programming/swiftswift-simple-types/" rel="next" title="极速 Swift 教程之一 | 简单类型">
+                <i class="fa fa-chevron-left"></i> 极速 Swift 教程之一 | 简单类型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/programming/swiftswift-operators-and-conditions/" rel="prev" title="极速 Swift 教程之三 | 操作符与条件">
+                极速 Swift 教程之三 | 操作符与条件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="猫克杯" />
+          <p class="site-author-name" itemprop="name">猫克杯</p>
+          <p class="site-description motion-element" itemprop="description">Stay hungry, stay foolish.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集合"><span class="nav-number">2.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元组"><span class="nav-number">3.</span> <span class="nav-text">元组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组-vs-集合-vs-元组"><span class="nav-number">4.</span> <span class="nav-text">数组 vs 集合 vs 元组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典"><span class="nav-number">5.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字典默认值"><span class="nav-number">5.0.1.</span> <span class="nav-text">字典默认值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建空的合集"><span class="nav-number">6.</span> <span class="nav-text">创建空的合集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举"><span class="nav-number">7.</span> <span class="nav-text">枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举关联值"><span class="nav-number">7.0.1.</span> <span class="nav-text">枚举关联值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举原始值"><span class="nav-number">7.0.2.</span> <span class="nav-text">枚举原始值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io" target="_blank" rel="noopener">Hexo</a>
+</div>
+
+<div class="powered-by">
+   闽ICP备15013969号
+</div>
+
+<div class="theme-info">
+  Clone theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next/" target="_blank" rel="noopener">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

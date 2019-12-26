@@ -1,129 +1,80 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://blog.theinfinitegame.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-
-
-
-
-
-
-
-  
-  
-    
-  
-  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-  
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="swift,编程," />
-
-
-
-
-  
-
-
-  <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml" />
-
-
-
-
-
-
-
-
-
-<meta name="description" content="创建基本的闭包Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。 函数的这种用法被称为 闭包 。虽然工作机制差不多，写法上是有一些小差异的。 还是以打印信息为例： 123let driving &#x3D; &amp;#123;  print(&quot;我要去开车&quot;)&amp;#125;  上面的代码实际上创建了一个匿名">
+  <meta name="description" content="创建基本的闭包Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。 函数的这种用法被称为 闭包 。虽然工作机制差不多，写法上是有一些小差异的。 还是以打印信息为例： 123let driving &#x3D; {  print(&quot;我要去开车&quot;)}  上面的代码实际上创建了一个匿名的函数，并将这个函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速 Swift 教程之六 | 闭包">
 <meta property="og:url" content="http://blog.theinfinitegame.com/programming/swiftswift-closures/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="创建基本的闭包Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。 函数的这种用法被称为 闭包 。虽然工作机制差不多，写法上是有一些小差异的。 还是以打印信息为例： 123let driving &#x3D; &amp;#123;  print(&quot;我要去开车&quot;)&amp;#125;  上面的代码实际上创建了一个匿名">
+<meta property="og:description" content="创建基本的闭包Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。 函数的这种用法被称为 闭包 。虽然工作机制差不多，写法上是有一些小差异的。 还是以打印信息为例： 123let driving &#x3D; {  print(&quot;我要去开车&quot;)}  上面的代码实际上创建了一个匿名的函数，并将这个函数">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-24T13:05:51.000Z">
-<meta property="article:modified_time" content="2019-12-25T13:33:04.071Z">
+<meta property="article:modified_time" content="2019-12-26T07:39:04.285Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="swift">
 <meta property="article:tag" content="编程">
 <meta name="twitter:card" content="summary">
 
+<link rel="canonical" href="http://blog.theinfinitegame.com/programming/swiftswift-closures/">
 
 
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: 'xirong'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title> 极速 Swift 教程之六 | 闭包 | The Infinite Game </title>
-<meta name="generator" content="Hexo 4.2.0"></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>极速 Swift 教程之六 | 闭包 | The Infinite Game</title>
   
 
 
@@ -131,299 +82,321 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
 
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta custom-logo">
-  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">The Infinite Game</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
 
-  
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
 
- </div>
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.theinfinitegame.com/programming/swiftswift-closures/">
 
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                极速 Swift 教程之六 | 闭包
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          极速 Swift 教程之六 | 闭包
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-12-24T21:05:51+08:00" content="2019-12-24">
-              2019-12-24
-            </time>
-          </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <i class="fa fa-thumb-tack"></i>
+            <font color="7D26CD">置顶</font>
+            <span class="post-meta-divider">|</span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-24 21:05:51" itemprop="dateCreated datePublished" datetime="2019-12-24T21:05:51+08:00">2019-12-24</time>
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/programming/" itemprop="url" rel="index">
                     <span itemprop="name">programming</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
-          
-
-          
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <h1 id="创建基本的闭包"><a href="#创建基本的闭包" class="headerlink" title="创建基本的闭包"></a>创建基本的闭包</h1><p>Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。</p>
 <p>函数的这种用法被称为 <em>闭包</em> 。虽然工作机制差不多，写法上是有一些小差异的。</p>
 <p>还是以打印信息为例：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要去开车"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要去开车"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>上面的代码实际上创建了一个匿名的函数，并将这个函数赋给了 <code>driving</code> 。之后你就可以把 <code>driving ()</code> 当作一个常规的函数来用，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driving ()</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driving ()</span><br></pre></td></tr></tbody></table></figure>
+
+<a id="more"></a>
 
 <hr>
 <h1 id="在闭包中接收参数"><a href="#在闭包中接收参数" class="headerlink" title="在闭包中接收参数"></a>在闭包中接收参数</h1><p>当你创建闭包的时候，它们并没有名字，也没有提供书写参数的地方。但这并不意味着它们不能接收参数，只不过它们接收参数的方式稍有不同：这些参数是被写在花括号里面的。</p>
 <p>为了让一个闭包接收参数，你需要在花括号之后把这些参数列出来，然后跟上一个 <code>in</code> 关键字。这样就告诉 Swift ，闭包的主体是从哪里开始的。</p>
 <p>举个例子，我们来创建一个闭包，接收一个叫 <code>place</code> 的字符串作为唯一的参数，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123; (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要开车去 \(place)。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = { (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要开车去 \(place)。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>函数和闭包的一个区别是运行闭包的时候你不会用到参数标签。因此，调用 <code>driving ()</code> 的时候，我们是这样写的：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driving (<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driving (<span class="string">"北京"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="从闭包中返回值"><a href="#从闭包中返回值" class="headerlink" title="从闭包中返回值"></a>从闭包中返回值</h1><p>闭包也能返回值，写法和闭包的参数类似：写在闭包内部， <code>in</code> 关键字前面。</p>
 <p>还是以 <code>driving ()</code> 闭包为例， 让它返回一个字符串。原来的函数是这样的：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123; (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要开车去  \(place)。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = { (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要开车去  \(place)。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>改成返回字符串而不是直接打印那个字符串，需要 <code>in</code> 之前添加 <code>-&gt; String</code> ，然后像常规函数那样用到 <code>return</code> 关键字:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> drivingWithReturn = &#123; (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> drivingWithReturn = { (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>现在我们运行这个闭包并且打印出它的返回值：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> message = drivingWithReturn (<span class="string">"北京"</span>)</span><br><span class="line"><span class="built_in">print</span>(message)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> message = drivingWithReturn (<span class="string">"北京"</span>)</span><br><span class="line"><span class="built_in">print</span>(message)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="闭包作为参数"><a href="#闭包作为参数" class="headerlink" title="闭包作为参数"></a>闭包作为参数</h1><p>既然闭包可以像字符串和整数一样使用，你就可以将它们传入函数。闭包作为参数的语法乍一看一看挺伤脑筋的，让我们慢慢来。</p>
 <p>首先，还是基本的 <code>driving ()</code> 闭包。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>如果我们打算把这个闭包传入一个函数，以便函数内部可以运行这个闭包。我们需要把函数的参数类型指定为 <code>() -&gt; Void</code> 。它的意思是 “不接收参数，并且返回 <code>Void</code> ”。在 Swift 中， <code>Void</code> 是什么也没有的意思。</p>
 <p>好了，让我们来写一个 <code>travel ()</code> 函数，接收不同类型的 traveling 动作， 并且在动作前后分别打印信息：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action ()</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action ()</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>现在可以用上 <code>driving</code> 闭包了，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">travel (action: driving)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">travel (action: driving)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="拖尾闭包语法"><a href="#拖尾闭包语法" class="headerlink" title="拖尾闭包语法"></a>拖尾闭包语法</h1><p>如果一个函数的最后一个参数是闭包， Swift 允许你采用一种被称为 <em>“拖尾闭包语法”</em> 的方式来调用这个闭包。你可以把闭包传入函数之后的花括号里，而不必像传入参数那样。</p>
 <p>又用到我们的 <code>travel ()</code> 函数了。它接收一个 <code>action</code> 闭包。闭包在两个 <code>print ()</code> 调用之间执行:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action ()</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action ()</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>由于函数的最后一个参数是闭包，我们可以用拖尾闭包语法来调用 <code>travel ()</code> 函数，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel () &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel () {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>实际上，由于函数没有别的参数了，我们还可以将圆括号完全移除：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我正在开车。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>拖尾闭包语法在 Swift 中非常常见，所以你要适应它。</p>
 <hr>
 <h1 id="使用接收参数的闭包作为函数的参数"><a href="#使用接收参数的闭包作为函数的参数" class="headerlink" title="使用接收参数的闭包作为函数的参数"></a>使用接收参数的闭包作为函数的参数</h1><p>接下来要说到的闭包用法会有点复杂：当你把闭包作为函数参数时，闭包本身也接收参数。</p>
 <p>前面我们用 <code>() -&gt; Void</code> 来表示 “不接收参数，并且什么也不返回”，但实际上你可以在 <code>()</code> 里填上你任何想要闭包接收的参数类型。</p>
 <p>再次用到 <code>travel ()</code> 函数。函数只接收一个闭包作为参数，但这次闭包会接收一个字符串参数：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">Void</span>) {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>现在，当我们采用拖尾闭包语法调用 <code>travel ()</code> 时，我们的闭包代码会要求接收一个字符串：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备开车去 \(place)。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel { (place: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备开车去 \(place)。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="使用有返回值的闭包作为函数的参数"><a href="#使用有返回值的闭包作为函数的参数" class="headerlink" title="使用有返回值的闭包作为函数的参数"></a>使用有返回值的闭包作为函数的参数</h1><p>我们之前用 <code>() -&gt; Void</code> 来表示 “不接收参数，并且什么也不返回”。你可以把 <code>Void</code> 替换成任意的类型从而让闭包可以返回值。</p>
 <p>还是 <code>travel ()</code> 函数，这次闭包会返回一个字符串。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  <span class="keyword">let</span> description = action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(description)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">String</span>) {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  <span class="keyword">let</span> description = action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(description)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>仍然用拖尾闭包语法来调用 <code>travel ()</code> ，闭包要求接收一个字符串并且返回一个字符串：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel { (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="速记参数名"><a href="#速记参数名" class="headerlink" title="速记参数名"></a>速记参数名</h1><p>前面我们了构建 <code>travel ()</code> 函数。它接收一个闭包作为参数，这个闭包本身接收一个参数并且返回一个字符串，它在两个 <code>print ()</code> 调用之间运行。</p>
 <p>代码如下：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  <span class="keyword">let</span> description = action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(description)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String)</span></span></span> -&gt; <span class="type">String</span>) {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。"</span>)</span><br><span class="line">  <span class="keyword">let</span> description = action (<span class="string">"北京"</span>)</span><br><span class="line">  <span class="built_in">print</span>(description)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我到达目的地了。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>我们可以像这样调用 <code>travel ()</code> ：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel { (place: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>不过， Swift 知道提供给闭包的参数必须是一个字符串，所以调用的代码可以简写成这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; place -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel { place -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>Swfit 也知道闭包必须返回一个字符串，于是进一步简写：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; place <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel { place <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>由于这里的闭包只有一行代码，这行代码肯定是返回值的那行代码，因此 Swift 允许我们把 <code>return</code> 关键字也移除：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123; place <span class="keyword">in</span></span><br><span class="line">  <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel { place <span class="keyword">in</span></span><br><span class="line">  <span class="string">"我要开车去 \(place)。"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>最后， Swift 还提供一种速记语法，让你可以把代码变得更短。我们可以让 Swift 为闭包的参数自动提供一个名字，而不必自行写下 <code>place in</code> 。这些自动生成的名字以 $ 开头，然后跟着一个从 0 开始的整数，就像下面这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123;</span><br><span class="line">  <span class="string">"我要开车去 \($0)。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel {</span><br><span class="line">  <span class="string">"我要开车去 \($0)。"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="有多个参数的闭包"><a href="#有多个参数的闭包" class="headerlink" title="有多个参数的闭包"></a>有多个参数的闭包</h1><p>让我们把闭包这个概念一次讲透吧。接下来举一个接收两个参数的闭包的例子。</p>
 <p>将 <code>travel ()</code> 函数改造一下，不仅接收旅行目的地，也接收速度。闭包的类型会变成 <code>(String, Int) -&gt; String</code> ：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String, Int)</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。)</span></span><br><span class="line"><span class="string">  let description = action ("</span > 北京 < span class="string">", 60)</span></span><br><span class="line"><span class="string">  print (description)</span></span><br><span class="line"><span class="string">  print ("</span > 我到达目的地了。<span class="string">")</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(action: <span class="params">(String, Int)</span></span></span> -&gt; <span class="type">String</span>) {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我准备出发了。)</span></span><br><span class="line"><span class="string">  let description = action ("</span> 北京 &lt; span class="string"&gt;", 60)</span><br><span class="line"><span class="string">  print (description)</span></span><br><span class="line"><span class="string">  print ("</span> 我到达目的地了。<span class="string">")</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>再一次用速记闭包参数名来调用函数。由于这次闭包有两个参数了，于是自动参数名分别是 <code>$0</code> 和 <code>$1</code> ：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel &#123;</span><br><span class="line">  <span class="string">"我要开车去 \($0)，时速 \($1) 公里每小时。"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travel {</span><br><span class="line">  <span class="string">"我要开车去 \($0)，时速 \($1) 公里每小时。"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>有些人可能不喜欢用速记参数名，因为它们的语义不是很清晰。你可以根据自己的喜好来决定是否采用它们。不过了解一下这个语法还是必要的，这样读到别人的代码时就不会感到困惑。</p>
 <hr>
@@ -431,28 +404,28 @@
 <p>返回闭包的语法看起来有点绕，因为用了两次 <code>-&gt;</code> ：第一次用于指定函数的返回值，第二次用于指定闭包的返回值。</p>
 <p>又又又要把 <code>travel ()</code> 函数拉出来了。这次它不接收参数，但返回一个闭包。这个返回的闭包在用的时候必须传入一个字符串，但闭包本身没有返回值。</p>
 <p>Swift 代码长这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"我要动身去 \($0)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> {</span><br><span class="line">  <span class="keyword">return</span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"我要动身去 \($0)"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>接下来我们通过调用 <code>travel ()</code> 拿到闭包，然后作为函数来调用：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = travel ()</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = travel ()</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>留意下面的代码，它是直接调用 <code>travel ()</code> 的返回值。这个写法虽然在语法上完全没问题，但是可读性较差，建议尽量不要这样写。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result2 = travel ()(<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result2 = travel ()(<span class="string">"北京"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="捕获变量"><a href="#捕获变量" class="headerlink" title="捕获变量"></a>捕获变量</h1><p>如果你想要使用闭包之外的对象， Swift 会为你 “捕捉” 它们，并把它们和闭包一同存储，以便外部作用域已经失效的情况下闭包内部还可以使用它们。</p>
 <p>最后一次用到 <code>travel ()</code> 函数，它返回一个闭包，这个闭包接收字符串作为唯一的参数并且什么也不返回：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"我准备去 \($0)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> {</span><br><span class="line">  <span class="keyword">return</span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"我准备去 \($0)"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>调用 <code>travel ()</code> 拿到闭包，然后自由使用：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = travel ()</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = travel ()</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>闭包捕获变量可以发生在什么情况下呢？举个例子，当 <code>travel ()</code> 函数内创建了一个变量，这个变量需要在闭包里面用到，那么这个变量就会被闭包捕获。比如，我们想知道闭包被调用的次数：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> counter = <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"第 \(counter) 次，我将前往 \($0)"</span>)</span><br><span class="line">    counter += <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">()</span></span> -&gt; (<span class="type">String</span>) -&gt; <span class="type">Void</span> {</span><br><span class="line">  <span class="keyword">var</span> counter = <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"第 \(counter) 次，我将前往 \($0)"</span>)</span><br><span class="line">    counter += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>尽管 <code>counter</code> 变量是在 <code>travel ()</code> 里被创建的，它被闭包捕获，因而会在闭包内部存续。</p>
-<p>当我们多次调用 <code>result (&quot; 北京 &quot;)</code> ，计数器会持续增加：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result (<span class="string">"北京"</span>)</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></table></figure>
+<p>当我们多次调用 <code>result (" 北京 ")</code> ，计数器会持续增加：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result (<span class="string">"北京"</span>)</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br><span class="line">result (<span class="string">"北京"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>让我们来总结一下。</p>
@@ -465,387 +438,359 @@
 <li>如果你在闭包中使用了外部变量，这些变量将被闭包 “捕捉” 以便后续引用。 </li>
 </ol>
 <hr>
-
-      
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
     </div>
 
-    <div>
-      
-        
-<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat_public_account.jpg" alt="猫克杯 wechat" style="width: 200px; max-width: 100%;"/>
-    <div>更多内容请关注公众号</div>
-</div>
-
-      
-    </div>
-
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>予人玫瑰，手留余香</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/uploads/wechat.jpg" alt="猫克杯 WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="猫克杯 Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
-
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/swift/" rel="tag">#swift</a>
-          
-            <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">#编程</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/programming/swiftswift-functions/" rel="next" title="极速 Swift 教程之五 | 函数">
-                <i class="fa fa-chevron-left"></i> 极速 Swift 教程之五 | 函数
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/programming/swiftswift-structs/" rel="prev" title="极速 Swift 教程之七 | 结构体">
-                极速 Swift 教程之七 | 结构体 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
+    
+    
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-optionals/" rel="bookmark">极速 Swift 教程之十 | 可选型</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-protocol/" rel="bookmark">极速 Swift 教程之九 | 协议</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-classes/" rel="bookmark">极速 Swift 教程之八 | 类</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-structs/" rel="bookmark">极速 Swift 教程之七 | 结构体</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-functions/" rel="bookmark">极速 Swift 教程之五 | 函数</a></div>
+    </li>
+  </ul>
 
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="猫克杯" />
-          <p class="site-author-name" itemprop="name">猫克杯</p>
-          <p class="site-description motion-element" itemprop="description">Stay hungry, stay foolish.</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/nichollyn" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/kai-wen-mao-66" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建基本的闭包"><span class="nav-number">1.</span> <span class="nav-text">创建基本的闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在闭包中接收参数"><span class="nav-number">2.</span> <span class="nav-text">在闭包中接收参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从闭包中返回值"><span class="nav-number">3.</span> <span class="nav-text">从闭包中返回值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包作为参数"><span class="nav-number">4.</span> <span class="nav-text">闭包作为参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拖尾闭包语法"><span class="nav-number">5.</span> <span class="nav-text">拖尾闭包语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用接收参数的闭包作为函数的参数"><span class="nav-number">6.</span> <span class="nav-text">使用接收参数的闭包作为函数的参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用有返回值的闭包作为函数的参数"><span class="nav-number">7.</span> <span class="nav-text">使用有返回值的闭包作为函数的参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#速记参数名"><span class="nav-number">8.</span> <span class="nav-text">速记参数名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有多个参数的闭包"><span class="nav-number">9.</span> <span class="nav-text">有多个参数的闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从函数中返回闭包"><span class="nav-number">10.</span> <span class="nav-text">从函数中返回闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#捕获变量"><span class="nav-number">11.</span> <span class="nav-text">捕获变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">12.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="heart">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">猫克杯</span>
-</div>
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io" target="_blank" rel="noopener">Hexo</a>
-</div>
-
-<div class="powered-by">
-   闽ICP备15013969号
-</div>
-
-<div class="theme-info">
-  Clone theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next/" target="_blank" rel="noopener">
-    NexT.Mist
-  </a>
-</div>
-
-        
-
-<div class="busuanzi-count">
-
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-
-  
-  
-</div>
-
-
-
-        
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
       </div>
-    </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.theinfinitegame.com/programming/swiftswift-closures/" title="极速 Swift 教程之六 | 闭包">http://blog.theinfinitegame.com/programming/swiftswift-closures/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/swift/" rel="tag"># swift</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
     </div>
   </div>
 
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/programming/swiftswift-functions/" rel="prev" title="极速 Swift 教程之五 | 函数">
+      <i class="fa fa-chevron-left"></i> 极速 Swift 教程之五 | 函数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/programming/swiftswift-structs/" rel="next" title="极速 Swift 教程之七 | 结构体">
+      极速 Swift 教程之七 | 结构体 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建基本的闭包"><span class="nav-number">1.</span> <span class="nav-text">创建基本的闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在闭包中接收参数"><span class="nav-number">2.</span> <span class="nav-text">在闭包中接收参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从闭包中返回值"><span class="nav-number">3.</span> <span class="nav-text">从闭包中返回值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包作为参数"><span class="nav-number">4.</span> <span class="nav-text">闭包作为参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拖尾闭包语法"><span class="nav-number">5.</span> <span class="nav-text">拖尾闭包语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用接收参数的闭包作为函数的参数"><span class="nav-number">6.</span> <span class="nav-text">使用接收参数的闭包作为函数的参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用有返回值的闭包作为函数的参数"><span class="nav-number">7.</span> <span class="nav-text">使用有返回值的闭包作为函数的参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#速记参数名"><span class="nav-number">8.</span> <span class="nav-text">速记参数名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有多个参数的闭包"><span class="nav-number">9.</span> <span class="nav-text">有多个参数的闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从函数中返回闭包"><span class="nav-number">10.</span> <span class="nav-text">从函数中返回闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#捕获变量"><span class="nav-number">11.</span> <span class="nav-text">捕获变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">12.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">42k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
 
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
 
 
 
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-  
-  
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
     });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
   </script>
 
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
 
 </body>
 </html>

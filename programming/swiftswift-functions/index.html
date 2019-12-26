@@ -1,129 +1,80 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://blog.theinfinitegame.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-
-
-
-
-
-
-
-  
-  
-    
-  
-  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-  
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="swift,编程," />
-
-
-
-
-  
-
-
-  <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml" />
-
-
-
-
-
-
-
-
-
-<meta name="description" content="书写函数函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。 用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。 Swift 的函数以 func 关键字开始，然后跟着函数名，然后是一对圆括号，最">
+  <meta name="description" content="书写函数函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。 用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。 Swift 的函数以 func 关键字开始，然后跟着函数名，然后是一对圆括号，最">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速 Swift 教程之五 | 函数">
 <meta property="og:url" content="http://blog.theinfinitegame.com/programming/swiftswift-functions/index.html">
 <meta property="og:site_name" content="The Infinite Game">
 <meta property="og:description" content="书写函数函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。 用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。 Swift 的函数以 func 关键字开始，然后跟着函数名，然后是一对圆括号，最">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-24T12:47:22.000Z">
-<meta property="article:modified_time" content="2019-12-25T13:33:51.083Z">
+<meta property="article:modified_time" content="2019-12-26T07:12:28.606Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="swift">
 <meta property="article:tag" content="编程">
 <meta name="twitter:card" content="summary">
 
+<link rel="canonical" href="http://blog.theinfinitegame.com/programming/swiftswift-functions/">
 
 
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: 'xirong'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title> 极速 Swift 教程之五 | 函数 | The Infinite Game </title>
-<meta name="generator" content="Hexo 4.2.0"></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>极速 Swift 教程之五 | 函数 | The Infinite Game</title>
   
 
 
@@ -131,303 +82,321 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
 
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta custom-logo">
-  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">The Infinite Game</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
 
-  
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
 
- </div>
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.theinfinitegame.com/programming/swiftswift-functions/">
 
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                极速 Swift 教程之五 | 函数
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          极速 Swift 教程之五 | 函数
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-12-24T20:47:22+08:00" content="2019-12-24">
-              2019-12-24
-            </time>
-          </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-24 20:47:22" itemprop="dateCreated datePublished" datetime="2019-12-24T20:47:22+08:00">2019-12-24</time>
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/programming/" itemprop="url" rel="index">
                     <span itemprop="name">programming</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
-          
-
-          
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <h1 id="书写函数"><a href="#书写函数" class="headerlink" title="书写函数"></a>书写函数</h1><p>函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。</p>
 <p>用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。</p>
 <p>Swift 的函数以 <code>func</code> 关键字开始，然后跟着函数名，然后是一对圆括号，最后是一对花括号。当函数被运行时，花括号里的代码会被执行。</p>
 <p>一个 <code>printHelp ()</code> 函数长这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printHelp</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">let</span> message = <span class="string">"""</span></span><br><span class="line"><span class="string">  欢迎来到我的 App!</span></span><br><span class="line"><span class="string">  在一个图片的目录下运行这个 App，</span></span><br><span class="line"><span class="string">  它会把所有的图片缩放成缩略图。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">  <span class="built_in">print</span>(message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printHelp</span><span class="params">()</span></span> {</span><br><span class="line">  <span class="keyword">let</span> message = <span class="string">"""</span></span><br><span class="line"><span class="string">  欢迎来到我的 App!</span></span><br><span class="line"><span class="string">  在一个图片的目录下运行这个 App，</span></span><br><span class="line"><span class="string">  它会把所有的图片缩放成缩略图。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">  <span class="built_in">print</span>(message)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>然后我们用 <code>printHelp ()</code> 来运行它。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printHelp ()</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printHelp ()</span><br></pre></td></tr></tbody></table></figure>
 
 <p>运行一个函数又被称为 * 调用 * 一个函数。</p>
+<a id="more"></a>
+
 <hr>
 <h1 id="接收参数"><a href="#接收参数" class="headerlink" title="接收参数"></a>接收参数</h1><p>函数在你调用它们的时候可以被定制，这使得它们的能力更加强大。 Swift 允许你发送值给函数，这些值可以在函数内部使用，从而改变函数的行为。其实之前我们已经见过函数的这个特性：我们把整数和字符串传递给 <code>print ()</code> 函数，就像下面这样。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Hello, world!"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Hello, world!"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>这些被传入函数的值被称为 * 参数 * 。</p>
 <p>为了使你的函数可以接收参数，你需要给参数起个名字，然后加一个冒号，最后再告诉 Swift 这个参数的数据类型。这些都是放在函数名之后的圆括号里面。</p>
 <p>举个例子，我们可以写一个函数，打印任意数字的平方。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(number * number)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> {</span><br><span class="line">  <span class="built_in">print</span>(number * number)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>上面的代码告知 Swift 我们期望接收一个 <code>Int</code> 类型，并且名字叫 <code>number</code> 。这个名字不仅用于函数内部指代参数，也用于运行函数，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">square (number: <span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">square (number: <span class="number">8</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h1><p>函数不仅可以接收数据（通过参数），也可以返回数据。为了返回数据，在函数的参数列表之后写一个短横线加一个向右的尖括号，然后提供一个数据类型。这个语法告诉 Swift 函数将返回一个指定类型的数据。</p>
 <p>在函数内，我们用 <code>return</code> 关键字来返回数据。这个时候函数会立即结束，并返回数据，函数内的其他代码都不再执行。</p>
 <p>我们可以重写 <code>square ()</code> 函数，返回平方数而不是直接打印它：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> number * number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Int</span> {</span><br><span class="line">  <span class="keyword">return</span> number * number</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>现在我们可以通过运行这个函数，拿到返回值并且打印出来：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = square (number: <span class="number">8</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = square (number: <span class="number">8</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>如果你需要返回多个值，可以使用元组作为返回值的类型。</p>
 <hr>
 <h1 id="参数标签"><a href="#参数标签" class="headerlink" title="参数标签"></a>参数标签</h1><p>前面的 <code>square ()</code> 函数：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> number * number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Int</span> {</span><br><span class="line">  <span class="keyword">return</span> number * number</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>参数名是 <code>number</code> ，我们通过在函数里使用 <code>number</code> 来引用这个参数，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = square (number: <span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = square (number: <span class="number">8</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>Swift 允许我们给参数起两个名字：一个供调用时使用，一个在函数内部使用。书写的时候把两个名字都写上，用空格分隔。</p>
 <p>举个例子：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(to name: String)</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello, \(name)!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(to name: String)</span></span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello, \(name)!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>这里的参数名是 <code>to name</code> ，在外部调用时用 <code>to</code> ，而内部指代时用 <code>name</code> 。这种方式让参数在函数内部有一个合理的名称，同时在调用时阅读起来也是自然的。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sayHello (to: <span class="string">"Taylor"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sayHello (to: <span class="string">"Taylor"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
-<h1 id="省略参数标签"><a href="#省略参数标签" class="headerlink" title="省略参数标签"></a>省略参数标签</h1><p>你可能已经注意到我们在使用 <code>print ()</code> 函数时并没有传入任何参数标签。我们会写作 <code>print (&quot;Hello&quot;)</code> ，而不是 <code>print (message:&quot;Hello&quot;)</code> 。</p>
+<h1 id="省略参数标签"><a href="#省略参数标签" class="headerlink" title="省略参数标签"></a>省略参数标签</h1><p>你可能已经注意到我们在使用 <code>print ()</code> 函数时并没有传入任何参数标签。我们会写作 <code>print ("Hello")</code> ，而不是 <code>print (message:"Hello")</code> 。</p>
 <p>通过使用下划线 <code>_</code> 作为外部参数标签，你可以在自己的函数里实现一样的效果，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> person: String)</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello, \(person)!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> person: String)</span></span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello, \(person)!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>这样写的话，调用 <code>greet ()</code> 函数时，你就不必传入参数标签了：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greet (<span class="string">"Taylor"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greet (<span class="string">"Taylor"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>为了使代码阅读起来更自然，通常我们是需要给参数起一个外部标签名的。举个例子，如果我说设置闹钟 5（ <code>setAlarm (5)</code> ）不写标签的话很难理解这代表什么意思：是要设置一个 5 点钟生效的闹钟呢？还是要激活第 5 个预先设好的闹钟？而像打印这件事，在打印后面直接跟上要打印的内容，本身就是一个清晰的表达，所以可以省略掉参数标签。</p>
 <hr>
 <h1 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h1><p><code>print ()</code> 函数打印文本到屏幕，并且不论你传什么内容给它，它都会在最后添加一个换行。所以多次调用 <code>print ()</code> 的话，那些文本是不会显示在同一行的。</p>
 <p>但是你可以改变 <code>print ()</code> 函数的这个行为：你可以用其他符号，例如空格来取代换行。不过多数情况下，大家都想要换行，因此 <code>print ()</code> 有一个叫 <code>terminator</code> 的参数，它的默认值是换行符。</p>
 <p>通过在参数后面加上一个 <code>=</code> 然后写上一个值，你可以为你自己的函数提供默认参数。 举个例子，我们写一个 <code>greet ()</code> 函数，默认友好问候：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> person: String, nicely: Bool = <span class="literal">true</span>)</span></span> &#123;</span><br><span class="line">  <span class="keyword">if</span> nicely == <span class="literal">true</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"你好， \(person)!"</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"不是吧，又是 \(person) 你小子。"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> person: String, nicely: Bool = <span class="literal">true</span>)</span></span> {</span><br><span class="line">  <span class="keyword">if</span> nicely == <span class="literal">true</span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"你好， \(person)!"</span>)</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"不是吧，又是 \(person) 你小子。"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>现在 <code>greet ()</code> 函数就有两种调用方式了：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greet (<span class="string">"Taylor"</span>)</span><br><span class="line">greet (<span class="string">"Taylor"</span>, nicely: <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greet (<span class="string">"Taylor"</span>)</span><br><span class="line">greet (<span class="string">"Taylor"</span>, nicely: <span class="literal">false</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="可变函数"><a href="#可变函数" class="headerlink" title="可变函数"></a>可变函数</h1><p>有一些函数是 <em>可变</em> 的，可变是指函数可以接收任意多个同类型的参数。例如， <code>print ()</code> 函数实际上就是可变的：如果你传入多个参数，它们会被以空格相连打印在同一行。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Haters"</span>, <span class="string">"gonna"</span>, <span class="string">"hate"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Haters"</span>, <span class="string">"gonna"</span>, <span class="string">"hate"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>你可以通过在参数类型之后添加 <code>...</code> ，将一个参数声明成可变参数。因此，一个 <code>Int</code> 参数代表一个整数，而 <code>Int...</code> 则代表 0 个或者更多整数，理论上不限个数。</p>
 <p>在函数内部， Swift 会将这些整数转成一个整数的数组，以方便你遍历它们。</p>
 <p>让我们用 <code>square ()</code> 函数来尝试一下吧：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(numbers: Int...)</span></span> &#123;</span><br><span class="line">  <span class="keyword">for</span> number <span class="keyword">in</span> numbers &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(number) 的平方等于 \(number * number)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">(numbers: Int...)</span></span> {</span><br><span class="line">  <span class="keyword">for</span> number <span class="keyword">in</span> numbers {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(number) 的平方等于 \(number * number)"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>现在我们可以用逗号分隔一组数字，把它们全部传入 <code>square ()</code> 函数：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">square (numbers: <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">square (numbers: <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="书写会抛出错误的函数"><a href="#书写会抛出错误的函数" class="headerlink" title="书写会抛出错误的函数"></a>书写会抛出错误的函数</h1><p>有的时候函数会运行失败，因为不合理的输入或者函数内部的错误。 Swift 允许我们从函数中抛出错误。实现的方法是在返回值前写一个 <code>throws</code> ，然后在函数出错时使用 <code>throw</code> 关键字抛出错误。</p>
 <p>首先我们需要定义一个 <code>enum</code> ，用于描述我们可能抛出的错误。这些错误必须基于 Swift 已经存在的 <code>Error</code> 类型。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PasswordError</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> obvious</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PasswordError</span>: <span class="title">Error</span> </span>{</span><br><span class="line">  <span class="keyword">case</span> obvious</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>现在我们来实现一个函数 <code>checkPassword ()</code> ，这个函数检测传入的密码是否合理，当密码过于简单时，我们抛出一个错误提醒用户。具体来说，当密码被设置成 “password” 时，执行 <code>throw PasswordError.obvious</code> 。</p>
 <p>Swift 代码如下：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkPassword</span><span class="params">(<span class="number">_</span> password: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> password == <span class="string">"password"</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="type">PasswordError</span>.obvious</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkPassword</span><span class="params">(<span class="number">_</span> password: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span> {</span><br><span class="line">  <span class="keyword">if</span> password == <span class="string">"password"</span> {</span><br><span class="line">    <span class="keyword">throw</span> <span class="type">PasswordError</span>.obvious</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="运行可能会抛出错误的函数"><a href="#运行可能会抛出错误的函数" class="headerlink" title="运行可能会抛出错误的函数"></a>运行可能会抛出错误的函数</h1><p>Swift 并不期望你在程序运行时遭遇错误，因此它不会让你直接运行可能抛出错误的函数。</p>
 <p>你需要用到三个关键字来运行会抛出错误的函数： <code>do</code> 开启一段可能会遭遇问题的代码， <code>try</code> 放在每一个可能抛出错误的函数前面，最后的 <code>catch</code> 让你可以优雅地处理错误。</p>
 <p>如果 <code>do</code> 语句块里有任何错误抛出，代码执行会直接跳到 <code>catch</code> 语句块。让我们用一个可以触发 <code>checkPassword ()</code> 抛出错误的密码来调用这个函数：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> checkPassword (<span class="string">"password"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"这个密码很棒！"</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你不能用这个密码。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> {</span><br><span class="line">  <span class="keyword">try</span> checkPassword (<span class="string">"password"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"这个密码很棒！"</span>)</span><br><span class="line">} <span class="keyword">catch</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你不能用这个密码。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>当这段代码运行时，“你不能用这个密码。” 会被打印。但” 这个密码很棒！“则不会被打印。这个是由于错误的抛出导致那个打印无法被运行到。</p>
 <hr>
 <h1 id="inout-参数"><a href="#inout-参数" class="headerlink" title="inout 参数"></a>inout 参数</h1><p>所有传入 Swift 函数的参数默认都是 <em>常量</em> ，所以你无法更改它们。假如你就是想要在函数内改变这些参数呢？可以用 <code>inout</code> 修饰它们，所有在函数内对它们做出的改变都会影响到它们在函数外的原始值。</p>
 <p>举个例子，如果你想要让一个数翻倍。比如，直接改变那个数，而不是返回一个新的数。你可以像下面这样写：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">doubleInPlace</span><span class="params">(number: <span class="keyword">inout</span> Int)</span></span> &#123;</span><br><span class="line">  number *= <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">doubleInPlace</span><span class="params">(number: <span class="keyword">inout</span> Int)</span></span> {</span><br><span class="line">  number *= <span class="number">2</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>为了使用这个可以修改参数的函数，首先要求传入的参数本身不能是常量，因为如果参数本来是常量，即使用 <code>inout</code> 修饰，也无法被修改。其次，在传入函数时，还要用一个 <code>&amp;</code> 符号，放在参数名前面。它是参数以 <code>inout</code> 方式使用的显式标识。</p>
 <p>在代码中，是这么书写的：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myNum = <span class="number">10</span> </span><br><span class="line">doubleInPlace (number: &amp;myNum)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myNum = <span class="number">10</span> </span><br><span class="line">doubleInPlace (number: &amp;myNum)</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>让我们来总结一下。</p>
@@ -442,387 +411,359 @@
 <li>你可以用 <code>inout</code> 标记可以在函数内部改变的参数，不过通常来说最好还是返回一个新值。 </li>
 </ol>
 <hr>
-
-      
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
     </div>
 
-    <div>
-      
-        
-<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat_public_account.jpg" alt="猫克杯 wechat" style="width: 200px; max-width: 100%;"/>
-    <div>更多内容请关注公众号</div>
-</div>
-
-      
-    </div>
-
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>予人玫瑰，手留余香</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/uploads/wechat.jpg" alt="猫克杯 WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="猫克杯 Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
-
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/swift/" rel="tag">#swift</a>
-          
-            <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">#编程</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/programming/swiftswift-looping/" rel="next" title="极速 Swift 教程之四 | 循环">
-                <i class="fa fa-chevron-left"></i> 极速 Swift 教程之四 | 循环
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/programming/swiftswift-closures/" rel="prev" title="极速 Swift 教程之六 | 闭包">
-                极速 Swift 教程之六 | 闭包 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
+    
+    
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-closures/" rel="bookmark">极速 Swift 教程之六 | 闭包</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-optionals/" rel="bookmark">极速 Swift 教程之十 | 可选型</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-protocol/" rel="bookmark">极速 Swift 教程之九 | 协议</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-classes/" rel="bookmark">极速 Swift 教程之八 | 类</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-structs/" rel="bookmark">极速 Swift 教程之七 | 结构体</a></div>
+    </li>
+  </ul>
 
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="猫克杯" />
-          <p class="site-author-name" itemprop="name">猫克杯</p>
-          <p class="site-description motion-element" itemprop="description">Stay hungry, stay foolish.</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/nichollyn" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/kai-wen-mao-66" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#书写函数"><span class="nav-number">1.</span> <span class="nav-text">书写函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收参数"><span class="nav-number">2.</span> <span class="nav-text">接收参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#返回值"><span class="nav-number">3.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参数标签"><span class="nav-number">4.</span> <span class="nav-text">参数标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#省略参数标签"><span class="nav-number">5.</span> <span class="nav-text">省略参数标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认参数"><span class="nav-number">6.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可变函数"><span class="nav-number">7.</span> <span class="nav-text">可变函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#书写会抛出错误的函数"><span class="nav-number">8.</span> <span class="nav-text">书写会抛出错误的函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行可能会抛出错误的函数"><span class="nav-number">9.</span> <span class="nav-text">运行可能会抛出错误的函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#inout-参数"><span class="nav-number">10.</span> <span class="nav-text">inout 参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="heart">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">猫克杯</span>
-</div>
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io" target="_blank" rel="noopener">Hexo</a>
-</div>
-
-<div class="powered-by">
-   闽ICP备15013969号
-</div>
-
-<div class="theme-info">
-  Clone theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next/" target="_blank" rel="noopener">
-    NexT.Mist
-  </a>
-</div>
-
-        
-
-<div class="busuanzi-count">
-
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-
-  
-  
-</div>
-
-
-
-        
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
       </div>
-    </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.theinfinitegame.com/programming/swiftswift-functions/" title="极速 Swift 教程之五 | 函数">http://blog.theinfinitegame.com/programming/swiftswift-functions/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/swift/" rel="tag"># swift</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
     </div>
   </div>
 
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/programming/swiftswift-looping/" rel="prev" title="极速 Swift 教程之四 | 循环">
+      <i class="fa fa-chevron-left"></i> 极速 Swift 教程之四 | 循环
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/programming/swiftswift-closures/" rel="next" title="极速 Swift 教程之六 | 闭包">
+      极速 Swift 教程之六 | 闭包 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#书写函数"><span class="nav-number">1.</span> <span class="nav-text">书写函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收参数"><span class="nav-number">2.</span> <span class="nav-text">接收参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#返回值"><span class="nav-number">3.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参数标签"><span class="nav-number">4.</span> <span class="nav-text">参数标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#省略参数标签"><span class="nav-number">5.</span> <span class="nav-text">省略参数标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认参数"><span class="nav-number">6.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可变函数"><span class="nav-number">7.</span> <span class="nav-text">可变函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#书写会抛出错误的函数"><span class="nav-number">8.</span> <span class="nav-text">书写会抛出错误的函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行可能会抛出错误的函数"><span class="nav-number">9.</span> <span class="nav-text">运行可能会抛出错误的函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#inout-参数"><span class="nav-number">10.</span> <span class="nav-text">inout 参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">42k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
 
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
 
 
 
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-  
-  
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
     });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
   </script>
 
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
 
 </body>
 </html>

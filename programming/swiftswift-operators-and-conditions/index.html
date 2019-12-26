@@ -1,129 +1,80 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://blog.theinfinitegame.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-
-
-
-
-
-
-
-  
-  
-    
-  
-  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-  
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="swift,编程," />
-
-
-
-
-  
-
-
-  <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml" />
-
-
-
-
-
-
-
-
-
-<meta name="description" content="算术操作符到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 + 和 - 。 Swift 中有大量的操作符。 下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 var ）： 12let firstScore &#x3D; 12let secondScore &#x3D; 4  让我们用 + 和 - 把它们相">
+  <meta name="description" content="算术操作符到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 + 和 - 。 Swift 中有大量的操作符。 下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 var ）： 12let firstScore &#x3D; 12let secondScore &#x3D; 4  让我们用 + 和 - 把它们相">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速 Swift 教程之三 | 操作符与条件">
 <meta property="og:url" content="http://blog.theinfinitegame.com/programming/swiftswift-operators-and-conditions/index.html">
 <meta property="og:site_name" content="The Infinite Game">
 <meta property="og:description" content="算术操作符到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 + 和 - 。 Swift 中有大量的操作符。 下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 var ）： 12let firstScore &#x3D; 12let secondScore &#x3D; 4  让我们用 + 和 - 把它们相">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-23T13:41:32.000Z">
-<meta property="article:modified_time" content="2019-12-25T13:33:51.083Z">
+<meta property="article:modified_time" content="2019-12-26T07:12:48.406Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="swift">
 <meta property="article:tag" content="编程">
 <meta name="twitter:card" content="summary">
 
+<link rel="canonical" href="http://blog.theinfinitegame.com/programming/swiftswift-operators-and-conditions/">
 
 
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: 'xirong'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title> 极速 Swift 教程之三 | 操作符与条件 | The Infinite Game </title>
-<meta name="generator" content="Hexo 4.2.0"></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>极速 Swift 教程之三 | 操作符与条件 | The Infinite Game</title>
   
 
 
@@ -131,297 +82,315 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
 
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta custom-logo">
-  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">The Infinite Game</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
 
-  
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
 
- </div>
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.theinfinitegame.com/programming/swiftswift-operators-and-conditions/">
 
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                极速 Swift 教程之三 | 操作符与条件
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          极速 Swift 教程之三 | 操作符与条件
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-12-23T21:41:32+08:00" content="2019-12-23">
-              2019-12-23
-            </time>
-          </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-23 21:41:32" itemprop="dateCreated datePublished" datetime="2019-12-23T21:41:32+08:00">2019-12-23</time>
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/programming/" itemprop="url" rel="index">
                     <span itemprop="name">programming</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
-          
-
-          
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <h1 id="算术操作符"><a href="#算术操作符" class="headerlink" title="算术操作符"></a>算术操作符</h1><p>到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 <code>+</code> 和 <code>-</code> 。 Swift 中有大量的操作符。</p>
 <p>下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 <code>var</code> ）：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstScore = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> secondScore = <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstScore = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> secondScore = <span class="number">4</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>让我们用 <code>+</code> 和 <code>-</code> 把它们相加或者相减：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> total = firstScore + secondScore</span><br><span class="line"><span class="keyword">let</span> difference = firstScore - secondScore</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> total = firstScore + secondScore</span><br><span class="line"><span class="keyword">let</span> difference = firstScore - secondScore</span><br></pre></td></tr></tbody></table></figure>
 
 <p>我们还可以用 <code>*</code> 和 <code>/</code> 来执行乘法和除法：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> product = firstScore * secondScore</span><br><span class="line"><span class="keyword">let</span> divided = firstScore /secondScore</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> product = firstScore * secondScore</span><br><span class="line"><span class="keyword">let</span> divided = firstScore /secondScore</span><br></pre></td></tr></tbody></table></figure>
 
 <p>Swift 有一个用于计算除法的余数的特殊操作符： <code>%</code> 。它可以计算一个数 <code>A</code> 用若干个数 <code>B</code> 填充后，剩余的空间。</p>
 <p>举个例子，如果我们把 <code>secondScore</code> 设置为 4 ，那么当我们做 <code>13 % secondScore</code> 这个操作时，我们会得到 1 ，因为 4 可以填充 13 三次，余数为 1 ：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> remainder = <span class="number">13</span> % secondScore</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> remainder = <span class="number">13</span> % secondScore</span><br></pre></td></tr></tbody></table></figure>
+
+<a id="more"></a>
 
 <hr>
 <h1 id="操作符重载"><a href="#操作符重载" class="headerlink" title="操作符重载"></a>操作符重载</h1><p>Swift 支持 “操作符重载”，这是一种简明的说法，具体指的是操作符的行为可以根据它使用时的具体情境来决定。举个例子， <code>+</code> 可以用来相加整数，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> meaningOfLife = <span class="number">42</span></span><br><span class="line"><span class="keyword">let</span> doubleMeaning = <span class="number">42</span> + <span class="number">42</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> meaningOfLife = <span class="number">42</span></span><br><span class="line"><span class="keyword">let</span> doubleMeaning = <span class="number">42</span> + <span class="number">42</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>同时， <code>+</code> 也可以用来连接字符串，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fakers = <span class="string">"Fakers gonna"</span></span><br><span class="line"><span class="keyword">let</span> action = fakers + <span class="string">"fake"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fakers = <span class="string">"Fakers gonna"</span></span><br><span class="line"><span class="keyword">let</span> action = fakers + <span class="string">"fake"</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>你甚至还可以使用 <code>+</code> 来连接数组，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstHalf = [<span class="string">"John"</span>, <span class="string">"Paul"</span>]</span><br><span class="line"><span class="keyword">let</span> secondHalf = [<span class="string">"George"</span>, <span class="string">"Ringo"</span>]</span><br><span class="line"><span class="keyword">let</span> beatles = firstHalf + secondHalf</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstHalf = [<span class="string">"John"</span>, <span class="string">"Paul"</span>]</span><br><span class="line"><span class="keyword">let</span> secondHalf = [<span class="string">"George"</span>, <span class="string">"Ringo"</span>]</span><br><span class="line"><span class="keyword">let</span> beatles = firstHalf + secondHalf</span><br></pre></td></tr></tbody></table></figure>
 
 <p>记住， Swift 是一门类型安全的语言。这意味着它不允许你混用类型。举个例子，你不能把一个整数加到一个字符串上，因为这么做没有意义。</p>
 <hr>
 <h1 id="复合赋值操作符"><a href="#复合赋值操作符" class="headerlink" title="复合赋值操作符"></a>复合赋值操作符</h1><p>Swift 提供了一些把操作符和赋值组合起来的速记操作符，以便你可以用一次操作同时完成计算和赋值。它们看起来很像你已经认识的那些操作符，比如 <code>+</code> ，<code>-</code> ，<code>*</code> ，和 <code>/</code> ，不过需要在尾部再加上一个 <code>=</code> ，以表示把计算结果赋给操作数。</p>
 <p>举个例子，如果有人考试考了 95 分，但是需要罚去 5 分，你可以这么写：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">95</span></span><br><span class="line">score -= <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">95</span></span><br><span class="line">score -= <span class="number">5</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>类似地，你可以利用 += 来拼接字符串：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quote = <span class="string">"The rain in Spain falls mainly on the"</span></span><br><span class="line">quote += <span class="string">"Spaniards"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quote = <span class="string">"The rain in Spain falls mainly on the"</span></span><br><span class="line">quote += <span class="string">"Spaniards"</span></span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="比较操作符"><a href="#比较操作符" class="headerlink" title="比较操作符"></a>比较操作符</h1><p>Swift 提供了几个比较操作符，这些符号的工作方式跟你在数学中使用它们的方式很相似。</p>
 <p>先来两个测试用的变量：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstScore = <span class="number">6</span></span><br><span class="line"><span class="keyword">let</span> secondScore = <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstScore = <span class="number">6</span></span><br><span class="line"><span class="keyword">let</span> secondScore = <span class="number">4</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>有两个可以用来检查相等的操作符。 <code>==</code> （发音 “等于”）检查两个值是否相等，而 <code>!=</code> （发音 “不等于”）则检查两个值是否不相等：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firstScore == secondScore</span><br><span class="line">firstScore != secondScore</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firstScore == secondScore</span><br><span class="line">firstScore != secondScore</span><br></pre></td></tr></tbody></table></figure>
 
 <p>还有四个用来检查两个值哪一个比较大，哪一个比较小或者相等的操作符。就跟数学里的符号一样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firstScore &lt; secondScore</span><br><span class="line">firstScore &gt;= secondScore</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firstScore &lt; secondScore</span><br><span class="line">firstScore &gt;= secondScore</span><br></pre></td></tr></tbody></table></figure>
 
 <p>上面的这些操作符用在字符串上也是可以的，因为字符串都有一个自然的字母顺序。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Taylor"</span> &lt;= <span class="string">"Swift"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Taylor"</span> &lt;= <span class="string">"Swift"</span></span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h1><p>你现在应该已经意识到你可以使用 <code>if</code> 语句来书写一些条件了。当你给到 Swift 一个条件时，如果条件成立， Swift 会运行你在 <code>if</code> 语句块里写的代码。</p>
 <p>尝试一下。 你可以用上 Swift 最基础的函数，它叫做 <code>print ()</code> ：你提供一些文本给它，它将这些文本打印出来。</p>
 <p>让我们用条件来检测二十一点扑克游戏的赢家：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>花括号 <code>{</code> 和 <code>}</code> 之间的代码，在条件成立时会被执行。如果条件不成立时你想执行另外的代码，可以使用 <code>else</code> 语句：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"普通点数。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"普通点数。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>你还可以使用 <code>else if</code> 来串联多个条件：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">2</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Aces，好手气！"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"普通点数。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">2</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Aces，好手气！"</span>)</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"普通点数。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="组合条件"><a href="#组合条件" class="headerlink" title="组合条件"></a>组合条件</h1><p>Swift 提供两种操作符，以便我们把条件组合在一起，它们是 <code>&amp;&amp;</code>（发音 “与”）和 <code>||</code> （发音 “或”）。</p>
 <p>举个例子，为了检查两个人的年龄是否都超过某个值，我们可以这么写：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age1 = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> age2 = <span class="number">21</span></span><br><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> &amp;&amp; age2 &gt; <span class="number">18</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"两个人都超过 18 岁。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age1 = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> age2 = <span class="number">21</span></span><br><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> &amp;&amp; age2 &gt; <span class="number">18</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"两个人都超过 18 岁。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>上面的 <code>print ()</code> 调用只有当两个年龄都大于 18 时才会被执行，而给到的两个年龄并不满足都大于 18 。实际上， Swift 并不会真的把两个条件都检查一遍，它不需要检查 <code>age2</code> 是否大于 18 ，因为当它发现 <code>age1</code> 大于 18 这个条件已经不成立时，就不会再继续检查后面的条件。</p>
 <p>与 <code>&amp;&amp;</code> 不同的是，只要有任意一个条件通过测试， <code>||</code> 检查就会被认定为通过。 举个例子，下面的代码在任一年龄大于 18 时就会打印一条消息：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> || age2 &gt; <span class="number">18</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"有一个人超过 18 岁。"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> || age2 &gt; <span class="number">18</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"有一个人超过 18 岁。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>你可以在一个检查中使用多次 <code>&amp;&amp;</code> 和 <code>||</code> ，但是切记不要把条件写得太过复杂，因为那样很难阅读！</p>
 <hr>
 <h1 id="三元操作符"><a href="#三元操作符" class="headerlink" title="三元操作符"></a>三元操作符</h1><p>Swift 还提供一种不常用的操作符，叫做三元操作符。它的名字源自它可以一次协同三个操作数工作的特点。首先，它会先检查第一个数里指定的条件是否满足，如果满足则返回第二个数，否则返回第三个数。</p>
 <p>三元操作符是把 <code>true</code> 和 <code>false</code> 两种情况一次性考虑进去的符号，它包含问号和冒号两个部分，因此阅读起来更麻烦一些。下面是一些例子：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(firstCard == secondCard ? <span class="string">"牌是一样的"</span> : <span class="string">"牌不一样"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(firstCard == secondCard ? <span class="string">"牌是一样的"</span> : <span class="string">"牌不一样"</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>上面的代码检查两张牌是否一样，如果一样则打印 “牌是一样的”，否则打印 “牌不一样”。我们也可以换成常规的条件语句来达到一样的检测效果：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard == secondCard &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"牌是一样的"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"牌不一样"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard == secondCard {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"牌是一样的"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"牌不一样"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h1><p>如果你需要用到多个 <code>if</code> 和 <code>else if</code> ，那你可以使用另一种结构：<code>switch case</code>，它会让你的代码看起来更清晰。采用 <code>switch</code> 语句，你只需要写一次条件，然后列出所有可能的结果，并针对所有的结果编写对应的处理代码。</p>
 <p>让我们来尝试一下，下面是一个值为 <code>sunny</code> 字符串的名叫 <code>weather</code> 的常量：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> weather = <span class="string">"sunny"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> weather = <span class="string">"sunny"</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>我们可以使用 <code>switch</code> 语句块来打印下面四种消息中的一种：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得带伞"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得保暖"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得戴墨镜"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"天气不错！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather {</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得带伞"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得保暖"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得戴墨镜"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"天气不错！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>最后一条 case 是 <code>default</code> ，它是不能省略的，因为 Swift 需要确保你覆盖了所有可能的 case ，即不能有遗漏的情况。所以只要天气不是 <code>rain</code> ， <code>snow</code> ，或者 <code>sunny</code> ， 默认的情况的 case 就会被运行。</p>
 <p>Swift 只会运行某一个 case 里的代码。如果你希望继续执行下一个 case 的代码，你需要用到 <code>fallthrough</code> 关键字，就像这样：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得带伞"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得保暖"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得戴墨镜"</span>)</span><br><span class="line">  <span class="keyword">fallthrough</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"天气不错！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather {</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得带伞"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得保暖"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得戴墨镜"</span>)</span><br><span class="line">  <span class="keyword">fallthrough</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"天气不错！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <h1 id="范围操作符"><a href="#范围操作符" class="headerlink" title="范围操作符"></a>范围操作符</h1><p>Swift 提供了两种方式给我们创建范围： 它们是 <code>..&lt;</code> 和 <code>...</code> 操作符。半开放范围操作符 <code>..&lt;</code> ，创建的范围不包含右边的值。而闭合范围操作符 <code>...</code> ，创建的范围包含右边的值。</p>
 <p>范围 <code>1..&lt;5</code> 包含数字 1 ，2 ，3 和 4 ， 而范围 <code>1...5</code> 包含数字 1 ，2 ，3 ，4 和 5 。</p>
 <p>对于 switch 语句块来说，范围非常有用。因为你可以把它们用于你的每条 case 。举个例子，假设我们根据某人的考试成绩打印不同的消息：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> score = <span class="number">85</span></span><br><span class="line"><span class="keyword">switch</span> score &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>..&lt;<span class="number">50</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你需要加把劲了。"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="number">50</span>..&lt;<span class="number">85</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"做的不错。"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你真棒！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> score = <span class="number">85</span></span><br><span class="line"><span class="keyword">switch</span> score {</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>..&lt;<span class="number">50</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你需要加把劲了。"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="number">50</span>..&lt;<span class="number">85</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"做的不错。"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你真棒！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>如前面提到的，这里必须有一个 <code>default case</code> 来确保所有的可能都被覆盖到。</p>
 <hr>
@@ -435,387 +404,359 @@
 <li>我们可以用 <code>..&lt;</code> 或者 <code>...</code> 来创建范围，具体用哪一个取决于要不要包含后面那个值，即范围是否闭合。 </li>
 </ul>
 <hr>
-
-      
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
     </div>
 
-    <div>
-      
-        
-<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat_public_account.jpg" alt="猫克杯 wechat" style="width: 200px; max-width: 100%;"/>
-    <div>更多内容请关注公众号</div>
-</div>
-
-      
-    </div>
-
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>予人玫瑰，手留余香</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/uploads/wechat.jpg" alt="猫克杯 WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="猫克杯 Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
-
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/swift/" rel="tag">#swift</a>
-          
-            <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">#编程</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/programming/swiftswift-complex-types/" rel="next" title="极速 Swift 教程之二 | 复合类型">
-                <i class="fa fa-chevron-left"></i> 极速 Swift 教程之二 | 复合类型
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/programming/swiftswift-looping/" rel="prev" title="极速 Swift 教程之四 | 循环">
-                极速 Swift 教程之四 | 循环 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
+    
+    
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-closures/" rel="bookmark">极速 Swift 教程之六 | 闭包</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-optionals/" rel="bookmark">极速 Swift 教程之十 | 可选型</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-protocol/" rel="bookmark">极速 Swift 教程之九 | 协议</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-classes/" rel="bookmark">极速 Swift 教程之八 | 类</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-structs/" rel="bookmark">极速 Swift 教程之七 | 结构体</a></div>
+    </li>
+  </ul>
 
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="猫克杯" />
-          <p class="site-author-name" itemprop="name">猫克杯</p>
-          <p class="site-description motion-element" itemprop="description">Stay hungry, stay foolish.</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/nichollyn" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/kai-wen-mao-66" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算术操作符"><span class="nav-number">1.</span> <span class="nav-text">算术操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作符重载"><span class="nav-number">2.</span> <span class="nav-text">操作符重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合赋值操作符"><span class="nav-number">3.</span> <span class="nav-text">复合赋值操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较操作符"><span class="nav-number">4.</span> <span class="nav-text">比较操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件"><span class="nav-number">5.</span> <span class="nav-text">条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合条件"><span class="nav-number">6.</span> <span class="nav-text">组合条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三元操作符"><span class="nav-number">7.</span> <span class="nav-text">三元操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#switch-语句"><span class="nav-number">8.</span> <span class="nav-text">switch 语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#范围操作符"><span class="nav-number">9.</span> <span class="nav-text">范围操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="heart">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">猫克杯</span>
-</div>
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io" target="_blank" rel="noopener">Hexo</a>
-</div>
-
-<div class="powered-by">
-   闽ICP备15013969号
-</div>
-
-<div class="theme-info">
-  Clone theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next/" target="_blank" rel="noopener">
-    NexT.Mist
-  </a>
-</div>
-
-        
-
-<div class="busuanzi-count">
-
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-
-  
-  
-</div>
-
-
-
-        
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
       </div>
-    </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.theinfinitegame.com/programming/swiftswift-operators-and-conditions/" title="极速 Swift 教程之三 | 操作符与条件">http://blog.theinfinitegame.com/programming/swiftswift-operators-and-conditions/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/swift/" rel="tag"># swift</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
     </div>
   </div>
 
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/programming/swiftswift-complex-types/" rel="prev" title="极速 Swift 教程之二 | 复合类型">
+      <i class="fa fa-chevron-left"></i> 极速 Swift 教程之二 | 复合类型
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/programming/swiftswift-looping/" rel="next" title="极速 Swift 教程之四 | 循环">
+      极速 Swift 教程之四 | 循环 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算术操作符"><span class="nav-number">1.</span> <span class="nav-text">算术操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作符重载"><span class="nav-number">2.</span> <span class="nav-text">操作符重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合赋值操作符"><span class="nav-number">3.</span> <span class="nav-text">复合赋值操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较操作符"><span class="nav-number">4.</span> <span class="nav-text">比较操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件"><span class="nav-number">5.</span> <span class="nav-text">条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合条件"><span class="nav-number">6.</span> <span class="nav-text">组合条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三元操作符"><span class="nav-number">7.</span> <span class="nav-text">三元操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#switch-语句"><span class="nav-number">8.</span> <span class="nav-text">switch 语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#范围操作符"><span class="nav-number">9.</span> <span class="nav-text">范围操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">42k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
 
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
 
 
 
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-  
-  
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
     });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
   </script>
 
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 
   
 
   
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
 
 </body>
 </html>

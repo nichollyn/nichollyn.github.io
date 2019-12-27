@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.theinfinitegame.com/programming/ui-programming-howto/</loc>
+    
+    <lastmod>2019-12-27T05:18:47.899Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.theinfinitegame.com/programming/swiftswift-closures/</loc>
     
     <lastmod>2019-12-26T07:40:49.614Z</lastmod>

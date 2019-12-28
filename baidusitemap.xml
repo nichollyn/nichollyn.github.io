@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://blog.theinfinitegame.com/programming/ui-programming-howto/</loc>
+    <loc>http://nichollyn.github.io/programming/ui-programming-howto/</loc>
     <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-closures/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-structs/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-structs/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-simple-types/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-protocol/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-protocol/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-operators-and-conditions/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-optionals/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-looping/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-operators-and-conditions/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-functions/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-looping/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-complex-types/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-functions/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-classes/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-closures/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-optionals/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-classes/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>  <url>
-    <loc>http://blog.theinfinitegame.com/programming/swiftswift-simple-types/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <loc>http://nichollyn.github.io/programming/swiftswift-complex-types/</loc>
+    <lastmod>2019-12-28</lastmod>
   </url>
 </urlset>

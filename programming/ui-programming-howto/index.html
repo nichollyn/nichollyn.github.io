@@ -21,7 +21,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('http://blog.theinfinitegame.com').hostname,
+    hostname: new URL('http://nichollyn.github.io').hostname,
     root: '/',
     scheme: 'Muse',
     version: '7.6.0',
@@ -51,19 +51,20 @@
   <meta name="description" content="本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本 关键词： 分治、 UOP  引子 我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。  所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分算法。 本文基于 Android 客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聊一聊 UI 代码要怎么写 | 分治篇">
-<meta property="og:url" content="http://blog.theinfinitegame.com/programming/ui-programming-howto/index.html">
+<meta property="og:url" content="http://nichollyn.github.io/programming/ui-programming-howto/index.html">
 <meta property="og:site_name" content="The Infinite Game">
 <meta property="og:description" content="本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本 关键词： 分治、 UOP  引子 我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。  所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分算法。 本文基于 Android 客">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://blog.theinfinitegame.com/programming/ui-programming-howto/images/MVC-vs-MVP-vs-MVVM.png">
+<meta property="og:image" content="http://nichollyn.github.io/images/MVC-vs-MVP-vs-MVVM.png">
 <meta property="article:published_time" content="2019-12-27T02:52:07.000Z">
-<meta property="article:modified_time" content="2019-12-28T06:14:00.669Z">
+<meta property="article:modified_time" content="2019-12-28T07:13:18.818Z">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="编程，UI">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="UI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://blog.theinfinitegame.com/programming/ui-programming-howto/images/MVC-vs-MVP-vs-MVVM.png">
+<meta name="twitter:image" content="http://nichollyn.github.io/images/MVC-vs-MVP-vs-MVVM.png">
 
-<link rel="canonical" href="http://blog.theinfinitegame.com/programming/ui-programming-howto/">
+<link rel="canonical" href="http://nichollyn.github.io/programming/ui-programming-howto/">
 
 
 <script id="page-configurations">
@@ -225,7 +226,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.theinfinitegame.com/programming/ui-programming-howto/">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/ui-programming-howto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -308,7 +309,7 @@
 <a id="more"></a>
 
 <h1 id="从-MVC-说起"><a href="#从-MVC-说起" class="headerlink" title="从 MVC 说起"></a>从 MVC 说起</h1><p>经典的 <strong><a href="https://zh.wikipedia.org/wiki/MVC" target="_blank" rel="noopener">MVC</a></strong> 设计模式想必各位程序猿们无人不晓。 MVC 最早存在于桌面程序中，后来由于其强大的复用性被广泛地发掘和应用于各端的开发中，还衍生出 MVP ， MVVM 等变体。如果把 MVC 的变体都算作 MVC ，可以说现如今任何一个成熟的 GUI 框架都内化了这种设计模式。放图：</p>
-<p><img src="./images/MVC-vs-MVP-vs-MVVM.png" alt=""></p>
+<p><img src="/images/MVC-vs-MVP-vs-MVVM.png" alt=""></p>
 <p>然而我今天不是要来谈 MVC 设计模式的，因为网络上以各种姿势深入浅出 MVC 的好文章已经多的不能再多。之所以提及 MVC 模式只是想借此提醒读者， <strong>解耦</strong> 对于编程的重要性。</p>
 <p>MVC 之所以看起来很简单却又如此广泛地被使用就在于它有效地解决了一个已知的，规模庞大的 <strong>耦合</strong> 问题：“你看到的”（不妨理解为 MVC 中的 View ) 和 “它代表的” (不妨理解为 MVC 中的 Model )，这两个东西永远不可能完全一致。</p>
 <p>我们有时候需要用相同的表象去表示不同的真相，有时候则需要用不同的表象去表达同一个真相。而当我们尝试把两者捆绑在一起处理时，一旦映射关系发生变化，这个捆绑体便不再适用，需要重新构建。这样一来，原来的东西就都不能用了。所以我们需要一套机制来避免这种耦合，从而实现 Model 和 View 各自的复用。</p>
@@ -378,6 +379,24 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-optionals/" rel="bookmark">极速 Swift 教程之十 | 可选型</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-protocol/" rel="bookmark">极速 Swift 教程之九 | 协议</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-classes/" rel="bookmark">极速 Swift 教程之八 | 类</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-structs/" rel="bookmark">极速 Swift 教程之七 | 结构体</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-closures/" rel="bookmark">极速 Swift 教程之六 | 闭包</a></div>
+    </li>
+  </ul>
 
         <div class="reward-container">
   <div></div>
@@ -408,7 +427,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.theinfinitegame.com/programming/ui-programming-howto/" title="聊一聊 UI 代码要怎么写 | 分治篇">http://blog.theinfinitegame.com/programming/ui-programming-howto/</a>
+    <a href="http://nichollyn.github.io/programming/ui-programming-howto/" title="聊一聊 UI 代码要怎么写 | 分治篇">http://nichollyn.github.io/programming/ui-programming-howto/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -419,7 +438,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%BC%96%E7%A8%8B%EF%BC%8CUI/" rel="tag"># 编程，UI</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+              <a href="/tags/UI/" rel="tag"># UI</a>
           </div>
 
         

@@ -48,32 +48,39 @@
   };
 </script>
 
-  <meta name="description" content="Stay hungry, stay foolish.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Infinite Game">
-<meta property="og:url" content="http://nichollyn.github.io/index.html">
+  <meta name="description" content="本文的主要价值： 提供一种抽象复杂逻辑，达成功能复用的思路 关键词： 语义提炼 、 动态具名 本文约 4000 字，建议阅读时间 30 分钟。    引子在软件开发时常常遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。这些功能单元可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且对于用户来说，它们共同处理同一个元素。举个例子，比如一款修图 app ，它包含了一组编辑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 “流水线” 设计拆解复杂处理流程">
+<meta property="og:url" content="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="Stay hungry, stay foolish.">
+<meta property="og:description" content="本文的主要价值： 提供一种抽象复杂逻辑，达成功能复用的思路 关键词： 语义提炼 、 动态具名 本文约 4000 字，建议阅读时间 30 分钟。    引子在软件开发时常常遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。这些功能单元可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且对于用户来说，它们共同处理同一个元素。举个例子，比如一款修图 app ，它包含了一组编辑">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://nichollyn.github.io/images/image_modules.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/flow_connectivity.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/waterfront_and_flow.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/images/construct-big-pipeline.png">
+<meta property="og:image" content="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/images/diffluence_join_pipeline.jpg">
+<meta property="article:published_time" content="2019-12-28T12:59:40.000Z">
+<meta property="article:modified_time" content="2019-12-28T14:12:30.482Z">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="tech">
-<meta property="article:tag" content=" life">
-<meta property="article:tag" content=" philosophy">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://nichollyn.github.io/images/image_modules.jpg">
 
-<link rel="canonical" href="http://nichollyn.github.io/">
+<link rel="canonical" href="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>The Infinite Game</title>
+  <title>用 “流水线” 设计拆解复杂处理流程 | The Infinite Game</title>
   
 
 
@@ -219,10 +226,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -236,8 +243,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/break-down-complexity-with-pipelines/" class="post-title-link" itemprop="url">用 “流水线” 设计拆解复杂处理流程</a>
+          用 “流水线” 设计拆解复杂处理流程
         </h1>
 
         <div class="post-meta">
@@ -270,6 +276,13 @@
               </span>
               <span class="post-meta-item-text">热度：</span>
               <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
             </span><br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -295,7 +308,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
+        <ul>
 <li>本文的主要价值： <strong>提供一种抽象复杂逻辑，达成功能复用的思路</strong></li>
 <li>关键词： <strong>语义提炼</strong> 、 <strong>动态具名</strong></li>
 <li>本文约 4000 字，建议阅读时间 30 分钟。 </li>
@@ -422,446 +435,99 @@
             document.body.appendChild(img);
           });
       </script>
-      
     </div>
 
     
     
     
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/ui-programming-howto/" rel="bookmark">聊一聊 UI 代码要怎么写 | 分治篇</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-optionals/" rel="bookmark">极速 Swift 教程之十 | 可选型</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-protocol/" rel="bookmark">极速 Swift 教程之九 | 协议</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-classes/" rel="bookmark">极速 Swift 教程之八 | 类</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-structs/" rel="bookmark">极速 Swift 教程之七 | 结构体</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/" class="post-title-link" itemprop="url">关于花费时间的四宗罪</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-28 20:42:32" itemprop="dateCreated datePublished" datetime="2019-12-28T20:42:32+08:00">2019-12-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%9D%E8%80%83/" itemprop="url" rel="index">
-                    <span itemprop="name">思考</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/" class="post-meta-item leancloud_visitors" data-flag-title="关于花费时间的四宗罪" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>导致我们浪费时间的是我们的<strong>认知错误</strong>。</p>
-</blockquote>
-<p>你是否经历过这样的场景。邻居过来串门，喋喋不休，我们频频点头回应，哪怕当下已经心急如焚；同事开始闲聊琐碎，而我们沉浸其中，不曾意识到本该用来工作的时间正在一点一点溜走；从熟人那里收到微信，对方说：“我可以向你讨教点事情吗？”，我们爽快答应，因为抹不开面子拒绝别人？</p>
-<p>斯多葛哲学家塞内卡（Seneca）曾经惊叹：哪怕最聪明的人，在保护自己的时间这件事上，都不免显得愚蠢。</p>
-<blockquote>
-<p>没有人会把自己的钱财送给路人，但我们中的许多人却送出了我们的生命！我们为财产和金钱所累，却罕有意识我们的时间正遭受的浪费。时间本应是我们每个人都最应吝惜的东西。</p>
-</blockquote>
-<p>两千多年后的今天，为什么我们还在允许时间这种宝贵的资源从我们的手中不停地溜走？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/uncategorized/csta-k12-standards/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/uncategorized/csta-k12-standards/" class="post-title-link" itemprop="url">计算机科学教师协会 - K12 - 标准</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-28 16:01:41" itemprop="dateCreated datePublished" datetime="2019-12-28T16:01:41+08:00">2019-12-28</time>
-            </span>
-
-          
-            <span id="/uncategorized/csta-k12-standards/" class="post-meta-item leancloud_visitors" data-flag-title="计算机科学教师协会 - K12 - 标准" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>About the CSTA K-12 Computer Science Standards<br>关于 CSTA K-12 计算机科学标准</p>
-<p>Computer science and the technologies it enables rest at the heart of our economy and the way we live our lives. To be well-educate citizens in a computing-intensive world and to be prepared for careers in the 21st century, our students must have a clear understanding of the principles and practices of computer science. The CSTA K–12 Computer Science Standards delineate a core set of learning objectives designed to provide the foundation for a complete computer science curriculum and its implementation at the K–12 level. To this end, the CSTA Standards:</p>
-<p>计算机科学及其支持的技术是我们经济的核心，也是我们生活的方式。为了对计算机密集型世界中的公民进行良好的教育并为 21 世纪的职业做好准备，我们的学生必须对计算机科学的原理和实践有清晰的了解。 CSTA K-12 计算机科学标准描述了一组核心学习目标，旨在为完整的计算机科学课程及其在 K-12 级别的实施提供基础。为此，CSTA 标准：</p>
-<p>・Introduce the fundamental concepts of computer science to all students, beginning at the elementary school level.<br>・Present computer science at the secondary school level in a way that can fulfill a computer science, math, or science graduation credit.<br>・Encourage schools to offer additional secondary-level computer science courses that will allow interested students to study facets of computer science in more depth and prepare them for entry into the work force or college.<br>・Increase the availability of rigorous computer science for all students, especially those who are members of underrepresented groups.<br>The standards have been written by educators to be coherent and comprehensible to teachers, administrators, and policy makers.<br>Levels 1A, 1B, 2, and 3A are the computer science standards for ALL students. The Level 3B standards are intended for students who wish to pursue the study of computer science in high school beyond what is required for all students (specialty or elective courses).</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/ui-programming-howto/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/ui-programming-howto/" class="post-title-link" itemprop="url">聊一聊 UI 代码要怎么写 | 分治篇</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-27 10:52:07" itemprop="dateCreated datePublished" datetime="2019-12-27T10:52:07+08:00">2019-12-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/programming/ui-programming-howto/" class="post-meta-item leancloud_visitors" data-flag-title="聊一聊 UI 代码要怎么写 | 分治篇" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本</li>
-<li>关键词： 分治、 UOP</li>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/" title="用 “流水线” 设计拆解复杂处理流程">http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><blockquote>
-<p><em>我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。</em></p>
-</blockquote>
-<p>所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分算法。</p>
-<p>本文基于 Android 客户端开发中经常涉及的交互逻辑编程展开，表达我对于 UI 分治在软件开发中如何实践的理解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/ui-programming-howto/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+</div>
 
-    
-    
-    
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/swiftswift-optionals/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/swiftswift-optionals/" class="post-title-link" itemprop="url">极速 Swift 教程之十 | 可选型</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-25 17:27:30" itemprop="dateCreated datePublished" datetime="2019-12-25T17:27:30+08:00">2019-12-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/programming/swiftswift-optionals/" class="post-meta-item leancloud_visitors" data-flag-title="极速 Swift 教程之十 | 可选型" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="处理缺失的数据"><a href="#处理缺失的数据" class="headerlink" title="处理缺失的数据"></a>处理缺失的数据</h1><p>我们已经会使用 <code>Int</code> 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？</p>
-<p>你可能会说，“我可以暂时存成 0”，但这样一来你就会混淆新生儿和你不知道年龄的用户。你应该用一个特殊的数字，比如 1000 或者 -1 来代表 “未知”，这两个数字都不可能是年龄，但你能记得住这些特殊数字的含义吗？</p>
-<p>Swift 的解决方案称为 <em>optional</em> ，即可选型。你可以基于任意类型创建可选型。一个可选型整数可以有诸如 1 或者 1000 这样的数字，也可能没有任何值，即值可以缺失， Swift 里表示缺失是用 <code>nil</code> 。</p>
-<p>为了把一个类型变成可选型，只需要在类型后面加一个问号。举个例子，我们可以这样把一个整数变成可选型：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age: <span class="type">Int?</span> = <span class="literal">nil</span></span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-optionals/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
     </div>
+  </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/" rel="prev" title="关于花费时间的四宗罪">
+      <i class="fa fa-chevron-left"></i> 关于花费时间的四宗罪
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
 
 
           </div>
@@ -912,6 +578,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重构的具体背景"><span class="nav-number">2.</span> <span class="nav-text">重构的具体背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重构的设计思路-——-“流水线”-概念的提炼"><span class="nav-number">3.</span> <span class="nav-text">重构的设计思路 —— “流水线” 概念的提炼</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管道的具体实现"><span class="nav-number">4.</span> <span class="nav-text">管道的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#节点的实现方案和意义"><span class="nav-number">4.1.</span> <span class="nav-text">节点的实现方案和意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锋面的实现方案和意义"><span class="nav-number">4.2.</span> <span class="nav-text">锋面的实现方案和意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流动和连通性的实现方案"><span class="nav-number">4.3.</span> <span class="nav-text">流动和连通性的实现方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

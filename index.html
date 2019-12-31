@@ -265,14 +265,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.3k</span>
+              <span>6.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -525,11 +525,11 @@
 <p>虽然这样你可能会丢失信息，但优点是可以获得更好的概述。我们说你已经 <strong>重新编码了变量</strong> 。体重变量本是定量变量，但现在变成了一个只有五个类别的定序变量。</p>
 <p>将定量变量重新编码为定序变量非常容易。但是，反过来是不可能的：你无法将定序变量重新编码为定量变量。所以，你该了解 —— <strong>数据矩阵是所有统计分析的根源</strong> 。它是数据的概述。但是，如果你想将发现呈现给他人，可以使用 <strong>数据摘要</strong> 。一个非常好的总结方法是制作 <strong>频率表</strong> 。<em>如有必要，你可以将定量变量重新编码为定序变量。</em></p>
 <hr>
-<h1 id="信息图和各种数据分布形状"><a href="#信息图和各种数据分布形状" class="headerlink" title="信息图和各种数据分布形状"></a>信息图和各种数据分布形状</h1><p>如果想研究西班牙主要足球比赛中的球员来自哪里，下面这个频率表可能就是结果：</p>
+<h1 id="信息图和各种数据分布形状"><a href="#信息图和各种数据分布形状" class="headerlink" title="信息图和各种数据分布形状"></a>信息图和各种数据分布形状</h1><h2 id="定类变量"><a href="#定类变量" class="headerlink" title="定类变量"></a>定类变量</h2><p>如果想研究西班牙主要足球比赛中的球员来自哪里，下面这个频率表可能就是结果：</p>
 <table>
 <thead>
 <tr>
-<th>原国籍</th>
+<th>国籍</th>
 <th>频率</th>
 <th>百分比</th>
 </tr>
@@ -567,17 +567,161 @@
 </tbody></table>
 <p>可以看到 280 名球员来自欧洲， 16 名来自北美， 56 名来自南美， 32 名来自非洲， 16 名来自亚洲。</p>
 <p>我还添加了相对百分比，你可能希望通过图表展示百分比，有两种可能的方法。</p>
-
-<div id="d3js-example-content"></div>  
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script>
-let svg = d3.select ("#d3js-example-content")
-    .append ("svg")
-    .attr ("width", "400")
-    .attr ("height", "400");
+<div id="echarts290" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts290'));
+        // 指定图表的配置项和数据
+        var option = {
+    title : {
+        text: ' 西班牙主要足球比赛中的球员国籍分布 ',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: [' 欧洲 ',' 北美 ',' 南美 ',' 非洲 ',' 亚洲 ']
+    },
+    series : [
+        {
+            name: ' 国籍 ',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:280, name:' 欧洲 '},
+                {value:16, name:' 北美 '},
+                {value:56, name:' 南美 '},
+                {value:32, name:' 非洲 '},
+                {value:16, name:' 亚洲 '}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba (0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+}
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
 </script>
 
+<p>这里是一个 <strong>饼图</strong> 。要概述的变量类别是通过饼图 <strong>切片</strong> 展示在饼图中，切片表示每个类别的百分比，一目了然 —— 几乎四分之三的足球运动员来自欧洲。</p>
+<p>另一种概述数据的方法是 <strong>柱状图</strong> ，它可以非常清楚地展示数据在各个变量类别上的分布。</p>
+<div id="echarts200" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts200'));
+        // 指定图表的配置项和数据
+        var option = {
+    xAxis: {
+        type: 'category',
+        data: [' 欧洲 ', ' 北美 ', ' 南美 ', ' 非洲 ', ' 亚洲 ']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        label: {
+            normal: {
+                show: true,
+                position: 'insideTop'
+            }
+        },
+        data: [280, 16, 56, 32, 16],
+        type: 'bar'
+    }]
+}
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
 
+<p>柱形的高度代表每个类别观测值的百分比。</p>
+<h2 id="饼图和柱状图的优劣"><a href="#饼图和柱状图的优劣" class="headerlink" title="饼图和柱状图的优劣"></a>饼图和柱状图的优劣</h2><p>两种图表都各有优，缺点。饼图的一个优点是，可以立即看出大约 75％ 的球员来自欧洲，不进行点计算就无法轻松地从柱状图中辨别出这些信息。但是，另一方面，从饼图中不容易检索每个类别的确切球员数量。例如，在柱状图中，可以轻松地看到有 50 多名球员来自南美洲。</p>
+<p><strong>如果变量的类别数量增加，柱图优于饼图。</strong> 例如，想象一下，不是球员所在大洲，而是他们出生的某个具体国家。图呈现的效果将非常非常混乱。出于美学原因，你可能会在饼图中使用不同颜色，但所有这些信息使饼图不易于理解。在这种情况下，柱状图会更合理。柱状图也会包含大量信息。但它会比花里胡哨的饼图更容易理解。</p>
+<h2 id="定量变量"><a href="#定量变量" class="headerlink" title="定量变量"></a>定量变量</h2><p>前面讲了定类变量，那么定量变量又要怎么处理呢？</p>
+<p>一种可能性是 <strong>气泡图</strong> 。这个想法很简单，想象一下有 10 个球员身高信息，用厘米表示。</p>
+<p>下面是数据矩阵。</p>
+<table>
+<thead>
+<tr>
+<th>球员</th>
+<th>身高</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>球员 1</td>
+<td>176</td>
+</tr>
+<tr>
+<td>球员 2</td>
+<td>180</td>
+</tr>
+<tr>
+<td>球员 3</td>
+<td>165</td>
+</tr>
+<tr>
+<td>球员 4</td>
+<td>177</td>
+</tr>
+<tr>
+<td>球员 5</td>
+<td>167</td>
+</tr>
+<tr>
+<td>球员 6</td>
+<td>170</td>
+</tr>
+<tr>
+<td>球员 7</td>
+<td>175</td>
+</tr>
+<tr>
+<td>球员 8</td>
+<td>178</td>
+</tr>
+<tr>
+<td>球员 9</td>
+<td>174</td>
+</tr>
+<tr>
+<td>球员 10</td>
+<td>172</td>
+</tr>
+</tbody></table>
+<p>首先，绘制一条水平线，并以规则的间隔标记可能的数值，如下所示。</p>
+<p><img src="/images/singleAxis_bubble_scatter.png" alt=""></p>
+<p>接下来，对于每次观测在水平线上的数值之上标记一个点，像就这样：</p>
+<p><img src="/images/singleAxis_bubble_scatter_2.png" alt=""></p>
+<p>可以想象，当只有若干观测结果时，气泡图很不错。但是，当样本巨大时，会变得混乱。 100 个球员的样本，看起来是这样的：</p>
+<p><img src="/images/singleAxis_bubble_scatter_3.png" alt=""></p>
+<p>如果有很多观测结果时，研究人员通常会使用另一种类型的图表：<strong>直方图</strong></p>
+<p>这就是一例：</p>
+<p><img src="/images/histogram.png" alt=""></p>
+<p>直方图在某种意义上类似于柱状图，它使用柱形来描绘变量可能数值的频率或相对频率。但是，有一个重要的区别： <strong>直方图中的柱点是相互接触的</strong>。</p>
+<p>该接触表示区间比率变量的数值呈现连续标度。比如，我们对西班牙足球运动员的体重感兴趣，如果测量数值非常详细，比如 83.9 或 74.5 公斤，为每一个值绘制一个单独的柱形是没有意义的。相反，我们构建 <strong>区间</strong>.</p>
+<p><img src="/images/histogram_1.png" alt=""></p>
+<p> 在此图中，有 10 个 区间，每个区间 5 公斤，第一个区间范围从 47.5 公斤到 52.5 公斤 显示 50 ，因为 50 是该区间的中间。对于创建的区间的数量，没有固定的规则。但是，重要的是区间数值必须相同，所以在此图中都是五公斤。可以一眼看出大多数球员的体重约为 75 公斤，还可以看到，重量小于 60 或大于 90 是非常罕见的。 </p>
+<p><img src="/images/histogram_3.png" alt=""></p>
+<p>如图所见，此直方图具有特定形状，它是钟形的，有一个 <strong>峰值</strong> 且两侧近似对称。你会经常遇到钟形分布，但并非所有直方图都是钟形。</p>
+<p>直方图也可以向左或向右 <strong>倾斜</strong> 。偏斜的直方图不是对称的，因为分布的一侧比另一侧延伸得更远。</p>
+<p><img src="/images/histogram_4.png" alt=""></p>
+<p>有的直方图向左倾斜，而有的直方图向右倾斜。向右倾斜的直方图变量是西班牙比赛中球员的年收入。与球员的平均收入相比，收入很少的球员不会很多。但是，也会有一些球员比大多数球员赚的多得多。因此，右尾更长。</p>
+<p>直方图也可能有两个峰值：设想两队六到八岁球员之间的足球比赛。比赛结束后，所有的孩子和父母都去食堂喝东西。</p>
+<p>你感兴趣的问题是，食堂里的人年龄如何分布。在这种情况下，年龄变量的直方图有两个峰值。毕竟，食堂里的孩子是 6 到 8 岁的孩子和他们的父母，他们最有可能在 30 到 40 岁之间。</p>
+<p>因此，可能在 7 岁左右达到峰值，在 35 岁左右再达到峰值。我们说这个变量是双峰而不是单峰。</p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇教程最重要的一个内容是：通过图表概述数据是一个好主意。<strong>如果处理定类或定序变量，你应该制作饼图或柱图。如果变量是定距或者定比变量，则应绘制直方图。</strong> 永远不要忘记查看变量的形状，它是钟形且对称的吗？它是单峰，还是双峰？分布是否倾斜？ <strong>评估分布的形状至关重要</strong>， 因为它可能影响你之后使用的统计方法。</p>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1192,12 +1336,12 @@ let svg = d3.select ("#d3js-example-content")
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">68k</span>
+    <span title="站点总字数">70k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:01</span>
+    <span title="站点阅读时长">1:04</span>
 </div>
 
         

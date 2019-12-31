@@ -46,21 +46,29 @@
   };
 </script>
 
-  <meta name="description" content="学习统计学的意义乍一看，统计学可能很吓人，但实际上，统计学并不可怕。它可以关乎很有趣的事，比如足球、潜水、巧克力，很有趣的人，比如潮人、出租车司机和婴儿。 至少有三个原因，让统计学至关重要。  首先，我们周围有很多统计学，包括新闻，还有科学工作。 其次，统计学知识将帮你开展自己的研究。你该如何分析你得到的信息？该采用哪种方法？ 第三，也是最后一点，分析数据可以帮助我们了解有趣的世界。  统计学的两">
+  <meta name="description" content="众数、中位数和平均数在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：众数 (mode) ，中位数 (median) 和 平均数 (mean) 。 这三个 m 通常被称为集中趋势的度量。 找到众数很容易，它是出现频次最高的值。 换句话说，就是最常见的结果。 如果测量定类或定序变量，众数通常用作衡量集中趋势。 在下面这个饼图中，可以看到西班牙主要球">
 <meta property="og:type" content="article">
-<meta property="og:title" content="极速统计教程之一 | 引言">
-<meta property="og:url" content="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/index.html">
+<meta property="og:title" content="极速统计教程之三 | 测量集中趋势和离散程度">
+<meta property="og:url" content="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="学习统计学的意义乍一看，统计学可能很吓人，但实际上，统计学并不可怕。它可以关乎很有趣的事，比如足球、潜水、巧克力，很有趣的人，比如潮人、出租车司机和婴儿。 至少有三个原因，让统计学至关重要。  首先，我们周围有很多统计学，包括新闻，还有科学工作。 其次，统计学知识将帮你开展自己的研究。你该如何分析你得到的信息？该采用哪种方法？ 第三，也是最后一点，分析数据可以帮助我们了解有趣的世界。  统计学的两">
+<meta property="og:description" content="众数、中位数和平均数在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：众数 (mode) ，中位数 (median) 和 平均数 (mean) 。 这三个 m 通常被称为集中趋势的度量。 找到众数很容易，它是出现频次最高的值。 换句话说，就是最常见的结果。 如果测量定类或定序变量，众数通常用作衡量集中趋势。 在下面这个饼图中，可以看到西班牙主要球">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-31T00:55:24.000Z">
-<meta property="article:modified_time" content="2019-12-31T01:32:12.650Z">
+<meta property="og:image" content="http://nichollyn.github.io/images/two_mode.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/median.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/median_2.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/mean.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/mean_2.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/mean_and_median.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/mean_and_median_2.jpg">
+<meta property="article:published_time" content="2019-12-31T07:28:52.000Z">
+<meta property="article:modified_time" content="2019-12-31T08:45:10.396Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="商业分析">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://nichollyn.github.io/images/two_mode.jpg">
 
-<link rel="canonical" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/">
+<link rel="canonical" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/">
 
 
 <script id="page-configurations">
@@ -72,7 +80,7 @@
   };
 </script>
 
-  <title>极速统计教程之一 | 引言 | The Infinite Game</title>
+  <title>极速统计教程之三 | 测量集中趋势和离散程度 | The Infinite Game</title>
   
 
 
@@ -174,7 +182,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,7 +195,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          极速统计教程之一 | 引言
+          极速统计教程之三 | 测量集中趋势和离散程度
         </h1>
 
         <div class="post-meta">
@@ -200,7 +208,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-31 08:55:24 / 修改时间：09:32:12" itemprop="dateCreated datePublished" datetime="2019-12-31T08:55:24+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 15:28:52 / 修改时间：16:45:10" itemprop="dateCreated datePublished" datetime="2019-12-31T15:28:52+08:00">2019-12-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,14 +228,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>879</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -239,16 +247,86 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="学习统计学的意义"><a href="#学习统计学的意义" class="headerlink" title="学习统计学的意义"></a>学习统计学的意义</h1><p>乍一看，统计学可能很吓人，但实际上，统计学并不可怕。它可以关乎很有趣的事，比如足球、潜水、巧克力，很有趣的人，比如潮人、出租车司机和婴儿。</p>
-<p>至少有三个原因，让统计学至关重要。</p>
-<ul>
-<li>首先，我们周围有很多统计学，包括新闻，还有科学工作。</li>
-<li>其次，统计学知识将帮你开展自己的研究。你该如何分析你得到的信息？该采用哪种方法？</li>
-<li>第三，也是最后一点，分析数据可以帮助我们了解有趣的世界。</li>
-</ul>
-<h1 id="统计学的两种类型"><a href="#统计学的两种类型" class="headerlink" title="统计学的两种类型"></a>统计学的两种类型</h1><p>我们将统计学分为两种类型： <strong>描述统计学</strong> 和 <strong>推断统计学</strong> 。当我们谈论 <strong>描述统计学</strong> 时，我们指的是概述信息的方法。我们可以通过图表来概述信息，比如饼图或条线图或者诸如平均值，百分比或相关系数等数字。<strong>推断统计学</strong> 是仅根据有限数据案例，推断有关整体的结论。</p>
-<h1 id="教程导览"><a href="#教程导览" class="headerlink" title="教程导览"></a>教程导览</h1><p>教程会分为七个模块。前两个模块主题是描述统计学；接下来的三个模块，将介绍之后在推断统计学中用到的方法：我们会讨论 <strong>概率</strong> ，<strong>概率分布</strong> 和 <strong>抽样分布</strong> ；在最后的两个模块中，我们将介绍推断统计学方法， <strong>如何估计置信区间</strong> 以及 <strong>如何进行假设检验</strong> 。</p>
-<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><p>不需要额外的知识，学校里学的足够了。你需要的是对方法论和数据的兴趣，以及最重要的东西 —— <strong>激情</strong> ！</p>
+        <h1 id="众数、中位数和平均数"><a href="#众数、中位数和平均数" class="headerlink" title="众数、中位数和平均数"></a>众数、中位数和平均数</h1><p>在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：<strong>众数</strong> (mode) ，<strong>中位数</strong> (median) 和 <strong>平均数</strong> (mean) 。</p>
+<p>这三个 m 通常被称为集中趋势的度量。</p>
+<p>找到众数很容易，<strong>它是出现频次最高的值。</strong> 换句话说，就是最常见的结果。</p>
+<p>如果测量定类或定序变量，<em>众数通常用作衡量集中趋势。</em></p>
+<p>在下面这个饼图中，可以看到西班牙主要球赛中球员来自哪些大洲。</p>
+<div id="echarts7415" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts7415'));
+        // 指定图表的配置项和数据
+        var option = {
+    title : {
+        text: ' 西班牙主要足球比赛中的球员国籍分布 ',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: [' 欧洲 ',' 北美 ',' 南美 ',' 非洲 ',' 亚洲 ']
+    },
+    series : [
+        {
+            name: ' 国籍 ',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:280, name:' 欧洲 '},
+                {value:16, name:' 北美 '},
+                {value:56, name:' 南美 '},
+                {value:32, name:' 非洲 '},
+                {value:16, name:' 亚洲 '}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba (0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+}
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+
+<p>饼图使众数一目了然，是欧洲 70％ 的球员来自欧洲</p>
+<p><strong><em>这里的众数是欧洲</em></strong> ，是最常出现的类别的名称，但众数不是 70％ 。这只是该特定类别的观测百分比。可能有多个众数。试想有一个足球运动员，拥有十分分裂的球迷，其中一些觉得他非常和善，而另一些则认为他非常蛮横。来给这个球员起个名，Franco Galton。</p>
+<p>试想你选取西班牙 500 名受访者作为代表样本，询问他们对 Franco Galton 的看法，受访者可以在 0 到 10 的范围内表明他们认为他的和善程度。 0 表示非常蛮横， 10 表示非常和善。</p>
+<p><img src="/images/two_mode.jpg" alt=""></p>
+<p>假设这是本研究得出的直方图形状，可以看到西班牙人分歧很大，有些人觉得 Galton 非常和善，有些人觉得他非常蛮横。正如所见，分布有 两个众数，即 3 和 8 这显然是双众数分布。</p>
+<p>集中趋势的第二个衡量指标是中位数：<strong>观测值从最小到最大排序时，中位数就是观测值的中间值。</strong></p>
+<p>试想你还问了七位受访者，对另一著名球员 Tomas Bayez 的看法。假设这是他的研究数据矩阵，这里的众数是 8 ，是频次最高的值。</p>
+<p><img src="/images/median.jpg" alt=""></p>
+<p>要计算中位数，首先必须将所有数值从低到高排序，然后选择中间值。所以这里的中位数是 8 。如果案例是偶数而非奇数，那就稍微复杂点了。试想受访者是 8 人，他们对 Tomas Bayez 的看法。</p>
+<p><img src="/images/median_2.jpg" alt=""></p>
+<p>数值是从低到高排列的。但是，在这种情况下，没有单个中间值。该如何解决这个问题呢？我们取两个中间数值的平均值 7 和 8 相加除以 2 等于 7.5 。因此，中位数是 7.5 。请注意，中位数将分布分为两个相等的部分。 50％ 的值低于中位数， 50％ 的值高于中位数。</p>
+<p>集中趋势的第三个衡量指标，是最常用的一个，也可能是你已经非常熟悉的，就是平均数。</p>
+<p><strong>平均数是所有观测值之和除以观测个数</strong>。</p>
+<p>$$ \bar x = \frac {\sum {x}}{n} $$</p>
+<p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
+<p>举个例子，借用 Tomas Bayez 的研究。公式告诉我们首先求总和， 6 加 7 ，加 7 ，加 8 ，加 8 ，加 8 ，加 9 ，等于 53 ，现在再除以 n 。样本量是 7 ，因此 53 除以 7 等于 7.6 平均数是 7.6 。</p>
+<p><img src="/images/mean.jpg" alt=""></p>
+<p>可以将平均数视为数据的平衡点。试想我们将重量平衡放置，那么平均数就是天平中心点。其中一侧的总重量恰好等于另一侧。</p>
+<p><img src="/images/mean_2.jpg" alt=""></p>
+<p>现在大家已经熟悉了这三个 m 。可以通过各种方式轻松计算一组数字的中间值，但报告时，该使用哪种中心趋势呢？</p>
+<p><strong>这部分取决于变量的测量级别。</strong> 如果是定类测量，则无法计算中位数或平均数，因为我们无法对定类变量进行数值运算，也不能对它们进行排序。<strong>当变量是定类变量时 唯一适合的集中趋势度量是众数。</strong></p>
+<p>如果是定量变量该怎么办呢？</p>
+<p>试想你在家乡足球俱乐部的一个食堂里，你想计算所有在场人士的平均收入和中位收入，包括你自己，其他 5 位客人和吧员。</p>
+<p><img src="/images/mean_and_median.jpg" alt=""></p>
+<p>这是数据矩阵，平均数约为 35,000 ，中位数恰好是 35,000 ， 它们彼此非常接近。使用哪一个来描述分布中心都无所谓。但现在，著名足球运动员 Franco Galton 走进食堂，比如他每年收入大约 7000 万 ，这时中位数略微增加到 36,000 ，然而，平均数却超过 800 万。</p>
+<p><img src="/images/mean_and_median_2.jpg" alt=""></p>
+<p>我们说 Franco Galton 是这个分布的异常值。他的收入远高于其他所有人，他的收入对平均收入产生不成比例的影响。在这种情况下，计算中位数描述分布中心比平均数更合理。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>描述分布中心可以使用三种方法：众数，中位数和平均数。如果变量是定类的，则使用众数；如果是定量的，则使用中位数或平均数 —— 如果有异常值或分布高度偏离，使用中位数。如果不是，那就使用平均数。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -277,10 +355,10 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/商业分析/statistics-measures-of-central-tendency-and-dispersion/" rel="bookmark">极速统计教程之三 | 测量集中趋势和离散程度</a></div>
+      <div class="popular-posts-title"><a href="/商业分析/statistics-descriptive-statistics/" rel="bookmark">极速统计教程之二 | 数据可视化</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/商业分析/statistics-descriptive-statistics/" rel="bookmark">极速统计教程之二 | 数据可视化</a></div>
+      <div class="popular-posts-title"><a href="/商业分析/statistics-basic-introduction/" rel="bookmark">极速统计教程之一 | 引言</a></div>
     </li>
   </ul>
 
@@ -297,13 +375,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/programming/break-down-complexity-with-pipelines/" rel="prev" title="用 “流水线” 设计拆解复杂处理流程">
-      <i class="fa fa-chevron-left"></i> 用 “流水线” 设计拆解复杂处理流程
+    <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/" rel="prev" title="极速统计教程之二 | 数据可视化">
+      <i class="fa fa-chevron-left"></i> 极速统计教程之二 | 数据可视化
     </a></div>
-      <div class="post-nav-item">
-    <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/" rel="next" title="极速统计教程之二 | 数据可视化">
-      极速统计教程之二 | 数据可视化 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -363,7 +438,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习统计学的意义"><span class="nav-number">1.</span> <span class="nav-text">学习统计学的意义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#统计学的两种类型"><span class="nav-number">2.</span> <span class="nav-text">统计学的两种类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#教程导览"><span class="nav-number">3.</span> <span class="nav-text">教程导览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预备知识"><span class="nav-number">4.</span> <span class="nav-text">预备知识</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#众数、中位数和平均数"><span class="nav-number">1.</span> <span class="nav-text">众数、中位数和平均数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.1.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -488,6 +563,54 @@
   
 
   
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 

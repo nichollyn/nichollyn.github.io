@@ -1,8 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>极速统计教程之三 | 测量集中趋势和离散程度</title>
+    <url>/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/</url>
+    <content><![CDATA[<h1 id="众数、中位数和平均数"><a href="#众数、中位数和平均数" class="headerlink" title="众数、中位数和平均数"></a>众数、中位数和平均数</h1><p>在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：<strong>众数</strong> (mode) ，<strong>中位数</strong> (median) 和 <strong>平均数</strong> (mean) 。</p>
+<p>这三个 m 通常被称为集中趋势的度量。</p>
+<p>找到众数很容易，<strong>它是出现频次最高的值。</strong> 换句话说，就是最常见的结果。</p>
+<p>如果测量定类或定序变量，<em>众数通常用作衡量集中趋势。</em></p>
+<p>在下面这个饼图中，可以看到西班牙主要球赛中球员来自哪些大洲。</p>
+<div id="echarts7415" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts7415'));
+        // 指定图表的配置项和数据
+        var option = {
+    title : {
+        text: ' 西班牙主要足球比赛中的球员国籍分布 ',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: [' 欧洲 ',' 北美 ',' 南美 ',' 非洲 ',' 亚洲 ']
+    },
+    series : [
+        {
+            name: ' 国籍 ',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:280, name:' 欧洲 '},
+                {value:16, name:' 北美 '},
+                {value:56, name:' 南美 '},
+                {value:32, name:' 非洲 '},
+                {value:16, name:' 亚洲 '}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba (0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+}
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+
+<p>饼图使众数一目了然，是欧洲 70％ 的球员来自欧洲</p>
+<p><strong><em>这里的众数是欧洲</em></strong> ，是最常出现的类别的名称，但众数不是 70％ 。这只是该特定类别的观测百分比。可能有多个众数。试想有一个足球运动员，拥有十分分裂的球迷，其中一些觉得他非常和善，而另一些则认为他非常蛮横。来给这个球员起个名，Franco Galton。</p>
+<p>试想你选取西班牙 500 名受访者作为代表样本，询问他们对 Franco Galton 的看法，受访者可以在 0 到 10 的范围内表明他们认为他的和善程度。 0 表示非常蛮横， 10 表示非常和善。</p>
+<p><img src="/images/two_mode.jpg" alt=""></p>
+<p>假设这是本研究得出的直方图形状，可以看到西班牙人分歧很大，有些人觉得 Galton 非常和善，有些人觉得他非常蛮横。正如所见，分布有 两个众数，即 3 和 8 这显然是双众数分布。</p>
+<p>集中趋势的第二个衡量指标是中位数：<strong>观测值从最小到最大排序时，中位数就是观测值的中间值。</strong></p>
+<p>试想你还问了七位受访者，对另一著名球员 Tomas Bayez 的看法。假设这是他的研究数据矩阵，这里的众数是 8 ，是频次最高的值。</p>
+<p><img src="/images/median.jpg" alt=""></p>
+<p>要计算中位数，首先必须将所有数值从低到高排序，然后选择中间值。所以这里的中位数是 8 。如果案例是偶数而非奇数，那就稍微复杂点了。试想受访者是 8 人，他们对 Tomas Bayez 的看法。</p>
+<p><img src="/images/median_2.jpg" alt=""></p>
+<p>数值是从低到高排列的。但是，在这种情况下，没有单个中间值。该如何解决这个问题呢？我们取两个中间数值的平均值 7 和 8 相加除以 2 等于 7.5 。因此，中位数是 7.5 。请注意，中位数将分布分为两个相等的部分。 50％ 的值低于中位数， 50％ 的值高于中位数。</p>
+<p>集中趋势的第三个衡量指标，是最常用的一个，也可能是你已经非常熟悉的，就是平均数。</p>
+<p><strong>平均数是所有观测值之和除以观测个数</strong>。</p>
+<p>$$ \bar x = \frac {\sum {x}}{n} $$</p>
+<p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
+<p>举个例子，借用 Tomas Bayez 的研究。公式告诉我们首先求总和， 6 加 7 ，加 7 ，加 8 ，加 8 ，加 8 ，加 9 ，等于 53 ，现在再除以 n 。样本量是 7 ，因此 53 除以 7 等于 7.6 平均数是 7.6 。</p>
+<p><img src="/images/mean.jpg" alt=""></p>
+<p>可以将平均数视为数据的平衡点。试想我们将重量平衡放置，那么平均数就是天平中心点。其中一侧的总重量恰好等于另一侧。</p>
+<p><img src="/images/mean_2.jpg" alt=""></p>
+<p>现在大家已经熟悉了这三个 m 。可以通过各种方式轻松计算一组数字的中间值，但报告时，该使用哪种中心趋势呢？</p>
+<p><strong>这部分取决于变量的测量级别。</strong> 如果是定类测量，则无法计算中位数或平均数，因为我们无法对定类变量进行数值运算，也不能对它们进行排序。<strong>当变量是定类变量时 唯一适合的集中趋势度量是众数。</strong></p>
+<p>如果是定量变量该怎么办呢？</p>
+<p>试想你在家乡足球俱乐部的一个食堂里，你想计算所有在场人士的平均收入和中位收入，包括你自己，其他 5 位客人和吧员。</p>
+<p><img src="/images/mean_and_median.jpg" alt=""></p>
+<p>这是数据矩阵，平均数约为 35,000 ，中位数恰好是 35,000 ， 它们彼此非常接近。使用哪一个来描述分布中心都无所谓。但现在，著名足球运动员 Franco Galton 走进食堂，比如他每年收入大约 7000 万 ，这时中位数略微增加到 36,000 ，然而，平均数却超过 800 万。</p>
+<p><img src="/images/mean_and_median_2.jpg" alt=""></p>
+<p>我们说 Franco Galton 是这个分布的异常值。他的收入远高于其他所有人，他的收入对平均收入产生不成比例的影响。在这种情况下，计算中位数描述分布中心比平均数更合理。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>描述分布中心可以使用三种方法：众数，中位数和平均数。如果变量是定类的，则使用众数；如果是定量的，则使用中位数或平均数 —— 如果有异常值或分布高度偏离，使用中位数。如果不是，那就使用平均数。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>商业分析</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
+        <tag>商业分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>极速统计教程之二 | 数据可视化</title>
-    <url>/uncategorized/statistics-descriptive-statistics/</url>
+    <url>/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/</url>
     <content><![CDATA[<blockquote>
 <p>当我们向他人呈现数据时，通常需要将数据 “<strong>总结</strong>” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。</p>
 </blockquote>
@@ -15,9 +125,11 @@
 </blockquote>
 <p>来讲得更具体一点。想象一下，你最喜欢的球队，你对足员的某些特征感兴趣：你想知道他 / 她的体重，头发颜色，年龄以及在最近的比赛中得分的总数。所有这些球员的特征都是变量，球员本身就是统计案例。</p>
 <p>另一个例子，可能你对个别球员的特征不是那么感兴趣，而对他们所效力的球队特征感兴趣。例如，你可能想了解每个西班牙球队，以及它们所在的城市，他们队服的主色调是什么，以及球队去年有多少进球。这些特征也都是变量。但是，这里的统计案例不是个别球员，而是这些人所效力的球队。</p>
-<p>在一项研究中，_案例可以是许多不同的事物_。可以是个别球员和球队，也可以是公司，学校甚至是国家。</p>
+<p>在一项研究中，<em>案例可以是许多不同的事物。</em> 可以是个别球员和球队，也可以是公司，学校甚至是国家。</p>
 <p><strong>案例的每个特征都可以成为变量</strong> —— 只要它符合一个基本的标准：即是变化的</p>
 <p>这是什么意思呢？ 让我们回到示例。以球队为案例，并以团队所在的城市为变量。你关注每个西班牙球队，所以会有很多不同的城市：一支球队来自巴塞罗那，其他球队来自马德里，瓦伦西亚或塞维利亚。换句话说，城市是有变化的。</p>
+<a id="more"></a>
+
 <p>现在让我们关注另一个特征，不是城市，而是球队所在的国家。对于每一个球队而言，它们的国家都是西班牙 这些球队都是西班牙球队。这表示它们之间没有差异：没有一支球队会来自西班牙以外的其他国家。出于这个原因，这个特征不是变量，而是常量。</p>
 <p>可以想象，我们可以有许多不同类型的变量代表非常不同的特征。因为这个原因，还有一些其他原因（我之后会讨论到）区分不同的 <strong>测量级别</strong> 至关重要，</p>
 <p>最简单的测量是 <strong>定类测量</strong> 。<strong>定类变量由彼此不同的各种类别组成 变量之间没有顺序关系。</strong> 这意味着无法区别一个类别比另一个更好或更差，更多或更少。一个例子是球员的国籍，各种类别，例如西班牙，法国或墨西哥。彼此不同，但没有排名顺序；另一个例子是球员性别或球队所在城市。</p>
@@ -28,7 +140,7 @@
 <p>定距和定比变量就是我们所说的 <strong>定量变量</strong> ，因为类别由数值表示。</p>
 <p>定量变量也可以分为 <strong>离散变量</strong> 和 <strong>连续变量</strong> 。如果某类别形成一组单独的数字，则变量是离散的。例如，球员的进球数：球员可以进一球或两球，但不能是 1.21 球。如果变量值形成区间，则变量是连续的。一个例子是玩家的高度：有人可能是 170 厘米或 171 厘米高，也可能是，比如说，170.2461 厘米高。我们没有一组单独的数字，而是一个无限的数值区域。</p>
 <h2 id="区分测量级别的意义"><a href="#区分测量级别的意义" class="headerlink" title="区分测量级别的意义"></a>区分测量级别的意义</h2><p>为什么区分这些不同的测量等级如此重要。因为 <strong>我们用来分析数据的方法，取决于变量的测量水平</strong>。 </p>
-<p>然而，在实践中， <em>区别有时会变得模糊</em> 。例如，对于许多统计分析，定距和定比测量之间的差异并不重要。此外，许多统计学家认为，如果定类测量有十分类甚至更多分类，就可以定量分析这些变量。</p>
+<p>然而，在实践中， <em>区别有时会变得模糊。</em> 例如，对于许多统计分析，定距和定比测量之间的差异并不重要。此外，许多统计学家认为，如果定类测量有十分类甚至更多分类，就可以定量分析这些变量。</p>
 <p>一个例子是调查问卷，问题是从 0 到 10 之间你如何评价某个球员。在形式上，这是一个定类变量，但在实践中，你可以讨巧将其视为定量变量。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>从案例，变量和这些变量的衡量水平来考虑球员，球队和比赛，可以让你对足球有更结构化的理解。</p>
 <hr>
@@ -155,7 +267,7 @@
 <p>我们看到的不是一个完整的数据矩阵，只是其中一部分。完整的矩阵无法单屏呈现，因为它有 400 行，因为我们有 400 名球员。省略号已经明确表示只取了矩阵的一部分。</p>
 <p>来看看我们的数据矩阵是否包含异常值。嘿，其中的 24 号球员，我们看不到体重数值。目前，我们已经囊括了这些不完整的案例。但是，如果后续分析需要完整的数据矩阵，我们可能必须删除它们。</p>
 <p>所有统计分析都需要数据矩阵。但是，你通常不会向其他人提供完整的数据矩阵。原因是数据矩阵通常很大。在我们的例子中，有 400 行，并且也没有清楚地概述数据矩阵中包含的统计信息。</p>
-<p>当我们将数据矩阵中的信息呈现给其他人时，经常以表格和图形的形式进行数据摘要。想象一下，你想要概述西班牙足球比赛中关于球员头发颜色的信息。较好的方法是制作频率表。频率表显示案例中 <strong>变量数值的分布</strong> 。<em>频率表就是变量的所有可能值的列表，连同每个值的观测次数。</em></p>
+<p>当我们将数据矩阵中的信息呈现给其他人时，经常以表格和图形的形式进行数据摘要。想象一下，你想要概述西班牙足球比赛中关于球员头发颜色的信息。较好的方法是制作频率表。频率表显示案例中 <strong>变量数值的分布</strong> 。* 频率表就是变量的所有可能值的列表，连同每个值的观测次数。*</p>
 <p>这是一个基于发色变量的示例，我们可以区分四个类别 金发，棕色，黑色和其他。</p>
 <table>
 <thead>
@@ -242,7 +354,7 @@
 </tr>
 </tbody></table>
 <p>虽然这样你可能会丢失信息，但优点是可以获得更好的概述。我们说你已经 <strong>重新编码了变量</strong> 。体重变量本是定量变量，但现在变成了一个只有五个类别的定序变量。</p>
-<p>将定量变量重新编码为定序变量非常容易。但是，反过来是不可能的：你无法将定序变量重新编码为定量变量。所以，你该了解 —— <strong>数据矩阵是所有统计分析的根源</strong> 。它是数据的概述。但是，如果你想将发现呈现给他人，可以使用 <strong>数据摘要</strong> 。一个非常好的总结方法是制作 <strong>频率表</strong> 。<em>如有必要，你可以将定量变量重新编码为定序变量。</em></p>
+<p>将定量变量重新编码为定序变量非常容易。但是，反过来是不可能的：你无法将定序变量重新编码为定量变量。所以，你该了解 —— <strong>数据矩阵是所有统计分析的根源</strong> 。它是数据的概述。但是，如果你想将发现呈现给他人，可以使用 <strong>数据摘要</strong> 。一个非常好的总结方法是制作 <strong>频率表</strong> 。如有必要，你可以将定量变量重新编码为定序变量。</p>
 <hr>
 <h1 id="信息图和各种数据分布形状"><a href="#信息图和各种数据分布形状" class="headerlink" title="信息图和各种数据分布形状"></a>信息图和各种数据分布形状</h1><h2 id="定类变量"><a href="#定类变量" class="headerlink" title="定类变量"></a>定类变量</h2><p>如果想研究西班牙主要足球比赛中的球员来自哪里，下面这个频率表可能就是结果：</p>
 <table>
@@ -286,11 +398,11 @@
 </tbody></table>
 <p>可以看到 280 名球员来自欧洲， 16 名来自北美， 56 名来自南美， 32 名来自非洲， 16 名来自亚洲。</p>
 <p>我还添加了相对百分比，你可能希望通过图表展示百分比，有两种可能的方法。</p>
-<div id="echarts290" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts4913" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts290'));
+        var myChart = echarts.init(document.getElementById('echarts4913'));
         // 指定图表的配置项和数据
         var option = {
     title : {
@@ -335,11 +447,11 @@
 
 <p>这里是一个 <strong>饼图</strong> 。要概述的变量类别是通过饼图 <strong>切片</strong> 展示在饼图中，切片表示每个类别的百分比，一目了然 —— 几乎四分之三的足球运动员来自欧洲。</p>
 <p>另一种概述数据的方法是 <strong>柱状图</strong> ，它可以非常清楚地展示数据在各个变量类别上的分布。</p>
-<div id="echarts200" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts7862" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts200'));
+        var myChart = echarts.init(document.getElementById('echarts7862'));
         // 指定图表的配置项和数据
         var option = {
     xAxis: {
@@ -419,22 +531,22 @@
 </tr>
 </tbody></table>
 <p>首先，绘制一条水平线，并以规则的间隔标记可能的数值，如下所示。</p>
-<p><img src="/images/singleAxis_bubble_scatter.png" alt=""></p>
+<p><img src="/images/singleAxis_bubble_scatter.jpg" alt=""></p>
 <p>接下来，对于每次观测在水平线上的数值之上标记一个点，像就这样：</p>
-<p><img src="/images/singleAxis_bubble_scatter_2.png" alt=""></p>
+<p><img src="/images/singleAxis_bubble_scatter_2.jpg" alt=""></p>
 <p>可以想象，当只有若干观测结果时，气泡图很不错。但是，当样本巨大时，会变得混乱。 100 个球员的样本，看起来是这样的：</p>
-<p><img src="/images/singleAxis_bubble_scatter_3.png" alt=""></p>
+<p><img src="/images/singleAxis_bubble_scatter_3.jpg" alt=""></p>
 <p>如果有很多观测结果时，研究人员通常会使用另一种类型的图表：<strong>直方图</strong></p>
 <p>这就是一例：</p>
-<p><img src="/images/histogram.png" alt=""></p>
+<p><img src="/images/histogram.jpg" alt=""></p>
 <p>直方图在某种意义上类似于柱状图，它使用柱形来描绘变量可能数值的频率或相对频率。但是，有一个重要的区别： <strong>直方图中的柱点是相互接触的</strong>。</p>
 <p>该接触表示区间比率变量的数值呈现连续标度。比如，我们对西班牙足球运动员的体重感兴趣，如果测量数值非常详细，比如 83.9 或 74.5 公斤，为每一个值绘制一个单独的柱形是没有意义的。相反，我们构建 <strong>区间</strong>.</p>
-<p><img src="/images/histogram_1.png" alt=""></p>
+<p><img src="/images/histogram_1.jpg" alt=""></p>
 <p> 在此图中，有 10 个 区间，每个区间 5 公斤，第一个区间范围从 47.5 公斤到 52.5 公斤 显示 50 ，因为 50 是该区间的中间。对于创建的区间的数量，没有固定的规则。但是，重要的是区间数值必须相同，所以在此图中都是五公斤。可以一眼看出大多数球员的体重约为 75 公斤，还可以看到，重量小于 60 或大于 90 是非常罕见的。 </p>
-<p><img src="/images/histogram_3.png" alt=""></p>
+<p><img src="/images/histogram_3.jpg" alt=""></p>
 <p>如图所见，此直方图具有特定形状，它是钟形的，有一个 <strong>峰值</strong> 且两侧近似对称。你会经常遇到钟形分布，但并非所有直方图都是钟形。</p>
 <p>直方图也可以向左或向右 <strong>倾斜</strong> 。偏斜的直方图不是对称的，因为分布的一侧比另一侧延伸得更远。</p>
-<p><img src="/images/histogram_4.png" alt=""></p>
+<p><img src="/images/histogram_4.jpg" alt=""></p>
 <p>有的直方图向左倾斜，而有的直方图向右倾斜。向右倾斜的直方图变量是西班牙比赛中球员的年收入。与球员的平均收入相比，收入很少的球员不会很多。但是，也会有一些球员比大多数球员赚的多得多。因此，右尾更长。</p>
 <p>直方图也可能有两个峰值：设想两队六到八岁球员之间的足球比赛。比赛结束后，所有的孩子和父母都去食堂喝东西。</p>
 <p>你感兴趣的问题是，食堂里的人年龄如何分布。在这种情况下，年龄变量的直方图有两个峰值。毕竟，食堂里的孩子是 6 到 8 岁的孩子和他们的父母，他们最有可能在 30 到 40 岁之间。</p>
@@ -461,6 +573,13 @@
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>商业分析</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
+        <tag>商业分析</tag>
+      </tags>
   </entry>
   <entry>
     <title>极速统计教程之一 | 引言</title>
@@ -604,7 +723,7 @@
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">/* 显示一个处理步骤之后的图像，但我们在过程中保留了第一个步骤的状态 */</span></span><br><span class="line">pipeline.from (tag_Original)</span><br><span class="line">        .copy_to (tag_specificProcess_1) <span class="comment">// 相比一步到位，这里多存储了第一个步骤的状态 </span></span><br><span class="line">        .doProcess (specificProcess_1)</span><br><span class="line">        .copy_to (tag_Processed)</span><br><span class="line">        .doProcess (specificProcess_2.setParams (params_t1))</span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (tag_Processed));</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 调整第二个步骤的某些参数，重新显示图像 */</span></span><br><span class="line">pipeline.from (tag_specificProcess_1) <span class="comment">// 之前存储了第一个步骤的状态，直接从这个步骤开始 </span></span><br><span class="line">        .copy_to (tag_Processed)</span><br><span class="line">        .doProcess (specificProcess_2.setParams (params_t2))</span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (tag_Processed));</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="流动和连通性的实现方案"><a href="#流动和连通性的实现方案" class="headerlink" title="流动和连通性的实现方案"></a>流动和连通性的实现方案</h2><p>有了节点和锋面，流动和连通就有了作用的主体。对应到图像编辑功能， <strong>流动</strong> 其实就是图像从一个状态变成另外一个状态的过程。 <strong>连通</strong> 则更好理解，一个管道出来的图像可以被另外一个管道接纳，由此构成管道之间的连接。连接在一起的每一节 <strong>小管道</strong> 各司其职，灵活组合，再构成更长跨度的 <strong>大管道</strong> 或者 “<strong>管道网络</strong>” ，从而协同完成复杂的业务流程。</p>
-<p><img src="images/construct-big-pipeline.png" alt="一条直线型连接小管道构成的大管道"><br><img src="images/diffluence_join_pipeline.jpg" alt="一个采用了分流策略的三个小管道构成的管道网络"></p>
+<p><img src="images/construct-big-pipeline.jpg" alt="一条直线型连接小管道构成的大管道"><br><img src="images/diffluence_join_pipeline.jpg" alt="一个采用了分流策略的三个小管道构成的管道网络"></p>
 <p>回归到代码，我们来看一组步骤稍多的图片处理工序如何体现出管道的流动性和连通性。刨去内部实现细节，整合或者忽略一些与管道设计思想关联不大的逻辑，以下代码在流程上已经比较接近实际生产环境了。</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">/** 主功能区，不妨将它的例程称为 Main</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 可以从这里进入各子功能处理图片再回到这里展示新的图片 </span></span><br><span class="line"><span class="comment"> * 3. 撤销到经过某个步骤处理之前的图像或者重做出之前做过但是被撤销掉的某个步骤的图像   </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Routine_Main.startFrom (image_file) -&gt; {</span><br><span class="line">    Routine_Main.pipeline.loadFrom (image_file, tag_Original) <span class="comment">// 从图片中加载初始的图像 </span></span><br><span class="line">}</span><br><span class="line">Routine_Main.showCurrent () -&gt; {</span><br><span class="line">    showImage (Routine_Main.pipeline.front (); <span class="comment">// 显示 “锋面”</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “美型” 的功能区，对应的例程称为 FaceLift</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 针对图像中的人脸轮廓，五官进行形状调整 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像到主功能区 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Routine_FaceLift.startFrom (Routine_Main.pipeline.front ().copy ());</span><br><span class="line">Routine_FaceLift.process () {</span><br><span class="line">    Routine_FaceLift.pipeline</span><br><span class="line">         <span class="comment">// 这个过程用户无法干预，不会有 “重演”，因此我们可以直接在原稿上操作 </span></span><br><span class="line">        .from (tag_Original)</span><br><span class="line">        .doProcess (faceLift_step_1_process)</span><br><span class="line">        .doProcess (faceLift_step_2_process)</span><br><span class="line">        .doProcess (faceLift_step_3_process)</span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “美型” 处理好的图像提交给主功能 </span></span><br><span class="line">Routine_Main.accept (Routine_FaceLift.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “滤镜” 的功能区，对应的例程称为 Filter</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 滤镜化处理图像 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像到主功能区 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Routine_Filter.startFrom (Routine_Main.pipeline.front ().copy ());</span><br><span class="line">Routine_Filter.process () {</span><br><span class="line">    Routine_Filter.pipeline</span><br><span class="line">        <span class="comment">// 这个过程中用户决定要选用哪个具体的滤镜，因此每次都需要基于原稿复制一份再滤镜化 </span></span><br><span class="line">        .from (tag_Original).copy_to (tag_Processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"awful"</span>)))</span><br><span class="line">        ... <span class="comment">/// 皱眉，这个不好，换一个！</span></span><br><span class="line">        .from (tag_Original).copy_to (tag_Processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"notbad"</span>)))</span><br><span class="line">        ... <span class="comment">/// 托腮，这个还行，再换个试试～</span></span><br><span class="line">        .from (tag_Original).copy_to (tag_Processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"perfect"</span>)))</span><br><span class="line">        ... <span class="comment">/// 完美～</span></span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “滤镜” 处理好的图像提交给主功能 </span></span><br><span class="line">Routine_Main.accept (Routine_Filter.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “美颜” 的功能区，对应的例程称为 SkinBeauty</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 针对图像中的人脸皮肤进行色相调整 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像给 Main 功能 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Routine_SkinBeauty.startFrom (Routine_Main.pipeline.front ().copy ());</span><br><span class="line">Routine_SkinBeauty.process () {</span><br><span class="line">    Routine_SkinBeauty.pipeline</span><br><span class="line">        <span class="comment">// 这个过程用户可以调节一个滑竿来控制色相参数，每次都基于原稿复制一份再调色相 </span></span><br><span class="line">        .from (tag_Original).copy_to (tag_Processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_too_weak))</span><br><span class="line">        ... <span class="comment">/// 托腮，效果好像不明显，加强一点 </span></span><br><span class="line">        .from (tag_Original).copy_to (tag_Processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_too_much)))</span><br><span class="line">        ... <span class="comment">/// 皱眉，好像有点过头了，往回调一点 </span></span><br><span class="line">        .from (tag_Original).copy_to (tag_Processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_just_right)</span><br><span class="line">        ... <span class="comment">/// 完美～</span></span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “美颜” 处理好的图像提交给主功能 </span></span><br><span class="line">Routine_Main.accept (Routine_SkinBeauty.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 纠结一下。。</span></span><br><span class="line"><span class="comment">/// 犹豫，要不还是不美颜了吧？</span></span><br><span class="line">Routine_Main.undo ();</span><br><span class="line"><span class="comment">/// 迟疑，滤镜也不要了？</span></span><br><span class="line">Routine_Main.undo ();</span><br><span class="line"><span class="comment">/// 思考中。。。</span></span><br><span class="line"><span class="comment">//... 不行，还是都加回来吧 </span></span><br><span class="line">Routine_Main.redo ().redo ();</span><br><span class="line"><span class="comment">// 端详 5 分钟。。。完美～～～</span></span><br><span class="line">save ();</span><br></pre></td></tr></tbody></table></figure>
 
@@ -746,7 +865,7 @@
 <a id="more"></a>
 
 <h1 id="从-MVC-说起"><a href="#从-MVC-说起" class="headerlink" title="从 MVC 说起"></a>从 MVC 说起</h1><p>经典的 <strong><a href="https://zh.wikipedia.org/wiki/MVC" target="_blank" rel="noopener">MVC</a></strong> 设计模式想必各位程序猿们无人不晓。 MVC 最早存在于桌面程序中，后来由于其强大的复用性被广泛地发掘和应用于各端的开发中，还衍生出 MVP ， MVVM 等变体。如果把 MVC 的变体都算作 MVC ，可以说现如今任何一个成熟的 GUI 框架都内化了这种设计模式。放图：</p>
-<p><img src="/images/MVC-vs-MVP-vs-MVVM.png" alt=""></p>
+<p><img src="/images/MVC-vs-MVP-vs-MVVM.jpg" alt=""></p>
 <p>然而我今天不是要来谈 MVC 设计模式的，因为网络上以各种姿势深入浅出 MVC 的好文章已经多的不能再多。之所以提及 MVC 模式只是想借此提醒读者， <strong>解耦</strong> 对于编程的重要性。</p>
 <p>MVC 之所以看起来很简单却又如此广泛地被使用就在于它有效地解决了一个已知的，规模庞大的 <strong>耦合</strong> 问题：“你看到的”（不妨理解为 MVC 中的 View ) 和 “它代表的” (不妨理解为 MVC 中的 Model )，这两个东西永远不可能完全一致。</p>
 <p>我们有时候需要用相同的表象去表示不同的真相，有时候则需要用不同的表象去表达同一个真相。而当我们尝试把两者捆绑在一起处理时，一旦映射关系发生变化，这个捆绑体便不再适用，需要重新构建。这样一来，原来的东西就都不能用了。所以我们需要一套机制来避免这种耦合，从而实现 Model 和 View 各自的复用。</p>

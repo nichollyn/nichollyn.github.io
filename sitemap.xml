@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/</loc>
+    <loc>http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/</loc>
     
-    <lastmod>2019-12-31T07:18:28.956Z</lastmod>
+    <lastmod>2019-12-31T08:45:10.396Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nichollyn.github.io/programming/ui-programming-howto/</loc>
+    
+    <lastmod>2019-12-31T08:08:42.421Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/</loc>
+    
+    <lastmod>2019-12-31T08:07:59.345Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/</loc>
+    
+    <lastmod>2019-12-31T08:07:33.223Z</lastmod>
     
   </url>
   
@@ -12,13 +33,6 @@
     <loc>http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/</loc>
     
     <lastmod>2019-12-31T01:32:12.650Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/</loc>
-    
-    <lastmod>2019-12-28T14:26:54.541Z</lastmod>
     
   </url>
   
@@ -33,13 +47,6 @@
     <loc>http://nichollyn.github.io/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/</loc>
     
     <lastmod>2019-12-28T12:55:28.983Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nichollyn.github.io/programming/ui-programming-howto/</loc>
-    
-    <lastmod>2019-12-28T07:13:18.818Z</lastmod>
     
   </url>
   

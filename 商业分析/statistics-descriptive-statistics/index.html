@@ -14,8 +14,6 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -26,10 +24,10 @@
     scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -42,7 +40,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -51,27 +49,26 @@
   <meta name="description" content="当我们向他人呈现数据时，通常需要将数据 “总结” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。  统计案例、变量和测量级别 如果你对足球非常感兴趣，你想知道所有细节：比如某个球员有多少进球，某个球队赢了多少场比赛或者在某场足球比赛中有多少次点球。统计学知识，将帮助你成为足球或任何其他运动的真正专家。  进球得分，赢得比赛，判罚点球，这些都可以被看作 变量 和 统计案例 。  变">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速统计教程之二 | 数据可视化">
-<meta property="og:url" content="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/index.html">
+<meta property="og:url" content="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/index.html">
 <meta property="og:site_name" content="The Infinite Game">
 <meta property="og:description" content="当我们向他人呈现数据时，通常需要将数据 “总结” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。  统计案例、变量和测量级别 如果你对足球非常感兴趣，你想知道所有细节：比如某个球员有多少进球，某个球队赢了多少场比赛或者在某场足球比赛中有多少次点球。统计学知识，将帮助你成为足球或任何其他运动的真正专家。  进球得分，赢得比赛，判罚点球，这些都可以被看作 变量 和 统计案例 。  变">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://nichollyn.github.io/images/singleAxis_bubble_scatter.png">
-<meta property="og:image" content="http://nichollyn.github.io/images/singleAxis_bubble_scatter_2.png">
-<meta property="og:image" content="http://nichollyn.github.io/images/singleAxis_bubble_scatter_3.png">
-<meta property="og:image" content="http://nichollyn.github.io/images/histogram.png">
-<meta property="og:image" content="http://nichollyn.github.io/images/histogram_1.png">
-<meta property="og:image" content="http://nichollyn.github.io/images/histogram_3.png">
-<meta property="og:image" content="http://nichollyn.github.io/images/histogram_4.png">
+<meta property="og:image" content="http://nichollyn.github.io/images/singleAxis_bubble_scatter.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/singleAxis_bubble_scatter_2.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/singleAxis_bubble_scatter_3.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/histogram.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/histogram_1.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/histogram_3.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/histogram_4.jpg">
 <meta property="article:published_time" content="2019-12-31T01:34:47.000Z">
-<meta property="article:modified_time" content="2019-12-31T07:18:28.956Z">
+<meta property="article:modified_time" content="2019-12-31T08:07:59.345Z">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="tech">
-<meta property="article:tag" content=" life">
-<meta property="article:tag" content=" philosophy">
+<meta property="article:tag" content="统计">
+<meta property="article:tag" content="商业分析">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://nichollyn.github.io/images/singleAxis_bubble_scatter.png">
+<meta name="twitter:image" content="http://nichollyn.github.io/images/singleAxis_bubble_scatter.jpg">
 
-<link rel="canonical" href="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/">
+<link rel="canonical" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/">
 
 
 <script id="page-configurations">
@@ -157,65 +154,17 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-top">
-
-    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
     
-  <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
   <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
@@ -233,10 +182,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -257,25 +206,23 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-12-31 09:34:47" itemprop="dateCreated datePublished" datetime="2019-12-31T09:34:47+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 09:34:47 / 修改时间：16:07:59" itemprop="dateCreated datePublished" datetime="2019-12-31T09:34:47+08:00">2019-12-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
+                    <span itemprop="name">商业分析</span>
+                  </a>
+                </span>
             </span>
 
-          
-            <span id="/uncategorized/statistics-descriptive-statistics/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之二 | 数据可视化" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
+          <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -312,9 +259,11 @@
 </blockquote>
 <p>来讲得更具体一点。想象一下，你最喜欢的球队，你对足员的某些特征感兴趣：你想知道他 / 她的体重，头发颜色，年龄以及在最近的比赛中得分的总数。所有这些球员的特征都是变量，球员本身就是统计案例。</p>
 <p>另一个例子，可能你对个别球员的特征不是那么感兴趣，而对他们所效力的球队特征感兴趣。例如，你可能想了解每个西班牙球队，以及它们所在的城市，他们队服的主色调是什么，以及球队去年有多少进球。这些特征也都是变量。但是，这里的统计案例不是个别球员，而是这些人所效力的球队。</p>
-<p>在一项研究中，_案例可以是许多不同的事物_。可以是个别球员和球队，也可以是公司，学校甚至是国家。</p>
+<p>在一项研究中，<em>案例可以是许多不同的事物。</em> 可以是个别球员和球队，也可以是公司，学校甚至是国家。</p>
 <p><strong>案例的每个特征都可以成为变量</strong> —— 只要它符合一个基本的标准：即是变化的</p>
 <p>这是什么意思呢？ 让我们回到示例。以球队为案例，并以团队所在的城市为变量。你关注每个西班牙球队，所以会有很多不同的城市：一支球队来自巴塞罗那，其他球队来自马德里，瓦伦西亚或塞维利亚。换句话说，城市是有变化的。</p>
+<a id="more"></a>
+
 <p>现在让我们关注另一个特征，不是城市，而是球队所在的国家。对于每一个球队而言，它们的国家都是西班牙 这些球队都是西班牙球队。这表示它们之间没有差异：没有一支球队会来自西班牙以外的其他国家。出于这个原因，这个特征不是变量，而是常量。</p>
 <p>可以想象，我们可以有许多不同类型的变量代表非常不同的特征。因为这个原因，还有一些其他原因（我之后会讨论到）区分不同的 <strong>测量级别</strong> 至关重要，</p>
 <p>最简单的测量是 <strong>定类测量</strong> 。<strong>定类变量由彼此不同的各种类别组成 变量之间没有顺序关系。</strong> 这意味着无法区别一个类别比另一个更好或更差，更多或更少。一个例子是球员的国籍，各种类别，例如西班牙，法国或墨西哥。彼此不同，但没有排名顺序；另一个例子是球员性别或球队所在城市。</p>
@@ -325,7 +274,7 @@
 <p>定距和定比变量就是我们所说的 <strong>定量变量</strong> ，因为类别由数值表示。</p>
 <p>定量变量也可以分为 <strong>离散变量</strong> 和 <strong>连续变量</strong> 。如果某类别形成一组单独的数字，则变量是离散的。例如，球员的进球数：球员可以进一球或两球，但不能是 1.21 球。如果变量值形成区间，则变量是连续的。一个例子是玩家的高度：有人可能是 170 厘米或 171 厘米高，也可能是，比如说，170.2461 厘米高。我们没有一组单独的数字，而是一个无限的数值区域。</p>
 <h2 id="区分测量级别的意义"><a href="#区分测量级别的意义" class="headerlink" title="区分测量级别的意义"></a>区分测量级别的意义</h2><p>为什么区分这些不同的测量等级如此重要。因为 <strong>我们用来分析数据的方法，取决于变量的测量水平</strong>。 </p>
-<p>然而，在实践中， <em>区别有时会变得模糊</em> 。例如，对于许多统计分析，定距和定比测量之间的差异并不重要。此外，许多统计学家认为，如果定类测量有十分类甚至更多分类，就可以定量分析这些变量。</p>
+<p>然而，在实践中， <em>区别有时会变得模糊。</em> 例如，对于许多统计分析，定距和定比测量之间的差异并不重要。此外，许多统计学家认为，如果定类测量有十分类甚至更多分类，就可以定量分析这些变量。</p>
 <p>一个例子是调查问卷，问题是从 0 到 10 之间你如何评价某个球员。在形式上，这是一个定类变量，但在实践中，你可以讨巧将其视为定量变量。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>从案例，变量和这些变量的衡量水平来考虑球员，球队和比赛，可以让你对足球有更结构化的理解。</p>
 <hr>
@@ -452,7 +401,7 @@
 <p>我们看到的不是一个完整的数据矩阵，只是其中一部分。完整的矩阵无法单屏呈现，因为它有 400 行，因为我们有 400 名球员。省略号已经明确表示只取了矩阵的一部分。</p>
 <p>来看看我们的数据矩阵是否包含异常值。嘿，其中的 24 号球员，我们看不到体重数值。目前，我们已经囊括了这些不完整的案例。但是，如果后续分析需要完整的数据矩阵，我们可能必须删除它们。</p>
 <p>所有统计分析都需要数据矩阵。但是，你通常不会向其他人提供完整的数据矩阵。原因是数据矩阵通常很大。在我们的例子中，有 400 行，并且也没有清楚地概述数据矩阵中包含的统计信息。</p>
-<p>当我们将数据矩阵中的信息呈现给其他人时，经常以表格和图形的形式进行数据摘要。想象一下，你想要概述西班牙足球比赛中关于球员头发颜色的信息。较好的方法是制作频率表。频率表显示案例中 <strong>变量数值的分布</strong> 。<em>频率表就是变量的所有可能值的列表，连同每个值的观测次数。</em></p>
+<p>当我们将数据矩阵中的信息呈现给其他人时，经常以表格和图形的形式进行数据摘要。想象一下，你想要概述西班牙足球比赛中关于球员头发颜色的信息。较好的方法是制作频率表。频率表显示案例中 <strong>变量数值的分布</strong> 。* 频率表就是变量的所有可能值的列表，连同每个值的观测次数。*</p>
 <p>这是一个基于发色变量的示例，我们可以区分四个类别 金发，棕色，黑色和其他。</p>
 <table>
 <thead>
@@ -539,7 +488,7 @@
 </tr>
 </tbody></table>
 <p>虽然这样你可能会丢失信息，但优点是可以获得更好的概述。我们说你已经 <strong>重新编码了变量</strong> 。体重变量本是定量变量，但现在变成了一个只有五个类别的定序变量。</p>
-<p>将定量变量重新编码为定序变量非常容易。但是，反过来是不可能的：你无法将定序变量重新编码为定量变量。所以，你该了解 —— <strong>数据矩阵是所有统计分析的根源</strong> 。它是数据的概述。但是，如果你想将发现呈现给他人，可以使用 <strong>数据摘要</strong> 。一个非常好的总结方法是制作 <strong>频率表</strong> 。<em>如有必要，你可以将定量变量重新编码为定序变量。</em></p>
+<p>将定量变量重新编码为定序变量非常容易。但是，反过来是不可能的：你无法将定序变量重新编码为定量变量。所以，你该了解 —— <strong>数据矩阵是所有统计分析的根源</strong> 。它是数据的概述。但是，如果你想将发现呈现给他人，可以使用 <strong>数据摘要</strong> 。一个非常好的总结方法是制作 <strong>频率表</strong> 。如有必要，你可以将定量变量重新编码为定序变量。</p>
 <hr>
 <h1 id="信息图和各种数据分布形状"><a href="#信息图和各种数据分布形状" class="headerlink" title="信息图和各种数据分布形状"></a>信息图和各种数据分布形状</h1><h2 id="定类变量"><a href="#定类变量" class="headerlink" title="定类变量"></a>定类变量</h2><p>如果想研究西班牙主要足球比赛中的球员来自哪里，下面这个频率表可能就是结果：</p>
 <table>
@@ -583,11 +532,11 @@
 </tbody></table>
 <p>可以看到 280 名球员来自欧洲， 16 名来自北美， 56 名来自南美， 32 名来自非洲， 16 名来自亚洲。</p>
 <p>我还添加了相对百分比，你可能希望通过图表展示百分比，有两种可能的方法。</p>
-<div id="echarts290" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts4913" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts290'));
+        var myChart = echarts.init(document.getElementById('echarts4913'));
         // 指定图表的配置项和数据
         var option = {
     title : {
@@ -632,11 +581,11 @@
 
 <p>这里是一个 <strong>饼图</strong> 。要概述的变量类别是通过饼图 <strong>切片</strong> 展示在饼图中，切片表示每个类别的百分比，一目了然 —— 几乎四分之三的足球运动员来自欧洲。</p>
 <p>另一种概述数据的方法是 <strong>柱状图</strong> ，它可以非常清楚地展示数据在各个变量类别上的分布。</p>
-<div id="echarts200" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts7862" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts200'));
+        var myChart = echarts.init(document.getElementById('echarts7862'));
         // 指定图表的配置项和数据
         var option = {
     xAxis: {
@@ -716,22 +665,22 @@
 </tr>
 </tbody></table>
 <p>首先，绘制一条水平线，并以规则的间隔标记可能的数值，如下所示。</p>
-<p><img src="/images/singleAxis_bubble_scatter.png" alt=""></p>
+<p><img src="/images/singleAxis_bubble_scatter.jpg" alt=""></p>
 <p>接下来，对于每次观测在水平线上的数值之上标记一个点，像就这样：</p>
-<p><img src="/images/singleAxis_bubble_scatter_2.png" alt=""></p>
+<p><img src="/images/singleAxis_bubble_scatter_2.jpg" alt=""></p>
 <p>可以想象，当只有若干观测结果时，气泡图很不错。但是，当样本巨大时，会变得混乱。 100 个球员的样本，看起来是这样的：</p>
-<p><img src="/images/singleAxis_bubble_scatter_3.png" alt=""></p>
+<p><img src="/images/singleAxis_bubble_scatter_3.jpg" alt=""></p>
 <p>如果有很多观测结果时，研究人员通常会使用另一种类型的图表：<strong>直方图</strong></p>
 <p>这就是一例：</p>
-<p><img src="/images/histogram.png" alt=""></p>
+<p><img src="/images/histogram.jpg" alt=""></p>
 <p>直方图在某种意义上类似于柱状图，它使用柱形来描绘变量可能数值的频率或相对频率。但是，有一个重要的区别： <strong>直方图中的柱点是相互接触的</strong>。</p>
 <p>该接触表示区间比率变量的数值呈现连续标度。比如，我们对西班牙足球运动员的体重感兴趣，如果测量数值非常详细，比如 83.9 或 74.5 公斤，为每一个值绘制一个单独的柱形是没有意义的。相反，我们构建 <strong>区间</strong>.</p>
-<p><img src="/images/histogram_1.png" alt=""></p>
+<p><img src="/images/histogram_1.jpg" alt=""></p>
 <p> 在此图中，有 10 个 区间，每个区间 5 公斤，第一个区间范围从 47.5 公斤到 52.5 公斤 显示 50 ，因为 50 是该区间的中间。对于创建的区间的数量，没有固定的规则。但是，重要的是区间数值必须相同，所以在此图中都是五公斤。可以一眼看出大多数球员的体重约为 75 公斤，还可以看到，重量小于 60 或大于 90 是非常罕见的。 </p>
-<p><img src="/images/histogram_3.png" alt=""></p>
+<p><img src="/images/histogram_3.jpg" alt=""></p>
 <p>如图所见，此直方图具有特定形状，它是钟形的，有一个 <strong>峰值</strong> 且两侧近似对称。你会经常遇到钟形分布，但并非所有直方图都是钟形。</p>
 <p>直方图也可以向左或向右 <strong>倾斜</strong> 。偏斜的直方图不是对称的，因为分布的一侧比另一侧延伸得更远。</p>
-<p><img src="/images/histogram_4.png" alt=""></p>
+<p><img src="/images/histogram_4.jpg" alt=""></p>
 <p>有的直方图向左倾斜，而有的直方图向右倾斜。向右倾斜的直方图变量是西班牙比赛中球员的年收入。与球员的平均收入相比，收入很少的球员不会很多。但是，也会有一些球员比大多数球员赚的多得多。因此，右尾更长。</p>
 <p>直方图也可能有两个峰值：设想两队六到八岁球员之间的足球比赛。比赛结束后，所有的孩子和父母都去食堂喝东西。</p>
 <p>你感兴趣的问题是，食堂里的人年龄如何分布。在这种情况下，年龄变量的直方图有两个峰值。毕竟，食堂里的孩子是 6 到 8 岁的孩子和他们的父母，他们最有可能在 30 到 40 岁之间。</p>
@@ -764,53 +713,24 @@
     
     
       
-
-        <div class="reward-container">
-  <div></div>
-  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
-        <p>支付宝</p>
-      </div>
-
-  </div>
-</div>
-
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>猫克杯
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/" title="极速统计教程之二 | 数据可视化">http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/商业分析/statistics-measures-of-central-tendency-and-dispersion/" rel="bookmark">极速统计教程之三 | 测量集中趋势和离散程度</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/商业分析/statistics-basic-introduction/" rel="bookmark">极速统计教程之一 | 引言</a></div>
+    </li>
+  </ul>
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%9F%E8%AE%A1/" rel="tag"># 统计</a>
+              <a href="/tags/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" rel="tag"># 商业分析</a>
+          </div>
 
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  </div>
 
 
         
@@ -819,7 +739,10 @@
     <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/" rel="prev" title="极速统计教程之一 | 引言">
       <i class="fa fa-chevron-left"></i> 极速统计教程之一 | 引言
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/" rel="next" title="极速统计教程之三 | 测量集中趋势和离散程度">
+      极速统计教程之三 | 测量集中趋势和离散程度 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -885,8 +808,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="猫克杯"
-      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">猫克杯</p>
   <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
 </div>
@@ -895,46 +816,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
-      </span>
-  </div>
   <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
       </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
 
     </div>
   </aside>
@@ -953,42 +857,27 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">猫克杯</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">70k</span>
+    <span title="站点总字数">72k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:04</span>
+    <span title="站点阅读时长">1:06</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
 
 
 
@@ -1002,7 +891,6 @@
   </div>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -1017,52 +905,26 @@
 
 <script src="/js/next-boot.js"></script>
 
-<script src="/js/bookmark.js"></script>
 
-
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: ,
-      el: 'wpac-rating',
-      color: 'f79533'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
+
+
+
+
+
+
+
+
+
+
+
 
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
 
   
 

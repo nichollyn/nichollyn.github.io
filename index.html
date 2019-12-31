@@ -14,8 +14,6 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -26,10 +24,10 @@
     scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -42,7 +40,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -147,65 +145,17 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-top">
-
-    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
   </ul>
 
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
 </div>
     </header>
 
     
-  <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
   <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
@@ -223,10 +173,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -237,7 +187,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/uncategorized/statistics-descriptive-statistics/" class="post-title-link" itemprop="url">极速统计教程之二 | 数据可视化</a>
+            <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/" class="post-title-link" itemprop="url">极速统计教程之三 | 测量集中趋势和离散程度</a>
         </h1>
 
         <div class="post-meta">
@@ -248,31 +198,36 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-12-31 09:34:47" itemprop="dateCreated datePublished" datetime="2019-12-31T09:34:47+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 15:28:52 / 修改时间：16:45:10" itemprop="dateCreated datePublished" datetime="2019-12-31T15:28:52+08:00">2019-12-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
+                    <span itemprop="name">商业分析</span>
+                  </a>
+                </span>
             </span>
 
-          
-            <span id="/uncategorized/statistics-descriptive-statistics/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之二 | 数据可视化" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
+          <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.6k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -284,294 +239,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>当我们向他人呈现数据时，通常需要将数据 “<strong>总结</strong>” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。</p>
-</blockquote>
-<h1 id="统计案例、变量和测量级别"><a href="#统计案例、变量和测量级别" class="headerlink" title="统计案例、变量和测量级别"></a>统计案例、变量和测量级别</h1><blockquote>
-<p>如果你对足球非常感兴趣，你想知道所有细节：比如某个球员有多少进球，某个球队赢了多少场比赛或者在某场足球比赛中有多少次点球。统计学知识，将帮助你成为足球或任何其他运动的真正专家。</p>
-</blockquote>
-<p>进球得分，赢得比赛，判罚点球，这些都可以被看作 <strong>变量</strong> 和 <strong>统计案例</strong> 。</p>
-<blockquote>
-<p><strong>变量</strong> 是事件或者人物的特征， <strong>统计案例</strong> 就是那个事或那个人。</p>
-</blockquote>
-<p>来讲得更具体一点。想象一下，你最喜欢的球队，你对足员的某些特征感兴趣：你想知道他 / 她的体重，头发颜色，年龄以及在最近的比赛中得分的总数。所有这些球员的特征都是变量，球员本身就是统计案例。</p>
-<p>另一个例子，可能你对个别球员的特征不是那么感兴趣，而对他们所效力的球队特征感兴趣。例如，你可能想了解每个西班牙球队，以及它们所在的城市，他们队服的主色调是什么，以及球队去年有多少进球。这些特征也都是变量。但是，这里的统计案例不是个别球员，而是这些人所效力的球队。</p>
-<p>在一项研究中，_案例可以是许多不同的事物_。可以是个别球员和球队，也可以是公司，学校甚至是国家。</p>
-<p><strong>案例的每个特征都可以成为变量</strong> —— 只要它符合一个基本的标准：即是变化的</p>
-<p>这是什么意思呢？ 让我们回到示例。以球队为案例，并以团队所在的城市为变量。你关注每个西班牙球队，所以会有很多不同的城市：一支球队来自巴塞罗那，其他球队来自马德里，瓦伦西亚或塞维利亚。换句话说，城市是有变化的。</p>
-<p>现在让我们关注另一个特征，不是城市，而是球队所在的国家。对于每一个球队而言，它们的国家都是西班牙 这些球队都是西班牙球队。这表示它们之间没有差异：没有一支球队会来自西班牙以外的其他国家。出于这个原因，这个特征不是变量，而是常量。</p>
-<p>可以想象，我们可以有许多不同类型的变量代表非常不同的特征。因为这个原因，还有一些其他原因（我之后会讨论到）区分不同的 <strong>测量级别</strong> 至关重要，</p>
-<p>最简单的测量是 <strong>定类测量</strong> 。<strong>定类变量由彼此不同的各种类别组成 变量之间没有顺序关系。</strong> 这意味着无法区别一个类别比另一个更好或更差，更多或更少。一个例子是球员的国籍，各种类别，例如西班牙，法国或墨西哥。彼此不同，但没有排名顺序；另一个例子是球员性别或球队所在城市。</p>
-<p>第二级测量是 <strong>定序测量</strong>：<strong>变量的类别之间不仅存在差异，还存在顺序</strong> 。例如球赛的排名：可知谁是冠军，谁是第二，第三，等等。但是，通过查看排名，你不可能知道类别之间的差异大小 例如，你不知道第一名比第二名好多少。</p>
-<p><em>定类和定序测量都可以称为分类变量。</em></p>
-<p>下一级测量是 <strong>定距测量</strong>。在定距变量中：<strong>我们有不同的类别和顺序，类别之间也有相似的区间</strong>。 一个例子是球员的年龄。我们可以说，18 岁的球员与 16 岁的球员，年龄不同。另外，我们可以说这个球员年纪大些。就年龄而言，我们也可以说：18 岁球员和 16 岁球员之间的年龄差异，类似于 14 岁球员和 12 岁球员之间的年龄差异。</p>
-<p>最高级的测量是 <strong>定比测量</strong> 。它类似于定序测量，但另外还有一个有意义的零点。例如球员的身高，以厘米为单位。它们在类别上存在差异，有一定的顺序，有相似的间隔，也有一个有意义的零点。身高为 0 厘米意味着没有高度。请注意，我们不能说年龄有一个有意义的零点：因为零岁并不意味着没有年龄，因此年龄是定距变量。</p>
-<p>定距和定比变量就是我们所说的 <strong>定量变量</strong> ，因为类别由数值表示。</p>
-<p>定量变量也可以分为 <strong>离散变量</strong> 和 <strong>连续变量</strong> 。如果某类别形成一组单独的数字，则变量是离散的。例如，球员的进球数：球员可以进一球或两球，但不能是 1.21 球。如果变量值形成区间，则变量是连续的。一个例子是玩家的高度：有人可能是 170 厘米或 171 厘米高，也可能是，比如说，170.2461 厘米高。我们没有一组单独的数字，而是一个无限的数值区域。</p>
-<h2 id="区分测量级别的意义"><a href="#区分测量级别的意义" class="headerlink" title="区分测量级别的意义"></a>区分测量级别的意义</h2><p>为什么区分这些不同的测量等级如此重要。因为 <strong>我们用来分析数据的方法，取决于变量的测量水平</strong>。 </p>
-<p>然而，在实践中， <em>区别有时会变得模糊</em> 。例如，对于许多统计分析，定距和定比测量之间的差异并不重要。此外，许多统计学家认为，如果定类测量有十分类甚至更多分类，就可以定量分析这些变量。</p>
-<p>一个例子是调查问卷，问题是从 0 到 10 之间你如何评价某个球员。在形式上，这是一个定类变量，但在实践中，你可以讨巧将其视为定量变量。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>从案例，变量和这些变量的衡量水平来考虑球员，球队和比赛，可以让你对足球有更结构化的理解。</p>
-<hr>
-<h1 id="数据矩阵"><a href="#数据矩阵" class="headerlink" title="数据矩阵"></a>数据矩阵</h1><p>我们已经知道实施一项研究，可以根据案例和变量来考虑。接下来，我将讨论如何排布和展示你的案例和变量。</p>
-<p>想象一下，你对西班牙顶级球赛 “西班牙甲级联赛” 感兴趣。你感兴趣的案例是联赛的个体球员，你关注的变量是年龄，体重，进球数量，会籍和头发颜色。</p>
-<p>排布所有这些信息的最佳方式是通过 <strong>数据矩阵</strong> 。数据矩阵是所有统计研究的核心要素：它是所有案例和变量的概述。 <strong>案例显示在行中</strong> ，它的范围从 1 号球员一直到 400 号球员。</p>
-<table>
-<thead>
-<tr>
-<th>球员</th>
-<th>年龄</th>
-<th>体重</th>
-<th>进球数</th>
-<th>会籍</th>
-<th>头发颜色</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>球员 1</td>
-<td>18</td>
-<td>72.6</td>
-<td>0</td>
-<td>Real Zaragoza</td>
-<td>金发</td>
-</tr>
-<tr>
-<td>球员 2</td>
-<td>21</td>
-<td>71.4</td>
-<td>0</td>
-<td>Real Betis</td>
-<td>黑发</td>
-</tr>
-<tr>
-<td>球员 3</td>
-<td>26</td>
-<td>74.8</td>
-<td>8</td>
-<td>Sevilla</td>
-<td>黑发</td>
-</tr>
-<tr>
-<td>球员 4</td>
-<td>22</td>
-<td>76.8</td>
-<td>12</td>
-<td>Barcelona</td>
-<td>黑发</td>
-</tr>
-<tr>
-<td>球员 5</td>
-<td>22</td>
-<td>74.1</td>
-<td>17</td>
-<td>Valencia</td>
-<td>其他</td>
-</tr>
-<tr>
-<td>球员 6</td>
-<td>27</td>
-<td>78.9</td>
-<td>3</td>
-<td>Real Sociedad</td>
-<td>其他</td>
-</tr>
-<tr>
-<td>球员 7</td>
-<td>30</td>
-<td>80.3</td>
-<td>2</td>
-<td>Real Madrid</td>
-<td>金发</td>
-</tr>
-<tr>
-<td>球员 8</td>
-<td>24</td>
-<td>73.3</td>
-<td>1</td>
-<td>Athletic Bilbao</td>
-<td>褐发</td>
-</tr>
-<tr>
-<td>球员 9</td>
-<td>23</td>
-<td>76.9</td>
-<td>5</td>
-<td>Valencia</td>
-<td>褐发</td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>球员 24</td>
-<td>26</td>
-<td>.</td>
-<td>0</td>
-<td>Malaga</td>
-<td>黑发</td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>球员 400</td>
-<td>26</td>
-<td>77.2</td>
-<td>0</td>
-<td>Atheletic Madrid</td>
-<td>其他</td>
-</tr>
-</tbody></table>
-<p>这里没有显示名字，这意味着这里的名称是匿名的。 <strong>变量显示在列中</strong> 。我们有五个变量：年龄，体重 进球数，会籍和头发颜色。表格单元格中显示的值通常称为 <strong>观测值</strong> 。这里 80.3 表示 7 号球员的体重是 80.3 公斤，这里的八分表示三号球员已经进了八球。</p>
-<p>我们看到的不是一个完整的数据矩阵，只是其中一部分。完整的矩阵无法单屏呈现，因为它有 400 行，因为我们有 400 名球员。省略号已经明确表示只取了矩阵的一部分。</p>
-<p>来看看我们的数据矩阵是否包含异常值。嘿，其中的 24 号球员，我们看不到体重数值。目前，我们已经囊括了这些不完整的案例。但是，如果后续分析需要完整的数据矩阵，我们可能必须删除它们。</p>
-<p>所有统计分析都需要数据矩阵。但是，你通常不会向其他人提供完整的数据矩阵。原因是数据矩阵通常很大。在我们的例子中，有 400 行，并且也没有清楚地概述数据矩阵中包含的统计信息。</p>
-<p>当我们将数据矩阵中的信息呈现给其他人时，经常以表格和图形的形式进行数据摘要。想象一下，你想要概述西班牙足球比赛中关于球员头发颜色的信息。较好的方法是制作频率表。频率表显示案例中 <strong>变量数值的分布</strong> 。<em>频率表就是变量的所有可能值的列表，连同每个值的观测次数。</em></p>
-<p>这是一个基于发色变量的示例，我们可以区分四个类别 金发，棕色，黑色和其他。</p>
-<table>
-<thead>
-<tr>
-<th>发色</th>
-<th>频率</th>
-<th>百分比</th>
-<th>累积百分比</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>金色</td>
-<td>76</td>
-<td>19</td>
-<td>19</td>
-</tr>
-<tr>
-<td>褐色</td>
-<td>134</td>
-<td>33.5</td>
-<td>52.5</td>
-</tr>
-<tr>
-<td>黑色</td>
-<td>160</td>
-<td>40</td>
-<td>92.5</td>
-</tr>
-<tr>
-<td>其他</td>
-<td>30</td>
-<td>7.5</td>
-<td>100</td>
-</tr>
-<tr>
-<td>总计</td>
-<td>400</td>
-<td>100</td>
-<td></td>
-</tr>
-</tbody></table>
-<p>可以看到 76 名球员是金发， 160 名球员是黑发。注意，这些值相加是 400，所以没遗漏任何头发颜色的数据。</p>
-<p>我们还可以通过百分比表示相对频率。在第二列中，可以看到百分比。可以一眼看出 7.5％ 球员是其他发色， 19％ 的球员是金发。将 76 除以 400 再乘以 100 得到 19 。</p>
-<p>有时，研究人员使用累积百分比。这也很容易计算，累积百分比就是每个类别的百分比之和。所以可以看到 19 加 33.5 等于 52.5 金发和棕色头发占比 52.5 。</p>
-<p>在这个例子中，我们讨论了一个分类变量，头发颜色。如果处理定量变量怎么办？以体重为例，计算每个特定个体的体重百分比是没有意义的。因为那样我们最终会得到无数的类别 —— 频率表将显示：比如两个人的体重为 65.3 公斤，一个人体重 65.4 公斤，等等。这几乎没比原始数据矩阵提供额外的有用信息。</p>
-<p>研究人员通常会建立新的 <strong>顺序分类</strong> 来解决这类问题。可以做成，例如，第一类包含那些小于 60 公斤的球员；第二类，体重在 60 到 69.9 公斤之间的；下一类，介于 70 和 79.9 之间的；接着介于 80 和 89.9 之间的；最后一类， 90 公斤及以上。像下面这样：</p>
-<table>
-<thead>
-<tr>
-<th>体重</th>
-<th>频率</th>
-<th>百分比</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&lt; 60</td>
-<td>8</td>
-<td>2</td>
-</tr>
-<tr>
-<td>60-69.9</td>
-<td>69</td>
-<td>17.25</td>
-</tr>
-<tr>
-<td>70-29.9</td>
-<td>273</td>
-<td>68.25</td>
-</tr>
-<tr>
-<td>80-89.9</td>
-<td>45</td>
-<td>11.25</td>
-</tr>
-<tr>
-<td>&gt;= 90</td>
-<td>5</td>
-<td>1.25</td>
-</tr>
-<tr>
-<td>总计</td>
-<td>400</td>
-<td>100</td>
-</tr>
-</tbody></table>
-<p>虽然这样你可能会丢失信息，但优点是可以获得更好的概述。我们说你已经 <strong>重新编码了变量</strong> 。体重变量本是定量变量，但现在变成了一个只有五个类别的定序变量。</p>
-<p>将定量变量重新编码为定序变量非常容易。但是，反过来是不可能的：你无法将定序变量重新编码为定量变量。所以，你该了解 —— <strong>数据矩阵是所有统计分析的根源</strong> 。它是数据的概述。但是，如果你想将发现呈现给他人，可以使用 <strong>数据摘要</strong> 。一个非常好的总结方法是制作 <strong>频率表</strong> 。<em>如有必要，你可以将定量变量重新编码为定序变量。</em></p>
-<hr>
-<h1 id="信息图和各种数据分布形状"><a href="#信息图和各种数据分布形状" class="headerlink" title="信息图和各种数据分布形状"></a>信息图和各种数据分布形状</h1><h2 id="定类变量"><a href="#定类变量" class="headerlink" title="定类变量"></a>定类变量</h2><p>如果想研究西班牙主要足球比赛中的球员来自哪里，下面这个频率表可能就是结果：</p>
-<table>
-<thead>
-<tr>
-<th>国籍</th>
-<th>频率</th>
-<th>百分比</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>欧洲</td>
-<td>280</td>
-<td>70</td>
-</tr>
-<tr>
-<td>北美</td>
-<td>16</td>
-<td>4</td>
-</tr>
-<tr>
-<td>南美</td>
-<td>56</td>
-<td>14</td>
-</tr>
-<tr>
-<td>非洲</td>
-<td>32</td>
-<td>8</td>
-</tr>
-<tr>
-<td>亚洲</td>
-<td>16</td>
-<td>4</td>
-</tr>
-<tr>
-<td>总计</td>
-<td>400</td>
-<td>100</td>
-</tr>
-</tbody></table>
-<p>可以看到 280 名球员来自欧洲， 16 名来自北美， 56 名来自南美， 32 名来自非洲， 16 名来自亚洲。</p>
-<p>我还添加了相对百分比，你可能希望通过图表展示百分比，有两种可能的方法。</p>
-<div id="echarts290" style="width: 85%;height: 400px;margin: 0 auto"></div>
+          <h1 id="众数、中位数和平均数"><a href="#众数、中位数和平均数" class="headerlink" title="众数、中位数和平均数"></a>众数、中位数和平均数</h1><p>在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：<strong>众数</strong> (mode) ，<strong>中位数</strong> (median) 和 <strong>平均数</strong> (mean) 。</p>
+<p>这三个 m 通常被称为集中趋势的度量。</p>
+<p>找到众数很容易，<strong>它是出现频次最高的值。</strong> 换句话说，就是最常见的结果。</p>
+<p>如果测量定类或定序变量，<em>众数通常用作衡量集中趋势。</em></p>
+<p>在下面这个饼图中，可以看到西班牙主要球赛中球员来自哪些大洲。</p>
+<div id="echarts7415" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts290'));
+        var myChart = echarts.init(document.getElementById('echarts7415'));
         // 指定图表的配置项和数据
         var option = {
     title : {
@@ -614,115 +291,34 @@
         myChart.setOption(option);
 </script>
 
-<p>这里是一个 <strong>饼图</strong> 。要概述的变量类别是通过饼图 <strong>切片</strong> 展示在饼图中，切片表示每个类别的百分比，一目了然 —— 几乎四分之三的足球运动员来自欧洲。</p>
-<p>另一种概述数据的方法是 <strong>柱状图</strong> ，它可以非常清楚地展示数据在各个变量类别上的分布。</p>
-<div id="echarts200" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
-<script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts200'));
-        // 指定图表的配置项和数据
-        var option = {
-    xAxis: {
-        type: 'category',
-        data: [' 欧洲 ', ' 北美 ', ' 南美 ', ' 非洲 ', ' 亚洲 ']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [{
-        label: {
-            normal: {
-                show: true,
-                position: 'insideTop'
-            }
-        },
-        data: [280, 16, 56, 32, 16],
-        type: 'bar'
-    }]
-}
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-</script>
-
-<p>柱形的高度代表每个类别观测值的百分比。</p>
-<h2 id="饼图和柱状图的优劣"><a href="#饼图和柱状图的优劣" class="headerlink" title="饼图和柱状图的优劣"></a>饼图和柱状图的优劣</h2><p>两种图表都各有优，缺点。饼图的一个优点是，可以立即看出大约 75％ 的球员来自欧洲，不进行点计算就无法轻松地从柱状图中辨别出这些信息。但是，另一方面，从饼图中不容易检索每个类别的确切球员数量。例如，在柱状图中，可以轻松地看到有 50 多名球员来自南美洲。</p>
-<p><strong>如果变量的类别数量增加，柱图优于饼图。</strong> 例如，想象一下，不是球员所在大洲，而是他们出生的某个具体国家。图呈现的效果将非常非常混乱。出于美学原因，你可能会在饼图中使用不同颜色，但所有这些信息使饼图不易于理解。在这种情况下，柱状图会更合理。柱状图也会包含大量信息。但它会比花里胡哨的饼图更容易理解。</p>
-<h2 id="定量变量"><a href="#定量变量" class="headerlink" title="定量变量"></a>定量变量</h2><p>前面讲了定类变量，那么定量变量又要怎么处理呢？</p>
-<p>一种可能性是 <strong>气泡图</strong> 。这个想法很简单，想象一下有 10 个球员身高信息，用厘米表示。</p>
-<p>下面是数据矩阵。</p>
-<table>
-<thead>
-<tr>
-<th>球员</th>
-<th>身高</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>球员 1</td>
-<td>176</td>
-</tr>
-<tr>
-<td>球员 2</td>
-<td>180</td>
-</tr>
-<tr>
-<td>球员 3</td>
-<td>165</td>
-</tr>
-<tr>
-<td>球员 4</td>
-<td>177</td>
-</tr>
-<tr>
-<td>球员 5</td>
-<td>167</td>
-</tr>
-<tr>
-<td>球员 6</td>
-<td>170</td>
-</tr>
-<tr>
-<td>球员 7</td>
-<td>175</td>
-</tr>
-<tr>
-<td>球员 8</td>
-<td>178</td>
-</tr>
-<tr>
-<td>球员 9</td>
-<td>174</td>
-</tr>
-<tr>
-<td>球员 10</td>
-<td>172</td>
-</tr>
-</tbody></table>
-<p>首先，绘制一条水平线，并以规则的间隔标记可能的数值，如下所示。</p>
-<p><img src="/images/singleAxis_bubble_scatter.png" alt=""></p>
-<p>接下来，对于每次观测在水平线上的数值之上标记一个点，像就这样：</p>
-<p><img src="/images/singleAxis_bubble_scatter_2.png" alt=""></p>
-<p>可以想象，当只有若干观测结果时，气泡图很不错。但是，当样本巨大时，会变得混乱。 100 个球员的样本，看起来是这样的：</p>
-<p><img src="/images/singleAxis_bubble_scatter_3.png" alt=""></p>
-<p>如果有很多观测结果时，研究人员通常会使用另一种类型的图表：<strong>直方图</strong></p>
-<p>这就是一例：</p>
-<p><img src="/images/histogram.png" alt=""></p>
-<p>直方图在某种意义上类似于柱状图，它使用柱形来描绘变量可能数值的频率或相对频率。但是，有一个重要的区别： <strong>直方图中的柱点是相互接触的</strong>。</p>
-<p>该接触表示区间比率变量的数值呈现连续标度。比如，我们对西班牙足球运动员的体重感兴趣，如果测量数值非常详细，比如 83.9 或 74.5 公斤，为每一个值绘制一个单独的柱形是没有意义的。相反，我们构建 <strong>区间</strong>.</p>
-<p><img src="/images/histogram_1.png" alt=""></p>
-<p> 在此图中，有 10 个 区间，每个区间 5 公斤，第一个区间范围从 47.5 公斤到 52.5 公斤 显示 50 ，因为 50 是该区间的中间。对于创建的区间的数量，没有固定的规则。但是，重要的是区间数值必须相同，所以在此图中都是五公斤。可以一眼看出大多数球员的体重约为 75 公斤，还可以看到，重量小于 60 或大于 90 是非常罕见的。 </p>
-<p><img src="/images/histogram_3.png" alt=""></p>
-<p>如图所见，此直方图具有特定形状，它是钟形的，有一个 <strong>峰值</strong> 且两侧近似对称。你会经常遇到钟形分布，但并非所有直方图都是钟形。</p>
-<p>直方图也可以向左或向右 <strong>倾斜</strong> 。偏斜的直方图不是对称的，因为分布的一侧比另一侧延伸得更远。</p>
-<p><img src="/images/histogram_4.png" alt=""></p>
-<p>有的直方图向左倾斜，而有的直方图向右倾斜。向右倾斜的直方图变量是西班牙比赛中球员的年收入。与球员的平均收入相比，收入很少的球员不会很多。但是，也会有一些球员比大多数球员赚的多得多。因此，右尾更长。</p>
-<p>直方图也可能有两个峰值：设想两队六到八岁球员之间的足球比赛。比赛结束后，所有的孩子和父母都去食堂喝东西。</p>
-<p>你感兴趣的问题是，食堂里的人年龄如何分布。在这种情况下，年龄变量的直方图有两个峰值。毕竟，食堂里的孩子是 6 到 8 岁的孩子和他们的父母，他们最有可能在 30 到 40 岁之间。</p>
-<p>因此，可能在 7 岁左右达到峰值，在 35 岁左右再达到峰值。我们说这个变量是双峰而不是单峰。</p>
-<hr>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇教程最重要的一个内容是：通过图表概述数据是一个好主意。<strong>如果处理定类或定序变量，你应该制作饼图或柱图。如果变量是定距或者定比变量，则应绘制直方图。</strong> 永远不要忘记查看变量的形状，它是钟形且对称的吗？它是单峰，还是双峰？分布是否倾斜？ <strong>评估分布的形状至关重要</strong>， 因为它可能影响你之后使用的统计方法。</p>
-<hr>
+<p>饼图使众数一目了然，是欧洲 70％ 的球员来自欧洲</p>
+<p><strong><em>这里的众数是欧洲</em></strong> ，是最常出现的类别的名称，但众数不是 70％ 。这只是该特定类别的观测百分比。可能有多个众数。试想有一个足球运动员，拥有十分分裂的球迷，其中一些觉得他非常和善，而另一些则认为他非常蛮横。来给这个球员起个名，Franco Galton。</p>
+<p>试想你选取西班牙 500 名受访者作为代表样本，询问他们对 Franco Galton 的看法，受访者可以在 0 到 10 的范围内表明他们认为他的和善程度。 0 表示非常蛮横， 10 表示非常和善。</p>
+<p><img src="/images/two_mode.jpg" alt=""></p>
+<p>假设这是本研究得出的直方图形状，可以看到西班牙人分歧很大，有些人觉得 Galton 非常和善，有些人觉得他非常蛮横。正如所见，分布有 两个众数，即 3 和 8 这显然是双众数分布。</p>
+<p>集中趋势的第二个衡量指标是中位数：<strong>观测值从最小到最大排序时，中位数就是观测值的中间值。</strong></p>
+<p>试想你还问了七位受访者，对另一著名球员 Tomas Bayez 的看法。假设这是他的研究数据矩阵，这里的众数是 8 ，是频次最高的值。</p>
+<p><img src="/images/median.jpg" alt=""></p>
+<p>要计算中位数，首先必须将所有数值从低到高排序，然后选择中间值。所以这里的中位数是 8 。如果案例是偶数而非奇数，那就稍微复杂点了。试想受访者是 8 人，他们对 Tomas Bayez 的看法。</p>
+<p><img src="/images/median_2.jpg" alt=""></p>
+<p>数值是从低到高排列的。但是，在这种情况下，没有单个中间值。该如何解决这个问题呢？我们取两个中间数值的平均值 7 和 8 相加除以 2 等于 7.5 。因此，中位数是 7.5 。请注意，中位数将分布分为两个相等的部分。 50％ 的值低于中位数， 50％ 的值高于中位数。</p>
+<p>集中趋势的第三个衡量指标，是最常用的一个，也可能是你已经非常熟悉的，就是平均数。</p>
+<p><strong>平均数是所有观测值之和除以观测个数</strong>。</p>
+<p>$$ \bar x = \frac {\sum {x}}{n} $$</p>
+<p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
+<p>举个例子，借用 Tomas Bayez 的研究。公式告诉我们首先求总和， 6 加 7 ，加 7 ，加 8 ，加 8 ，加 8 ，加 9 ，等于 53 ，现在再除以 n 。样本量是 7 ，因此 53 除以 7 等于 7.6 平均数是 7.6 。</p>
+<p><img src="/images/mean.jpg" alt=""></p>
+<p>可以将平均数视为数据的平衡点。试想我们将重量平衡放置，那么平均数就是天平中心点。其中一侧的总重量恰好等于另一侧。</p>
+<p><img src="/images/mean_2.jpg" alt=""></p>
+<p>现在大家已经熟悉了这三个 m 。可以通过各种方式轻松计算一组数字的中间值，但报告时，该使用哪种中心趋势呢？</p>
+<p><strong>这部分取决于变量的测量级别。</strong> 如果是定类测量，则无法计算中位数或平均数，因为我们无法对定类变量进行数值运算，也不能对它们进行排序。<strong>当变量是定类变量时 唯一适合的集中趋势度量是众数。</strong></p>
+<p>如果是定量变量该怎么办呢？</p>
+<p>试想你在家乡足球俱乐部的一个食堂里，你想计算所有在场人士的平均收入和中位收入，包括你自己，其他 5 位客人和吧员。</p>
+<p><img src="/images/mean_and_median.jpg" alt=""></p>
+<p>这是数据矩阵，平均数约为 35,000 ，中位数恰好是 35,000 ， 它们彼此非常接近。使用哪一个来描述分布中心都无所谓。但现在，著名足球运动员 Franco Galton 走进食堂，比如他每年收入大约 7000 万 ，这时中位数略微增加到 36,000 ，然而，平均数却超过 800 万。</p>
+<p><img src="/images/mean_and_median_2.jpg" alt=""></p>
+<p>我们说 Franco Galton 是这个分布的异常值。他的收入远高于其他所有人，他的收入对平均收入产生不成比例的影响。在这种情况下，计算中位数描述分布中心比平均数更合理。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>描述分布中心可以使用三种方法：众数，中位数和平均数。如果变量是定类的，则使用众数；如果是定量的，则使用中位数或平均数 —— 如果有异常值或分布高度偏离，使用中位数。如果不是，那就使用平均数。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -760,10 +356,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/" class="post-title-link" itemprop="url">极速统计教程之二 | 数据可视化</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-31 09:34:47 / 修改时间：16:07:59" itemprop="dateCreated datePublished" datetime="2019-12-31T09:34:47+08:00">2019-12-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
+                    <span itemprop="name">商业分析</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>当我们向他人呈现数据时，通常需要将数据 “<strong>总结</strong>” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。</p>
+</blockquote>
+<h1 id="统计案例、变量和测量级别"><a href="#统计案例、变量和测量级别" class="headerlink" title="统计案例、变量和测量级别"></a>统计案例、变量和测量级别</h1><blockquote>
+<p>如果你对足球非常感兴趣，你想知道所有细节：比如某个球员有多少进球，某个球队赢了多少场比赛或者在某场足球比赛中有多少次点球。统计学知识，将帮助你成为足球或任何其他运动的真正专家。</p>
+</blockquote>
+<p>进球得分，赢得比赛，判罚点球，这些都可以被看作 <strong>变量</strong> 和 <strong>统计案例</strong> 。</p>
+<blockquote>
+<p><strong>变量</strong> 是事件或者人物的特征， <strong>统计案例</strong> 就是那个事或那个人。</p>
+</blockquote>
+<p>来讲得更具体一点。想象一下，你最喜欢的球队，你对足员的某些特征感兴趣：你想知道他 / 她的体重，头发颜色，年龄以及在最近的比赛中得分的总数。所有这些球员的特征都是变量，球员本身就是统计案例。</p>
+<p>另一个例子，可能你对个别球员的特征不是那么感兴趣，而对他们所效力的球队特征感兴趣。例如，你可能想了解每个西班牙球队，以及它们所在的城市，他们队服的主色调是什么，以及球队去年有多少进球。这些特征也都是变量。但是，这里的统计案例不是个别球员，而是这些人所效力的球队。</p>
+<p>在一项研究中，<em>案例可以是许多不同的事物。</em> 可以是个别球员和球队，也可以是公司，学校甚至是国家。</p>
+<p><strong>案例的每个特征都可以成为变量</strong> —— 只要它符合一个基本的标准：即是变化的</p>
+<p>这是什么意思呢？ 让我们回到示例。以球队为案例，并以团队所在的城市为变量。你关注每个西班牙球队，所以会有很多不同的城市：一支球队来自巴塞罗那，其他球队来自马德里，瓦伦西亚或塞维利亚。换句话说，城市是有变化的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -785,8 +488,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-12-31 08:55:24" itemprop="dateCreated datePublished" datetime="2019-12-31T08:55:24+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 08:55:24 / 修改时间：09:32:12" itemprop="dateCreated datePublished" datetime="2019-12-31T08:55:24+08:00">2019-12-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -800,14 +504,7 @@
                 </span>
             </span>
 
-          
-            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之一 | 引言" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
+          <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -882,7 +579,7 @@
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -907,6 +604,13 @@
 
               <time title="创建时间：2019-12-28 20:59:40" itemprop="dateCreated datePublished" datetime="2019-12-28T20:59:40+08:00">2019-12-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-31 16:07:33" itemprop="dateModified" datetime="2019-12-31T16:07:33+08:00">2019-12-31</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -919,14 +623,7 @@
                 </span>
             </span>
 
-          
-            <span id="/programming/break-down-complexity-with-pipelines/" class="post-meta-item leancloud_visitors" data-flag-title="用 “流水线” 设计拆解复杂处理流程" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
+          <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -997,7 +694,7 @@
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -1019,8 +716,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-12-28 20:42:32" itemprop="dateCreated datePublished" datetime="2019-12-28T20:42:32+08:00">2019-12-28</time>
+              <time title="创建时间：2019-12-28 20:42:32 / 修改时间：20:55:28" itemprop="dateCreated datePublished" datetime="2019-12-28T20:42:32+08:00">2019-12-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1034,14 +732,7 @@
                 </span>
             </span>
 
-          
-            <span id="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/" class="post-meta-item leancloud_visitors" data-flag-title="关于花费时间的四宗罪" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
+          <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -1083,108 +774,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/uncategorized/csta-k12-standards/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/uncategorized/csta-k12-standards/" class="post-title-link" itemprop="url">计算机科学教师协会 - K12 - 标准</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-28 16:01:41" itemprop="dateCreated datePublished" datetime="2019-12-28T16:01:41+08:00">2019-12-28</time>
-            </span>
-
-          
-            <span id="/uncategorized/csta-k12-standards/" class="post-meta-item leancloud_visitors" data-flag-title="计算机科学教师协会 - K12 - 标准" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>About the CSTA K-12 Computer Science Standards<br>关于 CSTA K-12 计算机科学标准</p>
-<p>Computer science and the technologies it enables rest at the heart of our economy and the way we live our lives. To be well-educate citizens in a computing-intensive world and to be prepared for careers in the 21st century, our students must have a clear understanding of the principles and practices of computer science. The CSTA K–12 Computer Science Standards delineate a core set of learning objectives designed to provide the foundation for a complete computer science curriculum and its implementation at the K–12 level. To this end, the CSTA Standards:</p>
-<p>计算机科学及其支持的技术是我们经济的核心，也是我们生活的方式。为了对计算机密集型世界中的公民进行良好的教育并为 21 世纪的职业做好准备，我们的学生必须对计算机科学的原理和实践有清晰的了解。 CSTA K-12 计算机科学标准描述了一组核心学习目标，旨在为完整的计算机科学课程及其在 K-12 级别的实施提供基础。为此，CSTA 标准：</p>
-<p>・Introduce the fundamental concepts of computer science to all students, beginning at the elementary school level.<br>・Present computer science at the secondary school level in a way that can fulfill a computer science, math, or science graduation credit.<br>・Encourage schools to offer additional secondary-level computer science courses that will allow interested students to study facets of computer science in more depth and prepare them for entry into the work force or college.<br>・Increase the availability of rigorous computer science for all students, especially those who are members of underrepresented groups.<br>The standards have been written by educators to be coherent and comprehensible to teachers, administrators, and policy makers.<br>Levels 1A, 1B, 2, and 3A are the computer science standards for ALL students. The Level 3B standards are intended for students who wish to pursue the study of computer science in high school beyond what is required for all students (specialty or elective courses).</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
       
     </div>
 
@@ -1261,8 +850,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="猫克杯"
-      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">猫克杯</p>
   <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
 </div>
@@ -1271,46 +858,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
         <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
         <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
-      </span>
-  </div>
   <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
       </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
 
     </div>
   </aside>
@@ -1329,42 +899,27 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">猫克杯</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">70k</span>
+    <span title="站点总字数">72k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:04</span>
+    <span title="站点阅读时长">1:06</span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
 
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
 
 
 
@@ -1378,7 +933,6 @@
   </div>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -1393,54 +947,76 @@
 
 <script src="/js/next-boot.js"></script>
 
-<script src="/js/bookmark.js"></script>
 
-
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: ,
-      el: 'wpac-rating',
-      color: 'f79533'
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
     });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
+  });
 
-  
-<script src="/js/local-search.js"></script>
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
+    
 
   
 

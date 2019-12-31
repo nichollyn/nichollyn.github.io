@@ -48,32 +48,34 @@
   };
 </script>
 
-  <meta name="description" content="Stay hungry, stay foolish.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Infinite Game">
-<meta property="og:url" content="http://nichollyn.github.io/index.html">
+  <meta name="description" content="当我们向他人呈现数据时，通常需要将数据 “总结” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。  统计案例、变量和测量级别 如果你对足球非常感兴趣，你想知道所有细节：比如某个球员有多少进球，某个球队赢了多少场比赛或者在某场足球比赛中有多少次点球。统计学知识，将帮助你成为足球或任何其他运动的真正专家。  进球得分，赢得比赛，判罚点球，这些都可以被看作 变量 和 统计案例 。  变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极速统计教程之二 | 数据可视化">
+<meta property="og:url" content="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="Stay hungry, stay foolish.">
+<meta property="og:description" content="当我们向他人呈现数据时，通常需要将数据 “总结” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。  统计案例、变量和测量级别 如果你对足球非常感兴趣，你想知道所有细节：比如某个球员有多少进球，某个球队赢了多少场比赛或者在某场足球比赛中有多少次点球。统计学知识，将帮助你成为足球或任何其他运动的真正专家。  进球得分，赢得比赛，判罚点球，这些都可以被看作 变量 和 统计案例 。  变">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-31T01:34:47.000Z">
+<meta property="article:modified_time" content="2019-12-31T03:27:28.422Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="tech">
 <meta property="article:tag" content=" life">
 <meta property="article:tag" content=" philosophy">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://nichollyn.github.io/">
+<link rel="canonical" href="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>The Infinite Game</title>
+  <title>极速统计教程之二 | 数据可视化 | The Infinite Game</title>
   
 
 
@@ -219,10 +221,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -236,8 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/uncategorized/statistics-descriptive-statistics/" class="post-title-link" itemprop="url">极速统计教程之二 | 数据可视化</a>
+          极速统计教程之二 | 数据可视化
         </h1>
 
         <div class="post-meta">
@@ -259,6 +260,13 @@
               </span>
               <span class="post-meta-item-text">热度：</span>
               <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
             </span><br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -284,7 +292,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
+        <blockquote>
 <p>当我们向他人呈现数据时，通常需要将数据 “<strong>总结</strong>” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。</p>
 </blockquote>
 <h1 id="统计案例、变量和测量级别"><a href="#统计案例、变量和测量级别" class="headerlink" title="统计案例、变量和测量级别"></a>统计案例、变量和测量级别</h1><blockquote>
@@ -598,470 +606,77 @@ let svg = d3.select ("#d3js-example-content")
             document.body.appendChild(img);
           });
       </script>
-      
     </div>
 
     
     
     
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+      
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/" class="post-title-link" itemprop="url">极速统计教程之一 | 引言</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-31 08:55:24" itemprop="dateCreated datePublished" datetime="2019-12-31T08:55:24+08:00">2019-12-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
-                    <span itemprop="name">商业分析</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之一 | 引言" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>879</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="学习统计学的意义"><a href="#学习统计学的意义" class="headerlink" title="学习统计学的意义"></a>学习统计学的意义</h1><p>乍一看，统计学可能很吓人，但实际上，统计学并不可怕。它可以关乎很有趣的事，比如足球、潜水、巧克力，很有趣的人，比如潮人、出租车司机和婴儿。</p>
-<p>至少有三个原因，让统计学至关重要。</p>
-<ul>
-<li>首先，我们周围有很多统计学，包括新闻，还有科学工作。</li>
-<li>其次，统计学知识将帮你开展自己的研究。你该如何分析你得到的信息？该采用哪种方法？</li>
-<li>第三，也是最后一点，分析数据可以帮助我们了解有趣的世界。</li>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/" title="极速统计教程之二 | 数据可视化">http://nichollyn.github.io/uncategorized/statistics-descriptive-statistics/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
-<h1 id="统计学的两种类型"><a href="#统计学的两种类型" class="headerlink" title="统计学的两种类型"></a>统计学的两种类型</h1><p>我们将统计学分为两种类型： <strong>描述统计学</strong> 和 <strong>推断统计学</strong> 。当我们谈论 <strong>描述统计学</strong> 时，我们指的是概述信息的方法。我们可以通过图表来概述信息，比如饼图或条线图或者诸如平均值，百分比或相关系数等数字。<strong>推断统计学</strong> 是仅根据有限数据案例，推断有关整体的结论。</p>
-<h1 id="教程导览"><a href="#教程导览" class="headerlink" title="教程导览"></a>教程导览</h1><p>教程会分为七个模块。前两个模块主题是描述统计学；接下来的三个模块，将介绍之后在推断统计学中用到的方法：我们会讨论 <strong>概率</strong> ，<strong>概率分布</strong> 和 <strong>抽样分布</strong> ；在最后的两个模块中，我们将介绍推断统计学方法， <strong>如何估计置信区间</strong> 以及 <strong>如何进行假设检验</strong> 。</p>
-<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><p>不需要额外的知识，学校里学的足够了。你需要的是对方法论和数据的兴趣，以及最重要的东西 —— <strong>激情</strong> ！</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
+</div>
 
-    
-    
-    
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/break-down-complexity-with-pipelines/" class="post-title-link" itemprop="url">用 “流水线” 设计拆解复杂处理流程</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-28 20:59:40" itemprop="dateCreated datePublished" datetime="2019-12-28T20:59:40+08:00">2019-12-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/programming/break-down-complexity-with-pipelines/" class="post-meta-item leancloud_visitors" data-flag-title="用 “流水线” 设计拆解复杂处理流程" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>本文的主要价值： <strong>提供一种抽象复杂逻辑，达成功能复用的思路</strong></li>
-<li>关键词： <strong>语义提炼</strong> 、 <strong>动态具名</strong></li>
-<li>本文约 4000 字，建议阅读时间 30 分钟。 </li>
-</ul>
-<hr>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>在软件开发时常常遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。这些功能单元可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且对于用户来说，它们共同处理同一个元素。举个例子，比如一款修图 app ，它包含了一组编辑功能，每个功能都作用于一张图片，处理之后的图片还可以作为其他功能的输入。作为编辑工具，在每个功能内部，还可能都需要支持撤销和重做这样的用户操作。容易想到，这些功能间存在着许多可以进行复用设计的代码。</p>
-<p>本文基于我曾经从事的一款图像处理应用开发过程中的一次代码重构的实践所做的回顾发起，期望达到记录和分享的目的。</p>
-<h1 id="重构的具体背景"><a href="#重构的具体背景" class="headerlink" title="重构的具体背景"></a>重构的具体背景</h1><p>请先看下面这幅图：</p>
-<p><img src="/images/image_modules.jpg" alt="重构前的图像功能模块结构"></p>
-<p>图中的元素很少，但细心的读者可能留意到了：图中的 “ <strong>内存图像管理 + 效果处理</strong> ” 是一个 “ <strong>黑盒子</strong> ”。那么这个黑盒子是一件好事还是坏事呢？</p>
-<p>既然我们对这种设计做了重构，那么这里重点来探讨一下它的缺点。 黑盒子的优点部分，作为思考题留给读者。</p>
-<p>在具体业务场景下，我发现旧有设计的两个问题：</p>
-<ul>
-<li>图像处理接口粒度太大，难以复用代码； </li>
-<li>黑盒子把 <strong>图像管理</strong> 和 <strong>图像效果处理</strong> 这两件事包在了一起，使得外部难以灵活的接触和使用图像。 </li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/break-down-complexity-with-pipelines/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
     </div>
+  </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/" class="post-title-link" itemprop="url">关于花费时间的四宗罪</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-28 20:42:32" itemprop="dateCreated datePublished" datetime="2019-12-28T20:42:32+08:00">2019-12-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%9D%E8%80%83/" itemprop="url" rel="index">
-                    <span itemprop="name">思考</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/" class="post-meta-item leancloud_visitors" data-flag-title="关于花费时间的四宗罪" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>导致我们浪费时间的是我们的<strong>认知错误</strong>。</p>
-</blockquote>
-<p>你是否经历过这样的场景。邻居过来串门，喋喋不休，我们频频点头回应，哪怕当下已经心急如焚；同事开始闲聊琐碎，而我们沉浸其中，不曾意识到本该用来工作的时间正在一点一点溜走；从熟人那里收到微信，对方说：“我可以向你讨教点事情吗？”，我们爽快答应，因为抹不开面子拒绝别人？</p>
-<p>斯多葛哲学家塞内卡（Seneca）曾经惊叹：哪怕最聪明的人，在保护自己的时间这件事上，都不免显得愚蠢。</p>
-<blockquote>
-<p>没有人会把自己的钱财送给路人，但我们中的许多人却送出了我们的生命！我们为财产和金钱所累，却罕有意识我们的时间正遭受的浪费。时间本应是我们每个人都最应吝惜的东西。</p>
-</blockquote>
-<p>两千多年后的今天，为什么我们还在允许时间这种宝贵的资源从我们的手中不停地溜走？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/" rel="prev" title="极速统计教程之一 | 引言">
+      <i class="fa fa-chevron-left"></i> 极速统计教程之一 | 引言
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/uncategorized/csta-k12-standards/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/uncategorized/csta-k12-standards/" class="post-title-link" itemprop="url">计算机科学教师协会 - K12 - 标准</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-28 16:01:41" itemprop="dateCreated datePublished" datetime="2019-12-28T16:01:41+08:00">2019-12-28</time>
-            </span>
-
-          
-            <span id="/uncategorized/csta-k12-standards/" class="post-meta-item leancloud_visitors" data-flag-title="计算机科学教师协会 - K12 - 标准" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>About the CSTA K-12 Computer Science Standards<br>关于 CSTA K-12 计算机科学标准</p>
-<p>Computer science and the technologies it enables rest at the heart of our economy and the way we live our lives. To be well-educate citizens in a computing-intensive world and to be prepared for careers in the 21st century, our students must have a clear understanding of the principles and practices of computer science. The CSTA K–12 Computer Science Standards delineate a core set of learning objectives designed to provide the foundation for a complete computer science curriculum and its implementation at the K–12 level. To this end, the CSTA Standards:</p>
-<p>计算机科学及其支持的技术是我们经济的核心，也是我们生活的方式。为了对计算机密集型世界中的公民进行良好的教育并为 21 世纪的职业做好准备，我们的学生必须对计算机科学的原理和实践有清晰的了解。 CSTA K-12 计算机科学标准描述了一组核心学习目标，旨在为完整的计算机科学课程及其在 K-12 级别的实施提供基础。为此，CSTA 标准：</p>
-<p>・Introduce the fundamental concepts of computer science to all students, beginning at the elementary school level.<br>・Present computer science at the secondary school level in a way that can fulfill a computer science, math, or science graduation credit.<br>・Encourage schools to offer additional secondary-level computer science courses that will allow interested students to study facets of computer science in more depth and prepare them for entry into the work force or college.<br>・Increase the availability of rigorous computer science for all students, especially those who are members of underrepresented groups.<br>The standards have been written by educators to be coherent and comprehensible to teachers, administrators, and policy makers.<br>Levels 1A, 1B, 2, and 3A are the computer science standards for ALL students. The Level 3B standards are intended for students who wish to pursue the study of computer science in high school beyond what is required for all students (specialty or elective courses).</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
   </article>
   
   
   
 
   </div>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
 
 
           </div>
@@ -1112,6 +727,7 @@ let svg = d3.select ("#d3js-example-content")
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#统计案例、变量和测量级别"><span class="nav-number">1.</span> <span class="nav-text">统计案例、变量和测量级别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#区分测量级别的意义"><span class="nav-number">1.1.</span> <span class="nav-text">区分测量级别的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据矩阵"><span class="nav-number">2.</span> <span class="nav-text">数据矩阵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信息图和各种数据分布形状"><span class="nav-number">3.</span> <span class="nav-text">信息图和各种数据分布形状</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

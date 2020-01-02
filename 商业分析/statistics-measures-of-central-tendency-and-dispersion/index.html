@@ -14,6 +14,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -24,10 +26,10 @@
     scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -40,7 +42,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -60,8 +62,18 @@
 <meta property="og:image" content="http://nichollyn.github.io/images/mean_2.jpg">
 <meta property="og:image" content="http://nichollyn.github.io/images/mean_and_median.jpg">
 <meta property="og:image" content="http://nichollyn.github.io/images/mean_and_median_2.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/range.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/range_2.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/range_3.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/range_4.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/range_5.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/range_6.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/range_7.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/tatto.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/variance.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/variance_2.jpg">
 <meta property="article:published_time" content="2019-12-31T07:28:52.000Z">
-<meta property="article:modified_time" content="2019-12-31T08:45:10.396Z">
+<meta property="article:modified_time" content="2020-01-01T06:15:56.588Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="商业分析">
@@ -154,17 +166,65 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
   <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
@@ -185,7 +245,7 @@
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -206,9 +266,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-31 15:28:52 / 修改时间：16:45:10" itemprop="dateCreated datePublished" datetime="2019-12-31T15:28:52+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 15:28:52" itemprop="dateCreated datePublished" datetime="2019-12-31T15:28:52+08:00">2019-12-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,20 +281,34 @@
                 </span>
             </span>
 
-          <br>
+          
+            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之三 | 测量集中趋势和离散程度" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -252,11 +325,11 @@
 <p>找到众数很容易，<strong>它是出现频次最高的值。</strong> 换句话说，就是最常见的结果。</p>
 <p>如果测量定类或定序变量，<em>众数通常用作衡量集中趋势。</em></p>
 <p>在下面这个饼图中，可以看到西班牙主要球赛中球员来自哪些大洲。</p>
-<div id="echarts7415" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts2602" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts7415'));
+        var myChart = echarts.init(document.getElementById('echarts2602'));
         // 指定图表的配置项和数据
         var option = {
     title : {
@@ -298,35 +371,78 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-
 <p>饼图使众数一目了然，是欧洲 70％ 的球员来自欧洲</p>
 <p><strong><em>这里的众数是欧洲</em></strong> ，是最常出现的类别的名称，但众数不是 70％ 。这只是该特定类别的观测百分比。可能有多个众数。试想有一个足球运动员，拥有十分分裂的球迷，其中一些觉得他非常和善，而另一些则认为他非常蛮横。来给这个球员起个名，Franco Galton。</p>
+<a id="more"></a>
 <p>试想你选取西班牙 500 名受访者作为代表样本，询问他们对 Franco Galton 的看法，受访者可以在 0 到 10 的范围内表明他们认为他的和善程度。 0 表示非常蛮横， 10 表示非常和善。</p>
-<p><img src="/images/two_mode.jpg" alt=""></p>
+<p><img src="/images/two_mode.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>假设这是本研究得出的直方图形状，可以看到西班牙人分歧很大，有些人觉得 Galton 非常和善，有些人觉得他非常蛮横。正如所见，分布有 两个众数，即 3 和 8 这显然是双众数分布。</p>
 <p>集中趋势的第二个衡量指标是中位数：<strong>观测值从最小到最大排序时，中位数就是观测值的中间值。</strong></p>
 <p>试想你还问了七位受访者，对另一著名球员 Tomas Bayez 的看法。假设这是他的研究数据矩阵，这里的众数是 8 ，是频次最高的值。</p>
-<p><img src="/images/median.jpg" alt=""></p>
+<p><img src="/images/median.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>要计算中位数，首先必须将所有数值从低到高排序，然后选择中间值。所以这里的中位数是 8 。如果案例是偶数而非奇数，那就稍微复杂点了。试想受访者是 8 人，他们对 Tomas Bayez 的看法。</p>
-<p><img src="/images/median_2.jpg" alt=""></p>
+<p><img src="/images/median_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>数值是从低到高排列的。但是，在这种情况下，没有单个中间值。该如何解决这个问题呢？我们取两个中间数值的平均值 7 和 8 相加除以 2 等于 7.5 。因此，中位数是 7.5 。请注意，中位数将分布分为两个相等的部分。 50％ 的值低于中位数， 50％ 的值高于中位数。</p>
 <p>集中趋势的第三个衡量指标，是最常用的一个，也可能是你已经非常熟悉的，就是平均数。</p>
 <p><strong>平均数是所有观测值之和除以观测个数</strong>。</p>
-<p>$$ \bar x = \frac {\sum {x}}{n} $$</p>
-<p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
+<script type="math/tex; mode=display">\bar x = \frac {\sum {x}}{n}</script><p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
 <p>举个例子，借用 Tomas Bayez 的研究。公式告诉我们首先求总和， 6 加 7 ，加 7 ，加 8 ，加 8 ，加 8 ，加 9 ，等于 53 ，现在再除以 n 。样本量是 7 ，因此 53 除以 7 等于 7.6 平均数是 7.6 。</p>
-<p><img src="/images/mean.jpg" alt=""></p>
+<p><img src="/images/mean.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>可以将平均数视为数据的平衡点。试想我们将重量平衡放置，那么平均数就是天平中心点。其中一侧的总重量恰好等于另一侧。</p>
-<p><img src="/images/mean_2.jpg" alt=""></p>
+<p><img src="/images/mean_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>现在大家已经熟悉了这三个 m 。可以通过各种方式轻松计算一组数字的中间值，但报告时，该使用哪种中心趋势呢？</p>
 <p><strong>这部分取决于变量的测量级别。</strong> 如果是定类测量，则无法计算中位数或平均数，因为我们无法对定类变量进行数值运算，也不能对它们进行排序。<strong>当变量是定类变量时 唯一适合的集中趋势度量是众数。</strong></p>
 <p>如果是定量变量该怎么办呢？</p>
 <p>试想你在家乡足球俱乐部的一个食堂里，你想计算所有在场人士的平均收入和中位收入，包括你自己，其他 5 位客人和吧员。</p>
-<p><img src="/images/mean_and_median.jpg" alt=""></p>
+<p><img src="/images/mean_and_median.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>这是数据矩阵，平均数约为 35,000 ，中位数恰好是 35,000 ， 它们彼此非常接近。使用哪一个来描述分布中心都无所谓。但现在，著名足球运动员 Franco Galton 走进食堂，比如他每年收入大约 7000 万 ，这时中位数略微增加到 36,000 ，然而，平均数却超过 800 万。</p>
-<p><img src="/images/mean_and_median_2.jpg" alt=""></p>
+<p><img src="/images/mean_and_median_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>我们说 Franco Galton 是这个分布的异常值。他的收入远高于其他所有人，他的收入对平均收入产生不成比例的影响。在这种情况下，计算中位数描述分布中心比平均数更合理。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>描述分布中心可以使用三种方法：众数，中位数和平均数。如果变量是定类的，则使用众数；如果是定量的，则使用中位数或平均数 —— 如果有异常值或分布高度偏离，使用中位数。如果不是，那就使用平均数。</p>
+<hr>
+<h1 id="全距、四分位距和箱线图"><a href="#全距、四分位距和箱线图" class="headerlink" title="全距、四分位距和箱线图"></a>全距、四分位距和箱线图</h1><p>你可能已经注意到了，纹身在足球运动员中越来越受欢迎。特别是所谓的纹身袖在球场上正在兴起。纹身袖，正如其名，是指满胳膊的纹身。</p>
+<p>你对球员纹身占身体的比例感兴趣吗？</p>
+<p>试想有两支球队，这里看到的是点图，表示两队中纹身占身体的百分比变量分布。水平线代表这个变量，原点代表每个团队中的 11 个人。</p>
+<p><img src="/images/range.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>第一队队员纹身占比大约是 10％ 到 20％ 之间。在第二支球队中，球员的纹身占比差异很大，百分比范围是 0% 到大约 30％ 之间。因此，这个团队彼此差异很大。但是两队众数，中位数和平均数却相同。两队的众数都是 14.1 ，中位数和平均数都是 15 。<em>这表明为了充分描述分布，我们需要集中趋势度量之外的信息。</em> 这一节我将向大家展示我们还需要了解有关数据变化或离散的信息，讨论两种变异性测量，即：<strong>全距</strong> 和 <strong>四分位距</strong> ，还将讨论所谓的 <strong>箱线图</strong> —— 这是一个非常有用的图表，可以很好地呈现分布中的数值如何离散。</p>
+<p>全距是最简单的变异性度量：它是 <strong>最高值和最低值之间的差值</strong> 。</p>
+<p><img src="/images/range_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>再来看看我们的两支球队：第一队的球员中最大纹身占比是 19.3％ ， 占比最小的是 10.8％ ，范围是 19.3 减去 10.8 等于 8.5 ；第二队的球员中最大纹身占比是 27.7％ ，占比最小的是 0％ 。因此，范围是 27.7 减去 0 等于 27.7 。这清晰地显示第二队的变化范围比第一队的变化范围更大。全距是易于理解且易于计算的变异性度量。但是，在许多情况下，它并没有很好地呈现数据的变异性。 <em>原因是它只考虑了极值。。</em> 看看这两个分布，它们的范围相同，但一目了然第二个分布的变异性与第一个非常不同。</p>
+<p>另一个更好的测量变异性的方法是 <strong>四分位距</strong> ，因为它省略了极值，它将分布分为四个相等的部分。因此，如果分布看起来是这样的。</p>
+<p><img src="/images/range_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>可以这样切分，将得分最低的 25％ 划为一组，得分最高的 25％ 划为一组，中间的两个 25％ 再分两组。</p>
+<p>这种划分分布方式称为四分位距，一共有三个 <strong>四分位</strong> ，以下称为 Q1 ， Q2 ， Q3 。</p>
+<p>如你所见，第二个四分位 Q2 将分布分为两个相等的部分。毕竟， 50％ 的值低于该值， 50％ 高于该值。<br>因此 Q2 与中位数相同。 <strong>四分位距是第三和第一个四分位之间的距离</strong>。换句话说，四分位距是 Q3 减去 Q1 。下面让我通过纹身占比来展示计算过程。</p>
+<p><img src="/images/range_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>这是第二队的分布情况。首先，寻找中位数或者换句话说 Q2 。这很简单，中间数值是 15 ；可以通过查找中位数左侧数值的中间值找到 Q1 ，是 8.7 ；可以通过相同的策略在右侧找到 Q3 是 19.3 。现在，四分位距是 Q3 减去 Q1 即 19.3 减去 8.7 等于 10.6 。四分位距的主要优点是它不受异常值的影响，因为它没有考虑低于 Q1 或高于 Q3 的观测值。然而，在研究中寻找潜在的异常值可能仍然有用。 <strong>根据经验，如果观测值低于第一个四分位 1.5 个四分位距或高于第三个四分位 1.5 个四分位距则为异常值。</strong></p>
+<p>在描述中心和变异性以及检测异常值时，有一种特定类型的图非常有用，该图称为 <strong>箱线图</strong> 。</p>
+<p>Q1，Q2 和 Q3 在箱形图中一目了然，最小值不是异常值，最大值不是异常值。</p>
+<p><img src="/images/range_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>这是基于前一个示例的箱形图。<strong>箱体</strong> 本身代表分布中心的 50％ 。换句话说，从 Q1 到 Q3 。 <strong>箱高</strong> 代表四分位距，箱内的 <strong>水平线</strong> 是中位数，换句话说，即 Q2 。箱体上面和下面的线称为 <strong>箱须</strong> 。它们包含除异常值以外的其他值，异常值用点单独标记。这里没有点，所以这个箱形图没有任何异常值。</p>
+<p><img src="/images/range_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>如何确定箱须的长度呢？让我们回到之前示例中的数值，我们检测到了 Q2 ， Q1 和 Q3 以及四分位距。我们知道低于 Q1 1.5 倍四分位距的或高于 Q3 1.5 倍四分位距的值是异常值。这里的四分位距是 10.6 。所以 1.5 乘以 10.6 等于 15.9 ， Q1 为 8.7 ，因此所有低于 8.7 减去 15.9 等于 -7.2 的值都是异常值。这里不存在这样的值，所以下末端没有异常值，这里的最小值是 0 。 Q3 是 19.3 ，因此，高于 19.3 加上 15.9 等于 35.2 的值都是异常值。我们也没有这么高的数值，所以上末端也没有异常值。箱须的上末端等于最大值，即 27.7 。</p>
+<p>我们来看一下第一队的箱形图，如果比较两个箱形图，我们立即就能看到两个分布的变异性差别很大。</p>
+<p><img src="/images/range_7.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>请记住，分布的中心只能告诉你部分信息。为了了解的更完整，还要 <strong>评估分布的变异性</strong>。箱线图使用三个四分位数，异常值以及剔除异常值后的数据范围，以紧凑的方式显示分布的重要信息。</p>
+<hr>
+<h1 id="方差和标准差"><a href="#方差和标准差" class="headerlink" title="方差和标准差"></a>方差和标准差</h1><p>在足球运动员中，纹身越来越受欢迎。试想，你想知道球员纹身的身体占比。</p>
+<p><img src="/images/tatto.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>这里看到的点图表示纹身占比的分布，由两队球员纹身占身体的百分比表示。一目了然，在第一队中纹身占比的变化远小于第二队。这种变异性可以通过 <strong>全距离</strong> 或 <strong>四分位距</strong> 来测量。也可以用箱线图表示 在此可以看到相关的箱线图。在本节中，将讨论统计研究中经常使用的另外两种变异性度量，即 <strong>方差</strong> 和 <strong>标准差</strong> 。</p>
+<p>与许多其他变异性度量相比，方差和标准差的巨大优势在于：<strong>它们考虑了所有变量的数值</strong> 。</p>
+<p>让我们从方差开始。这是方差的公式：</p>
+<script type="math/tex; mode=display">s^2 = \frac {\sum {(x - \bar x)^2}}{n - 1}</script><p>s 的平方代表方差。将每次的观测值 x 减去 x 的平均值 （x 拔），然后将所有这些值平方后相加，结果是我们所说的平方和，接下来将平方和除以样本的大小 n 减去 1 。我们现在将公式应用于纹身占比的示例，以了解它在实践中的工作原理。</p>
+<p><img src="/images/variance.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>第一步是计算平均值，这些值的平均值等于 15 ； 第二步是从每个观测值中减去平均值。我们来取第一个值，0 从这个值中减去平均值 0 减去 15 是负 15 。我们对样本中所有的值都这样计算。算完后，我们发现有负数，也有正数。这并不奇怪，因为均值是这些数值的中间点或平衡点。事实上，均值的负差和正差相抵 ，结果的总和等于 0 。换句话说，这些值的总和等于 0 。</p>
+<p>因此，我们不使用 <strong>原始差值</strong>，而是使用 <strong>差的平方</strong> 。</p>
+<p>接下来，我们对所有这些计算值进行平方。</p>
+<p>根据公式，接下来我们需要将所有这些值相加。现在得数是平方差的总和，换句话说，平方和。这个数等于 639.74 。然后将平方和除以 n 减 1 。在我们的例子中， n 是 11 ，所以 n 减去 1 等于 10 。 639.74 除以 10 等于 63.97 ，这就是方差。</p>
+<p><strong>方差越大，变异性越大。这意味着方差越大，数值越离散。</strong></p>
+<p><img src="/images/variance_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>这里显示的第一队的方差约为 6.33 ，从点图和箱线图中已经可：第 2 队中纹身占比的较大差异，也由较大的方差表示。</p>
+<p>方差的一个重要缺点是：方差的度量是经过平方的变量度量。毕竟，我们平方了正差和负差，以便它们不会相互抵消。</p>
+<p>有一个非常简单的方案可以解决这个问题。我们只取方差的平方根 —— 我们称之为 <strong>标准差</strong> 。标准差可以被看作观测值与平均值的平均距离。<strong>标准差越大，数据的变异性越大。</strong></p>
+<script type="math/tex; mode=display">s = \sqrt {\frac {\sum {(x - \bar x)^2}}{n - 1}}</script><p>因此在我们的例子中，第一队的标准差是 6.33 的平方根，等于 2.52 。第二队的标准差是 63.97 的平方根，等于 8.0 。标准差是最常使用的离散度量。然而，在许多统计方法中，方差也起着重要作用。在本节教程中，大家了解了它们密不可分，可以轻松从一个推演出另一个。</p>
+<hr>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -355,12 +471,55 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/商业分析/statistics-correlation/" rel="bookmark">极速统计教程之五 | 相关性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/商业分析/statistics-z-scores/" rel="bookmark">极速统计教程之四 | Z-score</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/商业分析/statistics-descriptive-statistics/" rel="bookmark">极速统计教程之二 | 数据可视化</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/商业分析/statistics-basic-introduction/" rel="bookmark">极速统计教程之一 | 引言</a></div>
     </li>
   </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/" title="极速统计教程之三 | 测量集中趋势和离散程度">http://nichollyn.github.io/商业分析/statistics-measures-of-central-tendency-and-dispersion/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
 
       <footer class="post-footer">
@@ -370,6 +529,11 @@
           </div>
 
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
 
 
         
@@ -378,7 +542,10 @@
     <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/" rel="prev" title="极速统计教程之二 | 数据可视化">
       <i class="fa fa-chevron-left"></i> 极速统计教程之二 | 数据可视化
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-z-scores/" rel="next" title="极速统计教程之四 | Z-score">
+      极速统计教程之四 | Z-score <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -438,12 +605,14 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#众数、中位数和平均数"><span class="nav-number">1.</span> <span class="nav-text">众数、中位数和平均数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.1.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#众数、中位数和平均数"><span class="nav-number">1.</span> <span class="nav-text">众数、中位数和平均数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.1.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全距、四分位距和箱线图"><span class="nav-number">2.</span> <span class="nav-text">全距、四分位距和箱线图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">2.1.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方差和标准差"><span class="nav-number">3.</span> <span class="nav-text">方差和标准差</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">猫克杯</p>
   <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
 </div>
@@ -452,29 +621,46 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
   <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -490,30 +676,45 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">猫克杯</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">72k</span>
+    <span title="站点总字数">80k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:06</span>
+    <span title="站点阅读时长">1:13</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
-  </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -527,6 +728,7 @@
   </div>
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -541,12 +743,40 @@
 
 <script src="/js/next-boot.js"></script>
 
+<script src="/js/bookmark.js"></script>
 
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
 
 
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
 
 
 

@@ -14,6 +14,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -24,10 +26,10 @@
     scheme: 'Muse',
     version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -40,7 +42,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -145,17 +147,65 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
   <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
@@ -173,10 +223,250 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/" class="post-title-link" itemprop="url">极速统计教程之五 | 相关性</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-02 09:28:57" itemprop="dateCreated datePublished" datetime="2020-01-02T09:28:57+08:00">2020-01-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
+                    <span itemprop="name">商业分析</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之五 | 相关性" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>很多人喜欢吃巧克力，但多数人吃巧克力是比较谨慎的。因为吃了太多巧克力，很有可能会增加体重。在这一期的教程中，我将讨论如何使用表格和图表展示 <em>两个变量之间的关系</em> 。这有助于发现两个变量之间是否存在 <strong>相关性 (correlation)</strong> 。</p>
+<h1 id="列联表-Contingency-Tables"><a href="#列联表-Contingency-Tables" class="headerlink" title="列联表 (Contingency Tables)"></a>列联表 (Contingency Tables)</h1><p>我们来进一步研究吃巧克力和体重之间的关系。</p>
+<p>假设我在我们学校选择了 200 名女学生。她们身高都是一米七。这样，身高就是一个常数，不会影响体重或吃巧克力。让学生报告体重及每周巧克力消费情况。体重可以选择这样几个类别：小于 50 公斤； 50 至 69 公斤； 70 至 89 公斤和 90 公斤或以上。巧克力消费量可以选择这样几个类别：每周少于 50 克；每周 50 至 150 克；每周超过 150 克。</p>
+<p>结果如下，这里看到的是 <strong>列联表</strong> 。 <strong>列联表</strong> 能够显示 <strong>两个定序或定类变量之间的关系</strong> 。 它类似于频率表，但主要区别在于 <strong>频率表始终只考虑一个变量，而列联表考虑两个变量</strong> 。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-z-scores/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-z-scores/" class="post-title-link" itemprop="url">极速统计教程之四 | Z-score</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-01 10:49:06" itemprop="dateCreated datePublished" datetime="2020-01-01T10:49:06+08:00">2020-01-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
+                    <span itemprop="name">商业分析</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-z-scores/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之四 | Z-score" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>通俗解释 z-score ，即 z-score 是对某一原始分值进行转换，变成的一个标准分值，该标准分值可使得原来无法比较的数值变得可比。</p>
+</blockquote>
+<h1 id="Z-score"><a href="#Z-score" class="headerlink" title="Z-score"></a>Z-score</h1><p>本教程中我们还继续沿用前面教程中足球队的例子。</p>
+<p><img src="/images/z-score.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>你在这里看到的是所谓的球员纹身占比，以纹身占身体的百分比表示。点图和标准差表明，第二队的分布比第一队的变化更大。</p>
+<p>有时研究人员会问：一个特定的观测结果是常见还是特例。为了回答这个问题，研究人员会用 <strong>一个数与平均数的差再除以标准差</strong> 。这个数字就是我们所说的 z 分数。在这篇教程中，我将解释如何计算 z 分数，以及它们的用处。</p>
+<p>我们先来看看第一队的分布情况。平均数是 15 ，标准差是 2.5 。为了计算 z 分数，我们使用这个公式：</p>
+<script type="math/tex; mode=display">z = \frac {(x - \bar x)}{s}</script><p>这个公式不是很复杂，它告诉你如何计算感兴趣的数值。该数值与平均数之差，再除以标准差。</p>
+<p>来看看纹身占比是 10.8％ 意味着什么。该值的 z 分数是 10.8 减去 15 再除以 2.5 等于负 1.68 。所以 z 分数是负 1.68 。你可以为所有数值进行如此计算。如果这样做，这些就是结果。</p>
+<p><img src="/images/z-score_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>请注意，最终会得到负 z 分数和正 z 分数。负 z 分数表示低于平均数的值；正 z 分数表示高于平均数的值。因为平均数是分布的平衡点，所以负的和正的 z 分数相互抵消。换句话说，如果将所有 z 分数相加，结果为 0 。</p>
+<p>好的，不过如何知道某个 z 分数是低还是高呢？</p>
+<p>这取决于分布和前后关系。有一个黄金定律：如果变量的直方图是钟形的，那么 68％ 的观测值在 z 分数 -1 和 1 之间， 95％ 在 z 分数 -2 和 2 之间， 99％ 在 z 分数 -3 和 3 之间。这意味着对于这种类型的分布， z 分数大于 3 或小于 -3 ，可以被认定是特例。</p>
+<p><img src="/images/z-score_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>但是，如果分布严重偏向右侧，如下图所示，较大的正 z 分数会更常见，因为分布的右侧有更多极值。</p>
+<p><img src="/images/z-score_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>类似，如果分布严重偏向左侧 则较大的负 z 分数会更常见，因为分布的左侧存在更多极值。</p>
+<p><img src="/images/z-score_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>无须考虑形状，适用于任何分布的规则。 <strong>75％ 的数据必须落在 z 分数正负 2 之内。</strong></p>
+<p><img src="/images/z-score_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>且 <strong>89％ 的数据在 z 分数正负 3 之间。</strong> </p>
+<p><img src="/images/z-score_7.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>因此， z 分数本身就在一定程度上，给出了关于观测极端程度的信息。如果要比较不同的分布， z 分数就更有用了。比如，来看一下 19.3 的体重是否常见：</p>
+<p><img src="/images/z-score_8.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>在第 1 组中，这并不常见。 z 分数为 19.3 减去 15 再除以 2.5 ，等于 1.72 。在第 2 组中， 19.3 的 z 分数等于 19.3 减去 15 除以 8 等于 0.54 。这表明在第 2 组中， 19.3 的体重更常见。在第 2 组中， z 分数是 0.54 ，在第 1 组中，是 1.72 。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>如果我们将原始分数重新编码为 z 分数，就是 <strong>将变量标准化</strong> 。 <strong>标准化</strong> 意味着我们用 z 分数 替换原始度量中测量的分数，其优点是我们可以一眼看出特定分数是相对常见还是特殊。</p>
+<p>因此，一个球员纹身占比是五分之一是否异常，这取决于球队或你想比对的另一组数据。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -198,9 +488,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-31 15:28:52 / 修改时间：16:45:10" itemprop="dateCreated datePublished" datetime="2019-12-31T15:28:52+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 15:28:52" itemprop="dateCreated datePublished" datetime="2019-12-31T15:28:52+08:00">2019-12-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,20 +503,27 @@
                 </span>
             </span>
 
-          <br>
+          
+            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之三 | 测量集中趋势和离散程度" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -244,11 +540,11 @@
 <p>找到众数很容易，<strong>它是出现频次最高的值。</strong> 换句话说，就是最常见的结果。</p>
 <p>如果测量定类或定序变量，<em>众数通常用作衡量集中趋势。</em></p>
 <p>在下面这个饼图中，可以看到西班牙主要球赛中球员来自哪些大洲。</p>
-<div id="echarts7415" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts2602" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts7415'));
+        var myChart = echarts.init(document.getElementById('echarts2602'));
         // 指定图表的配置项和数据
         var option = {
     title : {
@@ -290,54 +586,16 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-
 <p>饼图使众数一目了然，是欧洲 70％ 的球员来自欧洲</p>
 <p><strong><em>这里的众数是欧洲</em></strong> ，是最常出现的类别的名称，但众数不是 70％ 。这只是该特定类别的观测百分比。可能有多个众数。试想有一个足球运动员，拥有十分分裂的球迷，其中一些觉得他非常和善，而另一些则认为他非常蛮横。来给这个球员起个名，Franco Galton。</p>
-<p>试想你选取西班牙 500 名受访者作为代表样本，询问他们对 Franco Galton 的看法，受访者可以在 0 到 10 的范围内表明他们认为他的和善程度。 0 表示非常蛮横， 10 表示非常和善。</p>
-<p><img src="/images/two_mode.jpg" alt=""></p>
-<p>假设这是本研究得出的直方图形状，可以看到西班牙人分歧很大，有些人觉得 Galton 非常和善，有些人觉得他非常蛮横。正如所见，分布有 两个众数，即 3 和 8 这显然是双众数分布。</p>
-<p>集中趋势的第二个衡量指标是中位数：<strong>观测值从最小到最大排序时，中位数就是观测值的中间值。</strong></p>
-<p>试想你还问了七位受访者，对另一著名球员 Tomas Bayez 的看法。假设这是他的研究数据矩阵，这里的众数是 8 ，是频次最高的值。</p>
-<p><img src="/images/median.jpg" alt=""></p>
-<p>要计算中位数，首先必须将所有数值从低到高排序，然后选择中间值。所以这里的中位数是 8 。如果案例是偶数而非奇数，那就稍微复杂点了。试想受访者是 8 人，他们对 Tomas Bayez 的看法。</p>
-<p><img src="/images/median_2.jpg" alt=""></p>
-<p>数值是从低到高排列的。但是，在这种情况下，没有单个中间值。该如何解决这个问题呢？我们取两个中间数值的平均值 7 和 8 相加除以 2 等于 7.5 。因此，中位数是 7.5 。请注意，中位数将分布分为两个相等的部分。 50％ 的值低于中位数， 50％ 的值高于中位数。</p>
-<p>集中趋势的第三个衡量指标，是最常用的一个，也可能是你已经非常熟悉的，就是平均数。</p>
-<p><strong>平均数是所有观测值之和除以观测个数</strong>。</p>
-<p>$$ \bar x = \frac {\sum {x}}{n} $$</p>
-<p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
-<p>举个例子，借用 Tomas Bayez 的研究。公式告诉我们首先求总和， 6 加 7 ，加 7 ，加 8 ，加 8 ，加 8 ，加 9 ，等于 53 ，现在再除以 n 。样本量是 7 ，因此 53 除以 7 等于 7.6 平均数是 7.6 。</p>
-<p><img src="/images/mean.jpg" alt=""></p>
-<p>可以将平均数视为数据的平衡点。试想我们将重量平衡放置，那么平均数就是天平中心点。其中一侧的总重量恰好等于另一侧。</p>
-<p><img src="/images/mean_2.jpg" alt=""></p>
-<p>现在大家已经熟悉了这三个 m 。可以通过各种方式轻松计算一组数字的中间值，但报告时，该使用哪种中心趋势呢？</p>
-<p><strong>这部分取决于变量的测量级别。</strong> 如果是定类测量，则无法计算中位数或平均数，因为我们无法对定类变量进行数值运算，也不能对它们进行排序。<strong>当变量是定类变量时 唯一适合的集中趋势度量是众数。</strong></p>
-<p>如果是定量变量该怎么办呢？</p>
-<p>试想你在家乡足球俱乐部的一个食堂里，你想计算所有在场人士的平均收入和中位收入，包括你自己，其他 5 位客人和吧员。</p>
-<p><img src="/images/mean_and_median.jpg" alt=""></p>
-<p>这是数据矩阵，平均数约为 35,000 ，中位数恰好是 35,000 ， 它们彼此非常接近。使用哪一个来描述分布中心都无所谓。但现在，著名足球运动员 Franco Galton 走进食堂，比如他每年收入大约 7000 万 ，这时中位数略微增加到 36,000 ，然而，平均数却超过 800 万。</p>
-<p><img src="/images/mean_and_median_2.jpg" alt=""></p>
-<p>我们说 Franco Galton 是这个分布的异常值。他的收入远高于其他所有人，他的收入对平均收入产生不成比例的影响。在这种情况下，计算中位数描述分布中心比平均数更合理。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>描述分布中心可以使用三种方法：众数，中位数和平均数。如果变量是定类的，则使用众数；如果是定量的，则使用中位数或平均数 —— 如果有异常值或分布高度偏离，使用中位数。如果不是，那就使用平均数。</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -359,7 +617,7 @@
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -381,9 +639,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-31 09:34:47 / 修改时间：16:07:59" itemprop="dateCreated datePublished" datetime="2019-12-31T09:34:47+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 09:34:47" itemprop="dateCreated datePublished" datetime="2019-12-31T09:34:47+08:00">2019-12-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -397,7 +654,14 @@
                 </span>
             </span>
 
-          <br>
+          
+            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之二 | 数据可视化" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -466,7 +730,7 @@
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="猫克杯">
       <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
@@ -488,9 +752,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-31 08:55:24 / 修改时间：09:32:12" itemprop="dateCreated datePublished" datetime="2019-12-31T08:55:24+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 08:55:24" itemprop="dateCreated datePublished" datetime="2019-12-31T08:55:24+08:00">2019-12-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -504,7 +767,14 @@
                 </span>
             </span>
 
-          <br>
+          
+            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之一 | 引言" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -558,222 +828,6 @@
             document.body.appendChild(img);
           });
       </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/break-down-complexity-with-pipelines/" class="post-title-link" itemprop="url">用 “流水线” 设计拆解复杂处理流程</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-28 20:59:40" itemprop="dateCreated datePublished" datetime="2019-12-28T20:59:40+08:00">2019-12-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-31 16:07:33" itemprop="dateModified" datetime="2019-12-31T16:07:33+08:00">2019-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>本文的主要价值： <strong>提供一种抽象复杂逻辑，达成功能复用的思路</strong></li>
-<li>关键词： <strong>语义提炼</strong> 、 <strong>动态具名</strong></li>
-<li>本文约 4000 字，建议阅读时间 30 分钟。 </li>
-</ul>
-<hr>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>在软件开发时常常遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。这些功能单元可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且对于用户来说，它们共同处理同一个元素。举个例子，比如一款修图 app ，它包含了一组编辑功能，每个功能都作用于一张图片，处理之后的图片还可以作为其他功能的输入。作为编辑工具，在每个功能内部，还可能都需要支持撤销和重做这样的用户操作。容易想到，这些功能间存在着许多可以进行复用设计的代码。</p>
-<p>本文基于我曾经从事的一款图像处理应用开发过程中的一次代码重构的实践所做的回顾发起，期望达到记录和分享的目的。</p>
-<h1 id="重构的具体背景"><a href="#重构的具体背景" class="headerlink" title="重构的具体背景"></a>重构的具体背景</h1><p>请先看下面这幅图：</p>
-<p><img src="/images/image_modules.jpg" alt="重构前的图像功能模块结构"></p>
-<p>图中的元素很少，但细心的读者可能留意到了：图中的 “ <strong>内存图像管理 + 效果处理</strong> ” 是一个 “ <strong>黑盒子</strong> ”。那么这个黑盒子是一件好事还是坏事呢？</p>
-<p>既然我们对这种设计做了重构，那么这里重点来探讨一下它的缺点。 黑盒子的优点部分，作为思考题留给读者。</p>
-<p>在具体业务场景下，我发现旧有设计的两个问题：</p>
-<ul>
-<li>图像处理接口粒度太大，难以复用代码； </li>
-<li>黑盒子把 <strong>图像管理</strong> 和 <strong>图像效果处理</strong> 这两件事包在了一起，使得外部难以灵活的接触和使用图像。 </li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/break-down-complexity-with-pipelines/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/" class="post-title-link" itemprop="url">关于花费时间的四宗罪</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-28 20:42:32 / 修改时间：20:55:28" itemprop="dateCreated datePublished" datetime="2019-12-28T20:42:32+08:00">2019-12-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%9D%E8%80%83/" itemprop="url" rel="index">
-                    <span itemprop="name">思考</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>导致我们浪费时间的是我们的<strong>认知错误</strong>。</p>
-</blockquote>
-<p>你是否经历过这样的场景。邻居过来串门，喋喋不休，我们频频点头回应，哪怕当下已经心急如焚；同事开始闲聊琐碎，而我们沉浸其中，不曾意识到本该用来工作的时间正在一点一点溜走；从熟人那里收到微信，对方说：“我可以向你讨教点事情吗？”，我们爽快答应，因为抹不开面子拒绝别人？</p>
-<p>斯多葛哲学家塞内卡（Seneca）曾经惊叹：哪怕最聪明的人，在保护自己的时间这件事上，都不免显得愚蠢。</p>
-<blockquote>
-<p>没有人会把自己的钱财送给路人，但我们中的许多人却送出了我们的生命！我们为财产和金钱所累，却罕有意识我们的时间正遭受的浪费。时间本应是我们每个人都最应吝惜的东西。</p>
-</blockquote>
-<p>两千多年后的今天，为什么我们还在允许时间这种宝贵的资源从我们的手中不停地溜走？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -850,6 +904,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">猫克杯</p>
   <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
 </div>
@@ -858,29 +914,46 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
   <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -896,30 +969,45 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">猫克杯</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">72k</span>
+    <span title="站点总字数">80k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:06</span>
+    <span title="站点阅读时长">1:13</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
-  </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -933,6 +1021,7 @@
   </div>
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -947,12 +1036,40 @@
 
 <script src="/js/next-boot.js"></script>
 
+<script src="/js/bookmark.js"></script>
 
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
 
 
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
 
 
 

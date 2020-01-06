@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://nichollyn.github.io').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="回归 —— 找到 “那根线”！最近的一项研究表明，吃大量的巧克力可能是个好主意。   这个散点图展示了一个国家每个人年均消费的巧克力数量。可以看出，一年中人们吃的巧克力数量，跟这个国家每百万人口中的诺贝尔奖获得者人数，呈正相关性。 注意，这个散点图里的巧克力消耗量显示为自变量，而诺贝尔奖获得者人数显示为因变量。 散点图里分析的单位是国家。如你所见，相关性很高。实际上，这里的皮尔逊相关系数是 0.9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极速统计教程之六 | 回归">
+<meta property="og:url" content="http://nichollyn.github.io/data-science/statistics-regression/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="回归 —— 找到 “那根线”！最近的一项研究表明，吃大量的巧克力可能是个好主意。   这个散点图展示了一个国家每个人年均消费的巧克力数量。可以看出，一年中人们吃的巧克力数量，跟这个国家每百万人口中的诺贝尔奖获得者人数，呈正相关性。 注意，这个散点图里的巧克力消耗量显示为自变量，而诺贝尔奖获得者人数显示为因变量。 散点图里分析的单位是国家。如你所见，相关性很高。实际上，这里的皮尔逊相关系数是 0.9">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_2.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_3.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_4.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_5.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_6.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_7.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_8.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_9.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_10.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/regression_11.jpg">
+<meta property="article:published_time" content="2020-01-02T04:50:17.000Z">
+<meta property="article:modified_time" content="2020-01-06T01:48:13.221Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="统计">
+<meta property="article:tag" content="数据科学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://nichollyn.github.io/images/regression.jpg">
+
+<link rel="canonical" href="http://nichollyn.github.io/data-science/statistics-regression/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>极速统计教程之六 | 回归 | The Infinite Game</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/data-science/statistics-regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          极速统计教程之六 | 回归
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-02 12:50:17" itemprop="dateCreated datePublished" datetime="2020-01-02T12:50:17+08:00">2020-01-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/data-science/statistics-regression/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之六 | 回归" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="回归-——-找到-“那根线”！"><a href="#回归-——-找到-“那根线”！" class="headerlink" title="回归 —— 找到 “那根线”！"></a>回归 —— 找到 “那根线”！</h1><p>最近的一项研究表明，吃大量的巧克力可能是个好主意。</p>
+<img src="/images/regression.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这个散点图展示了一个国家每个人年均消费的巧克力数量。可以看出，一年中人们吃的巧克力数量，跟这个国家每百万人口中的诺贝尔奖获得者人数，呈正相关性。</p>
+<p>注意，这个散点图里的巧克力消耗量显示为自变量，而诺贝尔奖获得者人数显示为因变量。</p>
+<p>散点图里分析的单位是国家。如你所见，相关性很高。实际上，这里的皮尔逊相关系数是 0.93 。这说明，多吃巧克力虽然可能令你发胖，但同时也让你变聪明。皮尔逊相关系数告诉我们，两个连续变量之间的线性相关性有多强，这种线性相关性被显示为一根直线。在我们的案例中，是这条线。</p>
+<img src="/images/regression_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这就是我们所说的 <strong>回归线 (regression line)</strong> 。在本节教程中，我将告诉你如何找到回归线。重要的是要知道我们如何找到这条线，而不仅仅是因为回归线向你展示了两个变量之间的关系。 <em>找到回归线是许多统计分析的基础。</em></p>
+<p>那么，我们如何找到回归线呢？想象你正在绘制散点图里每一条可能的直线。所以，你像下面这样画了许多可能的线。这是一组数量巨大的线。实际上，这几乎不可能做到。不过，暂时想象你有超能力 —— 你能做到这一点。</p>
+<a id="more"></a>
+
+<img src="/images/regression_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>接下来，你可以测量每条可能的线与每个案例之间的距离。在我们的例子，即线到每个国旗之间的距离。</p>
+<p>让我给你举一个基于随机线的例子，比如，下面这个。测量日本和线的之间的垂直距离，西班牙和线之间的距离等等。直到你知道你的研究中每个案例的距离。</p>
+<img src="/images/regression_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>每一个距离都被称为 <strong>残差 (residual)</strong>，你最终会得到正的残差，它们以线之上的案例到线之间的蓝色线段展示；以及负的残差，它们以线之下的案例到线之间的红色线段展示。</p>
+<p>你为每一条可能的线测量残差。最终，我们选择一条能够 <em>使得残差的平方和最小的线</em> ，这便是我们要找的那根线。</p>
+<img src="/images/regression_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>为什么是残差的平方和呢？因为正的残差和负的残差会相互抵消。</p>
+<p>最佳拟合的线被称为 <strong>回归线</strong> ，分析的方法被称为 <strong>普通最小二乘回归 (ordinary least squares regression)</strong> ，这是指我们找到这条线的方式。</p>
+<p>在实践中，几乎不可能绘制每一条可能的线和残差的和。幸运的是，数学家已经找到了寻找回归线的技巧。我不会解释这个把戏在这里是如何运作的，因为它相当复杂。目前为止，知道它基于残差的平方和就已经足够了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
+<p>你学到两件事：第一，你学会如何计算并寻找回归线；第二，你了解到，吃巧克力很可能有助于你通过这门课程。:D</p>
+</blockquote>
+<hr>
+<h1 id="回归-——-描述-“那根线”"><a href="#回归-——-描述-“那根线”" class="headerlink" title="回归 —— 描述 “那根线”"></a>回归 —— 描述 “那根线”</h1><p>回归线是最好地描述两个变量之间线性关系的直线。但我们要如何描述这条线的样子呢？</p>
+<p>这是一个非常重要的问题，因为通过用公式描述，我们可以很容易地把 <strong>回归的分析 (regression analysis)</strong> 传达给其他人，预测其他国家的诺贝尔奖获得者人数，以及确定不符合该模式的国家。基于此散点图中的回归线，我们可以预测：每年巧克力人均消费量为 6 公斤的国家，平均每 1000 万个人中有 11 位诺贝尔奖获得者。</p>
+<img src="/images/regression_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>同样，基于同一条线，我们将预测一个每年人均巧克力消费量为 11 公斤的国家，平均每 1000 万人中 会有 25 个诺贝奖获得者。</p>
+<img src="/images/regression_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>对大多数国家来说，这一预测并不完全正确。毕竟，大多数国家并不恰好在回归线上。然而，这是我们能做出的最好的预测 —— 根据我们掌握的信息。</p>
+<img src="/images/regression_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>有一个简单的公式，我们可以用它来描述回归线。这就是那个公式。 </p>
+<p>$$\hat y = a + bx$$</p>
+<p>$\hat y$ 不是 y 的实际值，但它表示 y 的预测值。例如，当 x 等于 12 时， $\hat y$ 等于 28 。 请注意，在这种情况下， y 的实际值为 33 。但是， y 的预测值是回归线上的 y 的值。这意味着，正好在回归线上所有的值是 $\hat y$ 。</p>
+<p>a 就是我们所说的 <strong>截距</strong> ，它是一个常数。当 x 等于 0 时，它是 y 的预测值。换句话说，当回归线上 y 的预测值与 y 轴的相交时， x 等于 0 。在我们的案例里，它是 -5.63 。请注意，这个值没有实质性的含义。不可能每 1000 万人中有 -5.63 名诺贝尔奖获得者。它只有一个目的：描述回归线的数学性质。</p>
+<p>b 就是我们所说的 <strong>回归系数 (regression coefficient)</strong> 或 <strong>斜率 （regression slope）</strong> 。 它是当 x 增加一个单位时， $\hat y$ 的变化。在我们的例子中，我们看到当 x 增加一个单位，例如，从 4 到 5， y 的预测值增加 2.80 个单位。</p>
+<p>因为是一条直线，回归线的斜率是处处相等的。所以，如果我们看看当 x 从 8 增加到 9 时会发生什么， $\hat y$ 也是增加 2.80 单位。我们案例中的回归系数为 2.80 。这可以推导出下面这个 <strong>回归方程 (regression equation)</strong>。 </p>
+<p>$\hat y = 5.63 + 2.80x$ 。</p>
+<p>请看这两条回归线。它们具有相同的回归系数或 b 值。 当 x 增加一个单位时，第一条线和第二条线的 y 值增长的量是一样的。但是，这些线具有不同的截距，或一个值。毕竟，它们在不同的位置上穿过 y 轴。</p>
+<img src="/images/regression_9.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这两条回归线具有不同的回归系数。当 x 增加一个单位时，第一条线上的 $\hat y$ 比第二号线上的 $\hat y$ 增加地更多。然而，这两条线的截距是相同的，因为它们在同一个点穿过 y 轴。</p>
+<img src="/images/regression_10.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我已经对你说过了，我们可以用回归线来预测 y 值 —— 基于给定的 x 值。我们还可以使用回归公式进行预测。让我们用一个回归公式。 $\hat y = -5.63 + 2.80x$ 。我们可以使用公式预测 y 值。如果 x = 3.5，该怎么办？我们得到 -5.63 + (2.80 * 3.5)。 这就得出了 4.17 。 所以这里的 $\hat y = 4.17$ 。 如果 x = 10.21，该怎么办？ 然后你得到 -5.63 + (2.80 x 10.21) 。 这使得 $\hat y$ 等于 22.96 。 当我们只看回归线时，我们得到了相同的值。对于 x 值等于 3.5 时，我们得到的预测 y 值约为 4 。 对于 x 值等于 10.21 时，我们得到的 $\hat y$ 值约为 23 。 你已经可以看到，使用公式有一个巨大的优势 —— 你可以做出更精确的预测。</p>
+<p>通常情况下，计算机会为你找到回归线，所以你不需要自己计算。然而，当你知道你的变量的均值和标准差，以及相应的皮尔逊系数，你可以通过两个公式计算回归方程。</p>
+<p>$$b = r\left (\frac {s_y}{s_x}\right)$$<br>$$a = \bar y - b (\bar x)$$</p>
+<p>第一个公式通过将皮尔逊的回归系数乘以 y 的标准差，再除以 x 的标准差。这表明了回归系数事实上是皮尔逊系数的一个不标准化的版本。当 pearson 的 r 等于 0 时，回归系数等于 0 。当皮尔逊的 r 是一个正数，回归系数也是正数，当皮尔逊系数为负时，回归系数也是负的。</p>
+<img src="/images/regression_11.jpg" width="68%" height="68%" style="margin: 10 auto;">
+这些是我们的研究的均值、标准差和皮尔逊系数。因此，为了找到回归系数，我们乘以 0.93 * (11.87/3.95)，结果是 2.79 。第二个公式用回归系数乘 x 的均值，之后从 y 的均值减去结果来计算截距。
+
+<p>所以 13.17-(2.79 * 6.71) 。 这样就可以得到 -5.55 了。回归方程为 -5.55 + 2.79 x 。</p>
+<p>与这一个计算机算出的回归方程的不同是由舍入误差导致的。我用汇总均值、标准差和皮尔逊系数来计算，这导致了一个不太精确的回归方程。因此，在使用这些公式时，尽量减少舍入。恭喜你成功完成了这个教程的上半部分！现在，你可以进行回归分析并计算预测值。了解回归的基础知识是至关重要的，因为能够了解之后的推理回归过程。</p>
+<p>所以多看这篇教程几次。:D</p>
+<blockquote>
+<p>如果自变量 x 是你看这篇教程的次数，并且因变量 y 是你的掌握的回归分析的知识，当你这样做时，回归分析的回归斜率将是一个正数。</p>
+</blockquote>
+<p>如果你不明白上面这句话意味着什么，立即重温这篇教程吧。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-correlation/" rel="bookmark">极速统计教程之五 | 相关性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-z-scores/" rel="bookmark">极速统计教程之四 | Z-score</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-measures-of-central-tendency-and-dispersion/" rel="bookmark">极速统计教程之三 | 测量集中趋势和离散程度</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-descriptive-statistics/" rel="bookmark">极速统计教程之二 | 数据可视化</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-basic-introduction/" rel="bookmark">极速统计教程之一 | 引言</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://nichollyn.github.io/data-science/statistics-regression/" title="极速统计教程之六 | 回归">http://nichollyn.github.io/data-science/statistics-regression/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%9F%E8%AE%A1/" rel="tag"># 统计</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" rel="tag"># 数据科学</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/data-science/statistics-correlation/" rel="prev" title="极速统计教程之五 | 相关性">
+      <i class="fa fa-chevron-left"></i> 极速统计教程之五 | 相关性
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#回归-——-找到-“那根线”！"><span class="nav-number">1.</span> <span class="nav-text">回归 —— 找到 “那根线”！</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.1.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回归-——-描述-“那根线”"><span class="nav-number">2.</span> <span class="nav-text">回归 —— 描述 “那根线”</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">84k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:16</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

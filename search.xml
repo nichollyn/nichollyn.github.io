@@ -1,8 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>极速统计教程之六 | 回归</title>
+    <url>/data-science/statistics-regression/</url>
+    <content><![CDATA[<h1 id="回归-——-找到-“那根线”！"><a href="#回归-——-找到-“那根线”！" class="headerlink" title="回归 —— 找到 “那根线”！"></a>回归 —— 找到 “那根线”！</h1><p>最近的一项研究表明，吃大量的巧克力可能是个好主意。</p>
+<img src="/images/regression.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这个散点图展示了一个国家每个人年均消费的巧克力数量。可以看出，一年中人们吃的巧克力数量，跟这个国家每百万人口中的诺贝尔奖获得者人数，呈正相关性。</p>
+<p>注意，这个散点图里的巧克力消耗量显示为自变量，而诺贝尔奖获得者人数显示为因变量。</p>
+<p>散点图里分析的单位是国家。如你所见，相关性很高。实际上，这里的皮尔逊相关系数是 0.93 。这说明，多吃巧克力虽然可能令你发胖，但同时也让你变聪明。皮尔逊相关系数告诉我们，两个连续变量之间的线性相关性有多强，这种线性相关性被显示为一根直线。在我们的案例中，是这条线。</p>
+<img src="/images/regression_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这就是我们所说的 <strong>回归线 (regression line)</strong> 。在本节教程中，我将告诉你如何找到回归线。重要的是要知道我们如何找到这条线，而不仅仅是因为回归线向你展示了两个变量之间的关系。 <em>找到回归线是许多统计分析的基础。</em></p>
+<p>那么，我们如何找到回归线呢？想象你正在绘制散点图里每一条可能的直线。所以，你像下面这样画了许多可能的线。这是一组数量巨大的线。实际上，这几乎不可能做到。不过，暂时想象你有超能力 —— 你能做到这一点。</p>
+<a id="more"></a>
+
+<img src="/images/regression_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>接下来，你可以测量每条可能的线与每个案例之间的距离。在我们的例子，即线到每个国旗之间的距离。</p>
+<p>让我给你举一个基于随机线的例子，比如，下面这个。测量日本和线的之间的垂直距离，西班牙和线之间的距离等等。直到你知道你的研究中每个案例的距离。</p>
+<img src="/images/regression_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>每一个距离都被称为 <strong>残差 (residual)</strong>，你最终会得到正的残差，它们以线之上的案例到线之间的蓝色线段展示；以及负的残差，它们以线之下的案例到线之间的红色线段展示。</p>
+<p>你为每一条可能的线测量残差。最终，我们选择一条能够 <em>使得残差的平方和最小的线</em> ，这便是我们要找的那根线。</p>
+<img src="/images/regression_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>为什么是残差的平方和呢？因为正的残差和负的残差会相互抵消。</p>
+<p>最佳拟合的线被称为 <strong>回归线</strong> ，分析的方法被称为 <strong>普通最小二乘回归 (ordinary least squares regression)</strong> ，这是指我们找到这条线的方式。</p>
+<p>在实践中，几乎不可能绘制每一条可能的线和残差的和。幸运的是，数学家已经找到了寻找回归线的技巧。我不会解释这个把戏在这里是如何运作的，因为它相当复杂。目前为止，知道它基于残差的平方和就已经足够了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
+<p>你学到两件事：第一，你学会如何计算并寻找回归线；第二，你了解到，吃巧克力很可能有助于你通过这门课程。:D</p>
+</blockquote>
+<hr>
+<h1 id="回归-——-描述-“那根线”"><a href="#回归-——-描述-“那根线”" class="headerlink" title="回归 —— 描述 “那根线”"></a>回归 —— 描述 “那根线”</h1><p>回归线是最好地描述两个变量之间线性关系的直线。但我们要如何描述这条线的样子呢？</p>
+<p>这是一个非常重要的问题，因为通过用公式描述，我们可以很容易地把 <strong>回归的分析 (regression analysis)</strong> 传达给其他人，预测其他国家的诺贝尔奖获得者人数，以及确定不符合该模式的国家。基于此散点图中的回归线，我们可以预测：每年巧克力人均消费量为 6 公斤的国家，平均每 1000 万个人中有 11 位诺贝尔奖获得者。</p>
+<img src="/images/regression_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>同样，基于同一条线，我们将预测一个每年人均巧克力消费量为 11 公斤的国家，平均每 1000 万人中 会有 25 个诺贝奖获得者。</p>
+<img src="/images/regression_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>对大多数国家来说，这一预测并不完全正确。毕竟，大多数国家并不恰好在回归线上。然而，这是我们能做出的最好的预测 —— 根据我们掌握的信息。</p>
+<img src="/images/regression_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>有一个简单的公式，我们可以用它来描述回归线。这就是那个公式。 </p>
+<p>$$\hat y = a + bx$$</p>
+<p>$\hat y$ 不是 y 的实际值，但它表示 y 的预测值。例如，当 x 等于 12 时， $\hat y$ 等于 28 。 请注意，在这种情况下， y 的实际值为 33 。但是， y 的预测值是回归线上的 y 的值。这意味着，正好在回归线上所有的值是 $\hat y$ 。</p>
+<p>a 就是我们所说的 <strong>截距</strong> ，它是一个常数。当 x 等于 0 时，它是 y 的预测值。换句话说，当回归线上 y 的预测值与 y 轴的相交时， x 等于 0 。在我们的案例里，它是 -5.63 。请注意，这个值没有实质性的含义。不可能每 1000 万人中有 -5.63 名诺贝尔奖获得者。它只有一个目的：描述回归线的数学性质。</p>
+<p>b 就是我们所说的 <strong>回归系数 (regression coefficient)</strong> 或 <strong>斜率 （regression slope）</strong> 。 它是当 x 增加一个单位时， $\hat y$ 的变化。在我们的例子中，我们看到当 x 增加一个单位，例如，从 4 到 5， y 的预测值增加 2.80 个单位。</p>
+<p>因为是一条直线，回归线的斜率是处处相等的。所以，如果我们看看当 x 从 8 增加到 9 时会发生什么， $\hat y$ 也是增加 2.80 单位。我们案例中的回归系数为 2.80 。这可以推导出下面这个 <strong>回归方程 (regression equation)</strong>。 </p>
+<p>$\hat y = 5.63 + 2.80x$ 。</p>
+<p>请看这两条回归线。它们具有相同的回归系数或 b 值。 当 x 增加一个单位时，第一条线和第二条线的 y 值增长的量是一样的。但是，这些线具有不同的截距，或一个值。毕竟，它们在不同的位置上穿过 y 轴。</p>
+<img src="/images/regression_9.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这两条回归线具有不同的回归系数。当 x 增加一个单位时，第一条线上的 $\hat y$ 比第二号线上的 $\hat y$ 增加地更多。然而，这两条线的截距是相同的，因为它们在同一个点穿过 y 轴。</p>
+<img src="/images/regression_10.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我已经对你说过了，我们可以用回归线来预测 y 值 —— 基于给定的 x 值。我们还可以使用回归公式进行预测。让我们用一个回归公式。 $\hat y = -5.63 + 2.80x$ 。我们可以使用公式预测 y 值。如果 x = 3.5，该怎么办？我们得到 -5.63 + (2.80 * 3.5)。 这就得出了 4.17 。 所以这里的 $\hat y = 4.17$ 。 如果 x = 10.21，该怎么办？ 然后你得到 -5.63 + (2.80 x 10.21) 。 这使得 $\hat y$ 等于 22.96 。 当我们只看回归线时，我们得到了相同的值。对于 x 值等于 3.5 时，我们得到的预测 y 值约为 4 。 对于 x 值等于 10.21 时，我们得到的 $\hat y$ 值约为 23 。 你已经可以看到，使用公式有一个巨大的优势 —— 你可以做出更精确的预测。</p>
+<p>通常情况下，计算机会为你找到回归线，所以你不需要自己计算。然而，当你知道你的变量的均值和标准差，以及相应的皮尔逊系数，你可以通过两个公式计算回归方程。</p>
+<p>$$b = r\left (\frac {s_y}{s_x}\right)$$<br>$$a = \bar y - b (\bar x)$$</p>
+<p>第一个公式通过将皮尔逊的回归系数乘以 y 的标准差，再除以 x 的标准差。这表明了回归系数事实上是皮尔逊系数的一个不标准化的版本。当 pearson 的 r 等于 0 时，回归系数等于 0 。当皮尔逊的 r 是一个正数，回归系数也是正数，当皮尔逊系数为负时，回归系数也是负的。</p>
+<img src="/images/regression_11.jpg" width="68%" height="68%" style="margin: 10 auto;">
+这些是我们的研究的均值、标准差和皮尔逊系数。因此，为了找到回归系数，我们乘以 0.93 * (11.87/3.95)，结果是 2.79 。第二个公式用回归系数乘 x 的均值，之后从 y 的均值减去结果来计算截距。
+
+<p>所以 13.17-(2.79 * 6.71) 。 这样就可以得到 -5.55 了。回归方程为 -5.55 + 2.79 x 。</p>
+<p>与这一个计算机算出的回归方程的不同是由舍入误差导致的。我用汇总均值、标准差和皮尔逊系数来计算，这导致了一个不太精确的回归方程。因此，在使用这些公式时，尽量减少舍入。恭喜你成功完成了这个教程的上半部分！现在，你可以进行回归分析并计算预测值。了解回归的基础知识是至关重要的，因为能够了解之后的推理回归过程。</p>
+<p>所以多看这篇教程几次。:D</p>
+<blockquote>
+<p>如果自变量 x 是你看这篇教程的次数，并且因变量 y 是你的掌握的回归分析的知识，当你这样做时，回归分析的回归斜率将是一个正数。</p>
+</blockquote>
+<p>如果你不明白上面这句话意味着什么，立即重温这篇教程吧。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>data-science</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
+        <tag>数据科学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>极速统计教程之五 | 相关性</title>
-    <url>/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/</url>
+    <url>/data-science/statistics-correlation/</url>
     <content><![CDATA[<p>很多人喜欢吃巧克力，但多数人吃巧克力是比较谨慎的。因为吃了太多巧克力，很有可能会增加体重。在这一期的教程中，我将讨论如何使用表格和图表展示 <em>两个变量之间的关系</em> 。这有助于发现两个变量之间是否存在 <strong>相关性 (correlation)</strong> 。</p>
 <h1 id="列联表-Contingency-Tables"><a href="#列联表-Contingency-Tables" class="headerlink" title="列联表 (Contingency Tables)"></a>列联表 (Contingency Tables)</h1><p>我们来进一步研究吃巧克力和体重之间的关系。</p>
 <p>假设我在我们学校选择了 200 名女学生。她们身高都是一米七。这样，身高就是一个常数，不会影响体重或吃巧克力。让学生报告体重及每周巧克力消费情况。体重可以选择这样几个类别：小于 50 公斤； 50 至 69 公斤； 70 至 89 公斤和 90 公斤或以上。巧克力消费量可以选择这样几个类别：每周少于 50 克；每周 50 至 150 克；每周超过 150 克。</p>
@@ -31,7 +128,7 @@
 <h1 id="散点图-Scatterplot"><a href="#散点图-Scatterplot" class="headerlink" title="散点图 (Scatterplot)"></a>散点图 (Scatterplot)</h1><ul>
 <li>列联表对定类和定序变量很有用，但不适用于定量变量。* * 对于定量变量，散点图更合适。* 假设没有提供类别，而是让 200 名女性给出确切的体重，例如 65 或 72 公斤。假设也要求他们告知每周吃巧克力的确切重量，例如每周可以是 64 克或 99 克。现在，有比之前更精确的信息展示定量变量，巧克力消费和体重之间关系的最佳方法是使用 <strong>散点图</strong> 。</li>
 </ul>
-<p>制作散点图，我们绘制两条线，称之为 <strong>轴</strong> 。我们将水平轴称为 <strong>X 轴</strong> 。这里展示的是 <strong>自变量</strong> ，垂直轴称为 <strong>Y 轴</strong> ，我们用它来表示 <strong>因变量</strong> 。如果因变量和自变量之间没有区别，则 Y 轴和 X 轴上的位置是一个选择问题。在我们的例子中，自变量是巧克力消耗量，因变量是体重。</p>
+<p>制作散点图，我们绘制两条线，称之为 <strong>轴</strong> 。我们将水平轴称为 <strong>X 轴</strong> 。这里展示的是 <strong>自变量 (independent variable)</strong> ，垂直轴称为 <strong>Y 轴</strong> ，我们用它来表示 <strong>因变量 (dependent variable)</strong> 。如果因变量和自变量之间没有区别，则 Y 轴和 X 轴上的位置是一个选择问题。在我们的例子中，自变量是巧克力消耗量，因变量是体重。</p>
 <p>假如我们的研究表明，最少的巧克力消耗等于每周零克，最高的量是每周 700 克。我们在 x 轴上标注这些值；同样，体重的最小值为 40 公斤，最大值为 110 公斤。</p>
 <img src="/images/scatterplot.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
@@ -99,41 +196,52 @@
           });
       </script>]]></content>
       <categories>
-        <category>商业分析</category>
+        <category>data-science</category>
       </categories>
       <tags>
         <tag>统计</tag>
-        <tag>商业分析</tag>
+        <tag>数据科学</tag>
       </tags>
   </entry>
   <entry>
     <title>极速统计教程之四 | Z-score</title>
-    <url>/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-z-scores/</url>
+    <url>/data-science/statistics-z-scores/</url>
     <content><![CDATA[<blockquote>
 <p>通俗解释 z-score ，即 z-score 是对某一原始分值进行转换，变成的一个标准分值，该标准分值可使得原来无法比较的数值变得可比。</p>
 </blockquote>
 <h1 id="Z-score"><a href="#Z-score" class="headerlink" title="Z-score"></a>Z-score</h1><p>本教程中我们还继续沿用前面教程中足球队的例子。</p>
-<p><img src="/images/z-score.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/z-score.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>你在这里看到的是所谓的球员纹身占比，以纹身占身体的百分比表示。点图和标准差表明，第二队的分布比第一队的变化更大。</p>
 <p>有时研究人员会问：一个特定的观测结果是常见还是特例。为了回答这个问题，研究人员会用 <strong>一个数与平均数的差再除以标准差</strong> 。这个数字就是我们所说的 z 分数。在这篇教程中，我将解释如何计算 z 分数，以及它们的用处。</p>
 <p>我们先来看看第一队的分布情况。平均数是 15 ，标准差是 2.5 。为了计算 z 分数，我们使用这个公式：</p>
-<script type="math/tex; mode=display">z = \frac {(x - \bar x)}{s}</script><p>这个公式不是很复杂，它告诉你如何计算感兴趣的数值。该数值与平均数之差，再除以标准差。</p>
+<p>$$ z = \frac {(x - \bar x)}{s} $$</p>
+<p>这个公式不是很复杂，它告诉你如何计算感兴趣的数值。该数值与平均数之差，再除以标准差。</p>
+<a id="more"></a>
+
 <p>来看看纹身占比是 10.8％ 意味着什么。该值的 z 分数是 10.8 减去 15 再除以 2.5 等于负 1.68 。所以 z 分数是负 1.68 。你可以为所有数值进行如此计算。如果这样做，这些就是结果。</p>
-<p><img src="/images/z-score_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/z-score_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>请注意，最终会得到负 z 分数和正 z 分数。负 z 分数表示低于平均数的值；正 z 分数表示高于平均数的值。因为平均数是分布的平衡点，所以负的和正的 z 分数相互抵消。换句话说，如果将所有 z 分数相加，结果为 0 。</p>
 <p>好的，不过如何知道某个 z 分数是低还是高呢？</p>
 <p>这取决于分布和前后关系。有一个黄金定律：如果变量的直方图是钟形的，那么 68％ 的观测值在 z 分数 -1 和 1 之间， 95％ 在 z 分数 -2 和 2 之间， 99％ 在 z 分数 -3 和 3 之间。这意味着对于这种类型的分布， z 分数大于 3 或小于 -3 ，可以被认定是特例。</p>
-<p><img src="/images/z-score_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/z-score_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>但是，如果分布严重偏向右侧，如下图所示，较大的正 z 分数会更常见，因为分布的右侧有更多极值。</p>
-<p><img src="/images/z-score_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/z-score_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>类似，如果分布严重偏向左侧 则较大的负 z 分数会更常见，因为分布的左侧存在更多极值。</p>
-<p><img src="/images/z-score_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/z-score_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>无须考虑形状，适用于任何分布的规则。 <strong>75％ 的数据必须落在 z 分数正负 2 之内。</strong></p>
-<p><img src="/images/z-score_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/z-score_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>且 <strong>89％ 的数据在 z 分数正负 3 之间。</strong> </p>
-<p><img src="/images/z-score_7.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/z-score_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>因此， z 分数本身就在一定程度上，给出了关于观测极端程度的信息。如果要比较不同的分布， z 分数就更有用了。比如，来看一下 19.3 的体重是否常见：</p>
-<p><img src="/images/z-score_8.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/z-score_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>在第 1 组中，这并不常见。 z 分数为 19.3 减去 15 再除以 2.5 ，等于 1.72 。在第 2 组中， 19.3 的 z 分数等于 19.3 减去 15 除以 8 等于 0.54 。这表明在第 2 组中， 19.3 的体重更常见。在第 2 组中， z 分数是 0.54 ，在第 1 组中，是 1.72 。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>如果我们将原始分数重新编码为 z 分数，就是 <strong>将变量标准化</strong> 。 <strong>标准化</strong> 意味着我们用 z 分数 替换原始度量中测量的分数，其优点是我们可以一眼看出特定分数是相对常见还是特殊。</p>
 <p>因此，一个球员纹身占比是五分之一是否异常，这取决于球队或你想比对的另一组数据。</p>
@@ -158,26 +266,26 @@
           });
       </script>]]></content>
       <categories>
-        <category>商业分析</category>
+        <category>data-science</category>
       </categories>
       <tags>
         <tag>统计</tag>
-        <tag>商业分析</tag>
+        <tag>数据科学</tag>
       </tags>
   </entry>
   <entry>
     <title>极速统计教程之三 | 测量集中趋势和离散程度</title>
-    <url>/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/</url>
+    <url>/data-science/statistics-measures-of-central-tendency-and-dispersion/</url>
     <content><![CDATA[<h1 id="众数、中位数和平均数"><a href="#众数、中位数和平均数" class="headerlink" title="众数、中位数和平均数"></a>众数、中位数和平均数</h1><p>在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：<strong>众数</strong> (mode) ，<strong>中位数</strong> (median) 和 <strong>平均数</strong> (mean) 。</p>
 <p>这三个 m 通常被称为集中趋势的度量。</p>
 <p>找到众数很容易，<strong>它是出现频次最高的值。</strong> 换句话说，就是最常见的结果。</p>
 <p>如果测量定类或定序变量，<em>众数通常用作衡量集中趋势。</em></p>
 <p>在下面这个饼图中，可以看到西班牙主要球赛中球员来自哪些大洲。</p>
-<div id="echarts2602" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts8458" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts2602'));
+        var myChart = echarts.init(document.getElementById('echarts8458'));
         // 指定图表的配置项和数据
         var option = {
     title : {
@@ -219,77 +327,99 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
+
 <p>饼图使众数一目了然，是欧洲 70％ 的球员来自欧洲</p>
 <p><strong><em>这里的众数是欧洲</em></strong> ，是最常出现的类别的名称，但众数不是 70％ 。这只是该特定类别的观测百分比。可能有多个众数。试想有一个足球运动员，拥有十分分裂的球迷，其中一些觉得他非常和善，而另一些则认为他非常蛮横。来给这个球员起个名，Franco Galton。</p>
 <a id="more"></a>
+
 <p>试想你选取西班牙 500 名受访者作为代表样本，询问他们对 Franco Galton 的看法，受访者可以在 0 到 10 的范围内表明他们认为他的和善程度。 0 表示非常蛮横， 10 表示非常和善。</p>
-<p><img src="/images/two_mode.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/two_mode.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>假设这是本研究得出的直方图形状，可以看到西班牙人分歧很大，有些人觉得 Galton 非常和善，有些人觉得他非常蛮横。正如所见，分布有 两个众数，即 3 和 8 这显然是双众数分布。</p>
 <p>集中趋势的第二个衡量指标是中位数：<strong>观测值从最小到最大排序时，中位数就是观测值的中间值。</strong></p>
 <p>试想你还问了七位受访者，对另一著名球员 Tomas Bayez 的看法。假设这是他的研究数据矩阵，这里的众数是 8 ，是频次最高的值。</p>
-<p><img src="/images/median.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/median.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>要计算中位数，首先必须将所有数值从低到高排序，然后选择中间值。所以这里的中位数是 8 。如果案例是偶数而非奇数，那就稍微复杂点了。试想受访者是 8 人，他们对 Tomas Bayez 的看法。</p>
-<p><img src="/images/median_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/median_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>数值是从低到高排列的。但是，在这种情况下，没有单个中间值。该如何解决这个问题呢？我们取两个中间数值的平均值 7 和 8 相加除以 2 等于 7.5 。因此，中位数是 7.5 。请注意，中位数将分布分为两个相等的部分。 50％ 的值低于中位数， 50％ 的值高于中位数。</p>
 <p>集中趋势的第三个衡量指标，是最常用的一个，也可能是你已经非常熟悉的，就是平均数。</p>
 <p><strong>平均数是所有观测值之和除以观测个数</strong>。</p>
-<script type="math/tex; mode=display">\bar x = \frac {\sum {x}}{n}</script><p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
+<p>$$ \bar x = \frac {\sum {x}}{n} $$</p>
+<p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
 <p>举个例子，借用 Tomas Bayez 的研究。公式告诉我们首先求总和， 6 加 7 ，加 7 ，加 8 ，加 8 ，加 8 ，加 9 ，等于 53 ，现在再除以 n 。样本量是 7 ，因此 53 除以 7 等于 7.6 平均数是 7.6 。</p>
-<p><img src="/images/mean.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/mean.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>可以将平均数视为数据的平衡点。试想我们将重量平衡放置，那么平均数就是天平中心点。其中一侧的总重量恰好等于另一侧。</p>
-<p><img src="/images/mean_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/mean_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>现在大家已经熟悉了这三个 m 。可以通过各种方式轻松计算一组数字的中间值，但报告时，该使用哪种中心趋势呢？</p>
 <p><strong>这部分取决于变量的测量级别。</strong> 如果是定类测量，则无法计算中位数或平均数，因为我们无法对定类变量进行数值运算，也不能对它们进行排序。<strong>当变量是定类变量时 唯一适合的集中趋势度量是众数。</strong></p>
 <p>如果是定量变量该怎么办呢？</p>
 <p>试想你在家乡足球俱乐部的一个食堂里，你想计算所有在场人士的平均收入和中位收入，包括你自己，其他 5 位客人和吧员。</p>
-<p><img src="/images/mean_and_median.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/mean_and_median.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>这是数据矩阵，平均数约为 35,000 ，中位数恰好是 35,000 ， 它们彼此非常接近。使用哪一个来描述分布中心都无所谓。但现在，著名足球运动员 Franco Galton 走进食堂，比如他每年收入大约 7000 万 ，这时中位数略微增加到 36,000 ，然而，平均数却超过 800 万。</p>
-<p><img src="/images/mean_and_median_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/mean_and_median_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>我们说 Franco Galton 是这个分布的异常值。他的收入远高于其他所有人，他的收入对平均收入产生不成比例的影响。在这种情况下，计算中位数描述分布中心比平均数更合理。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>描述分布中心可以使用三种方法：众数，中位数和平均数。如果变量是定类的，则使用众数；如果是定量的，则使用中位数或平均数 —— 如果有异常值或分布高度偏离，使用中位数。如果不是，那就使用平均数。</p>
 <hr>
 <h1 id="全距、四分位距和箱线图"><a href="#全距、四分位距和箱线图" class="headerlink" title="全距、四分位距和箱线图"></a>全距、四分位距和箱线图</h1><p>你可能已经注意到了，纹身在足球运动员中越来越受欢迎。特别是所谓的纹身袖在球场上正在兴起。纹身袖，正如其名，是指满胳膊的纹身。</p>
 <p>你对球员纹身占身体的比例感兴趣吗？</p>
 <p>试想有两支球队，这里看到的是点图，表示两队中纹身占身体的百分比变量分布。水平线代表这个变量，原点代表每个团队中的 11 个人。</p>
-<p><img src="/images/range.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/range.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>第一队队员纹身占比大约是 10％ 到 20％ 之间。在第二支球队中，球员的纹身占比差异很大，百分比范围是 0% 到大约 30％ 之间。因此，这个团队彼此差异很大。但是两队众数，中位数和平均数却相同。两队的众数都是 14.1 ，中位数和平均数都是 15 。<em>这表明为了充分描述分布，我们需要集中趋势度量之外的信息。</em> 这一节我将向大家展示我们还需要了解有关数据变化或离散的信息，讨论两种变异性测量，即：<strong>全距</strong> 和 <strong>四分位距</strong> ，还将讨论所谓的 <strong>箱线图</strong> —— 这是一个非常有用的图表，可以很好地呈现分布中的数值如何离散。</p>
 <p>全距是最简单的变异性度量：它是 <strong>最高值和最低值之间的差值</strong> 。</p>
-<p><img src="/images/range_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/range_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>再来看看我们的两支球队：第一队的球员中最大纹身占比是 19.3％ ， 占比最小的是 10.8％ ，范围是 19.3 减去 10.8 等于 8.5 ；第二队的球员中最大纹身占比是 27.7％ ，占比最小的是 0％ 。因此，范围是 27.7 减去 0 等于 27.7 。这清晰地显示第二队的变化范围比第一队的变化范围更大。全距是易于理解且易于计算的变异性度量。但是，在许多情况下，它并没有很好地呈现数据的变异性。 <em>原因是它只考虑了极值。。</em> 看看这两个分布，它们的范围相同，但一目了然第二个分布的变异性与第一个非常不同。</p>
 <p>另一个更好的测量变异性的方法是 <strong>四分位距</strong> ，因为它省略了极值，它将分布分为四个相等的部分。因此，如果分布看起来是这样的。</p>
-<p><img src="/images/range_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/range_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>可以这样切分，将得分最低的 25％ 划为一组，得分最高的 25％ 划为一组，中间的两个 25％ 再分两组。</p>
 <p>这种划分分布方式称为四分位距，一共有三个 <strong>四分位</strong> ，以下称为 Q1 ， Q2 ， Q3 。</p>
 <p>如你所见，第二个四分位 Q2 将分布分为两个相等的部分。毕竟， 50％ 的值低于该值， 50％ 高于该值。<br>因此 Q2 与中位数相同。 <strong>四分位距是第三和第一个四分位之间的距离</strong>。换句话说，四分位距是 Q3 减去 Q1 。下面让我通过纹身占比来展示计算过程。</p>
-<p><img src="/images/range_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/range_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>这是第二队的分布情况。首先，寻找中位数或者换句话说 Q2 。这很简单，中间数值是 15 ；可以通过查找中位数左侧数值的中间值找到 Q1 ，是 8.7 ；可以通过相同的策略在右侧找到 Q3 是 19.3 。现在，四分位距是 Q3 减去 Q1 即 19.3 减去 8.7 等于 10.6 。四分位距的主要优点是它不受异常值的影响，因为它没有考虑低于 Q1 或高于 Q3 的观测值。然而，在研究中寻找潜在的异常值可能仍然有用。 <strong>根据经验，如果观测值低于第一个四分位 1.5 个四分位距或高于第三个四分位 1.5 个四分位距则为异常值。</strong></p>
 <p>在描述中心和变异性以及检测异常值时，有一种特定类型的图非常有用，该图称为 <strong>箱线图</strong> 。</p>
 <p>Q1，Q2 和 Q3 在箱形图中一目了然，最小值不是异常值，最大值不是异常值。</p>
-<p><img src="/images/range_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/range_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>这是基于前一个示例的箱形图。<strong>箱体</strong> 本身代表分布中心的 50％ 。换句话说，从 Q1 到 Q3 。 <strong>箱高</strong> 代表四分位距，箱内的 <strong>水平线</strong> 是中位数，换句话说，即 Q2 。箱体上面和下面的线称为 <strong>箱须</strong> 。它们包含除异常值以外的其他值，异常值用点单独标记。这里没有点，所以这个箱形图没有任何异常值。</p>
-<p><img src="/images/range_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/range_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>如何确定箱须的长度呢？让我们回到之前示例中的数值，我们检测到了 Q2 ， Q1 和 Q3 以及四分位距。我们知道低于 Q1 1.5 倍四分位距的或高于 Q3 1.5 倍四分位距的值是异常值。这里的四分位距是 10.6 。所以 1.5 乘以 10.6 等于 15.9 ， Q1 为 8.7 ，因此所有低于 8.7 减去 15.9 等于 -7.2 的值都是异常值。这里不存在这样的值，所以下末端没有异常值，这里的最小值是 0 。 Q3 是 19.3 ，因此，高于 19.3 加上 15.9 等于 35.2 的值都是异常值。我们也没有这么高的数值，所以上末端也没有异常值。箱须的上末端等于最大值，即 27.7 。</p>
 <p>我们来看一下第一队的箱形图，如果比较两个箱形图，我们立即就能看到两个分布的变异性差别很大。</p>
-<p><img src="/images/range_7.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/range_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>请记住，分布的中心只能告诉你部分信息。为了了解的更完整，还要 <strong>评估分布的变异性</strong>。箱线图使用三个四分位数，异常值以及剔除异常值后的数据范围，以紧凑的方式显示分布的重要信息。</p>
 <hr>
 <h1 id="方差和标准差"><a href="#方差和标准差" class="headerlink" title="方差和标准差"></a>方差和标准差</h1><p>在足球运动员中，纹身越来越受欢迎。试想，你想知道球员纹身的身体占比。</p>
-<p><img src="/images/tatto.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/tatto.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>这里看到的点图表示纹身占比的分布，由两队球员纹身占身体的百分比表示。一目了然，在第一队中纹身占比的变化远小于第二队。这种变异性可以通过 <strong>全距离</strong> 或 <strong>四分位距</strong> 来测量。也可以用箱线图表示 在此可以看到相关的箱线图。在本节中，将讨论统计研究中经常使用的另外两种变异性度量，即 <strong>方差</strong> 和 <strong>标准差</strong> 。</p>
 <p>与许多其他变异性度量相比，方差和标准差的巨大优势在于：<strong>它们考虑了所有变量的数值</strong> 。</p>
 <p>让我们从方差开始。这是方差的公式：</p>
-<script type="math/tex; mode=display">s^2 = \frac {\sum {(x - \bar x)^2}}{n - 1}</script><p>s 的平方代表方差。将每次的观测值 x 减去 x 的平均值 （x 拔），然后将所有这些值平方后相加，结果是我们所说的平方和，接下来将平方和除以样本的大小 n 减去 1 。我们现在将公式应用于纹身占比的示例，以了解它在实践中的工作原理。</p>
-<p><img src="/images/variance.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>$$ s^2 = \frac {\sum {(x - \bar x)^2}}{n - 1} $$</p>
+<p>s 的平方代表方差。将每次的观测值 x 减去 x 的平均值 （x 拔），然后将所有这些值平方后相加，结果是我们所说的平方和，接下来将平方和除以样本的大小 n 减去 1 。我们现在将公式应用于纹身占比的示例，以了解它在实践中的工作原理。</p>
+<img src="/images/variance.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>第一步是计算平均值，这些值的平均值等于 15 ； 第二步是从每个观测值中减去平均值。我们来取第一个值，0 从这个值中减去平均值 0 减去 15 是负 15 。我们对样本中所有的值都这样计算。算完后，我们发现有负数，也有正数。这并不奇怪，因为均值是这些数值的中间点或平衡点。事实上，均值的负差和正差相抵 ，结果的总和等于 0 。换句话说，这些值的总和等于 0 。</p>
 <p>因此，我们不使用 <strong>原始差值</strong>，而是使用 <strong>差的平方</strong> 。</p>
 <p>接下来，我们对所有这些计算值进行平方。</p>
 <p>根据公式，接下来我们需要将所有这些值相加。现在得数是平方差的总和，换句话说，平方和。这个数等于 639.74 。然后将平方和除以 n 减 1 。在我们的例子中， n 是 11 ，所以 n 减去 1 等于 10 。 639.74 除以 10 等于 63.97 ，这就是方差。</p>
 <p><strong>方差越大，变异性越大。这意味着方差越大，数值越离散。</strong></p>
-<p><img src="/images/variance_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/variance_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>这里显示的第一队的方差约为 6.33 ，从点图和箱线图中已经可：第 2 队中纹身占比的较大差异，也由较大的方差表示。</p>
 <p>方差的一个重要缺点是：方差的度量是经过平方的变量度量。毕竟，我们平方了正差和负差，以便它们不会相互抵消。</p>
 <p>有一个非常简单的方案可以解决这个问题。我们只取方差的平方根 —— 我们称之为 <strong>标准差</strong> 。标准差可以被看作观测值与平均值的平均距离。<strong>标准差越大，数据的变异性越大。</strong></p>
-<script type="math/tex; mode=display">s = \sqrt {\frac {\sum {(x - \bar x)^2}}{n - 1}}</script><p>因此在我们的例子中，第一队的标准差是 6.33 的平方根，等于 2.52 。第二队的标准差是 63.97 的平方根，等于 8.0 。标准差是最常使用的离散度量。然而，在许多统计方法中，方差也起着重要作用。在本节教程中，大家了解了它们密不可分，可以轻松从一个推演出另一个。</p>
+<p>$$ s = \sqrt {\frac {\sum {(x - \bar x)^2}}{n - 1}} $$</p>
+<p>因此在我们的例子中，第一队的标准差是 6.33 的平方根，等于 2.52 。第二队的标准差是 63.97 的平方根，等于 8.0 。标准差是最常使用的离散度量。然而，在许多统计方法中，方差也起着重要作用。在本节教程中，大家了解了它们密不可分，可以轻松从一个推演出另一个。</p>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -311,16 +441,16 @@
           });
       </script>]]></content>
       <categories>
-        <category>商业分析</category>
+        <category>data-science</category>
       </categories>
       <tags>
         <tag>统计</tag>
-        <tag>商业分析</tag>
+        <tag>数据科学</tag>
       </tags>
   </entry>
   <entry>
     <title>极速统计教程之二 | 数据可视化</title>
-    <url>/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/</url>
+    <url>/data-science/statistics-descriptive-statistics/</url>
     <content><![CDATA[<blockquote>
 <p>当我们向他人呈现数据时，通常需要将数据 “<strong>总结</strong>” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。</p>
 </blockquote>
@@ -606,11 +736,11 @@
 </tbody></table>
 <p>可以看到 280 名球员来自欧洲， 16 名来自北美， 56 名来自南美， 32 名来自非洲， 16 名来自亚洲。</p>
 <p>我还添加了相对百分比，你可能希望通过图表展示百分比，有两种可能的方法。</p>
-<div id="echarts8044" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts2383" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts8044'));
+        var myChart = echarts.init(document.getElementById('echarts2383'));
         // 指定图表的配置项和数据
         var option = {
     title : {
@@ -655,11 +785,11 @@
 
 <p>这里是一个 <strong>饼图</strong> 。要概述的变量类别是通过饼图 <strong>切片</strong> 展示在饼图中，切片表示每个类别的百分比，一目了然 —— 几乎四分之三的足球运动员来自欧洲。</p>
 <p>另一种概述数据的方法是 <strong>柱状图</strong> ，它可以非常清楚地展示数据在各个变量类别上的分布。</p>
-<div id="echarts7244" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts9271" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts7244'));
+        var myChart = echarts.init(document.getElementById('echarts9271'));
         // 指定图表的配置项和数据
         var option = {
     xAxis: {
@@ -752,7 +882,7 @@
 <img src="/images/histogram.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
 <p>直方图在某种意义上类似于柱状图，它使用柱形来描绘变量可能数值的频率或相对频率。但是，有一个重要的区别： <strong>直方图中的柱点是相互接触的</strong>。</p>
-<p>该接触表示区间比率变量的数值呈现连续标度。比如，我们对西班牙足球运动员的体重感兴趣，如果测量数值非常详细，比如 83.9 或 74.5 公斤，为每一个值绘制一个单独的柱形是没有意义的。相反，我们构建 <strong>区间</strong>.</p>
+<p>该接触表示区间比率变量的数值呈现连续标度。比如，我们对西班牙足球运动员的体重感兴趣，如果测量数值非常详细，比如 83.9 或 74.5 公斤，为每一个值绘制一个单独的柱形是没有意义的。相反，我们构建 <strong>区间</strong> 。</p>
 <img src="/images/histogram_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
 <p> 在此图中，有 10 个 区间，每个区间 5 公斤，第一个区间范围从 47.5 公斤到 52.5 公斤 显示 50 ，因为 50 是该区间的中间。对于创建的区间的数量，没有固定的规则。但是，重要的是区间数值必须相同，所以在此图中都是五公斤。可以一眼看出大多数球员的体重约为 75 公斤，还可以看到，重量小于 60 或大于 90 是非常罕见的。 </p>
@@ -789,16 +919,16 @@
           });
       </script>]]></content>
       <categories>
-        <category>商业分析</category>
+        <category>data-science</category>
       </categories>
       <tags>
         <tag>统计</tag>
-        <tag>商业分析</tag>
+        <tag>数据科学</tag>
       </tags>
   </entry>
   <entry>
     <title>极速统计教程之一 | 引言</title>
-    <url>/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/</url>
+    <url>/data-science/statistics-basic-introduction/</url>
     <content><![CDATA[<h1 id="学习统计学的意义"><a href="#学习统计学的意义" class="headerlink" title="学习统计学的意义"></a>学习统计学的意义</h1><p>乍一看，统计学可能很吓人，但实际上，统计学并不可怕。它可以关乎很有趣的事，比如足球、潜水、巧克力，很有趣的人，比如潮人、出租车司机和婴儿。</p>
 <p>至少有三个原因，让统计学至关重要。</p>
 <ul>
@@ -829,11 +959,11 @@
           });
       </script>]]></content>
       <categories>
-        <category>商业分析</category>
+        <category>data-science</category>
       </categories>
       <tags>
         <tag>统计</tag>
-        <tag>商业分析</tag>
+        <tag>数据科学</tag>
       </tags>
   </entry>
   <entry>
@@ -978,7 +1108,7 @@
   </entry>
   <entry>
     <title>关于花费时间的四宗罪</title>
-    <url>/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/</url>
+    <url>/thinking/the-four-sins-of-spending-time/</url>
     <content><![CDATA[<blockquote>
 <p>导致我们浪费时间的是我们的<strong>认知错误</strong>。</p>
 </blockquote>
@@ -1031,7 +1161,7 @@
           });
       </script>]]></content>
       <categories>
-        <category>思考</category>
+        <category>thinking</category>
       </categories>
       <tags>
         <tag>思考</tag>

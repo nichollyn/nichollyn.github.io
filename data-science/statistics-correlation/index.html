@@ -51,7 +51,7 @@
   <meta name="description" content="很多人喜欢吃巧克力，但多数人吃巧克力是比较谨慎的。因为吃了太多巧克力，很有可能会增加体重。在这一期的教程中，我将讨论如何使用表格和图表展示 两个变量之间的关系 。这有助于发现两个变量之间是否存在 相关性 (correlation) 。 列联表 (Contingency Tables)我们来进一步研究吃巧克力和体重之间的关系。 假设我在我们学校选择了 200 名女学生。她们身高都是一米七。这样，身高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速统计教程之五 | 相关性">
-<meta property="og:url" content="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/index.html">
+<meta property="og:url" content="http://nichollyn.github.io/data-science/statistics-correlation/index.html">
 <meta property="og:site_name" content="The Infinite Game">
 <meta property="og:description" content="很多人喜欢吃巧克力，但多数人吃巧克力是比较谨慎的。因为吃了太多巧克力，很有可能会增加体重。在这一期的教程中，我将讨论如何使用表格和图表展示 两个变量之间的关系 。这有助于发现两个变量之间是否存在 相关性 (correlation) 。 列联表 (Contingency Tables)我们来进一步研究吃巧克力和体重之间的关系。 假设我在我们学校选择了 200 名女学生。她们身高都是一米七。这样，身高">
 <meta property="og:locale" content="zh_CN">
@@ -68,14 +68,14 @@
 <meta property="og:image" content="http://nichollyn.github.io/images/pearsonr_3.jpg">
 <meta property="og:image" content="http://nichollyn.github.io/images/pearsonr_4.jpg">
 <meta property="article:published_time" content="2020-01-02T01:28:57.000Z">
-<meta property="article:modified_time" content="2020-01-02T03:40:49.407Z">
+<meta property="article:modified_time" content="2020-01-06T01:48:13.219Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
-<meta property="article:tag" content="商业分析">
+<meta property="article:tag" content="数据科学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://nichollyn.github.io/images/crosstab.jpg">
 
-<link rel="canonical" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/">
+<link rel="canonical" href="http://nichollyn.github.io/data-science/statistics-correlation/">
 
 
 <script id="page-configurations">
@@ -237,7 +237,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/data-science/statistics-correlation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -270,14 +270,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
-                    <span itemprop="name">商业分析</span>
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之五 | 相关性" title="热度">
+            <span id="/data-science/statistics-correlation/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之五 | 相关性" title="热度">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -343,7 +343,7 @@
 <h1 id="散点图-Scatterplot"><a href="#散点图-Scatterplot" class="headerlink" title="散点图 (Scatterplot)"></a>散点图 (Scatterplot)</h1><ul>
 <li>列联表对定类和定序变量很有用，但不适用于定量变量。* * 对于定量变量，散点图更合适。* 假设没有提供类别，而是让 200 名女性给出确切的体重，例如 65 或 72 公斤。假设也要求他们告知每周吃巧克力的确切重量，例如每周可以是 64 克或 99 克。现在，有比之前更精确的信息展示定量变量，巧克力消费和体重之间关系的最佳方法是使用 <strong>散点图</strong> 。</li>
 </ul>
-<p>制作散点图，我们绘制两条线，称之为 <strong>轴</strong> 。我们将水平轴称为 <strong>X 轴</strong> 。这里展示的是 <strong>自变量</strong> ，垂直轴称为 <strong>Y 轴</strong> ，我们用它来表示 <strong>因变量</strong> 。如果因变量和自变量之间没有区别，则 Y 轴和 X 轴上的位置是一个选择问题。在我们的例子中，自变量是巧克力消耗量，因变量是体重。</p>
+<p>制作散点图，我们绘制两条线，称之为 <strong>轴</strong> 。我们将水平轴称为 <strong>X 轴</strong> 。这里展示的是 <strong>自变量 (independent variable)</strong> ，垂直轴称为 <strong>Y 轴</strong> ，我们用它来表示 <strong>因变量 (dependent variable)</strong> 。如果因变量和自变量之间没有区别，则 Y 轴和 X 轴上的位置是一个选择问题。在我们的例子中，自变量是巧克力消耗量，因变量是体重。</p>
 <p>假如我们的研究表明，最少的巧克力消耗等于每周零克，最高的量是每周 700 克。我们在 x 轴上标注这些值；同样，体重的最小值为 40 公斤，最大值为 110 公斤。</p>
 <img src="/images/scatterplot.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
@@ -419,16 +419,19 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/商业分析/statistics-z-scores/" rel="bookmark">极速统计教程之四 | Z-score</a></div>
+      <div class="popular-posts-title"><a href="/data-science/statistics-regression/" rel="bookmark">极速统计教程之六 | 回归</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/商业分析/statistics-measures-of-central-tendency-and-dispersion/" rel="bookmark">极速统计教程之三 | 测量集中趋势和离散程度</a></div>
+      <div class="popular-posts-title"><a href="/data-science/statistics-z-scores/" rel="bookmark">极速统计教程之四 | Z-score</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/商业分析/statistics-descriptive-statistics/" rel="bookmark">极速统计教程之二 | 数据可视化</a></div>
+      <div class="popular-posts-title"><a href="/data-science/statistics-measures-of-central-tendency-and-dispersion/" rel="bookmark">极速统计教程之三 | 测量集中趋势和离散程度</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/商业分析/statistics-basic-introduction/" rel="bookmark">极速统计教程之一 | 引言</a></div>
+      <div class="popular-posts-title"><a href="/data-science/statistics-descriptive-statistics/" rel="bookmark">极速统计教程之二 | 数据可视化</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-basic-introduction/" rel="bookmark">极速统计教程之一 | 引言</a></div>
     </li>
   </ul>
 
@@ -461,7 +464,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/" title="极速统计教程之五 | 相关性">http://nichollyn.github.io/商业分析/statistics-correlation/</a>
+    <a href="http://nichollyn.github.io/data-science/statistics-correlation/" title="极速统计教程之五 | 相关性">http://nichollyn.github.io/data-science/statistics-correlation/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -473,7 +476,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E7%BB%9F%E8%AE%A1/" rel="tag"># 统计</a>
-              <a href="/tags/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" rel="tag"># 商业分析</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" rel="tag"># 数据科学</a>
           </div>
 
         
@@ -487,10 +490,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-z-scores/" rel="prev" title="极速统计教程之四 | Z-score">
+    <a href="/data-science/statistics-z-scores/" rel="prev" title="极速统计教程之四 | Z-score">
       <i class="fa fa-chevron-left"></i> 极速统计教程之四 | Z-score
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/data-science/statistics-regression/" rel="next" title="极速统计教程之六 | 回归">
+      极速统计教程之六 | 回归 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -566,7 +572,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -631,12 +637,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">80k</span>
+    <span title="站点总字数">84k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:13</span>
+    <span title="站点阅读时长">1:16</span>
 </div>
 
         

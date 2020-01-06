@@ -2,30 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-correlation/</loc>
+    <loc>http://nichollyn.github.io/data-science/statistics-descriptive-statistics/</loc>
     
-    <lastmod>2020-01-02T03:40:49.407Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-z-scores/</loc>
-    
-    <lastmod>2020-01-01T13:10:03.569Z</lastmod>
+    <lastmod>2020-01-06T01:48:13.221Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-measures-of-central-tendency-and-dispersion/</loc>
+    <loc>http://nichollyn.github.io/data-science/statistics-regression/</loc>
     
-    <lastmod>2020-01-01T06:15:56.588Z</lastmod>
+    <lastmod>2020-01-06T01:48:13.221Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-descriptive-statistics/</loc>
+    <loc>http://nichollyn.github.io/data-science/statistics-measures-of-central-tendency-and-dispersion/</loc>
     
-    <lastmod>2020-01-01T05:20:49.478Z</lastmod>
+    <lastmod>2020-01-06T01:48:13.219Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nichollyn.github.io/data-science/statistics-correlation/</loc>
+    
+    <lastmod>2020-01-06T01:48:13.219Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nichollyn.github.io/data-science/statistics-basic-introduction/</loc>
+    
+    <lastmod>2020-01-06T01:48:08.422Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nichollyn.github.io/data-science/statistics-z-scores/</loc>
+    
+    <lastmod>2020-01-06T01:47:54.489Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nichollyn.github.io/thinking/the-four-sins-of-spending-time/</loc>
+    
+    <lastmod>2020-01-06T01:46:17.519Z</lastmod>
     
   </url>
   
@@ -44,23 +65,9 @@
   </url>
   
   <url>
-    <loc>http://nichollyn.github.io/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/statistics-basic-introduction/</loc>
-    
-    <lastmod>2019-12-31T01:32:12.650Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://nichollyn.github.io/uncategorized/csta-k12-standards/</loc>
     
     <lastmod>2019-12-28T14:14:01.651Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nichollyn.github.io/%E6%80%9D%E8%80%83/the-four-sins-of-spending-time/</loc>
-    
-    <lastmod>2019-12-28T12:55:28.983Z</lastmod>
     
   </url>
   

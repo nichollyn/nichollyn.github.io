@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://nichollyn.github.io/data-science/statistics-descriptive-statistics/</loc>
-    
-    <lastmod>2020-01-06T01:48:13.221Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://nichollyn.github.io/data-science/statistics-regression/</loc>
     
     <lastmod>2020-01-06T01:48:13.221Z</lastmod>
@@ -16,14 +9,21 @@
   </url>
   
   <url>
-    <loc>http://nichollyn.github.io/data-science/statistics-measures-of-central-tendency-and-dispersion/</loc>
+    <loc>http://nichollyn.github.io/data-science/statistics-descriptive-statistics/</loc>
+    
+    <lastmod>2020-01-06T01:48:13.221Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nichollyn.github.io/data-science/statistics-correlation/</loc>
     
     <lastmod>2020-01-06T01:48:13.219Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://nichollyn.github.io/data-science/statistics-correlation/</loc>
+    <loc>http://nichollyn.github.io/data-science/statistics-measures-of-central-tendency-and-dispersion/</loc>
     
     <lastmod>2020-01-06T01:48:13.219Z</lastmod>
     

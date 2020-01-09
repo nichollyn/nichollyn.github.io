@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://nichollyn.github.io/data-science/statistics-probability-and-randomness/</loc>
+    
+    <lastmod>2020-01-09T08:52:21.199Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://nichollyn.github.io/data-science/statistics-regression/</loc>
     
-    <lastmod>2020-01-08T09:16:54.284Z</lastmod>
+    <lastmod>2020-01-09T03:25:15.197Z</lastmod>
     
   </url>
   

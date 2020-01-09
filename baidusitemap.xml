@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://nichollyn.github.io/data-science/statistics-probability-and-randomness/</loc>
+    <lastmod>2020-01-09</lastmod>
+  </url>  <url>
     <loc>http://nichollyn.github.io/data-science/statistics-regression/</loc>
-    <lastmod>2020-01-08</lastmod>
+    <lastmod>2020-01-09</lastmod>
   </url>  <url>
     <loc>http://nichollyn.github.io/data-science/statistics-correlation/</loc>
     <lastmod>2020-01-08</lastmod>

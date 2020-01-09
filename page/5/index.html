@@ -51,7 +51,7 @@
   <meta name="description" content="Stay hungry, stay foolish.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Infinite Game">
-<meta property="og:url" content="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/page/2/index.html">
+<meta property="og:url" content="http://nichollyn.github.io/page/5/index.html">
 <meta property="og:site_name" content="The Infinite Game">
 <meta property="og:description" content="Stay hungry, stay foolish.">
 <meta property="og:locale" content="zh_CN">
@@ -61,19 +61,19 @@
 <meta property="article:tag" content=" philosophy">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/page/2/">
+<link rel="canonical" href="http://nichollyn.github.io/page/5/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
+    isHome: true,
     isPost: false
   };
 </script>
 
-  <title>标签: 编程 | The Infinite Game</title>
+  <title>The Infinite Game</title>
   
 
 
@@ -218,71 +218,121 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+        
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">编程
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/swiftswift-simple-types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/programming/swiftswift-simple-types/" class="post-title-link" itemprop="url">极速 Swift 教程之一 | 简单类型</a>
         </h1>
-      </div>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-23 17:59:14" itemprop="dateCreated datePublished" datetime="2019-12-23T17:59:14+08:00">2019-12-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/programming/swiftswift-simple-types/" class="post-meta-item leancloud_visitors" data-flag-title="极速 Swift 教程之一 | 简单类型" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+          <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>当你启动 Xcode 时，它会询问你想要做的事情，选择 “Get Started with a Playground” 。 Playground 是一个可以供你输入 Swift 代码并立即看到结果的沙盒环境。</p>
+<p>默认的， Xcode 将提供一个 iOS 编程环境的空白 Playground, 点击 Next，然后再点击 Create ，将 Playground 保存到你的系统桌面。</p>
+<p>在本文中，我将向你介绍 “变量”，它们是你用来存储程序数据的地方。之所以被称为 “变量”，是因为它们可变，即你可以自由地改变它们的值。</p>
+<p>我们将从在 Playground 中的第一行代码开始了解 “变量”，它是一行创建了一个名称为 “str” ， 值为 “Hello, playground” 的字符串变量的代码。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"Hello, playground"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这行代码创建了一个名为 <code>str</code> 的新变量，并给它赋值为 “Hello, playground” 。在 Playground 右侧的输出区域你可以看到 “Hello, playground” – 这是 Xcode 在展示我们刚刚给 <code>str</code> 设置的值。</p>
+<p>既然 str 是一个变量，我们就可以改变它:</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"Goodbye"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二次的时候，你不需要再写一次 <code>var</code> ，因为这个变量在前面已经被创建过了 – 我们只需要改变它。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/programming/swiftswift-simple-types/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-23T20:24:41+08:00"
-              content="2019-12-23">
-          12-23
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/programming/swiftswift-complex-types/" itemprop="url">
-            <span itemprop="name">极速 Swift 教程之二 | 复合类型</span>
-          </a>
-      </h2>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
+  
+  
+  
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-23T17:59:14+08:00"
-              content="2019-12-23">
-          12-23
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/programming/swiftswift-simple-types/" itemprop="url">
-            <span itemprop="name">极速 Swift 教程之一 | 简单类型</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-    </div>
   </div>
-  
-  
-  
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tags/%E7%BC%96%E7%A8%8B/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/tags/%E7%BC%96%E7%A8%8B/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 

@@ -223,6 +223,128 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/data-science/statistics-sample-space-events-tree-diagrams/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-sample-space-events-tree-diagrams/" class="post-title-link" itemprop="url">极速统计教程之八 | 样本空间、事件和树形图</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-09 17:16:28" itemprop="dateCreated datePublished" datetime="2020-01-09T17:16:28+08:00">2020-01-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/data-science/statistics-sample-space-events-tree-diagrams/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之八 | 样本空间、事件和树形图" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="样本空间-sample-space"><a href="#样本空间-sample-space" class="headerlink" title="样本空间 (sample space)"></a>样本空间 (sample space)</h1><p><em>海滩是一个多变的环境 —— 尤其当天气很好的时候，有许多人，需要可以做的事情和可以看的风景。这一节教程里，海滩是我们的背景。我将向你解释几个可以帮助我们找到概率的概念，以及一个可视化的辅助工具 —— <strong>树形图 (tree diagram)</strong> 。</em></p>
+<p>这是一个温暖的下午，你可以来点下午茶。幸运的是，你所在的海滩上，有一个卖下午茶的摊位。不过，茶点几乎快卖完了，只剩下一种类型的冰淇淋和两瓶软饮料。</p>
+<img src="/images/sample_space.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>有点不走运的是，有三个人排在你前面。不过还有个好消息是，摊主只卖给每个顾客一件东西。由于你实在很渴望喝到眼前这冰爽的饮料，你不禁开始寻思，“我喝到饮料的机会有多大呢？” </p>
+<img src="/images/sample_space_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>注意，你并不清楚其他顾客会做出的决定，所以他们的购买对你来说全部都是随机事件。第一个顾客可能买饮料或者冰淇淋，在这件事发生之后，第二个顾客拥有同样的选项，然后轮到第三个顾客。如果前面的两位顾客都买了饮料，那她就只剩冰淇淋可以选，否则的话，她也还有两个选项。</p>
+<p>通过下面这幅树形图，你排序了所有可能的随机试验结果。看起来有 7 种可能的组合。这里所有随机现象的里列表我们称为 <strong>样本空间 (sample space)</strong> 。</p>
+<img src="/images/sample_space_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>如果一个随机试验有离散的结果，比如我们的这个案例，一种描绘样本空间的便捷方式是通过树形图列出所有的可能性。就像上图中我们已经做的那样。在一个树形图中，有一些中间结果的划分，跟最终分支如出一撤。任何结果，包括结果的组合，被称为 <strong>事件 （event）</strong>，因此， <strong>一个事件其实就是一个样本空间的子集</strong> 。在这个特定的案例中，你关心的事件，不走运的那些 —— 没有饮料喝了，反之，还能买到饮料。 </p>
+<p>Any random event has<br>a probability associated with it. Also, these two events that are, in effect,<br>a combination of three small events. A way to quantify probabilities for<br>these events is through an experiment. This could consist of<br>observing the ice cream and soft drink sales over a sufficiently long<br>period, but there’s no time for that. While the first customer is making up his<br>mind, you would just like to have your answer now. So<br>you resort to the alternative strategy, to specify plausible assumptions<br>about outcomes in the sample space. You’re going to assume<br>that both outcomes for each elementary event are equally likely<br>and assign a probability of 0.5 for choosing either ice cream or<br>soft drink by each customer. In any case, when assigning<br>these probabilities per event, you can rely on the general<br>probability rules. The probability lies between 0 and<br>1, and the total probability for all possible outcomes, for example, at all the options at each node<br>in a tree diagram, equals 1. This will quickly give you<br>the answer you’re looking for. The answer may help you to decide<br>whether you’d be optimistic and cheerfully wait your turn, or start<br>considering other ways to buy a drink. However, what’s important to remember,<br>even after events have unfolded themselves, you’ll never know whether your<br>assessment of the probability was correct. You’d have collected information<br>over three trials from the customers in front of you,<br>not many, and therefore, not leading to a very<br>accurate probability estimate. Let me summarize what I<br>explained in this video. A sample space is the collection of all<br>possible outcomes of a random phenomenon, and an event is a subset<br>of the sample space. It corresponds to a particular<br>outcome of a random variable or a group of possible outcomes. Each event has a probability, and to find such probabilities<br>you can use a tree diagram. In a tree diagram,<br>you make the sample space and the assumptions about<br>various events explicit. To quantify the probabilities for each event in a tree diagram,<br>you can conduct experiments. In the absence of these, you can sometimes<br>specify plausible assumptions about outcomes in a sample space and estimate<br>the probabilities based on reasoning. In any case, the general probability<br>rules also apply to tree diagrams. The probability of any event lies<br>between 0 and 1, and a total probability of all possible outcomes at the node<br>in a tree diagram equals 1.</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/data-science/statistics-probability-and-randomness/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -295,12 +417,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="随机性"><a href="#随机性" class="headerlink" title="随机性"></a>随机性</h1><p>识别和理解随机性，和推断它是一样重要的技能。它们不仅在统计分析中有用，对于每天发生在我们身边的日常事物，同样有意义。这篇教程中，我将向你解释为什么人们如此不擅长应对随机性。</p>
+          <h1 id="随机性-（randomness）"><a href="#随机性-（randomness）" class="headerlink" title="随机性 （randomness）"></a>随机性 （randomness）</h1><p>识别和理解随机性，和推断它是一样重要的技能。它们不仅在统计分析中有用，对于每天发生在我们身边的日常事物，同样有意义。这篇教程中，我将向你解释为什么人们如此不擅长应对随机性。</p>
 <p>想象你在海滩上看着海浪翻滚，然后你注意到一枚美丽的贝壳，它的个头和形状明显地异于周围其它贝壳。于是你想想看附近还有有没有这种贝壳。这是一项无法预见的行动计划 —— 贝壳可能是随机分布在这个巨大的海滩上的。因此，你找到另外一枚同类贝壳的时间是不确定的，甚至你都可能找不到一枚相似的。</p>
 <p>你开始思考这件事，然后你意识到随机性几乎在日常生活中无处不在。所以，无怪乎我们有丰富的词汇来描述它，比如不确定性、机会、风险、可能性。还有，变异性和不确定性的程度能够非常精细地描述随机性。</p>
 <p>看看下面这组词汇：罕有、少见、有时、普通、频繁、经常。有意思的是，某件事是否随机，不仅是现象自身的特性，也很大程度上取决于我们对它的认识。假如你之前就来过这片海滩，你可能已经发现过这种贝壳，从而改变这一次的搜索策略，以便增加找到更多这种贝壳的机会。你搜索的尺度也有关系，如果在很小的区域做一个短暂的搜索，可能不是很有把握找到新贝壳，但是搜索时间延长，搜索区域扩大，找到机会就会增大。</p>
 <p>尽管有这么多的词汇，以及我们在日常经验中熟记随机性的能力，我们其实一点都不擅长量化地评估随机性。一方面，我们在真实的随机数据中寻找各种 “模式”。你一定听过一个词叫 “宿命”。另一方面，我们自身又无法制造随机熟记。有一个失败尝试的案例 —— 下图中左边的通过拼接得到的贝壳随机分布的地图，实际上是分布太规则的。而右边那幅是现实的随机分布模式，看起来有更多聚集在一起的 “簇”。</p>
-<img src="/images/randomness.jpg" width="68%" height="68%" style="margin: 10 auto;">
+<p><img src="/images/randomness.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/data-science/statistics-probability-and-randomness/#more" rel="contents">
@@ -642,158 +764,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/data-science/statistics-measures-of-central-tendency-and-dispersion/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-measures-of-central-tendency-and-dispersion/" class="post-title-link" itemprop="url">极速统计教程之三 | 测量集中趋势和离散程度</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-31 15:28:52" itemprop="dateCreated datePublished" datetime="2019-12-31T15:28:52+08:00">2019-12-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/data-science/statistics-measures-of-central-tendency-and-dispersion/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之三 | 测量集中趋势和离散程度" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="众数、中位数和平均数"><a href="#众数、中位数和平均数" class="headerlink" title="众数、中位数和平均数"></a>众数、中位数和平均数</h1><p>在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：<strong>众数</strong> (mode) ，<strong>中位数</strong> (median) 和 <strong>平均数</strong> (mean) 。</p>
-<p>这三个 m 通常被称为集中趋势的度量。</p>
-<p>找到众数很容易，<strong>它是出现频次最高的值。</strong> 换句话说，就是最常见的结果。</p>
-<p>如果测量定类或定序变量，<em>众数通常用作衡量集中趋势。</em></p>
-<p>在下面这个饼图中，可以看到西班牙主要球赛中球员来自哪些大洲。</p>
-<div id="echarts8458" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
-<script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts8458'));
-        // 指定图表的配置项和数据
-        var option = {
-    title : {
-        text: ' 西班牙主要足球比赛中的球员国籍分布 ',
-        x:'center'
-    },
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
-    legend: {
-        orient: 'vertical',
-        left: 'left',
-        data: [' 欧洲 ',' 北美 ',' 南美 ',' 非洲 ',' 亚洲 ']
-    },
-    series : [
-        {
-            name: ' 国籍 ',
-            type: 'pie',
-            radius : '55%',
-            center: ['50%', '60%'],
-            data:[
-                {value:280, name:' 欧洲 '},
-                {value:16, name:' 北美 '},
-                {value:56, name:' 南美 '},
-                {value:32, name:' 非洲 '},
-                {value:16, name:' 亚洲 '}
-            ],
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba (0, 0, 0, 0.5)'
-                }
-            }
-        }
-    ]
-}
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-</script>
-
-<p>饼图使众数一目了然，是欧洲 70％ 的球员来自欧洲</p>
-<p><strong><em>这里的众数是欧洲</em></strong> ，是最常出现的类别的名称，但众数不是 70％ 。这只是该特定类别的观测百分比。可能有多个众数。试想有一个足球运动员，拥有十分分裂的球迷，其中一些觉得他非常和善，而另一些则认为他非常蛮横。来给这个球员起个名，Franco Galton。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-measures-of-central-tendency-and-dispersion/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -866,7 +836,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -931,12 +901,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">88k</span>
+    <span title="站点总字数">91k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:20</span>
+    <span title="站点阅读时长">1:23</span>
 </div>
 
         

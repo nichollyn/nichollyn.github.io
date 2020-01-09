@@ -48,32 +48,37 @@
   };
 </script>
 
-  <meta name="description" content="Stay hungry, stay foolish.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Infinite Game">
-<meta property="og:url" content="http://nichollyn.github.io/page/5/index.html">
+  <meta name="description" content="样本空间 (sample space)海滩是一个多变的环境 —— 尤其当天气很好的时候，有许多人，需要可以做的事情和可以看的风景。这一节教程里，海滩是我们的背景。我将向你解释几个可以帮助我们找到概率的概念，以及一个可视化的辅助工具 —— 树形图 (tree diagram) 。 这是一个温暖的下午，你可以来点下午茶。幸运的是，你所在的海滩上，有一个卖下午茶的摊位。不过，茶点几乎快卖完了，只剩下一种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极速统计教程之八 | 样本空间、事件和树形图">
+<meta property="og:url" content="http://nichollyn.github.io/data-science/statistics-sample-space-events-tree-diagrams/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="Stay hungry, stay foolish.">
+<meta property="og:description" content="样本空间 (sample space)海滩是一个多变的环境 —— 尤其当天气很好的时候，有许多人，需要可以做的事情和可以看的风景。这一节教程里，海滩是我们的背景。我将向你解释几个可以帮助我们找到概率的概念，以及一个可视化的辅助工具 —— 树形图 (tree diagram) 。 这是一个温暖的下午，你可以来点下午茶。幸运的是，你所在的海滩上，有一个卖下午茶的摊位。不过，茶点几乎快卖完了，只剩下一种">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://nichollyn.github.io/images/sample_space.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/sample_space_2.jpg">
+<meta property="og:image" content="http://nichollyn.github.io/images/sample_space_3.jpg">
+<meta property="article:published_time" content="2020-01-09T09:16:28.000Z">
+<meta property="article:modified_time" content="2020-01-09T09:59:34.853Z">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="tech">
-<meta property="article:tag" content=" life">
-<meta property="article:tag" content=" philosophy">
+<meta property="article:tag" content="统计">
+<meta property="article:tag" content="数据科学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://nichollyn.github.io/images/sample_space.jpg">
 
-<link rel="canonical" href="http://nichollyn.github.io/page/5/">
+<link rel="canonical" href="http://nichollyn.github.io/data-science/statistics-sample-space-events-tree-diagrams/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>The Infinite Game</title>
+  <title>极速统计教程之八 | 样本空间、事件和树形图 | The Infinite Game</title>
   
 
 
@@ -219,11 +224,11 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/swiftswift-complex-types/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/data-science/statistics-sample-space-events-tree-diagrams/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -236,8 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/swiftswift-complex-types/" class="post-title-link" itemprop="url">极速 Swift 教程之二 | 复合类型</a>
+          极速统计教程之八 | 样本空间、事件和树形图
         </h1>
 
         <div class="post-meta">
@@ -249,7 +253,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-23 20:24:41" itemprop="dateCreated datePublished" datetime="2019-12-23T20:24:41+08:00">2019-12-23</time>
+              <time title="创建时间：2020-01-09 17:16:28" itemprop="dateCreated datePublished" datetime="2020-01-09T17:16:28+08:00">2020-01-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,127 +261,26 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/programming/swiftswift-complex-types/" class="post-meta-item leancloud_visitors" data-flag-title="极速 Swift 教程之二 | 复合类型" title="热度">
+            <span id="/data-science/statistics-sample-space-events-tree-diagrams/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之八 | 样本空间、事件和树形图" title="热度">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
               <span class="post-meta-item-text">热度：</span>
               <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
             </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>数组是用于存储一组值的合集。举个例子，红、绿、蓝是三基色，你可以对它们进行调和从而产生新颜色。因此颜色就可以用一个包含了红、绿、蓝三个值的数组来存储。</p>
-<p>代码上，我们这么书写：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> red = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> green = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> blue = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> color = [red, green, blue]</span><br></pre></td></tr></tbody></table></figure>
-
-<p>上面的最后一行代码创建了一个数组：它以方括号开始和结束，里面的元素通过逗号分隔。</p>
-<p>你可以通过书写数组名加上内部包含一个数字的方括号来读取数组里的元素。注意：这个数字代表元素在数组里的位置，几乎在所有的计算机编程语言中，这个位置都是从 <code>0</code> 开始的。所以，如果你想读取蓝色，可以这么写：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">color [<span class="number">2</span>]</span><br></pre></td></tr></tbody></table></figure>
-
-<p>小心：如果你尝试读取一个不存在的值， Swift 将会崩溃。例如，试图读取 <code>color [5]</code> 就不是一个好主意。</p>
-<p>另外还要注意的是，如果你想使用类型注解，数组是通过方括号加里面的类型来表示的： <code>[String]</code> ，<code>[Int]</code> ，<code>[Double]</code> 和 <code>[Bool]</code> 。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-complex-types/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/swiftswift-simple-types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/swiftswift-simple-types/" class="post-title-link" itemprop="url">极速 Swift 教程之一 | 简单类型</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-23 17:59:14" itemprop="dateCreated datePublished" datetime="2019-12-23T17:59:14+08:00">2019-12-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/programming/swiftswift-simple-types/" class="post-meta-item leancloud_visitors" data-flag-title="极速 Swift 教程之一 | 简单类型" title="热度">
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
               <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
+              <span id="busuanzi_value_page_pv"></span>
             </span><br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -403,46 +306,131 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>当你启动 Xcode 时，它会询问你想要做的事情，选择 “Get Started with a Playground” 。 Playground 是一个可以供你输入 Swift 代码并立即看到结果的沙盒环境。</p>
-<p>默认的， Xcode 将提供一个 iOS 编程环境的空白 Playground, 点击 Next，然后再点击 Create ，将 Playground 保存到你的系统桌面。</p>
-<p>在本文中，我将向你介绍 “变量”，它们是你用来存储程序数据的地方。之所以被称为 “变量”，是因为它们可变，即你可以自由地改变它们的值。</p>
-<p>我们将从在 Playground 中的第一行代码开始了解 “变量”，它是一行创建了一个名称为 “str” ， 值为 “Hello, playground” 的字符串变量的代码。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"Hello, playground"</span></span><br></pre></td></tr></tbody></table></figure>
+        <h1 id="样本空间-sample-space"><a href="#样本空间-sample-space" class="headerlink" title="样本空间 (sample space)"></a>样本空间 (sample space)</h1><p><em>海滩是一个多变的环境 —— 尤其当天气很好的时候，有许多人，需要可以做的事情和可以看的风景。这一节教程里，海滩是我们的背景。我将向你解释几个可以帮助我们找到概率的概念，以及一个可视化的辅助工具 —— <strong>树形图 (tree diagram)</strong> 。</em></p>
+<p>这是一个温暖的下午，你可以来点下午茶。幸运的是，你所在的海滩上，有一个卖下午茶的摊位。不过，茶点几乎快卖完了，只剩下一种类型的冰淇淋和两瓶软饮料。</p>
+<img src="/images/sample_space.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
-<p>这行代码创建了一个名为 <code>str</code> 的新变量，并给它赋值为 “Hello, playground” 。在 Playground 右侧的输出区域你可以看到 “Hello, playground” – 这是 Xcode 在展示我们刚刚给 <code>str</code> 设置的值。</p>
-<p>既然 str 是一个变量，我们就可以改变它:</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"Goodbye"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>有点不走运的是，有三个人排在你前面。不过还有个好消息是，摊主只卖给每个顾客一件东西。由于你实在很渴望喝到眼前这冰爽的饮料，你不禁开始寻思，“我喝到饮料的机会有多大呢？” </p>
+<img src="/images/sample_space_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
-<p>第二次的时候，你不需要再写一次 <code>var</code> ，因为这个变量在前面已经被创建过了 – 我们只需要改变它。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-simple-types/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<p>注意，你并不清楚其他顾客会做出的决定，所以他们的购买对你来说全部都是随机事件。第一个顾客可能买饮料或者冰淇淋，在这件事发生之后，第二个顾客拥有同样的选项，然后轮到第三个顾客。如果前面的两位顾客都买了饮料，那她就只剩冰淇淋可以选，否则的话，她也还有两个选项。</p>
+<p>通过下面这幅树形图，你排序了所有可能的随机试验结果。看起来有 7 种可能的组合。这里所有随机现象的里列表我们称为 <strong>样本空间 (sample space)</strong> 。</p>
+<img src="/images/sample_space_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>如果一个随机试验有离散的结果，比如我们的这个案例，一种描绘样本空间的便捷方式是通过树形图列出所有的可能性。就像上图中我们已经做的那样。在一个树形图中，有一些中间结果的划分，跟最终分支如出一撤。任何结果，包括结果的组合，被称为 <strong>事件 （event）</strong>，因此， <strong>一个事件其实就是一个样本空间的子集</strong> 。在这个特定的案例中，你关心的事件，不走运的那些 —— 没有饮料喝了，反之，还能买到饮料。 </p>
+<p>Any random event has<br>a probability associated with it. Also, these two events that are, in effect,<br>a combination of three small events. A way to quantify probabilities for<br>these events is through an experiment. This could consist of<br>observing the ice cream and soft drink sales over a sufficiently long<br>period, but there’s no time for that. While the first customer is making up his<br>mind, you would just like to have your answer now. So<br>you resort to the alternative strategy, to specify plausible assumptions<br>about outcomes in the sample space. You’re going to assume<br>that both outcomes for each elementary event are equally likely<br>and assign a probability of 0.5 for choosing either ice cream or<br>soft drink by each customer. In any case, when assigning<br>these probabilities per event, you can rely on the general<br>probability rules. The probability lies between 0 and<br>1, and the total probability for all possible outcomes, for example, at all the options at each node<br>in a tree diagram, equals 1. This will quickly give you<br>the answer you’re looking for. The answer may help you to decide<br>whether you’d be optimistic and cheerfully wait your turn, or start<br>considering other ways to buy a drink. However, what’s important to remember,<br>even after events have unfolded themselves, you’ll never know whether your<br>assessment of the probability was correct. You’d have collected information<br>over three trials from the customers in front of you,<br>not many, and therefore, not leading to a very<br>accurate probability estimate. Let me summarize what I<br>explained in this video. A sample space is the collection of all<br>possible outcomes of a random phenomenon, and an event is a subset<br>of the sample space. It corresponds to a particular<br>outcome of a random variable or a group of possible outcomes. Each event has a probability, and to find such probabilities<br>you can use a tree diagram. In a tree diagram,<br>you make the sample space and the assumptions about<br>various events explicit. To quantify the probabilities for each event in a tree diagram,<br>you can conduct experiments. In the absence of these, you can sometimes<br>specify plausible assumptions about outcomes in a sample space and estimate<br>the probabilities based on reasoning. In any case, the general probability<br>rules also apply to tree diagrams. The probability of any event lies<br>between 0 and 1, and a total probability of all possible outcomes at the node<br>in a tree diagram equals 1.</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
     </div>
 
     
     
     
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-probability-and-randomness/" rel="bookmark">极速统计教程之七 | 概率和随机性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-regression/" rel="bookmark">极速统计教程之六 | 回归</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-correlation/" rel="bookmark">极速统计教程之五 | 相关性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-z-scores/" rel="bookmark">极速统计教程之四 | Z-score</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-measures-of-central-tendency-and-dispersion/" rel="bookmark">极速统计教程之三 | 测量集中趋势和离散程度</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://nichollyn.github.io/data-science/statistics-sample-space-events-tree-diagrams/" title="极速统计教程之八 | 样本空间、事件和树形图">http://nichollyn.github.io/data-science/statistics-sample-space-events-tree-diagrams/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%9F%E8%AE%A1/" rel="tag"># 统计</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" rel="tag"># 数据科学</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/data-science/statistics-probability-and-randomness/" rel="prev" title="极速统计教程之七 | 概率和随机性">
+      <i class="fa fa-chevron-left"></i> 极速统计教程之七 | 概率和随机性
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
-
 
 
           </div>
@@ -493,6 +481,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#样本空间-sample-space"><span class="nav-number">1.</span> <span class="nav-text">样本空间 (sample space)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -680,6 +669,54 @@
   
 
   
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 

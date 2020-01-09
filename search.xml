@@ -1,43 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>极速统计教程之八 | 样本空间、事件和树形图</title>
+    <url>/data-science/statistics-sample-space-events-tree-diagrams/</url>
+    <content><![CDATA[<h1 id="样本空间-sample-space"><a href="#样本空间-sample-space" class="headerlink" title="样本空间 (sample space)"></a>样本空间 (sample space)</h1><p><em>海滩是一个多变的环境 —— 尤其当天气很好的时候，有许多人，需要可以做的事情和可以看的风景。这一节教程里，海滩是我们的背景。我将向你解释几个可以帮助我们找到概率的概念，以及一个可视化的辅助工具 —— <strong>树形图 (tree diagram)</strong> 。</em></p>
+<p>这是一个温暖的下午，你可以来点下午茶。幸运的是，你所在的海滩上，有一个卖下午茶的摊位。不过，茶点几乎快卖完了，只剩下一种类型的冰淇淋和两瓶软饮料。</p>
+<img src="/images/sample_space.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>有点不走运的是，有三个人排在你前面。不过还有个好消息是，摊主只卖给每个顾客一件东西。由于你实在很渴望喝到眼前这冰爽的饮料，你不禁开始寻思，“我喝到饮料的机会有多大呢？” </p>
+<img src="/images/sample_space_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>注意，你并不清楚其他顾客会做出的决定，所以他们的购买对你来说全部都是随机事件。第一个顾客可能买饮料或者冰淇淋，在这件事发生之后，第二个顾客拥有同样的选项，然后轮到第三个顾客。如果前面的两位顾客都买了饮料，那她就只剩冰淇淋可以选，否则的话，她也还有两个选项。</p>
+<p>通过下面这幅树形图，你排序了所有可能的随机试验结果。看起来有 7 种可能的组合。这里所有随机现象的里列表我们称为 <strong>样本空间 (sample space)</strong> 。</p>
+<img src="/images/sample_space_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>如果一个随机试验有离散的结果，比如我们的这个案例，一种描绘样本空间的便捷方式是通过树形图列出所有的可能性。就像上图中我们已经做的那样。在一个树形图中，有一些中间结果的划分，跟最终分支如出一撤。任何结果，包括结果的组合，被称为 <strong>事件 （event）</strong>，因此， <strong>一个事件其实就是一个样本空间的子集</strong> 。在这个特定的案例中，你关心的事件，不走运的那些 —— 没有饮料喝了，反之，还能买到饮料。 </p>
+<p>Any random event has<br>a probability associated with it. Also, these two events that are, in effect,<br>a combination of three small events. A way to quantify probabilities for<br>these events is through an experiment. This could consist of<br>observing the ice cream and soft drink sales over a sufficiently long<br>period, but there’s no time for that. While the first customer is making up his<br>mind, you would just like to have your answer now. So<br>you resort to the alternative strategy, to specify plausible assumptions<br>about outcomes in the sample space. You’re going to assume<br>that both outcomes for each elementary event are equally likely<br>and assign a probability of 0.5 for choosing either ice cream or<br>soft drink by each customer. In any case, when assigning<br>these probabilities per event, you can rely on the general<br>probability rules. The probability lies between 0 and<br>1, and the total probability for all possible outcomes, for example, at all the options at each node<br>in a tree diagram, equals 1. This will quickly give you<br>the answer you’re looking for. The answer may help you to decide<br>whether you’d be optimistic and cheerfully wait your turn, or start<br>considering other ways to buy a drink. However, what’s important to remember,<br>even after events have unfolded themselves, you’ll never know whether your<br>assessment of the probability was correct. You’d have collected information<br>over three trials from the customers in front of you,<br>not many, and therefore, not leading to a very<br>accurate probability estimate. Let me summarize what I<br>explained in this video. A sample space is the collection of all<br>possible outcomes of a random phenomenon, and an event is a subset<br>of the sample space. It corresponds to a particular<br>outcome of a random variable or a group of possible outcomes. Each event has a probability, and to find such probabilities<br>you can use a tree diagram. In a tree diagram,<br>you make the sample space and the assumptions about<br>various events explicit. To quantify the probabilities for each event in a tree diagram,<br>you can conduct experiments. In the absence of these, you can sometimes<br>specify plausible assumptions about outcomes in a sample space and estimate<br>the probabilities based on reasoning. In any case, the general probability<br>rules also apply to tree diagrams. The probability of any event lies<br>between 0 and 1, and a total probability of all possible outcomes at the node<br>in a tree diagram equals 1.</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>data-science</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
+        <tag>数据科学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>极速统计教程之七 | 概率和随机性</title>
     <url>/data-science/statistics-probability-and-randomness/</url>
-    <content><![CDATA[<h1 id="随机性"><a href="#随机性" class="headerlink" title="随机性"></a>随机性</h1><p>识别和理解随机性，和推断它是一样重要的技能。它们不仅在统计分析中有用，对于每天发生在我们身边的日常事物，同样有意义。这篇教程中，我将向你解释为什么人们如此不擅长应对随机性。</p>
+    <content><![CDATA[<h1 id="随机性-（randomness）"><a href="#随机性-（randomness）" class="headerlink" title="随机性 （randomness）"></a>随机性 （randomness）</h1><p>识别和理解随机性，和推断它是一样重要的技能。它们不仅在统计分析中有用，对于每天发生在我们身边的日常事物，同样有意义。这篇教程中，我将向你解释为什么人们如此不擅长应对随机性。</p>
 <p>想象你在海滩上看着海浪翻滚，然后你注意到一枚美丽的贝壳，它的个头和形状明显地异于周围其它贝壳。于是你想想看附近还有有没有这种贝壳。这是一项无法预见的行动计划 —— 贝壳可能是随机分布在这个巨大的海滩上的。因此，你找到另外一枚同类贝壳的时间是不确定的，甚至你都可能找不到一枚相似的。</p>
 <p>你开始思考这件事，然后你意识到随机性几乎在日常生活中无处不在。所以，无怪乎我们有丰富的词汇来描述它，比如不确定性、机会、风险、可能性。还有，变异性和不确定性的程度能够非常精细地描述随机性。</p>
 <p>看看下面这组词汇：罕有、少见、有时、普通、频繁、经常。有意思的是，某件事是否随机，不仅是现象自身的特性，也很大程度上取决于我们对它的认识。假如你之前就来过这片海滩，你可能已经发现过这种贝壳，从而改变这一次的搜索策略，以便增加找到更多这种贝壳的机会。你搜索的尺度也有关系，如果在很小的区域做一个短暂的搜索，可能不是很有把握找到新贝壳，但是搜索时间延长，搜索区域扩大，找到机会就会增大。</p>
 <p>尽管有这么多的词汇，以及我们在日常经验中熟记随机性的能力，我们其实一点都不擅长量化地评估随机性。一方面，我们在真实的随机数据中寻找各种 “模式”。你一定听过一个词叫 “宿命”。另一方面，我们自身又无法制造随机熟记。有一个失败尝试的案例 —— 下图中左边的通过拼接得到的贝壳随机分布的地图，实际上是分布太规则的。而右边那幅是现实的随机分布模式，看起来有更多聚集在一起的 “簇”。</p>
-<img src="/images/randomness.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/randomness.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <a id="more"></a>
-
 <p>另外一个被我们用来解释随机性的例子叫 “赌徒谬误” —— 它的错误之处在于用一系列前面发生的随机现象预测未来的随机现象。人们没有意识到的是，如果你连续掷出了四次 6 ，感觉上不太可能再第五次掷出 6 。然后，这个投掷的结果为 6 的概率之前是 六分之一，之前是，现在还是。</p>
-<img src="/images/randomness_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/randomness_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>我们之所以应对随机性孱弱，原因在于我们的大脑倾向于用记忆模式的方式衡量随机性。考量到这一点，为了量化随机性、理性思考随机性并且产出现实可行的随机模式，学习正确的方法十分重要。它们帮助我们避免错误，更准确和更有效地对我们周遭的世界做出预测。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>随机性并非一个现象的内在属性，它同时取决于我们对它的知识，观察方法以及我们关注它的尺度。尽管有大量表达随机性的词汇，人类天生不擅长量化评估它。我们困于宿命论，困于对某些纯随机模式的过度解读，这些操作同时也不利于构建随机性。</p>
 <hr>
-<h1 id="概率"><a href="#概率" class="headerlink" title="概率"></a>概率</h1><blockquote>
+<h1 id="概率-probability"><a href="#概率-probability" class="headerlink" title="概率 (probability)"></a>概率 (probability)</h1><blockquote>
 <p>坚持不懈，终有所成。</p>
 </blockquote>
 <p>尽管已经有很多关于这个概念的箴言和引证，我想再加一句 —— “毅力战胜一切”。这一节中，我将一步步引导你学会用概率来量化随机性。</p>
 <p>人类的大脑也许并不是很适合回答随机性。但幸运的是，有一个基础的机制，它的运转极大地简化了我们的生活 —— 随机性会发生变化，从事物可变、案例稀少且无法预测，到事物恒定、案例庞大且可以预测。对于这个基础，我们甚至有一个数学上的证据，它就是 <strong>大数定律</strong> 。它有赖于独立性，也就是说，某个随机现象的结果，不受之前结果的影响。</p>
 <p>让我举个例子，说明大数定律在现实生活中是长什么样子。还是想象你在海滩，决定搜寻贝壳。很快，你发现了海滩一共有四种类型的贝壳，随机分布，数量相等，就像下图这样：</p>
-<img src="/images/possibility.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/possibility.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>现在，你需要数出一个 Q 贝壳的分数，可以通过选取操作来完成。比如，随机选 20 个贝壳，然后计算这 20 个样本里 Q 贝壳的数量。结果如下：</p>
-<img src="/images/possibility_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/possibility_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>如你所见，20 个贝壳只有 2 个 Q 贝壳。 <strong>相对频率 (relative frequency)</strong> 是十分之一。基于你的推理，这个分数本来应该是在四分之一左右。 但是，你也知道，小样本的不规则性，是随机性的本质。所以呢？“保持冷静，继续前进。”</p>
-<img src="/images/possibility_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/possibility_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>不着急下结论，继续选取更多的贝壳，观察比例如何变化，一直演化到四分之一 —— 这种比例被称为 <strong>“累积比例 (cumulative proportion)”</strong> 。</p>
-<img src="/images/possibility_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/possibility_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>每一次你随机选取新的贝壳时，都被看作是一次可能带来 Q、R、S、T 四种贝壳之一的机会实现。用概率的术语来说，操作的结果，也就是你拿到的贝壳的类型，被称为 <strong>事件 (event)</strong> 。选取贝壳的这个行为被称为 <strong>独立试验 (independent trial)</strong> 。整个做这么多试验的事情被称为 <strong>实验 (experiment)</strong> 。在计算相对频率的时候，因为你用贝壳总数除每一种类型的贝壳，有两个属性将始终满足：每一个类型的概率将大于等于 0 或者小于等于 1 ；所有随机现象的结果的概率总和将等于 1 。</p>
-<img src="/images/possibility_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/possibility_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>不过，现在让我们回到现实。生活并不是海滩，当然也不会有随机分布的贝壳。在日常生活中，纯粹的独立试验并不常见。通常，在随机事件之间存在 <strong>相互依赖 (interdependent)</strong> 。尽管如此，通过简化的假定，概率经常还是可以被很好地量化。此外，你需要拿到充足数量的样本，以便大数定律能发挥作用，确保你要估计的概率接近它的实际值。</p>
 <h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><ul>
 <li>概率是一种量化随机性的方法，它可以用相对频率的均值来表示。根据这个定义，概率会始终大于等于 0 ，并 IE 小于等于 1 。所有可能事件的概率总和等于 1 。</li>

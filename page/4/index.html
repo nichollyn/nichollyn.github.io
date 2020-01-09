@@ -223,6 +223,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/swiftswift-structs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/programming/swiftswift-structs/" class="post-title-link" itemprop="url">极速 Swift 教程之七 | 结构体</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-24 21:21:46" itemprop="dateCreated datePublished" datetime="2019-12-24T21:21:46+08:00">2019-12-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/programming/swiftswift-structs/" class="post-meta-item leancloud_visitors" data-flag-title="极速 Swift 教程之七 | 结构体" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="创建你自己的结构体"><a href="#创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
+<p>让我们以一个简单的例子开始：创建一个 <code>Sport</code> 结构体，它有一个叫 <code>name</code> 的字符串变量。在结构体中，这种变量被称为 <em>属性</em> 。因此，这是一个拥有一个属性的结构体。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>类型定义完成，现在让我们来创建和使用它的实例：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tennis = <span class="type">Sport</span>(name: <span class="string">"Tennis"</span>)</span><br><span class="line"><span class="built_in">print</span>(tennis.name)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>name</code> 和 <code>tennis</code> 都是变量，因而我们可以像常规变量那样修改它们：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tennis.name = <span class="string">"Lawn tennis"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>属性可以像常规变量那样拥有默认值，并且依赖 Swift 的类型推断。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/programming/swiftswift-structs/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/swiftswift-closures/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -654,114 +763,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://nichollyn.github.io/programming/swiftswift-complex-types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/swiftswift-complex-types/" class="post-title-link" itemprop="url">极速 Swift 教程之二 | 复合类型</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-23 20:24:41" itemprop="dateCreated datePublished" datetime="2019-12-23T20:24:41+08:00">2019-12-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/programming/swiftswift-complex-types/" class="post-meta-item leancloud_visitors" data-flag-title="极速 Swift 教程之二 | 复合类型" title="热度">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">热度：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>数组是用于存储一组值的合集。举个例子，红、绿、蓝是三基色，你可以对它们进行调和从而产生新颜色。因此颜色就可以用一个包含了红、绿、蓝三个值的数组来存储。</p>
-<p>代码上，我们这么书写：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> red = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> green = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> blue = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">let</span> color = [red, green, blue]</span><br></pre></td></tr></tbody></table></figure>
-
-<p>上面的最后一行代码创建了一个数组：它以方括号开始和结束，里面的元素通过逗号分隔。</p>
-<p>你可以通过书写数组名加上内部包含一个数字的方括号来读取数组里的元素。注意：这个数字代表元素在数组里的位置，几乎在所有的计算机编程语言中，这个位置都是从 <code>0</code> 开始的。所以，如果你想读取蓝色，可以这么写：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">color [<span class="number">2</span>]</span><br></pre></td></tr></tbody></table></figure>
-
-<p>小心：如果你尝试读取一个不存在的值， Swift 将会崩溃。例如，试图读取 <code>color [5]</code> 就不是一个好主意。</p>
-<p>另外还要注意的是，如果你想使用类型注解，数组是通过方括号加里面的类型来表示的： <code>[String]</code> ，<code>[Int]</code> ，<code>[Double]</code> 和 <code>[Bool]</code> 。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-complex-types/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -834,7 +835,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -899,12 +900,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">88k</span>
+    <span title="站点总字数">91k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:20</span>
+    <span title="站点阅读时长">1:23</span>
 </div>
 
         

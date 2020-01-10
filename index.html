@@ -276,7 +276,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -297,41 +297,21 @@
       
           <h1 id="样本空间-sample-space"><a href="#样本空间-sample-space" class="headerlink" title="样本空间 (sample space)"></a>样本空间 (sample space)</h1><p><em>海滩是一个多变的环境 —— 尤其当天气很好的时候，有许多人，需要可以做的事情和可以看的风景。这一节教程里，海滩是我们的背景。我将向你解释几个可以帮助我们找到概率的概念，以及一个可视化的辅助工具 —— <strong>树形图 (tree diagram)</strong> 。</em></p>
 <p>这是一个温暖的下午，你可以来点下午茶。幸运的是，你所在的海滩上，有一个卖下午茶的摊位。不过，茶点几乎快卖完了，只剩下一种类型的冰淇淋和两瓶软饮料。</p>
-<p><img src="/images/sample_space.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/sample_space.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>有点不走运的是，有三个人排在你前面。不过还有个好消息是，摊主只卖给每个顾客一件东西。由于你实在很渴望喝到眼前这冰爽的饮料，你不禁开始寻思，“我喝到饮料的机会有多大呢？” </p>
-<p><img src="/images/sample_space_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<img src="/images/sample_space_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
 <p>注意，你并不清楚其他顾客会做出的决定，所以他们的购买对你来说全部都是随机事件。第一个顾客可能买饮料或者冰淇淋，在这件事发生之后，第二个顾客拥有同样的选项，然后轮到第三个顾客。如果前面的两位顾客都买了饮料，那她就只剩冰淇淋可以选，否则的话，她也还有两个选项。</p>
 <p>通过下面这幅树形图，你排序了所有可能的随机试验结果。看起来有 7 种可能的组合。这里所有随机现象的里列表我们称为 <strong>样本空间 (sample space)</strong> 。</p>
-<p><img src="/images/sample_space_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>如果一个随机试验有离散的结果，比如我们的这个案例，一种描绘样本空间的便捷方式是通过树形图列出所有的可能性。就像上图中我们已经做的那样。在一个树形图中，有一些中间结果的划分，跟最终分支如出一撤。任何结果，包括结果的组合，被称为 <strong>事件 （event）</strong>，因此， <strong>一个事件其实就是一个样本空间的子集</strong> 。在这个特定的案例中，你关心的事件，不走运的那些 —— 没有饮料喝了，反之，还能买到饮料。 </p>
-<p>任何一个随机事件都有与之关联的概率，并且小的事件可以组合成大的事件。量化这些事件的概率，可以通过实验。实验可以包含在一段足够长的时间内，观察冰淇淋和饮料的销售情况。但这里时间不够，当第一个顾客正在思考要买什么的时候，你就必须做出自己的决定了。于是你诉诸另外一种策略 —— 对样本空间里的结果做出有说服力的假设。</p>
-<p>你假定每一种事件发生的机会相等 —— 每个顾客选冰淇淋和饮料的概率都是 0.5 。在这种方式中，你可以依赖通用的概率规则。概率处于 0 到 1 之间，所有可能的结果，例如，所有选项在树形图里以节点表示，它们最终的总和也等于 1 。借助它们，你可以很快得到答案。这个答案可能帮助你做出决定：是应该保持乐观，在队伍中等着轮到自己，还是应该开始考虑寻求别的方式购买饮料。</p>
-<p>不过，要记得，经过所有事件都已经展开，你并不知道你对于概率的评估是否正确。虽然你收集了排在你前面的三个顾客的试验信息，但对于整个购买冰淇淋和饮料这种事情来说。你的信息极其有限，并没有办法推导出十分精确的概率估算。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li>样本空间是所有随机现象的结果的集合，而事件是样本空间的子集，它对应某一个随机变量的结果或者一组可能的结果。</li>
-<li>每个事件都有概率。为了找到这些概率，你可以用到树形图。在树形图中，你可以创建样本空间，并对各种事件显式地做出假设。为了量化树形图里每个事件的概率，你可以进行实验。</li>
-<li>某些时候，你可以对样本空间里的结果做出有说服力的假设，然后基于推理估计出它们的概率。</li>
-<li>在任何案例中，通用的概率规则都适用于树形图。任意事件的概率都处于 0 和 1 之间，而最终所有可能的结果的概率总和等于 1 。</li>
-</ul>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-sample-space-events-tree-diagrams/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -906,7 +886,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">90k</span>
+    <span title="站点总字数">91k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://nichollyn.github.io/"/>
-  <updated>2020-01-11T07:20:39.415Z</updated>
-  <id>http://nichollyn.github.io/</id>
+  <link href="https://theinfinitegame.tech/"/>
+  <updated>2020-01-11T12:41:24.218Z</updated>
+  <id>https://theinfinitegame.tech/</id>
   
   <author>
     <name>猫克杯</name>
@@ -18,48 +18,44 @@
   
   <entry>
     <title>极速统计教程之十 | 条件概率和独立性</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-conditional-probability-and-independence/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-conditional-probability-and-independence/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-conditional-probability-and-independence/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-conditional-probability-and-independence/</id>
     <published>2020-01-11T05:18:35.000Z</published>
-    <updated>2020-01-11T07:20:39.415Z</updated>
+    <updated>2020-01-11T12:41:24.218Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="联合概率和边际概率"><a href="#联合概率和边际概率" class="headerlink" title="联合概率和边际概率"></a>联合概率和边际概率</h1><blockquote><p>对有趣现象的计数，在日常生活中常常转换成比例，最终变为概率。利用概率估算的力量，可以更好地理解这些现象之间的关系或做出预测。 <strong>联合概率 (conditonal probability)</strong> 和 <strong>边际概率 (marginal probability)</strong> 是两个在这种情况下会用到的重要概率类型。在这一节教程中，我将解释联合概率和边际概率的含义，并展示它们的属性。</p></blockquote><p>想象你在沙滩上观察你的海滩同伴。你会注意到三种不同类型的活动 —— 它们是互斥的。有的休息，他们都坐在或躺在沙滩上。有的玩，这些人到处乱跑，建造沙堡或站在水中。最后，有的在游泳。此外，你还可以按性别区分。所以你观察到的每个人都是一个案例.</p><img src="/images/conditional_p_1.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>在数据集中，性别和活动是变量。你最终得到以下结果的列联表。总共计了 113 人，其中有 79 人在休息，有 20 人在玩，并且他们中只有 14 人在游泳。女性和男性的数量，分别是 62 和 51 。</p><img src="/images/conditional_p_2.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>这些数字实际上是每行和每列变量位于此表边缘的总和，因此被称为边际值。请注意，这与口语上 “边缘的”，即并不重要的，并不是一回事。在表中边际值代表对于单个变量的说明，没有关于任何其他变量。例如说休息的人数不考虑性别。</p><img src="/images/conditional_p_3.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>现在，我们打开这个频率表通过将每个单元格数字除以总数 113 得到比例的表格。</p><img src="/images/conditional_p_4.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>在此表中，中心块包含六个位置，它们加起来等于一。同时，每列中的比例加总到底部的边缘行中的值，每行中的比例加总到右边的边缘列中的值。并且边缘行的值加起来等于边缘列的值加起来。</p><a id="more"></a><p>你的计数可以看作随机样本，测量在海滩的人的活动和性别分布，于是你会想到把比例看作概率。在中间区域，是活动与性别的交集。例如，给定的人是男性，正在游泳。这些值称为 <strong>联合概率 (conditional probability)</strong> 。 <strong>联合概率只是各种事件的交集概率的简称</strong> 。</p><p>我们的每个联合概率关联的事件都与表中任何其他联合概率关联的事件互斥，因为每个人在海滩上只被放置在六个互斥事件之一。同时，联合概率形成一系列完全穷尽的事件，因为案例中不会出现其他的可能活动和性别的组合。因此，联合概率总和为一。</p><img src="/images/conditional_p_5.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>在边缘的地方，你可能期望有 <strong>边际概率</strong> 。是的，这些概率仅考虑一个变量。例如，给定的人是男性，无论其活动如何，或者给定在玩，不论性别。边际概率来自联合概率的并集。例如休息的概率，玩耍的概率和游泳概率。因此，这里适用加法规则，即概率相加。</p><img src="/images/conditional_p_6.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>因此，如果你的原始计数不可得，但有联合概率，你始终可以计算出边际概率 —— 通过求和。相反，如果只给你边际概率，你将无法在每种情况下反推出联合概率。</p><img src="/images/conditional_p_7.jpg" width="68%" height="68%" style="margin: 10 auto;"><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li>当你在对源自一个随机样本或者试验中的现象计数时，可以把它们转换成概率。</li><li>如果观察多个随机变量，可以计算出这些变量的联合概率和边际概率。</li><li>联合概率是变量间某些结果交集的概率，而边际概率是每个变量所有结果概率的总和。</li><li>典型的例子里，如果变量有两个，列联表示组织数据的绝佳形式。联合概率放在中间，边际概率放在边缘。所有的联合概率加起来等于 1 ，它们在两个方向上分布加总得到一个边际概率。</li><li>你总是可以通过加总，基于联合概率算出边际概率；但仅有边际概率，不借助额外的假定是无法算出联合概率的。</li></ul><hr><h1 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h1><p>术语 <strong>条件 (condition)</strong> 意味着取决于别的东西。和日常语言中的概率上下文或多或少具有相同的含义。</p><p>其正式定义是：给定另外一件事已发生，这件事件发生的可能性。数学符号如下：</p><p>$$ P (A | B) $$ </p><p>即给定 B 发生或以 B 为条件，事件 A 发生。垂直线是 “给定” 的速记，或者说 “有条件” 的速记。条件概率的计算公式是：</p><p>$$ P (A | B) = \frac {P (A \cap B)}{P (B)} $$</p><p>即事件 A 和事件 B 都发生的概率除以事件 B 发生的概率。也可以用下面的文氏图来说明：</p><img src="/images/conditional_p_8.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>该图强调 A 和 B 的交集概率只能小于或等于 B 的概率。</p><p>让我们应用方程到一个熟悉的例子。你考虑了沙滩上的人们进行的各种活动，也可以按性别区分人们。将结果转换一张有概率的表。现在，有了这些变量，活动和性别，如何举出一个条件概率的例子？具体来说，是你知道一个结果发生的概率，然后要计算这个结果发生后，其他结果再发生的概率。让我们举一个具体的例子。你将估算一个概率 —— 该人是男性，且则该人正在休息。</p><p>为了算得这个概率，应用前面说到的公式，联合概率除以是男性的概率。因此， 0.3 除以 0.45 。</p><img src="/images/conditional_p_9.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>现在我有一个问题要问你。你能计算给定活动的性别概率吗？方法一样：</p><img src="/images/conditional_p_10.jpg" width="68%" height="68%" style="margin: 10 auto;"><p>因此，根据联合概率和边际概率，您可以计算出条件概率。虽然条件概率方程很简单，但它还有更多可以挖掘。再看一下方程式，如果两边都乘以事件 B 的边际概率，你就得到了一个计算联合概率的公式。</p><p>这其中隐含的意思是，如果交给你一项任务：找到事件 A 和事件 B 的联合概率，如果你不知道 A 和 B 之间是否独立，你需要同时拿到 B 的概率和给定 B 发生 A 的条件概率，或者拿到 A 的概率和给定 A 发生 B 的条件概率。</p><h2 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h2><ul><li>条件概率是指给定另一件事已发生时某件事的概率。</li><li>表明上看不是很特别，但条件概率是很多概率估算的核心。</li><li>数学上，给定 B 的 A 的条件概率等于 A 和 B 的联合概率除以概率 B 。</li><li>条件概率的定义，也适用于不论是否独立的事件的联合概率。给定 B 的 A 的条件概率可以看成是 B 发生后，样本空间缩小到 B 时 A 发生的概率。</li></ul><hr><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    <content type="html"><![CDATA[<h1 id="联合概率和边际概率"><a href="#联合概率和边际概率" class="headerlink" title="联合概率和边际概率"></a>联合概率和边际概率</h1><blockquote><p>对有趣现象的计数，在日常生活中常常转换成比例，最终变为概率。利用概率估算的力量，可以更好地理解这些现象之间的关系或做出预测。 <strong>联合概率 (joint probability)</strong> 和 <strong>边际概率 (marginal probability)</strong> 是两个在这种情况下会用到的重要概率类型。在这一节教程中，我将解释联合概率和边际概率的含义，并展示它们的属性。</p></blockquote><p>想象你在沙滩上观察你的海滩同伴。你会注意到三种不同类型的活动 —— 它们是互斥的。有的休息，他们都坐在或躺在沙滩上。有的玩，这些人到处乱跑，建造沙堡或站在水中。最后，有的在游泳。此外，你还可以按性别区分。所以你观察到的每个人都是一个案例.</p><p><img src="/images/conditional_p_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>在数据集中，性别和活动是变量。你最终得到以下结果的列联表。总共计了 113 人，其中有 79 人在休息，有 20 人在玩，并且他们中只有 14 人在游泳。女性和男性的数量，分别是 62 和 51 。</p><p><img src="/images/conditional_p_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>这些数字实际上是每行和每列变量位于此表边缘的总和，因此被称为边际值。请注意，这与口语上 “边缘的”，即并不重要的，并不是一回事。在表中边际值代表对于单个变量的说明，没有关于任何其他变量。例如说休息的人数不考虑性别。</p><p><img src="/images/conditional_p_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>现在，我们打开这个频率表通过将每个单元格数字除以总数 113 得到比例的表格。</p><p><img src="/images/conditional_p_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>在此表中，中心块包含六个位置，它们加起来等于一。同时，每列中的比例加总到底部的边缘行中的值，每行中的比例加总到右边的边缘列中的值。并且边缘行的值加起来等于边缘列的值加起来。</p><a id="more"></a><p>你的计数可以看作随机样本，测量在海滩的人的活动和性别分布，于是你会想到把比例看作概率。在中间区域，是活动与性别的交集。例如，给定的人是男性，正在游泳。这些值称为 <strong>联合概率 (conditional probability)</strong> 。 <strong>联合概率只是各种事件的交集概率的简称</strong> 。</p><p>我们的每个联合概率关联的事件都与表中任何其他联合概率关联的事件互斥，因为每个人在海滩上只被放置在六个互斥事件之一。同时，联合概率形成一系列完全穷尽的事件，因为案例中不会出现其他的可能活动和性别的组合。因此，联合概率总和为一。</p><p><img src="/images/conditional_p_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>在边缘的地方，你可能期望有 <strong>边际概率</strong> 。是的，这些概率仅考虑一个变量。例如，给定的人是男性，无论其活动如何，或者给定在玩，不论性别。边际概率来自联合概率的并集。例如休息的概率，玩耍的概率和游泳概率。因此，这里适用加法规则，即概率相加。</p><p><img src="/images/conditional_p_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>因此，如果你的原始计数不可得，但有联合概率，你始终可以计算出边际概率 —— 通过求和。相反，如果只给你边际概率，你将无法在每种情况下反推出联合概率。</p><p><img src="/images/conditional_p_7.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li>当你在对源自一个随机样本或者试验中的现象计数时，可以把它们转换成概率。</li><li>如果观察多个随机变量，可以计算出这些变量的联合概率和边际概率。</li><li>联合概率是变量间某些结果交集的概率，而边际概率是每个变量所有结果概率的总和。</li><li>典型的例子里，如果变量有两个，列联表示组织数据的绝佳形式。联合概率放在中间，边际概率放在边缘。所有的联合概率加起来等于 1 ，它们在两个方向上分布加总得到一个边际概率。</li><li>你总是可以通过加总，基于联合概率算出边际概率；但仅有边际概率，不借助额外的假定是无法算出联合概率的。</li></ul><hr><h1 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h1><p>术语 <strong>条件 (condition)</strong> 意味着取决于别的东西。和日常语言中的概率上下文或多或少具有相同的含义。</p><p>其正式定义是：给定另外一件事已发生，这件事件发生的可能性。数学符号如下：</p><script type="math/tex; mode=display">P (A | B)</script><p>即给定 B 发生或以 B 为条件，事件 A 发生。垂直线是 “给定” 的速记，或者说 “有条件” 的速记。条件概率的计算公式是：</p><script type="math/tex; mode=display">P (A | B) = \frac {P (A \cap B)}{P (B)}</script><p>即事件 A 和事件 B 都发生的概率除以事件 B 发生的概率。也可以用下面的文氏图来说明：</p><p><img src="/images/conditional_p_8.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>该图强调 A 和 B 的交集概率只能小于或等于 B 的概率。</p><p>让我们应用方程到一个熟悉的例子。你考虑了沙滩上的人们进行的各种活动，也可以按性别区分人们。将结果转换一张有概率的表。现在，有了这些变量，活动和性别，如何举出一个条件概率的例子？具体来说，是你知道一个结果发生的概率，然后要计算这个结果发生后，其他结果再发生的概率。让我们举一个具体的例子。你将估算一个概率 —— 该人是男性，且则该人正在休息。</p><p>为了算得这个概率，应用前面说到的公式，联合概率除以是男性的概率。因此， 0.3 除以 0.45 。</p><p><img src="/images/conditional_p_9.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>现在我有一个问题要问你。你能计算给定活动的性别概率吗？方法一样：</p><p><img src="/images/conditional_p_10.jpg" width="68%" height="68%" style="margin: 10 auto;"></p><p>因此，根据联合概率和边际概率，您可以计算出条件概率。虽然条件概率方程很简单，但它还有更多可以挖掘。再看一下方程式，如果两边都乘以事件 B 的边际概率，你就得到了一个计算联合概率的公式。</p><p>这其中隐含的意思是，如果交给你一项任务：找到事件 A 和事件 B 的联合概率，如果你不知道 A 和 B 之间是否独立，你需要同时拿到 B 的概率和给定 B 发生 A 的条件概率，或者拿到 A 的概率和给定 A 发生 B 的条件概率。</p><h2 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h2><ul><li>条件概率是指给定另一件事已发生时某件事的概率。</li><li>表明上看不是很特别，但条件概率是很多概率估算的核心。</li><li>数学上，给定 B 的 A 的条件概率等于 A 和 B 的联合概率除以概率 B 。</li><li>条件概率的定义，也适用于不论是否独立的事件的联合概率。给定 B 的 A 的条件概率可以看成是 B 发生后，样本空间缩小到 B 时 A 发生的概率。</li></ul><hr><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     <summary type="html">
     
       &lt;h1 id=&quot;联合概率和边际概率&quot;&gt;&lt;a href=&quot;#联合概率和边际概率&quot; class=&quot;headerlink&quot; title=&quot;联合概率和边际概率&quot;&gt;&lt;/a&gt;联合概率和边际概率&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;对有趣现象的计数，在日常生活中常常转换成比例，最终变为概率。利用概率估算的力量，可以更好地理解这些现象之间的关系或做出预测。 &lt;strong&gt;联合概率 (conditonal probability)&lt;/strong&gt; 和 &lt;strong&gt;边际概率 (marginal probability)&lt;/strong&gt; 是两个在这种情况下会用到的重要概率类型。在这一节教程中，我将解释联合概率和边际概率的含义，并展示它们的属性。&lt;/p&gt;
+&lt;p&gt;对有趣现象的计数，在日常生活中常常转换成比例，最终变为概率。利用概率估算的力量，可以更好地理解这些现象之间的关系或做出预测。 &lt;strong&gt;联合概率 (joint probability)&lt;/strong&gt; 和 &lt;strong&gt;边际概率 (marginal probability)&lt;/strong&gt; 是两个在这种情况下会用到的重要概率类型。在这一节教程中，我将解释联合概率和边际概率的含义，并展示它们的属性。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;想象你在沙滩上观察你的海滩同伴。你会注意到三种不同类型的活动 —— 它们是互斥的。有的休息，他们都坐在或躺在沙滩上。有的玩，这些人到处乱跑，建造沙堡或站在水中。最后，有的在游泳。此外，你还可以按性别区分。所以你观察到的每个人都是一个案例.&lt;/p&gt;
-&lt;img src=&quot;/images/conditional_p_1.jpg&quot; width=&quot;68%&quot; height=&quot;68%&quot; style=&quot;margin: 10 auto;&quot;&gt;
-
+&lt;p&gt;&lt;img src=&quot;/images/conditional_p_1.jpg&quot; width=&quot;68%&quot; height=&quot;68%&quot; style=&quot;margin: 10 auto;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;在数据集中，性别和活动是变量。你最终得到以下结果的列联表。总共计了 113 人，其中有 79 人在休息，有 20 人在玩，并且他们中只有 14 人在游泳。女性和男性的数量，分别是 62 和 51 。&lt;/p&gt;
-&lt;img src=&quot;/images/conditional_p_2.jpg&quot; width=&quot;68%&quot; height=&quot;68%&quot; style=&quot;margin: 10 auto;&quot;&gt;
-
+&lt;p&gt;&lt;img src=&quot;/images/conditional_p_2.jpg&quot; width=&quot;68%&quot; height=&quot;68%&quot; style=&quot;margin: 10 auto;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;这些数字实际上是每行和每列变量位于此表边缘的总和，因此被称为边际值。请注意，这与口语上 “边缘的”，即并不重要的，并不是一回事。在表中边际值代表对于单个变量的说明，没有关于任何其他变量。例如说休息的人数不考虑性别。&lt;/p&gt;
-&lt;img src=&quot;/images/conditional_p_3.jpg&quot; width=&quot;68%&quot; height=&quot;68%&quot; style=&quot;margin: 10 auto;&quot;&gt;
-
+&lt;p&gt;&lt;img src=&quot;/images/conditional_p_3.jpg&quot; width=&quot;68%&quot; height=&quot;68%&quot; style=&quot;margin: 10 auto;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;现在，我们打开这个频率表通过将每个单元格数字除以总数 113 得到比例的表格。&lt;/p&gt;
-&lt;img src=&quot;/images/conditional_p_4.jpg&quot; width=&quot;68%&quot; height=&quot;68%&quot; style=&quot;margin: 10 auto;&quot;&gt;
-
+&lt;p&gt;&lt;img src=&quot;/images/conditional_p_4.jpg&quot; width=&quot;68%&quot; height=&quot;68%&quot; style=&quot;margin: 10 auto;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;在此表中，中心块包含六个位置，它们加起来等于一。同时，每列中的比例加总到底部的边缘行中的值，每行中的比例加总到右边的边缘列中的值。并且边缘行的值加起来等于边缘列的值加起来。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之九 | 概率和集合</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-probability-and-sets/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-probability-and-sets/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-probability-and-sets/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-probability-and-sets/</id>
     <published>2020-01-10T08:50:24.000Z</published>
     <updated>2020-01-11T04:25:25.201Z</updated>
     
@@ -80,19 +76,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之八 | 样本空间、事件和树形图</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-sample-space-events-tree-diagrams/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-sample-space-events-tree-diagrams/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-sample-space-events-tree-diagrams/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-sample-space-events-tree-diagrams/</id>
     <published>2020-01-09T09:16:28.000Z</published>
     <updated>2020-01-10T03:58:24.746Z</updated>
     
@@ -113,19 +109,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之七 | 概率和随机性</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-probability-and-randomness/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-probability-and-randomness/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-probability-and-randomness/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-probability-and-randomness/</id>
     <published>2020-01-09T05:48:50.000Z</published>
     <updated>2020-01-09T09:21:26.189Z</updated>
     
@@ -143,19 +139,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之六 | 回归</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-regression/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-regression/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-regression/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-regression/</id>
     <published>2020-01-02T04:50:17.000Z</published>
     <updated>2020-01-09T03:25:15.197Z</updated>
     
@@ -177,19 +173,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之五 | 相关性</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-correlation/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-correlation/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-correlation/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-correlation/</id>
     <published>2020-01-02T01:28:57.000Z</published>
     <updated>2020-01-08T08:59:51.811Z</updated>
     
@@ -205,19 +201,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之四 | Z-score</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-z-scores/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-z-scores/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-z-scores/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-z-scores/</id>
     <published>2020-01-01T02:49:06.000Z</published>
     <updated>2020-01-06T01:47:54.489Z</updated>
     
@@ -240,19 +236,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之三 | 测量集中趋势和离散程度</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-measures-of-central-tendency-and-dispersion/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-measures-of-central-tendency-and-dispersion/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-measures-of-central-tendency-and-dispersion/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-measures-of-central-tendency-and-dispersion/</id>
     <published>2019-12-31T07:28:52.000Z</published>
     <updated>2020-01-06T01:48:13.219Z</updated>
     
@@ -318,19 +314,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之二 | 数据可视化</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-descriptive-statistics/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-descriptive-statistics/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-descriptive-statistics/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-descriptive-statistics/</id>
     <published>2019-12-31T01:34:47.000Z</published>
     <updated>2020-01-06T01:48:13.221Z</updated>
     
@@ -357,19 +353,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>极速统计教程之一 | 引言</title>
-    <link href="http://nichollyn.github.io/data-science/statistics-basic-introduction/"/>
-    <id>http://nichollyn.github.io/data-science/statistics-basic-introduction/</id>
+    <link href="https://theinfinitegame.tech/data-science/statistics-basic-introduction/"/>
+    <id>https://theinfinitegame.tech/data-science/statistics-basic-introduction/</id>
     <published>2019-12-31T00:55:24.000Z</published>
     <updated>2020-01-06T01:48:08.422Z</updated>
     
@@ -385,19 +381,19 @@
     </summary>
     
     
-      <category term="data-science" scheme="http://nichollyn.github.io/categories/data-science/"/>
+      <category term="data-science" scheme="https://theinfinitegame.tech/categories/data-science/"/>
     
     
-      <category term="统计" scheme="http://nichollyn.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+      <category term="统计" scheme="https://theinfinitegame.tech/tags/%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="数据科学" scheme="http://nichollyn.github.io/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+      <category term="数据科学" scheme="https://theinfinitegame.tech/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>用 “流水线” 设计拆解复杂处理流程</title>
-    <link href="http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/"/>
-    <id>http://nichollyn.github.io/programming/break-down-complexity-with-pipelines/</id>
+    <link href="https://theinfinitegame.tech/programming/break-down-complexity-with-pipelines/"/>
+    <id>https://theinfinitegame.tech/programming/break-down-complexity-with-pipelines/</id>
     <published>2019-12-28T12:59:40.000Z</published>
     <updated>2019-12-31T08:07:33.223Z</updated>
     
@@ -426,19 +422,19 @@
     </summary>
     
     
-      <category term="programming" scheme="http://nichollyn.github.io/categories/programming/"/>
+      <category term="programming" scheme="https://theinfinitegame.tech/categories/programming/"/>
     
     
-      <category term="编程" scheme="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://theinfinitegame.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="设计模式" scheme="http://nichollyn.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://theinfinitegame.tech/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>关于花费时间的四宗罪</title>
-    <link href="http://nichollyn.github.io/thinking/the-four-sins-of-spending-time/"/>
-    <id>http://nichollyn.github.io/thinking/the-four-sins-of-spending-time/</id>
+    <link href="https://theinfinitegame.tech/thinking/the-four-sins-of-spending-time/"/>
+    <id>https://theinfinitegame.tech/thinking/the-four-sins-of-spending-time/</id>
     <published>2019-12-28T12:42:32.000Z</published>
     <updated>2020-01-06T01:46:17.519Z</updated>
     
@@ -459,19 +455,19 @@
     </summary>
     
     
-      <category term="thinking" scheme="http://nichollyn.github.io/categories/thinking/"/>
+      <category term="thinking" scheme="https://theinfinitegame.tech/categories/thinking/"/>
     
     
-      <category term="思考" scheme="http://nichollyn.github.io/tags/%E6%80%9D%E8%80%83/"/>
+      <category term="思考" scheme="https://theinfinitegame.tech/tags/%E6%80%9D%E8%80%83/"/>
     
-      <category term="翻译" scheme="http://nichollyn.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
+      <category term="翻译" scheme="https://theinfinitegame.tech/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
   <entry>
     <title>计算机科学教师协会 - K12 - 标准</title>
-    <link href="http://nichollyn.github.io/uncategorized/csta-k12-standards/"/>
-    <id>http://nichollyn.github.io/uncategorized/csta-k12-standards/</id>
+    <link href="https://theinfinitegame.tech/uncategorized/csta-k12-standards/"/>
+    <id>https://theinfinitegame.tech/uncategorized/csta-k12-standards/</id>
     <published>2019-12-28T08:01:41.000Z</published>
     <updated>2019-12-28T14:14:01.651Z</updated>
     
@@ -493,8 +489,8 @@
   
   <entry>
     <title>聊一聊 UI 代码要怎么写 | 分治篇</title>
-    <link href="http://nichollyn.github.io/programming/ui-programming-howto/"/>
-    <id>http://nichollyn.github.io/programming/ui-programming-howto/</id>
+    <link href="https://theinfinitegame.tech/programming/ui-programming-howto/"/>
+    <id>https://theinfinitegame.tech/programming/ui-programming-howto/</id>
     <published>2019-12-27T02:52:07.000Z</published>
     <updated>2020-01-01T05:18:55.852Z</updated>
     
@@ -515,19 +511,19 @@
     </summary>
     
     
-      <category term="programming" scheme="http://nichollyn.github.io/categories/programming/"/>
+      <category term="programming" scheme="https://theinfinitegame.tech/categories/programming/"/>
     
     
-      <category term="编程" scheme="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://theinfinitegame.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="UI" scheme="http://nichollyn.github.io/tags/UI/"/>
+      <category term="UI" scheme="https://theinfinitegame.tech/tags/UI/"/>
     
   </entry>
   
   <entry>
     <title>极速 Swift 教程之十 | 可选型</title>
-    <link href="http://nichollyn.github.io/programming/swiftswift-optionals/"/>
-    <id>http://nichollyn.github.io/programming/swiftswift-optionals/</id>
+    <link href="https://theinfinitegame.tech/programming/swiftswift-optionals/"/>
+    <id>https://theinfinitegame.tech/programming/swiftswift-optionals/</id>
     <published>2019-12-25T09:27:30.000Z</published>
     <updated>2019-12-28T06:29:12.278Z</updated>
     
@@ -544,19 +540,19 @@
     </summary>
     
     
-      <category term="programming" scheme="http://nichollyn.github.io/categories/programming/"/>
+      <category term="programming" scheme="https://theinfinitegame.tech/categories/programming/"/>
     
     
-      <category term="swift" scheme="http://nichollyn.github.io/tags/swift/"/>
+      <category term="swift" scheme="https://theinfinitegame.tech/tags/swift/"/>
     
-      <category term="编程" scheme="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://theinfinitegame.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>极速 Swift 教程之九 | 协议</title>
-    <link href="http://nichollyn.github.io/programming/swiftswift-protocol/"/>
-    <id>http://nichollyn.github.io/programming/swiftswift-protocol/</id>
+    <link href="https://theinfinitegame.tech/programming/swiftswift-protocol/"/>
+    <id>https://theinfinitegame.tech/programming/swiftswift-protocol/</id>
     <published>2019-12-25T09:17:33.000Z</published>
     <updated>2019-12-28T06:29:14.488Z</updated>
     
@@ -577,19 +573,19 @@
     </summary>
     
     
-      <category term="programming" scheme="http://nichollyn.github.io/categories/programming/"/>
+      <category term="programming" scheme="https://theinfinitegame.tech/categories/programming/"/>
     
     
-      <category term="swift" scheme="http://nichollyn.github.io/tags/swift/"/>
+      <category term="swift" scheme="https://theinfinitegame.tech/tags/swift/"/>
     
-      <category term="编程" scheme="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://theinfinitegame.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>极速 Swift 教程之八 | 类</title>
-    <link href="http://nichollyn.github.io/programming/swiftswift-classes/"/>
-    <id>http://nichollyn.github.io/programming/swiftswift-classes/</id>
+    <link href="https://theinfinitegame.tech/programming/swiftswift-classes/"/>
+    <id>https://theinfinitegame.tech/programming/swiftswift-classes/</id>
     <published>2019-12-25T02:10:59.000Z</published>
     <updated>2019-12-28T06:28:56.065Z</updated>
     
@@ -608,19 +604,19 @@
     </summary>
     
     
-      <category term="programming" scheme="http://nichollyn.github.io/categories/programming/"/>
+      <category term="programming" scheme="https://theinfinitegame.tech/categories/programming/"/>
     
     
-      <category term="swift" scheme="http://nichollyn.github.io/tags/swift/"/>
+      <category term="swift" scheme="https://theinfinitegame.tech/tags/swift/"/>
     
-      <category term="编程" scheme="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://theinfinitegame.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>极速 Swift 教程之七 | 结构体</title>
-    <link href="http://nichollyn.github.io/programming/swiftswift-structs/"/>
-    <id>http://nichollyn.github.io/programming/swiftswift-structs/</id>
+    <link href="https://theinfinitegame.tech/programming/swiftswift-structs/"/>
+    <id>https://theinfinitegame.tech/programming/swiftswift-structs/</id>
     <published>2019-12-24T13:21:46.000Z</published>
     <updated>2019-12-28T06:29:19.147Z</updated>
     
@@ -643,19 +639,19 @@
     </summary>
     
     
-      <category term="programming" scheme="http://nichollyn.github.io/categories/programming/"/>
+      <category term="programming" scheme="https://theinfinitegame.tech/categories/programming/"/>
     
     
-      <category term="swift" scheme="http://nichollyn.github.io/tags/swift/"/>
+      <category term="swift" scheme="https://theinfinitegame.tech/tags/swift/"/>
     
-      <category term="编程" scheme="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://theinfinitegame.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>极速 Swift 教程之六 | 闭包</title>
-    <link href="http://nichollyn.github.io/programming/swiftswift-closures/"/>
-    <id>http://nichollyn.github.io/programming/swiftswift-closures/</id>
+    <link href="https://theinfinitegame.tech/programming/swiftswift-closures/"/>
+    <id>https://theinfinitegame.tech/programming/swiftswift-closures/</id>
     <published>2019-12-24T13:05:51.000Z</published>
     <updated>2019-12-28T06:28:58.899Z</updated>
     
@@ -674,19 +670,19 @@
     </summary>
     
     
-      <category term="programming" scheme="http://nichollyn.github.io/categories/programming/"/>
+      <category term="programming" scheme="https://theinfinitegame.tech/categories/programming/"/>
     
     
-      <category term="swift" scheme="http://nichollyn.github.io/tags/swift/"/>
+      <category term="swift" scheme="https://theinfinitegame.tech/tags/swift/"/>
     
-      <category term="编程" scheme="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://theinfinitegame.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>极速 Swift 教程之五 | 函数</title>
-    <link href="http://nichollyn.github.io/programming/swiftswift-functions/"/>
-    <id>http://nichollyn.github.io/programming/swiftswift-functions/</id>
+    <link href="https://theinfinitegame.tech/programming/swiftswift-functions/"/>
+    <id>https://theinfinitegame.tech/programming/swiftswift-functions/</id>
     <published>2019-12-24T12:47:22.000Z</published>
     <updated>2019-12-28T06:29:03.887Z</updated>
     
@@ -708,12 +704,12 @@
     </summary>
     
     
-      <category term="programming" scheme="http://nichollyn.github.io/categories/programming/"/>
+      <category term="programming" scheme="https://theinfinitegame.tech/categories/programming/"/>
     
     
-      <category term="swift" scheme="http://nichollyn.github.io/tags/swift/"/>
+      <category term="swift" scheme="https://theinfinitegame.tech/tags/swift/"/>
     
-      <category term="编程" scheme="http://nichollyn.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://theinfinitegame.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   

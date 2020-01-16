@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://theinfinitegame.tech/data-science/statistics-random-variables-and-probability-distributions/</loc>
+    <loc>https://theinfinitegame.tech/data-science/statistics-the-normal-distribution/</loc>
+    <lastmod>2020-01-16</lastmod>
+  </url>  <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/</loc>
+    <lastmod>2020-01-16</lastmod>
+  </url>  <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-probability-distributions/</loc>
     <lastmod>2020-01-14</lastmod>
   </url>  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-conditional-probability-and-independence/</loc>

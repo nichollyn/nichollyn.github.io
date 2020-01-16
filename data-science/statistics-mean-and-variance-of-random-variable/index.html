@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://theinfinitegame.tech').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="随机变量的平均数在了解了随机变量的概率分布之后，我们可以开始对这种变量进行计算了。 首先，你需要知道，总结性统计 (summary statistics) ，跟观测数据相似，都能用来捕捉分布的本质。这一节中，我们要来研究概率分布的平均数，以及我们在调整随机变量或者组合随机变量之后，平均数如何变化。 以下将一个随机变量的平均数以 $ μ $ 注记，它表示对许多观测值预期的平均结果，因此也被称为随机变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极速统计教程之十二 | 随机变量的平均数和方差">
+<meta property="og:url" content="https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="随机变量的平均数在了解了随机变量的概率分布之后，我们可以开始对这种变量进行计算了。 首先，你需要知道，总结性统计 (summary statistics) ，跟观测数据相似，都能用来捕捉分布的本质。这一节中，我们要来研究概率分布的平均数，以及我们在调整随机变量或者组合随机变量之后，平均数如何变化。 以下将一个随机变量的平均数以 $ μ $ 注记，它表示对许多观测值预期的平均结果，因此也被称为随机变">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_1.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_2.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_3.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_4.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_5.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_5.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_6.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_7.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_8.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_9_1.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_9_2.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/mvorv_10.jpg">
+<meta property="article:published_time" content="2020-01-15T01:07:13.000Z">
+<meta property="article:modified_time" content="2020-01-16T01:45:45.311Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="统计">
+<meta property="article:tag" content="数据科学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://theinfinitegame.tech/images/mvorv_1.jpg">
+
+<link rel="canonical" href="https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>极速统计教程之十二 | 随机变量的平均数和方差 | The Infinite Game</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          极速统计教程之十二 | 随机变量的平均数和方差
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-15 09:07:13" itemprop="dateCreated datePublished" datetime="2020-01-15T09:07:13+08:00">2020-01-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/data-science/statistics-mean-and-variance-of-random-variable/" class="post-meta-item leancloud_visitors" data-flag-title="极速统计教程之十二 | 随机变量的平均数和方差" title="热度">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="随机变量的平均数"><a href="#随机变量的平均数" class="headerlink" title="随机变量的平均数"></a>随机变量的平均数</h1><p>在了解了随机变量的概率分布之后，我们可以开始对这种变量进行计算了。</p>
+<p>首先，你需要知道，<strong>总结性统计 (summary statistics)</strong> ，跟观测数据相似，都能用来捕捉分布的本质。这一节中，我们要来研究概率分布的平均数，以及我们在调整随机变量或者组合随机变量之后，平均数如何变化。</p>
+<p>以下将一个随机变量的平均数以 $ μ $ 注记，它表示对许多观测值预期的平均结果，因此也被称为随机变量的 <strong>期望值 (expected value)</strong> ，以 $ E $ 注记。</p>
+<p>一个离散随机变量的平均数是所有可能的值乘以概率权重之后的均值，因此它等于每个可能的值乘以概率，然后加总。对于连续随机变量，同样的规则也适用。为了应对连续性，加总的计算被替换成积分 (integral) ，概率也不像离散那样被定义为 i ，而是 x 的函数。 </p>
+<p>举个例子，假设你正在一个熟悉的街区日常漫步，路上会经过三个交通灯。每等一个交通灯会使整个漫步多花 2 分钟。对于这三组交通灯的等待，你记录了等 0 个 到等 3 个的频率，下面是概率表：</p>
+<img src="/images/mvorv_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>你预期的等待时间计算方法如下，最后会得到 2 分 12 秒。有趣的是， 2 分 12 秒这个值实际永远不会发生。你要么不用等，要么就是等 2， 4， 6 分钟中的某个时间。</p>
+<p>现在，让我们来审视一下随机变量的平均数。如果我们给随机变量 x 乘上一个系数再加上一个值， 变成 $ a + bx $ ，那么平均值会变成 $ μ_{a+bx} $ 。</p>
+<a id="more"></a>
+
+<p>现在回到我们的例子。由于你找到一条捷径，旅程节省了一分钟。但同时，交通灯变得更忙了 —— 等待时间增加到 2 分 30 秒，即增加了 25% 。你抄近路省出的时间对应方程里的 a ，等待时间增长系数 1.25 对应 b 。新的概率分布通过下面这张表格呈现。</p>
+<img src="/images/mvorv_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>新的等待时间平均值变为 1 分 45 秒。</p>
+<p>现在让我们来看看两个随机变量相加或者相减的时候回发生什么。结果是：两个相加或者相减的随机变量的平均值也是它们各自平均值的简单求和或者求差。这个结论甚至不要求两个变量相互独立。</p>
+<img src="/images/mvorv_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>举个例子，假设你想要计算一个礼拜的等待时间的平均值，那你只需要把每天的平均值加起来就可以了：</p>
+<img src="/images/mvorv_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>平均值，或者一个离散随机变量的期望值，是变量所有可能的值乘以它们的概率，然后求和。如果随机变量通过乘法或者加上常数改变，那么平均值会发生相同的变化。</li>
+<li>几个随机变量的平均值加总在一起是它们平均值的总和，即便这几个变量在统计上不一定是独立的。</li>
+</ul>
+<hr>
+<h1 id="随机变量的方差"><a href="#随机变量的方差" class="headerlink" title="随机变量的方差"></a>随机变量的方差</h1><p>在平均数之后，你需要了解的第二个总结性统计指标是随机变量的方差，即离散程度的度量。</p>
+<p>这一节中，我们要来研究概率分布的方差，以及我们在调整随机变量或者组合随机变量之后，方差如何变化。</p>
+<p>一个随机变量 X 的方差 var (X) 是以它与平均值的差值的平方的期望来定义的：</p>
+<p>$$ var (X) = E [(X - μ)^2] $$</p>
+<p>如果你想基于概率分布算出方差，它其实是变量可能的值与平均值之差的平方，然后加总或者积分。<br>连续随机变量的方差：<br>$$ \int {(X - μ)^2f (x) dx} $$<br>离散随机变量的方差：<br>$$ \sum {(x_i - μ)^2P (x_i)} $$</p>
+<p>连续随机变量的方差比较复杂一些，用到了积分。离散随机变量看起来就简单一些。</p>
+<p>举个例子，这个离散分布给出了一年中你可能遭遇交通事故的风险。平均风险是 0.04 ，即每 25 年一次。</p>
+<img src="/images/mvorv_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>首先，你计算出事故次数和平均值之差，然后平方，乘上对应的概率，最后加总。事故风险的方差看起来接近 0.06 ，标准差 0.24 左右。</p>
+<p>现在，让我们来看看，如果通过给随机变量加一个 a 或者乘以 b ，方差会发生什么变化。</p>
+<img src="/images/mvorv_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>当你将两个 a 放定义方差的等式中变换时，你会发现常量 a 消失了，而因子 b 被平方了。因此，通过加或者减一个值到随机变量，它的方差不变。但通过乘以一个数 b ，它的方差会变成原始方差乘以 b 的平方。标准差，即方差的平方根，则跟随因子 b 一起变化。</p>
+<p>举个例子，你是否经历过晴天人们更愿意跟你打招呼，阴天更不爱搭理你的情景呢？下面图中上方是一个阴天时你走在街上每分钟遇到的点头或者微笑次数的分布。平均每分钟 1.4 次，方差 0.84 。而图中下方是晴天时的数据，你发现大家变得更友好了，具体来说，友好的倍数是 2 。</p>
+<img src="/images/mvorv_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>理论告诉我们，平均值应该变成 2 倍于 1.4 ，即 2.8 ，而方差应该变为 4 倍，即 3.36 。让我们检视一下新的分布的方差。</p>
+<img src="/images/mvorv_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这个表格展示了具体的步骤。从微笑或者点头次数减去平均值得到差值，平方，乘以概率，最后加总，确实是 3.36 。</p>
+<p>现在让我们来看看如果把两个随机变量相加或者相减会怎么样。对于随机变量 X 和 Y ，两者之和的方差是两者各自方差的和再加上 2 乘以 X 和 Y 之间的 <strong>协方差 (covariance)</strong> 。而两者之差的方差是两者各自方差的和再减去 2 乘以 X 和 Y 之间的协方差。</p>
+<img src="/images/mvorv_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>下面这两个更完整的等式则适用于 X 和 Y 各自有因子 a 的情况。</p>
+<img src="/images/mvorv_9_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这些等式适用于任意两个相加或者相减的随机变量，而且显而易见，它们要求你知道两个变量之间的协方差。然而，协方差信息通常是不可得的，因此我们这里不考虑通用的情况，而是先考虑一个更严格的案例，即变量之间不相关的情况。这样会使问题简单很多，因为两个不相关变量之间的协方差是 0 ，后面 1 项就从等式中消失了。</p>
+<img src="/images/mvorv_9_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>因此，在不相关变量之间，相加或者相减都无关紧要了，方差总是两个方差之和。你还可以把等式泛化到任意多个随机变量之和。</p>
+<img src="/images/mvorv_10.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>还有一个值得注意的点是，随机变量相加的标准差总是小于独立的随机变量标准差相加之和。这看起来很合理，因为随机变量结合之后，有一些变异性会被抵消。</p>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>随机变量的方差，是这个变量所有可能的值减去它的平均值，乘以概率，然后平方，最后加总或者积分。<br>$$ 连续随机变量：\int {(X - μ)^2f (x) dx} $$<br>$$ 离散随机变量：\sum {(x_i - μ)^2P (x_i)} $$ </li>
+<li>给随机变量增加常量不会改变方差，但因子会导致方差变为因子平方倍。</li>
+<li>几个不相关随机变量相加或者相减的方差等于这些变量各自方差之和。标准差是方差的平方根，因此为了得到调整后的标准差，你需要先得到调整后的方差。</li>
+</ul>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-the-normal-distribution/" rel="bookmark">极速统计教程之十三 | 正态分布</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-probability-distributions/" rel="bookmark">极速统计教程之十一 | 概率分布</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-conditional-probability-and-independence/" rel="bookmark">极速统计教程之十 | 条件概率和独立性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-probability-and-sets/" rel="bookmark">极速统计教程之九 | 概率和集合</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-sample-space-events-tree-diagrams/" rel="bookmark">极速统计教程之八 | 样本空间、事件和树形图</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/" title="极速统计教程之十二 | 随机变量的平均数和方差">https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%9F%E8%AE%A1/" rel="tag"># 统计</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" rel="tag"># 数据科学</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/data-science/statistics-probability-distributions/" rel="prev" title="极速统计教程之十一 | 概率分布">
+      <i class="fa fa-chevron-left"></i> 极速统计教程之十一 | 概率分布
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/data-science/statistics-the-normal-distribution/" rel="next" title="极速统计教程之十三 | 正态分布">
+      极速统计教程之十三 | 正态分布 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#随机变量的平均数"><span class="nav-number">1.</span> <span class="nav-text">随机变量的平均数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.1.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#随机变量的方差"><span class="nav-number">2.</span> <span class="nav-text">随机变量的方差</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">2.1.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">103k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:34</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

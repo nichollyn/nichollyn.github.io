@@ -63,8 +63,18 @@
 <meta property="og:image" content="https://theinfinitegame.tech/images/nd_7.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/nd_8.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/nd_9.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_1.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_1_2.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_2.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_3.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_4.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_5.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_6.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_7.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_8.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/pdf_9.jpg">
 <meta property="article:published_time" content="2020-01-16T02:36:29.000Z">
-<meta property="article:modified_time" content="2020-01-16T04:53:53.009Z">
+<meta property="article:modified_time" content="2020-01-16T05:53:13.806Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="数据科学">
@@ -292,14 +302,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -313,42 +323,59 @@
       
         <h1 id="正态分布-normal-distribution-的函数形式"><a href="#正态分布-normal-distribution-的函数形式" class="headerlink" title="正态分布 (normal distribution) 的函数形式"></a>正态分布 (normal distribution) 的函数形式</h1><p>在所有的概率分布中，有一个特别出众，我们经常遇到。它就是 <strong>正态分布 (normal distribution)</strong> 。</p>
 <p>在本节中，我们会学习它的重要属性。正态分布又被称为 <strong>高斯分布 (gaussian distribution)</strong> 。它是对称的，钟形，以平均值 μ 和 标准差 σ 为特征。分布的最高点是平均值的位置，宽度则由标准差指定。平均值 μ 和 标准差 σ 被称为正态分布的 <strong>参数 (parameters)</strong> 。</p>
-<img src="/images/nd_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>The cumulative normal probability<br>distribution has a sigmoidal shape, where the mean is given at<br>the probability value of 0.5 and the sigma determines<br>the steepness of the curve.<br>正态分布的累积概率分布是一个 <strong>S 函数曲线 (sigmoideal shape)</strong> ，平均值处于概率为 0.5 的地方，标准差决定了曲线的陡峭程度。</p>
-<img src="/images/nd_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>随机变量 X 有一个平均值 μ ，标准差 σ 的正态分布，可以速记为：</p>
-<p>$$ X \sim N (\mu, \sigma^2) $$ </p>
-<p>而下面这个等式描述了完整的概率密度：</p>
-<p>$$ f (x)=\frac {1}{\sqrt {2\pi}\sigma} e^{-0.5\left (\frac {x-\mu}{\sigma}\right)^2} $$ </p>
-<p>这个方程之所以重要，并非因为它第一眼看起来很复杂 —— 包含了三个重要的数学常量，$ \pi $，$ e $ 和 2 的平方根，还因为它连接了统计国王和物理世界。这个方程可以描述粒子扩散的过程。如果你释放一个扩散物，比如放一块糖到茶里，茶里的糖将按照这个方程的规律扩散。不仅流体是这样，大气中的颗粒物，道路交通，社会中的信息，都遵循这个分布的规律。</p>
+<script type="math/tex; mode=display">X \sim N (\mu, \sigma^2)</script><p>而下面这个等式描述了完整的概率密度：</p>
+<script type="math/tex; mode=display">f (x)=\frac {1}{\sqrt {2\pi}\sigma} e^{-0.5\left (\frac {x-\mu}{\sigma}\right)^2}</script><p>这个方程之所以重要，并非因为它第一眼看起来很复杂 —— 包含了三个重要的数学常量，$ \pi $，$ e $ 和 2 的平方根，还因为它连接了统计国王和物理世界。这个方程可以描述粒子扩散的过程。如果你释放一个扩散物，比如放一块糖到茶里，茶里的糖将按照这个方程的规律扩散。不仅流体是这样，大气中的颗粒物，道路交通，社会中的信息，都遵循这个分布的规律。</p>
 <p>同时，我们会频繁地遇见高斯分布，是因为根据 <strong>中心极限定理 (central limit theorem)</strong> ，各种独立的随机过程组合之后，就会产出这种分布。不过，让我们不要跑题。我将通过拆解的方式来解释这个方程。</p>
 <p>整个方程给出了随机变量 X 的概率密度，整个函数是一个 <strong>指数函数 (exponential function)</strong> ，前面是一个常数，然后指数部分包括小 x ，即随机变量可能取得的值。观察指数部分，从 x 中减去平均数，然后除以 σ ，这实际上是在计算 z 分数。所以随机变量的值在参与到方程后续的计算之前先做了标准化。</p>
-<img src="/images/nd_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>现在让我们聚焦到 e 之前的常数。在没有常数之前，曲线之下的面积是跟着 σ 变化的。但是通常乘以这个常量，这块面积变成了精确的 1 。这个常量的值实际上正是曲线顶部的高度，也就是 x 等于 μ 的地方。</p>
-<img src="/images/nd_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>正态概率分布有一个违反直觉的属性 —— 当逼近极大或者极小的 x 时，概率接近于 0 ，但实际永远不可能是 0 。</p>
-<img src="/images/nd_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>这导致一个事实：随机变量的值可以往负无穷大和正无穷大无限伸展。即使这些值是极小的概率，但仍然满足所有概率之和等于 1 的规律。</p>
-<img src="/images/nd_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_7.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>最终确定之前，让我们回到 μ 和 σ 这两个参数，它们决定正态分布曲线的位置和形状。下图是一个西欧男性在一周中每天上班路上花的通勤时间。平均的通勤时间是 3 分钟，标准差 6 分钟，而同一个国家的西欧女性，通勤平均值更小，但是标准差更大。你会发现，曲线越宽，顶点越低。</p>
-<img src="/images/nd_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_8.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>曲线还有一个属性 —— 当 x 轴的单位变化时， y 轴的单位也会发生变化。比如，你用小时而不是分钟来表示时间时，概率密度就从每分钟变成了每小时。</p>
-<img src="/images/nd_9.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_9.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
 <li>正态分布或者说高斯概率密度函数，是对称的钟形曲线，其对应的累积概率函数是 S 形曲线。位置和形状完全由两个参数描述，平均值和标准差。平均值决定曲线的中点，而标准差决定曲线的宽度。曲线越宽，则顶点必定越低。因为曲线下的面积始终等于 1 。</li>
-<li>对于一个平均值为 63 ，标准差为 12 的变量 x ，速记如下：<br>$$ X \sim N (63, 12^2) $$<br>正态分布方程如下：<br>$$ f (x)=\frac {1}{\sqrt {2\pi} 12} e^{-0.5\left (\frac {x-63}{12}\right)^2} $$</li>
+<li>对于一个平均值为 63 ，标准差为 12 的变量 x ，速记如下：<script type="math/tex; mode=display">X \sim N (63, 12^2)</script>正态分布方程如下：<script type="math/tex; mode=display">f (x)=\frac {1}{\sqrt {2\pi} 12} e^{-0.5\left (\frac {x-63}{12}\right)^2}</script></li>
 <li>这种方程不但描述了概率分布，也描述物理世界中许多过程的结果，其中的许多扩散形式十分重要。</li>
 </ul>
 <hr>
-<script>
+<h1 id="正态分布的概率计算"><a href="#正态分布的概率计算" class="headerlink" title="正态分布的概率计算"></a>正态分布的概率计算</h1><p>如果我们知道某个随机变量的概率分布，那我们就可以计算变量落在某个区间的概率。</p>
+<p>这一节中吗，我将通过一个具体的例子来解释这类计算是如何进行的。</p>
+<p>概率密度函数，经常被缩写为 pdf ，给出了随机变量每单位的概率。下面是一个出租车司机日常等待时间的 pdf 。在 y 轴你看到是每小时的概率， x 轴是以小时为单位的概率。现在，假设你是一个出租车司机，你想要知道一天中等待时间超过 7 小时的概率。你需要计算面积区域。基于图像，你可以粗造地估计面积。</p>
+<p><img src="/images/pdf_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>借助累积概率函数，也可以做到这一点，并且更精确。通过 x 轴 7 个小时的位置读取对应的 y 轴上的概率，再从 1 中减去这个概率。因为你关心的是长于 7 个小时而不是短于 7 个小时的概率。</p>
+<p><img src="/images/pdf_1_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>现在，让我们应用此前了解到的正态分布的等式。它是一个中点位于 μ ，宽度由 σ 定义的 pdf 形状。对应的累积概率函数在下方。</p>
+<p><img src="/images/pdf_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>有趣的是，尽管曲线会随着 μ 和 σ 变化，距离中点一个 σ 的区间，对应的概率始终不变。</p>
+<p><img src="/images/pdf_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>让我演示一下，假设一条曲线的平均值是 20 ，标准差是 9 ，另一条曲线的平均值是 30 ，标准差是 6 。对两条 pdf ，从平均值减去一个标准差到平均值加上一个标准差的区域，曲线之下的面积都是 0.68 。无论 μ 和 σ 分布是多少，所有的正态分布都满足这个情况。</p>
+<p><img src="/images/pdf_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>现在把区间扩展到围绕平均值正负两个 σ ，区间对应的概率大致是 0.95 。</p>
+<p><img src="/images/pdf_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>再扩展到正负三个 σ ，区间对应的概率大致是 0.997 。</p>
+<p><img src="/images/pdf_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>统计计算中经常用到一个、两个、三个 σ 区间的概率值。</p>
+<p><img src="/images/pdf_7.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>让我通过一个练习来演示一下一个、两个、三个 σ 的规则。假设你在一周中花在通勤上的时间服从正态分布，平均值 40 分钟，标准差 10 分钟。 那 95% 的状态下，你的通勤时间会落在哪个范围。是的，它在平均值减两个标准差到平均值加两个标准差的区间。在这里，就是从 40 分钟减去 20 分钟到 40 分钟加上 20 分钟的区间。</p>
+<p><img src="/images/pdf_8.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>让我假定你想要知道通勤超过 50 分钟的概率，在已知平均时间是 40 分钟，标准差是 10 分钟以及一个 σ 规则的前提下，你会如何计算呢？为了解答这个问题，你需要一点创造力 —— 你知道正态分布是对称的。因此有一半的概率落在平均值的一侧，继而可以知道从平均值减去一个标准差到平均值这个区间，概率是 0.68 的一半，即 0.34 ，于是，小于 50 分钟的概率就是 0.5 加上 0.34 ，即 0.84 。然后取补集，即 1 - 0.84 ，等于 0.16 。</p>
+<p><img src="/images/pdf_9.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>基于概率密度函数，你可以计算随机变量落在给定区间的概率，通过估算曲线在那个范围下的面积。借助累积概率函数，通过读取 y 轴对应的概率值也能做到这一点，并且更精确。</li>
+<li>对于一个服从正态分布的变量来说，围绕平均值的区间，有一个固定的概率对应关系。</li>
+</ul>
+<hr>
+<h1 id="标准概率分布"><a href="#标准概率分布" class="headerlink" title="标准概率分布"></a>标准概率分布</h1><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -510,7 +537,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正态分布-normal-distribution-的函数形式"><span class="nav-number">1.</span> <span class="nav-text">正态分布 (normal distribution) 的函数形式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.1.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正态分布-normal-distribution-的函数形式"><span class="nav-number">1.</span> <span class="nav-text">正态分布 (normal distribution) 的函数形式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.1.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正态分布的概率计算"><span class="nav-number">2.</span> <span class="nav-text">正态分布的概率计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">2.1.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准概率分布"><span class="nav-number">3.</span> <span class="nav-text">标准概率分布</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -593,12 +620,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">103k</span>
+    <span title="站点总字数">105k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:34</span>
+    <span title="站点阅读时长">1:35</span>
 </div>
 
         

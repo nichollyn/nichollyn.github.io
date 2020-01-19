@@ -318,50 +318,14 @@
 <img src="/images/bd_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
 <p>如果你把 6 个概率和 x 相乘并加总，你会发现这个值等于 1 。本应如此。</p>
-<p>让我们借助同一个例子，移到一个相关的问题，如果 5 天内最多一天遭遇打开的吊桥，这个概率怎么算呢？可以很好地利用上面的概率表，我们要找的是没遇到打开的吊桥和有一天遇到打开的吊桥的情况，两个概率之和是 0.92 。</p>
-<img src="/images/bd_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>为了回答最后一个问题，我们需要利用累积的二项概率分布，即给定所有结果，低于或者等于某个成功数量的概率。方程如下：</p>
-<p>$$ F (x) = P (X \leq x) = \sum_{k = 0}^{x} \frac {n!}{k!(n - k)!} p^k (1 - p)^{n - k} $$</p>
-<p>这个公式跟二项概率质量函数几乎相同，除了在前面做了求和，并且把所有的 x 替换成了符号 k 。</p>
-<p>现在让我们来看一下二项分布的形状。它是离散的，意味着它只会给出 0 , 1 , 2, 之类的概率。</p>
-<img src="/images/bd_9.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>有趣的是，二项分布的形状会根据参数的变化而变化。基于参考，分布可以是 <strong>右偏态 (right-skewed)</strong> 的，或者 <strong>左偏态的 (left-skewed)</strong> 的，或者是对称的。</p>
-<img src="/images/bd_10.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>这三个分布显示 20 个成功概率不同的试验。第一个成功概率是 0.1 ，第二个成功概率是 0.5 ，第三个是 0.9 。</p>
-<img src="/images/bd_11.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>一般来说，成功概率更低的二项分布是右偏态的，而成功概率高的是左偏态的。通过水平对齐，你会发现中间分布的顶点低于两边的，因此它更分散。这是二项分布很有趣的一个属性。实际上，二项分布的标准差取决于 p ，均值也是。二项分布的均值就等于 p ，它的标准差等于 n 乘以 p 乘以 (1 - p)，然后求平方根。当 p 等于 0 或者 1 时，标准差等于 0 。当 p 等于 0.5 时，它的标准差达到最大。</p>
-<img src="/images/bd_12.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li>二项分布是一个离散概率分布，用于只有两个独立互斥结果的随机变量 —— 成功或者失败。它给出了对于随机变量的 n 个结果，其中 x 个成功的概率。也叫做试验成功的概率。</li>
-<li>二项分布假定所有试验的概率 p 都是固定的，它的均值等于 n 乘以 p ，标准差等于 n 乘以 p 乘以 (1 - p)，然后求平方根。</li>
-<li>二项分布根据 p 的变化可以向右或者向左偏斜，或者对称。当 p 接近 0 时是右偏态，当 p 接近 1 时是左偏态。二项分布公式如下：<br>$$ P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,…,n $$<br>速记为 $$ X \sim B (N, P) $$</li>
-<li>二项分布的累积概率分布公式如下：<br>$$ F (x) = P (X \leq x) = \sum_{k = 0}^{x} \frac {n!}{k!(n - k)!} p^k (1 - p)^{n - k} $$</li>
-</ul>
-<hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-binomial-distribution/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

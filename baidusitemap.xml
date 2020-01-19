@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-binomial-distribution/</loc>
+    <lastmod>2020-01-19</lastmod>
+  </url>  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-the-normal-distribution/</loc>
-    <lastmod>2020-01-16</lastmod>
+    <lastmod>2020-01-18</lastmod>
   </url>  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/</loc>
     <lastmod>2020-01-16</lastmod>

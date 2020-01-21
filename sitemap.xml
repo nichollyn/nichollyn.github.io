@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://theinfinitegame.tech/uncategorized/statistics-sample-and-sampling/</loc>
+    
+    <lastmod>2020-01-21T13:26:19.954Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-probability-distributions/</loc>
+    
+    <lastmod>2020-01-21T12:25:13.138Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-binomial-distribution/</loc>
     
     <lastmod>2020-01-19T07:35:20.509Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/</loc>
     
     <lastmod>2020-01-16T01:45:45.311Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://theinfinitegame.tech/data-science/statistics-probability-distributions/</loc>
-    
-    <lastmod>2020-01-14T14:11:40.678Z</lastmod>
     
   </url>
   

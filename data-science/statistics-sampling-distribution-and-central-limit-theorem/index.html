@@ -73,8 +73,9 @@
 <meta property="og:image" content="https://theinfinitegame.tech/images/sdl_16.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/sdl_17.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/sdl_18.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sdl_19.jpg">
 <meta property="article:published_time" content="2020-01-31T02:48:29.000Z">
-<meta property="article:modified_time" content="2020-01-31T08:14:02.961Z">
+<meta property="article:modified_time" content="2020-01-31T08:17:26.977Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="数据科学">
@@ -375,6 +376,7 @@
 <p>你需要记住的是，第三个分布是一个理论上的分布。我们并不实际地收集无限多的样本。那是不可能做到的，也不必做到。因为只要我们知道总体的均值和标准差，我们就能知道抽样分布长什么样。正态分布的一个大好处是，我们可以通过把原始分数变换成 z 分数，以及引入 z 表格，找出概率。</p>
 <p>现在，想象你从总体中选择一个随机样本，这个嬉皮士阅读时长大于等于 1000 分钟的概率是多大呢？</p>
 <p>首先，我们需要知道一个嬉皮士阅读那本书的时长等于 1000 分钟距离均值有多少个标准差。我们在总体中计算这个人的 z 分数，z 分数是 1,000 减去 943 ，除以 212 ，等于 0.27 。我们感兴趣的是这个值右边的区域。查询 z 表格，我们发现选中一个阅读时长大于等于 1,000 分钟的嬉皮士的概率是 39% 。现在，想象我们抽取 200 个嬉皮士。这个样本均值大于等于 1,000 分钟的概率是多少？千万注意，这是一个完全不同的问题。我们不是在讨论从总体中选取一个特定的人，而是在讨论基于总体中的特定样本的统计学。因此，我们不用总体分布，而是样本均值的抽样分布。通常，过程是相同的，只不过我们用的是不一样的均值和标准差。这里， z 分数计算过程如下。我们从感兴趣的均值，即 1000 ，减去抽样分布的均值，即 943 ，然后除以抽样分布的标准差，即 212 除以 200 的平方根，即 15 。因此， (1000 - 943) / 15 ，最后得到 z 分数是 3.8 。查询 z 表格，我们发现抽取一个样本的平均阅读时长均值大于等于 1,000 分钟的概率是 0.01% 。</p>
+<p><img src="/images/sdl_19.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><ul>
 <li>决定选用哪种分布时，需要十分小心。如果你是对选择的独立个体感兴趣，应当使用总体分布；但如果你是对选择的样本感兴趣，应当使用抽样分布。在实际的研究实践中，混淆总体和抽样分布几乎不可能发生。因为你永远无从知道总体的全貌。你唯一可以确定的是你的样本长什么样。</li>
 </ul>

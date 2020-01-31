@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>极速统计教程之十七 | 样本比例的抽样分布</title>
+    <url>/data-science/statistics-sampling-distribution-of-sample-proportion/</url>
+    <content><![CDATA[<h1 id="抽样分布比例"><a href="#抽样分布比例" class="headerlink" title="抽样分布比例"></a>抽样分布比例</h1><p>想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。</p>
+<p>在本节教程中，我将解释一个总体比例的抽样分布是长什么样。你知道巴黎有 10% 的学生认为自己是嬉皮士，这意味着总体比例，用 $ \pi $ 注记，等于 0.10 。现在想象我们从这个总体中抽取 200 个学生。样本的比例，用 $ p $ 注记，将会是一个接近 0.10 的数字，比如 0.09 或者 0.12 。</p>
+<p>如果抽取了 5 组样本，样本比例可能如下：</p>
+<img src="/images/sdp_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这样样本比例的直方图可能如下：</p>
+<img src="/images/sdp_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>有五个值，全部都出现一次，它们的概率都是 0.2 。现在，你抽取 25 组样本，分布可能如下：</p>
+<img src="/images/sdp_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>抽取 50 个样本，分布如下：</p>
+<img src="/images/sdp_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>无限多组样本，分布如下：</p>
+<img src="/images/sdp_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这是样本比例的抽样分布，分布的均值是 0.10 ，等于总体的比例。为了表明我们是处理抽样分布的均值，均值被注记为 $ \mu_p $ ，下标 p 是为了说明我们正在处理的分布的分数不是个体的分数，而是样本比例。如你所见，逻辑上和样本均值的抽样分布一模一样。</p>
+<a id="more"></a>
+
+<img src="/images/sdp_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>在样本均值的抽样分布案例中，如果总体本身是正态分布或者样本大小足够，那抽样分布是近似钟形的。通用最小需要 30 个样本数。在样本比例的抽样分布中，只有当你拥有至少 15 个正向的 case 以及至少 15 个负向 case 的前提下，你才能确信分布是钟形的，即至少 15 个嬉皮士和 15 个非嬉皮士。公式表达如下：</p>
+<p>$$ n\pi \geq 15 $$<br>$$ n (1 - \pi) \geq 15 $$</p>
+<p>这对于我们的例子意味着什么呢？首先，样本大小和总体比例的乘积必须大于等于 15 。在我们的案例中，即 200 乘以 0.10 ，等于 20 个嬉皮士。其次，总体比例和 $ 1 - \pi $ 的乘积必须大于等于 15 。在我们的案例中，即 200 乘以 (1-0.10)，等于 200 乘以 0.90 ， 等于 180 个非嬉皮士。 因此我们可以下结论，抽样分布将会是钟形的，因为 20 和 180 都大于 15 。有一个相当直接的公式可以计算样本比例的抽样分布的标准差。我们以 $ \sigma_p $ 注记标准差，你知道 $ \sigma $ 代表标准差，而添加的 p 则表明我们正在讨论的是样本比例的抽样分布。 为了计算这个标准差，公式如下：</p>
+<p>$$ \sigma_p = \sqrt {\frac {\pi (1-\pi)}{n}} $$ </p>
+<p>在我们的案例中，标准差算出来是 0.02 。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>对于二元类别变量，计算总体均值和标准差没有意义。取而代之的是，我们计算分类变量的比例。对于二元变量，我们只有总体的比例 $ \pi $ 。</li>
+<li>相似的逻辑也适用于样本。我们也只有样本比例 p 。对于样本比例的抽样分布来说，我们的确有均值和标准差。只要知道总体的比例，抽样分布的这些参数也很容易计算出来。</li>
+</ul>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>data-science</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
+        <tag>数据科学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>极速统计教程之十六 | 样本均值的抽样分布和中心极限定理</title>
     <url>/data-science/statistics-sampling-distribution-and-central-limit-theorem/</url>
     <content><![CDATA[<h1 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h1><p>研究人员经常会用样本来推断样本所处的总体。为了做这件事，他们需要用到统计世界中非常重要的一种概率分布 —— <strong>抽样分布 (sampling distribution)</strong> 。</p>
@@ -105,26 +167,20 @@
 </blockquote>
 <p>想象你试图知道伦敦有多少学生以嬉皮士自居，但你几乎不可能去问全部的学生这个问题。所以你决定采样，比方说 200 个调查对象，并估计有多少人把自己看做嬉皮士。</p>
 <p>关于统计的一个好处是，它能基于仅仅这 200 个调查对象，即样本，帮助你得出关于伦敦所有学生的结论，即目标总体。这一节中，我将详细解释样本和目标总体。</p>
-<img src="/images/sampling_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>如果你从目标总体约 300,000 个学生中选择 200 个调查对象作为样本，基本上你正在聚焦于总体的一个子集。如果你测量一组变量，比如性别，年龄，所在学校，等等。你可以做所有的计算，比如单一变量分析，包括众数、平均数和标准差，或者双变量分析，计算皮尔逊相关系数或者做回归分析。所有这些数字性总结都完全是基于样本，它们被称为 <strong>统计数字 (statistics)</strong> 。通常，这种总结样本数据的方法被称为 <strong>描述统计 (descriptive statistics)</strong> 。不过，在实际的研究实践中，我们经常对特定样本的总结不感兴趣 —— 我们的实际目标是对潜在的目标总体做出推断。</p>
-<img src="/images/sampling_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>在我们的案例中，所有 300,000 个学生都在伦敦。如果我们借由样本中得到的数据推断关于总体的结论，那我们就是在使用 <strong>推断统计学 (inferential statistics)</strong> 的方法。 统计数字以罗马字母显示。例如，$ \bar x $ 代表平均数， s 是样本的标准差。 参数则以希腊字母显示， μ 代表总体的平均值， σ 代表总体的标准差。 </p>
-<img src="/images/sampling_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>想象你问这 200 个调查对象他们觉得自己有多大程度上把自己看做嬉皮士。他们可以从 0 到 10 表示自己嬉皮士的程度， 0 代表他 / 她根本不认为自己是嬉皮士，而 10 代表一个人完全将自己视为嬉皮士。</p>
 <p>现在想象样本的 “嬉皮士值” 均值是 3.12 ，核心问题变成：目标总体的均值是多少？推断统计学可以帮助我们解答这类问题。</p>
 <a id="more"></a>
-
 <h1 id="抽样"><a href="#抽样" class="headerlink" title="抽样"></a>抽样</h1><p>推断统计学指的是基于样本数据来得出对于总体的结论的一系列方法。可以想象，为了理解推断统计学的方法，学会如何抽取样本是至关重要的。这一节中，我将把好的抽样方法和坏的抽样方法放在一起一同讨论。同时，我会讨论到你在抽样过程中可能遭遇的各种 <strong>偏差 (bias)</strong> 。</p>
 <p>样本是总体的子集，此外再无其他。对于推断统计学的方法来说，并非所有的样本都合用。你需要的是 <strong>代表性样本 (representative samples)</strong> 。换言之，你需要你的样本是总体的一个微型版本。为了达到这个目的，一个不错的方法是抽取 <strong>简单随机抽样 (simple random sample)</strong> 。这意味着你确信总体中的每一个对象都有相同的机会被选中。</p>
-<img src="/images/sampling_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>回到嬉皮士的例子。你决定抽取 200 个调查对象。平均的嬉皮士值是 3.12 ，总体包含伦敦所有的学生，感兴趣的参数是总体的均值，样本包含 200 个被选中的学生。</p>
 <p>你将用于推断总体均值的统计数据是样本的统计均值。为了得出结论，我们希望样本是简单随机样本。如何确保这一点呢？</p>
-<img src="/images/sampling_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>首先，你需要搞清楚总体是怎样的。我们已经知道，总体是全体伦敦学生。</p>
 <p>第二步，得到全部主体的名单，我们称之为 <strong>抽样框 (sampling frame)</strong> 。想象伦敦有一个组织拥有所有学生的概况信息，包括他们的通信录细节。进一步的，这个组织愿意和你共享名单。你让计算机从名单中随机抽取 200 个学生。这样一来，你就得到了一个简单随机样本。</p>
 <p>下一步是确定你如何触达你的 200 个调查对象。在面对面的采访中，你和调查对象在相同的房间，面对面提问。这么做到的好处是调查对象比较有可能参与，缺点是这样收集数据太昂贵了。另一个选项是通过电话采访，这么做开销小很多，但通常调查对象在电话上耐心有限，因此采访时间短暂。你还可以让调查对象填写问卷。因为他们可以在线完成调查，所以也是很便宜的选项，缺点是他们很可能不参与。</p>
@@ -134,8 +190,7 @@
 <p>问题在于，这些不参与的情况可能不同于总体样本。无论它是覆盖偏差，抽样偏差或者无应答偏差。因为这些个人没有机会被抽样或者被抽样的机会更小，抑或这些个人拒绝回答某些问题，我们可能高估或者低估调查的目标。</p>
 <p>简言之，我们的判断 (estimation) 会因某些分群的 <strong>表达不足 (under-representation)</strong> 或者 <strong>过表达 (overrepresentation)</strong> 出现偏差。</p>
 <p>最后，还有 <strong>反应偏差 (response bias)</strong> 。在这个案例中，实际给定的反应是有偏差的。有可能，因为调查者问了某些前置的其他问题或者调查对象认为某些答案是社会不能接受的。有可能某个学生认为自己是个嬉皮士，但他认为调查者不喜欢嬉皮士于是就告诉调查者他不是。在我们的案例中，评估可能因为某些回应的 <strong>系统性误表达 (misrepresentations)</strong> 而出现偏差。</p>
-<img src="/images/sampling_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>因此，在抽取样本时，你需要确保抽样是简单随机抽样，尽可能将各种形式的偏差降到最低。不过，很多情况下我们几乎不可能做到简单随机抽样。所幸，有另外两种随机抽样方式一样奏效。</p>
 <p>在介绍它们之前，让我们先重温一下简单随机抽样的工作方式。如果你的总体中包含了所有的伦敦学生，你打算抽取 200 个学生的样本。你把所有学生的名字写在纸上。你把所有的纸放进箱子里，然后随机抽 200 张纸。这就是简单随机抽样。</p>
 <p>第一个替代方案是 <strong>随机多阶段整群抽样 (random multi-stage cluster sample)</strong> 。它的工作方式如下：首先，你在总体中标识出大量的 <strong>整群 (cluster)</strong> ，比如，根据学生注册的不同的教育程序，每种程序用一个桶表示。把学生的纸按照注册的教育程序放入不同的桶中。接下来，你随机选几个桶，然后从这些桶中选取代表学生的纸，这样就得到了样本。多阶段整群抽样在你无法拿到很完整抽样数据框，或者简单随机抽样太昂贵时是一个很好的替代方案。</p>

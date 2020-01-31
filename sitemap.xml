@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://theinfinitegame.tech/data-science/statistics-sampling-distribution-and-central-limit-theorem/</loc>
+    <loc>https://theinfinitegame.tech/data-science/statistics-sampling-distribution-of-sample-proportion/</loc>
     
-    <lastmod>2020-01-31T08:17:26.977Z</lastmod>
+    <lastmod>2020-01-31T11:55:15.081Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-sample-and-sampling/</loc>
     
-    <lastmod>2020-01-31T02:48:53.780Z</lastmod>
+    <lastmod>2020-01-31T11:34:16.436Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-sampling-distribution-and-central-limit-theorem/</loc>
+    
+    <lastmod>2020-01-31T11:34:09.914Z</lastmod>
     
   </url>
   

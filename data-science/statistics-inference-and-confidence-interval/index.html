@@ -48,34 +48,24 @@
   };
 </script>
 
-  <meta name="description" content="很多人喜欢吃巧克力，但多数人吃巧克力是比较谨慎的。因为吃了太多巧克力，很有可能会增加体重。在这一期的教程中，我将讨论如何使用表格和图表展示 两个变量之间的关系 。这有助于发现两个变量之间是否存在 相关性 (correlation) 。 列联表 (Contingency Tables)我们来进一步研究吃巧克力和体重之间的关系。 假设我在我们学校选择了 200 名女学生。她们身高都是一米七。这样，身高">
+  <meta name="description" content="统计推断这一节我们以睡眠为例。假设你通常每晚睡 8 个小时，你突然做了年轻爸爸或者年轻妈妈，你的睡眠时间减少到每晚 5 个小时，这意味着每晚减少 3 个小时，相当于每周 20 个小时，每年 1000 个小时，差不多 40 天。换言之，如果你家宝宝继续保持他 &#x2F; 她的睡眠时间，一年之后你会比之前少睡 大约 40 天。 回到统计学，想象你想要知道你家乡的年轻父母在孩子刚出生那一年减少了多少睡眠。在这一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="极速统计教程之五 | 相关性">
-<meta property="og:url" content="https://theinfinitegame.tech/data-science/statistics-correlation/index.html">
+<meta property="og:title" content="极速统计教程之十八 | 均值的推断和置信区间">
+<meta property="og:url" content="https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="很多人喜欢吃巧克力，但多数人吃巧克力是比较谨慎的。因为吃了太多巧克力，很有可能会增加体重。在这一期的教程中，我将讨论如何使用表格和图表展示 两个变量之间的关系 。这有助于发现两个变量之间是否存在 相关性 (correlation) 。 列联表 (Contingency Tables)我们来进一步研究吃巧克力和体重之间的关系。 假设我在我们学校选择了 200 名女学生。她们身高都是一米七。这样，身高">
+<meta property="og:description" content="统计推断这一节我们以睡眠为例。假设你通常每晚睡 8 个小时，你突然做了年轻爸爸或者年轻妈妈，你的睡眠时间减少到每晚 5 个小时，这意味着每晚减少 3 个小时，相当于每周 20 个小时，每年 1000 个小时，差不多 40 天。换言之，如果你家宝宝继续保持他 &#x2F; 她的睡眠时间，一年之后你会比之前少睡 大约 40 天。 回到统计学，想象你想要知道你家乡的年轻父母在孩子刚出生那一年减少了多少睡眠。在这一">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://theinfinitegame.tech/images/crosstab.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/crosstab_2.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/crosstab_3.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/crosstab_4.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/crosstab_5.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/scatterplot.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/scatterplot_2.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/pearsonsr.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/correlation.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/pearsonr_2.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/pearsonr_3.jpg">
-<meta property="og:image" content="https://theinfinitegame.tech/images/pearsonr_4.jpg">
-<meta property="article:published_time" content="2020-01-02T01:28:57.000Z">
-<meta property="article:modified_time" content="2020-01-08T08:59:51.811Z">
+<meta property="og:image" content="https://theinfinitegame.tech/images/ci_1.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/ci_2.jpg">
+<meta property="article:published_time" content="2020-02-01T03:03:48.000Z">
+<meta property="article:modified_time" content="2020-02-01T05:59:49.393Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="数据科学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://theinfinitegame.tech/images/crosstab.jpg">
+<meta name="twitter:image" content="https://theinfinitegame.tech/images/ci_1.jpg">
 
-<link rel="canonical" href="https://theinfinitegame.tech/data-science/statistics-correlation/">
+<link rel="canonical" href="https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/">
 
 
 <script id="page-configurations">
@@ -87,7 +77,7 @@
   };
 </script>
 
-  <title>极速统计教程之五 | 相关性 | The Infinite Game</title>
+  <title>极速统计教程之十八 | 均值的推断和置信区间 | The Infinite Game</title>
   
 
 
@@ -237,7 +227,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-correlation/">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -250,7 +240,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          极速统计教程之五 | 相关性
+          极速统计教程之十八 | 均值的推断和置信区间
         </h1>
 
         <div class="post-meta">
@@ -262,7 +252,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-02 09:28:57" itemprop="dateCreated datePublished" datetime="2020-01-02T09:28:57+08:00">2020-01-02</time>
+              <time title="创建时间：2020-02-01 11:03:48" itemprop="dateCreated datePublished" datetime="2020-02-01T11:03:48+08:00">2020-02-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,14 +279,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -308,67 +298,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>很多人喜欢吃巧克力，但多数人吃巧克力是比较谨慎的。因为吃了太多巧克力，很有可能会增加体重。在这一期的教程中，我将讨论如何使用表格和图表展示 <em>两个变量之间的关系</em> 。这有助于发现两个变量之间是否存在 <strong>相关性 (correlation)</strong> 。</p>
-<h1 id="列联表-Contingency-Tables"><a href="#列联表-Contingency-Tables" class="headerlink" title="列联表 (Contingency Tables)"></a>列联表 (Contingency Tables)</h1><p>我们来进一步研究吃巧克力和体重之间的关系。</p>
-<p>假设我在我们学校选择了 200 名女学生。她们身高都是一米七。这样，身高就是一个常数，不会影响体重或吃巧克力。让学生报告体重及每周巧克力消费情况。体重可以选择这样几个类别：小于 50 公斤； 50 至 69 公斤； 70 至 89 公斤和 90 公斤或以上。巧克力消费量可以选择这样几个类别：每周少于 50 克；每周 50 至 150 克；每周超过 150 克。</p>
-<p>结果如下，这里看到的是 <strong>列联表</strong> 。 <strong>列联表</strong> 能够显示 <strong>两个定序或定类变量之间的关系</strong> 。 它类似于频率表，但主要区别在于 <strong>频率表始终只考虑一个变量，而列联表考虑两个变量</strong> 。</p>
-<a id="more"></a>
-<p>在我们的研究中，有两个变量：体重和巧克力消费量。</p>
-<p><img src="/images/crosstab.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>该表显示我们有 33 个体重小于 50 公斤的样本 其中 27 人每周吃巧克力少于 50 克。还可以看到，每周有 90 人吃 50 至 150 克巧克力，其中 7 个体重 90 公斤及以上。</p>
-<p>这种情况下，该表并不能提供两个变量之间的相关性信息，因为列和行包含不同数量的个案 —— 计算百分比可以提供更多洞察力。这种情况下，我们计算列的百分比，这意味着对于每个单元格，我们计算该单元格中的案例百分比，与相应列中的案例总数进行比较。</p>
-<p>结果如示：</p>
-<p><img src="/images/crosstab_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>我们也可以将这些百分比表示为比例: 45％ 则变为 0.45， 38％ 变为 0.38 。我们将这些比例称为 <strong>条件比例 (conditional proportions)</strong> —— 因为形成需要以另一个变量为前提条件。在这种情况下，该变量是巧克力消费量。</p>
-<p><img src="/images/crosstab_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>我们也可以忽略巧克力消费的信息，并使用表格边缘的计数。这些都是 <strong>边际比例 (marginal proportions)</strong> 。例如， 33 除以 200 等于 0.17 。这个比例显示，研究中比例是 0.17 或 17％ 的受访者中，重量不到 50 公斤。</p>
-<p><img src="/images/crosstab_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>这是什么意思呢？ 在每周吃巧克力超过 150 克的样本中， 56％ 的人体重达 90 公斤及以上；吃巧克力少于 50 克的样本中，只有 5％ 体重为 90 公斤或以上；另外，那些吃巧克力不到 50 克的人， 45％ 的人体重不到 50 公斤，而吃巧克力超过 150 克的人，只有 2％ 的体重不到 50 公斤。</p>
-<p><img src="/images/crosstab_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>这些百分比表明：吃更多巧克力的人也更容易超重，而少吃巧克力的人也更可能体重较小。换句话说，<em>百分比表明巧克力消费量与体重之间存在相关性。</em></p>
+        <h1 id="统计推断"><a href="#统计推断" class="headerlink" title="统计推断"></a>统计推断</h1><p>这一节我们以睡眠为例。假设你通常每晚睡 8 个小时，你突然做了年轻爸爸或者年轻妈妈，你的睡眠时间减少到每晚 5 个小时，这意味着每晚减少 3 个小时，相当于每周 20 个小时，每年 1000 个小时，差不多 40 天。换言之，如果你家宝宝继续保持他 / 她的睡眠时间，一年之后你会比之前少睡 大约 40 天。</p>
+<p>回到统计学，想象你想要知道你家乡的年轻父母在孩子刚出生那一年减少了多少睡眠。在这一节中我们将讨论统计推断。我们会基于样本信息，得出关于总体的结论。我们将会区分两种统计推断的方法，一种叫 <strong>统计估计 (statistical estimation)</strong> ，另一种叫 <strong>假设检验 (hypothesis testing)</strong> 。在这篇教程中，我们将先了解统计估计。 </p>
+<p>有两种方式估计总体参数的值，其一叫 <strong>点估计 (point estimate)</strong> ，它是一个对于总体参数的最佳猜想。其二是 <strong>区间估计 (interval estimate)</strong> ，它是一个我们预期参数会落在的范围。 </p>
+<p>想象我们抽取了 60 个受试者样本，有了第一个小孩后每晚减少的睡眠小时数均值为 2.6 小时。这个均值是一个对于总体均值很好的点估计。换言之，$ \bar x $ ，是一个对于 $ \mu $ 的很好的点估计。不过，单一的点估计无法告诉我们估计是否接近我们感兴趣的总体参数。因此，研究人员通常还希望知道点估计可能的准确度。他们借由计算区间估计来显示这种准确度。</p>
+<p>区间估计是一个最有可能包含总体实际参数值的数字区间。基于我们的样本均值 2.6 小时，我们可以预测，比如说，你家乡新生儿父母每晚睡眠减少的平均小时数介于 2.3 小时到 2.9 小时之间。</p>
+<p>这个区间包含总体参数值的概率，被我们称为 <strong>置信水平 (confidence level)</strong> ，置信水平总是一个接近 1 的值，多数情况下是 0.95 。接下来我们将讨论有 95% 置信水平的区间。</p>
 <hr>
-<h1 id="散点图-Scatterplot"><a href="#散点图-Scatterplot" class="headerlink" title="散点图 (Scatterplot)"></a>散点图 (Scatterplot)</h1><ul>
-<li>列联表对定类和定序变量很有用，但不适用于定量变量。<em>对于定量变量，散点图更合适。</em> 假设没有提供类别，而是让 200 名女性给出确切的体重，例如 65 或 72 公斤。假设也要求他们告知每周吃巧克力的确切重量，例如每周可以是 64 克或 99 克。现在，有比之前更精确的信息展示定量变量，巧克力消费和体重之间关系的最佳方法是使用 <strong>散点图</strong> 。</li>
-</ul>
-<p>制作散点图，我们绘制两条线，称之为 <strong>轴</strong> 。我们将水平轴称为 <strong>X 轴</strong> 。这里展示的是 <strong>自变量 (independent variable)</strong> ，垂直轴称为 <strong>Y 轴</strong> ，我们用它来表示 <strong>因变量 (dependent variable)</strong> 。如果因变量和自变量之间没有区别，则 Y 轴和 X 轴上的位置是一个选择问题。在我们的例子中，自变量是巧克力消耗量，因变量是体重。</p>
-<p>假如我们的研究表明，最少的巧克力消耗等于每周零克，最高的量是每周 700 克。我们在 x 轴上标注这些值；同样，体重的最小值为 40 公斤，最大值为 110 公斤。</p>
-<p><img src="/images/scatterplot.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>接着我们在此图中显示每个人，为样本中的所有人做标注，这就绘制出了一幅散点图。散点图一目了然地显示巧克力消费量与体重之间存在相关性：吃的巧克力越多，体重就越高。</p>
-<p><img src="/images/scatterplot_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<hr>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><blockquote>
-<p>大家学到了什么呢？不止于巧克力消耗量和体重的相关关系，我想大多数人已经意识到了：我们可以通过表格和图表显示 <strong>两个变量之间的关系</strong> ，<strong>当研究中的变量是定类或定序变量时，我们使用列联表；当它们是定量测量时，我们使用散点图</strong> 。</p>
-</blockquote>
-<hr>
-<h1 id="皮尔逊积矩相关系数-Pearson’s-r"><a href="#皮尔逊积矩相关系数-Pearson’s-r" class="headerlink" title="皮尔逊积矩相关系数 (Pearson’s r)"></a>皮尔逊积矩相关系数 (Pearson’s r)</h1><p>散点图一目了然地表明两个变量之间存在很强的相关性，但 <strong>这种相关性有多强</strong> ？我们现在将要讨论最常用的相关性度量方法之一 —— <strong>皮尔逊积矩相关系数</strong> 。皮尔逊相关系数最重要的优点之一是：它用一个数字表示两个变量之间线性相关的 <strong>方向</strong> 和 <strong>强度</strong> 。</p>
-<p>巧克力消费和体重之间的关系可以用这条直线来描述。因为所有案例都紧密围绕这条线，所以可以得出结论，这是一个相当强的相关性关系。</p>
-<p><img src="/images/pearsonsr.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>另一个需要注意的点是，直线向上延伸，表明更多的巧克力消耗与更高的体重相关。因此，也可以说存在 <strong>正相关</strong> 关系。结论：这里存在一个强正向线性关系。</p>
-<p>然而，变量也可以以不同的方式相关联。</p>
-<p><img src="/images/correlation.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>在上图的第一幅图中，可以看到变量 x 和 y 之间存在相当强的正向线性关系，如同巧克力消费和体重的示例一样；而在第二幅图中，存在一个相当强的负向线性相关性 —— 直线向下表示当变量 x 上升时，变量 y 下降。第三幅图也可以看到正向线性关系，但是它比之前的强度要小得多 —— 因为每个案例都远离直线。第四幅图则是一个完全负向线性相关。之所以说完全的，是因为所有案例都完全落在线上。</p>
-<p>但两个变量之间的相关性不必是线性的。在第五幅图中，可以看到变量 x 和 y 之间的关系。最能代表两个变量之间关系的线并不是直线。相反，是一个 U 形线，我们称之为曲线关系。</p>
-<blockquote>
-<p>散点图有助于我们总体评估相关性是强还是弱，但它并没有告诉我们这种关系强度到底是多少。皮尔逊相关系数恰巧可以展示确切数字 —— 更具体地说，皮尔逊相关系可以告诉我们 <strong>两个定量变量之间线性关系的方向和精确强度</strong> 。正皮尔逊相关系数表示相关性为正，而负系数表示相关性为负。</p>
-</blockquote>
-<p>系数的大小表示 <strong>观测结果围绕数据假想最佳拟合直线的紧密程度</strong> 。<em>皮尔逊相关系数是始终介于 -1 和 1 之间的数字：负 1 表示完全负相关；正 1 表示完全正相关； 0 表示完全没有相关性。</em></p>
-<p>那如何计算皮尔逊相关系数呢？试想巧克力消费和体重的研究不是 200 个样本，而是四个样本。</p>
-<p>下面是数据矩阵和散点图：</p>
-<p><img src="/images/pearsonr_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>可以看到两个变量的每个值的组合在图形中变为一个圆点。要计算皮尔逊相关系数，我们需要这个公式：</p>
-<script type="math/tex; mode=display">r = \frac {\sum {Z_xZ_y}}{n - 1}</script><p>这是什么意思呢？首先将所有原始分数改为 z 分数，换句话说，标准化所有数值 —— 原因是我们希望皮尔逊相关系数是介于 -1 和 1 之间的数字 。如果不进行标准化，相关性将会以原始数据呈现。</p>
-<p>首先，我们计算两个变量的均值：变量 x 的值为 162.5 ，即巧克力消耗量；变量 y 的值为 71.25 ，即体重。然后计算两个变量的标准差， x 的结果为 110.9 ， y 的结果为 18.4。再然后计算每个案例的 z 分数，从每个值中减去均值，然后除以标准差。</p>
-<p>为自变量的每个值，即巧克力消耗量，因变量的每个值，即体重，进行如此计算。下一步，计算 y 值 z 分数和 x 值 z 分数的乘积。 </p>
-<p><img src="/images/pearsonr_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>计算公式的最后一部分，将所有这些 z 分数的乘积相加，将得数除以 n 减 1。所以在我们的例子中，皮尔逊相关系数是 2.78 除以 (4 - 1) ，等于 0.93 。这是什么意思呢 —— 这意味着巧克力消费与体重之间存在强烈的正向线性关系。</p>
-<blockquote>
-<p>一个重要注意事项：即使关系是非线性的，也可以随时计算皮尔逊相关系数。因此，<em>在计算皮尔逊相关系数之前，要先检查散点图看变量是否存在线性相关</em> ，这一点非常重要。如果不存在，就不要计算皮尔逊相关系数，因为它就不能提供太多变量关系信息。</p>
-</blockquote>
-<p>例如，下面这个散点图显示 x 和 y 之间存在强烈的 <strong>曲线关系</strong> 。如果计算皮尔逊相关系数，会得到一个非常低的值，负 0.15 。这并不能说相关性较弱，只能说线性相关性较弱。</p>
-<p><img src="/images/pearsonr_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><blockquote>
-<p>计算四个样本的皮尔逊相关系数是相当容易的。但是，可以想象，当样本是 200 个时，这几乎是不可能完成的任务。幸运的是，每个统计程序都可以快速计算皮尔逊相关系数。然而，重要的是要了解皮尔逊相关系数究竟意味着什么。了解公式的含义也很重要，它可以帮你更好地理解变量的相关性，也可能会帮你决定 “每周吃多少巧克力。” :)</p>
-</blockquote>
+<h1 id="已知总体标准差，求均值的置信区间"><a href="#已知总体标准差，求均值的置信区间" class="headerlink" title="已知总体标准差，求均值的置信区间"></a>已知总体标准差，求均值的置信区间</h1><p>假设我们知道 60 个年轻父母的样本在第一个小孩出生后睡眠减少小时数的标准差是 0.9 小时，也知道总体的标准差是 1.1 小时。（实践中，不太可能知道这个参数，但这里我们先假定你知道）</p>
+<p>这一节中，我们将学习如何基于样本信息和总体的标准差来构造 <strong>置信区间 (confidence interval)</strong> 。首先，我们来解释一下这样一个置信区间应该如何解读。</p>
+<p>为了构造一个置信区间，我们需要用到样本均值的抽样分布。毕竟，我们是在处理一个来自总体的样本。 我们知道，只要样本足够大，抽样分布就是正态分布的，并且均值等于总体的均值，标准差等于总体的标准差除以样本数 n 的平方根。我们还知道，找到距离样本均值少于等于两个标准差的概率是 0.95 。更精确的，如果查询对应概率的 z 分数，我们会得到 -1.96 和 1.96 。</p>
+<p>这意味着我们有 95% 的机会令样本均值落在总体均值 1.96 个标准差范围内。 1.96 个标准差的距离我们称为 <strong>误差界限 (margin error)</strong> 。误差界限告诉我们用样本均值 $ \bar x $ 估计总体均值的准确程度。 95% 置信区间的公式如下：</p>
+<img src="/images/ci_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>它是由点估计或者样本均值加减误差界限，即 1.96 个标准差。注意我们是在处理样本均值的抽样分布。因此分布的标准差等于 $ \frac {\sigma}{\sqrt {n}} $ 。接下来请集中注意力，因为过程会有点复杂。 </p>
+<p>假设你抽取一个样本，样本均值由某个点表示，从均值往两侧有一根线表示误差界限。它们一起构成了 95% 的置信区间。如果样本均值落在红色区域，则置信区间包含总体均值 $ \mu $ 。如果样本均值不落在红色区域，则置信区间不包含总体均值 $ \mu $ 。我们讨论的是 95% 的置信区间，这意味着随机选择一个样本，它包含总体均值的概率是 0.95 ，不包含总体均值的 0.05 。换言之，如果我们抽取无限多个样本， 95% 的情况，我们的置信区间会包含总体的均值。</p>
+<p>现在让我们回到例子。例子中样本均值是 2.6 小时。总体标准差 1.1 。样本大小是 60 ，现在我们有了计算置信区间需要的全部数字。公式如下：</p>
+<p>$$ \bar x\pm1.96\sigma_{\bar x} $$</p>
+<p>我们知道 $ \sigma_{\bar x} = \frac {\sigma}{\sqrt {n}} $ ，即 $ \frac {1.1}{\sqrt {60}} $ ，得到 0.142 。接下来计算误差界限， 1.96 乘以 0.142 ，约等于 0.28 。样本均值等于 2.6 ，因此 95% 置信区间是 2.6 减去 0.28 到 2.6 加上 0.28 的区间，即 2.32 到 2.88 。我们可以说，我们有 95% 的信心确定这个区间包含了实际的总体均值。更精确地说，如果我们从总体中抽取无限多个大小为 60 的样本，并且对于每个样本，我们计算误差界限， 95% 的情况下，总体的均值会落在样本的置信区间内。</p>
+<img src="/images/ci_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>如果新生儿父母的这种境况会持续一年，我们有 95% 的信息说，这些人会减少 2.32 乘以 365 小时到 2.88 乘以 365 小时的睡眠时间，或者说， 846.8 小时到 1,051.2 小时，又或者说， 35.3 到 43.8 个整天。</p>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -398,9 +348,6 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/data-science/statistics-inference-and-confidence-interval/" rel="bookmark">极速统计教程之十八 | 均值的推断和置信区间</a></div>
-    </li>
-    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/data-science/statistics-sampling-distribution-of-sample-proportion/" rel="bookmark">极速统计教程之十七 | 样本比例的抽样分布</a></div>
     </li>
     <li class="popular-posts-item">
@@ -411,6 +358,9 @@
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/data-science/statistics-binomial-distribution/" rel="bookmark">极速统计教程之十四 | 二项分布</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-the-normal-distribution/" rel="bookmark">极速统计教程之十三 | 正态分布</a></div>
     </li>
   </ul>
 
@@ -443,7 +393,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://theinfinitegame.tech/data-science/statistics-correlation/" title="极速统计教程之五 | 相关性">https://theinfinitegame.tech/data-science/statistics-correlation/</a>
+    <a href="https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/" title="极速统计教程之十八 | 均值的推断和置信区间">https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -469,13 +419,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/data-science/statistics-z-scores/" rel="prev" title="极速统计教程之四 | Z-score">
-      <i class="fa fa-chevron-left"></i> 极速统计教程之四 | Z-score
+    <a href="/data-science/statistics-sampling-distribution-of-sample-proportion/" rel="prev" title="极速统计教程之十七 | 样本比例的抽样分布">
+      <i class="fa fa-chevron-left"></i> 极速统计教程之十七 | 样本比例的抽样分布
     </a></div>
-      <div class="post-nav-item">
-    <a href="/data-science/statistics-regression/" rel="next" title="极速统计教程之六 | 回归">
-      极速统计教程之六 | 回归 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -535,7 +482,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#列联表-Contingency-Tables"><span class="nav-number">1.</span> <span class="nav-text">列联表 (Contingency Tables)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#散点图-Scatterplot"><span class="nav-number">2.</span> <span class="nav-text">散点图 (Scatterplot)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#皮尔逊积矩相关系数-Pearson’s-r"><span class="nav-number">4.</span> <span class="nav-text">皮尔逊积矩相关系数 (Pearson’s r)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">4.1.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#统计推断"><span class="nav-number">1.</span> <span class="nav-text">统计推断</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#已知总体标准差，求均值的置信区间"><span class="nav-number">2.</span> <span class="nav-text">已知总体标准差，求均值的置信区间</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -223,6 +223,130 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-inference-and-confidence-interval/" class="post-title-link" itemprop="url">极速统计教程之十八 | 均值的推断和置信区间</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-01 11:03:48" itemprop="dateCreated datePublished" datetime="2020-02-01T11:03:48+08:00">2020-02-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="统计推断"><a href="#统计推断" class="headerlink" title="统计推断"></a>统计推断</h1><p>这一节我们以睡眠为例。假设你通常每晚睡 8 个小时，你突然做了年轻爸爸或者年轻妈妈，你的睡眠时间减少到每晚 5 个小时，这意味着每晚减少 3 个小时，相当于每周 20 个小时，每年 1000 个小时，差不多 40 天。换言之，如果你家宝宝继续保持他 / 她的睡眠时间，一年之后你会比之前少睡 大约 40 天。</p>
+<p>回到统计学，想象你想要知道你家乡的年轻父母在孩子刚出生那一年减少了多少睡眠。在这一节中我们将讨论统计推断。我们会基于样本信息，得出关于总体的结论。我们将会区分两种统计推断的方法，一种叫 <strong>统计估计 (statistical estimation)</strong> ，另一种叫 <strong>假设检验 (hypothesis testing)</strong> 。在这篇教程中，我们将先了解统计估计。 </p>
+<p>有两种方式估计总体参数的值，其一叫 <strong>点估计 (point estimate)</strong> ，它是一个对于总体参数的最佳猜想。其二是 <strong>区间估计 (interval estimate)</strong> ，它是一个我们预期参数会落在的范围。 </p>
+<p>想象我们抽取了 60 个受试者样本，有了第一个小孩后每晚减少的睡眠小时数均值为 2.6 小时。这个均值是一个对于总体均值很好的点估计。换言之，$ \bar x $ ，是一个对于 $ \mu $ 的很好的点估计。不过，单一的点估计无法告诉我们估计是否接近我们感兴趣的总体参数。因此，研究人员通常还希望知道点估计可能的准确度。他们借由计算区间估计来显示这种准确度。</p>
+<p>区间估计是一个最有可能包含总体实际参数值的数字区间。基于我们的样本均值 2.6 小时，我们可以预测，比如说，你家乡新生儿父母每晚睡眠减少的平均小时数介于 2.3 小时到 2.9 小时之间。</p>
+<p>这个区间包含总体参数值的概率，被我们称为 <strong>置信水平 (confidence level)</strong> ，置信水平总是一个接近 1 的值，多数情况下是 0.95 。接下来我们将讨论有 95% 置信水平的区间。</p>
+<hr>
+<h1 id="已知总体标准差，求均值的置信区间"><a href="#已知总体标准差，求均值的置信区间" class="headerlink" title="已知总体标准差，求均值的置信区间"></a>已知总体标准差，求均值的置信区间</h1><p>假设我们知道 60 个年轻父母的样本在第一个小孩出生后睡眠减少小时数的标准差是 0.9 小时，也知道总体的标准差是 1.1 小时。（实践中，不太可能知道这个参数，但这里我们先假定你知道）</p>
+<p>这一节中，我们将学习如何基于样本信息和总体的标准差来构造 <strong>置信区间 (confidence interval)</strong> 。首先，我们来解释一下这样一个置信区间应该如何解读。</p>
+<p>为了构造一个置信区间，我们需要用到样本均值的抽样分布。毕竟，我们是在处理一个来自总体的样本。 我们知道，只要样本足够大，抽样分布就是正态分布的，并且均值等于总体的均值，标准差等于总体的标准差除以样本数 n 的平方根。我们还知道，找到距离样本均值少于等于两个标准差的概率是 0.95 。更精确的，如果查询对应概率的 z 分数，我们会得到 -1.96 和 1.96 。</p>
+<p>这意味着我们有 95% 的机会令样本均值落在总体均值 1.96 个标准差范围内。 1.96 个标准差的距离我们称为 <strong>误差界限 (margin error)</strong> 。误差界限告诉我们用样本均值 $ \bar x $ 估计总体均值的准确程度。 95% 置信区间的公式如下：</p>
+<img src="/images/ci_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>它是由点估计或者样本均值加减误差界限，即 1.96 个标准差。注意我们是在处理样本均值的抽样分布。因此分布的标准差等于 $ \frac {\sigma}{\sqrt {n}} $ 。接下来请集中注意力，因为过程会有点复杂。 </p>
+<p>假设你抽取一个样本，样本均值由某个点表示，从均值往两侧有一根线表示误差界限。它们一起构成了 95% 的置信区间。如果样本均值落在红色区域，则置信区间包含总体均值 $ \mu $ 。如果样本均值不落在红色区域，则置信区间不包含总体均值 $ \mu $ 。我们讨论的是 95% 的置信区间，这意味着随机选择一个样本，它包含总体均值的概率是 0.95 ，不包含总体均值的 0.05 。换言之，如果我们抽取无限多个样本， 95% 的情况，我们的置信区间会包含总体的均值。</p>
+<p>现在让我们回到例子。例子中样本均值是 2.6 小时。总体标准差 1.1 。样本大小是 60 ，现在我们有了计算置信区间需要的全部数字。公式如下：</p>
+<p>$$ \bar x\pm1.96\sigma_{\bar x} $$</p>
+<p>我们知道 $ \sigma_{\bar x} = \frac {\sigma}{\sqrt {n}} $ ，即 $ \frac {1.1}{\sqrt {60}} $ ，得到 0.142 。接下来计算误差界限， 1.96 乘以 0.142 ，约等于 0.28 。样本均值等于 2.6 ，因此 95% 置信区间是 2.6 减去 0.28 到 2.6 加上 0.28 的区间，即 2.32 到 2.88 。我们可以说，我们有 95% 的信心确定这个区间包含了实际的总体均值。更精确地说，如果我们从总体中抽取无限多个大小为 60 的样本，并且对于每个样本，我们计算误差界限， 95% 的情况下，总体的均值会落在样本的置信区间内。</p>
+<img src="/images/ci_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>如果新生儿父母的这种境况会持续一年，我们有 95% 的信息说，这些人会减少 2.32 乘以 365 小时到 2.88 乘以 365 小时的睡眠时间，或者说， 846.8 小时到 1,051.2 小时，又或者说， 35.3 到 43.8 个整天。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-sampling-distribution-of-sample-proportion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -649,109 +773,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-the-normal-distribution/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-the-normal-distribution/" class="post-title-link" itemprop="url">极速统计教程之十三 | 正态分布</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-16 10:36:29" itemprop="dateCreated datePublished" datetime="2020-01-16T10:36:29+08:00">2020-01-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="正态分布-normal-distribution-的函数形式"><a href="#正态分布-normal-distribution-的函数形式" class="headerlink" title="正态分布 (normal distribution) 的函数形式"></a>正态分布 (normal distribution) 的函数形式</h1><p>在所有的概率分布中，有一个特别出众，我们经常遇到。它就是 <strong>正态分布 (normal distribution)</strong> 。</p>
-<p>在本节中，我们会学习它的重要属性。正态分布又被称为 <strong>高斯分布 (gaussian distribution)</strong> 。它是对称的，钟形，以均值 μ 和 标准差 σ 为特征。分布的最高点是均值的位置，宽度则由标准差指定。均值 μ 和 标准差 σ 被称为正态分布的 <strong>参数 (parameters)</strong> 。</p>
-<img src="/images/nd_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>正态分布的累积概率分布是一个 <strong>S 函数曲线 (sigmoideal shape)</strong> ，均值处于概率为 0.5 的地方，标准差决定了曲线的陡峭程度。</p>
-<img src="/images/nd_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>随机变量 X 有一个均值 μ ，标准差 σ 的正态分布，可以速记为：</p>
-<p>$$ X \sim N (\mu, \sigma^2) $$ </p>
-<p>而下面这个等式描述了完整的概率密度：</p>
-<p>$$ f (x)=\frac {1}{\sqrt {2\pi}\sigma} e^{-0.5\left (\frac {x-\mu}{\sigma}\right)^2} $$ </p>
-<p>这个方程之所以重要，并非因为它第一眼看起来很复杂 —— 包含了三个重要的数学常量，$ \pi $，$ e $ 和 2 的平方根，还因为它连接了统计国王和物理世界。这个方程可以描述粒子扩散的过程。如果你释放一个扩散物，比如放一块糖到茶里，茶里的糖将按照这个方程的规律扩散。不仅流体是这样，大气中的颗粒物，道路交通，社会中的信息，都遵循这个分布的规律。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-the-normal-distribution/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -824,7 +845,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -891,12 +912,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">119k</span>
+    <span title="站点总字数">122k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:48</span>
+    <span title="站点阅读时长">1:50</span>
 </div>
 
         

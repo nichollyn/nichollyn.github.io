@@ -3,8 +3,86 @@
   <entry>
     <title>极速统计教程之二十一 | 假设检验和显著性检验</title>
     <url>/data-science/statistics-hypotheses-and-significance-test/</url>
-    <content><![CDATA[<p>statistical hypotheses<br>significance testing 显著性检验<br>inferential statistics 推论统计<br>null hypothesis 零假设<br>alternative hypothesis 备选假设<br>significance test about a population proportion<br>test statistic T 统计量<br>P-value P 值<br>significance level 显著性水平<br>rejection region 拒绝域<br>one- and two-tailed tests 单尾检验 双尾检验<br>significance test about a population mean</p>
-<h1 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h1><p>Today is going to be a very<br>labor intensive day for me, because I have to shoot all of<br>the videos for this final module. But although today will be a heavy day,<br>tomorrow I will pack my bags and leave on a ten day scuba diving holiday. Wee-haw! Well, let’s be a bit more cautious. I’m not completely sure yet that I will leave tomorrow.<br>My flight might be delayed, I might oversleep and<br>miss the flight, or I might get sick, as a result of which,<br>I won’t be able to dive. In other words, I expect to leave<br>tomorrow, but I’m not completely sure yet. It is likely, but not 100% certain yet. When researchers have expectations about<br>the parameters they’re interested in, we talk about statistical hypotheses. This video is about such hypotheses. They form the main ingredients of<br>the method of significance testing. So, a statistical hypothesis is<br>nothing more than an expectation about a population. Usually an hypothesis is formulated<br>as a claim that a population parameter takes a particular value or<br>falls within a specific range of values. Such a claim is based on<br>previous studies and theory. On the basis of information from a sample, we assess if an hypothesis makes sense or<br>not. This is what we call a significance test. It’s just a method for using sample data to test hypotheses<br>that are formulated in advance. The significance test is, just like the confidence interval,<br>a method of inferential statistics. We use, after all, sample data to draw<br>inferences about population parameters. In this module,<br>we’ll look at null-hypothesis testing, where each significance test is based on<br>two hypotheses, the null hypothesis and the alternative hypothesis. The null hypothesis is symbolized by H0,<br>and the alternative hypothesis by Ha. The null hypothesis claims that<br>the parameter you’re interested in takes a specific value. It usually represents the situation where<br>there is no relation between variables, or no difference between groups. It is the hypothesis that will be rejected<br>if the data in your sample suggests that it is a highly unlikely expectation. The alternative hypothesis claims that<br>the parameter you’re interested in falls within an alternative<br>range of values. The null hypothesis and the alternative<br>hypothesis are always mutually exclusive. If you do a significance test, you<br>assume that the null hypothesis is true, unless your data provides<br>strong evidence against it. Think about a courtroom trial. The point of departure is<br>that the accused is innocent. The prosecutor tries to convince the jury<br>or the judge that the accused is guilty. The burden of proof to convince jury or<br>judge is on the prosecutor. The defendant is found guilty only if<br>the prosecutor comes with strong evidence against the defendant’s<br>presumed innocence. This is exactly what happens<br>in a significance test. The point of departure that the accused<br>is innocent is analogous to the null hypothesis. And the expectation that the defendant<br>is guilty is the equivalent of the alternative hypothesis. Let me give you an example. In the actual research practice, your<br>expectation about the parameter you’re interested in forms your<br>alternative hypothesis. The null hypothesis, then,<br>is the opposite, but it has to be a single value,<br>not a range of values. You assume that the null<br>hypothesis is true unless your data provides strong<br>evidence against it. Suppose you have good<br>reasons to believe that less than 3% of all Americans have<br>scuba diving experience. What are your null and<br>alternative hypotheses? Well your expectation is<br>the alternative hypothesis. We write that as follows. Ha, colon, Pi is smaller than 0.03. Your null hypothesis is the opposite, but<br>it has to be expressed as a single value. That means that H0 is pi is equal to 0.03. Or suppose you’re interested in a maximum<br>depth a scuba diver has ever reached. You have good reasons to expect<br>that the mean maximum depth American divers have ever<br>reached is not 25 meters. Your alternative hypothesis<br>now is mu does not equal 25. The null hypothesis is mu equals 25. That’s it. Pretty easy, right? Well, sometimes it seems more<br>easy than it actually is. Always remember this. While doing a significance test you always<br>assume that the null hypothesis is true. If you find enough support for<br>your alternative hypothesis, you reject the null hypothesis, and if you don’t<br>find enough proof you don’t reject it. But failing to reject your null<br>hypothesis doesn’t mean that the null hypothesis is true. Compare it once more to<br>the courtroom trial. During a trial it is assumed<br>that the defendant is innocent. If there is enough proof that he or<br>she is guilty, there will be a conviction. However, if there is not enough proof,<br>the defendant will not be convicted. But that doesn’t mean that you can<br>conclude that he or she is innocent.</p>
+    <content><![CDATA[<h1 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h1><p>教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。</p>
+<p>当研究人员对于他们感兴趣的参数有所期待时，我们在讨论的是 <strong>统计假设 (statistical hypotheses)</strong> 。这一节将介绍统计假设。他们构成了 <strong>显著性检验 (significance testing)</strong> 方法中最主要的部分。一个统计假设，其实就是一个关于总体的期望。通常，假设会被形式化为一条对总体参数持有特定值或者落在特定范围的声明。这种声明是基于研究或者理论。基于样本的信息，我们评价一个假设靠谱与否。这个过程我们称为显著性检验，它是一种用样本数据来检验提前形式化的假设的方法。就像置信区间一样，显著性检验是一种推断统计学的方法。毕竟，我们也是用样本数据来推断关于总体参数的结论。</p>
+<img src="/images/hypo_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我们先来看 <strong>零假设检验 (null-hypothesis testing)</strong> ，在这种检验中，显著性检验基于两个假设， <strong>零假设 (null hypothesis)</strong> 和 <strong>备选假设 (alternative hypothesis)</strong> 。零假设以 $ H_0 $ 注记，备选假设以  $ H_a $ 注记。零假设断言你感兴趣的参数是某个特定值。它通常代表变量之间没有关联的情况，或者组与组之间没有差异的情况。它是一个当你的样本数据表明它不太可能发生时需要被拒绝的假设。而备选假设断言你感兴趣的参数落在另一个范围。通常，零假设和备选假设互斥。如果你做显著性测试，假设零假设为真，除非你的数据有很强的反面证据。</p>
+<img src="/images/hypo_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>想象一个法庭的庭审。被告方的辩护律师的观点是被告是无辜的，公诉方则试图说服陪审团和法官被告是有罪的。举证有罪的责任在于原告。被告只有在原告提供有力证据驳斥被告假定无罪的情况下才能被认定为有罪。这正是显著性检验里发生的事情。辩护无辜相当于零假设，而有罪预期则等同于备选假设。</p>
+<img src="/images/hypo_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>在研究实践中，你对于参数的期望是以备选假设的方式出现，而零假设就是对立面，但它必须是一个单值，不能是一个范围。你只有在数据提供强力佐证时才能认定零假设成立。</p>
+<img src="/images/hypo_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<a id="more"></a>
+
+<p>举个例子，假设你有理由相信全体美国人中有 3% 有过水肺潜水的经历。那么这里的零假设和备选假设分别是什么呢？你的期望被视为备选假设。我们把它写下来， $ H_a:\pi\leq0.03 $ ，零假设是对立面，但必须表示为单一值，因此 $ H_0:\pi=0.03 $ 。</p>
+<img src="/images/hypo_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>假设你对水肺潜水的最大深度很感兴趣。你有理由期望美国潜水者的最大潜水深度均值 <em>不是</em> 25 米。你的备选假设是 $ \mu\neq25 $ ，零假设是 $ \mu=25 $ 。很简单，不是吗？</p>
+<img src="/images/hypo_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>记住这条：在显著性检验中，你总是假定你的零假设成立，如果你为备选假设找到足够的支撑，就拒绝零假设。如果你没有找到足够的证据，你就不能拒绝它。但没能拒绝零假设并不意味着零假设就是真的。你可以拿法庭的例子再回味一下。在庭审中，被告被假定无罪。如果有足够的证据证明他或者她有罪，则定罪。没有足够的证据，被告则不会被定罪。但这并不意味着你可以得出他或者她是无辜的结论。</p>
+<!-- more -->
+
+<h1 id="关于比例的检验"><a href="#关于比例的检验" class="headerlink" title="关于比例的检验"></a>关于比例的检验</h1><p>假定你对有多少美国人有过水肺潜水经历这个问题感兴趣，你也有理由相信少于 3% 的美国人有这种经历。这意味着你的备选假设是 $ \pi\leq0.03 $ ，你的零假设是 $ \pi=0.03 $ 。</p>
+<p>这一节中，我们将学习如何在对比例感兴趣时实施显著性检验。我们是这样来实施检验的：先假定我们感兴趣的总体参数有某个值，在我们收集到来自总体的样本后估计这个值的可能性。因为我们看到是一个样本，所以聚焦在抽样分布。我们可以决定，比如给定总体比例是 0.03 时样本比例的抽样分布。看下图，我们这样来实施检验：评估标准差（因为面对的是抽样分布，所以是标准误差），样本观察到的比例远离总体比例，这个标准误差的数值我们称为 <strong>检验统计量 (test statistic)</strong> 。</p>
+<img src="/images/tap_0.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>想象我们抽取了 1000 个美国人，受试者中有水肺潜水经历的人比例等于 0.02 。接下来，我们这么做：</p>
+<img src="/images/tap_0_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>你看到一个样本比例的抽样分布，我们假定零值假设为真，总体比例确实等于 0.03 。那么一个样本比例为 0.02 的总体，有多大的可能性其比例真的是 0.03 呢？为了回答这个问题，我们计算检验统计量，或者说样本统计和假定的总体参数之间的偏移幅度。标准误差远离均值的数量用 z 分数表示，我们可以计算样本统计量距离总体均值有多少个 z 分数。 公式如下：</p>
+<img src="/images/tap_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>先计算零假设的标准误差，它等于 0.03 乘以 0.97 再除以 1000 ，取平方根，大约是 0.005 。因为我们的检验统计量是 0.02 减去 0.03 ，除以 0.005 ，等于 -1.85 。这意味着当零假设为真时，我们的样本比例落在总体比例 1.85 个标准误差之下。 这是否足以拒绝零假设呢？</p>
+<img src="/images/tap_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>基于这个信息，我们可以查询 z 表格，对应的概率值是 0.0322 ，这个概率值我们称为 <strong>P 值 (P-value)</strong> 。 P 值告诉我们，基于总体比例是 0.03 的前提，要找到一个比例是 0.02 的样本，可能性是很低的。但是否低到可以拒绝零假设了呢？这取决于我们选择 <strong>显著性水平 (significance level)</strong> 。在我们实施检验之前，我们需要决定 P 值要达到多小以拒绝零假设。最常用的显著性水平是 0.05 ，这时我们说样本提供了足够的证据拒绝零假设。我们的 P 值是 0.3222 ，小于 0.05 。所以如果我们把显著性水平设置在 0.05 ，我们需要拒绝零假设。这也被我们称为 <strong>拒绝域 (reject region)</strong> 。</p>
+<img src="/images/tap_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>形成拒绝域边界的临界 z 值是 -1.64 ，你可以通过查询 z 表格得到它，它对应 0.05 概率的左尾。我们的检验统计量是 -1.85 ，落在拒绝域内。因此我们需要拒绝零假设，并且得出结论：美国有水肺潜水经历的人的比例低于 0.03 。我们说，这个结论是 <strong>统计显著的 (statistically significant)</strong> 。</p>
+<img src="/images/tap_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>在这个例子中，我们的检验基于备选假设是 $ \pi\leq0.03 $ 。因此，我们只聚焦在抽样分布的一边 —— 左边。这叫做 <strong>单尾检验 (one-tailed test)</strong> 。那如果我们的备选检验是 $ \pi\neq0.03 $ 呢？如果是那样的话，我们将不再只聚焦在分布的左边，而分布的两边。这种检验叫做 <strong>双尾检验 (two-tailed test)</strong> 。 </p>
+<img src="/images/tap_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>如果我们还是采用 0.05 作为显著性水平，这意味着左边对应的累积概率是 0.025 ，右边也是。同样可以查询 z 表得到，对应的拒绝域的临界点分别是 -1.96 和 1.96 。现在，我们的检验统计量 -1.85 不再落在拒绝域内，意味着我们不能再拒绝零假设 $ \pi = 0.03 $ 。这说明，选择单尾或者双尾检验，对于结论有重大的差别。实践中，双尾检验要常用的多。我的建议是，只有你有非常好的理论依据时才使用单尾检验。</p>
+<p>现在，让我们来改变显著性水平，看看会发生什么。比如，我们可以显著性水平设置为 0.01 ，这意味着我们在 P 值小于 0.01 时拒绝零假设。如果做单尾检验， 0.01 的显著性水平对于 -2.33 。</p>
+<img src="/images/tap_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>在我们的例子中，检验统计量没有落在拒绝域，因此不拒绝零假设。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>如你所见，选择单尾或者双尾检验，会强烈地改变结果。需要记住的是，大部分单尾或者双尾检验都是基于 0.05 的显著性水平。</p>
+<img src="/images/tap_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<h1 id="关于均值的检验"><a href="#关于均值的检验" class="headerlink" title="关于均值的检验"></a>关于均值的检验</h1><p>你好奇潜水者会在水下待多长时间吗？这个时间取决于他们的氧气罐，经验，潜水深度以及许多其他因素。假设你有理由期望美国潜水者在携带平均水平的氧气罐下潜到平均深度，可以待在水下超过 60 分钟，并且假设你也接触到了 100 个有经验的美国水肺潜水者，测量了他们在携带平均水平的氧气罐待在平均深度下的时长。这个样本的均值是 62 分钟，标准差是 5 分钟。</p>
+<p>你预期潜水者可以在水下待超过 60 分钟，这导致了下面这样一个零假设： $ \mu = 60 $ ，备选假设是 $ \mu\geq60 $ 。我们实施一个关于总体均值的显著性检验，抽样分布如下：</p>
+<img src="/images/tam_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这是一个均值等于 60 的样本均值的抽样分布， 60 是零假设的值。那么基于这样一个总体，一个样本的均值等于 60 的可能性有多大呢？ 同样，为了回答这个问题，我们计算检验统计量，它是样本均值偏离总体均值的标准误差。你可能记得如何计算标准误差 —— 我们需要用总体的标准差，因为我们不知道这个值，需要用样本标准差估计。因为这隐含着额外的误差，我们引入 t 分布来取代 z 分布。</p>
+<img src="/images/tam_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我们的检验统计量是通过下面的公式计算：</p>
+<img src="/images/tam_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>由样本均值减去零假设的均值，然后除以样本均值的标准误差。标准误差等于样本标准差除以样本容量的平方根。</p>
+<p>我们先计算出标准误差， 5 除以 100 的平方根，得 0.5 。 62 减去 60 ，再除以 0.5 ，得到 4 。这是否足以拒绝零假设呢？仍然取决于显著性水平。让我们引入最常用的显著性水平 0.05 。做单尾检验，查询 t 表，临界值是 1.67 。</p>
+<img src="/images/tam_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>注意到我们的自由度是 99 ，但表里向下最接近的是 60 ，我们需要查看 $ t_{90%} $ ，因为右尾累积概率 0.05 。你需要记住， $ t_{90%} $ 代表置信水平为 90% ，也就表示分布的两尾加起来有 10% ，左右尾各 0.05 。</p>
+<p>结果如下，我们的检验统计量 4 落在拒绝域内，意味着我们需要拒绝总体均值是 60 分钟的零假设。</p>
+<img src="/images/tam_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我们可以总结，平均情况下，有经验的美国潜水者携带平均的氧气量潜到平均的深度，能够在水下待超过 60 分钟。如果我们的期望并不是超过 60 分钟，而是不等于 60 分钟呢？</p>
+<img src="/images/tam_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这种情况下，我们做双尾检验。假设显著性水平设置为 0.01 ，左尾和右尾的累积概率分别为 0.005 。查表，对应的临界值分别为 -2.66 和 2.66 ，而我们的检验统计量是 4 。因此，我们还是要拒绝零假设，并对我们的发现做统计显著的结论。</p>
+<img src="/images/tam_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>因为我们现在做了双尾检验，所以我们的临时结论现在变成了有经验的美国潜水者在携带平均氧气量，潜到平均深度后，能待在水下的平均时间不等于 60 分钟。</p>
+<hr>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

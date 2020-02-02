@@ -223,6 +223,309 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-probability-distributions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-probability-distributions/" class="post-title-link" itemprop="url">极速统计教程之十四 | 二项分布</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-14 14:48:10" itemprop="dateCreated datePublished" datetime="2020-01-14T14:48:10+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="随机变量和概率分布"><a href="#随机变量和概率分布" class="headerlink" title="随机变量和概率分布"></a>随机变量和概率分布</h1><p>随机变量的随机性其实并不像它的名字传递的那样多。这一节教程中，我将通过随机变量的可能结果和它们对应的概率来描述 <strong>概率分布 (probability distribution)</strong> 。换句话说，随机分布使随机性具体化，并且提供了一条在计算中使用随机变量的道路。当我们观察个体或者对象的时候，我们可以关注每个个体的若干个属性，这些属性就叫做 <strong>变量</strong> 。</p>
+<p>现在，想象你收集了一份数据，并且决定重复实验。你能够找到相同的试验个体来测量变量，或者能找到相近的个体。不管采用哪一种，你会发现你的变量的值每次都不一样。这就是所谓的变量。举个例子，你测量一个人的身高几次，每次的结果可能会有几毫米到 1 厘米的偏离，这取决于你测量的时间在一天中的时刻，你的测量设备的精度，等等。</p>
+<p>通常我们预料变量的值具有随机的变异性。如果这种概率的随机性是中肯的，则这个变量被称为 <strong>随机变量 (random variable)</strong> 。随机变量可以有一组可能的值，每个值都和概率关联。因此，如果随机变量的样本足够大，不同值的相对频率就接近概率。为了让表达更清晰，让我们用斜体的大写字母来表示随机变量，小写字母来表示它取到的值。</p>
+<p>即 <strong><em>X</em></strong> 为随机变量，$ x_1, x_2, x_3, … $ 为随机变量的值。</p>
+<p>随机变量有两种，一种是 <strong>离散的 (discrete)</strong> ，一种是 <strong>连续的 (continuous)</strong> 。离散随机变量可以有一组可数数量的不同值，比如 0 / 1 / 2 / 3 。实际上，如果一个随机变量只能取得有限数量的不同值，那它必定是离散的。离散随机变量的例子很多，比如一个家庭里小孩的数量。连续随机变量则可以取得无限数量的可能值。它通常是测量。为了演示无限性，假设一个身高值测出来是 3.1 米，如果换更精确的测量仪器，也许能测到 3.14 米。更精确的仪器，也许还能测到 3.145 米。换言之，通过更精确的测量，或者放大操作，无限数量的结果是可能的。年龄，温度，速度，这些都可以是连续随机变量的例子。</p>
+<p>随机变量的值可以很方便地通过随机分布来呈现。随机分布的呈现形式可以是表格，图或者数学方程，并且是通过随机变量的每个取值关联的概率列表来定义的。</p>
+<img src="/images/pd_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>根据定义，每个随机变量都有一个概率分布，离散随机变量的概率分布叫 <strong>概率质量函数</strong> ，而连续随机变量的概率分布叫概率密度函数。至于为什么有这种区别，稍后解释。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-probability-distributions/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-conditional-probability-and-independence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-conditional-probability-and-independence/" class="post-title-link" itemprop="url">极速统计教程之十 | 条件概率和独立性</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-11 13:18:35" itemprop="dateCreated datePublished" datetime="2020-01-11T13:18:35+08:00">2020-01-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="联合概率和边际概率"><a href="#联合概率和边际概率" class="headerlink" title="联合概率和边际概率"></a>联合概率和边际概率</h1><blockquote>
+<p>对有趣现象的计数，在日常生活中常常转换成比例，最终变为概率。利用概率估算的力量，可以更好地理解这些现象之间的关系或做出预测。 <strong>联合概率 (joint probability)</strong> 和 <strong>边际概率 (marginal probability)</strong> 是两个在这种情况下会用到的重要概率类型。在这一节教程中，我将解释联合概率和边际概率的含义，并展示它们的属性。</p>
+</blockquote>
+<p>想象你在沙滩上观察你的海滩同伴。你会注意到三种不同类型的活动 —— 它们是互斥的。有的休息，他们都坐在或躺在沙滩上。有的玩，这些人到处乱跑，建造沙堡或站在水中。最后，有的在游泳。此外，你还可以按性别区分。所以你观察到的每个人都是一个案例.</p>
+<p><img src="/images/conditional_p_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>在数据集中，性别和活动是变量。你最终得到以下结果的列联表。总共计了 113 人，其中有 79 人在休息，有 20 人在玩，并且他们中只有 14 人在游泳。女性和男性的数量，分别是 62 和 51 。</p>
+<p><img src="/images/conditional_p_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>这些数字实际上是每行和每列变量位于此表边缘的总和，因此被称为边际值。请注意，这与口语上 “边缘的”，即并不重要的，并不是一回事。在表中边际值代表对于单个变量的说明，没有关于任何其他变量。例如说休息的人数不考虑性别。</p>
+<p><img src="/images/conditional_p_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>现在，我们打开这个频率表通过将每个单元格数字除以总数 113 得到比例的表格。</p>
+<p><img src="/images/conditional_p_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>在此表中，中心块包含六个位置，它们加起来等于一。同时，每列中的比例加总到底部的边缘行中的值，每行中的比例加总到右边的边缘列中的值。并且边缘行的值加起来等于边缘列的值加起来。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-conditional-probability-and-independence/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-probability-and-sets/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-probability-and-sets/" class="post-title-link" itemprop="url">极速统计教程之九 | 概率和集合</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-10 16:50:24" itemprop="dateCreated datePublished" datetime="2020-01-10T16:50:24+08:00">2020-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="集合基础-——-理论概念"><a href="#集合基础-——-理论概念" class="headerlink" title="集合基础 —— 理论概念"></a>集合基础 —— 理论概念</h1><p>在这篇教程中，我将介绍一些重要概念，它们是关于 <strong>集合 (set)</strong> ，即项的数据集。这对于理解概念以及得出概率的计算规则十分有用。同时，集合的特殊性还在于它不仅可用于概率演算，还用在逻辑学中。</p>
+<p>让我们开始吧。如之前的教程中提到的，样本空间是随机现象所有结果的数据集。举个例子，抛一枚硬币两次，有四种可能的结果。事件是样本空间的子集。例如，最后一次抛硬币你得到正面朝上。</p>
+<p><img src="/images/set_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>我们看到，一个样本空间可以两个或更多结果完全不同的事件。比如，抛硬币两次，0 次正面朝上，1 次正面朝上， 2 次正面朝上。它们被称为 <strong>互斥 (disjoint)</strong> 的事件。另外一个术语叫 <strong>互不相容 (mutually exclusive)</strong> 。</p>
+<p>有一对特殊的互斥事件，某个事件和它的对立面 (即这个事件不发生的事件)。这种上下文中，对立的事件被称为 <strong>补集 (complement)</strong> 。比如，这里可以是没有正面朝上和其他三种情况互为补集。</p>
+<p><img src="/images/set_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>你也可以有多个事件共同填满完整的样本空间。这些事件被称为 <strong>完全穷尽 (collectively exhaustive)</strong> 事件。如果它们彼此不重叠，就是 <strong>相互独立，完全穷尽 (disjoint collectively exhaustive)</strong> 。互斥事件相关联的概率之和小于或者等于 1 ，完全穷尽事件的概率之和等于 1 。</p>
+<p><img src="/images/set_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>直觉上很容易理解这些概念，它们可以通过 <strong>文氏图 (Venn diagrams)</strong> 来表达。文氏图通过简单的几何形状来呈现集合或者集合的部分。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-probability-and-sets/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-sample-space-events-tree-diagrams/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -416,304 +719,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-regression/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-regression/" class="post-title-link" itemprop="url">极速统计教程之六 | 回归</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-02 12:50:17" itemprop="dateCreated datePublished" datetime="2020-01-02T12:50:17+08:00">2020-01-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="回归-——-找到-“那根线”！"><a href="#回归-——-找到-“那根线”！" class="headerlink" title="回归 —— 找到 “那根线”！"></a>回归 —— 找到 “那根线”！</h1><p>最近的一项研究表明，吃大量的巧克力可能是个好主意。</p>
-<img src="/images/regression.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>这个散点图展示了一个国家每个人年均消费的巧克力数量。可以看出，一年中人们吃的巧克力数量，跟这个国家每百万人口中的诺贝尔奖获得者人数，呈正相关性。</p>
-<p>注意，这个散点图里的巧克力消耗量显示为自变量，而诺贝尔奖获得者人数显示为因变量。</p>
-<p>散点图里分析的单位是国家。如你所见，相关性很高。实际上，这里的皮尔逊相关系数是 0.93 。这说明，多吃巧克力虽然可能令你发胖，但同时也让你变聪明。皮尔逊相关系数告诉我们，两个连续变量之间的线性相关性有多强，这种线性相关性被显示为一根直线。在我们的案例中，是这条线。</p>
-<img src="/images/regression_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>这就是我们所说的 <strong>回归线 (regression line)</strong> 。在本节教程中，我将告诉你如何找到回归线。重要的是要知道我们如何找到这条线，而不仅仅是因为回归线向你展示了两个变量之间的关系。 <em>找到回归线是许多统计分析的基础。</em></p>
-<p>那么，我们如何找到回归线呢？想象你正在绘制散点图里每一条可能的直线。所以，你像下面这样画了许多可能的线。这是一组数量巨大的线。实际上，这几乎不可能做到。不过，暂时想象你有超能力 —— 你能做到这一点。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-regression/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-correlation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-correlation/" class="post-title-link" itemprop="url">极速统计教程之五 | 相关性</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-02 09:28:57" itemprop="dateCreated datePublished" datetime="2020-01-02T09:28:57+08:00">2020-01-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>很多人喜欢吃巧克力，但多数人吃巧克力是比较谨慎的。因为吃了太多巧克力，很有可能会增加体重。在这一期的教程中，我将讨论如何使用表格和图表展示 <em>两个变量之间的关系</em> 。这有助于发现两个变量之间是否存在 <strong>相关性 (correlation)</strong> 。</p>
-<h1 id="列联表-Contingency-Tables"><a href="#列联表-Contingency-Tables" class="headerlink" title="列联表 (Contingency Tables)"></a>列联表 (Contingency Tables)</h1><p>我们来进一步研究吃巧克力和体重之间的关系。</p>
-<p>假设我在我们学校选择了 200 名女学生。她们身高都是一米七。这样，身高就是一个常数，不会影响体重或吃巧克力。让学生报告体重及每周巧克力消费情况。体重可以选择这样几个类别：小于 50 公斤； 50 至 69 公斤； 70 至 89 公斤和 90 公斤或以上。巧克力消费量可以选择这样几个类别：每周少于 50 克；每周 50 至 150 克；每周超过 150 克。</p>
-<p>结果如下，这里看到的是 <strong>列联表</strong> 。 <strong>列联表</strong> 能够显示 <strong>两个定序或定类变量之间的关系</strong> 。 它类似于频率表，但主要区别在于 <strong>频率表始终只考虑一个变量，而列联表考虑两个变量</strong> 。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-correlation/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-z-scores/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-z-scores/" class="post-title-link" itemprop="url">极速统计教程之四 | Z-score</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-01 10:49:06" itemprop="dateCreated datePublished" datetime="2020-01-01T10:49:06+08:00">2020-01-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>通俗解释 z-score ，即 z-score 是对某一原始分值进行转换，变成的一个标准分值，该标准分值可使得原来无法比较的数值变得可比。</p>
-</blockquote>
-<h1 id="Z-score"><a href="#Z-score" class="headerlink" title="Z-score"></a>Z-score</h1><p>本教程中我们还继续沿用前面教程中足球队的例子。</p>
-<img src="/images/z-score.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>你在这里看到的是所谓的球员纹身占比，以纹身占身体的百分比表示。点图和标准差表明，第二队的分布比第一队的变化更大。</p>
-<p>有时研究人员会问：一个特定的观测结果是常见还是特例。为了回答这个问题，研究人员会用 <strong>一个数与平均数的差再除以标准差</strong> 。这个数字就是我们所说的 z 分数。在这篇教程中，我将解释如何计算 z 分数，以及它们的用处。</p>
-<p>我们先来看看第一队的分布情况。平均数是 15 ，标准差是 2.5 。为了计算 z 分数，我们使用这个公式：</p>
-<p>$$ z = \frac {(x - \bar x)}{s} $$</p>
-<p>这个公式不是很复杂，它告诉你如何计算感兴趣的数值。该数值与平均数之差，再除以标准差。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-z-scores/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -786,7 +791,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -853,12 +858,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">123k</span>
+    <span title="站点总字数">139k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:52</span>
+    <span title="站点阅读时长">2:06</span>
 </div>
 
         

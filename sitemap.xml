@@ -2,16 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/</loc>
+    <loc>https://theinfinitegame.tech/data-science/statistics-hypotheses-and-significance-test/</loc>
     
-    <lastmod>2020-02-02T02:26:07.885Z</lastmod>
+    <lastmod>2020-02-02T06:30:21.070Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-sample-size/</loc>
+    
+    <lastmod>2020-02-02T03:43:13.026Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-sampling-distribution-of-sample-proportion/</loc>
     
-    <lastmod>2020-01-31T11:55:15.081Z</lastmod>
+    <lastmod>2020-02-02T03:04:57.184Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-sampling-distribution-and-central-limit-theorem/</loc>
+    
+    <lastmod>2020-02-02T03:04:42.641Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/</loc>
+    
+    <lastmod>2020-02-02T03:04:25.846Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://theinfinitegame.tech/data-science/statistics-confidence-interval-for-proportion/</loc>
+    
+    <lastmod>2020-02-02T03:01:23.933Z</lastmod>
     
   </url>
   
@@ -19,13 +47,6 @@
     <loc>https://theinfinitegame.tech/data-science/statistics-sample-and-sampling/</loc>
     
     <lastmod>2020-01-31T11:34:16.436Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://theinfinitegame.tech/data-science/statistics-sampling-distribution-and-central-limit-theorem/</loc>
-    
-    <lastmod>2020-01-31T11:34:09.914Z</lastmod>
     
   </url>
   

@@ -269,14 +269,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
+              <span>4.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -294,41 +294,14 @@
 <p>想象我们抽取了 60 个受试者样本，有了第一个小孩后每晚减少的睡眠小时数均值为 2.6 小时。这个均值是一个对于总体均值很好的点估计。换言之，$ \bar x $ ，是一个对于 $ \mu $ 的很好的点估计。不过，单一的点估计无法告诉我们估计是否接近我们感兴趣的总体参数。因此，研究人员通常还希望知道点估计可能的准确度。他们借由计算区间估计来显示这种准确度。</p>
 <p>区间估计是一个最有可能包含总体实际参数值的数字区间。基于我们的样本均值 2.6 小时，我们可以预测，比如说，你家乡新生儿父母每晚睡眠减少的平均小时数介于 2.3 小时到 2.9 小时之间。</p>
 <p>这个区间包含总体参数值的概率，被我们称为 <strong>置信水平 (confidence level)</strong> ，置信水平总是一个接近 1 的值，多数情况下是 0.95 。接下来我们将讨论有 95% 置信水平的区间。</p>
-<hr>
-<h1 id="已知总体标准差，求均值的置信区间"><a href="#已知总体标准差，求均值的置信区间" class="headerlink" title="已知总体标准差，求均值的置信区间"></a>已知总体标准差，求均值的置信区间</h1><p>假设我们知道 60 个年轻父母的样本在第一个小孩出生后睡眠减少小时数的标准差是 0.9 小时，也知道总体的标准差是 1.1 小时。（实践中，不太可能知道这个参数，但这里我们先假定你知道）</p>
-<p>这一节中，我们将学习如何基于样本信息和总体的标准差来构造 <strong>置信区间 (confidence interval)</strong> 。首先，我们来解释一下这样一个置信区间应该如何解读。</p>
-<p>为了构造一个置信区间，我们需要用到样本均值的抽样分布。毕竟，我们是在处理一个来自总体的样本。 我们知道，只要样本足够大，抽样分布就是正态分布的，并且均值等于总体的均值，标准差等于总体的标准差除以样本数 n 的平方根。我们还知道，找到距离样本均值少于等于两个标准差的概率是 0.95 。更精确的，如果查询对应概率的 z 分数，我们会得到 -1.96 和 1.96 。</p>
-<p>这意味着我们有 95% 的机会令样本均值落在总体均值 1.96 个标准差范围内。 1.96 个标准差的距离我们称为 <strong>误差界限 (margin error)</strong> 。误差界限告诉我们用样本均值 $ \bar x $ 估计总体均值的准确程度。 95% 置信区间的公式如下：</p>
-<img src="/images/ci_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>它是由点估计或者样本均值加减误差界限，即 1.96 个标准差。注意我们是在处理样本均值的抽样分布。因此分布的标准差等于 $ \frac {\sigma}{\sqrt {n}} $ 。接下来请集中注意力，因为过程会有点复杂。 </p>
-<p>假设你抽取一个样本，样本均值由某个点表示，从均值往两侧有一根线表示误差界限。它们一起构成了 95% 的置信区间。如果样本均值落在红色区域，则置信区间包含总体均值 $ \mu $ 。如果样本均值不落在红色区域，则置信区间不包含总体均值 $ \mu $ 。我们讨论的是 95% 的置信区间，这意味着随机选择一个样本，它包含总体均值的概率是 0.95 ，不包含总体均值的 0.05 。换言之，如果我们抽取无限多个样本， 95% 的情况，我们的置信区间会包含总体的均值。</p>
-<p>现在让我们回到例子。例子中样本均值是 2.6 小时。总体标准差 1.1 。样本大小是 60 ，现在我们有了计算置信区间需要的全部数字。公式如下：</p>
-<p>$$ \bar x\pm1.96\sigma_{\bar x} $$</p>
-<p>我们知道 $ \sigma_{\bar x} = \frac {\sigma}{\sqrt {n}} $ ，即 $ \frac {1.1}{\sqrt {60}} $ ，得到 0.142 。接下来计算误差界限， 1.96 乘以 0.142 ，约等于 0.28 。样本均值等于 2.6 ，因此 95% 置信区间是 2.6 减去 0.28 到 2.6 加上 0.28 的区间，即 2.32 到 2.88 。我们可以说，我们有 95% 的信心确定这个区间包含了实际的总体均值。更精确地说，如果我们从总体中抽取无限多个大小为 60 的样本，并且对于每个样本，我们计算误差界限， 95% 的情况下，总体的均值会落在样本的置信区间内。</p>
-<img src="/images/ci_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>如果新生儿父母的这种境况会持续一年，我们有 95% 的信息说，这些人会减少 2.32 乘以 365 小时到 2.88 乘以 365 小时的睡眠时间，或者说， 846.8 小时到 1,051.2 小时，又或者说， 35.3 到 43.8 个整天。</p>
-<hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-inference-and-confidence-interval/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -912,12 +885,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">122k</span>
+    <span title="站点总字数">123k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:50</span>
+    <span title="站点阅读时长">1:52</span>
 </div>
 
         

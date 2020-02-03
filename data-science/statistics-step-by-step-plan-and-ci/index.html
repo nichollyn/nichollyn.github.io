@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://theinfinitegame.tech').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="分步计划比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意你的方法。 这一节中，我将以分布计划的方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极速统计教程之二十二 | 分步计划和置信区间">
+<meta property="og:url" content="https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="分步计划比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意你的方法。 这一节中，我将以分布计划的方">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_1.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_2.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_3.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_4.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_5.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_5_2.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_6.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_7.jpg">
+<meta property="og:image" content="https://theinfinitegame.tech/images/sbs_8.jpg">
+<meta property="article:published_time" content="2020-02-03T01:47:28.000Z">
+<meta property="article:modified_time" content="2020-02-03T12:21:50.853Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="统计">
+<meta property="article:tag" content="数据科学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://theinfinitegame.tech/images/sbs_1.jpg">
+
+<link rel="canonical" href="https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>极速统计教程之二十二 | 分步计划和置信区间 | The Infinite Game</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          极速统计教程之二十二 | 分步计划和置信区间
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-03 09:47:28" itemprop="dateCreated datePublished" datetime="2020-02-03T09:47:28+08:00">2020-02-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="分步计划"><a href="#分步计划" class="headerlink" title="分步计划"></a>分步计划</h1><p>比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意你的方法。</p>
+<p>这一节中，我将以分布计划的方式来引导你。想象你问了一个容量是 500 个持证潜水者的简单随机样本，他们的潜水时长是多少个小时。假设你发现 0.57 的比例有超过 35 小时的潜水经验，时长均值是 35.5 小时，均值是 8 小时。在我们的样本中，<br>潜水经验的变量分布近似正态。下面是分布计划全图：</p>
+<img src="/images/sbs_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>第一步，评估你面对的是比例还是均值，这个我们已经讨论过。第一个例子是比例，第二个例子是均值。</p>
+<p>第二步，形式化你的假设。在比例的例子中，零假设是：$ \pi = \pi_0 $ ，在均值的例子中，零假设是 $ \mu = \mu_0 $ 。我们可以有三种类型的备选假设：如果你做双尾检验，是 $ \pi\neq\pi_0 $ 或者 $ \mu\neq\mu_0 $ ；如果你做单尾的右尾检验，是 $ \pi\geq\pi_0 $ 或者 $ \mu\geq\mu_0 $ ；如果你做单尾的左尾检验，是 $ \pi\leq\pi_0 $ ，$ \mu\leq\mu_0 $ 。我们零假设是： $ \pi=0.5,\mu=35 $ ，备选假设是 $ \pi\geq0.5,\mu\geq35 $ 。因此我们需要实施右尾检验。</p>
+<p>第三步，检查你的假定是否满足。在两个例子中，随机化都是必要的。你的样本必须通过随机抽样的方法收集，或者说，随机化的实验。在比例的例子中，根据零假设的比例，样本容量乘以比例以及 1 减去样本容量再乘以比例，必须等于或者大于 15 。均值的例子则要求总体分布近似正态。但实践中，这一点只有样本容量很小，且做的是单尾检验时才重要。对于我们的例子，所有的假定都满足。</p>
+<p>第四步，确定显著性水平 $ \alpha $ 。常用的显著性水平是 0.05 。我们的检验将基于 $ \alpha=0.05 $ 。</p>
+<p>第五步，计算检验统计量。在比例的例子中，公式是 $ z = \frac {p-\pi_0}{se_0} , se_0 = \sqrt {\frac {\pi_0 (1-\pi_0)}{n}} $ ，在均值的例子中，公式是 $ t = \frac {\bar x-\mu_0}{se_0} , se_0 = \frac {s}{n} $ 。注意，在比例的案例中，我们使用 z 分布，而在均值的案例中，我们使用 t 分布。</p>
+<p>第六步，抽取相关的抽样分布，展示零假设和检验统计量，补上拒绝域和对应的临界值。在比例的案例中，</p>
+<p>第七步，评估你的检验统计量是否落在拒绝域内。</p>
+<p>第八步，决定是否拒绝零假设。</p>
+<p>第九步，解释你的发现。</p>
+<p>在下结论之前，值得提醒的是，不拒绝零值假设并不暗含你就可以接受零值假设。在第二个例子中，我们不拒绝零值假设，即潜水时长等于 35 小时的假设，但并不能得出潜水时长就等于 35 小时的结论。</p>
+<hr>
+<h1 id="显著性检验和置信区间"><a href="#显著性检验和置信区间" class="headerlink" title="显著性检验和置信区间"></a>显著性检验和置信区间</h1><p>假设你问样本容量为 500 的水肺潜水者他们潜水了多少个小时，均值是 36 小时，标准差是 8 小时，变量的样本分布近似于正态。基于样本信息，你希望推断总体的参数 $ \mu $ ，这是我们所知的推断统计学 —— 基于样本信息得出样本所在总体的结论。  </p>
+<p>推断统计学有两种方法。其一，通过均值的置信区间来推断区间估计。其二，用显著性检验来推断点估计。在这一节中，我将向你展示这两种方法其实关联密切。</p>
+<img src="/images/sbs_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>假定你预期潜水时长的均值不是 35 小时，你将做一个显著性检验。我们对均值感兴趣，检验统计量如下：</p>
+<img src="/images/sbs_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>零假设是： $ \mu = 35 $ ，备选假设是： $ \mu \neq 35 $ 。我们的假定满足，分析基于简单随机样本并且样本足够大，并且样本近似正态分布。检验统计量等于 36 减去 35 ，除以 8 除以 500 的平方根，等于 2.80 。抽样分布看起来是这样的。</p>
+<img src="/images/sbs_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我们可以通过查询 t 表找到对应双尾检验显著性水平 0.05 的临界点是 $ \pm1.984 $ 。因此我们的检验统计量落在拒绝域内。我们将拒绝零假设，得出潜水时长不等于 35 小时的结论。</p>
+<p>现在，如果我们构造 95% 的置信区间，会发生什么呢？公式如下：样本均值，加减 95% 置信水平对应的 t 分数，乘以标准误差，这个标准误差等于标准差除以样本容量的平方根。相关的 t 分数是 1.984 ，代入公式，得到置信区间是 35.29 到 36.71 。由此我们有信心说，通过无限重复的抽样， 95% 的情况下区间会包含实际的总体均值。这个区间给了我们关于总体均值的一个有说服力的范围。和显著性测试一样，这个置信区间也告诉我们，总体的样本均值不是 35 。通常，双尾显著性检验的结果与置信区间的结果是一致的。</p>
+<img src="/images/sbs_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>更准确的说，如果双尾显著性检验的 P 值等于或者小于 0.05 ，那么 95% 置信区间也不包含零假设的值。类似的，如果双尾检验的 P 值大于 0.05 ，那么 95% 置信区间将包含零假设的值。</p>
+<img src="/images/sbs_5_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这听起来很合理，对吧？它以下图表示。你会看到，观察值 36 落在拒绝域内，而对应的置信区间也不包含零假设的总体均值。</p>
+<img src="/images/sbs_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>现在假设观察到的均值是 35.5 ，而不是 36 ，这样的话，我们的检验统计量将变成 1.40 ，它不落在拒绝域内。我们因此不拒绝零假设，相似的，置信区间的两个端点编程 34.79 和 36.21 ，则包含了零假设的均值 35 。</p>
+<img src="/images/sbs_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我们可以有信息说，通过无限重复抽样， 95% 的情况区间会包含实际的总体均值。这意味着零假设有说服力，我们不该拒绝零假设。也说明了，构建置信区间的方法和双尾假设检验的方法虽然看起来不同，但是数学上是相关的，彼此一致。</p>
+<img src="/images/sbs_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-hypotheses-and-significance-test/" rel="bookmark">极速统计教程之二十一 | 假设检验和显著性检验</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-sample-size/" rel="bookmark">极速统计教程之二十 | 样本容量</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-confidence-interval-for-proportion/" rel="bookmark">极速统计教程之十九 | 比例的置信区间和置信水平</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-inference-and-confidence-interval/" rel="bookmark">极速统计教程之十八 | 均值的推断和置信区间</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/data-science/statistics-sampling-distribution-of-sample-proportion/" rel="bookmark">极速统计教程之十七 | 样本比例的抽样分布</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/" title="极速统计教程之二十二 | 分步计划和置信区间">https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%9F%E8%AE%A1/" rel="tag"># 统计</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" rel="tag"># 数据科学</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/data-science/statistics-hypotheses-and-significance-test/" rel="prev" title="极速统计教程之二十一 | 假设检验和显著性检验">
+      <i class="fa fa-chevron-left"></i> 极速统计教程之二十一 | 假设检验和显著性检验
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/uncategorized/statistics-type-i-and-type-ii-errors/" rel="next" title="极速统计教程之二十三 | 第一类错误和第二类错误">
+      极速统计教程之二十三 | 第一类错误和第二类错误 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分步计划"><span class="nav-number">1.</span> <span class="nav-text">分步计划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#显著性检验和置信区间"><span class="nav-number">2.</span> <span class="nav-text">显著性检验和置信区间</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+      <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">144k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:11</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

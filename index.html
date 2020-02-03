@@ -223,7 +223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/uncategorized/statistics-type-i-and-type-ii-errors/">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-type-i-and-type-ii-errors/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -237,7 +237,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/uncategorized/statistics-type-i-and-type-ii-errors/" class="post-title-link" itemprop="url">极速统计教程之二十三 | 第一类错误和第二类错误</a>
+            <a href="/data-science/statistics-type-i-and-type-ii-errors/" class="post-title-link" itemprop="url">极速统计教程之二十三 | 第一类错误和第二类错误</a>
         </h1>
 
         <div class="post-meta">
@@ -250,6 +250,17 @@
               <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2020-02-03 13:58:06" itemprop="dateCreated datePublished" datetime="2020-02-03T13:58:06+08:00">2020-02-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
             </span>
 
           <br>
@@ -280,13 +291,12 @@
           <h1 id="第一类错误和第二类错误"><a href="#第一类错误和第二类错误" class="headerlink" title="第一类错误和第二类错误"></a>第一类错误和第二类错误</h1><p>回忆一下此前提到过的庭审的例子。被告方的辩护律师的观点是被告是无辜的，公诉方则试图说服陪审团和法官被告是有罪的。举证有罪的责任在于原告。被告只有在原告提供有力证据驳斥被告假定无罪的情况下才能被认定为有罪。</p>
 <p>在审判时，有四种可能的结果，一，被告确实有罪且被判有罪，这是个正确的决定。二，被告确实无辜且被判无罪，这也是正确的决定。三，被告实际上是无辜的，但被判有罪，这是错误的决定。四，被告实际上有罪的，但是被判无罪，这也是错误的决定。</p>
 <p>这也是我们在实施显著性检验时会发生的情况。辩方观点类似零假设为真，而被告有罪则等效于零假设为假。判被告有罪类似拒绝零假设，而无罪释放则等同于不拒绝零假设。这会导致四种可能的情形。其中的两种，你做了正确的决定，包括零假设的确为真并且你没有拒绝它以及零假设的确为假并且你拒绝了它。但也有两种你做了错误的决定，包括零假设为真而你拒绝了它以及零假设的确为假而你没有拒绝它。第一个错误我们称为 <strong>第一类错误 (type I error)</strong> ，或者说 <strong>伪阳性 (false positive)</strong> 。第个错误我们称为 <strong>第二类错误 (type II error)</strong> ，或者说 <strong>伪阴性 (false negative)</strong> 。</p>
-<img src="/images/t1t2_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/t1t2_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>让我给你举个例子。想象你的零假设是：美国的持证水肺潜水者总体， 50% 有超过 35 小时的潜水经验。换言之， $ \pi = 0.5 $ 。备选假设是它是另外一个百分比，换言之， $ \pi \neq 0.5 $ 。你问了一组简单随机抽样的 500 个美国潜水者，你发现有 0.56 的比例有超过 35 小时的潜水经验。现在，假定你的零假设实际上是真的，当你决定基于你的样本数据拒绝零假设时，一个第一类错误就出现了。 </p>
-<img src="/images/t1t2_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+<p><img src="/images/t1t2_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/uncategorized/statistics-type-i-and-type-ii-errors/#more" rel="contents">
+              <a class="btn" href="/data-science/statistics-type-i-and-type-ii-errors/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

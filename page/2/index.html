@@ -223,6 +223,224 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-sample-size/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-sample-size/" class="post-title-link" itemprop="url">极速统计教程之二十 | 样本容量</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-02 11:05:16" itemprop="dateCreated datePublished" datetime="2020-02-02T11:05:16+08:00">2020-02-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>还是前面的新生儿父母睡觉减少时长的例子，由于我们无法去询问你家乡所有的年轻父母。我们采取简单随机抽样。一个很关键的问题是 —— 样本应该取多大。应该是 50 个就够了？或者 至少 300 个或者 1000 个？</p>
+<p>这一节中，我们将分布讨论对均值和比例感兴趣的不同情况。</p>
+<p>先从均值开始。样本容量主要取决于三个因素。首先是你想要的精度。记得吗，置信区间是通过点估计加减一个误差界限来得到的。你允许多大的误差界限，如果你希望它越小，那么你的样本容量就得越大。其次，你的样本容量还依赖你想要的置信水平。越大的置信水平，需要越大的样本容量。最后，数据的变异性也影响样本容量的选择。你的变量的标准差越大，你需要的样本容量也越大。公式如下：</p>
+<p>$$ n = \frac {\sigma^2z^2}{m^2} $$</p>
+<p>n 代表样本容量，m 代表误差界限，$ \sigma $ 代表总体的标准差， z 代表 z 分数。显而易见，你不知道总体的标准差，而且你还没抽取样本也不知道样本的标准差。所以，你需要利用 <strong>合理的猜测 (educated guess)</strong> 来估计一个值。</p>
+<p>让我来演示这个过程是怎么样的。想象我们想要 95% 的置信水平，对应这个置信水平的 z 分数是 1.96 ，并且我不希望误差界限宽过 0.3 小时，就取 0.3 小时吧。现在我们可以填完这个公式的一部分了。现在我们需要对 $ \sigma $ 进行合理猜测了。如果已经存在这方面的研究而且你知道变量的标准差，可以简单地采纳这个标准差。但是，如果这样一个研究之前并未做过，就必须靠我们自己的猜测。我先假定某些父母根本没法睡，某些父母睡觉少于 5 个小时，并且父母们也不可能睡的比之前还多。因此，我们假定变量服从正态分布， 95% 的父母睡觉时间介于 0 到 5 个小时之间。均值是 2.5 小时，标准差是 1.25 小时。毕竟， 95% 是落在均值左右两个标准差范围内，两个标准差等于 2.5 ，那么一个标准差就是 1.25 。我们用这组数字完成公式，得到 66.69 ，取整，得出结论我们需要 67 个受试者。</p>
+<p>对于比例感兴趣而不是均值的情况，也可以采取类似的方式。假设我们想知道新生儿在换尿布时便便的比例，我想要 99% 的置信水平，误差界限 0.10 。公式非常相似：</p>
+<p>$$ n = \frac {p (1-p) z^2}{m^2} $$</p>
+<p>m 是 0.10 ，z 可由查表得 2.58 ，它对应 99% 置信水平。我们不知道的是 p 。还是采用合理的猜测，或者采用一种被称为 <strong>安全方法 (safe approach)</strong> 的方式。你会发现 $ p (1-p) $ 的最大值是 0.25 ，它发生在 p = 0.5 的时候，于是我们用 p = 0.5 完成公式，0.5 乘以 0.5 乘以 2.58 的平方除以 0.10 的平方，得到 166.41 ，即 167 位受试者。</p>
+<p>在理想世界中，你可以去寻求大样本，比如说 1000 位受试者或者更多。但是，在现实世界中，我们的时间有限，资源有限，无法抽取大样本。因此，计算所需的样本容量可以帮助我们把成本降到最低。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-confidence-interval-for-proportion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-confidence-interval-for-proportion/" class="post-title-link" itemprop="url">极速统计教程之十九 | 比例的置信区间和置信水平</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-02 10:28:44" itemprop="dateCreated datePublished" datetime="2020-02-02T10:28:44+08:00">2020-02-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="比例的置信区间"><a href="#比例的置信区间" class="headerlink" title="比例的置信区间"></a>比例的置信区间</h1><p>In the last couple of weeks I have<br>learned that newborn babies like to poo. They like to poo a lot. And it happens to be the case that my<br>daughter Lois especially likes to poo under specific circumstances. That is,<br>precisely when I’m changing her diaper. Seriously, once she decided to<br>answer nature’s call six times. I repeat, six times during<br>the diaper changing process. Is that normal? I’m not sure, but<br>I know how I could check it. Suppose that I asked a simple<br>random sample of 100 new parents if their baby likes to defecate while<br>his or her diaper is being changed. In this video, I’ll tell you how we can,<br>on the basis of such a study, construct a confidence interval to<br>estimate a population proportion. Say that 17% of my 100<br>respondents reported their babies like to poo while<br>the diapers is being changed. 83% reported their babies don’t do that. We thus have a proportion of 0.17, whose babies like to poo while<br>the diaper is being changed. When we construct<br>a confidence interval for a proportion, we employ the sampling<br>distribution of the sample proportion. We know that, as long as the sample is<br>large enough, this sampling distribution is normally distributed with a mean that<br>is equal to the population proportion, pi. And a standard deviation that is<br>equal to the square root of pi multiplied with one minus pi divided by n. We also know that the probability of<br>finding a sample proportion of less than about two standard deviations of the mean,<br>which is the population proportion, is 0.95. More precisely, if we look up the z score<br>which corresponds to this probability, we’ll find a value of 1.96. This means that we have a 95% chance<br>that our sample proportion will fall within 1.96 standard deviations<br>of our population proportion. This is what we call the margin of error. The formula with which we can compute<br>a 95% confidence interval looks like this. p plus and<br>minus 1.96 times the standard deviation of the sampling distribution<br>of the sample proportion. 1.96 is the z score that corresponds<br>to the 95% confidence level. So we could also write, p plus and minus the z score for the 95%<br>confidence level times the standard deviation of the sampling distribution<br>of the sample proportion. We’re talking about a 95% confidence level<br>here, that means that we can say that if we would draw an infinite number of<br>samples from a population in 95% of the cases, our confidence interval<br>would contain population proportion pi. However, as you might have noticed, we don’t know the value of<br>population proportion pi. So it is impossible to compute a standard<br>deviation of the sampling distribution of the sample proportion. We therefore substitute the population<br>parameter pi with an estimate, and this estimate is our sample statistic, P. This leads to the following formula. p plus and minus the z score for the 95%<br>confidence level times the estimated standard deviation of the sample<br>distribution of the sample proportion. Just like when we constructed the<br>confidence interval for a mean, we call this estimated standard deviation of the<br>sampling distribution the standard error. In contrast with the confidence interval<br>for a mean, when it comes to constructing a confidence interval for a proportion, we<br>don’t make use of the t distribution. And just stick with the standard<br>normal distribution. However, your data need to<br>satisfy one essential assumption. You should have at least 15 successes and<br>15 failures. In other words, n times p and n times 1 minus p need to be<br>larger than or equal to 15. If this is not the case, you cannot compute a confidence interval<br>on the basis of the discussed formula. Okay, let’s go back to our example. We have a proportion of 0.17 that reports that the baby poos while<br>the diaper is being changed. This is the formula we use. Let’s first compute the standard error. It’s the square root of 0.17<br>times 0.83 divided by 100. That makes about 0.038. The margin of error then<br>is 1.96 times 0.038. That’s about 0.07. 0.17 minus 0.07 equals 0.10 and 0.17 plus 0.07 equals 0.24. So our confidence interval<br>ranges from 0.10 to 0.24. This means that we can be 95% confident<br>that the population proportion falls between 0.10 and 0.24. Or, in other words,<br>if we would draw an infinite number of samples with n equals<br>100 from a population, and for every sample we would compute confidence<br>intervals with this margin of error, in 95% of the cases the population value<br>would fall within the confidence interval. This 95% confidence interval<br>demonstrates that most babies don’t like to poo while their<br>diaper is being changed. On the other hand,<br>it’s not that exceptional if they do poo. We can be 95% confident<br>that between 10 and 24% does poo during the changing process. Thank God, nothing is wrong<br>with my little baby, Lois. In fact, my theory is that my<br>daughter’s pooing habits are good news. That might well indicate that<br>she will be toilet trained soon. After all,<br>she doesn’t like to poo in the diaper. Now, let’s hope that later on,<br>she does like to poo in the toilet.</p>
+<hr>
+<h1 id="置信水平"><a href="#置信水平" class="headerlink" title="置信水平"></a>置信水平</h1><p>The 95% confidence interval, tells us that we can be 95%<br>confident that our point estimate, which could be a mean or a proportion,<br>falls within our confidence interval. Or in other words, it tells us that if we<br>would draw an infinite number of samples, similar to our extra sample and<br>for every sample, we would compute a 95% confidence<br>interval with a similar margin of error. In 95% of the cases, the population value would fall<br>within this confidence interval. This, of course, also means that<br>in 5% of the cases, this method will produce an interval that does not<br>contain the actual population parameter. If you would like to reduce the chance of<br>an incorrect inference, you could go for a larger confidence interval,<br>such as, for instance, 99%. In this video, I will tell you how<br>you can change your confidence level. And what the consequences are,<br>of doing so. Imagine you asked a sample<br>of 100 new parents, if the babies like to answer nature’s<br>call, during the diaper changing process. 17% reported that, this is the case. Our sample, proportion p,<br>thus equals 0.17. The formula to compute a 95% confidence<br>interval for a proportion is, p plus and minus the z score for the 95% confidence<br>level, times the standard error, which equals the square root of p,<br>multiplied with 1, minus p divided by n. You can look up a z score for<br>a 95% confidence level, in the z table. Look at this standard<br>normal distribution here. When you have a 0.95 probability,<br>that your value falls within z standard errors from the mean, that means, that<br>0.025 probability falls in the two tails. If you look up the z scores,<br>which are displayed here in the z table, we find values of plus or minus 1.96. You can see that here. We can now easily compute the interval,<br>that’s 0.17 plus and minus 1.96 times the standard error<br>which is the square root of 0.17, times 0.83, divided by 100. This leads to a confidence interval<br>with the end point 0.10 and 0.24. You can now imagine, that it is not so difficult to construct intervals<br>with other confidence levels. Let’s first look at the 99%<br>confidence interval. This is the formula. p plus or minus the z score for the 99% confidence<br>level, times the standard error. The only difference is,<br>the different z score. Look at this standard normal distribution. When you have a 0.99 probability that your<br>value falls within z standard errors from the mean, that means, that 0.005<br>probability falls in the two tails. If we look up the z scores,<br>which are indicated here. We find values of plus and minus 2.58. You can see that here. We can now compute the interval. That is 0.17, plus and minus 2.58,<br>times the standard error. Which was 0.038. This leads to a confidence interval<br>with the endpoints 0.07 and 0.27. For the 90% confidence level,<br>we find a z score of 1.645. This leads to a confidence<br>interval of 0.17, plus and minus 1.645, times 0.038. That makes a confidence interval<br>with the endpoints of 0.11 and 0.23. I have here displayed confidence<br>intervals graphically. You can see that a higher confidence level<br>leads to a wider confidence interval. In other words, the more confident we<br>are that we draw a correct inference, the larger of margin of error. That means, that we have to compromise<br>between confidence and precision. As one gets better, the other gets worse. We never settle for a 100% confidence<br>interval, because the margin of error then is far too large, which means that our<br>conclusions are not very informative. In most cases,<br>the 95% confidence interval is used. We can also use other confidence intervals<br>when we construct a confidence interval to estimate a population mean. Suppose, we’ve asked a sample<br>of 30 new parents in Amsterdam, how much hours of sleep they’ve lost<br>after the first child was born. The mean is 2.6 hours per night. And the standard deviation<br>is 0.9 hours per night. This is the formula we use,<br>to construct a 95% confidence interval. x-bar, plus and minus the t score for<br>the 95% confidence level, times the standard error. Which equals the sample<br>standard deviation, divided by the square<br>root of the sample size. Now, what is the t score for<br>95% confidence level? That’s dependent on the degrees of<br>freedom, which equals n minus 1. That is, 30 minus 1 is 29. In the t table, we should look in<br>the column of the 95% confidence level and in the row of 29 degrees of freedom. That gives a t score of 2.045. The confidence interval becomes 2.6<br>plus and minus 2.045, times 0.9, divided by the square root of 30. That gives an interval from 2.26 to 2.94. If we would want to construct an interval<br>with a confidence level of 99%, we simply replace the t score for the 95%<br>level with the t score for the 99% level. You can look it up in the table,<br>it’s 2.756. The confidence interval is 2.6 plus and<br>minus 2.756, times 0.9,<br>divided by the square root of 30. That leads to an interval<br>from 2.15 to 3.05. You can also easily do that for<br>other confidence levels. Let me conclude this video by<br>giving you a step by step plan for constructing a confidence interval. First, decide which confidence<br>level you want to use. For instance, do you settle for<br>the regular 95% level? Or do you want to be more confident and<br>less precise? Or more precise and less confident? Second, decide if you’re dealing<br>with a proportion or a mean. If you’re interested in a proportion,<br>you work with the z distribution, and if you’re interested in a mean,<br>you have to use the t distribution. So, in the case of a proportion,<br>you look up the relevant z score and in the case of a mean,<br>you look up the relevant t score. Don’t forget,<br>that if you’re interested in a mean, you should also compute the degrees of<br>freedom which is equal to n minus 1. Third, compute the endpoints<br>of the confidence interval. And finally, four,<br>interpret the results substantively. That’s it. If you’re not 95% confident now that<br>you can construct a confidence interval yourself, rewatch<br>the last couple of videos.</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -533,223 +751,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-sample-and-sampling/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-sample-and-sampling/" class="post-title-link" itemprop="url">极速统计教程之十五 | 样本和抽样</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-21 20:13:49" itemprop="dateCreated datePublished" datetime="2020-01-21T20:13:49+08:00">2020-01-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="样本和目标总体"><a href="#样本和目标总体" class="headerlink" title="样本和目标总体"></a>样本和目标总体</h1><blockquote>
-<p>几乎所有的统计研究都基于样本。</p>
-</blockquote>
-<p>想象你试图知道伦敦有多少学生以嬉皮士自居，但你几乎不可能去问全部的学生这个问题。所以你决定采样，比方说 200 个调查对象，并估计有多少人把自己看做嬉皮士。</p>
-<p>关于统计的一个好处是，它能基于仅仅这 200 个调查对象，即样本，帮助你得出关于伦敦所有学生的结论，即目标总体。这一节中，我将详细解释样本和目标总体。</p>
-<p><img src="/images/sampling_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>如果你从目标总体约 300,000 个学生中选择 200 个调查对象作为样本，基本上你正在聚焦于总体的一个子集。如果你测量一组变量，比如性别，年龄，所在学校，等等。你可以做所有的计算，比如单一变量分析，包括众数、平均数和标准差，或者双变量分析，计算皮尔逊相关系数或者做回归分析。所有这些数字性总结都完全是基于样本，它们被称为 <strong>统计数字 (statistics)</strong> 。通常，这种总结样本数据的方法被称为 <strong>描述统计 (descriptive statistics)</strong> 。不过，在实际的研究实践中，我们经常对特定样本的总结不感兴趣 —— 我们的实际目标是对潜在的目标总体做出推断。</p>
-<p><img src="/images/sampling_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>在我们的案例中，所有 300,000 个学生都在伦敦。如果我们借由样本中得到的数据推断关于总体的结论，那我们就是在使用 <strong>推断统计学 (inferential statistics)</strong> 的方法。 统计数字以罗马字母显示。例如，$ \bar x $ 代表平均数， s 是样本的标准差。 参数则以希腊字母显示， μ 代表总体的平均值， σ 代表总体的标准差。 </p>
-<p><img src="/images/sampling_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>想象你问这 200 个调查对象他们觉得自己有多大程度上把自己看做嬉皮士。他们可以从 0 到 10 表示自己嬉皮士的程度， 0 代表他 / 她根本不认为自己是嬉皮士，而 10 代表一个人完全将自己视为嬉皮士。</p>
-<p>现在想象样本的 “嬉皮士值” 均值是 3.12 ，核心问题变成：目标总体的均值是多少？推断统计学可以帮助我们解答这类问题。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-sample-and-sampling/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-binomial-distribution/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-binomial-distribution/" class="post-title-link" itemprop="url">极速统计教程之十四 | 二项分布</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-19 12:57:01" itemprop="dateCreated datePublished" datetime="2020-01-19T12:57:01+08:00">2020-01-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>对于离散随机变量，有一个最重要的概率分布，它是 <strong>二项分布 (binomial distribution)</strong> 。二项分布处于二元数据。因为二元数据的情况非常多，所以二项分布使用频繁。</p>
-<p>让我们从例子开始，你会在这些例子中看到两种结果。比如，参加会议是否迟到，投票赞成或者反对，噪音等级超过 80 分贝或者没有。当你收集这类现象的试验时，成功或者失败的数字服从二项分布。例如，你可以考虑每 25 个与会人员，有多少个迟到，或者投反对票的人有几个。</p>
-<img src="/images/bd_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>下面是你可以确定一个随机变量服从二项分布的条件：首先，每一个试验成功的概率相同；其次，试验在统计上是独立的 —— 即一个试验的结果不会影响其他试验。</p>
-<img src="/images/bd_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>实际上，你发现二项分布的三个要素。首先，试验现象有两种结果，并且成功概率是常量。这种实验被称为 <strong>伯努利试验验 (Bernoulli trial)</strong> 。其次，你观察试验结果 n 次。第三，你对成功的结果计数，记为 x 。这三个元素被结合成一个公式，它给出了在 n 次试验中取得特定数量成功结果的概率。公式如下：</p>
-<p>$$ P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,…,n $$</p>
-<p>你可以直接把 n，x 和 p 填进公式从而获得答案。</p>
-<img src="/images/bd_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>如公式所示，随机变量 x 只能取 0 到 n 的值。这很合理，因为你只能有有限次成功，0 ，1 ， 2 ，直到 n 。因此这个公式是一个概率质量函数，它直接给出了匹配每个可能的 x 的概率值，你不必像考虑概率密度函数那样考虑区间。</p>
-<img src="/images/bd_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>感叹号不常见，它表示 <strong>阶乘法 (factorial)</strong> ，即把所有从 1 到指定的整数全部相乘的结果。例如， 4 阶乘等于 1 乘以 2 乘以 3 乘以 4 。 公式前部的这个阶乘的除法实际上是给出了无视顺序，从 n 个元素中选出 x 个元素的方法，它也被称为 <strong>二项系数 ( binomial coefficient)</strong> ，有的时候也速记为 $ C^x_n $ 。</p>
-<p>现在，让我们把二项公式应用到特定的例子里吧。想象你每天通勤的路线上需要经过一座吊桥。这桥有 10% 的时间是打开的，但打开时机是随机的。那么你在一周中碰到 0 ， 1， 2 ，直到 5 天的概率是多少呢？</p>
-<img src="/images/bd_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>实验有 5 次试验，遇到打开的桥的概率是 0.1 。因此，这里的二项分布的概率如下：</p>
-<img src="/images/bd_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>如果你把 6 个概率和 x 相乘并加总，你会发现这个值等于 1 。本应如此。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-binomial-distribution/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -822,20 +823,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -890,12 +891,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">144k</span>
+    <span title="站点总字数">152k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:11</span>
+    <span title="站点阅读时长">2:18</span>
 </div>
 
         

@@ -223,7 +223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-protocol/">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/break-down-complexity-with-pipelines/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -237,7 +237,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/programming/swiftswift-protocol/" class="post-title-link" itemprop="url">极速 Swift 教程之九 | 协议</a>
+            <a href="/programming/break-down-complexity-with-pipelines/" class="post-title-link" itemprop="url">用 “流水线” 设计拆解复杂处理流程</a>
         </h1>
 
         <div class="post-meta">
@@ -249,7 +249,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-25 17:17:33" itemprop="dateCreated datePublished" datetime="2019-12-25T17:17:33+08:00">2019-12-25</time>
+              <time title="创建时间：2019-12-28 20:59:40" itemprop="dateCreated datePublished" datetime="2019-12-28T20:59:40+08:00">2019-12-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,14 +269,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>7.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -288,18 +288,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。</p>
-<p>举个例子，我们可以写一个函数接收 <code>id</code> 属性，但我们并不精确地关心用的是哪一种数据类型。让我们从 <code>Identifiable</code> 协议开始，这个协议要求所有遵循协议的类型必须有一个 <code>id</code> 字符串属性，并且这个字符串可读写。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span> { <span class="keyword">get</span> <span class="keyword">set</span> }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>我们无法创建协议的实例，因为协议只是一种描述，它本身并非一种类型。但是我们可以创建遵循它的结构体。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>最后，我们还可以写一个 <code>displayID ()</code> 函数，它接收 <code>Identifiable</code> 对象：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">displayID</span><span class="params">(thing: Identifiable)</span></span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"My ID is \(thing.id)"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <ul>
+<li>本文的主要价值： <strong>提供一种抽象复杂逻辑，达成功能复用的思路</strong></li>
+<li>关键词： <strong>语义提炼</strong> 、 <strong>动态具名</strong></li>
+<li>本文约 4000 字，建议阅读时间 30 分钟。 </li>
+</ul>
+<hr>
+<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>在软件开发时常常遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。这些功能单元可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且对于用户来说，它们共同处理同一个元素。举个例子，比如一款修图 app ，它包含了一组编辑功能，每个功能都作用于一张图片，处理之后的图片还可以作为其他功能的输入。作为编辑工具，在每个功能内部，还可能都需要支持撤销和重做这样的用户操作。容易想到，这些功能间存在着许多可以进行复用设计的代码。</p>
+<p>本文基于我曾经从事的一款图像处理应用开发过程中的一次代码重构的实践所做的回顾发起，期望达到记录和分享的目的。</p>
+<h1 id="重构的具体背景"><a href="#重构的具体背景" class="headerlink" title="重构的具体背景"></a>重构的具体背景</h1><p>请先看下面这幅图：</p>
+<p><img src="/images/image_modules.jpg" alt="重构前的图像功能模块结构"></p>
+<p>图中的元素很少，但细心的读者可能留意到了：图中的 “ <strong>内存图像管理 + 效果处理</strong> ” 是一个 “ <strong>黑盒子</strong> ”。那么这个黑盒子是一件好事还是坏事呢？</p>
+<p>既然我们对这种设计做了重构，那么这里重点来探讨一下它的缺点。 黑盒子的优点部分，作为思考题留给读者。</p>
+<p>在具体业务场景下，我发现旧有设计的两个问题：</p>
+<ul>
+<li>图像处理接口粒度太大，难以复用代码； </li>
+<li>黑盒子把 <strong>图像管理</strong> 和 <strong>图像效果处理</strong> 这两件事包在了一起，使得外部难以灵活的接触和使用图像。 </li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-protocol/#more" rel="contents">
+              <a class="btn" href="/programming/break-down-complexity-with-pipelines/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -323,7 +331,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-classes/">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/thinking/the-four-sins-of-spending-time/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -337,7 +345,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/programming/swiftswift-classes/" class="post-title-link" itemprop="url">极速 Swift 教程之八 | 类</a>
+            <a href="/thinking/the-four-sins-of-spending-time/" class="post-title-link" itemprop="url">关于花费时间的四宗罪</a>
         </h1>
 
         <div class="post-meta">
@@ -349,7 +357,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-25 10:10:59" itemprop="dateCreated datePublished" datetime="2019-12-25T10:10:59+08:00">2019-12-25</time>
+              <time title="创建时间：2019-12-28 20:42:32" itemprop="dateCreated datePublished" datetime="2019-12-28T20:42:32+08:00">2019-12-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -357,8 +365,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
+                  <a href="/categories/thinking/" itemprop="url" rel="index">
+                    <span itemprop="name">thinking</span>
                   </a>
                 </span>
             </span>
@@ -369,14 +377,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -388,16 +396,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="创建你自己的类"><a href="#创建你自己的类" class="headerlink" title="创建你自己的类"></a>创建你自己的类</h1><p>Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。</p>
-<p>类和结构体的第一个区别是类没有逐一成员构造器。这意味着只要你的类里有属性，你就必须自行创建构造器。</p>
-<p>举个例子：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> breed: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>, breed: <span class="type">String</span>) {</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="keyword">self</span>.breed = breed</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>创建类的实例跟创建结构体的实例方式一样：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> poppy = <span class="type">Dog</span>(name: <span class="string">"Poppy"</span>, breed: <span class="string">"Poodle"</span>)</span><br></pre></td></tr></tbody></table></figure>
+          <blockquote>
+<p>导致我们浪费时间的是我们的<strong>认知错误</strong>。</p>
+</blockquote>
+<p>你是否经历过这样的场景。邻居过来串门，喋喋不休，我们频频点头回应，哪怕当下已经心急如焚；同事开始闲聊琐碎，而我们沉浸其中，不曾意识到本该用来工作的时间正在一点一点溜走；从熟人那里收到微信，对方说：“我可以向你讨教点事情吗？”，我们爽快答应，因为抹不开面子拒绝别人？</p>
+<p>斯多葛哲学家塞内卡（Seneca）曾经惊叹：哪怕最聪明的人，在保护自己的时间这件事上，都不免显得愚蠢。</p>
+<blockquote>
+<p>没有人会把自己的钱财送给路人，但我们中的许多人却送出了我们的生命！我们为财产和金钱所累，却罕有意识我们的时间正遭受的浪费。时间本应是我们每个人都最应吝惜的东西。</p>
+</blockquote>
+<p>两千多年后的今天，为什么我们还在允许时间这种宝贵的资源从我们的手中不停地溜走？</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-classes/#more" rel="contents">
+              <a class="btn" href="/thinking/the-four-sins-of-spending-time/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -421,7 +431,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-structs/">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/uncategorized/csta-k12-standards/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -435,7 +445,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/programming/swiftswift-structs/" class="post-title-link" itemprop="url">极速 Swift 教程之七 | 结构体</a>
+            <a href="/uncategorized/csta-k12-standards/" class="post-title-link" itemprop="url">计算机科学教师协会 - K12 - 标准</a>
         </h1>
 
         <div class="post-meta">
@@ -447,7 +457,102 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-24 21:21:46" itemprop="dateCreated datePublished" datetime="2019-12-24T21:21:46+08:00">2019-12-24</time>
+              <time title="创建时间：2019-12-28 16:01:41" itemprop="dateCreated datePublished" datetime="2019-12-28T16:01:41+08:00">2019-12-28</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>About the CSTA K-12 Computer Science Standards<br>关于 CSTA K-12 计算机科学标准</p>
+<p>Computer science and the technologies it enables rest at the heart of our economy and the way we live our lives. To be well-educate citizens in a computing-intensive world and to be prepared for careers in the 21st century, our students must have a clear understanding of the principles and practices of computer science. The CSTA K–12 Computer Science Standards delineate a core set of learning objectives designed to provide the foundation for a complete computer science curriculum and its implementation at the K–12 level. To this end, the CSTA Standards:</p>
+<p>计算机科学及其支持的技术是我们经济的核心，也是我们生活的方式。为了对计算机密集型世界中的公民进行良好的教育并为 21 世纪的职业做好准备，我们的学生必须对计算机科学的原理和实践有清晰的了解。 CSTA K-12 计算机科学标准描述了一组核心学习目标，旨在为完整的计算机科学课程及其在 K-12 级别的实施提供基础。为此，CSTA 标准：</p>
+<p>・Introduce the fundamental concepts of computer science to all students, beginning at the elementary school level.<br>・Present computer science at the secondary school level in a way that can fulfill a computer science, math, or science graduation credit.<br>・Encourage schools to offer additional secondary-level computer science courses that will allow interested students to study facets of computer science in more depth and prepare them for entry into the work force or college.<br>・Increase the availability of rigorous computer science for all students, especially those who are members of underrepresented groups.<br>The standards have been written by educators to be coherent and comprehensible to teachers, administrators, and policy makers.<br>Levels 1A, 1B, 2, and 3A are the computer science standards for ALL students. The Level 3B standards are intended for students who wish to pursue the study of computer science in high school beyond what is required for all students (specialty or elective courses).</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/ui-programming-howto/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/programming/ui-programming-howto/" class="post-title-link" itemprop="url">聊一聊 UI 代码要怎么写 | 分治篇</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-27 10:52:07" itemprop="dateCreated datePublished" datetime="2019-12-27T10:52:07+08:00">2019-12-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -467,7 +572,107 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.9k</span>
+              <span>8.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本</li>
+<li>关键词： 分治、 UOP</li>
+</ul>
+<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><blockquote>
+<p><em>我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。</em></p>
+</blockquote>
+<p>所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分算法。</p>
+<p>本文基于 Android 客户端开发中经常涉及的交互逻辑编程展开，表达我对于 UI 分治在软件开发中如何实践的理解。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/programming/ui-programming-howto/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-optionals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/programming/swiftswift-optionals/" class="post-title-link" itemprop="url">极速 Swift 教程之十 | 可选型</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-25 17:27:30" itemprop="dateCreated datePublished" datetime="2019-12-25T17:27:30+08:00">2019-12-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -486,219 +691,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="创建你自己的结构体"><a href="#创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
-<p>让我们以一个简单的例子开始：创建一个 <code>Sport</code> 结构体，它有一个叫 <code>name</code> 的字符串变量。在结构体中，这种变量被称为 <em>属性</em> 。因此，这是一个拥有一个属性的结构体。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>类型定义完成，现在让我们来创建和使用它的实例：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tennis = <span class="type">Sport</span>(name: <span class="string">"Tennis"</span>)</span><br><span class="line"><span class="built_in">print</span>(tennis.name)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><code>name</code> 和 <code>tennis</code> 都是变量，因而我们可以像常规变量那样修改它们：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tennis.name = <span class="string">"Lawn tennis"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>属性可以像常规变量那样拥有默认值，并且依赖 Swift 的类型推断。</p>
+          <h1 id="处理缺失的数据"><a href="#处理缺失的数据" class="headerlink" title="处理缺失的数据"></a>处理缺失的数据</h1><p>我们已经会使用 <code>Int</code> 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？</p>
+<p>你可能会说，“我可以暂时存成 0”，但这样一来你就会混淆新生儿和你不知道年龄的用户。你应该用一个特殊的数字，比如 1000 或者 -1 来代表 “未知”，这两个数字都不可能是年龄，但你能记得住这些特殊数字的含义吗？</p>
+<p>Swift 的解决方案称为 <em>optional</em> ，即可选型。你可以基于任意类型创建可选型。一个可选型整数可以有诸如 1 或者 1000 这样的数字，也可能没有任何值，即值可以缺失， Swift 里表示缺失是用 <code>nil</code> 。</p>
+<p>为了把一个类型变成可选型，只需要在类型后面加一个问号。举个例子，我们可以这样把一个整数变成可选型：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age: <span class="type">Int?</span> = <span class="literal">nil</span></span><br></pre></td></tr></tbody></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-structs/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-closures/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/swiftswift-closures/" class="post-title-link" itemprop="url">极速 Swift 教程之六 | 闭包</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-24 21:05:51" itemprop="dateCreated datePublished" datetime="2019-12-24T21:05:51+08:00">2019-12-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="创建基本的闭包"><a href="#创建基本的闭包" class="headerlink" title="创建基本的闭包"></a>创建基本的闭包</h1><p>Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。</p>
-<p>函数的这种用法被称为 <em>闭包</em> 。虽然工作机制差不多，写法上是有一些小差异的。</p>
-<p>还是以打印信息为例：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要去开车"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>上面的代码实际上创建了一个匿名的函数，并将这个函数赋给了 <code>driving</code> 。之后你就可以把 <code>driving ()</code> 当作一个常规的函数来用，就像这样：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driving ()</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-closures/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-functions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/swiftswift-functions/" class="post-title-link" itemprop="url">极速 Swift 教程之五 | 函数</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-24 20:47:22" itemprop="dateCreated datePublished" datetime="2019-12-24T20:47:22+08:00">2019-12-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="书写函数"><a href="#书写函数" class="headerlink" title="书写函数"></a>书写函数</h1><p>函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。</p>
-<p>用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。</p>
-<p>Swift 的函数以 <code>func</code> 关键字开始，然后跟着函数名，然后是一对圆括号，最后是一对花括号。当函数被运行时，花括号里的代码会被执行。</p>
-<p>一个 <code>printHelp ()</code> 函数长这样：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printHelp</span><span class="params">()</span></span> {</span><br><span class="line">  <span class="keyword">let</span> message = <span class="string">"""</span></span><br><span class="line"><span class="string">  欢迎来到我的 App!</span></span><br><span class="line"><span class="string">  在一个图片的目录下运行这个 App，</span></span><br><span class="line"><span class="string">  它会把所有的图片缩放成缩略图。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">  <span class="built_in">print</span>(message)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后我们用 <code>printHelp ()</code> 来运行它。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printHelp ()</span><br></pre></td></tr></tbody></table></figure>
-
-<p>运行一个函数又被称为 * 调用 * 一个函数。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-functions/#more" rel="contents">
+              <a class="btn" href="/programming/swiftswift-optionals/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -722,7 +722,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -790,20 +790,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -858,12 +858,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">152k</span>
+    <span title="站点总字数">189k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:18</span>
+    <span title="站点阅读时长">2:52</span>
 </div>
 
         

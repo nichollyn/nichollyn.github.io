@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://theinfinitegame.tech').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="源 创建和绑定视图1 创建项目和探索 Canvas要点：  创建项目时 User Interface 选择 “SwiftUI” 基础扩展：演示 Xcode 界面布局，菜单 SwiftUI 文件的两部分：描述视图内容和布局的主结构体，预览 显示隐藏 Canvas 面板快捷键 演示实时预览 （改变 body 里的代码） SwiftUI 开发体验的核心卖点之一进阶资源：声明式 UI 、Flutter 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大纲 | SwiftUI 教程">
+<meta property="og:url" content="https://theinfinitegame.tech/uncategorized/outline-swiftui-tutorials/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="源 创建和绑定视图1 创建项目和探索 Canvas要点：  创建项目时 User Interface 选择 “SwiftUI” 基础扩展：演示 Xcode 界面布局，菜单 SwiftUI 文件的两部分：描述视图内容和布局的主结构体，预览 显示隐藏 Canvas 面板快捷键 演示实时预览 （改变 body 里的代码） SwiftUI 开发体验的核心卖点之一进阶资源：声明式 UI 、Flutter 和">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-27T02:25:01.000Z">
+<meta property="article:modified_time" content="2020-02-27T09:08:57.810Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="tech">
+<meta property="article:tag" content=" life">
+<meta property="article:tag" content=" philosophy">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://theinfinitegame.tech/uncategorized/outline-swiftui-tutorials/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>大纲 | SwiftUI 教程 | The Infinite Game</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/uncategorized/outline-swiftui-tutorials/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大纲 | SwiftUI 教程
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-27 10:25:01" itemprop="dateCreated datePublished" datetime="2020-02-27T10:25:01+08:00">2020-02-27</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://developer.apple.com/tutorials/swiftui/creating-and-combining-views" target="_blank" rel="noopener">源</a></p>
+<h1 id="创建和绑定视图"><a href="#创建和绑定视图" class="headerlink" title="创建和绑定视图"></a>创建和绑定视图</h1><h2 id="1-创建项目和探索-Canvas"><a href="#1-创建项目和探索-Canvas" class="headerlink" title="1 创建项目和探索 Canvas"></a>1 <strong>创建项目和探索 Canvas</strong></h2><p>要点：</p>
+<ol>
+<li>创建项目时 User Interface 选择 “SwiftUI”</li>
+<li>基础扩展：演示 Xcode 界面布局，菜单</li>
+<li>SwiftUI 文件的两部分：描述视图内容和布局的主结构体，预览</li>
+<li>显示隐藏 Canvas 面板快捷键</li>
+<li>演示实时预览 （改变 body 里的代码） SwiftUI 开发体验的核心卖点之一<br>进阶资源：声明式 UI 、Flutter 和 SwiftUI 的比较</li>
+</ol>
+<h2 id="2-自定义文本视图"><a href="#2-自定义文本视图" class="headerlink" title="2 自定义文本视图"></a>2 自定义文本视图</h2><p>要点：</p>
+<ol>
+<li>演示从预览中的检视 UI 元素，顺便提一下 modifier ，演示 Font modifier</li>
+<li>代码和视图的关系：source of truth (真理之源)</li>
+<li>演示预览、检视器和代码的自动同步</li>
+</ol>
+<h2 id="3-通过堆叠组合视图"><a href="#3-通过堆叠组合视图" class="headerlink" title="3 通过堆叠组合视图"></a>3 通过堆叠组合视图</h2><p>要点</p>
+<ol>
+<li>body 属性只返回一个视图<br>进阶资源：关于 body 属性的文章</li>
+<li>介绍三类 stacks ，HStack, VStack，ZStack</li>
+<li>介绍 Xcode 的结构化编辑：嵌套、检视、提取等。通用的 ” 右键菜单 “ ，SwiftUI 专有的 Cmd + 点击<br>进阶资源：Flutter</li>
+<li>演示 embed in vstack</li>
+<li>演示添加控件： + 按钮，快捷键</li>
+<li>演示两层 Stack 嵌套，演示 Spacer 的使用。<br>进阶资源：Spacer 的特性</li>
+<li>演示 padding<br>进阶资源：padding 的各种版本</li>
+</ol>
+<h2 id="4-创建自定义图像视图"><a href="#4-创建自定义图像视图" class="headerlink" title="4 创建自定义图像视图"></a>4 创建自定义图像视图</h2><p>要点</p>
+<ol>
+<li>简介 image view ，常见图片相关概念：mask，边缘 (border)，投影 (drop shadow)</li>
+<li>基础扩展： 添加资源到 asset catalog</li>
+<li>演示创建新的 SwiftUI 文件，CircleImage</li>
+<li>演示 Image () 构造器，演示 clipShaper modifier, Circle mask<br>进阶：mask 遮蔽</li>
+<li>演示 overlay， shadow</li>
+</ol>
+<h2 id="5-让-UIKit-和-SwiftUI-一起工作"><a href="#5-让-UIKit-和-SwiftUI-一起工作" class="headerlink" title="5 让 UIKit 和 SwiftUI 一起工作"></a>5 让 UIKit 和 SwiftUI 一起工作</h2><ol>
+<li>如何在 SwiftUI 中使用 UIKit 里的视图？关键词：wrap, UIViewRepresentable 协议<br>进阶资源：wrap，协议</li>
+<li>[学习曲线] 跳过，后续再来说明。<br>MapKit 相关知识点</li>
+</ol>
+<h2 id="6-构成视图-Compose-Views-——-需要练习"><a href="#6-构成视图-Compose-Views-——-需要练习" class="headerlink" title="6 构成视图 (Compose Views) —— (需要练习)"></a>6 构成视图 (Compose Views) —— (需要练习)</h2><p>要点：</p>
+<ol>
+<li>选择容器 —— stacks，文字、图像、Spacer、自定义视图</li>
+<li>调整视图 —— modifier，属性</li>
+<li>打开源链接，演示样例 app 界面变化过程。</li>
+</ol>
+<p>检查理解的测验。</p>
+<hr>
+<h1 id="构建-List-和导航"><a href="#构建-List-和导航" class="headerlink" title="构建 List 和导航"></a>构建 List 和导航</h1><h2 id="1-了解样本数据"><a href="#1-了解样本数据" class="headerlink" title="1 了解样本数据"></a>1 了解样本数据</h2><p>要点：</p>
+<ol>
+<li>理解 Model ，粗浅理解为数据，相对于视图<br>进阶资源：MVC 设计模式，结构体和类的区别，数据格式，json</li>
+<li>带一些新的关键字，协议</li>
+<li>进阶扩展：为什么要用扩展 Landmark 的 image 属性</li>
+<li>json 数据格式</li>
+</ol>
+<h2 id="2-创建-“行”-视图"><a href="#2-创建-“行”-视图" class="headerlink" title="2 创建 “行” 视图"></a>2 创建 “行” 视图</h2><p>要点</p>
+<ol>
+<li>创建新 SwiftUI 文件，起名 LandmarkRow.swift</li>
+<li>进阶扩展：存储属性和计算属性</li>
+<li>介绍 Image resizable modifier</li>
+</ol>
+<h2 id="3-自定义预览"><a href="#3-自定义预览" class="headerlink" title="3 自定义预览"></a>3 自定义预览</h2><p>要点</p>
+<ol>
+<li>previewLayout<br>进阶资源：previewDevice</li>
+</ol>
+<h2 id="4-创建列表"><a href="#4-创建列表" class="headerlink" title="4 创建列表"></a>4 创建列表</h2><p>要点</p>
+<ol>
+<li>List 的元素可以是动态的、静态的或者混合的<br>进阶资源：SwiftUI 的 List</li>
+<li>使用 List<br>进阶资源：</li>
+</ol>
+<h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+    
+    
+      
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://theinfinitegame.tech/uncategorized/outline-swiftui-tutorials/" title="大纲 | SwiftUI 教程">https://theinfinitegame.tech/uncategorized/outline-swiftui-tutorials/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/social-science/quantitative-method-philosophy-of-science/" rel="prev" title="计算方法 03 | 科学哲学">
+      <i class="fa fa-chevron-left"></i> 计算方法 03 | 科学哲学
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/social-science/quantitative-methods-scientific-method/" rel="next" title="计算方法 04 | 科学方法">
+      计算方法 04 | 科学方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建和绑定视图"><span class="nav-number">1.</span> <span class="nav-text">创建和绑定视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建项目和探索-Canvas"><span class="nav-number">1.1.</span> <span class="nav-text">1 创建项目和探索 Canvas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-自定义文本视图"><span class="nav-number">1.2.</span> <span class="nav-text">2 自定义文本视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-通过堆叠组合视图"><span class="nav-number">1.3.</span> <span class="nav-text">3 通过堆叠组合视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-创建自定义图像视图"><span class="nav-number">1.4.</span> <span class="nav-text">4 创建自定义图像视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-让-UIKit-和-SwiftUI-一起工作"><span class="nav-number">1.5.</span> <span class="nav-text">5 让 UIKit 和 SwiftUI 一起工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-构成视图-Compose-Views-——-需要练习"><span class="nav-number">1.6.</span> <span class="nav-text">6 构成视图 (Compose Views) —— (需要练习)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建-List-和导航"><span class="nav-number">2.</span> <span class="nav-text">构建 List 和导航</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-了解样本数据"><span class="nav-number">2.1.</span> <span class="nav-text">1 了解样本数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建-“行”-视图"><span class="nav-number">2.2.</span> <span class="nav-text">2 创建 “行” 视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-自定义预览"><span class="nav-number">2.3.</span> <span class="nav-text">3 自定义预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-创建列表"><span class="nav-number">2.4.</span> <span class="nav-text">4 创建列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5"><span class="nav-number">2.5.</span> <span class="nav-text">5</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+      <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">195k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:57</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

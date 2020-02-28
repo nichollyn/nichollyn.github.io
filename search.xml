@@ -1,6 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>计算方法 04 | 科学方法</title>
+    <url>/social-science/quantitative-methods-scientific-method/</url>
+    <content><![CDATA[<h1 id="实证周期-Empirical-Cycle"><a href="#实证周期-Empirical-Cycle" class="headerlink" title="实证周期 (Empirical Cycle)"></a>实证周期 (Empirical Cycle)</h1><p>The empirical cycle captures the process of coming up with hypotheses about how stuff works and testing these hypotheses against empirical data in a systematic and rigorous way.</p>
+<p>实证周期是指提出事物运作原理的假说，并使用经验数据来系统地、严格地检验这些假说的过程。</p>
+<p>It characterizes the hypothetical deductive approach to science.</p>
+<p>它描述了科学研究中的假说演绎法。</p>
+<p>Being familiar with the five different phases of the cycle, will really help you keep the big picture in mind, especially when we get into specifics of things like experimental design and sampling。</p>
+<p>熟悉这个过程中的五个阶段，可以很好地帮助你抓住重点，尤其是当我们涉及到具体的细节，比如实验设计和采样的时候。</p>
+<p><img src="/images/sci-methods_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>So we’ll start with the observation phase, obviously. This is where the magic happens. It’s where an observation, again, obviously, sparks the idea for a new research hypothesis. We might observe an intriguing pattern, an unexpected event. Anything that we find interesting and that we want to explain.</p>
+<p>让我们从观察阶段讲起，这个阶段很神奇。在这一步中，观察激发了灵感，并由此提出一项新的研究假说。我们可能观察到了有趣的规律，一个令人感到意外的事件，或者是任何一件我们感兴趣并试图解释的事情。</p>
+<p>How we make the observation really doesn’t matter. It can be a personal observation, an experience that somebody else shares with us. Even an imaginary observation that takes place entirely in your head.</p>
+<p>至于我们是如何进行观察的则不重要。它可以是个人的观察，或者是其他人和我们分享的他们的经历，甚至可以是完全发生在你脑袋里的想象。</p>
+<p>Of course, observations generally come from previous research findings, which are systematically obtained. But in principle, anything goes. Okay, so, let’s take as an example a personal observation of mine.</p>
+<p>当然，这些观察通常来自之前的研究发现，这些发现是系统地获得的。但是理论上来讲，万物皆可。让我们来举个例子，这个例子是我的个人观察。</p>
+<p>I have a horrible mother-in-law. I’ve talked to some friends and they also complain about their mother-in-law. So this looks like an interesting pattern to me. A pattern between type of person and likability.</p>
+<p>我有个糟糕的婆婆。我和我的朋友们聊了聊，他们也对另一半的妈妈也颇有微词。我认为这是一个有趣的规律，这是一个关于某类人是否讨人喜欢的规律。</p>
+<p>Okay, so the observation phase is about observing a relation in one or more specific instances. In the induction phase this relation, observed in specific instances, is turned into a general rule. That’s what induction means, taking a statement that’s true in specific cases, and inferring that the statement is true in all cases, always. For example, from the observation that my friends and I have horrible mothers-in-law, I can induce the general rule that all mothers-in-law are horrible. Of course, this rule or hypothesis is not necessarily true. It could be wrong. That’s what the rest of the cycle is about, testing our hypothesis.</p>
+<p>那么，观察阶段我们要做的就是观测一个或者多个例子中的一组关系。在归纳阶段，我们把在具体事例中观察到的这种关系，归纳为一条通用法则。通过一个在特例中成立的命题，推测此命题在所有情况下都成立，这就是归纳的含义。例如，通过观察得知我和朋友们都觉得我们另一半的妈妈很糟糕，我归纳得出 “所有的婆婆或岳母都令人讨厌” 这条通用法则。当然，这条法则，或者说假说，并不一定是成立的，它可能是错误的。这就是周期中其他那些阶段的目的，就是检验我们的假说。</p>
+<p>In the induction phase, inductive reasoning is used to transform specific observations into a general rule or hypothesis. In the deduction phase, we deduce that the relations specified in the general rule should also hold in new, specific instances. From our hypothesis, we deduce an explicit expectation or prediction about new observations. For example, if all mothers-in-law are indeed horrible, then if I asked ten of my colleagues to rate their mother-in-law as either likeable, neutral or horrible, then they should all choose the category horrible.</p>
+<p>在归纳阶段中，具体的观测被归纳推理，转换为一条通用法则或假说。在演绎阶段中我们推导出在新的具体个例中，这条通用法则也应该成立。通过我们的假说，我们推导出一个明确的预测，也就是关于新观测的预测。比如，如果所有人的婆婆或岳母都确实很讨厌，那我让十个同事按喜欢、一般、讨厌给婆婆 / 岳母分类，他们所有人应该都会选择讨厌这一栏。</p>
+<p>Now in order to make such a prediction we need to determine the research setup. We need to decide on a definition of the relevant concepts, measurement instruments, procedures, the sample that we’ll collect new data from，et cetera.</p>
+<p>为了能够做出这样的预测，我们需要确定研究的设定，我们需要确定相关概念的定义、测量仪器、步骤以及我们用来采集新数据的样本，等等。</p>
+<p>So, in the deduction phase, the hypothesis is transformed by deductive reasoning. And specification of the research setup into a prediction about new empirical observations.</p>
+<p>所以，在演绎阶段中，假说被演绎推理转变，并将研究具体化，设定出一个对新实证观察的预测。</p>
+<p>In the testing phase, the hypothesis is actually tested, by collecting new data, and comparing them to the prediction.</p>
+<p>在测试阶段，我们通过收集新的数据，并将它们与预测相对比，来实际检测假说。</p>
+<p>Now this almost always requires statistical processing, using descriptive statistics to summarize the observations for us, and inferential statistics to help us decide if the prediction was correct.</p>
+<p>现在，这通常需要用描述性统计学的统计手段，来为我们归纳观察结果，并用推论性统计学来帮助我们判断预测是否准确。</p>
+<p>In our simple example we don’t need statistics. Let’s say that eight out of ten colleagues rate their mother-in-law as horrible. But, two rate her as neutral. Now we can see right away, our prediction didn’t come true, it was refuted. All ten mothers-in-law should have been rated as horrible. So in the testing phase new empirical data is collected, and with the aid of statistics, the prediction is confirmed or disconfirmed. In the evaluation phase we interpret the results in terms of our hypothesis. If a prediction was confirmed, this only provides provisional support for a hypothesis. It doesn’t mean that we’ve definitively proven the hypothesis, because it’s always possible that in the future, we will find somebody who just loves their mother-in-law. In our example, the prediction was actually refuted.</p>
+<p>我们那个简单的例子里不需要用到统计学。假设十个同事中有八个人认为他们的婆婆 / 岳母很讨厌。但是，另外两个勾选了 “一般”，因此结果立竿见影 —— 我们的假设并不成立，它被驳倒了。按照我们的假设，十个人都应认为婆婆 / 岳母很讨厌。因此，在测试阶段，我们会收集新的实证数据，并通过统计学的帮助来确认我们的预测是否成立。在评估阶段，我们用假说来解释实验结果。如果与预测一致，那么它就暂时为假说提供了支持。这并不意味着我们已经最终证实假说了，因为总有可能在将来，会有人说他们就是很爱自己的婆婆 / 岳母。在我们的例子中，预测实际上被驳倒了。</p>
+<p>This doesn’t mean we should reject our hypothesis outright. In many cases there are plausible explanations for our failure to confirm. If these explanations have to do with a research setup, the hypothesis is preserved and investigated again. But, with a better research design. In other cases, the hypothesis is adjusted based on the results. The hypothesis is rejected and discarded only in very rare cases. In the evaluation phase, the results are interpreted in terms of the hypothesis, which is provisionally supported, adjusted, or rejected.</p>
+<p>这并不意味着我们要将我们的假说全部否认。在很多情况下，我们能够为没能成功证实预测找到可信的解释。如果这个解释与实验设定相关，那么这个假说就能保留下来重新论证，但是需要一个更好的实验设计。在其他情况下，人们会基于结果调整假说。只有在一些很罕见的情况下，假说才会被推翻并放弃。在评估阶段，我们会用假说来解释实验结果，假说会被暂时支持、调整或者推翻。</p>
+<p>The observations collected in the testing phase can serve as new specific observations in the observation phase. This is why the process is described as a cycle. New empirical data obtained in the testing phase give rise to new insights that lead to a new run through. And that’s what empirical science comes down to. We try to hone in on the best hypotheses and build our understanding of the world as we go through the cycle, again and again.</p>
+<p>在测试阶段收集到的观测数据，会被当作下一轮观测阶段的新具体观测数据。这就是为什么这个过程被称为周期。测试阶段中，新的实证数据给人们以新的灵感，启发他们进行新一轮的研究，这就是实证科学的本质所在。我们试图打造出最好的假说，并在周期循环往复中建立起我们对这个世界的认识。</p>
+<p><img src="/images/sci-methods_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<hr>
+<h1 id="确认-否认-Confirm-Disconfirm"><a href="#确认-否认-Confirm-Disconfirm" class="headerlink" title="确认 / 否认 (Confirm/Disconfirm)"></a>确认 / 否认 (Confirm/Disconfirm)</h1><p>We’re going to take a look at how we should interpret results that confirm or disconfirm our predictions, and whether we should confirm or reject our hypothesis accordingly.</p>
+<p>我们将学习应当如何解释确认或否认了预测的研究结果，以及是否应当相应地确认或驳回我们的假说。</p>
+<p>Let’s consider the hypothesis that all mothers-in-law are horrible. I formulated this hypothesis based on personal observations.</p>
+<p>让我们假设所有婆婆 / 岳母都是令人厌恶的，我基于个人观察建立了这一假说。</p>
+<p>To test the hypothesis, I came up with a research setup. I selected to measure horribleness using a rating scale with the options likeable, neutral and horrible. I also decided to collect data from ten colleagues in my department.</p>
+<p>为了检验这一假说，我构思了一套研究方案。我选择一组等级选项来测量讨厌程度，包括喜欢、中立和讨厌，同时我决定在系里的十位同事中收集数据。</p>
+<p>With research set up in place, I formulated the following prediction. If the hypothesis all mothers-in-law are horrible is true, then all ten colleagues should choose the category horrible to describe their mother in law.</p>
+<p>建立好研究方案后，我设定了以下预测：如果所有婆婆 / 岳母都是令人厌恶的假说是正确的，那么十位同事都应选择讨厌这一项去形容他们对婆婆 / 岳母的感受。</p>
+<p><img src="/images/sci-confirm_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>Okay, let’s look at confirmation first. Suppose all ten colleagues rated their mother-in-law as horrible, the prediction is confirmed, but this doesn’t mean the hypothesis’ been proven. It’s easily conceivable that we will be proven wrong in the future. If we were to repeat the study, we might find a person that simply adores their mother-in-law.</p>
+<p>让我们先来看确认。假定十位同事都将他们的婆婆 / 岳母评为讨厌，那么预测就被确认了。但这并不意味着假说被证实了。很容易想象，如果我们重复这一研究，我们可能发现有人喜爱他们的婆婆 / 岳母，我们的假说会被证明是错误的。</p>
+<p>The point is that confirmation is never conclusive. The only thing we can say is that our hypothesis is provisionally supported. The more support from different studies, the more credence we afford a hypothesis. But we can never prove it.</p>
+<p>关键要点是确认永远不是决定性的。我们唯一能说的是我们的假说暂时被支持了，有越多不同的研究支持假说，这一假说就越可信，但我们永远不能证实它。</p>
+<p>Let me repeat that. No scientific empirical statement can ever be proven once and for all. The best we can do is produce overwhelming support for a hypothesis. Okay, now let’s turn to disconfirmation. Suppose only eight out of ten colleagues rate their mother-in-law as horrible, and two actually rate her as neutral.</p>
+<p>我再次强调， <strong>没有任何科学实证命题能够被一劳永逸地证实</strong> ，我们能做到的最大程度是为假说提供压倒性的支持。那么现在我们来看否认。假定十位同事中只有八位将他们的婆婆 / 岳母评为讨厌，两位选择了一般。</p>
+<p>Obviously, in this case our prediction turned out to be false. Logically speaking, empirical findings that contradict the hypothesis should lead to its rejection. If our hypothesis states that all swans are white, and we then find black swans in Australia, we can very conclusively reject out hypothesis.</p>
+<p>显然，这时我们的预测就是错误的。从逻辑上说，实证发现若与假说相悖，则应驳回假说。如果我们的假说是所有天鹅都是白的，随后在澳大利亚发现了黑天鹅，我们就可以确凿地驳回这一假说。</p>
+<p><img src="/images/sci-confirm_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>And practice, however, especially in the social sciences, there are often plausible alternative explanations for our failure to confirm. These are in fact so easy to find, that we rarely reject the hypothesis outright. In many cases, these explanations have to do with methodological issues. The research design or the measurement instrument wasn’t appropriate. Maybe relevant background variables weren’t controlled for. Et cetera, et cetera.</p>
+<p>然而在实践中，尤其在社会科学领域，关于我们未能对假说进行确认这一点，总有似乎可信的替代解释。事实上我们很容易发现，我们很少能完全驳回某一假说。多数情况下，这些解释与方法论的问题有关，研究设计或是测量工具不合适 又或是没有为相关背景变量设置对照，等等。</p>
+<p>Coming back to our mother-in-law example, I could have made a procedural error while collecting responses from the two colleagues who rated their mother-in-law as neutral. Maybe I forgot to tell them that their responses were confidential, making them uncomfortable to choose the most negative category.</p>
+<p>回到婆婆 / 岳母的例子，我可能在收集那两位选择一般的同事的回答时，犯了程序上的错误。或许我忘记告诉他们这些回答是保密的，从而使得他们不能自在地选择最消极的选项。</p>
+<p>Is there a plausible methodological explanation for the failure to confirm? We preserve the hypothesis and instead choose to reject the auxiliary, implicit assumptions concerning the research design and the measurement.</p>
+<p>对于假说的失验，是否有方法学上的替代解释呢？我们没有抛弃、而是保留了假说，却抛弃了那些关于研究方案设计和计量方法的辅助、隐含的假设。</p>
+<p>We investigated the original hypothesis again, only with a better research setup.</p>
+<p>我们再次研究原始假说，但用一套更好的研究方案。</p>
+<p>Sometimes result do give rise to a modification of the hypothesis. Suppose that the eight colleagues who did have horrible mothers-in-law were all women, and the other two were men. Perhaps all mothers-in-law are indeed horrible but only to their daughters in law.</p>
+<p>有时研究结果确实会导致对假说的修改。假定确实有令人厌恶的婆婆的八位同事都是女性，而另外两位是男性。或许只有对媳妇来说，婆婆才都是真正令人厌恶的。</p>
+<p>If we alter the hypothesis slightly by adding additional clauses, it only applies to daughters-in-law. And strictly speaking, we’re rejecting the original hypothesis, sort of.</p>
+<p>如果我们对假说稍作修改，增加只适用于媳妇这一条件。严格来说，我们从某种程度上驳回了原始假说。</p>
+<p>Of course the new hypothesis is essentially the same as the original one, just not as general and therefore not as strong. An outright rejection, or radical adjustment of a hypothesis is actually very rare in social sciences. Progress is made in very small increments, not giant leaps.</p>
+<p>当然，新的假说在本质上与原始假说是相同的，只是不那么笼统，故而也不那么强硬。对假说完全的驳回或根本上的调整，在社会科学领域其实是很少见的。进步并非一蹴而就，而是积跬步，成千里。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>social-science</category>
+      </categories>
+      <tags>
+        <tag>计量方法</tag>
+        <tag>社会科学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大纲 | SwiftUI 教程</title>
+    <url>/uncategorized/outline-swiftui-tutorials/</url>
+    <content><![CDATA[<p><a href="https://developer.apple.com/tutorials/swiftui/creating-and-combining-views" target="_blank" rel="noopener">源</a></p>
+<h1 id="创建和绑定视图"><a href="#创建和绑定视图" class="headerlink" title="创建和绑定视图"></a>创建和绑定视图</h1><h2 id="1-创建项目和探索-Canvas"><a href="#1-创建项目和探索-Canvas" class="headerlink" title="1 创建项目和探索 Canvas"></a>1 <strong>创建项目和探索 Canvas</strong></h2><p>要点：</p>
+<ol>
+<li>创建项目时 User Interface 选择 “SwiftUI”</li>
+<li>基础扩展：演示 Xcode 界面布局，菜单</li>
+<li>SwiftUI 文件的两部分：描述视图内容和布局的主结构体，预览</li>
+<li>显示隐藏 Canvas 面板快捷键</li>
+<li>演示实时预览 （改变 body 里的代码） SwiftUI 开发体验的核心卖点之一<br>进阶资源：声明式 UI 、Flutter 和 SwiftUI 的比较</li>
+</ol>
+<h2 id="2-自定义文本视图"><a href="#2-自定义文本视图" class="headerlink" title="2 自定义文本视图"></a>2 自定义文本视图</h2><p>要点：</p>
+<ol>
+<li>演示从预览中的检视 UI 元素，顺便提一下 modifier ，演示 Font modifier</li>
+<li>代码和视图的关系：source of truth (真理之源)</li>
+<li>演示预览、检视器和代码的自动同步</li>
+</ol>
+<h2 id="3-通过堆叠组合视图"><a href="#3-通过堆叠组合视图" class="headerlink" title="3 通过堆叠组合视图"></a>3 通过堆叠组合视图</h2><p>要点</p>
+<ol>
+<li>body 属性只返回一个视图<br>进阶资源：关于 body 属性的文章</li>
+<li>介绍三类 stacks ，HStack, VStack，ZStack</li>
+<li>介绍 Xcode 的结构化编辑：嵌套、检视、提取等。通用的 ” 右键菜单 “ ，SwiftUI 专有的 Cmd + 点击<br>进阶资源：Flutter</li>
+<li>演示 embed in vstack</li>
+<li>演示添加控件： + 按钮，快捷键</li>
+<li>演示两层 Stack 嵌套，演示 Spacer 的使用。<br>进阶资源：Spacer 的特性</li>
+<li>演示 padding<br>进阶资源：padding 的各种版本</li>
+</ol>
+<h2 id="4-创建自定义图像视图"><a href="#4-创建自定义图像视图" class="headerlink" title="4 创建自定义图像视图"></a>4 创建自定义图像视图</h2><p>要点</p>
+<ol>
+<li>简介 image view ，常见图片相关概念：mask，边缘 (border)，投影 (drop shadow)</li>
+<li>基础扩展： 添加资源到 asset catalog</li>
+<li>演示创建新的 SwiftUI 文件，CircleImage</li>
+<li>演示 Image () 构造器，演示 clipShaper modifier, Circle mask<br>进阶：mask 遮蔽</li>
+<li>演示 overlay， shadow</li>
+</ol>
+<h2 id="5-让-UIKit-和-SwiftUI-一起工作"><a href="#5-让-UIKit-和-SwiftUI-一起工作" class="headerlink" title="5 让 UIKit 和 SwiftUI 一起工作"></a>5 让 UIKit 和 SwiftUI 一起工作</h2><ol>
+<li>如何在 SwiftUI 中使用 UIKit 里的视图？关键词：wrap, UIViewRepresentable 协议<br>进阶资源：wrap，协议</li>
+<li>[学习曲线] 跳过，后续再来说明。<br>MapKit 相关知识点</li>
+</ol>
+<h2 id="6-构成视图-Compose-Views-——-需要练习"><a href="#6-构成视图-Compose-Views-——-需要练习" class="headerlink" title="6 构成视图 (Compose Views) —— (需要练习)"></a>6 构成视图 (Compose Views) —— (需要练习)</h2><p>要点：</p>
+<ol>
+<li>选择容器 —— stacks，文字、图像、Spacer、自定义视图</li>
+<li>调整视图 —— modifier，属性</li>
+<li>打开源链接，演示样例 app 界面变化过程。</li>
+</ol>
+<p>检查理解的测验。</p>
+<hr>
+<h1 id="构建-List-和导航"><a href="#构建-List-和导航" class="headerlink" title="构建 List 和导航"></a>构建 List 和导航</h1><h2 id="1-了解样本数据"><a href="#1-了解样本数据" class="headerlink" title="1 了解样本数据"></a>1 了解样本数据</h2><p>要点：</p>
+<ol>
+<li>理解 Model ，粗浅理解为数据，相对于视图<br>进阶资源：MVC 设计模式，结构体和类的区别，数据格式，json</li>
+<li>带一些新的关键字，协议</li>
+<li>进阶扩展：为什么要用扩展 Landmark 的 image 属性</li>
+<li>json 数据格式</li>
+</ol>
+<h2 id="2-创建-“行”-视图"><a href="#2-创建-“行”-视图" class="headerlink" title="2 创建 “行” 视图"></a>2 创建 “行” 视图</h2><p>要点</p>
+<ol>
+<li>创建新 SwiftUI 文件，起名 LandmarkRow.swift</li>
+<li>进阶扩展：存储属性和计算属性</li>
+<li>介绍 Image resizable modifier</li>
+</ol>
+<h2 id="3-自定义预览"><a href="#3-自定义预览" class="headerlink" title="3 自定义预览"></a>3 自定义预览</h2><p>要点</p>
+<ol>
+<li>previewLayout<br>进阶资源：previewDevice</li>
+</ol>
+<h2 id="4-创建列表"><a href="#4-创建列表" class="headerlink" title="4 创建列表"></a>4 创建列表</h2><p>要点</p>
+<ol>
+<li>List 的元素可以是动态的、静态的或者混合的<br>进阶资源：SwiftUI 的 List</li>
+<li>使用 List<br>进阶资源：</li>
+</ol>
+<h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+  </entry>
+  <entry>
     <title>计算方法 03 | 科学哲学</title>
     <url>/social-science/quantitative-method-philosophy-of-science/</url>
     <content><![CDATA[<h1 id="认识论-Epistemology"><a href="#认识论-Epistemology" class="headerlink" title="认识论 (Epistemology)"></a>认识论 (Epistemology)</h1><p>在把假说 - 演绎法作为获取世界知识的最佳途径之前。第一个问题是：现实的本性？什么是现实？什么存在？因此，我们首先要问，获得的知识到底是关于什么的知识。解决这类问题的哲学领域叫做 <strong>本体论 (ontology)</strong> —— 对存在的研究。第二个问题涉及获取知识的方法。假设的确有一个现实：原则上是可知的，那么我们能获取哪些现实的知识？怎么获取？哲学领域中考虑这类问题的叫 <strong>认识论 (epistemology)</strong> —— 认识的研究或理论。</p>
@@ -966,9 +1154,22 @@
   <entry>
     <title>极速统计教程之十九 | 比例的置信区间和置信水平</title>
     <url>/data-science/statistics-confidence-interval-for-proportion/</url>
-    <content><![CDATA[<h1 id="比例的置信区间"><a href="#比例的置信区间" class="headerlink" title="比例的置信区间"></a>比例的置信区间</h1><p>In the last couple of weeks I have<br>learned that newborn babies like to poo. They like to poo a lot. And it happens to be the case that my<br>daughter Lois especially likes to poo under specific circumstances. That is,<br>precisely when I’m changing her diaper. Seriously, once she decided to<br>answer nature’s call six times. I repeat, six times during<br>the diaper changing process. Is that normal? I’m not sure, but<br>I know how I could check it. Suppose that I asked a simple<br>random sample of 100 new parents if their baby likes to defecate while<br>his or her diaper is being changed. In this video, I’ll tell you how we can,<br>on the basis of such a study, construct a confidence interval to<br>estimate a population proportion. Say that 17% of my 100<br>respondents reported their babies like to poo while<br>the diapers is being changed. 83% reported their babies don’t do that. We thus have a proportion of 0.17, whose babies like to poo while<br>the diaper is being changed. When we construct<br>a confidence interval for a proportion, we employ the sampling<br>distribution of the sample proportion. We know that, as long as the sample is<br>large enough, this sampling distribution is normally distributed with a mean that<br>is equal to the population proportion, pi. And a standard deviation that is<br>equal to the square root of pi multiplied with one minus pi divided by n. We also know that the probability of<br>finding a sample proportion of less than about two standard deviations of the mean,<br>which is the population proportion, is 0.95. More precisely, if we look up the z score<br>which corresponds to this probability, we’ll find a value of 1.96. This means that we have a 95% chance<br>that our sample proportion will fall within 1.96 standard deviations<br>of our population proportion. This is what we call the margin of error. The formula with which we can compute<br>a 95% confidence interval looks like this. p plus and<br>minus 1.96 times the standard deviation of the sampling distribution<br>of the sample proportion. 1.96 is the z score that corresponds<br>to the 95% confidence level. So we could also write, p plus and minus the z score for the 95%<br>confidence level times the standard deviation of the sampling distribution<br>of the sample proportion. We’re talking about a 95% confidence level<br>here, that means that we can say that if we would draw an infinite number of<br>samples from a population in 95% of the cases, our confidence interval<br>would contain population proportion pi. However, as you might have noticed, we don’t know the value of<br>population proportion pi. So it is impossible to compute a standard<br>deviation of the sampling distribution of the sample proportion. We therefore substitute the population<br>parameter pi with an estimate, and this estimate is our sample statistic, P. This leads to the following formula. p plus and minus the z score for the 95%<br>confidence level times the estimated standard deviation of the sample<br>distribution of the sample proportion. Just like when we constructed the<br>confidence interval for a mean, we call this estimated standard deviation of the<br>sampling distribution the standard error. In contrast with the confidence interval<br>for a mean, when it comes to constructing a confidence interval for a proportion, we<br>don’t make use of the t distribution. And just stick with the standard<br>normal distribution. However, your data need to<br>satisfy one essential assumption. You should have at least 15 successes and<br>15 failures. In other words, n times p and n times 1 minus p need to be<br>larger than or equal to 15. If this is not the case, you cannot compute a confidence interval<br>on the basis of the discussed formula. Okay, let’s go back to our example. We have a proportion of 0.17 that reports that the baby poos while<br>the diaper is being changed. This is the formula we use. Let’s first compute the standard error. It’s the square root of 0.17<br>times 0.83 divided by 100. That makes about 0.038. The margin of error then<br>is 1.96 times 0.038. That’s about 0.07. 0.17 minus 0.07 equals 0.10 and 0.17 plus 0.07 equals 0.24. So our confidence interval<br>ranges from 0.10 to 0.24. This means that we can be 95% confident<br>that the population proportion falls between 0.10 and 0.24. Or, in other words,<br>if we would draw an infinite number of samples with n equals<br>100 from a population, and for every sample we would compute confidence<br>intervals with this margin of error, in 95% of the cases the population value<br>would fall within the confidence interval. This 95% confidence interval<br>demonstrates that most babies don’t like to poo while their<br>diaper is being changed. On the other hand,<br>it’s not that exceptional if they do poo. We can be 95% confident<br>that between 10 and 24% does poo during the changing process. Thank God, nothing is wrong<br>with my little baby, Lois. In fact, my theory is that my<br>daughter’s pooing habits are good news. That might well indicate that<br>she will be toilet trained soon. After all,<br>she doesn’t like to poo in the diaper. Now, let’s hope that later on,<br>she does like to poo in the toilet.</p>
+    <content><![CDATA[<h1 id="比例的置信区间"><a href="#比例的置信区间" class="headerlink" title="比例的置信区间"></a>比例的置信区间</h1><p>在过去的几周中我认识到新生儿喜欢排便，频繁地排便。恰好我的女儿 Lois 尤其喜欢在特定的情况下排便 —— 在我给她换尿布的时候。我说真的，一旦她决定上厕所 (answer nature’s call) ，一上就是六次。是的，六次，发生在换尿布的过程中。</p>
+<p><img src="/images/statistics_cip_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>这正常吗？我不确定，但我知道我需要搞清楚。假定我随机问 100 个新生儿的父母，他们的宝宝是否喜欢在换尿布时排便。在这一节教程中，我会告诉你，如何基于这样一个研究，构建一个估计总体比例的置信区间。</p>
+<p>假定我的 100 的受试者里有 17% 报告他们的宝宝喜欢在换尿布时排便， 83% 的受试者报告他们的宝宝不会这样做。我们由此得到一个 0.17 的比例，这个比例的新生儿父母的宝宝喜欢在换尿布时排便。当我们为比例构建置信区间时，我们引入样本比例的抽样分布。我们知道，只要样本足够大，这个抽样分布就是正态分布，并且均值等于总体比例 $\pi$ ，标准差 $\sigma<em>p$ 等于 $ \sqrt {\frac {\pi (1-\pi)}{n} } $ 。我们还知道，找到一个比例处于均值两个标准差范围内的样本的概率，同时也是总体的比例，是 0.95 。 更精确的说，如果我们对应概率的 z 分数，我们会得到 1.96 。这意味着我们有 95% 的机会确定我们的样本比例会落在总体比例 1.96 个标准差范围内，这被我们称为 <em>_误差界限 (margin of error)</em></em> 。我们用于计算 95% 置信区间的公式如下：</p>
+<script type="math/tex; mode=display">p\pm1.96\sigma_p , \sigma_p = \sqrt {\frac {\pi (1-\pi)}{n}}</script><p>其中 1.96 是对应 95% 置信区间的 z 分数。所以上面的公式我们也可以写成：</p>
+<script type="math/tex; mode=display">p\pm {Z_{95\%}}\sigma_p , \sigma_p = \sqrt {\frac {\pi (1-\pi)}{n}}</script><p>我们这里讨论的是 95% 的置信区间，意味着如果我们能从总体抽取无限多的样本，那么 95% 的情况下，我们的置信区间会包含总体比例 $\pi$ 。不过，你可能注意到，我们并不知道总体比例 $\pi$ 的值，所以就无从计算样本比例的抽样分布的标准差。因此，我们用一个估计值来代替总体参数 $\pi$ ，这个估计值来自样本统计量， $P$ ，由此得到下面的公式：</p>
+<script type="math/tex; mode=display">p\pm {Z_{95\%}}(se) , \se = \sqrt {\frac {p (1-p)}{n}}</script><p>就像我们为均值构建置信区间时一样，我们称这个估计的标准差为 <strong>标准误差 (standard error)</strong> ，又称为标准误。 作为与均值的置信区间的对比，在构建比例的置信区间时，我们并不使用 t 分布。不过，你的数据需要满足一个必要的假定。你必须要有至少 15 个成功和 15 个失败。换言之， $np \geq 15$ 并且 $n (1-p) \geq 15$ 。如果不满足，那 你就不能基于上面的公式计算置信区间。现在回到例子，我们有 0.17 的比例报告宝宝在换尿布时排便。公式如下：</p>
+<script type="math/tex; mode=display">p\pm {Z_{95\%}}(se) , \se = \sqrt {\frac {p (1-p)}{n}}</script><p>让我们先计算标准误差。0.17 乘以 0.83 ，除以 100 ，然后取平方根，结果是 0.038 。误差界限等于 1.96 乘以 0.038 ，约定于 0.07 。 0.17 减去 0.07 等于 0.10 ，0.17 加上 0.07 等于 0.24 。因此我们的置信区间是 0.10 到 0.24 。这意味着我们有 95% 的信心说，总体比例落在 0.10 到 0.24 之间。或者说，如果我们能抽取无限多容量为 100 的样本，那么对于每个样本我们计算这个误差界限下的置信区间，有 95% 的情况这个区间会包含总体的比例。这个 95% 置信区间说明，大部分宝宝并不喜欢在换尿布时排便。但另一方面，如果他们确实在这个时候排便了，也并奇怪。我们有 95% 的信心说有 10% 到 24% 的宝宝确实会在换尿布时排便。</p>
 <hr>
-<h1 id="置信水平"><a href="#置信水平" class="headerlink" title="置信水平"></a>置信水平</h1><p>The 95% confidence interval, tells us that we can be 95%<br>confident that our point estimate, which could be a mean or a proportion,<br>falls within our confidence interval. Or in other words, it tells us that if we<br>would draw an infinite number of samples, similar to our extra sample and<br>for every sample, we would compute a 95% confidence<br>interval with a similar margin of error. In 95% of the cases, the population value would fall<br>within this confidence interval. This, of course, also means that<br>in 5% of the cases, this method will produce an interval that does not<br>contain the actual population parameter. If you would like to reduce the chance of<br>an incorrect inference, you could go for a larger confidence interval,<br>such as, for instance, 99%. In this video, I will tell you how<br>you can change your confidence level. And what the consequences are,<br>of doing so. Imagine you asked a sample<br>of 100 new parents, if the babies like to answer nature’s<br>call, during the diaper changing process. 17% reported that, this is the case. Our sample, proportion p,<br>thus equals 0.17. The formula to compute a 95% confidence<br>interval for a proportion is, p plus and minus the z score for the 95% confidence<br>level, times the standard error, which equals the square root of p,<br>multiplied with 1, minus p divided by n. You can look up a z score for<br>a 95% confidence level, in the z table. Look at this standard<br>normal distribution here. When you have a 0.95 probability,<br>that your value falls within z standard errors from the mean, that means, that<br>0.025 probability falls in the two tails. If you look up the z scores,<br>which are displayed here in the z table, we find values of plus or minus 1.96. You can see that here. We can now easily compute the interval,<br>that’s 0.17 plus and minus 1.96 times the standard error<br>which is the square root of 0.17, times 0.83, divided by 100. This leads to a confidence interval<br>with the end point 0.10 and 0.24. You can now imagine, that it is not so difficult to construct intervals<br>with other confidence levels. Let’s first look at the 99%<br>confidence interval. This is the formula. p plus or minus the z score for the 99% confidence<br>level, times the standard error. The only difference is,<br>the different z score. Look at this standard normal distribution. When you have a 0.99 probability that your<br>value falls within z standard errors from the mean, that means, that 0.005<br>probability falls in the two tails. If we look up the z scores,<br>which are indicated here. We find values of plus and minus 2.58. You can see that here. We can now compute the interval. That is 0.17, plus and minus 2.58,<br>times the standard error. Which was 0.038. This leads to a confidence interval<br>with the endpoints 0.07 and 0.27. For the 90% confidence level,<br>we find a z score of 1.645. This leads to a confidence<br>interval of 0.17, plus and minus 1.645, times 0.038. That makes a confidence interval<br>with the endpoints of 0.11 and 0.23. I have here displayed confidence<br>intervals graphically. You can see that a higher confidence level<br>leads to a wider confidence interval. In other words, the more confident we<br>are that we draw a correct inference, the larger of margin of error. That means, that we have to compromise<br>between confidence and precision. As one gets better, the other gets worse. We never settle for a 100% confidence<br>interval, because the margin of error then is far too large, which means that our<br>conclusions are not very informative. In most cases,<br>the 95% confidence interval is used. We can also use other confidence intervals<br>when we construct a confidence interval to estimate a population mean. Suppose, we’ve asked a sample<br>of 30 new parents in Amsterdam, how much hours of sleep they’ve lost<br>after the first child was born. The mean is 2.6 hours per night. And the standard deviation<br>is 0.9 hours per night. This is the formula we use,<br>to construct a 95% confidence interval. x-bar, plus and minus the t score for<br>the 95% confidence level, times the standard error. Which equals the sample<br>standard deviation, divided by the square<br>root of the sample size. Now, what is the t score for<br>95% confidence level? That’s dependent on the degrees of<br>freedom, which equals n minus 1. That is, 30 minus 1 is 29. In the t table, we should look in<br>the column of the 95% confidence level and in the row of 29 degrees of freedom. That gives a t score of 2.045. The confidence interval becomes 2.6<br>plus and minus 2.045, times 0.9, divided by the square root of 30. That gives an interval from 2.26 to 2.94. If we would want to construct an interval<br>with a confidence level of 99%, we simply replace the t score for the 95%<br>level with the t score for the 99% level. You can look it up in the table,<br>it’s 2.756. The confidence interval is 2.6 plus and<br>minus 2.756, times 0.9,<br>divided by the square root of 30. That leads to an interval<br>from 2.15 to 3.05. You can also easily do that for<br>other confidence levels. Let me conclude this video by<br>giving you a step by step plan for constructing a confidence interval. First, decide which confidence<br>level you want to use. For instance, do you settle for<br>the regular 95% level? Or do you want to be more confident and<br>less precise? Or more precise and less confident? Second, decide if you’re dealing<br>with a proportion or a mean. If you’re interested in a proportion,<br>you work with the z distribution, and if you’re interested in a mean,<br>you have to use the t distribution. So, in the case of a proportion,<br>you look up the relevant z score and in the case of a mean,<br>you look up the relevant t score. Don’t forget,<br>that if you’re interested in a mean, you should also compute the degrees of<br>freedom which is equal to n minus 1. Third, compute the endpoints<br>of the confidence interval. And finally, four,<br>interpret the results substantively. That’s it. If you’re not 95% confident now that<br>you can construct a confidence interval yourself, rewatch<br>the last couple of videos.</p>
+<h1 id="置信水平"><a href="#置信水平" class="headerlink" title="置信水平"></a>置信水平</h1><p>95% 的置信区间，告诉我们对于我们的点估计有 95% 的可信度，这个点估计可以是均值或者比例。或者说，如果能够抽取无限多的样本，近似于我们当前的样本，对所有的样本基于相同的误差界限计算 95% 的置信区间。那么 95% 的情况下，总体的参数值回落在这个置信区间内。同时也意味着， 5% 的情况，这个方法会产生一个不包含实际总体参数的区间。</p>
+<p>如果你希望减少错误推断的可能性，你可以诉诸更大的置信区间，比如说 99% 。这一节中，我将向你演示如何改变置信水平，以及这么做会带来什么结果。</p>
+<p>99% 置信区间和 95% 置信区间的唯一区别是不同的 z 分数，通过查询 z 表，代入公式，最终我们算得 99% 置信区间是 0.07 到 0.27 。对于 90% 的置信区间，结果是 0.11 到 0.23 。</p>
+<p>我以图形演示，你会看到，更高的置信水平导致更宽的置信区间。换言之，我们想获得可信度越高的推断，那么就要接受更宽的误差界限。因此，我们需要在可信度和精度之间折中。在多数情况下，我们采用 95% 置信区间。</p>
+<p><img src="/images/sstatistics_cil.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>这个原理同样适用于均值的置信区间，区别在于在比例中，我们查询相关的 z 分数而在均值的案例中，我们查询相关的 t 分数，并且均值的计算中还要用到自由度，即 n 减去 1 。</p>
+<hr>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1006,59 +1207,44 @@
 <p>区间估计是一个最有可能包含总体实际参数值的数字区间。基于我们的样本均值 2.6 小时，我们可以预测，比如说，你家乡新生儿父母每晚睡眠减少的平均小时数介于 2.3 小时到 2.9 小时之间。</p>
 <p>这个区间包含总体参数值的概率，被我们称为 <strong>置信水平 (confidence level)</strong> ，置信水平总是一个接近 1 的值，多数情况下是 0.95 。接下来我们将讨论有 95% 置信水平的区间。</p>
 <a id="more"></a>
-
 <hr>
 <h1 id="已知总体标准差，求均值的置信区间"><a href="#已知总体标准差，求均值的置信区间" class="headerlink" title="已知总体标准差，求均值的置信区间"></a>已知总体标准差，求均值的置信区间</h1><p>假设我们知道 60 个年轻父母的样本在第一个小孩出生后睡眠减少小时数的标准差是 0.9 小时，也知道总体的标准差是 1.1 小时。（实践中，不太可能知道这个参数，但这里我们先假定你知道）</p>
 <p>这一节中，我们将学习如何基于样本信息和总体的标准差来构造 <strong>置信区间 (confidence interval)</strong> 。首先，我们来解释一下这样一个置信区间应该如何解读。</p>
 <p>为了构造一个置信区间，我们需要用到样本均值的抽样分布。毕竟，我们是在处理一个来自总体的样本。 我们知道，只要样本足够大，抽样分布就是正态分布的，并且均值等于总体的均值，标准差等于总体的标准差除以样本数 n 的平方根。我们还知道，找到距离样本均值少于等于两个标准差的概率是 0.95 。更精确的，如果查询对应概率的 z 分数，我们会得到 -1.96 和 1.96 。</p>
 <p>这意味着我们有 95% 的机会令样本均值落在总体均值 1.96 个标准差范围内。 1.96 个标准差的距离我们称为 <strong>误差界限 (margin error)</strong> 。误差界限告诉我们用样本均值 $ \bar x $ 估计总体均值的准确程度。 95% 置信区间的公式如下：</p>
-<img src="/images/ci_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>它是由点估计或者样本均值加减误差界限，即 1.96 个标准差。注意我们是在处理样本均值的抽样分布。因此分布的标准差等于 $ \frac {\sigma}{\sqrt {n}} $ 。接下来请集中注意力，因为过程会有点复杂。 </p>
 <p>假设你抽取一个样本，样本均值由某个点表示，从均值往两侧有一根线表示误差界限。它们一起构成了 95% 的置信区间。如果样本均值落在红色区域，则置信区间包含总体均值 $ \mu $ 。如果样本均值不落在红色区域，则置信区间不包含总体均值 $ \mu $ 。我们讨论的是 95% 的置信区间，这意味着随机选择一个样本，它包含总体均值的概率是 0.95 ，不包含总体均值的 0.05 。换言之，如果我们抽取无限多个样本， 95% 的情况，我们的置信区间会包含总体的均值。</p>
 <p>现在让我们回到例子。例子中样本均值是 2.6 小时。总体标准差 1.1 。样本容量是 60 ，现在我们有了计算置信区间需要的全部数字。公式如下：</p>
-<p>$$ \bar x\pm1.96\sigma_{\bar x} $$</p>
-<p>我们知道 $ \sigma_{\bar x} = \frac {\sigma}{\sqrt {n}} $ ，即 $ \frac {1.1}{\sqrt {60}} $ ，得到 0.142 。接下来计算误差界限， 1.96 乘以 0.142 ，约等于 0.28 。样本均值等于 2.6 ，因此 95% 置信区间是 2.6 减去 0.28 到 2.6 加上 0.28 的区间，即 2.32 到 2.88 。我们可以说，我们有 95% 的信心确定这个区间包含了实际的总体均值。更精确地说，如果我们从总体中抽取无限多个大小为 60 的样本，并且对于每个样本，我们计算误差界限， 95% 的情况下，总体的均值会落在样本的置信区间内。</p>
-<img src="/images/ci_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<script type="math/tex; mode=display">\bar x\pm1.96\sigma_{\bar x}</script><p>我们知道 $ \sigma_{\bar x} = \frac {\sigma}{\sqrt {n}} $ ，即 $ \frac {1.1}{\sqrt {60}} $ ，得到 0.142 。接下来计算误差界限， 1.96 乘以 0.142 ，约等于 0.28 。样本均值等于 2.6 ，因此 95% 置信区间是 2.6 减去 0.28 到 2.6 加上 0.28 的区间，即 2.32 到 2.88 。我们可以说，我们有 95% 的信心确定这个区间包含了实际的总体均值。更精确地说，如果我们从总体中抽取无限多个大小为 60 的样本，并且对于每个样本，我们计算误差界限， 95% 的情况下，总体的均值会落在样本的置信区间内。</p>
+<p><img src="/images/ci_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>如果新生儿父母的这种境况会持续一年，我们有 95% 的信息说，这些人会减少 2.32 乘以 365 小时到 2.88 乘以 365 小时的睡眠时间，或者说， 846.8 小时到 1,051.2 小时，又或者说， 35.3 到 43.8 个整天。</p>
 <hr>
 <h1 id="未知总体标准差，求均值的置信区间"><a href="#未知总体标准差，求均值的置信区间" class="headerlink" title="未知总体标准差，求均值的置信区间"></a>未知总体标准差，求均值的置信区间</h1><p>95% 置信区间用于评估总体的均值，它告诉我们我们有 95% 的信息这个区间包含实际的总体均值。利用这个公式 $ \sigma_{\bar x} = \frac {\sigma}{\sqrt {n}} $ ，你可以计算区间的两个端点。这个公式有一个问题，为了计算置信区间，你需要知道总体的标准差。然而，我们通常并不知道这个参数。毕竟，我们本来就在用样本推测总体的参数。</p>
 <p>这一节中，我们将学习如何在不知道总体参数的情况下做出推断。解决方案是我们估计总体的标准差，因而我们要引入另一个分布，它叫 <strong>T 分布</strong> 。让我来告诉它如何工作。</p>
-<p>想象我们问了 60 个年轻家庭他们在有了第一个孩子之后睡眠时间少了多少个小时，均值是 2.6 小时，标准差是 0.9 小时。为了构建一个 95% 的置信区间，我们需要用到 $\bar x\pm1.96 \sigma_{\bar x}$ ，<br>或者可以写成 $\bar x\pm {Z_{95 %}} \sigma_{\bar x}$ 。这一次，我们不知道总体的标准差。</p>
-<img src="/images/ci_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>因此我们用样本的标准差来估计总体的标准差，公式变成: $\bar x\pm {Z_{95 %}} s_e$ ，其中 $ s_e = \frac {s}{\sqrt {n}} $</p>
-<img src="/images/ci_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>我们把 $ s_e $ 这个估计的抽样分布的标准差称为 <strong>标准误差 (standard error)</strong> 。但是因为我们现在是估计标准差，所以我们在计算中引入了额外的误差。基于此，我们引入另一个分布， z 分布。由于额外的误差，我们现在使用 T 分布，公式如下。</p>
-<p>$\bar x\pm {t_{95 %}} s_e$</p>
-<img src="/images/ci_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p>想象我们问了 60 个年轻家庭他们在有了第一个孩子之后睡眠时间少了多少个小时，均值是 2.6 小时，标准差是 0.9 小时。为了构建一个 95% 的置信区间，我们需要用到 $\bar x\pm1.96 \sigma<em>{\bar x}$ ，<br>或者可以写成 $\bar x\pm {Z</em>{95 \%}} \sigma_{\bar x}$ 。这一次，我们不知道总体的标准差。</p>
+<p><img src="/images/ci_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>因此我们用样本的标准差来估计总体的标准差，公式变成: $\bar x\pm {Z_{95 \%}} s_e$ ，其中 $ s_e = \frac {s}{\sqrt {n}} $</p>
+<p><img src="/images/ci_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>我们把 $ se $ 这个估计的抽样分布的标准差称为 <strong>标准误差 (standard error)</strong> 。但是因为我们现在是估计标准差，所以我们在计算中引入了额外的误差。基于此，我们引入另一个分布， z 分布。由于额外的误差，我们现在使用 T 分布，公式如下。</p>
+<p>$\bar x\pm {t_{95 \%}} se$</p>
+<p><img src="/images/ci_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>现在让我来详细解释 t 分布和 t 分数。 t 分布跟标准正态分布非常之相似，它是钟形的，对称的，并且均值是 0 。但是，它有一点点区别。 因为我们现在是估计抽样分布的标准差，我们引入了额外的误差。当我们的样本比较小时，这个误差很可观。 t 分布将这小样本的这个误差考虑在内了，因此它比标准正态分布稍微宽一点，标准差更大一些。如下：</p>
-<img src="/images/ci_5_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_5_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>黑色的分布是标准正态分布，蓝色的分布是 t 分布。 t 分布的准确形状取决于样本容量。样本越大，t 分布越接近标准正态分布。更准确的说， t 分布的形状取决于单一个参数，我们称为 <strong>自由度 (degrees of freedom)</strong> ，以 $ df $ 注记。 t 分布中的自由度等于样本容量 n - 1 。这意味着我们实际上有许多不同的 t 分布，每一个都有单独的 $ df $。比如，自由度为 2 的 t 分布：</p>
-<img src="/images/ci_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>自由度为 5 的 t 分布：</p>
-<img src="/images/ci_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_7.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>自由度为 30 的 t 分布：</p>
-<img src="/images/ci_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_8.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>可以看到，当我们有 30 或者更大自由度时， t 分布几乎就等同于标准正态分布。更准确的说，标准正态分布其实就是自由度等于无限的 t 分布。 </p>
-<img src="/images/ci_9.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_9.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>同标准正态分布和 z 分数一样，我们也可以为特定的 t 分数寻找累积概率。重要的区别在于，这些概率依赖于自由度。当你计算一个 95% 置信区间时，你可以为所有可能的自由度找到对应 95% 置信水平的 t 分数，这个表格称为 <strong>t 表格</strong> ，它和 z 表格类似。</p>
-<img src="/images/ci_10.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_10.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>让我用睡眠时间的例子来演示。样本中睡眠减少小时数的均值是 2.6 小时，标准差是 0.9 小时，样本容量是 60 。计算 95% 置信区间的公式：</p>
-<img src="/images/ci_11.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_11.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>让我们从标准误差开始，它等于样本标准差除以 n 的平方根，即 0.9 除以 60 的平方根，得到 0.116 。我们的标准误差，或者说，估计的样本均值的抽样分布的标准差等于 0.116 。为了计算误差界限，我们需要用标准误差乘以 95% 置信区间的 t 分数。如你所知， t 分数取决于自由度。自由度 df 等于 n - 1 。我们有 60 个样本，因此 60-1 的 50 。在 t 表格中，我们在列中查找 95% 置信水平，在行中查找 59 自由度。因为表格中没有报告 59 自由度，我们向下取 50 自由度。对应的 t 分数是 2.009 。</p>
-<img src="/images/ci_12.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/ci_12.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>因此我们用 0.116 乘以 2.009 ，大约 0.23 。从样本均值 2.6 中加减这个值后，得到我们的置信区间是 2.37 到 2.83 。我们有 95% 的信心认为这个区间包含实际的总体均值。</p>
 <p>为了计算总体均值的置信区间，有两个假定需要满足。首先，你的数据是随机获取的。换言之，样本必须是随机样本，否则你的发现就不是合法的。其次，总体必须近似正态分布。这一点可能是个问题，因为总体中的许多变量可能并不是正态分布的。不过，好消息是，采用 t 分布来构造置信区间，可以有效对抗第二个假设破坏。也就是说，即使违反了假设，这种统计方法仍然是健壮的。最后，在基于 t 分布构造置信区间是，你还需要对异常值保持机警。如果数据里有异常值，那么这个方法可能会失效。因此要记得在开始之前检查数据。</p>
 <hr>

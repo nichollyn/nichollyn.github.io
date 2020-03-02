@@ -223,6 +223,418 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/development/note-ios-map-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/development/note-ios-map-api/" class="post-title-link" itemprop="url">iOS 笔记 | 地图 API</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-26 13:22:08" itemprop="dateCreated datePublished" datetime="2020-02-26T13:22:08+08:00">2020-02-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/development/" itemprop="url" rel="index">
+                    <span itemprop="name">development</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>778</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CLLocationManager-CLLocationManagerDelegate"><a href="#CLLocationManager-CLLocationManagerDelegate" class="headerlink" title="CLLocationManager, CLLocationManagerDelegate"></a>CLLocationManager, CLLocationManagerDelegate</h1><p>监控目标区域，进入、离开，Beacon 相关</p>
+<h2 id="MKMapView-MKCoordinateRegion-MKMapItem"><a href="#MKMapView-MKCoordinateRegion-MKMapItem" class="headerlink" title="MKMapView, MKCoordinateRegion, MKMapItem,"></a>MKMapView, MKCoordinateRegion, MKMapItem,</h2><ul>
+<li>坐标 CLLocationCoordinate2D （CoreLocation）</li>
+<li>MKMapItem</li>
+<li>罗盘按钮 MKCompassButton</li>
+</ul>
+<ul>
+<li>用 Array:compactMap 获取一个可选型集合到非可选型且不包含 nil 的映射集合。</li>
+</ul>
+<h2 id="KVO-Compliant-KVO-兼容"><a href="#KVO-Compliant-KVO-兼容" class="headerlink" title="KVO Compliant (KVO 兼容)"></a>KVO Compliant (KVO 兼容)</h2><p>KVO is key-value observing.</p>
+<h2 id="MKLocalSearch-查找附近，MKLocalSearchCompleter"><a href="#MKLocalSearch-查找附近，MKLocalSearchCompleter" class="headerlink" title="MKLocalSearch 查找附近，MKLocalSearchCompleter"></a>MKLocalSearch 查找附近，MKLocalSearchCompleter</h2><h2 id="UISearchResultsUpdating"><a href="#UISearchResultsUpdating" class="headerlink" title="UISearchResultsUpdating"></a>UISearchResultsUpdating</h2><figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updateSearchResults (<span class="keyword">for</span> searchController: <span class="type">UISearchController</span>)</span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/development/note-watchos-minimum-viable-complication/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/development/note-watchos-minimum-viable-complication/" class="post-title-link" itemprop="url">watchOS 学习笔记 | 最小可行 Complication</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-20 14:43:35" itemprop="dateCreated datePublished" datetime="2020-02-20T14:43:35+08:00">2020-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/development/" itemprop="url" rel="index">
+                    <span itemprop="name">development</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>22k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>要做一个 watch app，逻辑上，你会先想到从主 UI 开始。毕竟，notfication 和 complication 是可选的。人们说到 app ，通常指的就是主 UI 。</p>
+<p>但是，如果要做一个在表盘用于浏览空气质量指数的 watch app ，你会先想到 complication 。 watchOS 设计的三大准则之一是 <strong>glanceable</strong> ，意味着用户能在扫一眼手表，以尽快的方式看到想要的信息，理想的时间最多几秒钟。 complication 可以让看到这些信息，比从 app 启动栏访问主 UI 快得多。</p>
+<p>不同于 iOS ，watchOS 的应用并不要求主 UI 一定得是最常用的使用方式 —— 如果用例使得通知和 complication 更合理的话。主 UI 可以充当用户想要查看更具体信息或者特定的动作时的 “回退” 方案。</p>
+</blockquote>
+<p>那么，为什么我们不跳过 view controller ，直接尝试构建一个 complication 呢？</p>
+<p>以下是 Kuba 构建的一个简单的 MVP 版本的 watch app ，只有一个 complication (支持 1~2 种变体)。这个 app 没有 UI ，主试图只有一个黑盒子，一行 WKInterface* 对象相关的代码都没有。</p>
+<p>这个没有 UI 的 watch app 的用途是获取空气质量的信息（PM10，PM2.5，$ NO_2 $ 等)，每个小时更新一次，但足够用了。</p>
+<p><img src="/images/minimum-complication-watch-app.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>下面先了解一些基础知识。</p>
+<hr>
+<h1 id="Complication-时间线"><a href="#Complication-时间线" class="headerlink" title="Complication 时间线"></a>Complication 时间线</h1><p>管理 complications 的 API 单独从 WatchKit 分离出来，位于 ClockKit 中，以 <code>CLK</code> 前缀标识。</p>
+<p>有一些 complication 在你抬腕时就是可见的。当手表的屏幕亮起，你希望立即看到渲染的 complication widget ，它显示的数据当下就必须是最新的 —— 用户很可能只看了它一秒钟不到，因此没有时间在这个时候启动网络请求。</p>
+<p>Apple 也不可能采用 7 天 24 小时的方式让应用在后台运行扩展 —— 电池撑不住。</p>
+<p>所以工作方式实际上是这样的：你的应用指定一个 <strong>complication data source</strong>  (<code>CLKComplicationDataSource</code>) ，然后每当它接收到新的数据时 (无论运行在前台或者后台)，它告诉 <strong>complication server</strong> (<code>CLKComplicationServer</code>) 通过数据源刷新数据。数据源返回一个 <strong>timeline</strong> 数据 (一个 <code>CLKComplicationTimelineEntry</code> 的对象) —— timeline 告诉 watchOS complication 在给定时间点到下一个时间点之前应该显示什么数字、文本、图标或者它们的组合。系统缓存这份数据。并且在正确的时间点自动更新显示的内容 —— 你的 app 只有在需要返回 timeline 时才会被唤起，但实际上也可以做到不需要唤起。你可以预先准备一整天的内容，只要你的数据足够提前。</p>
+<p>下图是一个经典的天气 app 的例子，点标记 timeline 实体，上面的线显示每个实体被展示的时长。</p>
+<p><img src="/images/timeline1.png" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>而这个是日历 app 的 complication ：</p>
+<p><img src="/images/timeline2.png" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>取决于 app 类型，你需要的数据可能是未来的，过去的，两者都有，或者只需要当前状态。</p>
+<p>在 Kuba 的案例中，他用的是过去的数据 —— 因为 PM10 这种数据不可能精确预测，它受到很多因素影响，某些是人为的 (比如烧煤取暖这类日常活动)</p>
+<h1 id="Time-Travel"><a href="#Time-Travel" class="headerlink" title="Time Travel"></a>Time Travel</h1><p>Timeline 的设计还用到 watchOS 的另外一个特性，叫做 <strong>“Time Travel”</strong> ，它使得你可以在表盘上向前或者向后滚动时间，并更新 complication —— 这使得你可以看到诸如一场比赛中比分变化的过程，或者一只股票在一天中股价变化的过程。</p>
+<p>watchOS 5 中这个特性被完全移除了，这意味着现在没办法看过去时间点的数据了。所以在实践中，实现处理过去数据这部分的 complication API 没有意义。</p>
+<p>未来的数据仍然有价值 —— 虽然没有办法直接滚动操作了，但是 time travel 还可以工作，只不过是单方向固定节奏了。</p>
+<p>有趣的是，这部分无用的 API 尚未被废弃，这意味着未来有回归的可能。</p>
+<h1 id="Comlication-家族"><a href="#Comlication-家族" class="headerlink" title="Comlication 家族"></a>Comlication 家族</h1><p>在 watchOS 5 中你可以选择多达 26 种样式的表盘。不同的表盘可以适应不同数量和形状的 complications 。这些形状或者 complication 空间的变体被称为 <strong>complication famlilies</strong> ，目前有 10-11 种 families 可用：</p>
+<ul>
+<li>Modular Small, 用于所有的经典模块化表盘，也可用于 Siri 表盘的角落</li>
+<li>Modular Large, 只能用在模块化表盘中间唯一的位置</li>
+<li>Circular Small, 用于一些不同的表盘 (e.g. Activity)</li>
+<li>Utilitarian Small (有 “flat” 变体) 和 Utilitarian Large, 用于占据表盘一半以上空间，展示一条水平的内容 (它有一个模式，容易跟 Circular Small 混淆)</li>
+<li>Extra Large, 只用在 X-Large 表盘上</li>
+<li>Graphic Corner, Graphic Circular, Graphic Bezel 和 Graphic Rectangular, 只用在 Apple Watch 4 系列的 Infograph 表盘</li>
+</ul>
+<p>你可以支持其中任意多你想要的家族子集，当然，理想情况下一个好的 app 是支持所有这些家族，因为不同的人偏好不同的表盘。</p>
+<p>项目中为了让事情简单一些，我们只添加了对 Modular Small 和 Circular Small 的支持（覆盖了 11 中表盘，如果没算错的话）。</p>
+<h1 id="内容模板"><a href="#内容模板" class="headerlink" title="内容模板"></a>内容模板</h1><p>由于资源的限制，你无法在 complication 空间随意绘制东西，你只能使用预定义的模板。模板限定了它们可以包含的内容类型和排布方式。你唯一的选择是选择一种模块，适配给定的空间，放入文本，图标或者值。</p>
+<p>举个例子， Circular Small 家族有 6 种可用的模块：</p>
+<p>.ringImage, 中间一个图标，然后一个围绕它的环，其他环的哪些部分被填充可以由你指定<br>.ringText, 中间是文本，然后一个围绕它的环 (实际中，文本通常是 1 到 3 位数字)<br>.simpleImage, 就是个简单的图标<br>.simpleText, 就是个标签<br>.stackImage, 上面一个小图标，下面是短的标签<br>.stackText, 两行短文本</p>
+<p>大部分模块都只有极其有限的空间用于展示内容，有的时候你需要绞尽脑汁想如何利用给定的空间。如果实在想不出来，那么放弃对特定 complication 家族的支持也是可以的。</p>
+<p>你的 app 会一些不同的状态 —— 例如，有或者没有数据，空或者非空数据列表，有或者没有进行中的活动等等。所以根据状态来选用不同的模块是可以的（比如，某些状态用数字，某些状态用图标）。每当你构建 timeline 时，你可以创建全新的模板对象并且用它们填充内容，所以只要你开心，甚至可以每次采用随机模板。</p>
+<h1 id="文本和图像-providers"><a href="#文本和图像-providers" class="headerlink" title="文本和图像 providers"></a>文本和图像 providers</h1><p>为了渲染不同类型内容的灵活性， timeline 数据并非简单地以 <code>String</code> 或者 <code>UIImage</code> 对象的形式返回，而是借助某种可用的 <strong>provide</strong> 对象封装。这些 provider 使得你的内容可以更加动态，根据时间和上下文变化。</p>
+<p>对于文本，最简单的选项是 <code>CLKSimpleTextProvider</code> ，你可以指定单一的字符串以及一个可选的简短版本，如果空间无法容纳完整字符串，则选取简短版本。</p>
+<p>作为替代方案，有几种时间相关内容的 provider 可供选择：</p>
+<ul>
+<li><code>CLKDateTextProvider</code> 输出日期 (日 / 月)</li>
+<li><code>CLKTimeTextProvider</code> 输出特定时间 (小时 / 分钟)</li>
+<li><code>CLKTimeIntervalTextProvider</code> 输出时间范围 (from-to)</li>
+<li><code>CLKRelativeDateTextProvider</code> 输出自某个时间开始或者到某个时间结束 (例如 “2 小时后”)</li>
+</ul>
+<p>上面最后一种会随着时间的流逝自动更新，你只需要配置一次目标时间戳，而不用每小时或者更频繁地手动更新，例如 “5 小时后”，“4 小时后” 等等。</p>
+<p>对于图像，你通常用 <code>CLKImageProvider</code> 。它让你指定一个模板图像（被渲染为单色）和一个颜色。多少情况下，这个颜色会被忽略，因为大部分表盘都是以用户选定的单一颜色渲染所有的 complications 。有一个叫 <code>CLKFullColorImageProvider</code> 的模块可以以全彩的方式渲染图像，但只在新的 Infograph 表盘才用到。</p>
+<p>模拟 Infograph 表盘上的 complications 还用到一些 <code>CLKGaugeProvider</code> —— 它们是用于配置新表盘角落里的彩色弧线。</p>
+<hr>
+<p>出发！</p>
+<p>首先，创建工程，使用模板 “watchOS &gt; iOS App with WatchKit App” ，确保 “Include Complication” checkbox 勾选。</p>
+<p>工程将包含 3 个 targets：</p>
+<ul>
+<li>SmogWatch, 它是 iOS app (这个案例里我们基本不碰这部分)</li>
+<li>SmogWatch WatchKit App, UI 部分，只包含了 storyboard, (包括主 UI 和可能的 notification 场景) 以及 asset catalog 。</li>
+<li>SmogWatch WatchKit Extension, 包含所有的 WatchKit 代码</li>
+</ul>
+<p>在导航栏中选择 “SmogWatch WatchKit App” 目标运行。</p>
+<p><img src="/images/sim-new-app.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<h1 id="设计模板"><a href="#设计模板" class="headerlink" title="设计模板"></a>设计模板</h1><p>如上文所提，为了让事情更简单，我们只是实现 Modular Small 和 Circular Small complication 家族。不过默认情况下所有的 complication 家族都是启用的，所以你需要禁用掉其他的。</p>
+<p>打开 “SmogWatch WatchKit Extension” target 的配置页，在 “General” tab 你会看见一个可以触发 complication 家族的列表：</p>
+<p><img src="/images/enabled-complications.png" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>接下来，要确定每个 complication 家族要采用什么模板。在 <a href="https://developer.apple.com/documentation/clockkit" target="_blank" rel="noopener">CloudKit 文档</a> 中，找到 Modular Small 家族。在它的页面上，你会看到 7 种可用的模板类以及它们的效果截屏。</p>
+<p>在我们的案例中，我们主要显示小数字，所以下面几种选项可能是合理的：</p>
+<ul>
+<li>显示数字，例如 “75” - 可读性没问题，但是第一眼看数字代表什么不明显</li>
+<li>以一个圆来显示数字 - 弧应该怎么算，没有上限怎么办？</li>
+<li>以上面是图标，下面是数字的方式显示</li>
+<li>以两行文本显示</li>
+</ul>
+<p>最后，我选择了像下面这样的样式：</p>
+<p><img src="/images/modular-small.png" width="10%" height="10%" style="margin: 10 auto;"></p>
+<p>这个方案解决了展示 app 是什么的类型，同时也支持解释不同类型参数的问题，缺陷是使得字体更小了，尤其是 3 个数字的情况。尽管仍然可读，但是 Circular Small 版本肯定效果不好。因此，对于 Circular Small ，选项相似，也选择了两行文本的版本。</p>
+<p><img src="/images/circular-small.png" width="7%" height="7%" style="margin: 10 auto;"></p>
+<p>上面这个可读性差很多，但是 Circular Small 是非常通用的 complication 家族，因此基本上对所有使用者都是一个挑战。Apple 自己的 complications ，比如世界时钟，日出、日落，看起来也没有好多少。我们这里可以放弃 “PM” ，但这样一来又搞不清 app 是干什么用的，所以折中，把 “PM10” 缩短为 “PM” 。有可能上面用图标效果会更好，读者可以尝试一下。</p>
+<hr>
+<h1 id="实现-Complication-数据源"><a href="#实现-Complication-数据源" class="headerlink" title="实现 Complication 数据源"></a>实现 Complication 数据源</h1><p>现在，打开样板代码 <code>ComplicationController</code> 类，这里已经数据源协议所有要求的方法了，一些是空实现，但其中大多数我们并不需要。</p>
+<p>注意，所有的方法都是通过一个 handler callback 返回数据的。这使得你可以通过某些异步的方式加载要求的数据 —— 理论上，你是可以按需在用到时再加载这些数据，但实际上我们绝不应该这么做。 </p>
+<p>所有的方法都传入一个 CLKComplication 对象作为参数，它让你知道系统现在正为哪一种 complication 向你询问数据，这个对象只有一个字段叫 family ，这意味着在一个 Modular 表盘上，你无法区分同族的两个 complication 实例，但是不同族的可以。</p>
+<p>因此，这个信息绝对是必须的 —— 不仅因为不同家族外观看起来不一样，也是为了让编译器匹配你返回的模板类型。</p>
+<p><code>CLKComplicationDataSource</code> 协议里只有 <code>getSupportedTimeTravelDirections</code> 和 <code>getCurrentTimelineEntry</code> 两个方法是必须得实现的，但我们会先从一个可选的方法开始讲。</p>
+<h1 id="样例模板"><a href="#样例模板" class="headerlink" title="样例模板"></a>样例模板</h1><p>我们要看的第一个方法是 <code>getLocalizableSampleTemplate</code> ，在文件的底部 —— 你有可能会需要在把 complication 添加到表盘之前先实现这个方法。</p>
+<p>这个方法让你返回一个 complication 的 “样例” 外观，它是当用户在表盘配置视图中设置 complication 时用到的。这里应当展示一些随机数据，表现你的 complication 一般情况下的外观，就像你在应用的网站或者应用商店上放的截图那样的东西。</p>
+<p>在这个方法中，我们需要返回一个 <code>CLKComplicationTemplate</code> 对象 —— 在实际的 timeline 中，我们也会返回一样的东西。不过这里不指定时间戳。对于两种 complication 家族，我们都用标准的 <code>CLKSimpleTextProvider</code> 来封装返回的文本。 在样例模板里，我们用 “50” 来代替真实值。</p>
+<p>下面是代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getLocalizableSampleTemplate</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">for</span> complication: CLKComplication,</span></span></span><br><span class="line"><span class="function"><span class="params">    withHandler handler: @escaping <span class="params">(CLKComplicationTemplate?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line">{</span><br><span class="line">    <span class="keyword">switch</span> complication.family {</span><br><span class="line">    <span class="keyword">case</span> .modularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateModularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM10"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"50"</span>)</span><br><span class="line">        handler (template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">case</span> .circularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateCircularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"50"</span>)</span><br><span class="line">        handler (template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">preconditionFailure</span>(<span class="string">"Complication family not supported"</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>记得总是返回匹配给定 complication 家族的模板。不幸的是，好像没有可以在编译期检查这个过程的机制。</p>
+<p>这里，我们为两种家族都选用了 “stack text” 模板，因此都有 <code>line1TextProvider</code> 和 <code>line2TextProvider</code> 属性。如果你选择另外的配置的话，可能的属性有 <code>imageProvider</code> ， <code>headerTextProvider</code> ， <code>ringStyle</code> 等等。</p>
+<p>如果系统向我们请求其他我们不支持的 complication 类别的话，我们在默认 case 抛出断言 —— 但这不应该发生，因为我们已经禁用所有其他类型的 complication 。用 <code>preconditionFailure</code> 触发崩溃是为了确保自己不忘掉一些东西，最终版本其实应该返回 nil 更安全。</p>
+<p>之所以先说这部分，是因为无论你在这个模板返回了什么，它都会被系统缓存。如果你改变了代码再次运行，你不会看到任何效果 —— 你需要从模拟器中删除 app ，重新安装以便更新版本。</p>
+<p>现在，当你运行 app ，你可以编辑表盘（通过用力按压 MacBook 的 touchpad ，或者在菜单 Hardware &gt; Touch Pressure），选择一个 complication 空间，并且选择你的 complication ：</p>
+<p><img src="/images/watch-face-editing-1.png" width="25%" height="25%" style="margin: 10 auto;"></p>
+<p>注意，默认你的 app 名是 app target 的完整名，这会有点长。为了把它改成更可读的，打开 WatchKit app target 的 <code>Info.plist</code> (注意，是 app 而不是 extension 的) 然后把 “Bundle display name” 改成 “SmogWatch” 。</p>
+<p>当你退出编辑模式并返回表盘，你会看到你放置 complication 的地方有一个空白的空间 —— 别急，我们接下来就着手处理这块。</p>
+<h1 id="getSupportedTimeTravelDirections"><a href="#getSupportedTimeTravelDirections" class="headerlink" title="getSupportedTimeTravelDirections"></a>getSupportedTimeTravelDirections</h1><p>这个方法告知系统你的 app 在过去、未来、两个方向或者只有当前时刻拥有数据。因为之前提到过去的数据已经不再使用了，所以只有返回 <code>.forward</code> 或者空列表是有意义的。由于我们并不需要预测未来的空气质量，所以我们只需要返回一个空的列表：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getSupportedTimeTravelDirections</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">for</span> complication: CLKComplication,</span></span></span><br><span class="line"><span class="function"><span class="params">    withHandler handler: @escaping <span class="params">(CLKComplicationTimeTravelDirections)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line">{</span><br><span class="line">    handler ([])</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这里返回的东西决定了系统是否会调用 <code>getTimelineStartDate</code> ， <code>getTimelineEndDate</code> ， <code>getTimelineEntries (for:before:limit:withHandler:)</code> 和 <code>getTimelineEntries (for:after:limit:withHandler:)</code> 这些方法，以询问你 timeline 在两个方向上延展的长度，时点。如果我们返回 <code>[]</code> ，那么系统只会询问当前时点。</p>
+<p>不过这些方法都是可选的，所以如果你都不实现它们， watchOS 会假定当前时点没有什么有趣的东西。</p>
+<h1 id="getCurrentTimelineEntry"><a href="#getCurrentTimelineEntry" class="headerlink" title="getCurrentTimelineEntry"></a>getCurrentTimelineEntry</h1><p>这是整个协议核心的代码，它是我们返回最新数据点的地方。</p>
+<p>timeline 数据是以一个或者多个 <code>CLKComplicationTimelineEntry</code> 对象返回的。一个 timeline 实体其实就是一个时间戳加上一个或者多个指派的数据 provider ，里面填充着你需要的数据。实体借由时间戳验证。</p>
+<p>目前我们还没有实际拥有数据，不过别担心 —— 我们可以先返回一个静态数值，比如 75 ，就像样例模板中的做法一样。我们使用当前时间作为时间戳，因为根据前面方法返回的设定，我们不会被询问任何在当前时点之前的时段数据。</p>
+<p>下面是 <code>getCurrentTimelineEntry</code> 的初始版本:</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getCurrentTimelineEntry</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">for</span> complication: CLKComplication,</span></span></span><br><span class="line"><span class="function"><span class="params">    withHandler handler: @escaping <span class="params">(CLKComplicationTimelineEntry?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line">{</span><br><span class="line">    <span class="keyword">let</span> entry: <span class="type">CLKComplicationTimelineEntry</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">switch</span> complication.family {</span><br><span class="line">    <span class="keyword">case</span> .modularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateModularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM10"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"75"</span>)</span><br><span class="line">        entry = <span class="type">CLKComplicationTimelineEntry</span>(date: <span class="type">Date</span>(), complicationTemplate: template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">case</span> .circularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateCircularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"75"</span>)</span><br><span class="line">        entry = <span class="type">CLKComplicationTimelineEntry</span>(date: <span class="type">Date</span>(), complicationTemplate: template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">preconditionFailure</span>(<span class="string">"Complication family not supported"</span>)</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    handler (entry)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>当你添加了以上两个方法，编译运行你的 app 到模拟器。你应该会在 complication 里看到我们配置的模板和数值：</p>
+<p><img src="/images/watch-complication-75.png" width="25%" height="25%" style="margin: 10 auto;"></p>
+<p>如果你还是没有看到效果，那可能是因为系统缓存了之前编译版本的状态。为了强制加载 complication ，你可以进入编辑模式，切到不同的 complication ，退出编辑模式。 然后再进入编辑模式，切回你的 complication 。</p>
+<h1 id="可选的方法"><a href="#可选的方法" class="headerlink" title="可选的方法"></a>可选的方法</h1><p>在数据源协议中还有一些其他的协议，但针对我们的用途，我们只需要用到 <code>getTimelineEntries (for:after:limit:withHandler:)</code> 。这个方法询问我们早前传入的 timeline 时点之后的时点。当我们写的 app 需要提前了解某个时点时，会用到这个方法。例如，天气预报，日历事件，todo list 上预定的任务等。不过，大部分 app 只需要显示当前实体就够了。</p>
+<p>我们在这个 app 中使用这个 API 的作用是，我们很可能需要在时点过去之后将未来版本的数据标记为过时。如果你查看的是 6 个小时前的空气质量，它很可能是没什么价值的，因为当前的空气很有可能已经发生显著的变化。在 Krakow ，这种变化可能发生在 2 个小时内。例如，起风或者风停了。所以，我们可能在几小时后自动隐藏掉当前数值，借助添加一个几小时后的 “重置” 数据来实现。如果我们成功地在每个小时更新了数据，那么备选的第二个时点的数据永远不会被展示，但是如果有些东西出错了，那么当时间变化足够长，会在时点到来时借助这个 API 来更新数据。</p>
+<p>我认为 watchOS 之前应该也是这么干的，至少在 Time Travel 功能里是这么做的 —— 文档里也提到了。不过这本该是 <code>getTimelineStartDate</code> 和 <code>getTimelineEndDate</code> 方法存在的意义 —— 但是由于这两个 API 不起作用 (Time Travel)，所以实现它们也没意义。 </p>
+<hr>
+<h1 id="从网络上获取真实数据"><a href="#从网络上获取真实数据" class="headerlink" title="从网络上获取真实数据"></a>从网络上获取真实数据</h1><p>对于第一个版本，我们用使用 Małopolska 地区空气监控系统的公共数据 (仅限波兰) 。</p>
+<p>前端通过一个挺复杂的 POST 请求，发送到 URL <a href="http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz" target="_blank" rel="noopener">http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz</a> ，然后解析返回的 Json 数据。</p>
+<p>这个主题并不是跟 watchOS 特定相关，它是特定于 web API —— 所以这里不详细描述，下面是拉取和解析数据的完整代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"> </span><br><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> <span class="type">DataURL</span> = <span class="string">"http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz"</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KrakowPiosDataLoader</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> dateFormatter: <span class="type">DateFormatter</span> = {</span><br><span class="line">        <span class="keyword">let</span> d = <span class="type">DateFormatter</span>()</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 不确定下面是否必须，安全起见 </span></span><br><span class="line">        <span class="comment">//see https://developer.apple.com/library/archive/qa/qa1480/</span></span><br><span class="line">        d.locale = <span class="type">Locale</span>(identifier: <span class="string">"en_US_POSIX"</span>)</span><br><span class="line"> </span><br><span class="line">        d.dateFormat = <span class="string">"dd.MM.yyyy"</span></span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 确保我们用的是 CET 时区 —— 比如说你是在莫斯科 </span></span><br><span class="line">        <span class="comment">// 你在 2 月 19 号午夜之后请求 19.02.2019 （这时候在波兰还是 2 月 18 号）</span></span><br><span class="line">        <span class="comment">// 你将拿不到数据 </span></span><br><span class="line">        d.timeZone = <span class="type">TimeZone</span>(identifier: <span class="string">"Europe/Warsaw"</span>)!</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">return</span> d</span><br><span class="line">    }()</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">let</span> dataStore = <span class="type">DataStore</span>()</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">let</span> session: <span class="type">URLSession</span> = {</span><br><span class="line">        <span class="keyword">let</span> config = <span class="type">URLSessionConfiguration</span>.ephemeral</span><br><span class="line">        config.timeoutIntervalForResource = <span class="number">10.0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="type">URLSession</span>(configuration: config)</span><br><span class="line">    }()</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">queryString</span><span class="params">()</span></span> -&gt; <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> query: [<span class="type">String</span>: <span class="type">Any</span>] = [</span><br><span class="line">            <span class="string">"measType"</span>: <span class="string">"Auto"</span>,</span><br><span class="line">            <span class="string">"viewType"</span>: <span class="string">"Parameter"</span>,</span><br><span class="line">            <span class="string">"dateRange"</span>: <span class="string">"Day"</span>,</span><br><span class="line">            <span class="string">"date"</span>: dateFormatter.string (from: <span class="type">Date</span>()),</span><br><span class="line"> </span><br><span class="line">            <span class="comment">//hardcoded ID for PM10 on a specific station</span></span><br><span class="line">            <span class="comment">//we'll make it configurable later</span></span><br><span class="line">            <span class="string">"viewTypeEntityId"</span>: <span class="string">"pm10"</span>,</span><br><span class="line">            <span class="string">"channels"</span>: [<span class="number">148</span>]</span><br><span class="line">        ]</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">let</span> jsonData = <span class="keyword">try</span>! <span class="type">JSONSerialization</span>.data (withJSONObject: query, options: [])</span><br><span class="line">        <span class="keyword">let</span> json = <span class="type">String</span>(data: jsonData, encoding: .utf8)!</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//don't ask me, that's what the API expects</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"query=\(json)"</span></span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">fetchData</span><span class="params">(<span class="number">_</span> completion: @escaping <span class="params">(Bool)</span></span></span> -&gt; ()) {</span><br><span class="line">        <span class="keyword">var</span> request = <span class="type">URLRequest</span>(url: <span class="type">URL</span>(string: <span class="type">DataURL</span>)!)</span><br><span class="line">        request.httpBody = queryString ().data (using: .utf8)!</span><br><span class="line">        request.httpMethod = <span class="string">"POST"</span></span><br><span class="line"> </span><br><span class="line">        <span class="type">NSLog</span>(<span class="string">"KrakowPiosDataLoader: sending request to %@ with %@ ..."</span>,</span><br><span class="line">            <span class="type">DataURL</span>, queryString ())</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">let</span> task = session.dataTask (with: request) { (data, response, error) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">var</span> success = <span class="literal">false</span></span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> error = error {</span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"KrakowPiosDataLoader: received error: %@"</span>, <span class="string">"\(error)"</span>)</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"KrakowPiosDataLoader: received response: %@"</span>,</span><br><span class="line">                    data != <span class="literal">nil</span> ? <span class="string">"\(data!.count) bytes"</span> : <span class="string">"(nil)"</span>)</span><br><span class="line">            }</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> data = data {</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> obj = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.jsonObject (with: data, options: []) {</span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">let</span> json = obj <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">Any</span>] {</span><br><span class="line">                        <span class="keyword">if</span> <span class="keyword">let</span> data = json [<span class="string">"data"</span>] <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">Any</span>] {</span><br><span class="line">                            <span class="keyword">if</span> <span class="keyword">let</span> series = data [<span class="string">"series"</span>] <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">Any</span>]] {</span><br><span class="line"> </span><br><span class="line">                                <span class="comment">//there would be more than one data series if we passed</span></span><br><span class="line">                                <span class="comment">//multiple "channel IDs" (e.g. for more than 1 station)</span></span><br><span class="line">                                <span class="keyword">if</span> <span class="keyword">let</span> first = series.first {</span><br><span class="line">                                    <span class="keyword">if</span> <span class="keyword">let</span> points = first [<span class="string">"data"</span>] <span class="keyword">as</span>? [[<span class="type">String</span>]] {</span><br><span class="line"> </span><br><span class="line">                                        <span class="comment">//the data series is an array of up to 26 hourly</span></span><br><span class="line">                                        <span class="comment">//measurements; we only take the last one for now</span></span><br><span class="line">                                        <span class="keyword">if</span> <span class="keyword">let</span> point = points.last {</span><br><span class="line">                                            <span class="keyword">let</span> date = <span class="type">Date</span>(</span><br><span class="line">                                                timeIntervalSince1970: <span class="type">Double</span>(point [<span class="number">0</span>])!</span><br><span class="line">                                            )</span><br><span class="line">                                            <span class="keyword">let</span> value = <span class="type">Double</span>(point [<span class="number">1</span>])!</span><br><span class="line"> </span><br><span class="line">                                            <span class="keyword">self</span>.dataStore.currentLevel = value</span><br><span class="line">                                            <span class="keyword">self</span>.dataStore.lastMeasurementDate = date</span><br><span class="line"> </span><br><span class="line">                                            <span class="type">NSLog</span>(<span class="string">"KrakowPiosDataLoader: saving data:"</span> +</span><br><span class="line">                                                <span class="string">"%.0f at %@"</span>, value, <span class="string">"\(date)"</span>)</span><br><span class="line"> </span><br><span class="line">                                            success = <span class="literal">true</span></span><br><span class="line">                                        }</span><br><span class="line">                                    }</span><br><span class="line">                                }</span><br><span class="line">                            }</span><br><span class="line">                        }</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> !success {</span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"KrakowPiosDataLoader: no data found"</span>)</span><br><span class="line">            }</span><br><span class="line"> </span><br><span class="line">            completion (success)</span><br><span class="line">        }</span><br><span class="line"> </span><br><span class="line">        task.resume ()</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>不要忘记在最后用 <code>resume ()</code> 启动任务。</p>
+<h3 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h3><ul>
+<li>我们向 API 请求 PM10 的数据，硬编码请求当天和特点地点。</li>
+<li>我们只取最后的测量结果 (多数情况下是最近一两个小时的数据)</li>
+<li>如果我们拿到数据，存储一个数字，表示 PM10 的浓度，以及测量的时间点</li>
+<li>通知调用方我们拿到或者没有拿到数据</li>
+</ul>
+<p>上面的代码用了老式的 Json 解析方法，因为我认为这样比较容易理解。</p>
+<p>我用老式的 <code>NSLog</code> 而不是 Swift 的 <code>print ()</code> ，是因为后者只会显示在 Xcode 的控制台，并不会记录到系统日志，所以在控制台 app 的诊断日志里看到，在某些情况下你需要在 app 没有连接 mac 时跟踪它的行为。</p>
+<p>还有，注意我们是在前台请求数据，用最基本的 URL session 。这不是通常我们最理想的应用方案 —— 理想的，所有的请求都应该是在后台 URL sessions 中完成，不过这里只是一个最小可用原型，先保持这样吧。</p>
+<p>不过我们通过把超时时间设置为每次请求不超过 10 秒钟来限制了 URL session。 这里 <code>timeoutIntervalForResource</code> 的用法，而不是 <code>timeoutIntervalForRequest</code> 或者 <code>timeoutInterval</code> 很重要，因为自上一次接收到数据包后，后面两个只会在空闲时间工作，而我们希望控制总的请求时间。之所以要控制总时间，是因为看起来这里边有一个针对后台任务的硬性限制，并且没有在文档中提到：如果一个 app 超出了 15 秒的后台运行时间，它会被立即杀死，崩溃报告如下：</p>
+<blockquote>
+<p>Termination Reason: CAROUSEL, Background App Refresh watchdog transgression. Exhausted wall time allowance of 15.00 seconds. Termination Description: SPRINGBOARD, CSLHandleBackgroundRefreshAction watchdog transgression: eu.mackuba.SmogWatch.watchkitapp.watchkitextension exhausted real (wall clock) time allowance of 15.00 seconds (…)</p>
+</blockquote>
+<p>为了便于你了解最后一次检测的时间点，我们把 <code>lastMeasurementDate</code> 时间戳存进了 <code>DataStore</code> ，这是一个我们可以用来实现之前提到的 “过时数据 特性的潜在结构。</p>
+<p>那么这个 <code>DataStore</code> 究竟是什么？其实只是 <code>UserDefaults</code> ：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> <span class="type">CurrentLevelKey</span> = <span class="string">"CurrentLevel"</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> <span class="type">LastMeasurementDate</span> = <span class="string">"LastMeasurementDate"</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataStore</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> defaults = <span class="type">UserDefaults</span>.standard</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">var</span> currentLevel: <span class="type">Double?</span> {</span><br><span class="line">        <span class="keyword">get</span> { <span class="keyword">return</span> defaults.object (forKey: <span class="type">CurrentLevelKey</span>) <span class="keyword">as</span>? <span class="type">Double</span> }</span><br><span class="line">        <span class="keyword">set</span> { defaults.<span class="keyword">set</span>(newValue, forKey: <span class="type">CurrentLevelKey</span>) }</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">var</span> lastMeasurementDate: <span class="type">Date?</span> {</span><br><span class="line">        <span class="keyword">get</span> { <span class="keyword">return</span> defaults.object (forKey: <span class="type">LastMeasurementDate</span>) <span class="keyword">as</span>? <span class="type">Date</span> }</span><br><span class="line">        <span class="keyword">set</span> { defaults.<span class="keyword">set</span>(newValue, forKey: <span class="type">LastMeasurementDate</span>)}</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>最后，我们需要添加一个例外域名到 WatchKit Extension target 的 App Transport Security 设置中，因为这个域名不支持 Https 。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>NSAppTransportSecurity<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">key</span>&gt;</span>NSExceptionDomains<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>monitoring.krakow.pios.gov.pl<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">key</span>&gt;</span>NSExceptionAllowsInsecureHTTPLoads<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<h1 id="显示真实数据"><a href="#显示真实数据" class="headerlink" title="显示真实数据"></a>显示真实数据</h1><p>为了实际加载数据，我们需要在某个地方调用这个类的方法。我们来看一看 <code>ExtensionDelegate</code> 这个类，它实现了 <code>WKExtensionDelegate</code> —— 基本上就是一个 WatchKit 版本的 <code>UIApplicationDelegate</code> 。就像所有的 app 代理， <code>WKExtensionDelegate</code> 有许多生命周期方法，这些方法会被系统在各种时刻调用： <code>applicationWillEnterForeground</code> ， <code>applicationDidBecomeActive</code> ， <code>applicationWillResignActive</code> 和 <code>applicationDidEnterBackground</code> 等等。</p>
+<p>这里头我们目前唯一会用到的是 <code>applicationDidFinishLaunching</code> 。这个方法会在 app 进程启动时被调用 —— 无论是通过 app launcher 或者通过 Xcode ，又或者从后台启动。只要是 app 需要被唤起，并且之前已经被系统清理掉的时候，这个周期都会运行 (通常在晚上，被系统杀死的情况经常发生) 。</p>
+<p>无论何时， app 启动或者在后台重启，我们都希望借助这个机会立即拉取最新的数据，如果我们得到响应，重新加载所有活动的 complication （活动的 complication 指那些在当前选择的表盘上显示的 complication）。</p>
+<p>所以我们将这样做：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">applicationDidFinishLaunching</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="type">NSLog</span>(<span class="string">"ExtensionDelegate: applicationDidFinishLaunching ()"</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="type">KrakowPiosDataLoader</span>().fetchData { success <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> success {</span><br><span class="line">            <span class="keyword">self</span>.reloadActiveComplications ()</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>为了拉取数据，我们调用了 KrakowPiosDataLoader 类，然后在有任何新数据的情况下重载加载 complications ，否则的话就不必了。在 watchOS 上，不要浪费时间做无用功，这是一条通用的准则。</p>
+<p>为了重新加载 complications ，我们得拿到活动 complication 的列表，这是借由全局共享的  <code>CLKComplicationServer</code> 实例来获得的，并且也通过它的 <code>reloadTimeline (for:)</code> 方法来重新加载那些活动的 complication 。如果打算在已经存在的 timeline 实体后追加新的 timeline 实体，我们也可以用另一个相似方法  <code>extendTimeline (for:)</code> ，两者的区别是前者我们希望立刻用新数据替换掉之前的数据。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reloadActiveComplications</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="keyword">let</span> server = <span class="type">CLKComplicationServer</span>.sharedInstance ()</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> complication <span class="keyword">in</span> server.activeComplications ?? [] {</span><br><span class="line">        server.reloadTimeline (<span class="keyword">for</span>: complication)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>上面的代码会触发一轮对你的 <code>CLKComplicationDataSource</code> 的调用 —— 有的时候是一会之后，不过通常几乎都是立刻发生。现在我们有了真实数据，我们可以回到之前写的 <code>getCurrentTimelineEntry</code> 方法，然后把占位的代码替换成实际的逻辑：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getCurrentTimelineEntry</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">for</span> complication: CLKComplication,</span></span></span><br><span class="line"><span class="function"><span class="params">    withHandler handler: @escaping <span class="params">(CLKComplicationTimelineEntry?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line">{</span><br><span class="line">    <span class="keyword">let</span> store = <span class="type">DataStore</span>()</span><br><span class="line">    <span class="keyword">let</span> entry: <span class="type">CLKComplicationTimelineEntry</span></span><br><span class="line">    <span class="keyword">let</span> date: <span class="type">Date</span></span><br><span class="line">    <span class="keyword">let</span> valueLabel: <span class="type">String</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> lastMeasurement = store.lastMeasurementDate, <span class="keyword">let</span> level = store.currentLevel {</span><br><span class="line">        valueLabel = <span class="type">String</span>(<span class="type">Int</span>(level.rounded ()))</span><br><span class="line">        date = lastMeasurement</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        valueLabel = <span class="string">"--"</span></span><br><span class="line">        date = <span class="type">Date</span>()</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">switch</span> complication.family {</span><br><span class="line">    <span class="keyword">case</span> .modularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateModularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM10"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: valueLabel)</span><br><span class="line">        entry = <span class="type">CLKComplicationTimelineEntry</span>(date: date, complicationTemplate: template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">case</span> .circularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateCircularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: valueLabel)</span><br><span class="line">        entry = <span class="type">CLKComplicationTimelineEntry</span>(date: date, complicationTemplate: template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">preconditionFailure</span>(<span class="string">"Complication family not supported"</span>)</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    handler (entry)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>现在，当我们运行 app 时，点击 home 按钮返回表盘时，我们会看到一个刚刚借助 API 加载的真实数据：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ExtensionDelegate: applicationDidFinishLaunching ()</span><br><span class="line">KrakowPiosDataLoader: sending request to http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz with</span><br><span class="line">query={"viewTypeEntityId": "pm10", "measType": "Auto", "viewType": "Parameter", "dateRange": "Day",</span><br><span class="line">"date": "24.02.2019", "channels": [148]} ...</span><br><span class="line">KrakowPiosDataLoader: received response: 1553 bytes</span><br><span class="line">KrakowPiosDataLoader: saving data: 46.4462 at 2019-02-24 10:00:00 +0000</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/watch-complication-46.png" width="34%" height="34%" style="margin: 10 auto;"></p>
+<hr>
+<h1 id="安排更新"><a href="#安排更新" class="headerlink" title="安排更新"></a>安排更新</h1><p>最后的拼图是确保我们可以按照有规律的间隔加载新的数据并重新加载 complication 。有一些场景你可以更新 complications ：</p>
+<ul>
+<li>当你的 app 处于前台时，你总是可以做这件事 —— 但你无法依赖它定期发生。</li>
+<li>当你接受到一些静默的推送通知时，尤其是专门为这种用途设计的 (借助 PushKit framework ，采用  PKPushTypeComplication 类型) —— 当你的数据以不规则间隔更新时，这种机制会有用 —— 当外部发生一些事件时。</li>
+<li>当 iPhone app 以某种方式接收到新的数据并把它传输给 watch 时</li>
+<li>通过计划定期的后台刷新 —— 当你希望拉取数据而不是被动等推送时，这种方式更好。</li>
+</ul>
+<p>注意，不管你采用哪种策略，对于我们刷新数据的频率以及完成刷新的用时，有许多限制。 (比如，每天不超过 50 个推送通知) —— 如果你用尽了所有的时间或者每天可用的推送数量，你将无法再在后台运行，有可能要等到第二天。对于这点约束，看起来没有什么特别好的方案可以绕过，你也不应该尝试去寻找这类方案。</p>
+<p>既然我们知道城市监测站每小时发送一次新的测量数据，我们会使用计划好的后台刷新来更新我们的 complication ，并且会在 <code>ExtensionDelegate</code> 中完成。</p>
+<p>为了确保我们的 app ，我们需要实现一样我称为 “后台刷新循环” 的东西：当 app 启动或者重启时，我们安排一次后台刷新，然后当 app 被这个后台刷新唤起时，我们做的第一件事就是安排下一次后台刷新，以确保若干时间后总有新的刷新被计划。</p>
+<p>我们会在所有其他事情之前开始做刷新计划，因为我们无法知道在我们的 app 被挂起或者杀死之前还有多少可用的时间。否则，如果在我们设置下一次刷新之前 app 就被挂起，那么 app 就相当于没设闹钟就睡过去了，那么它将会睡过头。 😉</p>
+<p>现在，让我们再看一下 <code>applicationDidFinishLaunching</code> 方法，我们需要在 web 请求发送之前增加一个新的方法调用 <code>scheduleNextReload ()</code> :</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">applicationDidFinishLaunching</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="type">NSLog</span>(<span class="string">"ExtensionDelegate: applicationDidFinishLaunching ()"</span>)</span><br><span class="line"> </span><br><span class="line">    scheduleNextReload ()</span><br><span class="line"> </span><br><span class="line">    <span class="type">KrakowPiosDataLoader</span>().fetchData { success <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> success {</span><br><span class="line">            <span class="keyword">self</span>.reloadActiveComplications ()</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="计算下一次刷新时间"><a href="#计算下一次刷新时间" class="headerlink" title="计算下一次刷新时间"></a>计算下一次刷新时间</h1><p>在计划下一次刷新前，我们首先需要定出下一次刷新的时机。</p>
+<p>为了优化后台刷新的耗时，尽可能利用好珍贵的后台时间，思考清楚我们的数据究竟需要在何时和以何种频率改变。一个很好的例子是 —— 证券交易只发生在工作时间，不在工作时间内，股票价格不会变化，所以在夜间重载不会改变的数据是没有意义的。</p>
+<p>我对获取数据的 API 做了一些测试，新的数据几乎总是 1 个整小时的 0 到 10 分钟内添加。所以我决定每小时请求一次刷新，总是在每小时的 15 分做这件事 (10:15 ， 然后 11:15， 然后 12:15 ，以此类推)。为了实现这种方式，我们需要一个辅助方法来让我们基于当前时间找到最接近 xx:15 的时间 —— 幸运的是，利用 NSCalendar API 很容易做到：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">nextReloadTime</span><span class="params">(after date: Date)</span></span> -&gt; <span class="type">Date</span> {</span><br><span class="line">    <span class="keyword">let</span> calendar = <span class="type">Calendar</span>(identifier: .gregorian)</span><br><span class="line">    <span class="keyword">let</span> targetMinutes = <span class="type">DateComponents</span>(minute: <span class="number">15</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">var</span> nextReloadTime = calendar.nextDate (</span><br><span class="line">        after: date,</span><br><span class="line">        matching: targetMinutes,</span><br><span class="line">        matchingPolicy: .nextTime</span><br><span class="line">    )!</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 如果和当前时间间隔小于 5 分钟，那么跳过，尝试下一个小时 </span></span><br><span class="line">    <span class="keyword">if</span> nextReloadTime.timeIntervalSince (date) &lt; <span class="number">5</span> * <span class="number">60</span> {</span><br><span class="line">        nextReloadTime.addTimeInterval (<span class="number">3600</span>)</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> nextReloadTime</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="计划后台刷新"><a href="#计划后台刷新" class="headerlink" title="计划后台刷新"></a>计划后台刷新</h1><p>最后，为了在计算好的未来时点请求更新，我们需要在 <code>WKExtension</code> (等价于 <code>UIApplication</code>) 上调用  <code>scheduleBackgroundRefresh</code> ：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">scheduleNextReload</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="keyword">let</span> targetDate = nextReloadTime (after: <span class="type">Date</span>())</span><br><span class="line"> </span><br><span class="line">    <span class="type">NSLog</span>(<span class="string">"ExtensionDelegate: scheduling next update at %@"</span>, <span class="string">"\(targetDate)"</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="type">WKExtension</span>.shared ().scheduleBackgroundRefresh (</span><br><span class="line">        withPreferredDate: targetDate,</span><br><span class="line">        userInfo: <span class="literal">nil</span>,</span><br><span class="line">        scheduledCompletion: { <span class="number">_</span> <span class="keyword">in</span> }</span><br><span class="line">    )</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>你传入的日期是你希望你的 app 被唤起的时间。当然，系统会把它看做一种提示 —— 你的 app 实际被唤起的时间还可能取决于各种因素（我猜测这其中包含电量，充电状态，网络访问，你请求刷新的频率，你每次刷新的耗时，等等）。所以，不要假定你的 app 总是能在固定的间隔运行。</p>
+<p>不过，基于我的测试，在实践中一个拥有一个活动 complication ，每隔一个小时更新的 app ，通常在 10 秒以后的请求时间，在白天的表现比在夜间充电的表现要好很多，或者 app 运行频繁，或者 app 处于 dock 但是没有 complication 时，后台任务被调用的机会更少。不在 dock 也不没有 complication 的 app ，几乎不被调用。</p>
+<p><code>scheduledCompletion</code> 块在文档中被描述为 “A block that is called by the system after the background app refresh task has completed” ，但是实际上它是在下一个刷新任务计划完成时就被立即执行。不过由于它是一个可选的参数，你可以提供一个空的块。至于 <code>userInfo</code> ，它可以传递一些元数据给后台任务的 handler ，但这里我们用不上。</p>
+<h1 id="处理后台任务"><a href="#处理后台任务" class="headerlink" title="处理后台任务"></a>处理后台任务</h1><p>watchOS 上的后台刷新是通过在各种时刻从后台唤起你的 app ，然后调用代理方法 <code>handle (_ backgroundTasks:)</code> ，传给它一个或者多个取决于上下文的 “后台任务”。这个方法对于你的 app 后台事务至关重要，不管你构建的 app 是什么类型，几乎一定要在这里做些事情。</p>
+<p>任务的类型有不少，但你应当做跟当时接收到的任务相关的工作。比如有的任务是处理 URLSession 返回的数据，有的任务是处理 iPhone 返回的数据，有的任务是处理 Siri 快捷方式，但是这里我们要处理的是一种通过之前的 <code>scheduleBackgroundRefresh</code> 发起的任务 —— 这是一种最普通的 <code>WKApplicationRefreshBackgroundTask</code> 。这种任务意味着你的 app 是由于你自己的请求而被唤起的，以便你可以运行一些后台的 URL 请求，更新你的 complication 等等。</p>
+<p>当 app 在后台被唤起时，在 <code>handle (_ backgroundTasks:)</code> 方法中，我们做的事情跟启动时的差不多 —— 我们计划下一次刷新，并尝试更新数据。注意，我们只用了 <code>WKApplicationRefreshBackgroundTask</code> ，忽略其他的任务类型。不过，在完成任务后，记得总是调用 <code>setTaskCompletedWithSnapshot ()</code> 方法，这很关键，即便对于那些被你忽略掉并且不处理的任务。不过，调用这个方法表明我们的事干完了，在这之后我们的 app 可能会被挂起。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handle</span><span class="params">(<span class="number">_</span> backgroundTasks: Set&lt;WKRefreshBackgroundTask&gt;)</span></span> {</span><br><span class="line">    <span class="keyword">for</span> task <span class="keyword">in</span> backgroundTasks {</span><br><span class="line">        <span class="keyword">switch</span> task {</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> backgroundTask <span class="keyword">as</span> <span class="type">WKApplicationRefreshBackgroundTask</span>:</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"ExtensionDelegate: handling WKApplicationRefreshBackgroundTask"</span>)</span><br><span class="line"> </span><br><span class="line">            scheduleNextReload ()</span><br><span class="line"> </span><br><span class="line">            <span class="type">KrakowPiosDataLoader</span>().fetchData { success <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">if</span> success {</span><br><span class="line">                    <span class="keyword">self</span>.reloadActiveComplications ()</span><br><span class="line">                }</span><br><span class="line"> </span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"ExtensionDelegate: completed WKApplicationRefreshBackgroundTask"</span>)</span><br><span class="line">                backgroundTask.setTaskCompletedWithSnapshot (<span class="literal">false</span>)</span><br><span class="line">            }</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            task.setTaskCompletedWithSnapshot (<span class="literal">false</span>)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>让 watchOS 模拟器运行 app 后台刷新任务需要一些技巧，即使你已经安排它们在一会之后运行。如果你测试时发现不工作，可以尝试随机切换 app ，主屏和表盘，直到后台刷新任务可以工作。</p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>就这些，我们完成了！🎉 我们得到一个每小时运行的 app ，从 web API 加载新数据，显示到你选择的表盘上，你只要抬腕就能看到它。</p>
+<p>依我看来，为了构建一个带 complication 的最小可行的 watch app ，你需要做这些事：</p>
+<ol>
+<li>确定你的 app 想要在 complication 上展示的最重要的东西。</li>
+<li>确定你的 complication 内容什么时候改变，你的 timeline 存放什么以及存在哪里。</li>
+<li>浏览 complication 家族以及对应可用的模板，确定哪些最适合你</li>
+<li>实现从 web 或者系统 API 加载数据的代码</li>
+<li>实现 complication 数据源要求的方法，以构建 <code>CLKComplicationTimelineEntry</code> 和 <code>CLKComplicationTemplate</code> 对象，以合适的方式展示你的内容。</li>
+<li>确保你的 app 定期更新，用计划的后台刷新或者借助推送通知 (分析你的数据变化的模式，以便优化后台时间)</li>
+<li>测试，测试，再测试，用任何你能想到的场景和组合 🙂</li>
+</ol>
+<p>如果你只是构建一个静态的 complication ，永远不更新，就像 Apple 的 “launcher” 型的 complications ， 比如 Breathe ， Maps ， Reminders 等等。那么，你只需要做这些事：</p>
+<ol>
+<li>为所有支持的 complications 挑选一个图标。</li>
+<li>实现数据源方法，用 “single icon” 模板返回单一实体的 timeline 。</li>
+</ol>
+<p>这种情况下你不需要计划后台刷新以更新 complication ，因为它永远不变。不过，由于 complication 需要链接到真实 app 时，也有大量工作需要做。 😉</p>
+<p>工程中的代码可以从这个仓库找到: <a href="https://github.com/mackuba/SmogWatch" target="_blank" rel="noopener">https://github.com/mackuba/SmogWatch</a> (master 分支最新代码，或者对应这篇文档的 post2 分支的版本)。 它是 WTFPL-licensed ，所以尽管拿去用，你可以分享给我你都做出什么好玩的东西！</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/development/note-watchos-big-picture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -654,258 +1066,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/social-science/quantitative-methods-what-science-is/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/social-science/quantitative-methods-what-science-is/" class="post-title-link" itemprop="url">计量方法 01 | 科学是什么？</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-07 14:40:56" itemprop="dateCreated datePublished" datetime="2020-02-07T14:40:56+08:00">2020-02-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/social-science/" itemprop="url" rel="index">
-                    <span itemprop="name">social-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="非科学的方法-Non-scientific-Methods"><a href="#非科学的方法-Non-scientific-Methods" class="headerlink" title="非科学的方法 (Non-scientific Methods)"></a>非科学的方法 (Non-scientific Methods)</h1><p>为了知道为什么我们需要科学方法，让我们来看看在日常生活中人们的认知基于什么。</p>
-<p><img src="/images/non-sci_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>人们可能会基于 <strong>直觉 (intuition)</strong> 或 <strong>信念 (belief)</strong> 而认为某事是正确的。</p>
-<p>让我们来看下我对我的猫 Misha 所拥有的坚定信念：我相信 Misha 在所有人中最爱我 —— 我就是知道他爱我胜过其他所有人，我能在内心深处感受到。那么这种信念算不算是知识的坚实基础？并不是，简单地相信某件事并不会让它成真。我们坚信不疑的事情可能最后被证明是假的。还有，如果有人持相反的观点会怎样？如果我的未婚夫认为 Misha 爱他多一些呢？</p>
-<p><img src="/images/non-sci_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p><strong>仅仅通过较量我们的观点，是无法得出谁对谁错的。</strong></p>
-<p>我们可以数每个观点的支持人数，然后得到一个大部分或是 <strong>一致同意的观点 (consensus)</strong> ，但是这也不能作为知识的坚实基础。仅因为大部分人认同某事是并不意味着它就是真的。几世纪以来，几乎人人都认为地球是平的，但结果证明他们错了 —— 地球是圆的。</p>
-<p>另一个知识的来源就是 <strong>权威 (authority)</strong> 的观点。这也不是一个很好的来源。一些诸如政治领袖、专家、科学家等权威的观点，也只是一种观点。权威或许能接触到更多或更好的知识，但他们出于个人利益也会推动自己的观点被大众接受，他们的职业和名誉都依赖于此。假设我的未婚夫找到了一个懂猫语的人，那人声称 Misha 更爱我的未婚夫。当然我会对这一专业观点表示怀疑，尤其当他是受我未婚夫雇佣的时候。我可以找到我自己的猫咪专家来和未婚夫的猫语者打擂台。但这时我们又有两个相反的观点了 —— 我们需要的是 <strong>证据 (evidence)</strong> 。</p>
-<p>那么我们该如何用证据来解决 Misha 更爱谁的争论呢？</p>
-<p>假设我总是 <strong>观察 (observe)</strong> 到每次下班回家后 Misha 总会过来坐在我的腿上而不是我未婚夫的腿上。我就运用了对客观世界，也就是对下班后 Misha 坐谁的腿上的 <strong>观察 (ovservation)</strong> 来证明我说的 Misha 更爱我这个 <strong>命题 (statement)</strong> 。</p>
-<p>以 <strong>随机观察 (casual observation)</strong> 取证得到的认识，比前面其他方法了解到的认识更有根据一些，但这仍然不够好。 <em>因为人们并不十分擅长观察</em> 。我们倾向于 <strong>选择性观察</strong> ，并且记住与我们观念相符的事情。比如我可能恰好忘记了， Misha 在早饭的时候总是坐在我未婚夫的腿上。</p>
-<p>除了选择性知觉外还存在许多 <strong>偏见 (bias)</strong> ，会让随机观察成为一个棘手的认识来源。我们运用 <strong>逻辑 (logic)</strong> 的能力也是如此。 <strong>逻辑推理 (logical reasoning)</strong> 得出的认识看上去是有坚实基础的，但 <strong>非形式逻辑推理 (informal logical reasoning)</strong> 并不总是具有一致性。人们在日常生活中进行推理时，总会不停地出现 <strong>谬误 (fallacy)</strong> 或 <strong>逻辑矛盾 (logical inconsistency)</strong> 。</p>
-<p><img src="/images/non-sci_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>如果想获得更准确的认识，确定我们对世界的解释是正确的，那就还需要点别的东西。我们不能依赖于主观的、无法证实的来源 —— 诸如信念、观点、舆论。我们也不能相信随机观察和非形式逻辑，因为它们可能被我们的信念严重扭曲。</p>
-<p>我们需要 <strong>系统观察</strong> ，摒弃任何偏见，辅以一致的逻辑。换言之 我们需要 <strong>科学方法</strong> 。</p>
-<hr>
-<h1 id="科学方法-Scientific-Method"><a href="#科学方法-Scientific-Method" class="headerlink" title="科学方法 (Scientific Method)"></a>科学方法 (Scientific Method)</h1><p>当我们试图解释世上事物运行原理时，为了确保知识有效，我们需要科学方法，而不是依靠观点、信念、随意观察和非形式逻辑。它们都太主观且容易出错。</p>
-<p>科学方法基于 <strong>系统观察 (systematic observation)</strong> 和 <strong>逻辑一致性 (consistent logic)</strong> 。使用科学方法，增加了我们得出正确解释的机率。同时，我们也可以通过科学方法鉴定 <strong>科学主张 (scientific claim)</strong> 、 <strong>假说 (hypothesis)</strong> ，以及鉴定在我们实证研究中用来支撑假说的那些 <strong>经验证据 (empirical evidence)</strong> 的说服力。</p>
-<p>科学方法有六大原则科学方法有六大原则。如果我们的研究符合这些原则，就能归为科学研究。</p>
-<p><img src="/images/sci-method_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>这个假说亦可以与其他科学论断一较高下，为我们的世界提供尽可能最好的解释。</p>
-<p>第一条原则是：假说应该可以 <strong>在实证中检验 (empirically testable)</strong> ，即支持或反驳假说的经验证据、物证或观测结果都是可以收集的。</p>
-<p>比如我假设家里的猫爱我多于我未婚夫。要实证检验这个假说，我们需要收集观察结果或数据。但如何观察这只猫对我们的喜爱程度呢？我们不能询问猫的看法。假设我们都认为猫是无法像人类那样表达爱意的，那就没什么好观察的了。所以这条假说不符合实证可检验的原则。</p>
-<p>第二原则是：<strong>可重复性 (replicability)</strong> 。一项研究及其发现结果都应该具有可重复性。这意味着重复原研究是可以得到一致结果的。</p>
-<p>如果预期结果只出现了一次，或出现次数极少，那这个结果可能只是巧合。如果一个假说能被重复确认，它会更为可靠。所以一项研究需要经受住重复和复制的考验。比如我说服未婚夫认同 “猫在谁腿上呆得久就更喜欢谁” 这个评判标准。现在我观察到这周猫趴在我腿上的时间，是它呆在未婚夫腿上时间的两倍。那意味着我的假说是正确的吗？猫咪就爱我多一点吗？如果接下来几周这个观察结果保持不变，那么我的假说就是靠谱的。但如果观察了一周这只猫就死了怎么办？如此一来我们就无法验证这个假说了，这个研究再也无法重复。</p>
-<p>要验证结果是否可重复，我们必须按原研究的条件和过程进行重复。假如我们处理过程不同，于是得到了别的结果，这表明原研究不可重复吗？答案当然是否定的。重复失败可能是由于我们改变了程序。</p>
-<p>第三原则是 <strong>客观性 (objectivity)</strong> ，指他人能自行重复该实验而无需求助原研究者。“客观” 的字面意思是谁来进行研究不重要。基于假说跟其程序的描述，每个人都应该得到相同的结论。因此研究者提出的假说、概念、程序应尽量客观。这要求清楚明确地定义所有研究元素，不给主观解释留任何余地。</p>
-<p>假设我认为猫咪拿脸蹭我是示爱的表现，但我没有明确告诉我未婚夫这一条，那么我衡量爱意的程序就是主观的。即使我们同时对猫进行系统性观察，结果仍然会因观察者而异。较之我未婚夫，我会认为猫示爱次数更多。这个例子中的结论是主观的，因此不具有可比性，而我们经常对此毫无自觉。如果我们没有明确讨论并就示爱标志达成共识，那么我们的猫咪爱意衡量程序则不够客观。</p>
-<p>第四原则是 <strong>透明性 (transparency)</strong> 。保持透明度与客观性原则密切相关。在科学界，不论是你的支持者还是批评者，任何人都应该可以重复得出你的结论。这要求研究者共享他们建立的假设 —— 如何定义概念、使用了什么研究程序，还有一切和进行精确复制相关的所有信息。</p>
-<p>第五原则指出一个假说应该具有 <strong>可证伪性</strong> 。可证伪性是一个非常重要的原则。如果你能想象出一种情形会使观察与假说出现矛盾，那么它就是可证伪的。如果我们想不出有什么样的反例存在，那这个假说就不可能被推翻。</p>
-<p>比如你问一个有坚定宗教信仰的人，有什么证据可以证明他们的信仰是虚假的？不管你提出什么样的反例，他们可能都要争辩。这些事实并不违背自己的忠诚信仰。这种仅源于纯信念的观点，比如宗教，是不属于科学范畴的。如果对任何形式的证据，该假说都不接受其为反例，那这个假说根本没有讨论意义，也不用再寻求证实，因为结论已经在那里了。</p>
-<p>我们要讲的第六点也是最后的原则是 <strong>逻辑一致性 (logical consistency)</strong> 。一个假说应该保持逻辑上的一致或连贯。这是指假说不会有任何自相矛盾的地方。比如 ，一个支撑假说的子假设是否与假说冲突。</p>
-<p>我们观察得出的结论也应该保持逻辑一致性。这就是说，在整个过程中，研究者对正面或反面证据的标准应该一致。</p>
-<p>让我继续用猫的例子进行说明。我的假说是猫更爱我，所以预测他会在我腿上呆更久。但要是它趴在我未婚夫腿上更久呢？我会说猫能察觉到趴在我腿上让我不舒服，因为他爱我多一些所以照顾我情绪便趴得少了。显然，这就是逻辑不一致。为了让观察结果符合我的假说，我对观察结果进行了 “再解读”。顺便一提，这也会让我的假说无法证伪。不管猫是否常趴我腿上，我都会得出它爱我的结论。</p>
-<p>总结一下，科学方法要求我们构造的假说为实证可检验的，这就是说观察结果可以支撑或反驳假说；可重复性，也就是假说是可以被重复测试的；客观性，指他人可以独立检验这个假说；透明性，指假说与结果都公之于人，以便他人检验；可证伪性，指找到反例的可能性是存在的。最后，逻辑一致性是指假说本身保持内在的一致性，支持或反驳假说的观察结论也应逻辑一致。</p>
-<p>最后一点，科学方法只在态度端正的情况下才有效。为了提出更好的假说，研究者们应该对自己和他人的研究持批判态度，所以他们应该做到公开透明、乐于接受批判。如果别人有更好的解释，就放弃他们心爱的假说。如此，科学界才能像进化系统一样 —— 只有最合适、最可靠的假说存留下来。</p>
-<hr>
-<h1 id="科学主张-Scientific-Claims"><a href="#科学主张-Scientific-Claims" class="headerlink" title="科学主张 (Scientific Claims)"></a>科学主张 (Scientific Claims)</h1><p>我已经讲过了有关我们周围世界的命题、假说以及解释，我没有准确解释就用了这些通用术语。是时候阐明清楚了。</p>
-<p>关于周遭世界的科学主张，可分为不同类别。一些科学主张会比别的主张描述或解释更多现象。同样，某些科学主张对于我们周围的世界，命题、假说以及解释提供了更可信的描述或解释。我们发现某些主张会更准确一些，比起别的来有更多证据支持。</p>
-<p>在科学中，最基本的主张是 <strong>观察 (observation)</strong> 。观察可以是对世界准确或不准确的 <strong>表达（(representation)</strong> 。</p>
-<p>假设我观察我的猫：姜黄色毛，重 6.5 公斤。大多数科学家会接受这个观察结果，作为我们周围世界某一方面较为准确的投射 —— 假设体重秤有效且可靠的。但就解释力度而言，他们会发现这个观察非常无趣 —— 观察本身没有很大信息量，它不能描述属性间的一般联系，无法解释任何事。</p>
-<p>但这不表示观察不重要。观察是经验科学的基础，但是观察本身不是很有用，观察本身是最无趣的科学主张，因为它没什么解释能力。观察在确定或反驳假说时会变得有用。</p>
-<p><strong>假说 (hypothesis)</strong> 是一种 <strong>命题 (hypothesis)</strong> ，它描述了 <strong>属性 (hypothesis)</strong> 间的 <strong>模式 (pattern)</strong> 或一般关系。假说也可以对它描述的模式进行解释。我们建立这样一个假说：姜黄色猫一般都会超重，概率比其他颜色的猫要高得多。我可以用解释来延伸这个假说，就是毛色和肥胖间的相关性。比如，通过证明控制姜黄毛色和发出饱腹信号的基因是连锁的。</p>
-<p>假说的 <strong>可信度范围 (plausibility)</strong> 可以从非常不确定到非常确定。一个假说若是没有支持，那么它就是不确定的。比如这是个新且未经检验的假说。假说也能被很多实证研究强烈支持，从而变得更确定。</p>
-<p><img src="/images/sci-claim_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>假设的一种特殊类型就是 <strong>定律 (law)</strong> ，定律是对 <strong>关系 (relation)</strong> 或模式非常精确的描述 —— 精确到总是能用 <strong>数学公式 (mathematical equations)</strong> 表达。它们通常被证明得很完整，所以它们如此精确。比如，我把猫食盆从 56 米高的地方扔下去，且我知道万有引力常数，然后用牛顿的万有引力定律就能很准确地预测这个碗掉到地上要花多长时间。</p>
-<p>定律能做出很精确的预测 但它们通常不会解释其描述的关系。在这里，是距离、时间和重力之间的关系。当然，社会科学方面的定律很少能表达成公式。我们对个人和人群的了解还太少，还不能得到如此精度的固定行为模式，并用来推测出科学定律。</p>
-<p><img src="/images/sci-claim_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>好，接下来我们来讲讲 <strong>“理论 (theory)”</strong> 的概念。在日常生活中，理论意味着 <strong>未被证明的 (unsubstantiated)</strong> 命题，有根据的猜想。但是在科学中，理论指的是许多相关现象的总体解释。在自然和行为科学中，理论由被经验证据强烈支持的各种假说构成。在社会科学中，更多的是定性研究和历史比较的方法。当理论经受住了逻辑上、历史上或定性分析的驳斥时，可以认为该理论高度可信。</p>
-<p><img src="/images/sci-claim_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>在科学范畴里，理论的解释最为完善，是我们拥有的最接近准确的东西，因为它们由经科学方法审视并留存的假说构成。当然，这不意味着科学理论是确定或真实的。世上有许多证明完备的理论最终也被取代了，比如牛顿力学就为相对论让路了。 <strong>科学的世界里没有确定性，只有暂时的最佳解释 (provisional best explanation)。</strong></p>
-<hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-type-i-and-type-ii-errors/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-type-i-and-type-ii-errors/" class="post-title-link" itemprop="url">极速统计教程之二十三 | 第一类错误和第二类错误</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-03 13:58:06" itemprop="dateCreated datePublished" datetime="2020-02-03T13:58:06+08:00">2020-02-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第一类错误和第二类错误"><a href="#第一类错误和第二类错误" class="headerlink" title="第一类错误和第二类错误"></a>第一类错误和第二类错误</h1><p>回忆一下此前提到过的庭审的例子。被告方的辩护律师的观点是被告是无辜的，公诉方则试图说服陪审团和法官被告是有罪的。举证有罪的责任在于原告。被告只有在原告提供有力证据驳斥被告假定无罪的情况下才能被认定为有罪。</p>
-<p>在审判时，有四种可能的结果。一，被告确实有罪且被判有罪，这是个正确的决定。二，被告确实无辜且被判无罪，这也是正确的决定。三，被告实际上是无辜的，但被判有罪，这是错误的决定。四，被告实际上有罪的，但是被判无罪，这也是错误的决定。</p>
-<p>这也是我们在实施显著性检验时会发生的情况。辩方观点类似零假设为真，而被告有罪则等效于零假设为假。判被告有罪类似拒绝零假设，而无罪释放则等同于不拒绝零假设。这会导致四种可能的情形。其中的两种，你做了正确的决定，包括零假设的确为真并且你没有拒绝它以及零假设的确为假并且你拒绝了它。但也有两种你做了错误的决定，包括零假设为真而你拒绝了它以及零假设的确为假而你没有拒绝它。第一个错误我们称为 <strong>第一类错误 (type I error)</strong> ，或者说 <strong>伪阳性 (false positive)</strong> 。第个错误我们称为 <strong>第二类错误 (type II error)</strong> ，或者说 <strong>伪阴性 (false negative)</strong> 。</p>
-<img src="/images/t1t2_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>让我给你举个例子。想象你的零假设是：美国的持证水肺潜水者总体， 50% 有超过 35 小时的潜水经验。换言之， $ \pi = 0.5 $ 。备选假设是它是另外一个百分比，换言之， $ \pi \neq 0.5 $ 。你问了一组简单随机抽样的 500 个美国潜水者，你发现有 0.56 的比例有超过 35 小时的潜水经验。现在，假定你的零假设实际上是真的，当你决定基于你的样本数据拒绝零假设时，一个第一类错误就出现了。 </p>
-<img src="/images/t1t2_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-type-i-and-type-ii-errors/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -978,7 +1138,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -991,7 +1151,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1046,12 +1206,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">195k</span>
+    <span title="站点总字数">223k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:57</span>
+    <span title="站点阅读时长">3:23</span>
 </div>
 
         

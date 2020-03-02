@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>计算方法 05 | 对内部效度的影响</title>
+    <url>/uncategorized/quantitative-method-threats-to-internal-validity/</url>
+    <content><![CDATA[<p>Internal validity is threatened if there is a plausible alternative explanation for a study’s results. In order to judge the internal validity of a particular study, you have to be familiar with the type of threats that can occur.</p>
+<p>当研究结果存在似乎可信的替代解释时，研究的内部效度就受到影响。为了评价一项特定研究的内部效度，你们必须熟悉可能出现的几种影响因素。</p>
+<p>I’ll start with three types of threats that are in some way associated with the participants or the subjects used in the study.</p>
+<p>我先从三类影响因素讲起，它们都在某种程度上与研究的参与者或说被试者相关。</p>
+<p>These threats are called maturation, selection, and selection by maturation. Let’s start with maturation. Maturation refers to an alternative explanation formed by natural change.</p>
+<p>这些影响因素被称为成熟、选择以及选择 - 成熟协同作用。让我们从成熟开始讲。成熟是指可以用自然变化作为一种替代解释。</p>
+<p>Suppose I hypothesize that loneliness causes depression.</p>
+<p>譬如我假设孤独导致抑郁。</p>
+<p>I decrease loneliness in elderly people who are prone to depression by giving them a cat to take care of. I expect their depression to go down, because they are now less lonely. I find a retirement home willing to participate, and I measure depression in a group of residents who seem unhappy. I give them a cat to take care of for four months, and then I measure depression again.</p>
+<p>我通过让易于产生抑郁的老人养猫来减轻他们的孤独。我预测他们的抑郁程度会下降，因为他们现在不那么孤独了。我找到一家愿意合作的养老院，测量一组不太开心的老人的抑郁度。我并让他们养猫四个月，然后再次测量他们的抑郁度。</p>
+<p>Let’s assume depression is lowered after taking care of the cat. Does this mean that the cat’s companionship caused the decrease in depression? Well, not necessarily. The decrease in depression could have occurred naturally. People develop, they change. Many physical and mental problems simply disappear after a while. Even if we don’t receive treatment, depressions often go away by themselves.</p>
+<p>我们假定养猫之后他们的抑郁度下降了。这是否意味着猫的陪伴导致了抑郁程度的下降呢？并不一定，抑郁度的下降可能是自然发生的。人是发展的，是会变化的。很多生理和心理问题过段时间就会消失，即使不接受治疗，抑郁常常不治自愈。</p>
+<p>Fortunately, there’s a way to eliminate this alternative explanation of natural change that we refer to as maturation. </p>
+<p>幸运的是，有种方法可以消除自然变化这一替代解释，即我们所说的成熟。</p>
+<p>We can introduce a control group that is measured at the same time, but is not exposed to the hypothesized cause. Both groups should mature or change to the same degree.</p>
+<p>我们可以引入一个对照组与实验组同时测量，但不让其接触我们的假设原因。两组都应有成熟现象，或变化至同一水平。</p>
+<p>Any difference between the groups can now be attributed to the hypothesized cause and not natural change.</p>
+<p>现在两组间的任何不同都可归因于假设的原因，而非自然变化。</p>
+<p>The threat of maturation is eliminated. But, unfortunately, a study that includes control group is still vulnerable to other threats to internal validity. This brings us to the threat of selection.</p>
+<p>成熟的影响就被消除了。但不幸的是，包含对照组的研究的内部效度，仍易受其它因素的影响。这就要说到选择的影响。</p>
+<p>Selection refers to any systematic difference in subject characteristics between groups, other than the manipulated cause.</p>
+<p>选择是指除可控因素外，存在于组间受试者特征中的任何系统性差异。</p>
+<p>Suppose in my study, I included a control group that didn’t take care of a cat.</p>
+<p>假定在我的研究中，我引入一组不养猫的对照组。</p>
+<p>What if assignment of elderly participants to the groups was based on mobility? Suppose people who weren’t able to bend over and clean the litter box were put in the control group.</p>
+<p>如果我对老年参与者的分组是基于行动力的话会怎样呢？假定对照组的老人不能弯腰、不能清理猫砂盆。</p>
+<p>Now suppose the experimental group was, in fact, less depressed than in the control group, this might be caused not by the company of the cat but because the people in the experimental group were just more physically fit.</p>
+<p>现在假定实验组确实比对照组抑郁程度低，但这可能不是由猫的陪伴所导致的，而仅仅因为实验组的人在生理上更健康。</p>
+<p>A solution to this threat is to use a method of assignment to groups that ensures that a systematic difference on, on subject characteristics is highly unlikely. This method is called randomization. I’ll discuss it in much more detail when we cover research designs.</p>
+<p>对这一影响因素的解决办法是：采用一种能够基本避免受试者特征的系统性差异的分组方法。这一方法称为随机化，我会在讲到研究设计时再详述。</p>
+<p>The last threat to internal validity related to participants is the combined threat of maturation and selection. We call this a selection by maturation threat. This happens when groups systematically differ in their rate of maturation.</p>
+<p>最后一个和参与者相关的内部效度影响因素是成熟与选择的相互作用。我们称之为选择 - 成熟协同作用。它发生于组间成熟速率存在系统性差异的情况下。</p>
+<p>For example, suppose the effectiveness of the cat treatment was examined in an experimental group consisting of volunteers who are open to new things. In contrast, the control group consisted of more conservative people who don’t like change. Participants were selected so that both groups had a similar level of depression at the start of the study. But what if we find that the experimental group shows lower depression?</p>
+<p>比方说，假定在两组间考察养猫疗法的有效性。实验组的志愿者对新事物持开放态度；相反，对照组由更加保守、不喜欢变化的人组成。参与者被选入两组中，使两组在研究之初抑郁度相似。但如果我们发现实验组表现出较低的抑郁程度呢？</p>
+<p>Well, perhaps the lower rate of depression in the experimental cat therapy group is simply due to the fact that open-minded people tend to naturally get over their depressive feelings more quickly than conservative people do.</p>
+<p>或许这种差异，仅仅是由思想开放的人较保守的人更易克服抑郁情绪这一事实所致。</p>
+<p>Just like selection on its own, the threat of selection by maturation can be eliminated by randomized assignment to groups.</p>
+<p>正如单纯的选择型影响因素，选择 - 成熟协同作用的影响也可被随机分组所消除。</p>
+<p>So you see that the research design we choose, for example, adding a control group, and the methods we use, for example, random assignment, can help to minimize threats to internal validity.</p>
+<p>因此如你所见，我们选择的研究设计，比如增加对照组，以及我们所使用的研究方法，比如随机分组，都可帮助我们将内部效度的影响因素最小化。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+  </entry>
+  <entry>
     <title>SwiftUI 笔记 | MVVM In SwiftUI</title>
     <url>/development/note-swiftui-mvvm/</url>
     <content><![CDATA[<blockquote>
@@ -262,6 +326,32 @@
 <p>内部效度受替代解释的影响。</p>
 <p>External validity, or generalizability, relates to whether the hypothesized relation holds in other settings.</p>
 <p>外部效度或普适性，则是关于假设的关系是否在其他情景下适用。</p>
+<hr>
+<h1 id="因果关系-Causality"><a href="#因果关系-Causality" class="headerlink" title="因果关系 (Causality)"></a>因果关系 (Causality)</h1><p>The most interesting hypotheses are the ones that describe a causal relationship. If we know what causes an effect, we can predict it, influence it, better understand it. So, how do we identify a causal relationship? Well, it was David Hume. With a little help from John Stuart MIll, who first listed the criteria that we still use today. These are the four essential criteria. Number one, the cause and effect are connected. The first criterion means there has to be a way to trace the effect back to the cause. If a patient was not exposed to a virus, then we can’t argue that the virus caused the patient’s death.</p>
+<p>最有趣一类的假说是描述因果关系的。如果我们知道产生结果的原因，我们就可以预知它、影响它、更好地理解它。我们该如何确定因果关系呢？大卫・休谟在约翰・斯图尔特・穆勒的帮助下，首次列出了判断准则。我们至今仍在使用。一共有四条基本准则。</p>
+<p><img src="/images/sci-method-causality_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>第一条，原因和结果是相联系的。第一条准则意味着必须可以由果溯因。如果病人没有接触过某种病毒，我们就不能认为是这种病毒导致了病人的死亡。</p>
+<p>Number two, the cause precedes the effect, I hope this is obvious. Number three, the cause and effect occur together consistently. This means cause and effect should go together, or covary.</p>
+<p>第二条，因先行于果。我想这是显而易见的。第三条，因果总是如影随形。这意味着因和果会一起改变，或称为共变。</p>
+<p>When the cause is present, we should see the effect, and if the cause is not present, then the effect should be absent. If the cause influences the effect to a certain degree, then we should see a consistently stronger or weaker effect, accordingly.</p>
+<p>当原因存在时我们应该能得到结果，当原因不存在时结果也应该不存在。如果原因对结果的影响程度较强或较弱，那相应的，得到的结果也应该较强或较弱。</p>
+<p>Criteria number four, alternative explanations can be ruled out.</p>
+<p>第四条准则，替代解释可被排除。</p>
+<p>Okay, so let me illustrate these criteria with an example. Suppose I hypothesize that loneliness causes feelings of depression. I give some lonely depressed people a cat to take care of. Now, they’re no longer lonely. If my hypothesis is correct, then we would expect this to lower their depression. The cause and effect, loneliness and depression, are in close proximity. They happen in the same persons, and fairly close together in time. So we can show they are connected. </p>
+<p>让我来举例说明这些准则。假设孤独会导致抑郁，我让孤独抑郁的人去养只猫。现在他们不再孤独。如果我的假说是对的，就可以预测这将缓解他们的抑郁。因和果，即孤独和抑郁彼此紧密连接。他们发生在同一个人身上，又几乎同时发生，我们可以证明它们是有联系的。</p>
+<p>The cause, a decrease in loneliness, needs to happen before the effect, a decrease in depression. We can show this because we can control the presence of the cause, loneliness. </p>
+<p>因先行于果，所以孤独感的降低应发生在抑郁症缓解之前。我们能这么说是因为我们可以控制因，即孤独的存在。</p>
+<p>The cause and effect should occur together consistently. This means that less loneliness should go together with lower depression. I could find a comparison group of lonely, depressed people that do not get a cat. Since the cause is absent, their loneliness doesn’t change. There should be no effect. </p>
+<p>因和果应总是伴随出现。这意味着更少的孤独感应该伴随出现更轻的抑郁症。我可以找不养猫的孤独抑郁人群作对照组。由于因不存在了，即他们的孤独感没有变化，也就不应该存在结果。</p>
+<p>Now, this is all easy. The real difficulty lies in the last criterion. Excluding any alternative explanations. Other possible causes. Let’s look for an alternative explanation in our example. Maybe the increased physical activity required to take care of a cat, actually caused lower depression, instead of the reduction in loneliness.</p>
+<p>这些还算简单。真正难的是最后一条准则。排除替代解释：即其他可能的因。我们来在这个例子中找一个替代解释。也许其实是养猫所需的体力活动的增加，引起了抑郁症的减轻，而不是因为孤独感的降低。</p>
+<p>Alternative explanations form threats to the internal validity of a research study. An important part of methodology is developing and choosing research designs that minimize these threats.</p>
+<p>替代解释会影响一项研究的内部效度。方法论的一个重要部分就是：不断改善并选择可以最少化这些影响因素的研究设计。</p>
+<p><img src="/images/sci-method-causality_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>Okay there’s one more point I want to make about causation. Causation requires correlation. The cause and effect have to occur consistently. But correlation doesn’t imply causation. I’ll give you an example. If we consistently observe aggressive behavior after children play a violent video game. This doesn’t mean the game caused the aggressive behavior. It could be that aggressive children seek out more aggressive stimuli. Reversing the causal direction.</p>
+<p>关于因果关系还有一点我想补充。因果关系需要相关性。因和果必须一致地出现，但是相关性并不意味着因果性。我来给你举个例子。如果我们总是观察到孩子在玩包含暴力的电子游戏后表现出攻击性行为，这并不意味着游戏诱发了攻击性行为。这可能是攻击性强的孩子在寻找更多的攻击性刺激，这就颠倒了原因和结果。</p>
+<p>Or, maybe children whose parents allow them to play violent games aren’t supervised as closely. Maybe they’re just as aggressive as other children. They just feel less inhibited to show this aggressive behavior. So remember, correlation does not imply causation.</p>
+<p>或许那些家长允许玩暴力游戏的孩子，并没有受到严格的家庭教育。或许他们和别的孩子一样好斗，他们只是在表现出攻击性行为时很少意识到这是被禁止的。所以记住，相关性并不意味着因果性。</p>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')

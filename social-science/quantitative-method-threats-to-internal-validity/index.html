@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://theinfinitegame.tech').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="内部效度的影响：参与者 （Internal Validity Threats: Participants）Internal validity is threatened if there is a plausible alternative explanation for a study’s results. In order to judge the internal validity of a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算方法 05 | 对内部效度的影响">
+<meta property="og:url" content="https://theinfinitegame.tech/social-science/quantitative-method-threats-to-internal-validity/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="内部效度的影响：参与者 （Internal Validity Threats: Participants）Internal validity is threatened if there is a plausible alternative explanation for a study’s results. In order to judge the internal validity of a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-02T08:19:43.000Z">
+<meta property="article:modified_time" content="2020-03-03T11:30:51.084Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="计量方法">
+<meta property="article:tag" content="社会科学">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://theinfinitegame.tech/social-science/quantitative-method-threats-to-internal-validity/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>计算方法 05 | 对内部效度的影响 | The Infinite Game</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/social-science/quantitative-method-threats-to-internal-validity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算方法 05 | 对内部效度的影响
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-02 16:19:43" itemprop="dateCreated datePublished" datetime="2020-03-02T16:19:43+08:00">2020-03-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/social-science/" itemprop="url" rel="index">
+                    <span itemprop="name">social-science</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>23k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>21 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="内部效度的影响：参与者-（Internal-Validity-Threats-Participants）"><a href="#内部效度的影响：参与者-（Internal-Validity-Threats-Participants）" class="headerlink" title="内部效度的影响：参与者 （Internal Validity Threats: Participants）"></a>内部效度的影响：参与者 （Internal Validity Threats: Participants）</h1><p>Internal validity is threatened if there is a plausible alternative explanation for a study’s results. In order to judge the internal validity of a particular study, you have to be familiar with the type of threats that can occur.</p>
+<p>当研究结果存在似乎可信的替代解释时，研究的内部效度就受到影响。为了评价一项特定研究的内部效度，你们必须熟悉可能出现的几种影响因素。</p>
+<p>I’ll start with three types of threats that are in some way associated with the participants or the subjects used in the study.</p>
+<p>我先从三类影响因素讲起，它们都在某种程度上与研究的参与者或说被试者相关。</p>
+<p>These threats are called maturation, selection, and selection by maturation. Let’s start with maturation. Maturation refers to an alternative explanation formed by natural change.</p>
+<p>这些影响因素被称为成熟、选择以及选择 - 成熟协同作用。让我们从成熟开始讲。成熟是指可以用自然变化作为一种替代解释。</p>
+<p>Suppose I hypothesize that loneliness causes depression.</p>
+<p>譬如我假设孤独导致抑郁。</p>
+<p>I decrease loneliness in elderly people who are prone to depression by giving them a cat to take care of. I expect their depression to go down, because they are now less lonely. I find a retirement home willing to participate, and I measure depression in a group of residents who seem unhappy. I give them a cat to take care of for four months, and then I measure depression again.</p>
+<p>我通过让易于产生抑郁的老人养猫来减轻他们的孤独。我预测他们的抑郁程度会下降，因为他们现在不那么孤独了。我找到一家愿意合作的养老院，测量一组不太开心的老人的抑郁度。我并让他们养猫四个月，然后再次测量他们的抑郁度。</p>
+<p>Let’s assume depression is lowered after taking care of the cat. Does this mean that the cat’s companionship caused the decrease in depression? Well, not necessarily. The decrease in depression could have occurred naturally. People develop, they change. Many physical and mental problems simply disappear after a while. Even if we don’t receive treatment, depressions often go away by themselves.</p>
+<p>我们假定养猫之后他们的抑郁度下降了。这是否意味着猫的陪伴导致了抑郁程度的下降呢？并不一定，抑郁度的下降可能是自然发生的。人是发展的，是会变化的。很多生理和心理问题过段时间就会消失，即使不接受治疗，抑郁常常不治自愈。</p>
+<p>Fortunately, there’s a way to eliminate this alternative explanation of natural change that we refer to as maturation. </p>
+<p>幸运的是，有种方法可以消除自然变化这一替代解释，即我们所说的成熟。</p>
+<p>We can introduce a control group that is measured at the same time, but is not exposed to the hypothesized cause. Both groups should mature or change to the same degree.</p>
+<p>我们可以引入一个对照组与实验组同时测量，但不让其接触我们的假设原因。两组都应有成熟现象，或变化至同一水平。</p>
+<p>Any difference between the groups can now be attributed to the hypothesized cause and not natural change.</p>
+<p>现在两组间的任何不同都可归因于假设的原因，而非自然变化。</p>
+<p>The threat of maturation is eliminated. But, unfortunately, a study that includes control group is still vulnerable to other threats to internal validity. This brings us to the threat of selection.</p>
+<p>成熟的影响就被消除了。但不幸的是，包含对照组的研究的内部效度，仍易受其它因素的影响。这就要说到选择的影响。</p>
+<p>Selection refers to any systematic difference in subject characteristics between groups, other than the manipulated cause.</p>
+<p>选择是指除可控因素外，存在于组间受试者特征中的任何系统性差异。</p>
+<p>Suppose in my study, I included a control group that didn’t take care of a cat.</p>
+<p>假定在我的研究中，我引入一组不养猫的对照组。</p>
+<p>What if assignment of elderly participants to the groups was based on mobility? Suppose people who weren’t able to bend over and clean the litter box were put in the control group.</p>
+<p>如果我对老年参与者的分组是基于行动力的话会怎样呢？假定对照组的老人不能弯腰、不能清理猫砂盆。</p>
+<p>Now suppose the experimental group was, in fact, less depressed than in the control group, this might be caused not by the company of the cat but because the people in the experimental group were just more physically fit.</p>
+<p>现在假定实验组确实比对照组抑郁程度低，但这可能不是由猫的陪伴所导致的，而仅仅因为实验组的人在生理上更健康。</p>
+<p>A solution to this threat is to use a method of assignment to groups that ensures that a systematic difference on, on subject characteristics is highly unlikely. This method is called randomization. I’ll discuss it in much more detail when we cover research designs.</p>
+<p>对这一影响因素的解决办法是：采用一种能够基本避免受试者特征的系统性差异的分组方法。这一方法称为随机化，我会在讲到研究设计时再详述。</p>
+<p>The last threat to internal validity related to participants is the combined threat of maturation and selection. We call this a selection by maturation threat. This happens when groups systematically differ in their rate of maturation.</p>
+<p>最后一个和参与者相关的内部效度影响因素是成熟与选择的相互作用。我们称之为选择 - 成熟协同作用。它发生于组间成熟速率存在系统性差异的情况下。</p>
+<p>For example, suppose the effectiveness of the cat treatment was examined in an experimental group consisting of volunteers who are open to new things. In contrast, the control group consisted of more conservative people who don’t like change. Participants were selected so that both groups had a similar level of depression at the start of the study. But what if we find that the experimental group shows lower depression?</p>
+<p>比方说，假定在两组间考察养猫疗法的有效性。实验组的志愿者对新事物持开放态度；相反，对照组由更加保守、不喜欢变化的人组成。参与者被选入两组中，使两组在研究之初抑郁度相似。但如果我们发现实验组表现出较低的抑郁程度呢？</p>
+<p>Well, perhaps the lower rate of depression in the experimental cat therapy group is simply due to the fact that open-minded people tend to naturally get over their depressive feelings more quickly than conservative people do.</p>
+<p>或许这种差异，仅仅是由思想开放的人较保守的人更易克服抑郁情绪这一事实所致。</p>
+<p>Just like selection on its own, the threat of selection by maturation can be eliminated by randomized assignment to groups.</p>
+<p>正如单纯的选择型影响因素，选择 - 成熟协同作用的影响也可被随机分组所消除。</p>
+<p>So you see that the research design we choose, for example, adding a control group, and the methods we use, for example, random assignment, can help to minimize threats to internal validity.</p>
+<p>因此如你所见，我们选择的研究设计，比如增加对照组，以及我们所使用的研究方法，比如随机分组，都可帮助我们将内部效度的影响因素最小化。</p>
+<hr>
+<h1 id="内部效度的影响：仪器-（Internal-Validity-Threats-Instruments）"><a href="#内部效度的影响：仪器-（Internal-Validity-Threats-Instruments）" class="headerlink" title="内部效度的影响：仪器 （Internal Validity Threats: Instruments）"></a>内部效度的影响：仪器 （Internal Validity Threats: Instruments）</h1><p>Another category of threats to internal validity is associated with the instruments that are used to measure and manipulate the constructs in our hypothesis. The threats of low construct validity, instrumentation, and testing fall into this category. I’ll start with low construct validity. Construct validity is low if our instruments contain a systematic bias or measure another construct or property entirely. In this case, there’s not much point in further considering the internal validity of a study. As I discussed in an earlier video, construct validity is a prerequisite for internal validity. If our measurement instruments or manipulation methods are of poor quality, then we can’t infer anything about the relation between the hypothesized constructs. Suppose I hypothesized that loneliness causes depression. I attempt to lower loneliness of elderly people in a retirement home by giving them a cat to take care of, expecting their depression to go down. Suppose that taking care of the cat didn’t affect loneliness at all, but instead gave residents a higher social status. They’re special because they’re allowed to have a cat. The manipulation aimed at lowering loneliness, in fact, changed a different property, social status. Now consider my measurement of depression. What if the questionnaire that I used actually measured feeling socially accepted instead of feeling depressed? If we accidentally manipulated social status or measured feeling accepted, then we cannot conclude anything about the relation between loneliness and depression. The second threat that relates to measurement methods is instrumentation. The threat of instrumentation occurs when an instrument is changed during the course of the study. Suppose I use a self-report questionnaire to measure depression at the start of the study, but I switch to a different questionnaire, or maybe to an open interview at the end of the study. Well then, any difference in depression scores might be explained by the use of different instruments. For example, the scores on the post test at the end of the study could be lower because the new instrument measures slightly different aspects of depression, for example. Of course, it seems rather stupid to change your methods or instruments half way, but sometimes a researcher has to depend on others for data. For example, when using tests that are constructed by national testing agencies or polling agencies. A good example is the use of the standardized diagnostic tool called the DSM. This Diagnostic and Statistical Manual is used to classify things like mental illness, depression, autism. And it’s updated every 10 to 15 years. Now you can imagine the problems this can cause, for example, for a researcher who is doing a long-term study on schizophrenia. In the recently updated DSM, several subtypes of schizophrenia are no longer recognized. Now if we see a decline in schizophrenia in the coming years, is this a real effect or is it due to the change in measurement system? The last threat I want to discuss here is testing, also referred to as sensitization. Administering a test or measurement procedure can affect people’s behavior. A testing threat occurs if this sensitizing effect of measuring provides an alternative explanation for our results. For example, taking the depression pre-test at the start of the study might alert people to their feelings of depression. This might cause them to be more proactive about improving their emotional state, for example, by being more social. Of course this threat can be eliminated by introducing a control group. Both groups will be similarly affected by the testing effect. Their depression scores will both go down, but hopefully more so in the cat companionship group. Adding a control group is not always enough, though. In some cases, there’s a risk that the pre-test sensitizes people in the control group differently than people in the experimental group. For example, in our cat study, the pre-test in combination with getting a cat could alert people in the experimental cat group to the purpose of the study. They might report lowered depression on the post-test, not because they’re less depressed, but to ensure the study seemed successful so they can keep the cat. Suppose people in the control group don’t figure out the purpose of the study, because they don’t get a cat. They’re not sensitized and not motivated to change their scores on the post-test. This difference in sensitization provides an alternative explanation. One solution is to add an experimental and control group that weren’t given a pre-test. I’ll discuss this solution in more detail when we consider different experimental designs. Okay. So to summarize. Internal validity can be threatened by low construct validity, instrumentation and testing. Low construct validity and instrumentation can be eliminated by using valid instruments, and valid manipulation methods. And of course by using them consistently. Testing can be eliminated by using a special design that includes groups that are exposed to a pretest, and groups that aren’t.</p>
+<p>另一类对内部效度的影响因素 与我们测量和操作假说内建构的测量工具有关 与我们测量和操作假说内建构的测量工具有关 造成低建构效度的影响因素中 仪器使用 (instrumentation) 和测验 (testing) 属于这一类 我从低建构效度开始讲 如果我们的测量工具包含有系统性偏误 或测量的是完全不同的建构或属性 建构效度就低 这种情况下 进一步考虑研究的内部效度意义不大 这种情况下 进一步考虑研究的内部效度意义不大 正如我在之前视频里讲过的 此法特别适用 如果我们的测量仪器或操作方法质量较差 如果我们的测量仪器或操作方法的质量较差 我们就不能推论出任何有关假设建构之间关系的结论 比如我假设孤独会引起抑郁 我试图通过让养老院中老人去养猫来降低他们的孤独感 并预测他们的抑郁会减轻 假设养猫完全不会影响孤独感 而是给老人更高的社会地位 他们因为可以养猫而变得特殊 这一操作本是用来降低孤独感的 实际上却改变了另一个属性 社会地位 再看看我测量抑郁程度的方法 如果我用的调查问卷 实际上测量的是社会接受感而不是抑郁感呢 如果我们无意间改变的是社会地位 或碰巧测量的是感觉被接受的程度 那么我们就不能得出任何关于孤独和抑郁相关性的结论 第二个与测量方法有关的影响因素是仪器使用 如果测量工具在研究过程中发生了改变 仪器使用的这个影响因素就随之出现了 假设我在研究之初用自陈量表来测量抑郁程度 但是在研究后期 我换了一种问卷形式 或换成了开放式访问 那么抑郁感评分的任何不同 都可能是因为使用了不同的测量工具造成的 比如 在研究结束的后期测验中得到的分数更低 可能是因为新工具测量的是抑郁的另一个略微不同的方面 可能是因为新工具测量的是抑郁的另一个略微不同的方面 当然 半路换方法或测量工具会显得很蠢 但有时研究者必须依靠别的方法或工具来获得数据 比如说 在使用由国家测试机构或投票机构构建的测试时 一个范例就是被称为 DSM 的标准化诊断工具的使用 一个范例就是被称为 DSM 的标准化诊断工具的使用 DSM 是《精神疾病诊断与统计手册 (The Diagnostic and Statistical Manual)》 用于对精神疾病、抑郁症、自闭症等疾病进行分类 并且每 10 到 15 年更新一次 你可以想象这会引起的问题 比如某研究者正在进行一项关于精神分裂症的长期研究 在最近更新的 DSM 中 一些精神分裂症的亚型不再被承认 如果我们看到了未来几年精神分裂症人数减少的趋势 这是实际效果还是因为测量系统的改变 这里我想讨论的最后一个影响因素是测验 也被称为敏感效应 (sensitization) 执行一项测验或测量程序可能会影响人的行为 如果测量产生的敏感效应为结果提供了一个替代解释 测验这个影响因素就表现出来了 比如在研究开始时进行的抑郁程度的前期测验 有可能使人们对自己的抑郁感变得警觉 这可能会使他们更积极地改进自己的情绪状态 比如通过变得更合群的方式 当然这一影响因素能通过引入一个对照组来消除 两组都十分相似地受到测试效应的影响 他们的抑郁感评分都会下降 但可预测在有猫陪伴的组下降幅度会更大 但引入对照组并不总是足够的 某些情况下 有可能对照组和实验组对前期测验的敏感化程度不同 比如这项有猫的研究中 前期测验加上要养猫 可能让有猫的实验组的人们对研究目的变得警觉 他们可能在后期测验时报告更低的抑郁感 不是因为事实如此 而是为了使研究看上去成功 以便能继续养猫 假设对照组的人们想不出研究目的 因为他们没有猫 他们没有被敏感化也没有动机去改变后期测验的评分 敏感效应的不同为实验提供了一个替代解释 一个解决办法是 增加一对没有进行前期测验的实验组和对照组 我会在讲到不同的实验设计时 详细讨论这一解决方法 来总结一下 内部效度会被低建构效度、仪器使用和测验影响 内部效度会被低建构效度、仪器使用和测验影响 低建构效度和仪器使用带来的影响因素可以通过 采用有效的测量工具和合理的操作方法来消除 当然还需要在使用中前后一致 测验的影响因素可以通过采用一种特殊设计来消除 这种特殊设计包括一对分别做过和没做过前期测验的组别</p>
+<h1 id="内部效度的影响：人造因素-Artificiality"><a href="#内部效度的影响：人造因素-Artificiality" class="headerlink" title="内部效度的影响：人造因素 (Artificiality)"></a>内部效度的影响：人造因素 (Artificiality)</h1><p>Another category of threats to internal validity is associated with the artificial or unnatural reaction caused by participating in a research study.<br>在 15 秒处开始记录 0:15<br>This can be a reaction from the participant, but also from the researcher.<br>在 20 秒处开始记录 0:20<br>In any scientific study the researcher has to observe the behavior of individuals or groups. And in most cases the people under observation are aware of being observed.<br>在 32 秒处开始记录 0:32<br>Both researcher and participants have expectations about the goal of the study and about the desired behavior.<br>在 39 秒处开始记录 0:39<br>These expectations can lead to a change in behavior. That can provide an alternative explanation. I’ll discuss two of these threats to internal validity right here. Experimenter expectancy and demand characteristics.<br>在 53 秒处开始记录 0:53<br>If a researchers expectation have a biasing effect we call this threat to internal validity an experimenter expectancy effect. Experimenter expectancy refers to an unconscious change in a researchers behavior caused by expectations about the outcome that influences a participants responses.<br>在 1 分 12 秒处开始记录 1:12<br>Of course, this becomes an even bigger problem if a researcher unconsciously treats people in the control group differently from people in the experimental group.<br>在 1 分 22 秒处开始记录 1:22<br>One of the most subtle and shocking demonstrations of an experimenter expectancy effect was undoubtably provided by Rosenthal in the 1960s.<br>在 1 分 32 秒处开始记录 1:32<br>Psychology students were lead to believe they were taking a course on practical research skill in handling animals and duplicating experimental results.<br>在 1 分 44 秒处开始记录 1:44<br>Students handled one of two batches of rats that were compared on their performance in navigating a maze. The first batch of rats, students were told, was bred for their excellent spatial ability. The other batch was bred for the exact opposite purpose. Low and behold, there was a difference in performance. The maze bright rats out performed the maze dull rats.<br>在 2 分 9 秒处开始记录 2:09<br>Of course, in reality there was no difference in maze brightness in the two groups of rats. They were both from the same breeding line, and they were randomly assigned to be bright or dull.<br>在 2 分 21 秒处开始记录 2:21<br>Apparently just knowing what was expected of their batch of rats led students to treat them differently resulting in an actual difference in performance of the rats.<br>在 2 分 32 秒处开始记录 2:32<br>Imagine what the effect can be when a researcher interacts with human participants.<br>在 2 分 38 秒处开始记录 2:38<br>Fortunately, there is a solution. If the experimenter who interacts with the participants doesn’t know what behavior is expected of the, the experimenter will not be able to unconsciously influence participants. We call this an Experimenter Blind Design.<br>在 2 分 55 秒处开始记录 2:55<br>Of course the participant can also have expectations about the purpose of the study. Participants who are aware that they’re subjects in a study, will look for queues to figure out what the study is about.<br>在 3 分 9 秒处开始记录 3:09<br>Demand characteristics refers to a change in participant behavior due to their expectations about the study.<br>在 3 分 16 秒处开始记录 3:16<br>Demand characteristics are especially problematic if people respond to cues differently in the control, than in the experimental group.<br>在 3 分 26 秒处开始记录 3:26<br>A well known form of demand characteristics occurs when people are aware that they’re in an experimental group and are undergoing a treatment, especially if the treatment aims to help them.<br>在 3 分 39 秒处开始记录 3:39<br>Participants might be grateful to be in this group or hopeful that the treatment will be effective. And this might lead them to be more positive about the treatment, than had they been unaware of it. But the cues don’t even have to be accurately interpreted by the participants.<br>在 3 分 57 秒处开始记录 3:57<br>As long as participants in the same group interpret the queues in the same manner and change their behavior in the same way, demand characteristics form a real problem.<br>在 4 分 9 秒处开始记录 4:09<br>This is why it’s always a good idea to leave participants unaware of the actual purpose of the study or at least leave them unaware of which group they’re in, the experimental or the control group.<br>在 4 分 21 秒处开始记录 4:21<br>If both the subject and the experimenter are unaware, we call this a Double Blind Research Design. Now because any cue can lead to a bias in behavior, researchers usually come up with a cover story. A cover story is a plausible explanation of the purpose of the study. It should provide participants with cues that are unlikely to bias their behavior. Of course, this temporary deception needs to be necessary. The risk of bias, due to demand characteristics, needs to be real. And of course, you need to debrief participants afterwards and inform them about the real purpose of the study.</p>
+<p>另一类影响内部效度的因素 与人们由于参与研究而导致的有意或无意的不自然反应有关<br>在 15 秒处开始记录 0:15<br>这可能是参与者的反应 也可能来自研究者<br>在 20 秒处开始记录 0:20<br>在任何科学研究中 研究者必须观察个体或群体的行为 在大多数情况下 被观察的对象知道自己被观察<br>在 32 秒处开始记录 0:32<br>研究者和参与者对于研究目标 和期望行为都有预期<br>在 39 秒处开始记录 0:39<br>这些预期会导致行为上的变化 这种变化将提供另一种解释 下面我们将讨论两种影响内部效度的因素 实验者预期 (experimenter expectancy) 和需求特征 (demand characteristics)<br>在 53 秒处开始记录 0:53<br>如果研究者的预期与结果有偏差 我们将这种对内部效度的影响称为实验者预期效果 实验者的预期是指 源于对结果的预期 研究人员无意识下改变行为 该变化而影响参与者的回应<br>在 1 分 12 秒处开始记录 1:12<br>当然 如果研究人员下意识地 对控制组的参与者和实验组的参与者 区别对待 会带来更大的问题<br>在 1 分 22 秒处开始记录 1:22<br>最能展现实验者预期效应是多么微妙与惊人的实验之一 是上世纪 60 年代由罗森塔尔所做的实验<br>在 1 分 32 秒处开始记录 1:32<br>心理学专业的学生被引导 相信他们参加了一门课程 即处理动物的实际研究技能 与复制实验结果<br>在 1 分 44 秒处开始记录 1:44<br>学生们处理了两批老鼠中的一组 比较它们在迷宫中认路的表现<br>在 1 分 51 秒处开始记录 1:51<br>学生们被告知 第一组大鼠被特殊培育 拥有出众的空间感 而另一组的培育目的截然相反 果不其然 两组大鼠的表现有差别 善于走迷宫的那组大鼠表现得比空间感迟钝的那组好 然而在现实中 两组老鼠在迷宫认路能力上并无差异 它们来自用同样的大鼠品系 并且被随机分为两批<br>在 2 分 21 秒处开始记录 2:21<br>显然 仅仅让学生知道 处理的老鼠群组的预期实验结果 导致学生对它们区别对待 从而导致老鼠之间的实际表现差异<br>在 2 分 32 秒处开始记录 2:32<br>想想看 如果被试对象是人 研究员会对他们产生多大的影响<br>在 2 分 38 秒处开始记录 2:38<br>幸运的是 有一个解决办法 如果与参与者互动的实验者 不知道他们会有什么预期 那么他们也就不会在无意中影响被试对象了 我们称其为研究者单盲实验<br>在 2 分 55 秒处开始记录 2:55<br>当然 被试对象也会对实验目标有所预期 因为受试者在了解研究目的后 可能会对实验有不同反应 意识到自己是研究对象的参与者 会去寻找提示 来找出研究的目的<br>在 3 分 9 秒处开始记录 3:09<br>需求特征是指被试对象由于对实验的预期的猜测 而改变自己行为的现象<br>在 3 分 16 秒处开始记录 3:16<br>当对照组与实验组中的人对线索反应不同时 需求特征造成的问题尤为严重<br>在 3 分 26 秒处开始记录 3:26<br>一种常见的需求特征 会在人们意识到 他们被分配到实验组中时出现 尤其在治疗是以帮助他们为目标的时候<br>在 3 分 39 秒处开始记录 3:39<br>被试对象也许会因被分配到实验组而十分感激 或是对治疗效果抱有期待 这可能导致他们比没有意识到自己在哪一组中时 更积极地面对治疗 但是 被试对象并不需要 准确地解读线索 只要隶属同一组的参与者 以同样的方式解读暗示 并以同样的方式改变他们的行为 需求特征就将造成问题<br>在 4 分 9 秒处开始记录 4:09<br>这就是为什么最好不要让被试意识到实验的真实目的 一种是编造与真实实验目的大相径庭的研究介绍 或者至少让他们不知道他们隶属哪个组 实验组或是对照组<br>在 4 分 21 秒处开始记录 4:21<br>我们把这种被试与 实验者均不知情的情况 称为双盲研究设计<br>在 4 分 28 秒处开始记录 4:28<br>因为任何提示都可能导致行为偏差 研究员们常常会编造一个故事作为幌子 这个幌子是一个对于实验目的合理的解释 它给被试对象的线索不太可能造成他们的行为偏差<br>在 4 分 43 秒处开始记录 4:43<br>当然 只有必要时 才会进行暂时欺骗 只有当确实存在需求特征引起偏差这一风险时 才能使用该方法 你还要在实验结束后 向他们做汇报 并告知他们实验的真正目的<br>另一类影响内部</p>
+<h1 id="内部效度的影响：研究设计-Research-Setup"><a href="#内部效度的影响：研究设计-Research-Setup" class="headerlink" title="内部效度的影响：研究设计 (Research Setup)"></a>内部效度的影响：研究设计 (Research Setup)</h1><p>The last category of threats to internal validity, is a bit of a remainder category. Very generally, the three types of threats in this category are related to the research procedure or setup.<br>在 17 秒处开始记录 0:17<br>The threats are ambiguous temporal precedence, history and mortality.<br>在 23 秒处开始记录 0:23<br>An ambiguous temporal precedence and the hypothesized causal relation, is just a fancy way of saying that it’s unclear if the hypothesized cause actually precedes the observed effect.<br>在 35 秒处开始记录 0:35<br>Suppose I’m interested in the relationship between playing violent video games, and aggressive behavior.<br>在 42 秒处开始记录 0:42<br>I ask high school students how many hours a week they play violent games. And I ask their teacher to rate their aggressiveness in class.<br>在 52 秒处开始记录 0:52<br>What if I find a strong relation. Children who play violent games for many hours a week, also show more aggressive behavior.<br>在 1 分 1 秒处开始记录 1:01<br>Well this doesn’t mean violent game play causes aggressive behavior. Maybe children who play more violent games, were more aggressive to begin with. And are more likely to seek out violent stimuli.<br>在 1 分 14 秒处开始记录 1:14<br>The threat of ambiguous temporal precedence can be eliminated by manipulating, or introducing the hypothesised cause.<br>在 1 分 22 秒处开始记录 1:22<br>Of course, not all constructs can be manipulated, but if i can manipulate the cause, I can make sure it happens before the effect.<br>在 1 分 31 秒处开始记录 1:31<br>For example, I can make all children play violent games. If children that were not aggressive to begin with, also become more aggressive after playing the violent game, then my causal inference is much stronger.<br>在 1 分 45 秒处开始记录 1:45<br>Lets move on to a threat referred to as history.<br>在 1 分 49 秒处开始记录 1:49<br>A history effect is an unforeseen event that happens during the study that provides an alternative explanation.<br>在 1 分 56 秒处开始记录 1:56<br>Now, this could be a large-scale event or something small that goes wrong during data collection.<br>在 2 分 3 秒处开始记录 2:03<br>Consider a study on mitigating negative stereotypes about a minority group.<br>在 2 分 8 秒处开始记录 2:08<br>The manipulation consists of a group discussion led by an experimenter. The experimenter focuses on the point of view of the minority group, asking participants to put themselves in their shoes.<br>在 2 分 20 秒处开始记录 2:20<br>In the control condition the experimenter focuses on differences between the majority and minority, and stresses the point of view of the majority.<br>在 2 分 29 秒处开始记录 2:29<br>In both groups, there are three weekly group discussions. Okay. To give an example of a history effect on a small scale, imagine that during the last session in the control group, the experimenter faints.<br>在 2 分 42 秒处开始记录 2:42<br>Of course, participants are shaken and upset about this. And this might translate into a more general negative attitude in the control group. Which also makes the control group’s attitude towards the minority group more negative.<br>在 2 分 55 秒处开始记录 2:55<br>The treatment might look effective, because the experimental group is more positive, but the difference is due not to the discussion technique, but due to the fainting incident. Let’s consider the history effect on a larger scale. Suppose that during the study, a horrific murder is committed. Allegedly by a member of the minority. The crime gets an enormous amount of media attention, reinforcing the negative stereotype about the minority group.<br>在 3 分 22 秒处开始记录 3:22<br>Any positive effect of the intervention could be undone by this event.<br>在 3 分 28 秒处开始记录 3:28<br>The threat of history is hard to eliminate. Large scale events, well they can’t be avoided. Small scale events that happen during the study can be avoided at least to some extent by testing subjects separately, if this is possible. This way, if something goes wrong, the results of only one or maybe a few subjects will have to be discarded.<br>在 3 分 49 秒处开始记录 3:49<br>The final threat to discuss is mortality. Mortality refers to participant dropout from the study. If groups are compared and drop out is different in these groups, then this could provide an alternative explanation.<br>在 4 分 2 秒处开始记录 4:02<br>For example, suppose we’re investigating the effectiveness of a drug for depression. Suppose the drug is actually not very effective, and has a very strong side effect. It causes extreme flatulents. Of course this can be so uncomfortable and embarrassing that it wouldn’t be strange for people to drop out of the study because of the side effect.<br>在 4 分 24 秒处开始记录 4:24<br>Suppose 80% of the people in the experimental group dropped out. In the control group, participants are administered a placebo, with no active ingredient. So also, no side effects. Dropout in this group is only 10%. It’s obvious that the groups are no longer comparable. Suppose that for the remaining 20% of participants in the experimental group, the drug is effective enough to outweigh the negative side effect.<br>在 4 分 51 秒处开始记录 4:51<br>This wasn’t the case for the 80% who dropped out.<br>在 4 分 56 秒处开始记录 4:56<br>Based on the remaining subjects, we might conclude that the drug is very effective.<br>在 5 分 1 秒处开始记录 5:01<br>But if all subjects had reamined in the study, the conclusion would have been very different.<br>在 5 分 8 秒处开始记录 5:08<br>The threat of mortality is very hard to eliminate. In most cases, the best a researcher can do is document the reasons for dropout, so that these reasons can be investigated, and possibly mitigated in further studies.</p>
+<p>最后我们将剩下的那些内部效度影响因素归结为一类 最后我们将剩下的那些内部效度影响因素归结为一类 这三个影响因素都和研究程序或设计相关 这三个影响因素都和研究程序或设计相关<br>在 17 秒处开始记录 0:17<br>它们是 模糊的先后顺序、历史、亡失<br>在 23 秒处开始记录 0:23<br>模糊的先后次序和假定的因果关系是指 模糊的先后次序和假定的因果关系是指 并不清楚假定的原因是否真的在观察结果之前<br>在 35 秒处开始记录 0:35<br>假设我关注玩暴力游戏和攻击行为之间的关系 假设我关注玩暴力游戏和攻击行为之间的关系<br>在 42 秒处开始记录 0:42<br>我问高中生一周玩多少小时的暴力游戏 我让老师评估他们在班中出现的攻击行为<br>在 52 秒处开始记录 0:52<br>假设我发现两者有强相关性 长时间玩暴力游戏的孩子更多出现攻击行为 长时间玩暴力游戏的孩子更多出现攻击行为<br>在 1 分 1 秒处开始记录 1:01<br>这并不能得出暴力游戏导致了攻击行为 可能是本身攻击性强一些的孩子才更喜欢玩暴力游戏 也会更多寻求暴力刺激<br>在 1 分 14 秒处开始记录 1:14<br>模糊的先后次序带来的影响 能通过控制或引入假设的原因来消除<br>在 1 分 22 秒处开始记录 1:22<br>当然 不是所有的因素都能被控制 但如果我控制了原因 那我就能肯定它在结果之前<br>在 1 分 31 秒处开始记录 1:31<br>比如 我让所有的孩子都玩暴力游戏 如果玩游戏后 起先没攻击性的孩子也变得有攻击性 那么我的因果推论就更有说服力<br>在 1 分 45 秒处开始记录 1:45<br>接下来要讲的是历史这个影响因素<br>在 1 分 49 秒处开始记录 1:49<br>历史影响是指研究中发生的意外事件 它们会产生替代解释<br>在 1 分 56 秒处开始记录 1:56<br>这可以是大规模事件 或者是数据收集期间的小错误<br>在 2 分 3 秒处开始记录 2:03<br>比如一个研究想要消除人们对少数群体的负面成见<br>在 2 分 8 秒处开始记录 2:08<br>操作方法是由实验者主持一个小组讨论 实验者的重心是少数群体的观点 要求参与者设身处地考虑问题<br>在 2 分 20 秒处开始记录 2:20<br>在对照组 实验者重心是多数群体和少数群体间的差异 并强调多数人的观点<br>在 2 分 29 秒处开始记录 2:29<br>两组都会有三次周会 先举个小规模的历史型影响 假设在对照组最后一次讨论会上 实验者昏倒了<br>在 2 分 42 秒处开始记录 2:42<br>当然 参与者对此感到震惊、不安 这可能会让对照组普遍陷入负面情绪状态 假设我发现 玩了暴力游戏的孩子比对照组更具攻击性 这使对照组对少数群体的态度更加负面 这使对照组对少数群体的态度更加负面<br>在 2 分 55 秒处开始记录 2:55<br>实验处理似乎起作用了 因为实验组更正面 但差异并非来自讨论的设计 而是因为昏倒事件 来看看大规模历史影响的例子 假设研究期间 出现了一件可怕的罪行 嫌疑人是一个少数群体的人 该罪行受到大量媒体的关注 加强了对少数群体的负面成见<br>在 3 分 22 秒处开始记录 3:22<br>任何干预的正面效果都会被这个事件抹去<br>在 3 分 28 秒处开始记录 3:28<br>历史这种影响因素很难消除 大规模事件难以避免 研究期间发生的小规模事件 如果可能 至少能通过将受试者分组测试来避免 这样 如果出错了 只有一个或可能几个受试者必须要被舍弃<br>在 3 分 49 秒处开始记录 3:49<br>最后一个影响因素就是亡失 亡失意味着参与者退出了 如果组间比较时 它们的退出率不一样 那么就会出现替代解释<br>在 4 分 2 秒处开始记录 4:02<br>比如 假设调查治疗抑郁症药物的效果 比如 假设调查治疗抑郁症药物的效果 假设药物其实不是很有效 但副作用很大 它会导致不停地放屁 当然 这会很不舒服而且尴尬 人们因为这个副作用而退出也没有什么奇怪的<br>在 4 分 24 秒处开始记录 4:24<br>假设实验组 80% 的人退出了 在对照组 参与者服用的是没有药效的安慰剂 当然也没副作用 对照组的退出率只有 10% 很明显这两组没有可比性了 假设在实验组剩余 20% 的参与者中 药效带来的好处要胜过副作用<br>在 4 分 51 秒处开始记录 4:51<br>但退出的 80% 就不是这样了<br>在 4 分 56 秒处开始记录 4:56<br>仅基于剩下的 20% 参与者的结果 我们可能认为药物非常有效<br>在 5 分 1 秒处开始记录 5:01<br>但如果实验组所有的对象都在的话 结论可能会大不一样<br>在 5 分 8 秒处开始记录 5:08<br>亡失这个影响因素很难消除 大多数情况下 研究者所能做的就是记录退出原因 以便调查 并在下次研究中避免这些原因</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-methods-relevant-types-of-variables/" rel="bookmark">计算方法 06 | 相关变量的类型</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-methods-scientific-method/" rel="bookmark">计算方法 04 | 科学方法</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-method-philosophy-of-science/" rel="bookmark">计算方法 03 | 科学哲学</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-method-origin/" rel="bookmark">计算方法 02 | 科学的起源</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-methods-what-science-is/" rel="bookmark">计量方法 01 | 科学是什么？</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://theinfinitegame.tech/social-science/quantitative-method-threats-to-internal-validity/" title="计算方法 05 | 对内部效度的影响">https://theinfinitegame.tech/social-science/quantitative-method-threats-to-internal-validity/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E9%87%8F%E6%96%B9%E6%B3%95/" rel="tag"># 计量方法</a>
+              <a href="/tags/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6/" rel="tag"># 社会科学</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/development/note-swiftui-mvvm/" rel="prev" title="SwiftUI 笔记 | MVVM In SwiftUI">
+      <i class="fa fa-chevron-left"></i> SwiftUI 笔记 | MVVM In SwiftUI
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/social-science/quantitative-methods-relevant-types-of-variables/" rel="next" title="计算方法 06 | 相关变量的类型">
+      计算方法 06 | 相关变量的类型 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内部效度的影响：参与者-（Internal-Validity-Threats-Participants）"><span class="nav-number">1.</span> <span class="nav-text">内部效度的影响：参与者 （Internal Validity Threats: Participants）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内部效度的影响：仪器-（Internal-Validity-Threats-Instruments）"><span class="nav-number">2.</span> <span class="nav-text">内部效度的影响：仪器 （Internal Validity Threats: Instruments）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内部效度的影响：人造因素-Artificiality"><span class="nav-number">3.</span> <span class="nav-text">内部效度的影响：人造因素 (Artificiality)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内部效度的影响：研究设计-Research-Setup"><span class="nav-number">4.</span> <span class="nav-text">内部效度的影响：研究设计 (Research Setup)</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+      <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">270k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:05</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

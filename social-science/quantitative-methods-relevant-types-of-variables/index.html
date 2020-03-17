@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://theinfinitegame.tech').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Variables of InterestI want to go in to research designs and give you a more concrete idea how a research design can minimize threats to internal validity. But before I can do that, you have to become">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算方法 06 | 相关变量的类型">
+<meta property="og:url" content="https://theinfinitegame.tech/social-science/quantitative-methods-relevant-types-of-variables/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="Variables of InterestI want to go in to research designs and give you a more concrete idea how a research design can minimize threats to internal validity. But before I can do that, you have to become">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-03T11:19:01.000Z">
+<meta property="article:modified_time" content="2020-03-03T11:29:13.684Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="计量方法">
+<meta property="article:tag" content="社会科学">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://theinfinitegame.tech/social-science/quantitative-methods-relevant-types-of-variables/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>计算方法 06 | 相关变量的类型 | The Infinite Game</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/social-science/quantitative-methods-relevant-types-of-variables/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算方法 06 | 相关变量的类型
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-03 19:19:01" itemprop="dateCreated datePublished" datetime="2020-03-03T19:19:01+08:00">2020-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/social-science/" itemprop="url" rel="index">
+                    <span itemprop="name">social-science</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Variables-of-Interest"><a href="#Variables-of-Interest" class="headerlink" title="Variables of Interest"></a>Variables of Interest</h1><p>I want to go in to research designs and give you a more concrete idea how a research design can minimize threats to internal validity. But before I can do that, you have to become familiar with the terms, construct, variable, constant, and independent and dependent variable.<br>在 23 秒处开始记录 0:23<br>A hypothesis describes or explains a relationship between constructs. The term construct is used to indicate that we’re talking about a property in general, abstract terms. For example, I can hypothesis that loneliness and depression are associated. The terms loneliness and depression are the constructs here.<br>在 44 秒处开始记录 0:44<br>Of course, loneliness and depression can be expressed in many different ways. The term, variable, refers to an operationalized version of a construct. A variable is a specific, concrete expression of the construct, and is measurable or manipulable.<br>在 1 分 1 秒处开始记录 1:01<br>For example, I could operationalize loneliness in a group of elderly people in a nursing home, for example, by using a self-report questionnaire. I could administer the UCLA loneliness scale.<br>在 1 分 12 秒处开始记录 1:12<br>This scale is a 20-item questionnaire consisting of items like, I have nobody to talk to.<br>在 1 分 18 秒处开始记录 1:18<br>The variable loneliness now refers to loneliness as expressed through scores on the UCLA scale.<br>在 1 分 25 秒处开始记录 1:25<br>If I hypothesize that loneliness causes depression, I would be better off manipulating instead of measuring loneliness. I could give one group of elderly people a cat to take care of, comparing them with the control group without a cat.</p>
+<p>I’ve now operationalized loneliness by creating two levels of loneliness. The variable loneliness now refers to high or low loneliness expressed through the presence or absence of a feline companion.<br>在 1 分 55 秒处开始记录 1:55<br>Finally, I could operationalize depression by using the geriatric depression scale, the GDS, consisting of 15 questions such as, do you feel happy most of the time?<br>在 2 分 5 秒处开始记录 2:05<br>The variable depression, now refers to depression, as expressed through the scores on the GDS.<br>在 2 分 12 秒处开始记录 2:12<br>Okay, so variables are measured or manipulated properties that take on different values. This last bit is important. A variable’s values need to vary. Otherwise, the property isn’t very interesting. It’s a constant.<br>在 2 分 26 秒处开始记录 2:26<br>Suppose the nursing home is so horrible that all residents get the maximum depression score. Well, then we cannot show a relation between loneliness and depression, at least not in this group of subjects. Both lonely and less lonely people will be equally depressed.<br>在 2 分 43 秒处开始记录 2:43<br>Depression is a constant.<br>在 2 分 46 秒处开始记录 2:46<br>So the variable central to our hypothesis should be variable. It should show variation. Of course, it is a good idea to keep other extraneous variables constant, so that they cannot provide alternative explanations. But we’ll get to that in another video.<br>在 3 分 1 秒处开始记录 3:01<br>Okay. Now that I’ve defined what a variable is, let’s look at different types of variables, according to the role they play in describing or explaining a phenomenon.<br>在 3 分 11 秒处开始记录 3:11<br>I’ll refer to the variables that are central to our hypothesis as variables of interest.<br>在 3 分 17 秒处开始记录 3:17<br>When a cause and effect can’t be identified or when a causal direction isn’t obvious or even of interest, our variables are on equal footing. And then we just refer to them as variables. But when our hypothesis is causal, we can identify a cause and an effect. And we then refer to the cause variable as the independent variable and to the effect variable as the dependent variable.<br>在 3 分 40 秒处开始记录 3:40<br>The independent variable is also referred to as cause variable, explanatory variable, input variable, or predictor. It refers to a variable that is hypothesized to cause or predicts another variable.<br>在 3 分 53 秒处开始记录 3:53<br>In our example, loneliness was hypothesized to cause depression.<br>在 3 分 58 秒处开始记录 3:58<br>The independent variable here, of course, is loneliness.<br>在 4 分 2 秒处开始记录 4:02<br>And its operationalized through the presence or the absence of a cat.<br>在 4 分 7 秒处开始记录 4:07<br>Now the dependent variable is hypothesized to be influenced by the cause variable or to be the result of another variable. It’s values depend on another variable.<br>在 4 分 18 秒处开始记录 4:18<br>In our example, the dependent variable was depression as measured through scores on the GDS questionnaire. The dependent variable is also referred to as effect variable, response variable, outcome or output variable.<br>在 4 分 33 秒处开始记录 4:33<br>Now, if you’re having trouble telling the terms independent and dependent apart, try to remember that the independent variable is what the researcher would like to be in control of.<br>在 4 分 43 秒处开始记录 4:43<br>It’s the cause that comes first.</p>
+<p>这节课的主题是研究设计 我想具体讲下研究设计如何减少影响内部效度的因素 不过在这之前 我们先要学习几个术语 它们分别是 概念 变量 常数 自变量和因变量<br>在 23 秒处开始记录 0:23<br>假设就是描述或解释概念间的关系 提到概念这个术语 即意味着我们谈及的是一种笼统抽象的属性 比方说 我可以假设孤独和抑郁相关 “孤独” 和 “抑郁” 在这里就是两个概念<br>在 44 秒处开始记录 0:44<br>当然 孤独与抑郁有多种不同的表达方式 变量这个术语是指概念的可操作版本 变量是概念具体明确的表现 变量是可测量、可改变的<br>在 1 分 1 秒处开始记录 1:01<br>比如我可以用自陈量表 来量化养老院中一群老人的孤独感 我可以使用 UCLA 孤独感量表<br>在 1 分 12 秒处开始记录 1:12<br>该量表由 20 个问题组成 比如” 没人可以陪我说话 “这类问题<br>在 1 分 18 秒处开始记录 1:18<br>孤独感变量以 UCLA 量表分数的形式表现了” 孤独 “这个概念 孤独感变量以 UCLA 量表分数的形式表现了” 孤独 “这个概念<br>在 1 分 25 秒处开始记录 1:25<br>如果我假设孤独导致了抑郁 那么最好是改变孤独感 而非测量孤独感 我可以让一组老年人照顾一只猫 然后和没有猫的对照组比较<br>在 1 分 40 秒处开始记录 1:40<br>通过建立两种孤独水平 就使孤独感可操作化 通过有无猫陪伴 孤独变量就表现出了高低 通过有无猫陪伴 孤独变量就表现出了高低<br>在 1 分 55 秒处开始记录 1:55<br>最后我可以通过老年抑郁量表 (GDS) 使抑郁可操作化 该量表有 15 个问题 如” 你大多数时间都快乐吗？“<br>在 2 分 5 秒处开始记录 2:05<br>现在代表抑郁的变量 可以通过 GDS 得分的形式表现出来了<br>在 2 分 12 秒处开始记录 2:12<br>所以变量有可测量或改变的属性 它们可以有不同的值 最后这一点很重要 变量值必须能改变 不然这个属性就没什么意思了 它就是个常数了<br>在 2 分 26 秒处开始记录 2:26<br>假设这个养老院太糟糕了 以至于所有人的抑郁指数都是满分 那至少在这个研究群体里 我们不能体现孤独和抑郁间的关系 孤独和没那么孤独的人都一样意志消沉<br>在 2 分 43 秒处开始记录 2:43<br>抑郁就成了个常数<br>在 2 分 46 秒处开始记录 2:46<br>所以与我们的假设息息相关的变量应该可变 它应表现出一定的变化 当然 最好保持其他额外变量不变 以避免出现替代解释 我们之后专门有一节课讲这个问题<br>在 3 分 1 秒处开始记录 3:01<br>好 说完变量的定义 现在我们再讲下变量的不同类型 因其在描述或解释一个现象中所扮演的角色而异<br>在 3 分 11 秒处开始记录 3:11<br>我将假设中关键的变量称为目标变量 我将假设中关键的变量称为目标变量<br>在 3 分 17 秒处开始记录 3:17<br>当因果关系不确定 不明显甚至没意义时 所有的变量都是平等的 我们只称之为变量 当在假设中存在因果关系 因和果都能确定 那么原因变量就称为自变量 结果变量称为因变量<br>在 3 分 40 秒处开始记录 3:40<br>自变量也称为原因变量 解释变量 输入变量或预测变量 自变量也称为原因变量 解释变量 输入变量或预测变量 意思是根据假设 这个变量会引起另一个变量的变化 或能预测另一个变量的变化<br>在 3 分 53 秒处开始记录 3:53<br>在我们的例子中 假设孤独会引发抑郁<br>在 3 分 58 秒处开始记录 3:58<br>这里的自变量就是孤独<br>在 4 分 2 秒处开始记录 4:02<br>通过有没有猫来操作该变量<br>在 4 分 7 秒处开始记录 4:07<br>因变量就是假设会受到原因变量影响的变量 也就是另一个变量的结果 它的值取决于其他变量<br>在 4 分 18 秒处开始记录 4:18<br>在我们的例子中 因变量就是抑郁 通过 GDS 量表得分评估 因变量也叫做影响变量 反应变量 结果或输出变量 因变量也叫做影响变量 反应变量 结果或输出变量<br>在 4 分 33 秒处开始记录 4:33<br>如果你无法区分自变量和因变量 那就试着记住 自变量是研究者需要控制的部分<br>在 4 分 43 秒处开始记录 4:43<br>自变量是原因 先于结果发生</p>
+<h1 id="Variables-of-Disinterest"><a href="#Variables-of-Disinterest" class="headerlink" title="Variables of Disinterest"></a>Variables of Disinterest</h1><p>I’ve discussed variables that are the focus of our hypothesis, the variables of interest. Of course in any study there will be other extraneous properties associated with the participants and the research setting that vary between participants.<br>在 20 秒处开始记录 0:20<br>These properties are not the main focus of our study. But they might be associated with our variables of interest, providing possible alternative explanations.<br>在 30 秒处开始记录 0:30<br>Such variables of disinterest come in three flavors. Confounders, control variables, and background variables.<br>在 39 秒处开始记录 0:39<br>A confounder, or lurking variable, is a variable that is related to both the independent and dependent variable, and partially, or even entirely, accounts for the relationship between these two.<br>在 53 秒处开始记录 0:53<br>Suppose I investigate the effect of reducing loneliness on depression in a group of elderly people. I lower loneliness by providing a cat to the elderly in an experimental group.<br>在 1 分 3 秒处开始记录 1:03<br>An elderly in a control group receive a stuffed toy.<br>在 1 分 8 秒处开始记录 1:08<br>Now besides loneliness, the two groups might also differ in terms of the physical exercise they get, their age, or their susceptibility to depression, which are all variables of disinterest. Take physical exercise. The experimental group will likely be more physically active, because they have to feed and clean up after the cat. So physical exercise is related to loneliness. The cat group, the less lonely group, is more active than the control group.<br>在 1 分 39 秒处开始记录 1:39<br>Suppose physical activity is also causally related to depression. Being more active lowers depression. Well, then physical activity and not loneliness may account for a lower depression score in the experimental cat group.<br>在 1 分 52 秒处开始记录 1:52<br>The relation between loneliness and depression is said to be spurious. The relation can be explained by the confounding variable, physical activity.<br>在 2 分 3 秒处开始记录 2:03<br>An important thing to note about confounders, is that they are not included in the hypothesis and they are generally not measured. This makes it impossible to determine what the actual effect of a confounder was. The only thing to do is to repeat the study, and control the confounder by making sure it takes on the same value for all participants. For example, if all elderly people in both groups are required to be equally active, then physical activity cannot explain differences in depression.<br>在 2 分 36 秒处开始记录 2:36<br>Another possibility is to turn a confounder into a control variable. A control variable is a property that is likely to be related to the independent and dependent variable, just like a confounder. But unlike a confounder a control variable is measured. It’s effects can therefore be assessed and controlled for.<br>在 2 分 55 秒处开始记录 2:55<br>For example, we could see if physical activity provides an alternative explanation by measuring it and taking it into account. Suppose we could distinguish inactive and active people. In the cat therapy, there are more active people, but some are inactive. In the control condition, most people are inactive, but some are active.<br>在 3 分 16 秒处开始记录 3:16<br>We now consider the difference in depression between the cat therapy and control group, first for the active people, and then for the inactive people. We control for activity, in fact holding it constant, by considering each activity level separately.<br>在 3 分 32 秒处开始记录 3:32<br>If the relationship between loneliness and depression disappears when we look at each activity level separately, then activity explains a way this spurious relation between loneliness and depression. But if the relationship still shows and at each activity level, then we’ve eliminated physical activity as an alternative explanation for the drop in depression.<br>在 3 分 54 秒处开始记录 3:54<br>The last type of variable of disinterest is a background variable. This type of variable is not immediately relevant to the relation between the variables of interest, but it is relevant to determine how representative the participants in our study are for a larger group, maybe all elderly people everywhere. Even all people of any age.<br>在 4 分 16 秒处开始记录 4:16<br>For this reason, it’s interesting to know how many men and women participated, what their mean age was, their ethnic or cultural background, social economic status, education level, whatever else is relevant to the study at hand.<br>在 4 分 32 秒处开始记录 4:32<br>So to summarize, a confounder is a variable that partially or entirely explains an effect on the dependent variable instead of, or additional to, the independent variable.<br>在 4 分 44 秒处开始记录 4:44<br>A confounder is not accounted for in the hypothesis, and is not measured or controlled for in the study.<br>在 4 分 49 秒处开始记录 4:49<br>A possible confounder can be controlled for by keeping the property constant or by turning it into a control variable. A control variable accounts for a possible confounder, by measuring the relevant property and checking the relationship between the variables of interest at each value or level of the control variable.<br>在 5 分 10 秒处开始记录 5:10<br>Background variables, finally, are measured, not because of possible effect on the variables of interest, it is expected. But because the background properties are useful to assess the generalizability of the study, based on the sample characteristics.<br>I’ve discussed variables</p>
+<p>前一节课我们讲了假设中的关键变量 即目标变量 当然 任何研究中都有其他额外的属性 与参与者和研究设置有关 且因人而异<br>在 20 秒处开始记录 0:20<br>它们不是我们的研究重点 但可能与目标变量存在联系 可能会导致出现替代解释<br>在 30 秒处开始记录 0:30<br>这样的次要变量有三种类型 混杂变量、控制变量及背景变量<br>在 39 秒处开始记录 0:39<br>混杂变量 也称作潜在变量 与自变量、因变量均相关 且在二者的关系中占部分 甚至全部比重<br>在 53 秒处开始记录 0:53<br>假设我要调查一群老年人 减少孤独感对抑郁有何影响 通过给实验组老人猫咪来降低孤独感<br>在 1 分 3 秒处开始记录 1:03<br>对照组老人则给个毛绒玩具<br>在 1 分 8 秒处开始记录 1:08<br>现在除了孤独感 两组的运动量、年纪、抑郁易感性都不尽相同 而这些都是次要变量 比如运动 实验组的老人可能运动要多一些 因为他们要给猫喂食铲屎 而运动是与孤独感相关的 猫咪组不那么孤独 他们比对照组运动量更多<br>在 1 分 39 秒处开始记录 1:39<br>假设运动与抑郁也有因果关系 多运动可以减少抑郁 那么运动及不孤独都可能造成实验组抑郁分值较低 那么运动及不孤独都可能造成实验组抑郁分值较低<br>在 1 分 52 秒处开始记录 1:52<br>孤独和抑郁间的关系则会被认为是假相关 因为混杂变量 “运动” 也能解释这个关系<br>在 2 分 3 秒处开始记录 2:03<br>对于混杂变量 需要强调的是 假说中不包含它们 一般也不会被测量 所以也不可能测量混杂变量的实际影响 我们唯一能做的就是重复这个研究 控制混杂变量 使其对所有参与者影响一致 比方说 如果让两组老人的运动量相等 那么运动就不能解释抑郁程度的差异了<br>在 2 分 36 秒处开始记录 2:36<br>另一种方法是把混杂变量转换成控制变量 控制变量就像混杂变量 是可能和自变量与因变量都有关的属性 但与混杂变量不同的是 控制变量可测量 因此其影响能被评估和控制<br>在 2 分 55 秒处开始记录 2:55<br>比如通过测量运动量 将其包括在研究之中 来看运动是否会提供一个替代解释 假设我们可以分出活跃和不活跃的人群 猫咪疗法中 有的人相对活跃 有的人则略为安静 对照组中 大多数人是安静的 但还有一些较为活跃<br>在 3 分 16 秒处开始记录 3:16<br>在观察猫咪治疗组和对照组抑郁程度差别时 先看活跃人群 再看非活跃人群 通过将参与者根据运动水平分组 我们控制运动量 在每组内将其作为常数<br>在 3 分 32 秒处开始记录 3:32<br>当我们分别观察每个运动水平时 如果孤独和抑郁间的相关性不复存在 那么运动就能解释孤独和抑郁间的假相关性 但如果在各个运动水平 仍然表现出相关性 那我们就能排除运动是减少抑郁的替代解释<br>在 3 分 54 秒处开始记录 3:54<br>最后一种次要变量叫做背景变量 这类变量与目标变量没有直接联系 这类变量与目标变量没有直接联系 但它说明了参与者是否可以代表一个更大的群体 甚至是否可以代表世界各地的老年人群体 甚至各个年龄段群体<br>在 4 分 16 秒处开始记录 4:16<br>出于这种原因 要了解参与者的性别 平均年龄、宗教或文化背景、社会经济状况 教育程度等任何和研究相关的背景<br>在 4 分 32 秒处开始记录 4:32<br>总结一下 混杂变量是能替代或附加于自变量 对因变量造成部分或全部影响的变量 对因变量造成部分或全部影响的变量<br>在 4 分 44 秒处开始记录 4:44<br>研究中 假设并不会提及混杂变量 也不能测量或控制<br>在 4 分 49 秒处开始记录 4:49<br>控制混杂变量可以有两种方式 将这一属性变为常数或将其变为控制变量 控制变量来自可能的混杂变量 通过测量相关属性 核查控制变量每个水平上目标变量间的关系<br>在 5 分 10 秒处开始记录 5:10<br>最后讲到了测量背景变量 不仅因为其对目标变量可能有潜在影响 还因为基于样本特征 背景属性对评估研究普遍性有用 还因为基于样本特征 背景属性对评估研究普遍性有用</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-method-threats-to-internal-validity/" rel="bookmark">计算方法 05 | 对内部效度的影响</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-methods-scientific-method/" rel="bookmark">计算方法 04 | 科学方法</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-method-philosophy-of-science/" rel="bookmark">计算方法 03 | 科学哲学</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-method-origin/" rel="bookmark">计算方法 02 | 科学的起源</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/social-science/quantitative-methods-what-science-is/" rel="bookmark">计量方法 01 | 科学是什么？</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://theinfinitegame.tech/social-science/quantitative-methods-relevant-types-of-variables/" title="计算方法 06 | 相关变量的类型">https://theinfinitegame.tech/social-science/quantitative-methods-relevant-types-of-variables/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E9%87%8F%E6%96%B9%E6%B3%95/" rel="tag"># 计量方法</a>
+              <a href="/tags/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6/" rel="tag"># 社会科学</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/social-science/quantitative-method-threats-to-internal-validity/" rel="prev" title="计算方法 05 | 对内部效度的影响">
+      <i class="fa fa-chevron-left"></i> 计算方法 05 | 对内部效度的影响
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/development/programming-use-pipeline-to-tackle-complexity/" rel="next" title="用 “流水线” 设计拆解复杂处理流程">
+      用 “流水线” 设计拆解复杂处理流程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Variables-of-Interest"><span class="nav-number">1.</span> <span class="nav-text">Variables of Interest</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Variables-of-Disinterest"><span class="nav-number">2.</span> <span class="nav-text">Variables of Disinterest</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+      <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">270k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:05</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -223,6 +223,205 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-closures/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/programming/swiftswift-closures/" class="post-title-link" itemprop="url">极速 Swift 教程之六 | 闭包</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-24 21:05:51" itemprop="dateCreated datePublished" datetime="2019-12-24T21:05:51+08:00">2019-12-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="创建基本的闭包"><a href="#创建基本的闭包" class="headerlink" title="创建基本的闭包"></a>创建基本的闭包</h1><p>Swift 允许我们像字符串和整数一样使用函数。具体来说，你可以创建一个函数然后把它赋给一个变量，利用那个变量来调用函数。你甚至可以把函数作为参数传给另一个函数。</p>
+<p>函数的这种用法被称为 <em>闭包</em> 。虽然工作机制差不多，写法上是有一些小差异的。</p>
+<p>还是以打印信息为例：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> driving = {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"我要去开车"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面的代码实际上创建了一个匿名的函数，并将这个函数赋给了 <code>driving</code> 。之后你就可以把 <code>driving ()</code> 当作一个常规的函数来用，就像这样：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driving ()</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/programming/swiftswift-closures/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/programming/swiftswift-functions/" class="post-title-link" itemprop="url">极速 Swift 教程之五 | 函数</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-24 20:47:22" itemprop="dateCreated datePublished" datetime="2019-12-24T20:47:22+08:00">2019-12-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="书写函数"><a href="#书写函数" class="headerlink" title="书写函数"></a>书写函数</h1><p>函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。</p>
+<p>用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。</p>
+<p>Swift 的函数以 <code>func</code> 关键字开始，然后跟着函数名，然后是一对圆括号，最后是一对花括号。当函数被运行时，花括号里的代码会被执行。</p>
+<p>一个 <code>printHelp ()</code> 函数长这样：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printHelp</span><span class="params">()</span></span> {</span><br><span class="line">  <span class="keyword">let</span> message = <span class="string">"""</span></span><br><span class="line"><span class="string">  欢迎来到我的 App!</span></span><br><span class="line"><span class="string">  在一个图片的目录下运行这个 App，</span></span><br><span class="line"><span class="string">  它会把所有的图片缩放成缩略图。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">  <span class="built_in">print</span>(message)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后我们用 <code>printHelp ()</code> 来运行它。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printHelp ()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>运行一个函数又被称为 * 调用 * 一个函数。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/programming/swiftswift-functions/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-looping/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -528,113 +727,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-simple-types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/swiftswift-simple-types/" class="post-title-link" itemprop="url">极速 Swift 教程之一 | 简单类型</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-23 17:59:14" itemprop="dateCreated datePublished" datetime="2019-12-23T17:59:14+08:00">2019-12-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>当你启动 Xcode 时，它会询问你想要做的事情，选择 “Get Started with a Playground” 。 Playground 是一个可以供你输入 Swift 代码并立即看到结果的沙盒环境。</p>
-<p>默认的， Xcode 将提供一个 iOS 编程环境的空白 Playground, 点击 Next，然后再点击 Create ，将 Playground 保存到你的系统桌面。</p>
-<p>在本文中，我将向你介绍 “变量”，它们是你用来存储程序数据的地方。之所以被称为 “变量”，是因为它们可变，即你可以自由地改变它们的值。</p>
-<p>我们将从在 Playground 中的第一行代码开始了解 “变量”，它是一行创建了一个名称为 “str” ， 值为 “Hello, playground” 的字符串变量的代码。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"Hello, playground"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>这行代码创建了一个名为 <code>str</code> 的新变量，并给它赋值为 “Hello, playground” 。在 Playground 右侧的输出区域你可以看到 “Hello, playground” – 这是 Xcode 在展示我们刚刚给 <code>str</code> 设置的值。</p>
-<p>既然 str 是一个变量，我们就可以改变它:</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"Goodbye"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>第二次的时候，你不需要再写一次 <code>var</code> ，因为这个变量在前面已经被创建过了 – 我们只需要改变它。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-simple-types/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -702,7 +799,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -715,7 +812,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -770,12 +867,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">232k</span>
+    <span title="站点总字数">270k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">4:05</span>
 </div>
 
         

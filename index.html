@@ -223,7 +223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/uncategorized/quantitative-method-threats-to-internal-validity/">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/development/programming-use-pipeline-to-tackle-complexity/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -237,7 +237,293 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/uncategorized/quantitative-method-threats-to-internal-validity/" class="post-title-link" itemprop="url">计算方法 05 | 对内部效度的影响</a>
+            <a href="/development/programming-use-pipeline-to-tackle-complexity/" class="post-title-link" itemprop="url">用 “流水线” 设计拆解复杂处理流程</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-17 11:32:12" itemprop="dateCreated datePublished" datetime="2020-03-17T11:32:12+08:00">2020-03-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/development/" itemprop="url" rel="index">
+                    <span itemprop="name">development</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本文的主要价值：提供一种抽象复杂逻辑，达成功能复用的思路</li>
+<li>关键词：语义提炼、动态具名</li>
+<li>本文约 4000 字，建议阅读时间 12 分钟。</li>
+</ul>
+<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>在软件开发中，我们常常会遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。作为功能单元，它们可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且，对于用户来说，它们都在处理同一个的东西。</p>
+<p>举个例子，比如一款修图 app ，它包含了一组编辑功能，每个功能都作用于一张图片，处理之后的图片，还可以作为其他功能的输入。作为编辑工具，在每个功能内部，可能还需要支持撤销和重做这样的用户操作。我们容易想到的是，这些功能间存在着许多可以进行复用设计的代码。</p>
+<p>本文基于一次回顾发起，出于记录和分享的目的：一次代码重构，一款之前我参与开发的图像处理应用。</p>
+<hr>
+<h1 id="重构的具体背景"><a href="#重构的具体背景" class="headerlink" title="重构的具体背景"></a>重构的具体背景</h1><p>请看下面这幅图：</p>
+<p><img src="/images/black_box.png" alt="某个图像功能模块的结构图"></p>
+<p>元素不多，让我解释一下。图中的 “** 内存图像管理 + 效果处理 <strong>” 是一个 “</strong> 黑盒子 **”。“逻辑黑盒” 有的时候是好事，有的时候是坏事。那这里的黑盒子算好事还是坏事呢？ 既然对这种设计做了重构，多半是有痛点了。这里，我们重点探讨一下它的负面效应。 </p>
+<p>在具体业务场景下，这个黑盒子有两个问题：</p>
+<ul>
+<li>图像处理接口粒度太大，难以复用代码；</li>
+<li>图像 <strong>* 管理 *</strong>  和图像 <strong>* 效果处理 *</strong>  被绑定在一起。使得外部难以灵活的接触和使用图像。强调一下，管理和效果处理是两件事。前者是站在用户的角度，后者是站在服务提供者的角度。更高层应用逻辑的开发者，对于更底层支撑 API 的开发者来说，也是用户。</li>
+</ul>
+<h1 id="“管道”-概念的提炼"><a href="#“管道”-概念的提炼" class="headerlink" title="“管道” 概念的提炼"></a>“管道” 概念的提炼</h1><p>黑盒子的两个问题在重构时都得到了解决，但第一个问题与本文要分享的设计思想关联不大，不做展开。</p>
+<p>为了说明我们是如何解决第二个问题的，这里先引入两个概念：“** 流水线 <strong>” 和 “</strong> 例程 **”。相信对于从事编程类工作的读者来说，这两个词不会陌生。</p>
+<blockquote>
+<p>** 流水线 **  pipeline，[计] 又称管道，管线。<br>** 例程 **  routine，[计] 程序；日常工作；例行公事</p>
+</blockquote>
+<p>在我们的案例中，<code>Pipeline</code> 相当于内存中的图像状态机，提供了基本的图像管理功能，例如加入图像，删除图像，复制图像，移动图像，等等。<code>Routine</code> 相当于各个图像功能单元中的通用事务，比如说，对于每个图像功能单元，都需要在其开始运作时从某处获得一份初始的图像，并在其结束运作时输出一份 <strong>* 最终的 *</strong> 图像到另一处。我们还约定，<code>Routine</code> 中的事务会基于 <code>Pipeline</code> 来完成。可以具体解释成这样：每个 <code>Routine</code> 都会包含一组典型的图像处理动作，这些处理动作借助一个或者多个 <code>Pipeline</code> 的通用操作，以及每个 <code>Pipeline</code> 的差异化操作来完成（后面会具体说明这个 <strong>* 差异化的图像处理步骤 *</strong>）。</p>
+<p>从这里开始，我们不妨把 “** 流水线 <strong>” 的叫法直接替换成 “</strong> 管道 **”，因为后面会用到一些比喻性的描述，我个人它们觉得基于 “管道” 一词衍生出来，会比用 “流水线” 来得更自然。接下来，我们对 “管道” 这个意象再做进一步的挖掘，可以设计出下面这些对应关系（表格中左侧的概念只是一种比喻，读者可自行体会，这里不会详细解读）</p>
+<p>$$ \begin {array}[b] {|c|c|}  \hline 比喻 &amp;  &amp; 原对象 \  \hline “管道”  &amp; =&gt; &amp; 图像状态机  \  \hline “流体”  &amp; =&gt; &amp; 图像  \  \hline “节点”  &amp; =&gt; &amp; 图像状态 \  \hline “流动”  &amp; =&gt;  &amp; 图像状态流转 \  \hline “锋面”(流体的最前端)  &amp; =&gt;  &amp; 当前正在处理的图像状态 \  \hline “连通性”  &amp; =&gt;  &amp; 状态机内的图像以及图像状态机之间都是可串联的 \  \hline \end {array}\ $$</p>
+<p>“流体” 是一个名词，它对应的是图像，涉及到存储模型。根据 “流体” 的特性，我们可以想象，或者说推断，管道里的图像存储模型应该会被设计为平行结构。</p>
+<p>请读者联想一个类比， &lt;** 化妆 / 整容  VS  软件上美化照片上的人脸 **&gt; ，再思考一下，两者在存储模型和工序这两个方面有什么异同？ </p>
+<p>回到正题，我配了五幅图来描述管道在具体实现中的五个特性：</p>
+<ol>
+<li>“流体” 由一系列 “节点” 组成。“节点”，即图像的状态，它的含义构成了我们对某一个图像的本征性认知。通俗地讲，图像状态能够帮助我们在特定的场景下把不同的图像区分开来。举个例子，有协同开发的两位程序员，对于 “美颜” 和 “滤镜” 这两个步骤的认知达成了共识。于是，我们就可以建立两个节点：“美颜”、“滤镜”，然后在开发过程中使用这两个节点来 * 协作 * 。注意，图像状态不是图像本身。对于图像状态的代码实现，我们可以使用一个极轻量的数据结构 —— 字符串。它体现的是 ** 占位符思想 <strong>，而我想要强调占位符的三个重要好处：它们是 ** 可预见的 **（基于认知共识）、</strong> 可预置的 <strong>（很轻量）、</strong> 可固化的 **（可复用代码的一个内在要求）。</li>
+</ol>
+<p><img src="/images/nodes.png" alt="节点及同位节点"></p>
+<ol start="2">
+<li>“管道” 通过衔接 “节点” 构成 “连通”。在 “节点” 中，有必要特别介绍的是 “同位节点”。它指的是：几个步骤在 <strong>* 同一个图像 *</strong> 上先后发生。在时间上有先后，但在空间上始终操作同一份存储。我后面会再用到这个描述。</li>
+</ol>
+<p><img src="/images/connectivity.png" alt="连通性"></p>
+<ol start="3">
+<li><p>“流动” 的 “流体” 会有一个 ** 最前部 ** ，就好像水流的最前端，又称为 “锋面” (Waterfront)，对应着这样一个事实：“管道” 中所有的图像，在同一时间里，只会有 <strong>* 唯一的 *</strong> 图像处于 ** 可操作 ** 的状态，这个状态代表着 ** 图像的变化趋势 *<em>。具体到代码实现，可能会是一组带有 * 同步关键字 * 的方法，加上一个唯一的指向当前状态的指针。我们通过 *</em> 引导 ** 和 ** 操刀 ** 这个趋势，把图像 “引向” 最终要呈现出来的样子。在图示中，我有意使用了绿色代表原始的、最初的，使用红色代表成熟的、完全体的。<code>Pipeline</code> 专注于做一件事：把图像从一种状态转化为另外一种状态。这期间，可能要经历多个 “节点”，而 “锋面” 的意义就在于，它保证了一件事。那就是 <code>Pipeline</code> 的操刀者可以确信，这一刻只有他自己在引导图像的 “流向”，没有人会干扰到他。</p>
+<p><img src="/images/waterfront.png" alt="锋面"></p>
+</li>
+<li><p>“流动” 可以是双向的（相比生产车间的 “流水线”，“管道” 之所以更贴切，在于后者可以实现双向的流动，对应到图像，相当于实现反向编辑，或者说撤销到一个处理步骤之前的状态）</p>
+</li>
+<li><p>“流体” 如果 “分流”，则可以出现多个 “锋面”，对应着图像的 ** 并行处理 ** 。</p>
+<p><img src="/images/shunt.png" alt="分流"></p>
+</li>
+</ol>
+<h1 id="“管道”-的具体实现"><a href="#“管道”-的具体实现" class="headerlink" title="“管道” 的具体实现"></a>“管道” 的具体实现</h1><p>如前所述，“流体” 其实就是图像，简单封装即可。我们主要实现的是 “** 节点 <strong>”、“</strong> 锋面 <strong>”、 “</strong> 流动 <strong>” 和 “</strong> 连通 **”。</p>
+<h2 id="节点的实现方案和意义"><a href="#节点的实现方案和意义" class="headerlink" title="节点的实现方案和意义"></a>节点的实现方案和意义</h2><p>我们先来看一种典型的图像处理过程中可能会采用的写法，代码为 swift 实现：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图像 xyz</span></span><br><span class="line"><span class="keyword">var</span> xyz: <span class="type">MyImage</span></span><br><span class="line"><span class="comment">// 图像 ijk</span></span><br><span class="line"><span class="keyword">var</span> ijk: <span class="type">MyImage</span></span><br><span class="line"><span class="comment">// 图像 abc </span></span><br><span class="line"><span class="keyword">var</span> abc: <span class="type">MyImage</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>当然，现代编程语言的语法特性，可以让你省去写各种 getter/setter 的样板代码，从而节省代码量。但这不是重点，重点在于 —— 上述这种代码无法复用。因为每一个图像的引用都被赋予了 ** 具体 ** 的含义：同样的写法不太可能完全地适用于另外一个图像处理场景。比如说，另外那个图像处理场景很可能不会用到描述为 ijk 的图像，可能会用到描述是 uvw 的图像。因此，采取这种写法会遇到的一个典型问题是：每新增一个图像处理场景，我们都需要新增若干个特定描述的图像声明。在编码层面，这无疑是一项繁冗的工作。</p>
+<p>上面说的图像引用，其实正是我们的图像 “管道” 里的某个 “节点”。思考一个问题，如果要对 “节点” 实现代码复用，你会怎么做？稍微提示一下，关键在于 “** 具体 **” 这两个字。</p>
+<p>是的，如果我们能想到，上面的写法中代码之所以不能复用，根源在于图像引用的用途已经被 ** 具体定义 *<em>（同时也是被具体 *</em> 约束 **），那么我们就更有可能往这样一个方向思考问题的解决方案：能不能把图像引用 “去具体化” ，让它的含义在具体场景到来时才被赋予呢？</p>
+<p>讲到这一层，有些读者可能已经想到一种数据结构 —— 字典。是的，没有什么奇淫巧技，只用字典，就能实现 “去具体化”，解决这个代码复用问题中的最大障碍 —— 既然无法预知我们可能需要处理什么样的图像，可能需要处理多少份图像，并且这些未知数总是易变的，那为什么不让具体场景的使用者来 ** 动态添加 ** 这些图像引用，并且为它们具名呢？图像部分被复用的代码，这里只声明了一样东西，就是从图像状态表述到图像引用的映射表。它提供了一个之前的写法不具备的特点，而这个特点是达成复用的必要前提：图像存取的方式是 ** 统一的 <strong>，</strong> 有限的 *<em>，从而是 *</em> 可固化的 **。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stateTagToImageMap = [<span class="type">String</span>:<span class="type">MyImage</span>]()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们用一个 ** 字符串标签 ** 来表示图像的状态。对于图像 “管道” 的使用者来说，他只需要理解每个标签的含义，通过标签来存取图像并进行处理。在这些标签中，我们再提炼出几个具有通用含义的代表性标签：比如，<code>Original</code> 代表 “** 最初的 <strong>”，<code>Processed</code> 代表 “</strong> 加工完成的 *<em>”，这正是前文提到的 *</em> 占位符 *<em>。容易理解，在一份可复用的代码库中，你可以声明并且预置许多 *</em> 占位符 **。但你不会在这个代码库里声明同样数量的图像引用 —— 这样很奇怪对吧？哪怕从程序实现的角度来说，没有分配实际空间的引用并不一定会占据更多的内存。在后面列举的代码范例中，我们将会经常地用到 <code>Original</code> 和 <code>Processed</code> 这样的标签。</p>
+<p>不妨阅读下面这段代码，这就是一种使用标签来操作对应图像的写法。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示两个处理步骤之后的图像 </span></span><br><span class="line">pipeline.from (.original) <span class="comment">// 从原始的图像开始 </span></span><br><span class="line">        .copyTo (.processed) <span class="comment">// 拷贝出一份图像用于处理，对应标签 processed</span></span><br><span class="line">        .doProcess (tag: .processed, specificProcess1)  <span class="comment">// 在 processed 上执行处理 1</span></span><br><span class="line">        .doProcess (tag: .processed, specificProcess2) <span class="comment">// 在 processed 上执行处理 2</span></span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (.processed)) <span class="comment">// 取得 processed 标签代表的图像并且展示 </span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="锋面的实现方案和意义"><a href="#锋面的实现方案和意义" class="headerlink" title="锋面的实现方案和意义"></a>锋面的实现方案和意义</h2><p>解决了 “节点” 的设计，我们再来看基于 “节点” 提炼出来的 “锋面” 要怎么设计。容易理解，<strong>“锋面”</strong> 是最前面的那个 “节点” ，具有 ** 唯一性 <strong>，对应具体的图像处理代码中就是 “当前正在被处理的那个图像”。在设计图像管道对外提供的处理 API 时，我们约定处理动作一定只能发生在这个 “</strong> 当前的 **” 图像上，这样就能够保证我们的 “图像流” 总是按照我们想要的方向流动，并且在这个过程中，“图像流” 是不会被篡改的。这也是我们的图像编辑功能要实现撤销和重做功能的基本前提。</p>
+<p>还是上面那段代码，现在可以去掉实际处理步骤的标签参数。因为我们约束了处理只能发生在 ** 唯一的 <strong>、</strong> 当前的 ** 图像上。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示一个处理步骤之后的图像 </span></span><br><span class="line">pipeline.from (.original) <span class="comment">// 从原始的图像开始 </span></span><br><span class="line">        .copyTo (.processed) <span class="comment">// 拷贝出一份图像用于处理，对应标签 processed</span></span><br><span class="line">        .doProcess (specificProcess1) <span class="comment">// 隐含了在 processed 上执行处理 1</span></span><br><span class="line">        .doProcess (specificProcess2) <span class="comment">// 隐含了在 processed 上执行处理 2</span></span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (.processed)) <span class="comment">// 取得 processed 标签代表的图像并且展示 </span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果要求能够回撤到第一个处理步骤之后的状态，再做第二个处理步骤，并且第二个处理步骤的参数是可以改变的。可以这么做：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示一个处理步骤之后的图像，但我们在过程中保留了第一个步骤的状态 </span></span><br><span class="line">pipeline.from (.original)</span><br><span class="line">        .copyTo (<span class="string">"specificProcess1"</span>) <span class="comment">// 相比一步到位，这里多存储了第一个步骤的状态 </span></span><br><span class="line">        .doProcess (specificProcess1)</span><br><span class="line">        .copyTo (.processed)</span><br><span class="line">        .doProcess (specificProcess2.setParams (params1))</span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (.processed))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调整第二个步骤的某些参数，重新显示图像 </span></span><br><span class="line">pipeline.from (<span class="string">"specificProcess1"</span>) <span class="comment">// 之前存储了第一个步骤的状态，直接从这个步骤开始 </span></span><br><span class="line">        .copyTo (.processed)</span><br><span class="line">        .doProcess (specificProcess2.setParams (params2))</span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (.processed))</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="流动和连通性的实现方案"><a href="#流动和连通性的实现方案" class="headerlink" title="流动和连通性的实现方案"></a>流动和连通性的实现方案</h2><p>有了 “节点” 和 “锋面”，“流动” 和 “连通” 就有了作用的主体。对应到图像编辑功能，“** 流动 <strong>” 其实就是图像从一个状态变成另外一个状态的过程。“</strong> 连通 <strong>” 则更好理解，一个管道出来的图像可以被另外一个管道接纳，由此构成管道之间的连接。连接在一起的每一节 “</strong> 小管道 <strong>” 各司其职，灵活组合，再构成更长跨度的 “</strong> 大管道 <strong>” 或者 “</strong> 管道网络 **”，从而协同完成复杂的业务流程。</p>
+<p><img src="images/construct-big-pipeline.jpg" alt="一条直线型连接小管道构成的大管道"></p>
+<p><img src="images/diffluence_join_pipeline.jpg" alt="一个采用了分流策略的三个小管道构成的管道网络"></p>
+<p>回归到代码，我们来看一组步骤稍多的图片处理工序，看它是如何体现出管道的 “流动性” 和 “连通性”。刨去内部的实现细节，整合或者忽略一些与管道设计思想关联不大的逻辑，以下代码在流程上算是比较接近实际生产环境了。虽然采用的是伪代码，相信读者可以看懂。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 主功能区，不妨将它的例程称为 Main</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 可以从这里进入各子功能处理图片再回到这里展示新的图片 </span></span><br><span class="line"><span class="comment"> * 3. 撤销到经过某个步骤处理之前的图像或者重做出之前做过但是被撤销掉的某个步骤的图像   </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">RoutineMain</span>.startFrom (imageFile) {</span><br><span class="line">    <span class="type">RoutineMain</span>.pipeline.loadFrom (imageFile, .original) <span class="comment">// 从图片中加载初始的图像 </span></span><br><span class="line">}</span><br><span class="line"><span class="type">RoutineMain</span>.showCurrent () {</span><br><span class="line">    showImage (<span class="type">RoutineMain</span>.pipeline.front () <span class="comment">// 显示 “锋面”</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “美型” 的功能区，对应的例程称为 FaceLift</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 针对图像中的人脸轮廓，五官进行形状调整 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像到主功能区 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">RoutineFaceLift</span>.startFrom (<span class="type">RoutineMain</span>.pipeline.front ().copy ())</span><br><span class="line"><span class="type">RoutineFaceLift</span>.process () {</span><br><span class="line">    <span class="type">RoutineFaceLift</span>.pipeline</span><br><span class="line">         <span class="comment">// 这个过程用户无法干预，不会有 “重做”，因此我们可以直接在原稿上操作 </span></span><br><span class="line">        .from (.original)</span><br><span class="line">        .doProcess (faceLift_step_1_process)</span><br><span class="line">        .doProcess (faceLift_step_2_process)</span><br><span class="line">        .doProcess (faceLift_step_3_process)</span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “美型” 处理好的图像提交给主功能 </span></span><br><span class="line"><span class="type">RoutineMain</span>.accept (<span class="type">RoutineFaceLift</span>.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “滤镜” 的功能区，对应的例程称为 Filter</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 滤镜化处理图像 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像到主功能区 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">RoutineFilter</span>.startFrom (<span class="type">RoutineMain</span>.pipeline.front ().copy ());</span><br><span class="line"><span class="type">RoutineFilter</span>.process () {</span><br><span class="line">    <span class="type">RoutineFilter</span>.pipeline</span><br><span class="line">        <span class="comment">// 这个过程中用户决定要选用哪个具体的滤镜，因此每次都需要基于原稿复制一份再滤镜化 </span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"awful"</span>)))</span><br><span class="line">        ... <span class="comment">// 皱眉，这个不好，换一个！</span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"notbad"</span>)))</span><br><span class="line">        ... <span class="comment">// 托腮，这个还行，再换个试试～</span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"perfect"</span>)))</span><br><span class="line">        ... <span class="comment">// 完美～</span></span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “滤镜” 处理好的图像提交给主功能 </span></span><br><span class="line"><span class="type">RoutineMain</span>.accept (<span class="type">RoutineFilter</span>.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “美颜 ” 的功能区，对应的例程称为 SkinBeauty</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 针对图像中的人脸皮肤进行色相调整 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像给 Main 功能 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">RoutineSkinBeauty</span>.startFrom (<span class="type">RoutineMain</span>.pipeline.front ().copy ());</span><br><span class="line"><span class="type">RoutineSkinBeauty</span>.process () {</span><br><span class="line">    <span class="type">RoutineSkinBeauty</span>.pipeline</span><br><span class="line">        <span class="comment">// 这个过程用户可以调节一个滑竿来控制色相参数，每次都基于原稿复制一份再调色相 </span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_too_weak))</span><br><span class="line">        ... <span class="comment">// 托腮，效果好像不明显，加强一点 </span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_too_much)))</span><br><span class="line">        ... <span class="comment">// 皱眉，好像有点过头了，往回调一点 </span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_just_right)</span><br><span class="line">        ... <span class="comment">// 完美～</span></span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “美颜” 处理好的图像提交给主功能 </span></span><br><span class="line"><span class="type">RoutineMain</span>.accept (<span class="type">RoutineSkinBeauty</span>.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 纠结一下。。</span></span><br><span class="line"><span class="comment">// 犹豫，要不还是不美颜了吧？</span></span><br><span class="line"><span class="type">RoutineMain</span>.undo ();</span><br><span class="line"><span class="comment">// 迟疑，滤镜也不要了？</span></span><br><span class="line"><span class="type">RoutineMain</span>.undo ();</span><br><span class="line"><span class="comment">// 思考中。。。</span></span><br><span class="line"><span class="comment">//... 不行，还是都加回来吧 </span></span><br><span class="line"><span class="type">RoutineMain</span>.redo ().redo ();</span><br><span class="line"><span class="comment">// 端详 5 分钟。。。完美～</span></span><br><span class="line">save (); <span class="comment">// 收工，准备发朋友圈 </span></span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>关于 “管道” 的设计思路和实现方案介绍到此。我们可以回顾一下，本文开始所提到 “黑盒子” 设计的第二个问题：“图像 <strong>* 管理 *</strong>  和图像 <strong>* 效果处理 *</strong>  被绑定在一起。”，在管道方案中是不是已经解决了呢？</p>
+<blockquote>
+<p>“管道” 设计的基石是 ** 无差别地管理图像 <strong>，被管理的每一个图像，由最初将其投入管道的创建者为其定义标签。最初的创建者和后来的协同者，只需要对这个标签的含义达成 ** 共识 ** 便可以进行协作。“管道” 的思想是模拟 “</strong> 流体 <strong>” 的运行方式来实现图像处理过程，通过 “</strong> 节点 <strong>” 的设定来 ** 分解 ** 处理步骤，通过 “</strong> 锋面 *<em>” 的操控来 *</em> 聚焦 ** 每个单步的操作，通过 ** 连通性 ** 来将 ** 分治 ** 的逻辑重新 ** 串联 ** 起来完成复杂的功能。</p>
+</blockquote>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/social-science/quantitative-methods-relevant-types-of-variables/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/social-science/quantitative-methods-relevant-types-of-variables/" class="post-title-link" itemprop="url">计算方法 06 | 相关变量的类型</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-03 19:19:01" itemprop="dateCreated datePublished" datetime="2020-03-03T19:19:01+08:00">2020-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/social-science/" itemprop="url" rel="index">
+                    <span itemprop="name">social-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Variables-of-Interest"><a href="#Variables-of-Interest" class="headerlink" title="Variables of Interest"></a>Variables of Interest</h1><p>I want to go in to research designs and give you a more concrete idea how a research design can minimize threats to internal validity. But before I can do that, you have to become familiar with the terms, construct, variable, constant, and independent and dependent variable.<br>在 23 秒处开始记录 0:23<br>A hypothesis describes or explains a relationship between constructs. The term construct is used to indicate that we’re talking about a property in general, abstract terms. For example, I can hypothesis that loneliness and depression are associated. The terms loneliness and depression are the constructs here.<br>在 44 秒处开始记录 0:44<br>Of course, loneliness and depression can be expressed in many different ways. The term, variable, refers to an operationalized version of a construct. A variable is a specific, concrete expression of the construct, and is measurable or manipulable.<br>在 1 分 1 秒处开始记录 1:01<br>For example, I could operationalize loneliness in a group of elderly people in a nursing home, for example, by using a self-report questionnaire. I could administer the UCLA loneliness scale.<br>在 1 分 12 秒处开始记录 1:12<br>This scale is a 20-item questionnaire consisting of items like, I have nobody to talk to.<br>在 1 分 18 秒处开始记录 1:18<br>The variable loneliness now refers to loneliness as expressed through scores on the UCLA scale.<br>在 1 分 25 秒处开始记录 1:25<br>If I hypothesize that loneliness causes depression, I would be better off manipulating instead of measuring loneliness. I could give one group of elderly people a cat to take care of, comparing them with the control group without a cat.</p>
+<p>I’ve now operationalized loneliness by creating two levels of loneliness. The variable loneliness now refers to high or low loneliness expressed through the presence or absence of a feline companion.<br>在 1 分 55 秒处开始记录 1:55<br>Finally, I could operationalize depression by using the geriatric depression scale, the GDS, consisting of 15 questions such as, do you feel happy most of the time?<br>在 2 分 5 秒处开始记录 2:05<br>The variable depression, now refers to depression, as expressed through the scores on the GDS.<br>在 2 分 12 秒处开始记录 2:12<br>Okay, so variables are measured or manipulated properties that take on different values. This last bit is important. A variable’s values need to vary. Otherwise, the property isn’t very interesting. It’s a constant.<br>在 2 分 26 秒处开始记录 2:26<br>Suppose the nursing home is so horrible that all residents get the maximum depression score. Well, then we cannot show a relation between loneliness and depression, at least not in this group of subjects. Both lonely and less lonely people will be equally depressed.<br>在 2 分 43 秒处开始记录 2:43<br>Depression is a constant.<br>在 2 分 46 秒处开始记录 2:46<br>So the variable central to our hypothesis should be variable. It should show variation. Of course, it is a good idea to keep other extraneous variables constant, so that they cannot provide alternative explanations. But we’ll get to that in another video.<br>在 3 分 1 秒处开始记录 3:01<br>Okay. Now that I’ve defined what a variable is, let’s look at different types of variables, according to the role they play in describing or explaining a phenomenon.<br>在 3 分 11 秒处开始记录 3:11<br>I’ll refer to the variables that are central to our hypothesis as variables of interest.<br>在 3 分 17 秒处开始记录 3:17<br>When a cause and effect can’t be identified or when a causal direction isn’t obvious or even of interest, our variables are on equal footing. And then we just refer to them as variables. But when our hypothesis is causal, we can identify a cause and an effect. And we then refer to the cause variable as the independent variable and to the effect variable as the dependent variable.<br>在 3 分 40 秒处开始记录 3:40<br>The independent variable is also referred to as cause variable, explanatory variable, input variable, or predictor. It refers to a variable that is hypothesized to cause or predicts another variable.<br>在 3 分 53 秒处开始记录 3:53<br>In our example, loneliness was hypothesized to cause depression.<br>在 3 分 58 秒处开始记录 3:58<br>The independent variable here, of course, is loneliness.<br>在 4 分 2 秒处开始记录 4:02<br>And its operationalized through the presence or the absence of a cat.<br>在 4 分 7 秒处开始记录 4:07<br>Now the dependent variable is hypothesized to be influenced by the cause variable or to be the result of another variable. It’s values depend on another variable.<br>在 4 分 18 秒处开始记录 4:18<br>In our example, the dependent variable was depression as measured through scores on the GDS questionnaire. The dependent variable is also referred to as effect variable, response variable, outcome or output variable.<br>在 4 分 33 秒处开始记录 4:33<br>Now, if you’re having trouble telling the terms independent and dependent apart, try to remember that the independent variable is what the researcher would like to be in control of.<br>在 4 分 43 秒处开始记录 4:43<br>It’s the cause that comes first.</p>
+<p>这节课的主题是研究设计 我想具体讲下研究设计如何减少影响内部效度的因素 不过在这之前 我们先要学习几个术语 它们分别是 概念 变量 常数 自变量和因变量<br>在 23 秒处开始记录 0:23<br>假设就是描述或解释概念间的关系 提到概念这个术语 即意味着我们谈及的是一种笼统抽象的属性 比方说 我可以假设孤独和抑郁相关 “孤独” 和 “抑郁” 在这里就是两个概念<br>在 44 秒处开始记录 0:44<br>当然 孤独与抑郁有多种不同的表达方式 变量这个术语是指概念的可操作版本 变量是概念具体明确的表现 变量是可测量、可改变的<br>在 1 分 1 秒处开始记录 1:01<br>比如我可以用自陈量表 来量化养老院中一群老人的孤独感 我可以使用 UCLA 孤独感量表<br>在 1 分 12 秒处开始记录 1:12<br>该量表由 20 个问题组成 比如” 没人可以陪我说话 “这类问题<br>在 1 分 18 秒处开始记录 1:18<br>孤独感变量以 UCLA 量表分数的形式表现了” 孤独 “这个概念 孤独感变量以 UCLA 量表分数的形式表现了” 孤独 “这个概念<br>在 1 分 25 秒处开始记录 1:25<br>如果我假设孤独导致了抑郁 那么最好是改变孤独感 而非测量孤独感 我可以让一组老年人照顾一只猫 然后和没有猫的对照组比较<br>在 1 分 40 秒处开始记录 1:40<br>通过建立两种孤独水平 就使孤独感可操作化 通过有无猫陪伴 孤独变量就表现出了高低 通过有无猫陪伴 孤独变量就表现出了高低<br>在 1 分 55 秒处开始记录 1:55<br>最后我可以通过老年抑郁量表 (GDS) 使抑郁可操作化 该量表有 15 个问题 如” 你大多数时间都快乐吗？“<br>在 2 分 5 秒处开始记录 2:05<br>现在代表抑郁的变量 可以通过 GDS 得分的形式表现出来了<br>在 2 分 12 秒处开始记录 2:12<br>所以变量有可测量或改变的属性 它们可以有不同的值 最后这一点很重要 变量值必须能改变 不然这个属性就没什么意思了 它就是个常数了<br>在 2 分 26 秒处开始记录 2:26<br>假设这个养老院太糟糕了 以至于所有人的抑郁指数都是满分 那至少在这个研究群体里 我们不能体现孤独和抑郁间的关系 孤独和没那么孤独的人都一样意志消沉<br>在 2 分 43 秒处开始记录 2:43<br>抑郁就成了个常数<br>在 2 分 46 秒处开始记录 2:46<br>所以与我们的假设息息相关的变量应该可变 它应表现出一定的变化 当然 最好保持其他额外变量不变 以避免出现替代解释 我们之后专门有一节课讲这个问题<br>在 3 分 1 秒处开始记录 3:01<br>好 说完变量的定义 现在我们再讲下变量的不同类型 因其在描述或解释一个现象中所扮演的角色而异<br>在 3 分 11 秒处开始记录 3:11<br>我将假设中关键的变量称为目标变量 我将假设中关键的变量称为目标变量<br>在 3 分 17 秒处开始记录 3:17<br>当因果关系不确定 不明显甚至没意义时 所有的变量都是平等的 我们只称之为变量 当在假设中存在因果关系 因和果都能确定 那么原因变量就称为自变量 结果变量称为因变量<br>在 3 分 40 秒处开始记录 3:40<br>自变量也称为原因变量 解释变量 输入变量或预测变量 自变量也称为原因变量 解释变量 输入变量或预测变量 意思是根据假设 这个变量会引起另一个变量的变化 或能预测另一个变量的变化<br>在 3 分 53 秒处开始记录 3:53<br>在我们的例子中 假设孤独会引发抑郁<br>在 3 分 58 秒处开始记录 3:58<br>这里的自变量就是孤独<br>在 4 分 2 秒处开始记录 4:02<br>通过有没有猫来操作该变量<br>在 4 分 7 秒处开始记录 4:07<br>因变量就是假设会受到原因变量影响的变量 也就是另一个变量的结果 它的值取决于其他变量<br>在 4 分 18 秒处开始记录 4:18<br>在我们的例子中 因变量就是抑郁 通过 GDS 量表得分评估 因变量也叫做影响变量 反应变量 结果或输出变量 因变量也叫做影响变量 反应变量 结果或输出变量<br>在 4 分 33 秒处开始记录 4:33<br>如果你无法区分自变量和因变量 那就试着记住 自变量是研究者需要控制的部分<br>在 4 分 43 秒处开始记录 4:43<br>自变量是原因 先于结果发生</p>
+<h1 id="Variables-of-Disinterest"><a href="#Variables-of-Disinterest" class="headerlink" title="Variables of Disinterest"></a>Variables of Disinterest</h1><p>I’ve discussed variables that are the focus of our hypothesis, the variables of interest. Of course in any study there will be other extraneous properties associated with the participants and the research setting that vary between participants.<br>在 20 秒处开始记录 0:20<br>These properties are not the main focus of our study. But they might be associated with our variables of interest, providing possible alternative explanations.<br>在 30 秒处开始记录 0:30<br>Such variables of disinterest come in three flavors. Confounders, control variables, and background variables.<br>在 39 秒处开始记录 0:39<br>A confounder, or lurking variable, is a variable that is related to both the independent and dependent variable, and partially, or even entirely, accounts for the relationship between these two.<br>在 53 秒处开始记录 0:53<br>Suppose I investigate the effect of reducing loneliness on depression in a group of elderly people. I lower loneliness by providing a cat to the elderly in an experimental group.<br>在 1 分 3 秒处开始记录 1:03<br>An elderly in a control group receive a stuffed toy.<br>在 1 分 8 秒处开始记录 1:08<br>Now besides loneliness, the two groups might also differ in terms of the physical exercise they get, their age, or their susceptibility to depression, which are all variables of disinterest. Take physical exercise. The experimental group will likely be more physically active, because they have to feed and clean up after the cat. So physical exercise is related to loneliness. The cat group, the less lonely group, is more active than the control group.<br>在 1 分 39 秒处开始记录 1:39<br>Suppose physical activity is also causally related to depression. Being more active lowers depression. Well, then physical activity and not loneliness may account for a lower depression score in the experimental cat group.<br>在 1 分 52 秒处开始记录 1:52<br>The relation between loneliness and depression is said to be spurious. The relation can be explained by the confounding variable, physical activity.<br>在 2 分 3 秒处开始记录 2:03<br>An important thing to note about confounders, is that they are not included in the hypothesis and they are generally not measured. This makes it impossible to determine what the actual effect of a confounder was. The only thing to do is to repeat the study, and control the confounder by making sure it takes on the same value for all participants. For example, if all elderly people in both groups are required to be equally active, then physical activity cannot explain differences in depression.<br>在 2 分 36 秒处开始记录 2:36<br>Another possibility is to turn a confounder into a control variable. A control variable is a property that is likely to be related to the independent and dependent variable, just like a confounder. But unlike a confounder a control variable is measured. It’s effects can therefore be assessed and controlled for.<br>在 2 分 55 秒处开始记录 2:55<br>For example, we could see if physical activity provides an alternative explanation by measuring it and taking it into account. Suppose we could distinguish inactive and active people. In the cat therapy, there are more active people, but some are inactive. In the control condition, most people are inactive, but some are active.<br>在 3 分 16 秒处开始记录 3:16<br>We now consider the difference in depression between the cat therapy and control group, first for the active people, and then for the inactive people. We control for activity, in fact holding it constant, by considering each activity level separately.<br>在 3 分 32 秒处开始记录 3:32<br>If the relationship between loneliness and depression disappears when we look at each activity level separately, then activity explains a way this spurious relation between loneliness and depression. But if the relationship still shows and at each activity level, then we’ve eliminated physical activity as an alternative explanation for the drop in depression.<br>在 3 分 54 秒处开始记录 3:54<br>The last type of variable of disinterest is a background variable. This type of variable is not immediately relevant to the relation between the variables of interest, but it is relevant to determine how representative the participants in our study are for a larger group, maybe all elderly people everywhere. Even all people of any age.<br>在 4 分 16 秒处开始记录 4:16<br>For this reason, it’s interesting to know how many men and women participated, what their mean age was, their ethnic or cultural background, social economic status, education level, whatever else is relevant to the study at hand.<br>在 4 分 32 秒处开始记录 4:32<br>So to summarize, a confounder is a variable that partially or entirely explains an effect on the dependent variable instead of, or additional to, the independent variable.<br>在 4 分 44 秒处开始记录 4:44<br>A confounder is not accounted for in the hypothesis, and is not measured or controlled for in the study.<br>在 4 分 49 秒处开始记录 4:49<br>A possible confounder can be controlled for by keeping the property constant or by turning it into a control variable. A control variable accounts for a possible confounder, by measuring the relevant property and checking the relationship between the variables of interest at each value or level of the control variable.<br>在 5 分 10 秒处开始记录 5:10<br>Background variables, finally, are measured, not because of possible effect on the variables of interest, it is expected. But because the background properties are useful to assess the generalizability of the study, based on the sample characteristics.<br>I’ve discussed variables</p>
+<p>前一节课我们讲了假设中的关键变量 即目标变量 当然 任何研究中都有其他额外的属性 与参与者和研究设置有关 且因人而异<br>在 20 秒处开始记录 0:20<br>它们不是我们的研究重点 但可能与目标变量存在联系 可能会导致出现替代解释<br>在 30 秒处开始记录 0:30<br>这样的次要变量有三种类型 混杂变量、控制变量及背景变量<br>在 39 秒处开始记录 0:39<br>混杂变量 也称作潜在变量 与自变量、因变量均相关 且在二者的关系中占部分 甚至全部比重<br>在 53 秒处开始记录 0:53<br>假设我要调查一群老年人 减少孤独感对抑郁有何影响 通过给实验组老人猫咪来降低孤独感<br>在 1 分 3 秒处开始记录 1:03<br>对照组老人则给个毛绒玩具<br>在 1 分 8 秒处开始记录 1:08<br>现在除了孤独感 两组的运动量、年纪、抑郁易感性都不尽相同 而这些都是次要变量 比如运动 实验组的老人可能运动要多一些 因为他们要给猫喂食铲屎 而运动是与孤独感相关的 猫咪组不那么孤独 他们比对照组运动量更多<br>在 1 分 39 秒处开始记录 1:39<br>假设运动与抑郁也有因果关系 多运动可以减少抑郁 那么运动及不孤独都可能造成实验组抑郁分值较低 那么运动及不孤独都可能造成实验组抑郁分值较低<br>在 1 分 52 秒处开始记录 1:52<br>孤独和抑郁间的关系则会被认为是假相关 因为混杂变量 “运动” 也能解释这个关系<br>在 2 分 3 秒处开始记录 2:03<br>对于混杂变量 需要强调的是 假说中不包含它们 一般也不会被测量 所以也不可能测量混杂变量的实际影响 我们唯一能做的就是重复这个研究 控制混杂变量 使其对所有参与者影响一致 比方说 如果让两组老人的运动量相等 那么运动就不能解释抑郁程度的差异了<br>在 2 分 36 秒处开始记录 2:36<br>另一种方法是把混杂变量转换成控制变量 控制变量就像混杂变量 是可能和自变量与因变量都有关的属性 但与混杂变量不同的是 控制变量可测量 因此其影响能被评估和控制<br>在 2 分 55 秒处开始记录 2:55<br>比如通过测量运动量 将其包括在研究之中 来看运动是否会提供一个替代解释 假设我们可以分出活跃和不活跃的人群 猫咪疗法中 有的人相对活跃 有的人则略为安静 对照组中 大多数人是安静的 但还有一些较为活跃<br>在 3 分 16 秒处开始记录 3:16<br>在观察猫咪治疗组和对照组抑郁程度差别时 先看活跃人群 再看非活跃人群 通过将参与者根据运动水平分组 我们控制运动量 在每组内将其作为常数<br>在 3 分 32 秒处开始记录 3:32<br>当我们分别观察每个运动水平时 如果孤独和抑郁间的相关性不复存在 那么运动就能解释孤独和抑郁间的假相关性 但如果在各个运动水平 仍然表现出相关性 那我们就能排除运动是减少抑郁的替代解释<br>在 3 分 54 秒处开始记录 3:54<br>最后一种次要变量叫做背景变量 这类变量与目标变量没有直接联系 这类变量与目标变量没有直接联系 但它说明了参与者是否可以代表一个更大的群体 甚至是否可以代表世界各地的老年人群体 甚至各个年龄段群体<br>在 4 分 16 秒处开始记录 4:16<br>出于这种原因 要了解参与者的性别 平均年龄、宗教或文化背景、社会经济状况 教育程度等任何和研究相关的背景<br>在 4 分 32 秒处开始记录 4:32<br>总结一下 混杂变量是能替代或附加于自变量 对因变量造成部分或全部影响的变量 对因变量造成部分或全部影响的变量<br>在 4 分 44 秒处开始记录 4:44<br>研究中 假设并不会提及混杂变量 也不能测量或控制<br>在 4 分 49 秒处开始记录 4:49<br>控制混杂变量可以有两种方式 将这一属性变为常数或将其变为控制变量 控制变量来自可能的混杂变量 通过测量相关属性 核查控制变量每个水平上目标变量间的关系<br>在 5 分 10 秒处开始记录 5:10<br>最后讲到了测量背景变量 不仅因为其对目标变量可能有潜在影响 还因为基于样本特征 背景属性对评估研究普遍性有用 还因为基于样本特征 背景属性对评估研究普遍性有用</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/social-science/quantitative-method-threats-to-internal-validity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/social-science/quantitative-method-threats-to-internal-validity/" class="post-title-link" itemprop="url">计算方法 05 | 对内部效度的影响</a>
         </h1>
 
         <div class="post-meta">
@@ -251,6 +537,17 @@
 
               <time title="创建时间：2020-03-02 16:19:43" itemprop="dateCreated datePublished" datetime="2020-03-02T16:19:43+08:00">2020-03-02</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/social-science/" itemprop="url" rel="index">
+                    <span itemprop="name">social-science</span>
+                  </a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -258,14 +555,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
+              <span>23k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>21 分钟</span>
             </span>
 
         </div>
@@ -277,7 +574,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Internal validity is threatened if there is a plausible alternative explanation for a study’s results. In order to judge the internal validity of a particular study, you have to be familiar with the type of threats that can occur.</p>
+          <h1 id="内部效度的影响：参与者-（Internal-Validity-Threats-Participants）"><a href="#内部效度的影响：参与者-（Internal-Validity-Threats-Participants）" class="headerlink" title="内部效度的影响：参与者 （Internal Validity Threats: Participants）"></a>内部效度的影响：参与者 （Internal Validity Threats: Participants）</h1><p>Internal validity is threatened if there is a plausible alternative explanation for a study’s results. In order to judge the internal validity of a particular study, you have to be familiar with the type of threats that can occur.</p>
 <p>当研究结果存在似乎可信的替代解释时，研究的内部效度就受到影响。为了评价一项特定研究的内部效度，你们必须熟悉可能出现的几种影响因素。</p>
 <p>I’ll start with three types of threats that are in some way associated with the participants or the subjects used in the study.</p>
 <p>我先从三类影响因素讲起，它们都在某种程度上与研究的参与者或说被试者相关。</p>
@@ -317,6 +614,13 @@
 <p>正如单纯的选择型影响因素，选择 - 成熟协同作用的影响也可被随机分组所消除。</p>
 <p>So you see that the research design we choose, for example, adding a control group, and the methods we use, for example, random assignment, can help to minimize threats to internal validity.</p>
 <p>因此如你所见，我们选择的研究设计，比如增加对照组，以及我们所使用的研究方法，比如随机分组，都可帮助我们将内部效度的影响因素最小化。</p>
+<hr>
+<h1 id="内部效度的影响：仪器-（Internal-Validity-Threats-Instruments）"><a href="#内部效度的影响：仪器-（Internal-Validity-Threats-Instruments）" class="headerlink" title="内部效度的影响：仪器 （Internal Validity Threats: Instruments）"></a>内部效度的影响：仪器 （Internal Validity Threats: Instruments）</h1><p>Another category of threats to internal validity is associated with the instruments that are used to measure and manipulate the constructs in our hypothesis. The threats of low construct validity, instrumentation, and testing fall into this category. I’ll start with low construct validity. Construct validity is low if our instruments contain a systematic bias or measure another construct or property entirely. In this case, there’s not much point in further considering the internal validity of a study. As I discussed in an earlier video, construct validity is a prerequisite for internal validity. If our measurement instruments or manipulation methods are of poor quality, then we can’t infer anything about the relation between the hypothesized constructs. Suppose I hypothesized that loneliness causes depression. I attempt to lower loneliness of elderly people in a retirement home by giving them a cat to take care of, expecting their depression to go down. Suppose that taking care of the cat didn’t affect loneliness at all, but instead gave residents a higher social status. They’re special because they’re allowed to have a cat. The manipulation aimed at lowering loneliness, in fact, changed a different property, social status. Now consider my measurement of depression. What if the questionnaire that I used actually measured feeling socially accepted instead of feeling depressed? If we accidentally manipulated social status or measured feeling accepted, then we cannot conclude anything about the relation between loneliness and depression. The second threat that relates to measurement methods is instrumentation. The threat of instrumentation occurs when an instrument is changed during the course of the study. Suppose I use a self-report questionnaire to measure depression at the start of the study, but I switch to a different questionnaire, or maybe to an open interview at the end of the study. Well then, any difference in depression scores might be explained by the use of different instruments. For example, the scores on the post test at the end of the study could be lower because the new instrument measures slightly different aspects of depression, for example. Of course, it seems rather stupid to change your methods or instruments half way, but sometimes a researcher has to depend on others for data. For example, when using tests that are constructed by national testing agencies or polling agencies. A good example is the use of the standardized diagnostic tool called the DSM. This Diagnostic and Statistical Manual is used to classify things like mental illness, depression, autism. And it’s updated every 10 to 15 years. Now you can imagine the problems this can cause, for example, for a researcher who is doing a long-term study on schizophrenia. In the recently updated DSM, several subtypes of schizophrenia are no longer recognized. Now if we see a decline in schizophrenia in the coming years, is this a real effect or is it due to the change in measurement system? The last threat I want to discuss here is testing, also referred to as sensitization. Administering a test or measurement procedure can affect people’s behavior. A testing threat occurs if this sensitizing effect of measuring provides an alternative explanation for our results. For example, taking the depression pre-test at the start of the study might alert people to their feelings of depression. This might cause them to be more proactive about improving their emotional state, for example, by being more social. Of course this threat can be eliminated by introducing a control group. Both groups will be similarly affected by the testing effect. Their depression scores will both go down, but hopefully more so in the cat companionship group. Adding a control group is not always enough, though. In some cases, there’s a risk that the pre-test sensitizes people in the control group differently than people in the experimental group. For example, in our cat study, the pre-test in combination with getting a cat could alert people in the experimental cat group to the purpose of the study. They might report lowered depression on the post-test, not because they’re less depressed, but to ensure the study seemed successful so they can keep the cat. Suppose people in the control group don’t figure out the purpose of the study, because they don’t get a cat. They’re not sensitized and not motivated to change their scores on the post-test. This difference in sensitization provides an alternative explanation. One solution is to add an experimental and control group that weren’t given a pre-test. I’ll discuss this solution in more detail when we consider different experimental designs. Okay. So to summarize. Internal validity can be threatened by low construct validity, instrumentation and testing. Low construct validity and instrumentation can be eliminated by using valid instruments, and valid manipulation methods. And of course by using them consistently. Testing can be eliminated by using a special design that includes groups that are exposed to a pretest, and groups that aren’t.</p>
+<p>另一类对内部效度的影响因素 与我们测量和操作假说内建构的测量工具有关 与我们测量和操作假说内建构的测量工具有关 造成低建构效度的影响因素中 仪器使用 (instrumentation) 和测验 (testing) 属于这一类 我从低建构效度开始讲 如果我们的测量工具包含有系统性偏误 或测量的是完全不同的建构或属性 建构效度就低 这种情况下 进一步考虑研究的内部效度意义不大 这种情况下 进一步考虑研究的内部效度意义不大 正如我在之前视频里讲过的 此法特别适用 如果我们的测量仪器或操作方法质量较差 如果我们的测量仪器或操作方法的质量较差 我们就不能推论出任何有关假设建构之间关系的结论 比如我假设孤独会引起抑郁 我试图通过让养老院中老人去养猫来降低他们的孤独感 并预测他们的抑郁会减轻 假设养猫完全不会影响孤独感 而是给老人更高的社会地位 他们因为可以养猫而变得特殊 这一操作本是用来降低孤独感的 实际上却改变了另一个属性 社会地位 再看看我测量抑郁程度的方法 如果我用的调查问卷 实际上测量的是社会接受感而不是抑郁感呢 如果我们无意间改变的是社会地位 或碰巧测量的是感觉被接受的程度 那么我们就不能得出任何关于孤独和抑郁相关性的结论 第二个与测量方法有关的影响因素是仪器使用 如果测量工具在研究过程中发生了改变 仪器使用的这个影响因素就随之出现了 假设我在研究之初用自陈量表来测量抑郁程度 但是在研究后期 我换了一种问卷形式 或换成了开放式访问 那么抑郁感评分的任何不同 都可能是因为使用了不同的测量工具造成的 比如 在研究结束的后期测验中得到的分数更低 可能是因为新工具测量的是抑郁的另一个略微不同的方面 可能是因为新工具测量的是抑郁的另一个略微不同的方面 当然 半路换方法或测量工具会显得很蠢 但有时研究者必须依靠别的方法或工具来获得数据 比如说 在使用由国家测试机构或投票机构构建的测试时 一个范例就是被称为 DSM 的标准化诊断工具的使用 一个范例就是被称为 DSM 的标准化诊断工具的使用 DSM 是《精神疾病诊断与统计手册 (The Diagnostic and Statistical Manual)》 用于对精神疾病、抑郁症、自闭症等疾病进行分类 并且每 10 到 15 年更新一次 你可以想象这会引起的问题 比如某研究者正在进行一项关于精神分裂症的长期研究 在最近更新的 DSM 中 一些精神分裂症的亚型不再被承认 如果我们看到了未来几年精神分裂症人数减少的趋势 这是实际效果还是因为测量系统的改变 这里我想讨论的最后一个影响因素是测验 也被称为敏感效应 (sensitization) 执行一项测验或测量程序可能会影响人的行为 如果测量产生的敏感效应为结果提供了一个替代解释 测验这个影响因素就表现出来了 比如在研究开始时进行的抑郁程度的前期测验 有可能使人们对自己的抑郁感变得警觉 这可能会使他们更积极地改进自己的情绪状态 比如通过变得更合群的方式 当然这一影响因素能通过引入一个对照组来消除 两组都十分相似地受到测试效应的影响 他们的抑郁感评分都会下降 但可预测在有猫陪伴的组下降幅度会更大 但引入对照组并不总是足够的 某些情况下 有可能对照组和实验组对前期测验的敏感化程度不同 比如这项有猫的研究中 前期测验加上要养猫 可能让有猫的实验组的人们对研究目的变得警觉 他们可能在后期测验时报告更低的抑郁感 不是因为事实如此 而是为了使研究看上去成功 以便能继续养猫 假设对照组的人们想不出研究目的 因为他们没有猫 他们没有被敏感化也没有动机去改变后期测验的评分 敏感效应的不同为实验提供了一个替代解释 一个解决办法是 增加一对没有进行前期测验的实验组和对照组 我会在讲到不同的实验设计时 详细讨论这一解决方法 来总结一下 内部效度会被低建构效度、仪器使用和测验影响 内部效度会被低建构效度、仪器使用和测验影响 低建构效度和仪器使用带来的影响因素可以通过 采用有效的测量工具和合理的操作方法来消除 当然还需要在使用中前后一致 测验的影响因素可以通过采用一种特殊设计来消除 这种特殊设计包括一对分别做过和没做过前期测验的组别</p>
+<h1 id="内部效度的影响：人造因素-Artificiality"><a href="#内部效度的影响：人造因素-Artificiality" class="headerlink" title="内部效度的影响：人造因素 (Artificiality)"></a>内部效度的影响：人造因素 (Artificiality)</h1><p>Another category of threats to internal validity is associated with the artificial or unnatural reaction caused by participating in a research study.<br>在 15 秒处开始记录 0:15<br>This can be a reaction from the participant, but also from the researcher.<br>在 20 秒处开始记录 0:20<br>In any scientific study the researcher has to observe the behavior of individuals or groups. And in most cases the people under observation are aware of being observed.<br>在 32 秒处开始记录 0:32<br>Both researcher and participants have expectations about the goal of the study and about the desired behavior.<br>在 39 秒处开始记录 0:39<br>These expectations can lead to a change in behavior. That can provide an alternative explanation. I’ll discuss two of these threats to internal validity right here. Experimenter expectancy and demand characteristics.<br>在 53 秒处开始记录 0:53<br>If a researchers expectation have a biasing effect we call this threat to internal validity an experimenter expectancy effect. Experimenter expectancy refers to an unconscious change in a researchers behavior caused by expectations about the outcome that influences a participants responses.<br>在 1 分 12 秒处开始记录 1:12<br>Of course, this becomes an even bigger problem if a researcher unconsciously treats people in the control group differently from people in the experimental group.<br>在 1 分 22 秒处开始记录 1:22<br>One of the most subtle and shocking demonstrations of an experimenter expectancy effect was undoubtably provided by Rosenthal in the 1960s.<br>在 1 分 32 秒处开始记录 1:32<br>Psychology students were lead to believe they were taking a course on practical research skill in handling animals and duplicating experimental results.<br>在 1 分 44 秒处开始记录 1:44<br>Students handled one of two batches of rats that were compared on their performance in navigating a maze. The first batch of rats, students were told, was bred for their excellent spatial ability. The other batch was bred for the exact opposite purpose. Low and behold, there was a difference in performance. The maze bright rats out performed the maze dull rats.<br>在 2 分 9 秒处开始记录 2:09<br>Of course, in reality there was no difference in maze brightness in the two groups of rats. They were both from the same breeding line, and they were randomly assigned to be bright or dull.<br>在 2 分 21 秒处开始记录 2:21<br>Apparently just knowing what was expected of their batch of rats led students to treat them differently resulting in an actual difference in performance of the rats.<br>在 2 分 32 秒处开始记录 2:32<br>Imagine what the effect can be when a researcher interacts with human participants.<br>在 2 分 38 秒处开始记录 2:38<br>Fortunately, there is a solution. If the experimenter who interacts with the participants doesn’t know what behavior is expected of the, the experimenter will not be able to unconsciously influence participants. We call this an Experimenter Blind Design.<br>在 2 分 55 秒处开始记录 2:55<br>Of course the participant can also have expectations about the purpose of the study. Participants who are aware that they’re subjects in a study, will look for queues to figure out what the study is about.<br>在 3 分 9 秒处开始记录 3:09<br>Demand characteristics refers to a change in participant behavior due to their expectations about the study.<br>在 3 分 16 秒处开始记录 3:16<br>Demand characteristics are especially problematic if people respond to cues differently in the control, than in the experimental group.<br>在 3 分 26 秒处开始记录 3:26<br>A well known form of demand characteristics occurs when people are aware that they’re in an experimental group and are undergoing a treatment, especially if the treatment aims to help them.<br>在 3 分 39 秒处开始记录 3:39<br>Participants might be grateful to be in this group or hopeful that the treatment will be effective. And this might lead them to be more positive about the treatment, than had they been unaware of it. But the cues don’t even have to be accurately interpreted by the participants.<br>在 3 分 57 秒处开始记录 3:57<br>As long as participants in the same group interpret the queues in the same manner and change their behavior in the same way, demand characteristics form a real problem.<br>在 4 分 9 秒处开始记录 4:09<br>This is why it’s always a good idea to leave participants unaware of the actual purpose of the study or at least leave them unaware of which group they’re in, the experimental or the control group.<br>在 4 分 21 秒处开始记录 4:21<br>If both the subject and the experimenter are unaware, we call this a Double Blind Research Design. Now because any cue can lead to a bias in behavior, researchers usually come up with a cover story. A cover story is a plausible explanation of the purpose of the study. It should provide participants with cues that are unlikely to bias their behavior. Of course, this temporary deception needs to be necessary. The risk of bias, due to demand characteristics, needs to be real. And of course, you need to debrief participants afterwards and inform them about the real purpose of the study.</p>
+<p>另一类影响内部效度的因素 与人们由于参与研究而导致的有意或无意的不自然反应有关<br>在 15 秒处开始记录 0:15<br>这可能是参与者的反应 也可能来自研究者<br>在 20 秒处开始记录 0:20<br>在任何科学研究中 研究者必须观察个体或群体的行为 在大多数情况下 被观察的对象知道自己被观察<br>在 32 秒处开始记录 0:32<br>研究者和参与者对于研究目标 和期望行为都有预期<br>在 39 秒处开始记录 0:39<br>这些预期会导致行为上的变化 这种变化将提供另一种解释 下面我们将讨论两种影响内部效度的因素 实验者预期 (experimenter expectancy) 和需求特征 (demand characteristics)<br>在 53 秒处开始记录 0:53<br>如果研究者的预期与结果有偏差 我们将这种对内部效度的影响称为实验者预期效果 实验者的预期是指 源于对结果的预期 研究人员无意识下改变行为 该变化而影响参与者的回应<br>在 1 分 12 秒处开始记录 1:12<br>当然 如果研究人员下意识地 对控制组的参与者和实验组的参与者 区别对待 会带来更大的问题<br>在 1 分 22 秒处开始记录 1:22<br>最能展现实验者预期效应是多么微妙与惊人的实验之一 是上世纪 60 年代由罗森塔尔所做的实验<br>在 1 分 32 秒处开始记录 1:32<br>心理学专业的学生被引导 相信他们参加了一门课程 即处理动物的实际研究技能 与复制实验结果<br>在 1 分 44 秒处开始记录 1:44<br>学生们处理了两批老鼠中的一组 比较它们在迷宫中认路的表现<br>在 1 分 51 秒处开始记录 1:51<br>学生们被告知 第一组大鼠被特殊培育 拥有出众的空间感 而另一组的培育目的截然相反 果不其然 两组大鼠的表现有差别 善于走迷宫的那组大鼠表现得比空间感迟钝的那组好 然而在现实中 两组老鼠在迷宫认路能力上并无差异 它们来自用同样的大鼠品系 并且被随机分为两批<br>在 2 分 21 秒处开始记录 2:21<br>显然 仅仅让学生知道 处理的老鼠群组的预期实验结果 导致学生对它们区别对待 从而导致老鼠之间的实际表现差异<br>在 2 分 32 秒处开始记录 2:32<br>想想看 如果被试对象是人 研究员会对他们产生多大的影响<br>在 2 分 38 秒处开始记录 2:38<br>幸运的是 有一个解决办法 如果与参与者互动的实验者 不知道他们会有什么预期 那么他们也就不会在无意中影响被试对象了 我们称其为研究者单盲实验<br>在 2 分 55 秒处开始记录 2:55<br>当然 被试对象也会对实验目标有所预期 因为受试者在了解研究目的后 可能会对实验有不同反应 意识到自己是研究对象的参与者 会去寻找提示 来找出研究的目的<br>在 3 分 9 秒处开始记录 3:09<br>需求特征是指被试对象由于对实验的预期的猜测 而改变自己行为的现象<br>在 3 分 16 秒处开始记录 3:16<br>当对照组与实验组中的人对线索反应不同时 需求特征造成的问题尤为严重<br>在 3 分 26 秒处开始记录 3:26<br>一种常见的需求特征 会在人们意识到 他们被分配到实验组中时出现 尤其在治疗是以帮助他们为目标的时候<br>在 3 分 39 秒处开始记录 3:39<br>被试对象也许会因被分配到实验组而十分感激 或是对治疗效果抱有期待 这可能导致他们比没有意识到自己在哪一组中时 更积极地面对治疗 但是 被试对象并不需要 准确地解读线索 只要隶属同一组的参与者 以同样的方式解读暗示 并以同样的方式改变他们的行为 需求特征就将造成问题<br>在 4 分 9 秒处开始记录 4:09<br>这就是为什么最好不要让被试意识到实验的真实目的 一种是编造与真实实验目的大相径庭的研究介绍 或者至少让他们不知道他们隶属哪个组 实验组或是对照组<br>在 4 分 21 秒处开始记录 4:21<br>我们把这种被试与 实验者均不知情的情况 称为双盲研究设计<br>在 4 分 28 秒处开始记录 4:28<br>因为任何提示都可能导致行为偏差 研究员们常常会编造一个故事作为幌子 这个幌子是一个对于实验目的合理的解释 它给被试对象的线索不太可能造成他们的行为偏差<br>在 4 分 43 秒处开始记录 4:43<br>当然 只有必要时 才会进行暂时欺骗 只有当确实存在需求特征引起偏差这一风险时 才能使用该方法 你还要在实验结束后 向他们做汇报 并告知他们实验的真正目的<br>另一类影响内部</p>
+<h1 id="内部效度的影响：研究设计-Research-Setup"><a href="#内部效度的影响：研究设计-Research-Setup" class="headerlink" title="内部效度的影响：研究设计 (Research Setup)"></a>内部效度的影响：研究设计 (Research Setup)</h1><p>The last category of threats to internal validity, is a bit of a remainder category. Very generally, the three types of threats in this category are related to the research procedure or setup.<br>在 17 秒处开始记录 0:17<br>The threats are ambiguous temporal precedence, history and mortality.<br>在 23 秒处开始记录 0:23<br>An ambiguous temporal precedence and the hypothesized causal relation, is just a fancy way of saying that it’s unclear if the hypothesized cause actually precedes the observed effect.<br>在 35 秒处开始记录 0:35<br>Suppose I’m interested in the relationship between playing violent video games, and aggressive behavior.<br>在 42 秒处开始记录 0:42<br>I ask high school students how many hours a week they play violent games. And I ask their teacher to rate their aggressiveness in class.<br>在 52 秒处开始记录 0:52<br>What if I find a strong relation. Children who play violent games for many hours a week, also show more aggressive behavior.<br>在 1 分 1 秒处开始记录 1:01<br>Well this doesn’t mean violent game play causes aggressive behavior. Maybe children who play more violent games, were more aggressive to begin with. And are more likely to seek out violent stimuli.<br>在 1 分 14 秒处开始记录 1:14<br>The threat of ambiguous temporal precedence can be eliminated by manipulating, or introducing the hypothesised cause.<br>在 1 分 22 秒处开始记录 1:22<br>Of course, not all constructs can be manipulated, but if i can manipulate the cause, I can make sure it happens before the effect.<br>在 1 分 31 秒处开始记录 1:31<br>For example, I can make all children play violent games. If children that were not aggressive to begin with, also become more aggressive after playing the violent game, then my causal inference is much stronger.<br>在 1 分 45 秒处开始记录 1:45<br>Lets move on to a threat referred to as history.<br>在 1 分 49 秒处开始记录 1:49<br>A history effect is an unforeseen event that happens during the study that provides an alternative explanation.<br>在 1 分 56 秒处开始记录 1:56<br>Now, this could be a large-scale event or something small that goes wrong during data collection.<br>在 2 分 3 秒处开始记录 2:03<br>Consider a study on mitigating negative stereotypes about a minority group.<br>在 2 分 8 秒处开始记录 2:08<br>The manipulation consists of a group discussion led by an experimenter. The experimenter focuses on the point of view of the minority group, asking participants to put themselves in their shoes.<br>在 2 分 20 秒处开始记录 2:20<br>In the control condition the experimenter focuses on differences between the majority and minority, and stresses the point of view of the majority.<br>在 2 分 29 秒处开始记录 2:29<br>In both groups, there are three weekly group discussions. Okay. To give an example of a history effect on a small scale, imagine that during the last session in the control group, the experimenter faints.<br>在 2 分 42 秒处开始记录 2:42<br>Of course, participants are shaken and upset about this. And this might translate into a more general negative attitude in the control group. Which also makes the control group’s attitude towards the minority group more negative.<br>在 2 分 55 秒处开始记录 2:55<br>The treatment might look effective, because the experimental group is more positive, but the difference is due not to the discussion technique, but due to the fainting incident. Let’s consider the history effect on a larger scale. Suppose that during the study, a horrific murder is committed. Allegedly by a member of the minority. The crime gets an enormous amount of media attention, reinforcing the negative stereotype about the minority group.<br>在 3 分 22 秒处开始记录 3:22<br>Any positive effect of the intervention could be undone by this event.<br>在 3 分 28 秒处开始记录 3:28<br>The threat of history is hard to eliminate. Large scale events, well they can’t be avoided. Small scale events that happen during the study can be avoided at least to some extent by testing subjects separately, if this is possible. This way, if something goes wrong, the results of only one or maybe a few subjects will have to be discarded.<br>在 3 分 49 秒处开始记录 3:49<br>The final threat to discuss is mortality. Mortality refers to participant dropout from the study. If groups are compared and drop out is different in these groups, then this could provide an alternative explanation.<br>在 4 分 2 秒处开始记录 4:02<br>For example, suppose we’re investigating the effectiveness of a drug for depression. Suppose the drug is actually not very effective, and has a very strong side effect. It causes extreme flatulents. Of course this can be so uncomfortable and embarrassing that it wouldn’t be strange for people to drop out of the study because of the side effect.<br>在 4 分 24 秒处开始记录 4:24<br>Suppose 80% of the people in the experimental group dropped out. In the control group, participants are administered a placebo, with no active ingredient. So also, no side effects. Dropout in this group is only 10%. It’s obvious that the groups are no longer comparable. Suppose that for the remaining 20% of participants in the experimental group, the drug is effective enough to outweigh the negative side effect.<br>在 4 分 51 秒处开始记录 4:51<br>This wasn’t the case for the 80% who dropped out.<br>在 4 分 56 秒处开始记录 4:56<br>Based on the remaining subjects, we might conclude that the drug is very effective.<br>在 5 分 1 秒处开始记录 5:01<br>But if all subjects had reamined in the study, the conclusion would have been very different.<br>在 5 分 8 秒处开始记录 5:08<br>The threat of mortality is very hard to eliminate. In most cases, the best a researcher can do is document the reasons for dropout, so that these reasons can be investigated, and possibly mitigated in further studies.</p>
+<p>最后我们将剩下的那些内部效度影响因素归结为一类 最后我们将剩下的那些内部效度影响因素归结为一类 这三个影响因素都和研究程序或设计相关 这三个影响因素都和研究程序或设计相关<br>在 17 秒处开始记录 0:17<br>它们是 模糊的先后顺序、历史、亡失<br>在 23 秒处开始记录 0:23<br>模糊的先后次序和假定的因果关系是指 模糊的先后次序和假定的因果关系是指 并不清楚假定的原因是否真的在观察结果之前<br>在 35 秒处开始记录 0:35<br>假设我关注玩暴力游戏和攻击行为之间的关系 假设我关注玩暴力游戏和攻击行为之间的关系<br>在 42 秒处开始记录 0:42<br>我问高中生一周玩多少小时的暴力游戏 我让老师评估他们在班中出现的攻击行为<br>在 52 秒处开始记录 0:52<br>假设我发现两者有强相关性 长时间玩暴力游戏的孩子更多出现攻击行为 长时间玩暴力游戏的孩子更多出现攻击行为<br>在 1 分 1 秒处开始记录 1:01<br>这并不能得出暴力游戏导致了攻击行为 可能是本身攻击性强一些的孩子才更喜欢玩暴力游戏 也会更多寻求暴力刺激<br>在 1 分 14 秒处开始记录 1:14<br>模糊的先后次序带来的影响 能通过控制或引入假设的原因来消除<br>在 1 分 22 秒处开始记录 1:22<br>当然 不是所有的因素都能被控制 但如果我控制了原因 那我就能肯定它在结果之前<br>在 1 分 31 秒处开始记录 1:31<br>比如 我让所有的孩子都玩暴力游戏 如果玩游戏后 起先没攻击性的孩子也变得有攻击性 那么我的因果推论就更有说服力<br>在 1 分 45 秒处开始记录 1:45<br>接下来要讲的是历史这个影响因素<br>在 1 分 49 秒处开始记录 1:49<br>历史影响是指研究中发生的意外事件 它们会产生替代解释<br>在 1 分 56 秒处开始记录 1:56<br>这可以是大规模事件 或者是数据收集期间的小错误<br>在 2 分 3 秒处开始记录 2:03<br>比如一个研究想要消除人们对少数群体的负面成见<br>在 2 分 8 秒处开始记录 2:08<br>操作方法是由实验者主持一个小组讨论 实验者的重心是少数群体的观点 要求参与者设身处地考虑问题<br>在 2 分 20 秒处开始记录 2:20<br>在对照组 实验者重心是多数群体和少数群体间的差异 并强调多数人的观点<br>在 2 分 29 秒处开始记录 2:29<br>两组都会有三次周会 先举个小规模的历史型影响 假设在对照组最后一次讨论会上 实验者昏倒了<br>在 2 分 42 秒处开始记录 2:42<br>当然 参与者对此感到震惊、不安 这可能会让对照组普遍陷入负面情绪状态 假设我发现 玩了暴力游戏的孩子比对照组更具攻击性 这使对照组对少数群体的态度更加负面 这使对照组对少数群体的态度更加负面<br>在 2 分 55 秒处开始记录 2:55<br>实验处理似乎起作用了 因为实验组更正面 但差异并非来自讨论的设计 而是因为昏倒事件 来看看大规模历史影响的例子 假设研究期间 出现了一件可怕的罪行 嫌疑人是一个少数群体的人 该罪行受到大量媒体的关注 加强了对少数群体的负面成见<br>在 3 分 22 秒处开始记录 3:22<br>任何干预的正面效果都会被这个事件抹去<br>在 3 分 28 秒处开始记录 3:28<br>历史这种影响因素很难消除 大规模事件难以避免 研究期间发生的小规模事件 如果可能 至少能通过将受试者分组测试来避免 这样 如果出错了 只有一个或可能几个受试者必须要被舍弃<br>在 3 分 49 秒处开始记录 3:49<br>最后一个影响因素就是亡失 亡失意味着参与者退出了 如果组间比较时 它们的退出率不一样 那么就会出现替代解释<br>在 4 分 2 秒处开始记录 4:02<br>比如 假设调查治疗抑郁症药物的效果 比如 假设调查治疗抑郁症药物的效果 假设药物其实不是很有效 但副作用很大 它会导致不停地放屁 当然 这会很不舒服而且尴尬 人们因为这个副作用而退出也没有什么奇怪的<br>在 4 分 24 秒处开始记录 4:24<br>假设实验组 80% 的人退出了 在对照组 参与者服用的是没有药效的安慰剂 当然也没副作用 对照组的退出率只有 10% 很明显这两组没有可比性了 假设在实验组剩余 20% 的参与者中 药效带来的好处要胜过副作用<br>在 4 分 51 秒处开始记录 4:51<br>但退出的 80% 就不是这样了<br>在 4 分 56 秒处开始记录 4:56<br>仅基于剩下的 20% 参与者的结果 我们可能认为药物非常有效<br>在 5 分 1 秒处开始记录 5:01<br>但如果实验组所有的对象都在的话 结论可能会大不一样<br>在 5 分 8 秒处开始记录 5:08<br>亡失这个影响因素很难消除 大多数情况下 研究者所能做的就是记录退出原因 以便调查 并在下次研究中避免这些原因</p>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -628,608 +932,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/social-science/quantitative-methods-scientific-method/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/social-science/quantitative-methods-scientific-method/" class="post-title-link" itemprop="url">计算方法 04 | 科学方法</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-27 17:39:54" itemprop="dateCreated datePublished" datetime="2020-02-27T17:39:54+08:00">2020-02-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/social-science/" itemprop="url" rel="index">
-                    <span itemprop="name">social-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>20k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>18 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="实证周期-Empirical-Cycle"><a href="#实证周期-Empirical-Cycle" class="headerlink" title="实证周期 (Empirical Cycle)"></a>实证周期 (Empirical Cycle)</h1><p>The empirical cycle captures the process of coming up with hypotheses about how stuff works and testing these hypotheses against empirical data in a systematic and rigorous way.</p>
-<p>实证周期是指提出事物运作原理的假说，并使用经验数据来系统地、严格地检验这些假说的过程。</p>
-<p>It characterizes the hypothetical deductive approach to science.</p>
-<p>它描述了科学研究中的假说演绎法。</p>
-<p>Being familiar with the five different phases of the cycle, will really help you keep the big picture in mind, especially when we get into specifics of things like experimental design and sampling。</p>
-<p>熟悉这个过程中的五个阶段，可以很好地帮助你抓住重点，尤其是当我们涉及到具体的细节，比如实验设计和采样的时候。</p>
-<p><img src="/images/sci-methods_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>So we’ll start with the observation phase, obviously. This is where the magic happens. It’s where an observation, again, obviously, sparks the idea for a new research hypothesis. We might observe an intriguing pattern, an unexpected event. Anything that we find interesting and that we want to explain.</p>
-<p>让我们从观察阶段讲起，这个阶段很神奇。在这一步中，观察激发了灵感，并由此提出一项新的研究假说。我们可能观察到了有趣的规律，一个令人感到意外的事件，或者是任何一件我们感兴趣并试图解释的事情。</p>
-<p>How we make the observation really doesn’t matter. It can be a personal observation, an experience that somebody else shares with us. Even an imaginary observation that takes place entirely in your head.</p>
-<p>至于我们是如何进行观察的则不重要。它可以是个人的观察，或者是其他人和我们分享的他们的经历，甚至可以是完全发生在你脑袋里的想象。</p>
-<p>Of course, observations generally come from previous research findings, which are systematically obtained. But in principle, anything goes. Okay, so, let’s take as an example a personal observation of mine.</p>
-<p>当然，这些观察通常来自之前的研究发现，这些发现是系统地获得的。但是理论上来讲，万物皆可。让我们来举个例子，这个例子是我的个人观察。</p>
-<p>I have a horrible mother-in-law. I’ve talked to some friends and they also complain about their mother-in-law. So this looks like an interesting pattern to me. A pattern between type of person and likability.</p>
-<p>我有个糟糕的婆婆。我和我的朋友们聊了聊，他们也对另一半的妈妈也颇有微词。我认为这是一个有趣的规律，这是一个关于某类人是否讨人喜欢的规律。</p>
-<p>Okay, so the observation phase is about observing a relation in one or more specific instances. In the induction phase this relation, observed in specific instances, is turned into a general rule. That’s what induction means, taking a statement that’s true in specific cases, and inferring that the statement is true in all cases, always. For example, from the observation that my friends and I have horrible mothers-in-law, I can induce the general rule that all mothers-in-law are horrible. Of course, this rule or hypothesis is not necessarily true. It could be wrong. That’s what the rest of the cycle is about, testing our hypothesis.</p>
-<p>那么，观察阶段我们要做的就是观测一个或者多个例子中的一组关系。在归纳阶段，我们把在具体事例中观察到的这种关系，归纳为一条通用法则。通过一个在特例中成立的命题，推测此命题在所有情况下都成立，这就是归纳的含义。例如，通过观察得知我和朋友们都觉得我们另一半的妈妈很糟糕，我归纳得出 “所有的婆婆或岳母都令人讨厌” 这条通用法则。当然，这条法则，或者说假说，并不一定是成立的，它可能是错误的。这就是周期中其他那些阶段的目的，就是检验我们的假说。</p>
-<p>In the induction phase, inductive reasoning is used to transform specific observations into a general rule or hypothesis. In the deduction phase, we deduce that the relations specified in the general rule should also hold in new, specific instances. From our hypothesis, we deduce an explicit expectation or prediction about new observations. For example, if all mothers-in-law are indeed horrible, then if I asked ten of my colleagues to rate their mother-in-law as either likeable, neutral or horrible, then they should all choose the category horrible.</p>
-<p>在归纳阶段中，具体的观测被归纳推理，转换为一条通用法则或假说。在演绎阶段中我们推导出在新的具体个例中，这条通用法则也应该成立。通过我们的假说，我们推导出一个明确的预测，也就是关于新观测的预测。比如，如果所有人的婆婆或岳母都确实很讨厌，那我让十个同事按喜欢、一般、讨厌给婆婆 / 岳母分类，他们所有人应该都会选择讨厌这一栏。</p>
-<p>Now in order to make such a prediction we need to determine the research setup. We need to decide on a definition of the relevant concepts, measurement instruments, procedures, the sample that we’ll collect new data from，et cetera.</p>
-<p>为了能够做出这样的预测，我们需要确定研究的设定，我们需要确定相关概念的定义、测量仪器、步骤以及我们用来采集新数据的样本，等等。</p>
-<p>So, in the deduction phase, the hypothesis is transformed by deductive reasoning. And specification of the research setup into a prediction about new empirical observations.</p>
-<p>所以，在演绎阶段中，假说被演绎推理转变，并将研究具体化，设定出一个对新实证观察的预测。</p>
-<p>In the testing phase, the hypothesis is actually tested, by collecting new data, and comparing them to the prediction.</p>
-<p>在测试阶段，我们通过收集新的数据，并将它们与预测相对比，来实际检测假说。</p>
-<p>Now this almost always requires statistical processing, using descriptive statistics to summarize the observations for us, and inferential statistics to help us decide if the prediction was correct.</p>
-<p>现在，这通常需要用描述性统计学的统计手段，来为我们归纳观察结果，并用推论性统计学来帮助我们判断预测是否准确。</p>
-<p>In our simple example we don’t need statistics. Let’s say that eight out of ten colleagues rate their mother-in-law as horrible. But, two rate her as neutral. Now we can see right away, our prediction didn’t come true, it was refuted. All ten mothers-in-law should have been rated as horrible. So in the testing phase new empirical data is collected, and with the aid of statistics, the prediction is confirmed or disconfirmed. In the evaluation phase we interpret the results in terms of our hypothesis. If a prediction was confirmed, this only provides provisional support for a hypothesis. It doesn’t mean that we’ve definitively proven the hypothesis, because it’s always possible that in the future, we will find somebody who just loves their mother-in-law. In our example, the prediction was actually refuted.</p>
-<p>我们那个简单的例子里不需要用到统计学。假设十个同事中有八个人认为他们的婆婆 / 岳母很讨厌。但是，另外两个勾选了 “一般”，因此结果立竿见影 —— 我们的假设并不成立，它被驳倒了。按照我们的假设，十个人都应认为婆婆 / 岳母很讨厌。因此，在测试阶段，我们会收集新的实证数据，并通过统计学的帮助来确认我们的预测是否成立。在评估阶段，我们用假说来解释实验结果。如果与预测一致，那么它就暂时为假说提供了支持。这并不意味着我们已经最终证实假说了，因为总有可能在将来，会有人说他们就是很爱自己的婆婆 / 岳母。在我们的例子中，预测实际上被驳倒了。</p>
-<p>This doesn’t mean we should reject our hypothesis outright. In many cases there are plausible explanations for our failure to confirm. If these explanations have to do with a research setup, the hypothesis is preserved and investigated again. But, with a better research design. In other cases, the hypothesis is adjusted based on the results. The hypothesis is rejected and discarded only in very rare cases. In the evaluation phase, the results are interpreted in terms of the hypothesis, which is provisionally supported, adjusted, or rejected.</p>
-<p>这并不意味着我们要将我们的假说全部否认。在很多情况下，我们能够为没能成功证实预测找到可信的解释。如果这个解释与实验设定相关，那么这个假说就能保留下来重新论证，但是需要一个更好的实验设计。在其他情况下，人们会基于结果调整假说。只有在一些很罕见的情况下，假说才会被推翻并放弃。在评估阶段，我们会用假说来解释实验结果，假说会被暂时支持、调整或者推翻。</p>
-<p>The observations collected in the testing phase can serve as new specific observations in the observation phase. This is why the process is described as a cycle. New empirical data obtained in the testing phase give rise to new insights that lead to a new run through. And that’s what empirical science comes down to. We try to hone in on the best hypotheses and build our understanding of the world as we go through the cycle, again and again.</p>
-<p>在测试阶段收集到的观测数据，会被当作下一轮观测阶段的新具体观测数据。这就是为什么这个过程被称为周期。测试阶段中，新的实证数据给人们以新的灵感，启发他们进行新一轮的研究，这就是实证科学的本质所在。我们试图打造出最好的假说，并在周期循环往复中建立起我们对这个世界的认识。</p>
-<p><img src="/images/sci-methods_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<hr>
-<h1 id="确认-否认-Confirm-Disconfirm"><a href="#确认-否认-Confirm-Disconfirm" class="headerlink" title="确认 / 否认 (Confirm/Disconfirm)"></a>确认 / 否认 (Confirm/Disconfirm)</h1><p>We’re going to take a look at how we should interpret results that confirm or disconfirm our predictions, and whether we should confirm or reject our hypothesis accordingly.</p>
-<p>我们将学习应当如何解释确认或否认了预测的研究结果，以及是否应当相应地确认或驳回我们的假说。</p>
-<p>Let’s consider the hypothesis that all mothers-in-law are horrible. I formulated this hypothesis based on personal observations.</p>
-<p>让我们假设所有婆婆 / 岳母都是令人厌恶的，我基于个人观察建立了这一假说。</p>
-<p>To test the hypothesis, I came up with a research setup. I selected to measure horribleness using a rating scale with the options likeable, neutral and horrible. I also decided to collect data from ten colleagues in my department.</p>
-<p>为了检验这一假说，我构思了一套研究方案。我选择一组等级选项来测量讨厌程度，包括喜欢、中立和讨厌，同时我决定在系里的十位同事中收集数据。</p>
-<p>With research set up in place, I formulated the following prediction. If the hypothesis all mothers-in-law are horrible is true, then all ten colleagues should choose the category horrible to describe their mother in law.</p>
-<p>建立好研究方案后，我设定了以下预测：如果所有婆婆 / 岳母都是令人厌恶的假说是正确的，那么十位同事都应选择讨厌这一项去形容他们对婆婆 / 岳母的感受。</p>
-<p><img src="/images/sci-confirm_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>Okay, let’s look at confirmation first. Suppose all ten colleagues rated their mother-in-law as horrible, the prediction is confirmed, but this doesn’t mean the hypothesis’ been proven. It’s easily conceivable that we will be proven wrong in the future. If we were to repeat the study, we might find a person that simply adores their mother-in-law.</p>
-<p>让我们先来看确认。假定十位同事都将他们的婆婆 / 岳母评为讨厌，那么预测就被确认了。但这并不意味着假说被证实了。很容易想象，如果我们重复这一研究，我们可能发现有人喜爱他们的婆婆 / 岳母，我们的假说会被证明是错误的。</p>
-<p>The point is that confirmation is never conclusive. The only thing we can say is that our hypothesis is provisionally supported. The more support from different studies, the more credence we afford a hypothesis. But we can never prove it.</p>
-<p>关键要点是确认永远不是决定性的。我们唯一能说的是我们的假说暂时被支持了，有越多不同的研究支持假说，这一假说就越可信，但我们永远不能证实它。</p>
-<p>Let me repeat that. No scientific empirical statement can ever be proven once and for all. The best we can do is produce overwhelming support for a hypothesis. Okay, now let’s turn to disconfirmation. Suppose only eight out of ten colleagues rate their mother-in-law as horrible, and two actually rate her as neutral.</p>
-<p>我再次强调， <strong>没有任何科学实证命题能够被一劳永逸地证实</strong> ，我们能做到的最大程度是为假说提供压倒性的支持。那么现在我们来看否认。假定十位同事中只有八位将他们的婆婆 / 岳母评为讨厌，两位选择了一般。</p>
-<p>Obviously, in this case our prediction turned out to be false. Logically speaking, empirical findings that contradict the hypothesis should lead to its rejection. If our hypothesis states that all swans are white, and we then find black swans in Australia, we can very conclusively reject out hypothesis.</p>
-<p>显然，这时我们的预测就是错误的。从逻辑上说，实证发现若与假说相悖，则应驳回假说。如果我们的假说是所有天鹅都是白的，随后在澳大利亚发现了黑天鹅，我们就可以确凿地驳回这一假说。</p>
-<p><img src="/images/sci-confirm_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>And practice, however, especially in the social sciences, there are often plausible alternative explanations for our failure to confirm. These are in fact so easy to find, that we rarely reject the hypothesis outright. In many cases, these explanations have to do with methodological issues. The research design or the measurement instrument wasn’t appropriate. Maybe relevant background variables weren’t controlled for. Et cetera, et cetera.</p>
-<p>然而在实践中，尤其在社会科学领域，关于我们未能对假说进行确认这一点，总有似乎可信的替代解释。事实上我们很容易发现，我们很少能完全驳回某一假说。多数情况下，这些解释与方法论的问题有关，研究设计或是测量工具不合适 又或是没有为相关背景变量设置对照，等等。</p>
-<p>Coming back to our mother-in-law example, I could have made a procedural error while collecting responses from the two colleagues who rated their mother-in-law as neutral. Maybe I forgot to tell them that their responses were confidential, making them uncomfortable to choose the most negative category.</p>
-<p>回到婆婆 / 岳母的例子，我可能在收集那两位选择一般的同事的回答时，犯了程序上的错误。或许我忘记告诉他们这些回答是保密的，从而使得他们不能自在地选择最消极的选项。</p>
-<p>Is there a plausible methodological explanation for the failure to confirm? We preserve the hypothesis and instead choose to reject the auxiliary, implicit assumptions concerning the research design and the measurement.</p>
-<p>对于假说的失验，是否有方法学上的替代解释呢？我们没有抛弃、而是保留了假说，却抛弃了那些关于研究方案设计和计量方法的辅助、隐含的假设。</p>
-<p>We investigated the original hypothesis again, only with a better research setup.</p>
-<p>我们再次研究原始假说，但用一套更好的研究方案。</p>
-<p>Sometimes result do give rise to a modification of the hypothesis. Suppose that the eight colleagues who did have horrible mothers-in-law were all women, and the other two were men. Perhaps all mothers-in-law are indeed horrible but only to their daughters in law.</p>
-<p>有时研究结果确实会导致对假说的修改。假定确实有令人厌恶的婆婆的八位同事都是女性，而另外两位是男性。或许只有对媳妇来说，婆婆才都是真正令人厌恶的。</p>
-<p>If we alter the hypothesis slightly by adding additional clauses, it only applies to daughters-in-law. And strictly speaking, we’re rejecting the original hypothesis, sort of.</p>
-<p>如果我们对假说稍作修改，增加只适用于媳妇这一条件。严格来说，我们从某种程度上驳回了原始假说。</p>
-<p>Of course the new hypothesis is essentially the same as the original one, just not as general and therefore not as strong. An outright rejection, or radical adjustment of a hypothesis is actually very rare in social sciences. Progress is made in very small increments, not giant leaps.</p>
-<p>当然，新的假说在本质上与原始假说是相同的，只是不那么笼统，故而也不那么强硬。对假说完全的驳回或根本上的调整，在社会科学领域其实是很少见的。进步并非一蹴而就，而是积跬步，成千里。</p>
-<hr>
-<h1 id="标准-Criteria"><a href="#标准-Criteria" class="headerlink" title="标准 (Criteria)"></a>标准 (Criteria)</h1><p>We follow the empirical cycle to come up with hypothesis and to test and evaluate them against observations. But once the results are in, a confirmation doesn’t mean hypothesis was been proven and a disconfirmation doesn’t automatically mean we reject it.</p>
-<p>我们根据实证周期做出假说，并通过观察来检验和评估它。但即便观察结果符合假说，也并非确证其为真；同理，如果观察结果与假说不符，也不代表我们就要驳回它。</p>
-<p>So how do we decide whether we find the study convincing?</p>
-<p>我们应该如何判断该研究是否可信呢？</p>
-<p>Well there are two main criteria for evaluation: reliability and validity. Reliability is very closely related to replicability. A study is replicable if independent researchers are in principle able to repeat it. A research finding is reliable if we actually repeat the study and then find consistent results.</p>
-<p>有两个主要标准：可靠性 (reliability) 和效度 (validity) 。可靠性与可重复性紧密相联，如果独立研究员大体上可以重复该研究，那么它就是可重复的。当研究可重复，且得到的结果也一致的时候，我们就认为它是可信的。</p>
-<p>Validity is more complicated. A study is valid if the conclusion about the hypothesized relation between properties accurately reflects reality. In short, a study is valid if the conclusion based on the results, is true.</p>
-<p>效度则更为复杂，如果关于特性间假设关系的结论能准确反映现实，这个研究就是有效的。简而言之，如果根据结果得出的结论是真实的，那么这个研究就是有效的。</p>
-<p>Suppose I hypothesize that loneliness causes feelings of depression. I deduce that if I decrease loneliness in elderly people, by giving them a cat to take care of. Their feelings of depression should also decrease. Now suppose I perform this study in a retirement home and find that depression actually decreases after residents take care of a cat.</p>
-<p>比如，我假定孤独会导致抑郁感，我推论出如果我能够通过让老人养猫来减轻他们的孤独感，那么他们的抑郁感也应该随之下降。现在，假设我在养老院进行这项研究，并且发现这里老人的抑郁感确实在养猫之后减轻了。</p>
-<p>Is this study valid? Do the results support the conclusion that loneliness causes depression?</p>
-<p>那么，这一研究是否有效呢？通过这一研究结果，是否支持 “孤独感造成抑郁” 这个结论呢？</p>
-<p>Well, because this is still a pretty general questions, we’ll consider three more specific types of validity. Construct, internal and external validity.</p>
-<p>当然，这个例子也比较宽泛。下面我们要具体讲三种效度，它们就是建构效度、内部效度和外部效度。</p>
-<p>Construct validity is an important prerequisite for internal and external validity. A study has high construct validity if the properties or constructs that appear in the hypothesis are measured and manipulated. Accurately, in other words our methods have high construct validity if they actually measure and manipulate the properties that we intended them to.</p>
-<p>建构效度是内部和外部效度的重要先决条件。如果假说中的特性和建构被准确地测量和控制，我们就说这项研究具有较高的建构效度。换言之，如果它能实际测量和操控我们想要研究的特性，我们的研究方法就具有较高的建构效度。</p>
-<p>Suppose I accidentally measured an entirely different construct with for example my depression questionnaire. What if it measures feelings of social exclusion instead of depression?</p>
-<p>假设我不小心测量了完全不同的建构，比如我关于抑郁的问卷，实际上测量的却是社会排斥感又会怎么样呢？</p>
-<p>Or suppose that taking care of the cat didn’t affect loneliness at all, but instead increased feelings of responsibility and self worth.</p>
-<p>或者，假如照顾猫实际上并不影响孤独感，但能增强责任感和自我价值感。</p>
-<p>What if loneliness remained the same?</p>
-<p>如果孤独感并没有改变会怎样呢？</p>
-<p>Will then the results only seem to support the hypothesis that loneliness caused depression. When in reality, we’ve manipulated a different cause and measured a different effect.</p>
-<p>实验结果只是看上去支持孤独感造成抑郁这一假说，实际上我们操控的是另外的成因，并测量了一种不同的影响。</p>
-<p>Developing accurate measurement and manipulation methods is one of the biggest challenges in the social and behavioral sciences.</p>
-<p>找到准确的测量和控制方法，是进行社会和行为学研究的最大挑战之一。</p>
-<p>I’ll discuss this in more detail when we look at operationalization.</p>
-<p>我们在操作主义一章中将详细探讨这一问题。</p>
-<p>But for now, I’ll move on to internal validity. Internal validity is relevant when our hypothesis describes a causal relationship.</p>
-<p>但接下来我要讲内部效度。当我们的假说描述因果关系的时候，内部效度尤为重要。</p>
-<p>A study is internally valid if the observed effect, is actually due to the hypothesized cause.</p>
-<p>如果观测到的结果确实是由假设中的原因引起的，那么这项研究是内部有效的。</p>
-<p>Let’s assume our measurement and manipulation methods are valid for a second. Can we conclude depression went down, because the elderly felt less lonely. Well, maybe something else caused the decrease in depression. For example, if the study started in the winter and ended din the spring, then maybe the change in season lowered depression.</p>
-<p>请先暂且认为，我们的测量和控制方法都是有效的。我们能得出 “老人孤独感减轻因此抑郁感下降” 这一结论吗？其他因素也可能会导致抑郁感下降。比如，如果这项研究是在冬天进行，春天结束的。那么，季节的变化也可能会导致抑郁感的下降。</p>
-<p>Or maybe it wasn’t the cat’s company, but the increased physical exercise from cleaning the litter box and feeding bowl.</p>
-<p>或者，也许并不是因为猫的陪伴，而是因为换猫砂和清洁猫食盆，让他们做了更多的运动。</p>
-<p>Alternative explanations like these threaten internal validity. If there’s a plausible alternative explanation internal validity is low.</p>
-<p>类似的替代解释影响着内部效度。若有似乎合理的替代解释，那么实验的内部效度就很低。</p>
-<p>Now there are many different threats to internal validity that I will discuss in much more detail in later videos.</p>
-<p>还有很多其他因素影响着内部效度，我们在后面的课程中会进行更具体的讲解。</p>
-<p>Okay, let’s look at external validity. A study is externally valid if the hypothesized relationship supported by our findings also holds in other settings and other groups, in other words, if the results generalize to different people, groups, environments and times.</p>
-<p>好的，现在我们来谈谈外部效度。如果我们研究证实的关系也能被应用于其他情景。换句话说，如果该结果可以适用于不同个人、群体、环境和时间，那么我们就说此研究外部有效。</p>
-<p>Let’s return to our example. Will taking care of a cat decrease depression in teenagers and middle-aged people, too? Will the effect be the same for men and women? What about people from different cultures? Will a dog be as effective as a cat?</p>
-<p>让我们回到上一个例子。养猫是否也能帮助青少年和中年人减轻抑郁？它对男性和女性的影响是否相同？对不同文化背景的人是否会有不同影响？养狗和养猫是否有一样的效果？</p>
-<p>Of course this is all hard to say based on the results of only elderly people and cats. If we’d included younger people from different cultural background and used other animals we might have been more confident of the studies external validity.</p>
-<p>当然，仅仅基于对老人和猫这组样本的研究，我们很难回答上述问题。如果这个研究并不局限于老年人，且包括不同文化背景，也涵盖其他动物，那我们就能对这个实验的外部效度更有信心。</p>
-<p>I’ll come back to external validity and how it can be threatened when we come to the subject of sampling.</p>
-<p>我们讲到抽样的时候，会再次提及外部效度，以及它会受到哪些因素影响。</p>
-<p>So to summarize, construct validity relates to whether our methods actually reflect the properties we intended to manipulate and measure. Internal validity relates to whether our hypothesized cause is the actual cause for the observed effect.</p>
-<p>小结，建构效度与我们的实验方法是否真实反映了我们想要控制和测量的性质有关，内部效度是关于我们假设的原因是否真的可以得出观察现象这个结果。</p>
-<p>Internal validity is threatened by alternative explanations.</p>
-<p>内部效度受替代解释的影响。</p>
-<p>External validity, or generalizability, relates to whether the hypothesized relation holds in other settings.</p>
-<p>外部效度或普适性，则是关于假设的关系是否在其他情景下适用。</p>
-<hr>
-<h1 id="因果关系-Causality"><a href="#因果关系-Causality" class="headerlink" title="因果关系 (Causality)"></a>因果关系 (Causality)</h1><p>The most interesting hypotheses are the ones that describe a causal relationship. If we know what causes an effect, we can predict it, influence it, better understand it. So, how do we identify a causal relationship? Well, it was David Hume. With a little help from John Stuart MIll, who first listed the criteria that we still use today. These are the four essential criteria. Number one, the cause and effect are connected. The first criterion means there has to be a way to trace the effect back to the cause. If a patient was not exposed to a virus, then we can’t argue that the virus caused the patient’s death.</p>
-<p>最有趣一类的假说是描述因果关系的。如果我们知道产生结果的原因，我们就可以预知它、影响它、更好地理解它。我们该如何确定因果关系呢？大卫・休谟在约翰・斯图尔特・穆勒的帮助下，首次列出了判断准则。我们至今仍在使用。一共有四条基本准则。</p>
-<p><img src="/images/sci-method-causality_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>第一条，原因和结果是相联系的。第一条准则意味着必须可以由果溯因。如果病人没有接触过某种病毒，我们就不能认为是这种病毒导致了病人的死亡。</p>
-<p>Number two, the cause precedes the effect, I hope this is obvious. Number three, the cause and effect occur together consistently. This means cause and effect should go together, or covary.</p>
-<p>第二条，因先行于果。我想这是显而易见的。第三条，因果总是如影随形。这意味着因和果会一起改变，或称为共变。</p>
-<p>When the cause is present, we should see the effect, and if the cause is not present, then the effect should be absent. If the cause influences the effect to a certain degree, then we should see a consistently stronger or weaker effect, accordingly.</p>
-<p>当原因存在时我们应该能得到结果，当原因不存在时结果也应该不存在。如果原因对结果的影响程度较强或较弱，那相应的，得到的结果也应该较强或较弱。</p>
-<p>Criteria number four, alternative explanations can be ruled out.</p>
-<p>第四条准则，替代解释可被排除。</p>
-<p>Okay, so let me illustrate these criteria with an example. Suppose I hypothesize that loneliness causes feelings of depression. I give some lonely depressed people a cat to take care of. Now, they’re no longer lonely. If my hypothesis is correct, then we would expect this to lower their depression. The cause and effect, loneliness and depression, are in close proximity. They happen in the same persons, and fairly close together in time. So we can show they are connected. </p>
-<p>让我来举例说明这些准则。假设孤独会导致抑郁，我让孤独抑郁的人去养只猫。现在他们不再孤独。如果我的假说是对的，就可以预测这将缓解他们的抑郁。因和果，即孤独和抑郁彼此紧密连接。他们发生在同一个人身上，又几乎同时发生，我们可以证明它们是有联系的。</p>
-<p>The cause, a decrease in loneliness, needs to happen before the effect, a decrease in depression. We can show this because we can control the presence of the cause, loneliness. </p>
-<p>因先行于果，所以孤独感的降低应发生在抑郁症缓解之前。我们能这么说是因为我们可以控制因，即孤独的存在。</p>
-<p>The cause and effect should occur together consistently. This means that less loneliness should go together with lower depression. I could find a comparison group of lonely, depressed people that do not get a cat. Since the cause is absent, their loneliness doesn’t change. There should be no effect. </p>
-<p>因和果应总是伴随出现。这意味着更少的孤独感应该伴随出现更轻的抑郁症。我可以找不养猫的孤独抑郁人群作对照组。由于因不存在了，即他们的孤独感没有变化，也就不应该存在结果。</p>
-<p>Now, this is all easy. The real difficulty lies in the last criterion. Excluding any alternative explanations. Other possible causes. Let’s look for an alternative explanation in our example. Maybe the increased physical activity required to take care of a cat, actually caused lower depression, instead of the reduction in loneliness.</p>
-<p>这些还算简单。真正难的是最后一条准则。排除替代解释：即其他可能的因。我们来在这个例子中找一个替代解释。也许其实是养猫所需的体力活动的增加，引起了抑郁症的减轻，而不是因为孤独感的降低。</p>
-<p>Alternative explanations form threats to the internal validity of a research study. An important part of methodology is developing and choosing research designs that minimize these threats.</p>
-<p>替代解释会影响一项研究的内部效度。方法论的一个重要部分就是：不断改善并选择可以最少化这些影响因素的研究设计。</p>
-<p><img src="/images/sci-method-causality_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>Okay there’s one more point I want to make about causation. Causation requires correlation. The cause and effect have to occur consistently. But correlation doesn’t imply causation. I’ll give you an example. If we consistently observe aggressive behavior after children play a violent video game. This doesn’t mean the game caused the aggressive behavior. It could be that aggressive children seek out more aggressive stimuli. Reversing the causal direction.</p>
-<p>关于因果关系还有一点我想补充。因果关系需要相关性。因和果必须一致地出现，但是相关性并不意味着因果性。我来给你举个例子。如果我们总是观察到孩子在玩包含暴力的电子游戏后表现出攻击性行为，这并不意味着游戏诱发了攻击性行为。这可能是攻击性强的孩子在寻找更多的攻击性刺激，这就颠倒了原因和结果。</p>
-<p>Or, maybe children whose parents allow them to play violent games aren’t supervised as closely. Maybe they’re just as aggressive as other children. They just feel less inhibited to show this aggressive behavior. So remember, correlation does not imply causation.</p>
-<p>或许那些家长允许玩暴力游戏的孩子，并没有受到严格的家庭教育。或许他们和别的孩子一样好斗，他们只是在表现出攻击性行为时很少意识到这是被禁止的。所以记住，相关性并不意味着因果性。</p>
-<hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/uncategorized/outline-swiftui-tutorials/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/uncategorized/outline-swiftui-tutorials/" class="post-title-link" itemprop="url">大纲 | SwiftUI 教程</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-27 10:25:01" itemprop="dateCreated datePublished" datetime="2020-02-27T10:25:01+08:00">2020-02-27</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://developer.apple.com/tutorials/swiftui/creating-and-combining-views" target="_blank" rel="noopener">源</a></p>
-<h1 id="第一章-基础"><a href="#第一章-基础" class="headerlink" title="第一章 基础"></a>第一章 基础</h1><h2 id="创建和绑定视图"><a href="#创建和绑定视图" class="headerlink" title="创建和绑定视图"></a>创建和绑定视图</h2><h3 id="1-创建项目和探索-Canvas"><a href="#1-创建项目和探索-Canvas" class="headerlink" title="1 创建项目和探索 Canvas"></a>1 <strong>创建项目和探索 Canvas</strong></h3><p>要点：</p>
-<ol>
-<li>创建项目时 User Interface 选择 “SwiftUI”</li>
-<li>基础扩展：演示 Xcode 界面布局，菜单</li>
-<li>SwiftUI 文件的两部分：描述视图内容和布局的主结构体，预览</li>
-<li>显示隐藏 Canvas 面板快捷键</li>
-<li>演示实时预览 （改变 body 里的代码） SwiftUI 开发体验的核心卖点之一<br>进阶资源：声明式 UI 、Flutter 和 SwiftUI 的比较，拖尾闭包语法</li>
-</ol>
-<h3 id="2-自定义文本视图"><a href="#2-自定义文本视图" class="headerlink" title="2 自定义文本视图"></a>2 自定义文本视图</h3><p>要点：</p>
-<ol>
-<li>演示从预览中的检视 UI 元素，顺便提一下 modifier ，演示 Font modifier</li>
-<li>代码和视图的关系：source of truth (真理之源)</li>
-<li>演示预览、检视器和代码的自动同步</li>
-</ol>
-<h3 id="3-通过堆叠组合视图"><a href="#3-通过堆叠组合视图" class="headerlink" title="3 通过堆叠组合视图"></a>3 通过堆叠组合视图</h3><p>要点</p>
-<ol>
-<li>body 属性只返回一个视图<br>进阶资源：关于 body 属性的文章</li>
-<li>介绍三类 stacks ，HStack, VStack，ZStack</li>
-<li>介绍 Xcode 的结构化编辑：嵌套、检视、提取等。通用的 ” 右键菜单 “ ，SwiftUI 专有的 Cmd + 点击<br>进阶资源：Flutter</li>
-<li>演示 embed in vstack</li>
-<li>演示添加控件： + 按钮，快捷键</li>
-<li>演示两层 Stack 嵌套，演示 Spacer 的使用。<br>进阶资源：Spacer 的特性</li>
-<li>演示 padding<br>进阶资源：padding 的各种版本</li>
-</ol>
-<h3 id="4-创建自定义图像视图"><a href="#4-创建自定义图像视图" class="headerlink" title="4 创建自定义图像视图"></a>4 创建自定义图像视图</h3><p>要点</p>
-<ol>
-<li>简介 image view ，常见图片相关概念：mask，边缘 (border)，投影 (drop shadow)</li>
-<li>基础扩展： 添加资源到 asset catalog</li>
-<li>演示创建新的 SwiftUI 文件，CircleImage</li>
-<li>演示 Image () 构造器，演示 clipShaper modifier, Circle mask<br>进阶：mask 遮蔽</li>
-<li>演示 overlay， shadow</li>
-</ol>
-<h3 id="5-让-UIKit-和-SwiftUI-一起工作"><a href="#5-让-UIKit-和-SwiftUI-一起工作" class="headerlink" title="5 让 UIKit 和 SwiftUI 一起工作"></a>5 让 UIKit 和 SwiftUI 一起工作</h3><ol>
-<li>如何在 SwiftUI 中使用 UIKit 里的视图？关键词：wrap, UIViewRepresentable 协议<br>进阶资源：wrap，协议</li>
-<li>[学习曲线] 跳过，后续再来说明。<br>MapKit 相关知识点</li>
-</ol>
-<h3 id="6-构成视图-Compose-Views-——-需要练习"><a href="#6-构成视图-Compose-Views-——-需要练习" class="headerlink" title="6 构成视图 (Compose Views) —— (需要练习)"></a>6 构成视图 (Compose Views) —— (需要练习)</h3><p>要点：</p>
-<ol>
-<li>选择容器 —— stacks，文字、图像、Spacer、自定义视图</li>
-<li>调整视图 —— modifier，属性</li>
-<li>打开源链接，演示样例 app 界面变化过程。</li>
-</ol>
-<p>检查理解的测验。</p>
-<hr>
-<h2 id="构建-List-和导航"><a href="#构建-List-和导航" class="headerlink" title="构建 List 和导航"></a>构建 List 和导航</h2><h3 id="1-了解样本数据"><a href="#1-了解样本数据" class="headerlink" title="1 了解样本数据"></a>1 了解样本数据</h3><p>要点：</p>
-<ol>
-<li>理解 Model ，粗浅理解为数据，相对于视图<br>进阶资源：MVC 设计模式，结构体和类的区别，数据格式，json</li>
-<li>带一些新的关键字，协议</li>
-<li>进阶扩展：为什么要用扩展 Landmark 的 image 属性</li>
-<li>json 数据格式</li>
-</ol>
-<h3 id="2-创建-“行”-视图"><a href="#2-创建-“行”-视图" class="headerlink" title="2 创建 “行” 视图"></a>2 创建 “行” 视图</h3><p>要点</p>
-<ol>
-<li>创建新 SwiftUI 文件，起名 LandmarkRow.swift</li>
-<li>进阶扩展：存储属性和计算属性</li>
-<li>介绍 Image resizable modifier</li>
-</ol>
-<h3 id="3-自定义预览"><a href="#3-自定义预览" class="headerlink" title="3 自定义预览"></a>3 自定义预览</h3><p>要点</p>
-<ol>
-<li>previewLayout<br>进阶资源：previewDevice</li>
-</ol>
-<h3 id="4-创建列表"><a href="#4-创建列表" class="headerlink" title="4 创建列表"></a>4 创建列表</h3><p>要点</p>
-<ol>
-<li>List 的元素可以是动态的、静态的或者混合的<br>进阶资源：SwiftUI 的 List</li>
-<li>使用 List<br>进阶资源：</li>
-</ol>
-<h3 id="5-创建动态列表"><a href="#5-创建动态列表" class="headerlink" title="5 创建动态列表"></a>5 创建动态列表</h3><p>要点</p>
-<ol>
-<li>List 接收 <code>identifiable</code> 的数据<br>进阶资源：Swift keypath 语法，SwiftUI 的 List、ForEach<br>进阶资源：闭包、拖尾闭包语法</li>
-<li>Identifiable 协议：id 属性的约定</li>
-</ol>
-<h3 id="6-在-List-之间建立导航"><a href="#6-在-List-之间建立导航" class="headerlink" title="6 在 List 之间建立导航"></a>6 在 List 之间建立导航</h3><p>要点</p>
-<ol>
-<li>NavigationView<br>进阶资源：SwiftUI 给视图 “赋能” 的方式</li>
-<li>标题、导航按钮<br>进阶资源：标准化 UI</li>
-<li>NavigationLink</li>
-</ol>
-<h3 id="7-数据传递"><a href="#7-数据传递" class="headerlink" title="7 数据传递"></a>7 <strong>数据传递</strong></h3><p>要点</p>
-<ol>
-<li>演示改动</li>
-</ol>
-<h3 id="8-生成动态预览"><a href="#8-生成动态预览" class="headerlink" title="8 生成动态预览"></a>8 生成动态预览</h3><p>要点</p>
-<ol>
-<li>演示实现方式<br>进阶：对移动开发的意义</li>
-</ol>
-<hr>
-<h2 id="处理用户输入"><a href="#处理用户输入" class="headerlink" title="处理用户输入"></a>处理用户输入</h2><h3 id="1-标记最爱的地标"><a href="#1-标记最爱的地标" class="headerlink" title="1. 标记最爱的地标"></a>1. 标记最爱的地标</h3><p>要点</p>
-<ol>
-<li>添加一个图标：系统图标、缩放、着色<br>进阶：SF Symbols，着色</li>
-</ol>
-<h3 id="2-过滤列表视图"><a href="#2-过滤列表视图" class="headerlink" title="2 过滤列表视图"></a>2 过滤列表视图</h3><p>要点</p>
-<ol>
-<li>@State 属性</li>
-</ol>
-<h3 id="3-添加控件以触发-State"><a href="#3-添加控件以触发-State" class="headerlink" title="3 添加控件以触发 State"></a>3 添加控件以触发 State</h3><p>要点</p>
-<ol>
-<li>绑定：$ 语法</li>
-</ol>
-<h3 id="4-用-Observable-Object-存储"><a href="#4-用-Observable-Object-存储" class="headerlink" title="4 用 Observable Object 存储"></a>4 用 Observable Object 存储</h3><p>要点</p>
-<ol>
-<li>ObservableObject 协议</li>
-<li>@Published 属性</li>
-</ol>
-<h3 id="5-在视图中接收模型对象"><a href="#5-在视图中接收模型对象" class="headerlink" title="5 在视图中接收模型对象"></a>5 在视图中接收模型对象</h3><p>要点：</p>
-<ol>
-<li>环境变量: EnvironmentOjbect 属性声明，environmentObject 传入</li>
-<li>where 语句</li>
-</ol>
-<h3 id="6-为每个地标创建按钮"><a href="#6-为每个地标创建按钮" class="headerlink" title="6 为每个地标创建按钮"></a>6 为每个地标创建按钮</h3><p>要点：演示</p>
-<hr>
-<h1 id="第二章-绘制和动画"><a href="#第二章-绘制和动画" class="headerlink" title="第二章 绘制和动画"></a>第二章 绘制和动画</h1><hr>
-<h1 id="第三章-App-设计和布局"><a href="#第三章-App-设计和布局" class="headerlink" title="第三章 App 设计和布局"></a>第三章 App 设计和布局</h1><h1 id="构成复杂界面"><a href="#构成复杂界面" class="headerlink" title="构成复杂界面"></a>构成复杂界面</h1><h2 id="1-Home-视图"><a href="#1-Home-视图" class="headerlink" title="1 Home 视图"></a>1 Home 视图</h2><p>要点</p>
-<p>Home 界面<br>   进阶：心智模式：干扰和专注，简单和复杂 （通知）</p>
-<h2 id="2-分类列表"><a href="#2-分类列表" class="headerlink" title="2 分类列表"></a>2 分类列表</h2><p>要点</p>
-<ol>
-<li>分类 =&gt; 建立层级 （“抽屉”、容器）=&gt; 寻找</li>
-<li>用字典将地标分组</li>
-<li>重温 List、ForEach、keypath 的用法</li>
-</ol>
-<h2 id="3-增加地标分类的内容"><a href="#3-增加地标分类的内容" class="headerlink" title="3 增加地标分类的内容"></a>3 增加地标分类的内容</h2><p>要点</p>
-<ol>
-<li>重温 Stack</li>
-<li>ScrollView (.horizontal), ForEach</li>
-</ol>
-<h2 id="4-构成-Home-视图"><a href="#4-构成-Home-视图" class="headerlink" title="4 构成 Home 视图"></a>4 构成 Home 视图</h2><p>要点</p>
-<ol>
-<li>改造 CategoryRow</li>
-<li>listRowInsets、EdgeInsets</li>
-</ol>
-<h2 id="5-添加导航"><a href="#5-添加导航" class="headerlink" title="5 添加导航"></a>5 添加导航</h2><p>要点</p>
-<ol>
-<li>重温 NavigationLink</li>
-<li>Image .renderingMode , Text .foregroundColor</li>
-<li>重温 @State， 重点: sheet<br>进阶：alert, 内建的环境变量 .presentationMode</li>
-<li>导航栏按钮 navigationBarItems</li>
-</ol>
-<hr>
-<h2 id="和-UI-控件合作"><a href="#和-UI-控件合作" class="headerlink" title="和 UI 控件合作"></a>和 UI 控件合作</h2><h3 id="1-显示用户资料"><a href="#1-显示用户资料" class="headerlink" title="1 显示用户资料"></a>1 显示用户资料</h3><h3 id="2-编辑模式"><a href="#2-编辑模式" class="headerlink" title="2 编辑模式"></a>2 编辑模式</h3><p>要点</p>
-<ol>
-<li>editMode</li>
-<li>条件视图，wrappedValue</li>
-</ol>
-<h3 id="3-定义资料编辑器"><a href="#3-定义资料编辑器" class="headerlink" title="3 定义资料编辑器"></a>3 定义资料编辑器</h3><p>要点</p>
-<ol>
-<li>Divider</li>
-<li>Toggle</li>
-<li>Picker</li>
-<li>DatePicker</li>
-</ol>
-<h3 id="4-延后编辑的生效"><a href="#4-延后编辑的生效" class="headerlink" title="4 延后编辑的生效"></a>4 延后编辑的生效</h3><p>要点</p>
-<ol>
-<li>编辑草稿</li>
-<li>可取消的编辑</li>
-<li>onAppear, onDisappear</li>
-</ol>
-<hr>
-<h1 id="第四章-Framework-集成"><a href="#第四章-Framework-集成" class="headerlink" title="第四章 Framework 集成"></a>第四章 Framework 集成</h1><h2 id="与-UIKit-对接"><a href="#与-UIKit-对接" class="headerlink" title="与 UIKit 对接"></a>与 UIKit 对接</h2><h3 id="1-创建视图来表示-UIPageViewController"><a href="#1-创建视图来表示-UIPageViewController" class="headerlink" title="1 创建视图来表示 UIPageViewController"></a>1 创建视图来表示 UIPageViewController</h3><p>要点</p>
-<ol>
-<li>UIViewControllerRepresentable, #makeUIViewController, #updateUIViewController<br>进阶资源：回调</li>
-<li>用 SwiftUI 的 view 来构建 UIPageViewController 中的 controller</li>
-<li>map</li>
-</ol>
-<h3 id="2-创建-ViewController-的数据源"><a href="#2-创建-ViewController-的数据源" class="headerlink" title="2 创建 ViewController 的数据源"></a>2 创建 ViewController 的数据源</h3><p>要点</p>
-<ol>
-<li>使用 Coordinator, UIPageViewControllerDataSource</li>
-</ol>
-<h3 id="3-用-SwiftUI-中的视图状态跟踪-Page"><a href="#3-用-SwiftUI-中的视图状态跟踪-Page" class="headerlink" title="3 用 SwiftUI 中的视图状态跟踪 Page"></a>3 用 SwiftUI 中的视图状态跟踪 Page</h3><p>要点</p>
-<ol>
-<li>@State, @Binding 的传递</li>
-<li>UIPageViewControllerDelegate</li>
-</ol>
-<h3 id="4-添加一个自定义页面控制"><a href="#4-添加一个自定义页面控制" class="headerlink" title="4 添加一个自定义页面控制"></a>4 添加一个自定义页面控制</h3><p>要点</p>
-<ol>
-<li>UIViewRepresentable</li>
-<li>UIPageControl, UIControl<br>进阶资源：“控件”</li>
-<li><strong>target-action pattern</strong> , <strong>*delegate</strong>， <strong>#selector</strong></li>
-<li><strong>@objc 关键字 </strong></li>
-<li>可选进阶：起名字，一个名字在多个层次中使用<br>PageControl, UIPageControl</li>
-<li>可选进阶：PageViewController 和 PageControl 之间如何联动</li>
-</ol>
-<hr>
-<h2 id="创建-watchOS-App"><a href="#创建-watchOS-App" class="headerlink" title="创建 watchOS App"></a>创建 watchOS App</h2><h3 id="1-添加-watchOS-目标"><a href="#1-添加-watchOS-目标" class="headerlink" title="1 添加 watchOS 目标"></a>1 添加 watchOS 目标</h3><p>要点</p>
-<ol>
-<li>激活 watch app 的 scheme</li>
-<li>Supports Running Without iOS App Installation<br>进阶内容：watchOS 6.0, watch app 和 iOS app 的关系</li>
-</ol>
-<h3 id="2-在目标间共享文件"><a href="#2-在目标间共享文件" class="headerlink" title="2 在目标间共享文件"></a>2 在目标间共享文件</h3><p>要点</p>
-<ol>
-<li>文件 inspector, Target membership 段</li>
-<li>watchkit app 和 watchkit extension 的区别<br>进阶内容：watch app 的结构</li>
-</ol>
-<h3 id="3-创建细节视图"><a href="#3-创建细节视图" class="headerlink" title="3 创建细节视图"></a>3 创建细节视图</h3><p>要点</p>
-<ol>
-<li>适配不同尺寸的屏幕</li>
-<li><strong>where 语句 </strong></li>
-<li>scaleToFill, scaleToFit</li>
-</ol>
-<h3 id="4-添加-watchOS-的地图视图"><a href="#4-添加-watchOS-的地图视图" class="headerlink" title="4 添加 watchOS 的地图视图"></a>4 添加 watchOS 的地图视图</h3><p>要点</p>
-<ol>
-<li>WKInterfaceObjectRepresentable<br>进阶：为什么不能像复用 CircleImage 那样直接复用 iOS 里写好的地图视图？SwiftUI 的定位（learn once, apply everywhere）</li>
-<li>添加到 detail 界面</li>
-</ol>
-<h3 id="5-创建跨平台的列表视图"><a href="#5-创建跨平台的列表视图" class="headerlink" title="5 创建跨平台的列表视图"></a>5 创建跨平台的列表视图</h3><p>要点</p>
-<ol>
-<li><strong> 泛型 </strong>，<strong> 类型推断 </strong></li>
-<li>对应修改 iOS scheme 的 Home 视图，LandmarkList 的初始化，重温拖尾闭包。</li>
-<li>LandmarkList 预览怎么解决？ #if, #else, #endif, typealias</li>
-</ol>
-<h3 id="6-在-watch-app-中）添加-Landmarks-List"><a href="#6-在-watch-app-中）添加-Landmarks-List" class="headerlink" title="6 (在 watch app 中）添加 Landmarks List"></a>6 (在 watch app 中）添加 Landmarks List</h3><p>要点</p>
-<ol>
-<li>切换 scheme</li>
-<li>思考题：watch app 为什么没有 Home ?</li>
-</ol>
-<h3 id="7-创建自定义的通知接口"><a href="#7-创建自定义的通知接口" class="headerlink" title="7 创建自定义的通知接口"></a>7 创建自定义的通知接口</h3><p>要点</p>
-<ol>
-<li><strong> 如何正确地使用通知？</strong></li>
-<li>构建通知视图：swift 的 init 模式</li>
-<li>通知控制：WKUserNotificationHostingController, #didReceive, </li>
-<li>UNNotification</li>
-<li>通知配置：Notification Category, apns 文件模拟远程通知</li>
-<li>切换到 Notification scheme</li>
-</ol>
-<hr>
-<h2 id="创建-macOS-app"><a href="#创建-macOS-app" class="headerlink" title="创建 macOS app"></a>创建 macOS app</h2><h3 id="1-创建-macOS-目标"><a href="#1-创建-macOS-目标" class="headerlink" title="1 创建 macOS 目标"></a>1 创建 macOS 目标</h3><p>要点</p>
-<ol>
-<li>Deployment Target<br>进阶资源：<strong> 软件兼容（向前兼容）</strong>，<strong> 版本号 </strong></li>
-</ol>
-<h3 id="2-共享数据和-Assets"><a href="#2-共享数据和-Assets" class="headerlink" title="2 共享数据和 Assets"></a>2 共享数据和 Assets</h3><p>要点</p>
-<ol>
-<li>Membership</li>
-</ol>
-<h3 id="3-Row-视图"><a href="#3-Row-视图" class="headerlink" title="3 Row 视图"></a>3 Row 视图</h3><h3 id="4-组装视图"><a href="#4-组装视图" class="headerlink" title="4 组装视图"></a>4 组装视图</h3><p>要点</p>
-<ol>
-<li>List (selection: Binding<set<selectionvalue>)</set<selectionvalue></li>
-</ol>
-<h3 id="5-过滤器视图"><a href="#5-过滤器视图" class="headerlink" title="5 过滤器视图"></a>5 过滤器视图</h3><p>要点</p>
-<ol>
-<li>相同控件在不同平台上的外观</li>
-<li>preview 中样例的 .constant 用法</li>
-<li>数组相加</li>
-<li>通用规范：复杂条件，注意使用括号</li>
-</ol>
-<h3 id="6-组合列表和过滤器视图"><a href="#6-组合列表和过滤器视图" class="headerlink" title="6 组合列表和过滤器视图"></a>6 组合列表和过滤器视图</h3><h3 id="7-复用-CircleImage"><a href="#7-复用-CircleImage" class="headerlink" title="7 复用 CircleImage"></a>7 复用 CircleImage</h3><p>要点</p>
-<ol>
-<li>属性默认值</li>
-</ol>
-<h3 id="8-macOS-上的地图视图"><a href="#8-macOS-上的地图视图" class="headerlink" title="8 macOS 上的地图视图"></a>8 macOS 上的地图视图</h3><p>要点</p>
-<ol>
-<li>善用 extension 分治代码</li>
-</ol>
-<h3 id="9-构建细节视图"><a href="#9-构建细节视图" class="headerlink" title="9 构建细节视图"></a>9 构建细节视图</h3><h3 id="10-Master-Detail-视图"><a href="#10-Master-Detail-视图" class="headerlink" title="10 Master Detail 视图"></a>10 Master Detail 视图</h3><p>要点</p>
-<ol>
-<li>mac (iPad) 上的应用布局，NavigationView</li>
-</ol>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1297,7 +1004,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1310,7 +1017,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1365,12 +1072,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">232k</span>
+    <span title="站点总字数">270k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">4:05</span>
 </div>
 
         

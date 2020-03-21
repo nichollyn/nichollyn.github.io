@@ -48,12 +48,12 @@
   };
 </script>
 
-  <meta name="description" content="本文的主要价值：提供一种抽象复杂逻辑，达成功能复用的思路 关键词：语义提炼、动态具名 本文约 4000 字，建议阅读时间 12 分钟。  引子在软件开发中，我们常常会遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。作为功能单元，它们可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且，对于用户来说，它们都在处理同一个的东西。 举个例子，比如一款修图 app ，它包含了">
+  <meta name="description" content="建议横屏阅读代码   本文的主要价值：提供一种抽象复杂逻辑，达成功能复用的思路 关键词：语义提炼、动态具名 本文约 4000 字，建议阅读时间 12 分钟。  引子在软件开发中，我们常常会遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。作为功能单元，它们可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且，对于用户来说，它们都在处理同一个的东西。 举个例子，比如一款修">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用 “流水线” 设计拆解复杂处理流程">
 <meta property="og:url" content="https://theinfinitegame.tech/development/programming-use-pipeline-to-tackle-complexity/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="本文的主要价值：提供一种抽象复杂逻辑，达成功能复用的思路 关键词：语义提炼、动态具名 本文约 4000 字，建议阅读时间 12 分钟。  引子在软件开发中，我们常常会遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。作为功能单元，它们可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且，对于用户来说，它们都在处理同一个的东西。 举个例子，比如一款修图 app ，它包含了">
+<meta property="og:description" content="建议横屏阅读代码   本文的主要价值：提供一种抽象复杂逻辑，达成功能复用的思路 关键词：语义提炼、动态具名 本文约 4000 字，建议阅读时间 12 分钟。  引子在软件开发中，我们常常会遇到一种场景：随着产品功能的扩展，出现了多个具备高度相似性的功能单元。作为功能单元，它们可能有着相似的交互逻辑，提供同类的输入数据和输出数据。并且，对于用户来说，它们都在处理同一个的东西。 举个例子，比如一款修">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theinfinitegame.tech/images/black_box.png">
 <meta property="og:image" content="https://theinfinitegame.tech/images/nodes.png">
@@ -61,7 +61,7 @@
 <meta property="og:image" content="https://theinfinitegame.tech/images/waterfront.png">
 <meta property="og:image" content="https://theinfinitegame.tech/images/shunt.png">
 <meta property="article:published_time" content="2020-03-17T03:32:12.000Z">
-<meta property="article:modified_time" content="2020-03-17T09:35:03.273Z">
+<meta property="article:modified_time" content="2020-03-17T12:43:54.896Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="development">
 <meta property="article:tag" content="programming">
@@ -282,7 +282,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8k</span>
+              <span>8.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -301,7 +301,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
+        <blockquote>
+<p>建议横屏阅读代码</p>
+</blockquote>
+<ul>
 <li>本文的主要价值：提供一种抽象复杂逻辑，达成功能复用的思路</li>
 <li>关键词：语义提炼、动态具名</li>
 <li>本文约 4000 字，建议阅读时间 12 分钟。</li>
@@ -325,14 +328,16 @@
 </blockquote>
 <p>在我们的案例中，<code>Pipeline</code> 相当于内存中的图像状态机，提供了基本的图像管理功能，例如加入图像，删除图像，复制图像，移动图像，等等。<code>Routine</code> 相当于各个图像功能单元中的通用事务，比如说，对于每个图像功能单元，都需要在其开始运作时从某处获得一份初始的图像，并在其结束运作时输出一份 <strong><em>最终的</em></strong> 图像到另一处。我们还约定，<code>Routine</code> 中的事务会基于 <code>Pipeline</code> 来完成。可以具体解释成这样：每个 <code>Routine</code> 都会包含一组典型的图像处理动作，这些处理动作借助一个或者多个 <code>Pipeline</code> 的通用操作，以及每个 <code>Pipeline</code> 的差异化操作来完成（后面会具体说明这个 <strong><em>差异化的图像处理步骤</em></strong>）。</p>
 <p>从这里开始，我们不妨把 “<strong>流水线</strong>” 的叫法直接替换成 “<strong>管道</strong>”，因为后面会用到一些比喻性的描述，我个人它们觉得基于 “管道” 一词衍生出来，会比用 “流水线” 来得更自然。接下来，我们对 “管道” 这个意象再做进一步的挖掘，可以设计出下面这些对应关系（表格中左侧的概念只是一种比喻，读者可自行体会，这里不会详细解读）</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>比喻</th>
-<th>原对象</th>
+<th>原对象 </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>“管道”</td>
 <td>图像状态机</td>
 </tr>
@@ -356,20 +361,22 @@
 <td>“连通性”</td>
 <td>状态机内的图像以及图像状态机之间都是可串联的</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>“流体” 是一个名词，它对应的是图像，涉及到存储模型。根据 “流体” 的特性，我们可以想象，或者说推断，管道里的图像存储模型应该会被设计为平行结构。</p>
-<p>请读者联想一个类比， &lt;<strong>化妆 / 整容  VS  软件上美化照片上的人脸</strong>&gt; ，再思考一下，两者在存储模型和工序这两个方面有什么异同？ </p>
+<p>请读者联想一个类比， &lt;__化妆 / 整容  VS  软件上美化照片上的人脸__&gt; ，再思考一下，两者在存储模型和工序这两个方面有什么异同？ </p>
 <p>回到正题，我配了五幅图来描述管道在具体实现中的五个特性：</p>
 <ol>
 <li>“流体” 由一系列 “节点” 组成。“节点”，即图像的状态，它的含义构成了我们对某一个图像的本征性认知。通俗地讲，图像状态能够帮助我们在特定的场景下把不同的图像区分开来。举个例子，有协同开发的两位程序员，对于 “美颜” 和 “滤镜” 这两个步骤的认知达成了共识。于是，我们就可以建立两个节点：“美颜”、“滤镜”，然后在开发过程中使用这两个节点来 <em>协作</em> 。注意，图像状态不是图像本身。对于图像状态的代码实现，我们可以使用一个极轻量的数据结构 —— 字符串。它体现的是 <strong>占位符思想</strong>，而我想要强调占位符的三个重要好处：它们是 <strong>可预见的</strong>（基于认知共识）、<strong>可预置的</strong>（很轻量）、<strong>可固化的</strong>（可复用代码的一个内在要求）。</li>
 </ol>
 <p><img src="/images/nodes.png" alt="节点及同位节点"></p>
-<ol start="2">
+<ol>
 <li>“管道” 通过衔接 “节点” 构成 “连通”。在 “节点” 中，有必要特别介绍的是 “同位节点”。它指的是：几个步骤在 <strong>同一个图像</strong> 上先后发生。在时间上有先后，但在空间上始终操作同一份存储。我后面会再用到这个描述。</li>
 </ol>
 <p><img src="/images/connectivity.png" alt="连通性"></p>
-<ol start="3">
-<li><p>“流动” 的 “流体” 会有一个 <strong>最前部</strong> ，就好像水流的最前端，又称为 “锋面” (Waterfront)，对应着这样一个事实：“管道” 中所有的图像，在同一时间里，只会有 <strong>唯一的</strong> 图像处于 <strong>可操作</strong> 的状态，这个状态代表着 <strong>图像的变化趋势</strong> 。具体到代码实现，可能会是一组带有 * 同步关键字 * 的方法，加上一个唯一的指向当前状态的指针。我们通过 <strong>引导</strong> 和 <strong>操刀</strong> 这个趋势，把图像 “引向” 最终要呈现出来的样子。在图示中，我有意使用了绿色代表原始的、最初的，使用红色代表成熟的、完全体的。<code>Pipeline</code> 专注于做一件事：把图像从一种状态转化为另外一种状态。这期间，可能要经历多个 “节点”，而 “锋面” 的意义就在于，它保证了一件事。那就是 <code>Pipeline</code> 的操刀者可以确信，这一刻只有他自己在引导图像的 “流向”，没有人会干扰到他。</p>
+<ol>
+<li><p>“流动” 的 “流体” 会有一个 <strong>最前部</strong> ，就好像水流的最前端，又称为 “锋面” (Waterfront)，对应着这样一个事实：“管道” 中所有的图像，在同一时间里，只会有 <strong>唯一的</strong> 图像处于 <strong>可操作</strong> 的状态，这个状态代表着 <strong>图像的变化趋势</strong> 。具体到代码实现，可能会是一组带有 <em> 同步关键字 </em> 的方法，加上一个唯一的指向当前状态的指针。我们通过 <strong>引导</strong> 和 <strong>操刀</strong> 这个趋势，把图像 “引向” 最终要呈现出来的样子。在图示中，我有意使用了绿色代表原始的、最初的，使用红色代表成熟的、完全体的。<code>Pipeline</code> 专注于做一件事：把图像从一种状态转化为另外一种状态。这期间，可能要经历多个 “节点”，而 “锋面” 的意义就在于，它保证了一件事。那就是 <code>Pipeline</code> 的操刀者可以确信，这一刻只有他自己在引导图像的 “流向”，没有人会干扰到他。</p>
 <p><img src="/images/waterfront.png" alt="锋面"></p>
 </li>
 <li><p>“流动” 可以是双向的（相比生产车间的 “流水线”，“管道” 之所以更贴切，在于后者可以实现双向的流动，对应到图像，相当于实现反向编辑，或者说撤销到一个处理步骤之前的状态）</p>
@@ -381,28 +388,22 @@
 <h1 id="“管道”-的具体实现"><a href="#“管道”-的具体实现" class="headerlink" title="“管道” 的具体实现"></a>“管道” 的具体实现</h1><p>如前所述，“流体” 其实就是图像，简单封装即可。我们主要实现的是 “<strong>节点</strong>”、“<strong>锋面</strong>”、 “<strong>流动</strong>” 和 “<strong>连通</strong>”。</p>
 <h2 id="节点的实现方案和意义"><a href="#节点的实现方案和意义" class="headerlink" title="节点的实现方案和意义"></a>节点的实现方案和意义</h2><p>我们先来看一种典型的图像处理过程中可能会采用的写法，代码为 swift 实现：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图像 xyz</span></span><br><span class="line"><span class="keyword">var</span> xyz: <span class="type">MyImage</span></span><br><span class="line"><span class="comment">// 图像 ijk</span></span><br><span class="line"><span class="keyword">var</span> ijk: <span class="type">MyImage</span></span><br><span class="line"><span class="comment">// 图像 abc </span></span><br><span class="line"><span class="keyword">var</span> abc: <span class="type">MyImage</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>当然，现代编程语言的语法特性，可以让你省去写各种 getter/setter 的样板代码，从而节省代码量。但这不是重点，重点在于 —— 上述这种代码无法复用。因为每一个图像的引用都被赋予了 <strong>具体</strong> 的含义：同样的写法不太可能完全地适用于另外一个图像处理场景。比如说，另外那个图像处理场景很可能不会用到描述为 ijk 的图像，可能会用到描述是 uvw 的图像。因此，采取这种写法会遇到的一个典型问题是：每新增一个图像处理场景，我们都需要新增若干个特定描述的图像声明。在编码层面，这无疑是一项繁冗的工作。</p>
 <p>上面说的图像引用，其实正是我们的图像 “管道” 里的某个 “节点”。思考一个问题，如果要对 “节点” 实现代码复用，你会怎么做？稍微提示一下，关键在于 “<strong>具体</strong>” 这两个字。</p>
 <p>是的，如果我们能想到，上面的写法中代码之所以不能复用，根源在于图像引用的用途已经被 <strong>具体定义</strong>（同时也是被具体 <strong>约束</strong>），那么我们就更有可能往这样一个方向思考问题的解决方案：能不能把图像引用 “去具体化” ，让它的含义在具体场景到来时才被赋予呢？</p>
 <p>讲到这一层，有些读者可能已经想到一种数据结构 —— 字典。是的，没有什么奇淫巧技，只用字典，就能实现 “去具体化”，解决这个代码复用问题中的最大障碍 —— 既然无法预知我们可能需要处理什么样的图像，可能需要处理多少份图像，并且这些未知数总是易变的，那为什么不让具体场景的使用者来 <strong>动态添加</strong> 这些图像引用，并且为它们具名呢？图像部分被复用的代码，这里只声明了一样东西，就是从图像状态表述到图像引用的映射表。它提供了一个之前的写法不具备的特点，而这个特点是达成复用的必要前提：图像存取的方式是 <strong>统一的</strong>，<strong>有限的</strong>，从而是 <strong>可固化的</strong>。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stateTagToImageMap = [<span class="type">String</span>:<span class="type">MyImage</span>]()</span><br></pre></td></tr></tbody></table></figure>
-
 <p>我们用一个 <strong>字符串标签</strong> 来表示图像的状态。对于图像 “管道” 的使用者来说，他只需要理解每个标签的含义，通过标签来存取图像并进行处理。在这些标签中，我们再提炼出几个具有通用含义的代表性标签：比如，<code>original</code> 代表 “<strong>最初的</strong>”，<code>processed</code> 代表 “<strong>加工完成的</strong>”，这正是前文提到的 <strong>占位符</strong> 。容易理解，在一份可复用的代码库中，你可以声明并且预置许多 <strong>占位符</strong> 。但你不会在这个代码库里声明同样数量的图像引用 —— 这样很奇怪对吧？哪怕从程序实现的角度来说，没有分配实际空间的引用并不一定会占据更多的内存。在后面列举的代码范例中，我们将会经常地用到 <code>original</code> 和 <code>processed</code> 这样的标签。</p>
 <p>不妨阅读下面这段代码，这就是一种使用标签来操作对应图像的写法。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示两个处理步骤之后的图像 </span></span><br><span class="line">pipeline.from (.original) <span class="comment">// 从原始的图像开始 </span></span><br><span class="line">        .copyTo (.processed) <span class="comment">// 拷贝出一份图像用于处理，对应标签 processed</span></span><br><span class="line">        .doProcess (tag: .processed, specificProcess1)  <span class="comment">// 在 processed 上执行处理 1</span></span><br><span class="line">        .doProcess (tag: .processed, specificProcess2) <span class="comment">// 在 processed 上执行处理 2</span></span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (.processed)) <span class="comment">// 取得 processed 标签代表的图像并且展示 </span></span><br></pre></td></tr></tbody></table></figure>
-
 <h2 id="锋面的实现方案和意义"><a href="#锋面的实现方案和意义" class="headerlink" title="锋面的实现方案和意义"></a>锋面的实现方案和意义</h2><p>解决了 “节点” 的设计，我们再来看基于 “节点” 提炼出来的 “锋面” 要怎么设计。容易理解，“<strong>锋面</strong>” 是最前面的那个 “节点” ，具有 <strong>唯一性</strong>，对应具体的图像处理代码中就是 “当前正在被处理的那个图像”。在设计图像管道对外提供的处理 API 时，我们约定处理动作一定只能发生在这个 “<strong>当前的</strong>” 图像上，这样就能够保证我们的 “图像流” 总是按照我们想要的方向流动，并且在这个过程中，“图像流” 是不会被篡改的。这也是我们的图像编辑功能要实现撤销和重做功能的基本前提。</p>
 <p>还是上面那段代码，现在可以去掉实际处理步骤的标签参数。因为我们约束了处理只能发生在 <strong>唯一的</strong>、<strong>当前的</strong> 图像上。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示一个处理步骤之后的图像 </span></span><br><span class="line">pipeline.from (.original) <span class="comment">// 从原始的图像开始 </span></span><br><span class="line">        .copyTo (.processed) <span class="comment">// 拷贝出一份图像用于处理，对应标签 processed</span></span><br><span class="line">        .doProcess (specificProcess1) <span class="comment">// 隐含了在 processed 上执行处理 1</span></span><br><span class="line">        .doProcess (specificProcess2) <span class="comment">// 隐含了在 processed 上执行处理 2</span></span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (.processed)) <span class="comment">// 取得 processed 标签代表的图像并且展示 </span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>如果要求能够回撤到第一个处理步骤之后的状态，再做第二个处理步骤，并且第二个处理步骤的参数是可以改变的。可以这么做：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示一个处理步骤之后的图像，但我们在过程中保留了第一个步骤的状态 </span></span><br><span class="line">pipeline.from (.original)</span><br><span class="line">        .copyTo (<span class="string">"specificProcess1"</span>) <span class="comment">// 相比一步到位，这里多存储了第一个步骤的状态 </span></span><br><span class="line">        .doProcess (specificProcess1)</span><br><span class="line">        .copyTo (.processed)</span><br><span class="line">        .doProcess (specificProcess2.setParams (params1))</span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (.processed))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调整第二个步骤的某些参数，重新显示图像 </span></span><br><span class="line">pipeline.from (<span class="string">"specificProcess1"</span>) <span class="comment">// 之前存储了第一个步骤的状态，直接从这个步骤开始 </span></span><br><span class="line">        .copyTo (.processed)</span><br><span class="line">        .doProcess (specificProcess2.setParams (params2))</span><br><span class="line"></span><br><span class="line">showImage (pipeline.fetch (.processed))</span><br></pre></td></tr></tbody></table></figure>
-
 <h2 id="流动和连通性的实现方案"><a href="#流动和连通性的实现方案" class="headerlink" title="流动和连通性的实现方案"></a>流动和连通性的实现方案</h2><p>有了 “节点” 和 “锋面”，“流动” 和 “连通” 就有了作用的主体。对应到图像编辑功能，“<strong>流动</strong>” 其实就是图像从一个状态变成另外一个状态的过程。“<strong>连通</strong>” 则更好理解，一个管道出来的图像可以被另外一个管道接纳，由此构成管道之间的连接。连接在一起的每一节 “<strong>小管道</strong>” 各司其职，灵活组合，再构成更长跨度的 “<strong>大管道</strong>” 或者 “<strong>管道网络</strong>”，从而协同完成复杂的业务流程。</p>
 <p>回归到代码，我们来看一组步骤稍多的图片处理工序，看它是如何体现出管道的 “流动性” 和 “连通性”。刨去内部的实现细节，整合或者忽略一些与管道设计思想关联不大的逻辑，以下代码在流程上算是比较接近实际生产环境了。虽然采用的是伪代码，相信读者可以看懂。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 主功能区，不妨将它的例程称为 Main</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 可以从这里进入各子功能处理图片再回到这里展示新的图片 </span></span><br><span class="line"><span class="comment"> * 3. 撤销到经过某个步骤处理之前的图像或者重做出之前做过但是被撤销掉的某个步骤的图像   </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">RoutineMain</span>.startFrom (imageFile) {</span><br><span class="line">    <span class="type">RoutineMain</span>.pipeline.loadFrom (imageFile, .original) <span class="comment">// 从图片中加载初始的图像 </span></span><br><span class="line">}</span><br><span class="line"><span class="type">RoutineMain</span>.showCurrent () {</span><br><span class="line">    showImage (<span class="type">RoutineMain</span>.pipeline.front () <span class="comment">// 显示 “锋面”</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “美型” 的功能区，对应的例程称为 FaceLift</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 针对图像中的人脸轮廓，五官进行形状调整 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像到主功能区 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">RoutineFaceLift</span>.startFrom (<span class="type">RoutineMain</span>.pipeline.front ().copy ())</span><br><span class="line"><span class="type">RoutineFaceLift</span>.process () {</span><br><span class="line">    <span class="type">RoutineFaceLift</span>.pipeline</span><br><span class="line">         <span class="comment">// 这个过程用户无法干预，不会有 “重做”，因此我们可以直接在原稿上操作 </span></span><br><span class="line">        .from (.original)</span><br><span class="line">        .doProcess (faceLift_step_1_process)</span><br><span class="line">        .doProcess (faceLift_step_2_process)</span><br><span class="line">        .doProcess (faceLift_step_3_process)</span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “美型” 处理好的图像提交给主功能 </span></span><br><span class="line"><span class="type">RoutineMain</span>.accept (<span class="type">RoutineFaceLift</span>.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “滤镜” 的功能区，对应的例程称为 Filter</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 滤镜化处理图像 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像到主功能区 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">RoutineFilter</span>.startFrom (<span class="type">RoutineMain</span>.pipeline.front ().copy ());</span><br><span class="line"><span class="type">RoutineFilter</span>.process () {</span><br><span class="line">    <span class="type">RoutineFilter</span>.pipeline</span><br><span class="line">        <span class="comment">// 这个过程中用户决定要选用哪个具体的滤镜，因此每次都需要基于原稿复制一份再滤镜化 </span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"awful"</span>)))</span><br><span class="line">        ... <span class="comment">// 皱眉，这个不好，换一个！</span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"notbad"</span>)))</span><br><span class="line">        ... <span class="comment">// 托腮，这个还行，再换个试试～</span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (filterProcess (pickFilter (<span class="string">"perfect"</span>)))</span><br><span class="line">        ... <span class="comment">// 完美～</span></span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “滤镜” 处理好的图像提交给主功能 </span></span><br><span class="line"><span class="type">RoutineMain</span>.accept (<span class="type">RoutineFilter</span>.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 进入到一个叫 “美颜 ” 的功能区，对应的例程称为 SkinBeauty</span></span><br><span class="line"><span class="comment"> * 基本功能：</span></span><br><span class="line"><span class="comment"> * 1. 展示图像 </span></span><br><span class="line"><span class="comment"> * 2. 针对图像中的人脸皮肤进行色相调整 </span></span><br><span class="line"><span class="comment"> * 3. 输出处理后的图像给 Main 功能 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">RoutineSkinBeauty</span>.startFrom (<span class="type">RoutineMain</span>.pipeline.front ().copy ());</span><br><span class="line"><span class="type">RoutineSkinBeauty</span>.process () {</span><br><span class="line">    <span class="type">RoutineSkinBeauty</span>.pipeline</span><br><span class="line">        <span class="comment">// 这个过程用户可以调节一个滑竿来控制色相参数，每次都基于原稿复制一份再调色相 </span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_too_weak))</span><br><span class="line">        ... <span class="comment">// 托腮，效果好像不明显，加强一点 </span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_too_much)))</span><br><span class="line">        ... <span class="comment">// 皱眉，好像有点过头了，往回调一点 </span></span><br><span class="line">        .from (.original).copyTo (.processed)</span><br><span class="line">        .doProcess (skinBeautyProcess (level_just_right)</span><br><span class="line">        ... <span class="comment">// 完美～</span></span><br><span class="line">        ...</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 把子功能 “美颜” 处理好的图像提交给主功能 </span></span><br><span class="line"><span class="type">RoutineMain</span>.accept (<span class="type">RoutineSkinBeauty</span>.commit ())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 纠结一下。。</span></span><br><span class="line"><span class="comment">// 犹豫，要不还是不美颜了吧？</span></span><br><span class="line"><span class="type">RoutineMain</span>.undo ();</span><br><span class="line"><span class="comment">// 迟疑，滤镜也不要了？</span></span><br><span class="line"><span class="type">RoutineMain</span>.undo ();</span><br><span class="line"><span class="comment">// 思考中。。。</span></span><br><span class="line"><span class="comment">//... 不行，还是都加回来吧 </span></span><br><span class="line"><span class="type">RoutineMain</span>.redo ().redo ();</span><br><span class="line"><span class="comment">// 端详 5 分钟。。。完美～</span></span><br><span class="line">save (); <span class="comment">// 收工，准备发朋友圈 </span></span><br></pre></td></tr></tbody></table></figure>
-
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>关于 “管道” 的设计思路和实现方案介绍到此。我们可以回顾一下，本文开始所提到 “黑盒子” 设计的第二个问题：“图像 <strong><em>管理</em></strong>  和图像 <strong><em>效果处理</em></strong>  被绑定在一起。”，在管道方案中是不是已经解决了呢？</p>
 <blockquote>
 <p>“管道” 设计的基石是 <strong>无差别地管理图像</strong> ，被管理的每一个图像，由最初将其投入管道的创建者为其定义标签。最初的创建者和后来的协同者，只需要对这个标签的含义达成 <strong>共识</strong> 便可以进行协作。“管道” 的思想是模拟 “<strong>流体</strong>” 的运行方式来实现图像处理过程，通过 “<strong>节点</strong>” 的设定来 <strong>分解</strong> 处理步骤，通过 “<strong>锋面</strong>” 的操控来 <strong>聚焦</strong> 每个单步的操作，通过 <strong>连通性</strong> 来将 <strong>分治</strong> 的逻辑重新 <strong>串联</strong> 起来完成复杂的功能。</p>
@@ -503,8 +504,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/social-science/quantitative-methods-relevant-types-of-variables/" rel="prev" title="计算方法 06 | 相关变量的类型">
-      <i class="fa fa-chevron-left"></i> 计算方法 06 | 相关变量的类型
+    <a href="/development/note-swiftui-mvvm/" rel="prev" title="SwiftUI 笔记 | MVVM In SwiftUI">
+      <i class="fa fa-chevron-left"></i> SwiftUI 笔记 | MVVM In SwiftUI
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -582,7 +583,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -650,12 +651,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">269k</span>
+    <span title="站点总字数">215k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:05</span>
+    <span title="站点阅读时长">3:16</span>
 </div>
 
         

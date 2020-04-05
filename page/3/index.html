@@ -223,6 +223,133 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/computer-tech/ar-arkit-overview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/computer-tech/ar-arkit-overview/" class="post-title-link" itemprop="url">AR | ARKit 概览</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 16:44:13" itemprop="dateCreated datePublished" datetime="2020-02-17T16:44:13+08:00">2020-02-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/computer-tech/" itemprop="url" rel="index">
+                    <span itemprop="name">computer-tech</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="关键技术"><a href="#关键技术" class="headerlink" title="关键技术"></a>关键技术</h1><ul>
+<li><strong>运动跟踪 (motion tracking)</strong> 使得手机理解和追踪它相对于世界的位置。</li>
+<li><strong>环境理解 (environmental understanding)</strong> 使得手机可以侦测各种表面的尺寸和位置：水平的，竖直的，成一定角度的，比如地面，咖啡桌或者墙面。</li>
+<li><strong>光线评估 (light estimation)</strong> 使得手机可以估计环境当前的光照条件。</li>
+</ul>
+<hr>
+<h1 id="ARKit"><a href="#ARKit" class="headerlink" title="ARKit"></a>ARKit</h1><h2 id="ARKit-3"><a href="#ARKit-3" class="headerlink" title="ARKit 3"></a>ARKit 3</h2><p>ARKit 3 带给人们不可思议的体验。通过 People Occlusion，ARKit 3 知道人们和 AR 对象在哪里，并适当地遮挡 scene。ARKit 3 使用 Motion Capture 跟踪人们的运动，将其输入到 AR scene 中。它还可以同时跟踪最多三张人脸，支持 collaborative sessions 等等。</p>
+<h4 id="People-Occlusion"><a href="#People-Occlusion" class="headerlink" title="People Occlusion"></a>People Occlusion</h4><p>现在 AR 内容能呈现在人们的身后和前面，使 AR 体验更加沉浸化。同时，在大多数环境能实现绿幕风格的效果。</p>
+<h4 id="Motion-Capture"><a href="#Motion-Capture" class="headerlink" title="Motion Capture"></a>Motion Capture</h4><p>用一台相机实时捕捉人们的运动。通过将人们身体的位置和运动，理解为一系列关节和骨骼，您可以使用运动和姿势作为 AR 体验的输入 —— 将人们放置在 AR 的中心。</p>
+<h4 id="Simultaneous-Front-and-Back-Camera"><a href="#Simultaneous-Front-and-Back-Camera" class="headerlink" title="Simultaneous Front and Back Camera"></a>Simultaneous Front and Back Camera</h4><p>现在，你可以在前置和后置摄像头上同时使用人脸和世界跟踪。例如，用户可以只使用他们的脸部，与后置摄像头的 AR 内容交互。</p>
+<h4 id="Multiple-Face-Tracking"><a href="#Multiple-Face-Tracking" class="headerlink" title="Multiple Face Tracking"></a>Multiple Face Tracking</h4><p>现在 ARKit 人脸跟踪可以一次跟踪最多三张人脸，使用 iPhone X, iPhone XS, iPhone XS Max, iPhone XR 和 iPad Pro 的 TrueDepth 摄像头。该摄像头为 Memoji 和 Snapchat 等前置摄像头的体验提供能力。</p>
+<h4 id="Collaborative-Sessions"><a href="#Collaborative-Sessions" class="headerlink" title="Collaborative Sessions"></a>Collaborative Sessions</h4><p>通过多人之间的实时协作会话，您可以构建一个协作的 world map，让您更快地开发 AR 体验，让用户像进入多人游戏一样，更快地进入共享的 AR 体验。</p>
+<h4 id="其他改进"><a href="#其他改进" class="headerlink" title="其他改进"></a>其他改进</h4><p>一次检测多达 100 幅图像，并自动地估计图像的物理大小。3D 对象检测更加稳定，因为对象在复杂环境中可以更好地被识别。现在，机器学习被用来更快地检测环境中的平面。</p>
+<h2 id="Reality-Composer"><a href="#Reality-Composer" class="headerlink" title="Reality Composer"></a>Reality Composer</h2><p>Reality Composer 是一款针对 iOS 和 Mac 的功能强大的新应用，可以轻松创建交互式 AR 体验，而无需 3D 经验。可以使用 live linking ，在您的 Mac、iPhone 和 iPad 之间无缝地移动。 RealityKit 是一个全新的高级框架，包含 photo-realistic 渲染、相机特效、动画、物理等功能，专为 AR 而构建。</p>
+<p>现在，任何人都可以快速地原型化和制作 AR 体验的内容，这些内容可以使用 Xcode 集成到应用程序中或者导出到 AR Quick Look 。Reality Composer 让您在 iOS 和 Mac 上构建动画和交互，以丰富您的 3D 内容。</p>
+<h4 id="Built-in-AR-Library"><a href="#Built-in-AR-Library" class="headerlink" title="Built-in AR Library"></a>Built-in AR Library</h4><p>导入您自己的 USDZ 文件，或者利用内置 AR 库中数百个现成的虚拟对象。该库为各种 assets 利用 procedural content generation ，您可以自定义虚拟对象的大小、样式等。</p>
+<h4 id="Animations-and-Audio"><a href="#Animations-and-Audio" class="headerlink" title="Animations and Audio"></a>Animations and Audio</h4><p>增加移动、缩放等动画，比如虚拟对象的 “摆动” 或 “旋转”。当用户点击对象、靠近对象或触发其他触发器，您可以选择要进行的操作。您还可以利用 spatial audio 为您的 AR 场景添加真实感。</p>
+<h4 id="Seamless-Tools"><a href="#Seamless-Tools" class="headerlink" title="Seamless Tools"></a>Seamless Tools</h4><p>Reality Composer 被包含在 Xcode ，也是一款 iOS APP 。因此您可以在 iPhone 或 iPad 上 build 、 test 、 tune 和模拟 AR 体验。利用 live linking ，您可以在 Mac 和 iOS 之间快速切换，创建吸引人的复杂的 AR 体验。</p>
+<h4 id="Record-and-Play"><a href="#Record-and-Play" class="headerlink" title="Record and Play"></a>Record and Play</h4><p>有了 iOS 版的 Reality Composer，您可以记录 AR 体验运行位置的传感器和摄像机数据，然后在构建 APP 时在 iOS 上播放这些数据。</p>
+<h2 id="RealityKit"><a href="#RealityKit" class="headerlink" title="RealityKit"></a>RealityKit</h2><p>这个全新的高级框架是从头开始创建的，专门用于 AR ，包括 photo-realistic 渲染、相机特效、动画、物理等等。它还有一个 Swift API 。使用集成的 ARKit 、基于物理的渲染、变换和骨骼动画、 spatial audio 和刚体物理， RealityKit 使 AR 开发比以往任何时候都更快、更容易。</p>
+<h4 id="World-class-Rendering-RealityKit"><a href="#World-class-Rendering-RealityKit" class="headerlink" title="World-class Rendering RealityKit"></a>World-class Rendering RealityKit</h4><p>使用基于物理的真实材质、环境反射、 grounding shadows 、 camera noise 、 motion blur 等，将虚拟内容与现实世界无缝融合，使虚拟内容与现实世界几乎无法区分。</p>
+<h4 id="Scalable-Performance"><a href="#Scalable-Performance" class="headerlink" title="Scalable Performance"></a>Scalable Performance</h4><p>RealityKit 利用最新的 Metal 特性充分利用 GPU ，充分利用 CPU 缓存和多核，提供难以置信的流畅的视觉效果和物理模拟。因为它自动地伸展每个 iOS 设备的 AR 体验的性能，所以您只需要创建一个 AR 体验。</p>
+<h4 id="Swift-API"><a href="#Swift-API" class="headerlink" title="Swift API"></a>Swift API</h4><p>容易使用但功能强大的 RealityKit 使用 Swift 丰富的语言特性并提供完整的功能。因此您可以更快地构建增强现实体验，而无需抄模板代码。</p>
+<h4 id="Shared-AR-Experiences"><a href="#Shared-AR-Experiences" class="headerlink" title="Shared AR Experiences"></a>Shared AR Experiences</h4><p>RealityKit 使网络开发工作变得简单，例如保持一致的状态、优化网络流量、处理数据包丢失或 performing ownership transfers 。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/social-science/quantitative-method-origin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -780,109 +907,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-hypotheses-and-significance-test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-hypotheses-and-significance-test/" class="post-title-link" itemprop="url">极速统计教程之二十一 | 假设检验和显著性检验</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-02 13:57:35" itemprop="dateCreated datePublished" datetime="2020-02-02T13:57:35+08:00">2020-02-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h1><p>教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。</p>
-<p>当研究人员对于他们感兴趣的参数有所期待时，我们在讨论的是 <strong>统计假设 (statistical hypotheses)</strong> 。这一节将介绍统计假设。他们构成了 <strong>显著性检验 (significance testing)</strong> 方法中最主要的部分。一个统计假设，其实就是一个关于总体的期望。通常，假设会被形式化为一条对总体参数持有特定值或者落在特定范围的声明。这种声明是基于研究或者理论。基于样本的信息，我们评价一个假设靠谱与否。这个过程我们称为显著性检验，它是一种用样本数据来检验提前形式化的假设的方法。就像置信区间一样，显著性检验是一种推断统计学的方法。毕竟，我们也是用样本数据来推断关于总体参数的结论。</p>
-<img src="/images/hypo_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>我们先来看 <strong>零假设检验 (null-hypothesis testing)</strong> ，在这种检验中，显著性检验基于两个假设， <strong>零假设 (null hypothesis)</strong> 和 <strong>备选假设 (alternative hypothesis)</strong> 。零假设以 $ H_0 $ 注记，备选假设以  $ H_a $ 注记。零假设断言你感兴趣的参数是某个特定值。它通常代表变量之间没有关联的情况，或者组与组之间没有差异的情况。它是一个当你的样本数据表明它不太可能发生时需要被拒绝的假设。而备选假设断言你感兴趣的参数落在另一个范围。通常，零假设和备选假设互斥。如果你做显著性测试，假设零假设为真，除非你的数据有很强的反面证据。</p>
-<img src="/images/hypo_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>想象一个法庭的庭审。被告方的辩护律师的观点是被告是无辜的，公诉方则试图说服陪审团和法官被告是有罪的。举证有罪的责任在于原告。被告只有在原告提供有力证据驳斥被告假定无罪的情况下才能被认定为有罪。这正是显著性检验里发生的事情。辩护无辜相当于零假设，而有罪预期则等同于备选假设。</p>
-<img src="/images/hypo_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>在研究实践中，你对于参数的期望是以备选假设的方式出现，而零假设就是对立面，但它必须是一个单值，不能是一个范围。你只有在数据提供强力佐证时才能认定零假设成立。</p>
-<img src="/images/hypo_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-hypotheses-and-significance-test/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -955,7 +979,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1023,12 +1047,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">218k</span>
+    <span title="站点总字数">223k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:18</span>
+    <span title="站点阅读时长">3:23</span>
 </div>
 
         

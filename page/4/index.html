@@ -226,6 +226,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-hypotheses-and-significance-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-hypotheses-and-significance-test/" class="post-title-link" itemprop="url">极速统计教程之二十一 | 假设检验和显著性检验</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-02 13:57:35" itemprop="dateCreated datePublished" datetime="2020-02-02T13:57:35+08:00">2020-02-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h1><p>教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。</p>
+<p>当研究人员对于他们感兴趣的参数有所期待时，我们在讨论的是 <strong>统计假设 (statistical hypotheses)</strong> 。这一节将介绍统计假设。他们构成了 <strong>显著性检验 (significance testing)</strong> 方法中最主要的部分。一个统计假设，其实就是一个关于总体的期望。通常，假设会被形式化为一条对总体参数持有特定值或者落在特定范围的声明。这种声明是基于研究或者理论。基于样本的信息，我们评价一个假设靠谱与否。这个过程我们称为显著性检验，它是一种用样本数据来检验提前形式化的假设的方法。就像置信区间一样，显著性检验是一种推断统计学的方法。毕竟，我们也是用样本数据来推断关于总体参数的结论。</p>
+<img src="/images/hypo_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我们先来看 <strong>零假设检验 (null-hypothesis testing)</strong> ，在这种检验中，显著性检验基于两个假设， <strong>零假设 (null hypothesis)</strong> 和 <strong>备选假设 (alternative hypothesis)</strong> 。零假设以 $ H_0 $ 注记，备选假设以  $ H_a $ 注记。零假设断言你感兴趣的参数是某个特定值。它通常代表变量之间没有关联的情况，或者组与组之间没有差异的情况。它是一个当你的样本数据表明它不太可能发生时需要被拒绝的假设。而备选假设断言你感兴趣的参数落在另一个范围。通常，零假设和备选假设互斥。如果你做显著性测试，假设零假设为真，除非你的数据有很强的反面证据。</p>
+<img src="/images/hypo_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>想象一个法庭的庭审。被告方的辩护律师的观点是被告是无辜的，公诉方则试图说服陪审团和法官被告是有罪的。举证有罪的责任在于原告。被告只有在原告提供有力证据驳斥被告假定无罪的情况下才能被认定为有罪。这正是显著性检验里发生的事情。辩护无辜相当于零假设，而有罪预期则等同于备选假设。</p>
+<img src="/images/hypo_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>在研究实践中，你对于参数的期望是以备选假设的方式出现，而零假设就是对立面，但它必须是一个单值，不能是一个范围。你只有在数据提供强力佐证时才能认定零假设成立。</p>
+<img src="/images/hypo_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-hypotheses-and-significance-test/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-sample-size/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -659,119 +762,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-sampling-distribution-and-central-limit-theorem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-sampling-distribution-and-central-limit-theorem/" class="post-title-link" itemprop="url">极速统计教程之十六 | 样本均值的抽样分布和中心极限定理</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-31 10:48:29" itemprop="dateCreated datePublished" datetime="2020-01-31T10:48:29+08:00">2020-01-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h1><p>研究人员经常会用样本来推断样本所处的总体。为了做这件事，他们需要用到统计世界中非常重要的一种概率分布 —— <strong>抽样分布 (sampling distribution)</strong> 。</p>
-<p>这一节中，我将向你解释抽样分布是什么。需要特别注意的是，抽样分布是帮助研究人员基于仅仅一个样本得出关于总体结论的桥梁。另外说明，在这节教程中，我们假装自己知道总体是什么样的。因为在研究实践中，我们通过永远都无法得知总体的全貌。这一步对于理解推断统计学至关重要。</p>
-<p>好吧，让我们进入正题。想象有一群北欧的嬉皮士组织了一场胡子节庆典。庆典将在挪威首都奥斯陆附近的一个小岛举行。显然，你能想到庆典的受众是有胡子的男性。组织售出了 5,000 张门票，并且提供了往来小岛的免费运送。</p>
-<img src="/images/sdl_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>拥有门票的人将在奥斯陆的港口集结。组织将他们随即分装到运送乘客前往该岛的船上，每条船搭载 30 名庆典的粉丝。</p>
-<img src="/images/sdl_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>现在，有一艘船迷失在挪威的群岛间。雪上加霜的是，手机网络崩溃了，因此组织无法联系上船长，船上的乘客也无法联系上组织。所有组织决定派出一些雇员去搜寻走失的船只。你正是其中的一名雇员。在历经里半个多小时的搜寻后，你看到一艘失事的船，上面有大约 30 个人。Yes，终于找到他们了。你正准备通过对讲机向组织报告失联船只已找到，这时你再看了一眼船上的乘客。你发现乘客都是一些带着小孩的家庭。这很奇怪，去胡子节的船上，不是应该都是一些随机选取的有胡子的成年男人吗？而不是一些带着小孩的年轻家庭。你认定这艘船不太可能是你要找的船，决定继续搜寻。果然，不久之后证明你的决定是明智的。你前面遇到的那艘船是一艘运送人们去另外一个岛上的家庭公园的船。</p>
-<p>为什么要讲这个故事呢？这么说吧，如果你理解上面那个故事里 “你” 决策的原因，你就会理解抽样分布背后的基本思想。它是这样的，如果你从总体中抽取一个简单随机样本，那么它是不太可能强烈地区域于样本所处的总体的。在我们的案例中，人们正前往胡子节，他们构成了总体。一艘载有 30 个从总体中随机选取的人的船就是一个简单随机样本。</p>
-<img src="/images/sdl_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>实际上，所有从奥斯陆港口前往庆典小岛的船都可以看做是一个简单随机样本。当然，每艘船都和其他船不一样，但大部分船都会包含大比例的有胡子的男人。不太可能有一艘船上都是各种年轻家庭。当然，有某些家庭参加胡子节是可能的，但是随机遇到一艘船，全部都是年轻家庭，则是非常不太可能发生的。</p>
-<img src="/images/sdl_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>假设你决定测量每艘船的平均胡子长度。每艘船有 30 个人。想象 5,000 个庆典参与者的平均胡子长度时 10.3 毫米，即均值是 10.3 毫米。你还知道胡子的长度在总体中服从一个钟形的分布。在一艘船上，你可能遇到胡子平均长度是 9.4 毫米，另一艘则可能是 10.8 。但是，不太可能遇到一艘船，上面的人平均胡子长度是 3.4 毫米，或者 19.2 毫米。因为这些船上的人的胡子的平均值可以看作是样本的均值，我们用 $ \bar x $ 来注记。</p>
-<img src="/images/sdl_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-sampling-distribution-and-central-limit-theorem/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -839,7 +834,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -907,12 +902,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">223k</span>
+    <span title="站点总字数">229k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:23</span>
+    <span title="站点阅读时长">3:29</span>
 </div>
 
         

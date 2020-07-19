@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
+
+<script data-ad-client="ca-pub-8791711604224644" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -219,107 +221,6 @@
             
 
   <div class="posts-expand">
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/swiftswift-functions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/swiftswift-functions/" class="post-title-link" itemprop="url">极速 Swift 教程之五 | 函数</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-24 20:47:22" itemprop="dateCreated datePublished" datetime="2019-12-24T20:47:22+08:00">2019-12-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="书写函数"><a href="#书写函数" class="headerlink" title="书写函数"></a>书写函数</h1><p>函数让我们可以重用代码。这句话的具体含义是，我们写一次函数，在多个地方使用。书写重复的代码，通常来说不是一种好的实践，而函数帮助我们避免重复代码。</p>
-<p>用一个简单的例子开始吧。假设我们要为 app 的用户提供帮助信息，这个动作在 app 里的多个地方都会用到。因此，把打印帮助信息这个逻辑写成一个函数就是个好主意。</p>
-<p>Swift 的函数以 <code>func</code> 关键字开始，然后跟着函数名，然后是一对圆括号，最后是一对花括号。当函数被运行时，花括号里的代码会被执行。</p>
-<p>一个 <code>printHelp ()</code> 函数长这样：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printHelp</span><span class="params">()</span></span> {</span><br><span class="line">  <span class="keyword">let</span> message = <span class="string">"""</span></span><br><span class="line"><span class="string">  欢迎来到我的 App!</span></span><br><span class="line"><span class="string">  在一个图片的目录下运行这个 App，</span></span><br><span class="line"><span class="string">  它会把所有的图片缩放成缩略图。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">  <span class="built_in">print</span>(message)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后我们用 <code>printHelp ()</code> 来运行它。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printHelp ()</span><br></pre></td></tr></tbody></table></figure>
-
-<p>运行一个函数又被称为 * 调用 * 一个函数。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/swiftswift-functions/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
         
   
   
@@ -717,6 +618,119 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/unity-portfolio/tfaces-game-match-hero-progress-daily-20191221/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/unity-portfolio/tfaces-game-match-hero-progress-daily-20191221/" class="post-title-link" itemprop="url">Unity Tech | Meteor rain - Randomly outside, but neatly inside 🔥🔥🔥</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-21 14:06:47" itemprop="dateCreated datePublished" datetime="2019-12-21T14:06:47+08:00">2019-12-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/unity-portfolio/" itemprop="url" rel="index">
+                    <span itemprop="name">unity-portfolio</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Our team recently researched the special effects of “Flame Rain” and found many other developers’ solutions from the Internet. They were not very satisfactory for us, mainly because they could not meet the requirements of randomness and precise control at the same time. Finally, we decided to develop a component by ourselves.</p>
+<p>We make use of the “machine gun” component which we develop previously. Machine guns can aim at targets and emit particle effects. The related API and prefabs support multiple targets, bullet prefabs, and the gun body can be rotated.</p>
+<p>Our idea is to use many “machine guns” to build a “cloud”. This “cloud” can cause a regional “ball rain” attack on the ground.<br>Of course, this cloud is virtual, and it is not necessary to use render in the scene, it is only used to deploy machine guns. The machine gun is also invisible.</p>
+<p>Here is the demo scene we used to verify the bullet cloud function during development:</p>
+<p><img src="/images/bullet_cloud.png" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>Because the bullet cloud is usually invisible in the actual scene, you can deploy a bullet cloud anywhere. However, considering the time of flight of the particles, you need to decide the height of the cloud yourself. We implemented it as a well-encapsulated component. You can configure it with any number of raindrops to hit the target precisely (of course, there can be multiple targets), the amount of hit you want to happend on each target, which bullets you want to use. And, there are many other bullets which looks like randomly drop, but actually they are configured by us.</p>
+<p>When deploying the bullet cloud to your own scene, you need to pay attention to check the particle effects used as bullets, so you can ensure that there is no layer which can collide with your target.</p>
+<p>We applied the previously implemented particles of various projectiles as cloud bullets, which triggered explosions based on physical collisions. At the same time, we determine whether a certain rain process of the bullet cloud is completed based on the collision. This API is necessary for the design of the skill system. Because we need to know when the skills we have released are over.</p>
+<p>Of course, if you want to use purely mathematical methods to determine whether the bullet hits the target, this part needs to be implemented by yourself. Our bullet cloud can’t do that yet.</p>
+<p>Using this bullet cloud to achieve the effect of “Flame Rain”, we are quite satisfied, because it has achieved both randomly effect and accuratly control on the damage. Because many of our game’s skill look randomly, but their damage amount is fixed.</p>
+<p>The implementation logic is still quite complicated, try it:</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">EnsurePreciseHitDrop</span>(<span class="params"><span class="keyword">int</span> _preciseHitCount = <span class="number">-1</span></span>)</span></span><br><span class="line"><span class="function"></span>        {</span><br><span class="line">            PreciseHitCount = _preciseHitCount == <span class="number">-1</span> ? preciseHitCountPreset : _preciseHitCount;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (PreciseHitCount &gt; <span class="number">0</span> &amp;&amp; Targets != <span class="literal">null</span> &amp;&amp; Targets.Length &gt; <span class="number">0</span>)</span><br><span class="line">            {</span><br><span class="line">                PreciseHitDrop = <span class="keyword">new</span> Aimer[PreciseHitCount];</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (PreciseHitCount == <span class="number">1</span>)</span><br><span class="line">                {</span><br><span class="line">                    <span class="keyword">if</span> (Targets.Length == <span class="number">1</span>)</span><br><span class="line">                    {</span><br><span class="line">                        PreciseHitDrop[<span class="number">0</span>] = CenterDrop;</span><br><span class="line">                        preciseDropMaxIndexInAllDrop = <span class="number">0</span>;</span><br><span class="line">                    }</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    {</span><br><span class="line">                        Vector3 target = Targets[Random.Range(<span class="number">0</span>, Targets.Length)];</span><br><span class="line"></span><br><span class="line">                        PreciseHitDrop[<span class="number">0</span>] = AllDrop[<span class="number">1</span>];</span><br><span class="line">                        PreciseHitDrop[<span class="number">0</span>].transform.position = DropMoveToAimAtTarget(target);</span><br><span class="line"></span><br><span class="line">                        preciseDropMaxIndexInAllDrop = <span class="number">1</span>;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (PreciseHitCount &gt; <span class="number">1</span> &amp;&amp; PreciseHitCount &lt;= DropCount)</span><br><span class="line">                {</span><br><span class="line">                    <span class="keyword">if</span> (Targets.Length == <span class="number">1</span>)</span><br><span class="line">                    {</span><br><span class="line">                        PreciseHitDrop[<span class="number">0</span>] = CenterDrop;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; PreciseHitCount; i++)</span><br><span class="line">                        {</span><br><span class="line">                            PreciseHitDrop[i] = AllDrop[i];</span><br><span class="line">                            PreciseHitDrop[i].transform.position = CenterDrop.transform.position;</span><br><span class="line">                        }</span><br><span class="line"></span><br><span class="line">                        preciseDropMaxIndexInAllDrop = PreciseHitCount - <span class="number">1</span>;</span><br><span class="line">                    }</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (Targets.Length &gt; <span class="number">1</span>)</span><br><span class="line">                    {</span><br><span class="line">                        <span class="keyword">int</span> targetCount = Targets.Length;</span><br><span class="line">                        <span class="keyword">if</span> (EquallyAssignPreciseHit)</span><br><span class="line">                        {</span><br><span class="line">                            <span class="keyword">int</span> quota = PreciseHitCount / targetCount;</span><br><span class="line">                            <span class="keyword">int</span> remain = PreciseHitCount % targetCount;</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">int</span> allDropIndex = <span class="number">1</span>;</span><br><span class="line">                            <span class="keyword">int</span> preciseDropIndex = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">for</span> (<span class="keyword">int</span> targetIndex = <span class="number">0</span>; targetIndex &lt; targetCount; targetIndex++)</span><br><span class="line">                            {</span><br><span class="line">                                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; quota; i++)</span><br><span class="line">                                {</span><br><span class="line">                                    PreciseHitDrop[preciseDropIndex] = AllDrop[allDropIndex];</span><br><span class="line">                                    PreciseHitDrop[preciseDropIndex].transform.position</span><br><span class="line">                                        = DropMoveToAimAtTarget(Targets[targetIndex]);</span><br><span class="line"></span><br><span class="line">                                    allDropIndex++;</span><br><span class="line">                                    preciseDropIndex++;</span><br><span class="line">                                }</span><br><span class="line">                            }</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">if</span> (remain &gt; <span class="number">0</span>)</span><br><span class="line">                            {</span><br><span class="line">                                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; remain; j++)</span><br><span class="line">                                {</span><br><span class="line">                                    Vector3 target = Targets[Random.Range(<span class="number">0</span>, Targets.Length)];</span><br><span class="line"></span><br><span class="line">                                    PreciseHitDrop[preciseDropIndex] = AllDrop[allDropIndex];</span><br><span class="line">                                    PreciseHitDrop[preciseDropIndex].transform.position</span><br><span class="line">                                        = DropMoveToAimAtTarget(target);</span><br><span class="line"></span><br><span class="line">                                    allDropIndex++;</span><br><span class="line">                                    preciseDropIndex++;</span><br><span class="line">                                }</span><br><span class="line">                            }</span><br><span class="line">                        }</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        {</span><br><span class="line">                            <span class="keyword">int</span> allDropIndex = <span class="number">1</span>;</span><br><span class="line">                            <span class="keyword">int</span> preciseDropIndex = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; PreciseHitCount; i++)</span><br><span class="line">                            {</span><br><span class="line">                                Vector3 target = Targets[Random.Range(<span class="number">0</span>, Targets.Length)];</span><br><span class="line"></span><br><span class="line">                                PreciseHitDrop[preciseDropIndex] = AllDrop[allDropIndex];</span><br><span class="line">                                PreciseHitDrop[preciseDropIndex].transform.position</span><br><span class="line">                                    = DropMoveToAimAtTarget(target);</span><br><span class="line"></span><br><span class="line">                                allDropIndex++;</span><br><span class="line">                                preciseDropIndex++;</span><br><span class="line">                            }</span><br><span class="line">                        }</span><br><span class="line"></span><br><span class="line">                        preciseDropMaxIndexInAllDrop = PreciseHitCount;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                {</span><br><span class="line">                    preciseDropMaxIndexInAllDrop = DropCount - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> System.InvalidOperationException(<span class="string">"Precise hit count exceed total drop count."</span>);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
       
     </div>
 

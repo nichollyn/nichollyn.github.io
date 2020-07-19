@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
+
+<script data-ad-client="ca-pub-8791711604224644" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -243,10 +245,6 @@
         <div class="post-meta">
 
           
-            <i class="fa fa-thumb-tack"></i>
-            <font color="7D26CD">置顶</font>
-            <span class="post-meta-divider">|</span>
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -297,143 +295,20 @@
 <blockquote>
 <p>Whenever the wolf leader around him receives deadly ballistic damage, the heroic white wolf guard will take a deep leap and block this damage for his boss.</p>
 </blockquote>
-<p>Here is the video demonstration:</p>
+<p>Here is the video demonstration on Youtube:</p>
 <video src="https://www.youtube.com/watch?v=LCN8_GVhync" type="video/mp4" controls="controls" width="100%" height="100%">
 </video>
 
 
 <p>And here is the schematic diagram:</p>
-<img src="/images/ward fellow by take a bullet for them.png" width="68%" height="68%" style="margin: 10 auto;">
-
-
+<p><img src="/images/ward fellow by take a bullet for them.png" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>The realization of the jumping block is very interesting 🤪. It is a combination of mathematics and physics.</p>
 <p>Let’s skip the unimportant part and look directly at the most critical code:</p>
 <figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> A callback invoked when we find a particle(i.e. our bullet) is flying toward something</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="collisionInstance"&gt;</span>a manager contains information about the particle<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="estimatedArrival"&gt;</span>estimated time of flight<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">OnParticleHeadingToTarget</span>(<span class="params">ParticleCollisionInstance collisionInstance, <span class="keyword">float</span> estimatedArrival</span>)</span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">// Check if the bullet is flying toward our fellow</span></span><br><span class="line">    <span class="keyword">if</span> (collisionInstance != <span class="literal">null</span> &amp;&amp; collisionInstance.HeadingTarget == wolfFellow.gameObject)</span><br><span class="line">    {</span><br><span class="line">        <span class="comment">// Calculate which point should I jump in order to take the bullet for my fellow</span></span><br><span class="line">        jumpSpot = collisionInstance.EvaluateNecessaryArrival(<span class="number">4f</span>, <span class="keyword">out</span> <span class="keyword">float</span> time);</span><br><span class="line">        <span class="comment">// of course, you should look at the bullet when you try to take it.</span></span><br><span class="line">        lookSpot = collisionInstance.gameObject.transform.position;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> Every creature has its react time when something happens</span></span><br><span class="line">        <span class="keyword">float</span> reactTime = (_dollAction <span class="keyword">as</span> WolfDollAction).WardJumpToApexDuration;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (reactTime &lt;= time)</span><br><span class="line">        {</span><br><span class="line">            Invoke(<span class="keyword">nameof</span>(WardFellow), time - reactTime);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Ward fellow, for wolf guard, warding is implemented by jump to take bullet for fellow</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">WardFellow</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    WolfDollAction wolfAction = _dollAction <span class="keyword">as</span> WolfDollAction;</span><br><span class="line"></span><br><span class="line">    wolfAction.TriggerJumpWard(wolfFellow, jumpSpot, lookSpot);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>the mathematical part, <code>EvaluateNecessaryArrival</code>：</p>
 <figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Evaluate necessary arrival which we must pass through</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="distanceToHeadingTarget"&gt;</span>distance for the arrival to the target<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="estimatedTime"&gt;</span>out parameter, a estimated time by when we arrive<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>the vector of the must-pass arrival<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Vector3 <span class="title">EvaluateNecessaryArrival</span>(<span class="params"><span class="keyword">float</span> distanceToHeadingTarget, <span class="keyword">out</span> <span class="keyword">float</span> estimatedTime</span>)</span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">// Target</span></span><br><span class="line">    <span class="keyword">var</span> heading = HeadingTargetSpot - transform.position;</span><br><span class="line">    <span class="comment">// Distance</span></span><br><span class="line">    <span class="keyword">var</span> currentDistance = heading.magnitude;</span><br><span class="line">    <span class="comment">// Direction</span></span><br><span class="line">    <span class="keyword">var</span> direction = heading / currentDistance;</span><br><span class="line"></span><br><span class="line">    Vector3 arrival = HeadingTargetSpot + direction * -distanceToHeadingTarget;</span><br><span class="line">    estimatedTime = (currentDistance - distanceToHeadingTarget) / MainFlyingParticleVelocity.magnitude;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arrival;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-
-
 <p>It’s not that difficult, right? 🙊  Hoping you enjoy this skill. 😬</p>
 <script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/unity-portfolio/tfaces-game-match-hero-progress-daily-20191221/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/unity-portfolio/tfaces-game-match-hero-progress-daily-20191221/" class="post-title-link" itemprop="url">Unity Tech | Meteor rain - Randomly outside, but neatly inside 🔥🔥🔥</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <i class="fa fa-thumb-tack"></i>
-            <font color="7D26CD">置顶</font>
-            <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-21 14:06:47" itemprop="dateCreated datePublished" datetime="2019-12-21T14:06:47+08:00">2019-12-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/unity-portfolio/" itemprop="url" rel="index">
-                    <span itemprop="name">unity-portfolio</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Our team recently researched the special effects of “Flame Rain” and found many other developers’ solutions from the Internet. They were not very satisfactory for us, mainly because they could not meet the requirements of randomness and precise control at the same time. Finally, we decided to develop a component by ourselves.</p>
-<p>We make use of the “machine gun” component which we develop previously. Machine guns can aim at targets and emit particle effects. The related API and prefabs support multiple targets, bullet prefabs, and the gun body can be rotated.</p>
-<p>Our idea is to use many “machine guns” to build a “cloud”. This “cloud” can cause a regional “ball rain” attack on the ground.<br>Of course, this cloud is virtual, and it is not necessary to use render in the scene, it is only used to deploy machine guns. The machine gun is also invisible.</p>
-<p>Here is the demo scene we used to verify the bullet cloud function during development:</p>
-<p><img src="/images/bullet_cloud.png" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>Because the bullet cloud is usually invisible in the actual scene, you can deploy a bullet cloud anywhere. However, considering the time of flight of the particles, you need to decide the height of the cloud yourself. We implemented it as a well-encapsulated component. You can configure it with any number of raindrops to hit the target precisely (of course, there can be multiple targets), the amount of hit you want to happend on each target, which bullets you want to use. And, there are many other bullets which looks like randomly drop, but actually they are configured by us.</p>
-<p>When deploying the bullet cloud to your own scene, you need to pay attention to check the particle effects used as bullets, so you can ensure that there is no layer which can collide with your target.</p>
-<p>We applied the previously implemented particles of various projectiles as cloud bullets, which triggered explosions based on physical collisions. At the same time, we determine whether a certain rain process of the bullet cloud is completed based on the collision. This API is necessary for the design of the skill system. Because we need to know when the skills we have released are over.</p>
-<p>Of course, if you want to use purely mathematical methods to determine whether the bullet hits the target, this part needs to be implemented by yourself. Our bullet cloud can’t do that yet.</p>
-<p>Using this bullet cloud to achieve the effect of “Flame Rain”, we are quite satisfied, because it has achieved both randomly effect and accuratly control on the damage. Because many of our game’s skill look randomly, but their damage amount is fixed.</p>
-<p>The implementation logic is still quite complicated, try it:</p>
-<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">EnsurePreciseHitDrop</span>(<span class="params"><span class="keyword">int</span> _preciseHitCount = <span class="number">-1</span></span>)</span></span><br><span class="line"><span class="function"></span>        {</span><br><span class="line">            PreciseHitCount = _preciseHitCount == <span class="number">-1</span> ? preciseHitCountPreset : _preciseHitCount;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (PreciseHitCount &gt; <span class="number">0</span> &amp;&amp; Targets != <span class="literal">null</span> &amp;&amp; Targets.Length &gt; <span class="number">0</span>)</span><br><span class="line">            {</span><br><span class="line">                PreciseHitDrop = <span class="keyword">new</span> Aimer[PreciseHitCount];</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (PreciseHitCount == <span class="number">1</span>)</span><br><span class="line">                {</span><br><span class="line">                    <span class="keyword">if</span> (Targets.Length == <span class="number">1</span>)</span><br><span class="line">                    {</span><br><span class="line">                        PreciseHitDrop[<span class="number">0</span>] = CenterDrop;</span><br><span class="line">                        preciseDropMaxIndexInAllDrop = <span class="number">0</span>;</span><br><span class="line">                    }</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    {</span><br><span class="line">                        Vector3 target = Targets[Random.Range(<span class="number">0</span>, Targets.Length)];</span><br><span class="line"></span><br><span class="line">                        PreciseHitDrop[<span class="number">0</span>] = AllDrop[<span class="number">1</span>];</span><br><span class="line">                        PreciseHitDrop[<span class="number">0</span>].transform.position = DropMoveToAimAtTarget(target);</span><br><span class="line"></span><br><span class="line">                        preciseDropMaxIndexInAllDrop = <span class="number">1</span>;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (PreciseHitCount &gt; <span class="number">1</span> &amp;&amp; PreciseHitCount &lt;= DropCount)</span><br><span class="line">                {</span><br><span class="line">                    <span class="keyword">if</span> (Targets.Length == <span class="number">1</span>)</span><br><span class="line">                    {</span><br><span class="line">                        PreciseHitDrop[<span class="number">0</span>] = CenterDrop;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; PreciseHitCount; i++)</span><br><span class="line">                        {</span><br><span class="line">                            PreciseHitDrop[i] = AllDrop[i];</span><br><span class="line">                            PreciseHitDrop[i].transform.position = CenterDrop.transform.position;</span><br><span class="line">                        }</span><br><span class="line"></span><br><span class="line">                        preciseDropMaxIndexInAllDrop = PreciseHitCount - <span class="number">1</span>;</span><br><span class="line">                    }</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (Targets.Length &gt; <span class="number">1</span>)</span><br><span class="line">                    {</span><br><span class="line">                        <span class="keyword">int</span> targetCount = Targets.Length;</span><br><span class="line">                        <span class="keyword">if</span> (EquallyAssignPreciseHit)</span><br><span class="line">                        {</span><br><span class="line">                            <span class="keyword">int</span> quota = PreciseHitCount / targetCount;</span><br><span class="line">                            <span class="keyword">int</span> remain = PreciseHitCount % targetCount;</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">int</span> allDropIndex = <span class="number">1</span>;</span><br><span class="line">                            <span class="keyword">int</span> preciseDropIndex = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">for</span> (<span class="keyword">int</span> targetIndex = <span class="number">0</span>; targetIndex &lt; targetCount; targetIndex++)</span><br><span class="line">                            {</span><br><span class="line">                                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; quota; i++)</span><br><span class="line">                                {</span><br><span class="line">                                    PreciseHitDrop[preciseDropIndex] = AllDrop[allDropIndex];</span><br><span class="line">                                    PreciseHitDrop[preciseDropIndex].transform.position</span><br><span class="line">                                        = DropMoveToAimAtTarget(Targets[targetIndex]);</span><br><span class="line"></span><br><span class="line">                                    allDropIndex++;</span><br><span class="line">                                    preciseDropIndex++;</span><br><span class="line">                                }</span><br><span class="line">                            }</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">if</span> (remain &gt; <span class="number">0</span>)</span><br><span class="line">                            {</span><br><span class="line">                                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; remain; j++)</span><br><span class="line">                                {</span><br><span class="line">                                    Vector3 target = Targets[Random.Range(<span class="number">0</span>, Targets.Length)];</span><br><span class="line"></span><br><span class="line">                                    PreciseHitDrop[preciseDropIndex] = AllDrop[allDropIndex];</span><br><span class="line">                                    PreciseHitDrop[preciseDropIndex].transform.position</span><br><span class="line">                                        = DropMoveToAimAtTarget(target);</span><br><span class="line"></span><br><span class="line">                                    allDropIndex++;</span><br><span class="line">                                    preciseDropIndex++;</span><br><span class="line">                                }</span><br><span class="line">                            }</span><br><span class="line">                        }</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        {</span><br><span class="line">                            <span class="keyword">int</span> allDropIndex = <span class="number">1</span>;</span><br><span class="line">                            <span class="keyword">int</span> preciseDropIndex = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; PreciseHitCount; i++)</span><br><span class="line">                            {</span><br><span class="line">                                Vector3 target = Targets[Random.Range(<span class="number">0</span>, Targets.Length)];</span><br><span class="line"></span><br><span class="line">                                PreciseHitDrop[preciseDropIndex] = AllDrop[allDropIndex];</span><br><span class="line">                                PreciseHitDrop[preciseDropIndex].transform.position</span><br><span class="line">                                    = DropMoveToAimAtTarget(target);</span><br><span class="line"></span><br><span class="line">                                allDropIndex++;</span><br><span class="line">                                preciseDropIndex++;</span><br><span class="line">                            }</span><br><span class="line">                        }</span><br><span class="line"></span><br><span class="line">                        preciseDropMaxIndexInAllDrop = PreciseHitCount;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                {</span><br><span class="line">                    preciseDropMaxIndexInAllDrop = DropCount - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> System.InvalidOperationException(<span class="string">"Precise hit count exceed total drop count."</span>);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br></pre></td></tr></tbody></table></figure><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -919,6 +794,352 @@
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PlantCell</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> viewModel: <span class="type">PlantCellViewModel</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span>(spacing: <span class="number">4</span>) {</span><br><span class="line">            <span class="type">Text</span>(viewModel.title).font (.headline).multilineTextAlignment (.center)</span><br><span class="line">            <span class="type">Text</span>(viewModel.subtitle).font (.footnote).multilineTextAlignment (.center)</span><br><span class="line">        }.padding (<span class="number">8</span>)</span><br><span class="line">            .frame (minWidth: <span class="number">0</span>, maxWidth: .greatestFiniteMagnitude)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PlantCellViewModel</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> plant: <span class="type">Plant</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> title: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">return</span> plant.name</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">let</span> dateFormatter: <span class="type">DateFormatter</span> = {</span><br><span class="line">        <span class="keyword">let</span> formatter = <span class="type">DateFormatter</span>()</span><br><span class="line">        formatter.dateFormat = <span class="type">DateFormatter</span>.dateFormat (fromTemplate: <span class="string">"dMMMM"</span>, options: <span class="number">0</span>, locale: .current)</span><br><span class="line">        <span class="keyword">return</span> formatter</span><br><span class="line">    }()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> subtitle: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> format = <span class="type">NSLocalizedString</span>(<span class="string">"PlantCellView_NextWatering"</span>, comment: <span class="string">"Next watering date."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(format: format, <span class="type">Self</span>.dateFormatter.string (from: plant.nextWateringDate))</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>我们在 iOS 和 watchOS app 上都添加 <code>WCSessions</code> ，实现相关的委托方法以处理 session 和接收到的消息。然后，我们定义一个简单的通信模式，并在 watchOS app 端实现刷新植物的方法，在 iOS 端实现 CoreData 集成。当数据访问创建完成后，我们在 watchOS app 上用 SwiftUI 视图显示植物的列表。</p>
 <hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/uncategorized/outline-swiftui-tutorials/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/uncategorized/outline-swiftui-tutorials/" class="post-title-link" itemprop="url">大纲 | SwiftUI 教程</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-27 10:25:01" itemprop="dateCreated datePublished" datetime="2020-02-27T10:25:01+08:00">2020-02-27</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://developer.apple.com/tutorials/swiftui/creating-and-combining-views" target="_blank" rel="noopener">源</a></p>
+<h1 id="第一章-基础"><a href="#第一章-基础" class="headerlink" title="第一章 基础"></a>第一章 基础</h1><h2 id="创建和绑定视图"><a href="#创建和绑定视图" class="headerlink" title="创建和绑定视图"></a>创建和绑定视图</h2><h3 id="1-创建项目和探索-Canvas"><a href="#1-创建项目和探索-Canvas" class="headerlink" title="1 创建项目和探索 Canvas"></a>1 <strong>创建项目和探索 Canvas</strong></h3><p>要点：</p>
+<ol>
+<li>创建项目时 User Interface 选择 “SwiftUI”</li>
+<li>基础扩展：演示 Xcode 界面布局，菜单</li>
+<li>SwiftUI 文件的两部分：描述视图内容和布局的主结构体，预览</li>
+<li>显示隐藏 Canvas 面板快捷键</li>
+<li>演示实时预览 （改变 body 里的代码） SwiftUI 开发体验的核心卖点之一<br>进阶资源：声明式 UI 、Flutter 和 SwiftUI 的比较，拖尾闭包语法</li>
+</ol>
+<h3 id="2-自定义文本视图"><a href="#2-自定义文本视图" class="headerlink" title="2 自定义文本视图"></a>2 自定义文本视图</h3><p>要点：</p>
+<ol>
+<li>演示从预览中的检视 UI 元素，顺便提一下 modifier ，演示 Font modifier</li>
+<li>代码和视图的关系：source of truth (真理之源)</li>
+<li>演示预览、检视器和代码的自动同步</li>
+</ol>
+<h3 id="3-通过堆叠组合视图"><a href="#3-通过堆叠组合视图" class="headerlink" title="3 通过堆叠组合视图"></a>3 通过堆叠组合视图</h3><p>要点</p>
+<ol>
+<li>body 属性只返回一个视图<br>进阶资源：关于 body 属性的文章</li>
+<li>介绍三类 stacks ，HStack, VStack，ZStack</li>
+<li>介绍 Xcode 的结构化编辑：嵌套、检视、提取等。通用的 ” 右键菜单 “ ，SwiftUI 专有的 Cmd + 点击<br>进阶资源：Flutter</li>
+<li>演示 embed in vstack</li>
+<li>演示添加控件： + 按钮，快捷键</li>
+<li>演示两层 Stack 嵌套，演示 Spacer 的使用。<br>进阶资源：Spacer 的特性</li>
+<li>演示 padding<br>进阶资源：padding 的各种版本</li>
+</ol>
+<h3 id="4-创建自定义图像视图"><a href="#4-创建自定义图像视图" class="headerlink" title="4 创建自定义图像视图"></a>4 创建自定义图像视图</h3><p>要点</p>
+<ol>
+<li>简介 image view ，常见图片相关概念：mask，边缘 (border)，投影 (drop shadow)</li>
+<li>基础扩展： 添加资源到 asset catalog</li>
+<li>演示创建新的 SwiftUI 文件，CircleImage</li>
+<li>演示 Image () 构造器，演示 clipShaper modifier, Circle mask<br>进阶：mask 遮蔽</li>
+<li>演示 overlay， shadow</li>
+</ol>
+<h3 id="5-让-UIKit-和-SwiftUI-一起工作"><a href="#5-让-UIKit-和-SwiftUI-一起工作" class="headerlink" title="5 让 UIKit 和 SwiftUI 一起工作"></a>5 让 UIKit 和 SwiftUI 一起工作</h3><ol>
+<li>如何在 SwiftUI 中使用 UIKit 里的视图？关键词：wrap, UIViewRepresentable 协议<br>进阶资源：wrap，协议</li>
+<li>[学习曲线] 跳过，后续再来说明。<br>MapKit 相关知识点</li>
+</ol>
+<h3 id="6-构成视图-Compose-Views-——-需要练习"><a href="#6-构成视图-Compose-Views-——-需要练习" class="headerlink" title="6 构成视图 (Compose Views) —— (需要练习)"></a>6 构成视图 (Compose Views) —— (需要练习)</h3><p>要点：</p>
+<ol>
+<li>选择容器 —— stacks，文字、图像、Spacer、自定义视图</li>
+<li>调整视图 —— modifier，属性</li>
+<li>打开源链接，演示样例 app 界面变化过程。</li>
+</ol>
+<p>检查理解的测验。</p>
+<hr>
+<h2 id="构建-List-和导航"><a href="#构建-List-和导航" class="headerlink" title="构建 List 和导航"></a>构建 List 和导航</h2><h3 id="1-了解样本数据"><a href="#1-了解样本数据" class="headerlink" title="1 了解样本数据"></a>1 了解样本数据</h3><p>要点：</p>
+<ol>
+<li>理解 Model ，粗浅理解为数据，相对于视图<br>进阶资源：MVC 设计模式，结构体和类的区别，数据格式，json</li>
+<li>带一些新的关键字，协议</li>
+<li>进阶扩展：为什么要用扩展 Landmark 的 image 属性</li>
+<li>json 数据格式</li>
+</ol>
+<h3 id="2-创建-“行”-视图"><a href="#2-创建-“行”-视图" class="headerlink" title="2 创建 “行” 视图"></a>2 创建 “行” 视图</h3><p>要点</p>
+<ol>
+<li>创建新 SwiftUI 文件，起名 LandmarkRow.swift</li>
+<li>进阶扩展：存储属性和计算属性</li>
+<li>介绍 Image resizable modifier</li>
+</ol>
+<h3 id="3-自定义预览"><a href="#3-自定义预览" class="headerlink" title="3 自定义预览"></a>3 自定义预览</h3><p>要点</p>
+<ol>
+<li>previewLayout<br>进阶资源：previewDevice</li>
+</ol>
+<h3 id="4-创建列表"><a href="#4-创建列表" class="headerlink" title="4 创建列表"></a>4 创建列表</h3><p>要点</p>
+<ol>
+<li>List 的元素可以是动态的、静态的或者混合的<br>进阶资源：SwiftUI 的 List</li>
+<li>使用 List<br>进阶资源：</li>
+</ol>
+<h3 id="5-创建动态列表"><a href="#5-创建动态列表" class="headerlink" title="5 创建动态列表"></a>5 创建动态列表</h3><p>要点</p>
+<ol>
+<li>List 接收 <code>identifiable</code> 的数据<br>进阶资源：Swift keypath 语法，SwiftUI 的 List、ForEach<br>进阶资源：闭包、拖尾闭包语法</li>
+<li>Identifiable 协议：id 属性的约定</li>
+</ol>
+<h3 id="6-在-List-之间建立导航"><a href="#6-在-List-之间建立导航" class="headerlink" title="6 在 List 之间建立导航"></a>6 在 List 之间建立导航</h3><p>要点</p>
+<ol>
+<li>NavigationView<br>进阶资源：SwiftUI 给视图 “赋能” 的方式</li>
+<li>标题、导航按钮<br>进阶资源：标准化 UI</li>
+<li>NavigationLink</li>
+</ol>
+<h3 id="7-数据传递"><a href="#7-数据传递" class="headerlink" title="7 数据传递"></a>7 <strong>数据传递</strong></h3><p>要点</p>
+<ol>
+<li>演示改动</li>
+</ol>
+<h3 id="8-生成动态预览"><a href="#8-生成动态预览" class="headerlink" title="8 生成动态预览"></a>8 生成动态预览</h3><p>要点</p>
+<ol>
+<li>演示实现方式<br>进阶：对移动开发的意义</li>
+</ol>
+<hr>
+<h2 id="处理用户输入"><a href="#处理用户输入" class="headerlink" title="处理用户输入"></a>处理用户输入</h2><h3 id="1-标记最爱的地标"><a href="#1-标记最爱的地标" class="headerlink" title="1. 标记最爱的地标"></a>1. 标记最爱的地标</h3><p>要点</p>
+<ol>
+<li>添加一个图标：系统图标、缩放、着色<br>进阶：SF Symbols，着色</li>
+</ol>
+<h3 id="2-过滤列表视图"><a href="#2-过滤列表视图" class="headerlink" title="2 过滤列表视图"></a>2 过滤列表视图</h3><p>要点</p>
+<ol>
+<li>@State 属性</li>
+</ol>
+<h3 id="3-添加控件以触发-State"><a href="#3-添加控件以触发-State" class="headerlink" title="3 添加控件以触发 State"></a>3 添加控件以触发 State</h3><p>要点</p>
+<ol>
+<li>绑定：$ 语法</li>
+</ol>
+<h3 id="4-用-Observable-Object-存储"><a href="#4-用-Observable-Object-存储" class="headerlink" title="4 用 Observable Object 存储"></a>4 用 Observable Object 存储</h3><p>要点</p>
+<ol>
+<li>ObservableObject 协议</li>
+<li>@Published 属性</li>
+</ol>
+<h3 id="5-在视图中接收模型对象"><a href="#5-在视图中接收模型对象" class="headerlink" title="5 在视图中接收模型对象"></a>5 在视图中接收模型对象</h3><p>要点：</p>
+<ol>
+<li>环境变量: EnvironmentOjbect 属性声明，environmentObject 传入</li>
+<li>where 语句</li>
+</ol>
+<h3 id="6-为每个地标创建按钮"><a href="#6-为每个地标创建按钮" class="headerlink" title="6 为每个地标创建按钮"></a>6 为每个地标创建按钮</h3><p>要点：演示</p>
+<hr>
+<h1 id="第二章-绘制和动画"><a href="#第二章-绘制和动画" class="headerlink" title="第二章 绘制和动画"></a>第二章 绘制和动画</h1><hr>
+<h1 id="第三章-App-设计和布局"><a href="#第三章-App-设计和布局" class="headerlink" title="第三章 App 设计和布局"></a>第三章 App 设计和布局</h1><h1 id="构成复杂界面"><a href="#构成复杂界面" class="headerlink" title="构成复杂界面"></a>构成复杂界面</h1><h2 id="1-Home-视图"><a href="#1-Home-视图" class="headerlink" title="1 Home 视图"></a>1 Home 视图</h2><p>要点</p>
+<p>Home 界面<br>   进阶：心智模式：干扰和专注，简单和复杂 （通知）</p>
+<h2 id="2-分类列表"><a href="#2-分类列表" class="headerlink" title="2 分类列表"></a>2 分类列表</h2><p>要点</p>
+<ol>
+<li>分类 =&gt; 建立层级 （“抽屉”、容器）=&gt; 寻找</li>
+<li>用字典将地标分组</li>
+<li>重温 List、ForEach、keypath 的用法</li>
+</ol>
+<h2 id="3-增加地标分类的内容"><a href="#3-增加地标分类的内容" class="headerlink" title="3 增加地标分类的内容"></a>3 增加地标分类的内容</h2><p>要点</p>
+<ol>
+<li>重温 Stack</li>
+<li>ScrollView (.horizontal), ForEach</li>
+</ol>
+<h2 id="4-构成-Home-视图"><a href="#4-构成-Home-视图" class="headerlink" title="4 构成 Home 视图"></a>4 构成 Home 视图</h2><p>要点</p>
+<ol>
+<li>改造 CategoryRow</li>
+<li>listRowInsets、EdgeInsets</li>
+</ol>
+<h2 id="5-添加导航"><a href="#5-添加导航" class="headerlink" title="5 添加导航"></a>5 添加导航</h2><p>要点</p>
+<ol>
+<li>重温 NavigationLink</li>
+<li>Image .renderingMode , Text .foregroundColor</li>
+<li>重温 @State， 重点: sheet<br>进阶：alert, 内建的环境变量 .presentationMode</li>
+<li>导航栏按钮 navigationBarItems</li>
+</ol>
+<hr>
+<h2 id="和-UI-控件合作"><a href="#和-UI-控件合作" class="headerlink" title="和 UI 控件合作"></a>和 UI 控件合作</h2><h3 id="1-显示用户资料"><a href="#1-显示用户资料" class="headerlink" title="1 显示用户资料"></a>1 显示用户资料</h3><h3 id="2-编辑模式"><a href="#2-编辑模式" class="headerlink" title="2 编辑模式"></a>2 编辑模式</h3><p>要点</p>
+<ol>
+<li>editMode</li>
+<li>条件视图，wrappedValue</li>
+</ol>
+<h3 id="3-定义资料编辑器"><a href="#3-定义资料编辑器" class="headerlink" title="3 定义资料编辑器"></a>3 定义资料编辑器</h3><p>要点</p>
+<ol>
+<li>Divider</li>
+<li>Toggle</li>
+<li>Picker</li>
+<li>DatePicker</li>
+</ol>
+<h3 id="4-延后编辑的生效"><a href="#4-延后编辑的生效" class="headerlink" title="4 延后编辑的生效"></a>4 延后编辑的生效</h3><p>要点</p>
+<ol>
+<li>编辑草稿</li>
+<li>可取消的编辑</li>
+<li>onAppear, onDisappear</li>
+</ol>
+<hr>
+<h1 id="第四章-Framework-集成"><a href="#第四章-Framework-集成" class="headerlink" title="第四章 Framework 集成"></a>第四章 Framework 集成</h1><h2 id="与-UIKit-对接"><a href="#与-UIKit-对接" class="headerlink" title="与 UIKit 对接"></a>与 UIKit 对接</h2><h3 id="1-创建视图来表示-UIPageViewController"><a href="#1-创建视图来表示-UIPageViewController" class="headerlink" title="1 创建视图来表示 UIPageViewController"></a>1 创建视图来表示 UIPageViewController</h3><p>要点</p>
+<ol>
+<li>UIViewControllerRepresentable, #makeUIViewController, #updateUIViewController<br>进阶资源：回调</li>
+<li>用 SwiftUI 的 view 来构建 UIPageViewController 中的 controller</li>
+<li>map</li>
+</ol>
+<h3 id="2-创建-ViewController-的数据源"><a href="#2-创建-ViewController-的数据源" class="headerlink" title="2 创建 ViewController 的数据源"></a>2 创建 ViewController 的数据源</h3><p>要点</p>
+<ol>
+<li>使用 Coordinator, UIPageViewControllerDataSource</li>
+</ol>
+<h3 id="3-用-SwiftUI-中的视图状态跟踪-Page"><a href="#3-用-SwiftUI-中的视图状态跟踪-Page" class="headerlink" title="3 用 SwiftUI 中的视图状态跟踪 Page"></a>3 用 SwiftUI 中的视图状态跟踪 Page</h3><p>要点</p>
+<ol>
+<li>@State, @Binding 的传递</li>
+<li>UIPageViewControllerDelegate</li>
+</ol>
+<h3 id="4-添加一个自定义页面控制"><a href="#4-添加一个自定义页面控制" class="headerlink" title="4 添加一个自定义页面控制"></a>4 添加一个自定义页面控制</h3><p>要点</p>
+<ol>
+<li>UIViewRepresentable</li>
+<li>UIPageControl, UIControl<br>进阶资源：“控件”</li>
+<li><strong>target-action pattern</strong> , <strong>*delegate</strong>， <strong>#selector</strong></li>
+<li><strong>@objc 关键字 </strong></li>
+<li>可选进阶：起名字，一个名字在多个层次中使用<br>PageControl, UIPageControl</li>
+<li>可选进阶：PageViewController 和 PageControl 之间如何联动</li>
+</ol>
+<hr>
+<h2 id="创建-watchOS-App"><a href="#创建-watchOS-App" class="headerlink" title="创建 watchOS App"></a>创建 watchOS App</h2><h3 id="1-添加-watchOS-目标"><a href="#1-添加-watchOS-目标" class="headerlink" title="1 添加 watchOS 目标"></a>1 添加 watchOS 目标</h3><p>要点</p>
+<ol>
+<li>激活 watch app 的 scheme</li>
+<li>Supports Running Without iOS App Installation<br>进阶内容：watchOS 6.0, watch app 和 iOS app 的关系</li>
+</ol>
+<h3 id="2-在目标间共享文件"><a href="#2-在目标间共享文件" class="headerlink" title="2 在目标间共享文件"></a>2 在目标间共享文件</h3><p>要点</p>
+<ol>
+<li>文件 inspector, Target membership 段</li>
+<li>watchkit app 和 watchkit extension 的区别<br>进阶内容：watch app 的结构</li>
+</ol>
+<h3 id="3-创建细节视图"><a href="#3-创建细节视图" class="headerlink" title="3 创建细节视图"></a>3 创建细节视图</h3><p>要点</p>
+<ol>
+<li>适配不同尺寸的屏幕</li>
+<li><strong>where 语句 </strong></li>
+<li>scaleToFill, scaleToFit</li>
+</ol>
+<h3 id="4-添加-watchOS-的地图视图"><a href="#4-添加-watchOS-的地图视图" class="headerlink" title="4 添加 watchOS 的地图视图"></a>4 添加 watchOS 的地图视图</h3><p>要点</p>
+<ol>
+<li>WKInterfaceObjectRepresentable<br>进阶：为什么不能像复用 CircleImage 那样直接复用 iOS 里写好的地图视图？SwiftUI 的定位（learn once, apply everywhere）</li>
+<li>添加到 detail 界面</li>
+</ol>
+<h3 id="5-创建跨平台的列表视图"><a href="#5-创建跨平台的列表视图" class="headerlink" title="5 创建跨平台的列表视图"></a>5 创建跨平台的列表视图</h3><p>要点</p>
+<ol>
+<li><strong> 泛型 </strong>，<strong> 类型推断 </strong></li>
+<li>对应修改 iOS scheme 的 Home 视图，LandmarkList 的初始化，重温拖尾闭包。</li>
+<li>LandmarkList 预览怎么解决？ #if, #else, #endif, typealias</li>
+</ol>
+<h3 id="6-在-watch-app-中）添加-Landmarks-List"><a href="#6-在-watch-app-中）添加-Landmarks-List" class="headerlink" title="6 (在 watch app 中）添加 Landmarks List"></a>6 (在 watch app 中）添加 Landmarks List</h3><p>要点</p>
+<ol>
+<li>切换 scheme</li>
+<li>思考题：watch app 为什么没有 Home ?</li>
+</ol>
+<h3 id="7-创建自定义的通知接口"><a href="#7-创建自定义的通知接口" class="headerlink" title="7 创建自定义的通知接口"></a>7 创建自定义的通知接口</h3><p>要点</p>
+<ol>
+<li><strong> 如何正确地使用通知？</strong></li>
+<li>构建通知视图：swift 的 init 模式</li>
+<li>通知控制：WKUserNotificationHostingController, #didReceive, </li>
+<li>UNNotification</li>
+<li>通知配置：Notification Category, apns 文件模拟远程通知</li>
+<li>切换到 Notification scheme</li>
+</ol>
+<hr>
+<h2 id="创建-macOS-app"><a href="#创建-macOS-app" class="headerlink" title="创建 macOS app"></a>创建 macOS app</h2><h3 id="1-创建-macOS-目标"><a href="#1-创建-macOS-目标" class="headerlink" title="1 创建 macOS 目标"></a>1 创建 macOS 目标</h3><p>要点</p>
+<ol>
+<li>Deployment Target<br>进阶资源：<strong> 软件兼容（向前兼容）</strong>，<strong> 版本号 </strong></li>
+</ol>
+<h3 id="2-共享数据和-Assets"><a href="#2-共享数据和-Assets" class="headerlink" title="2 共享数据和 Assets"></a>2 共享数据和 Assets</h3><p>要点</p>
+<ol>
+<li>Membership</li>
+</ol>
+<h3 id="3-Row-视图"><a href="#3-Row-视图" class="headerlink" title="3 Row 视图"></a>3 Row 视图</h3><h3 id="4-组装视图"><a href="#4-组装视图" class="headerlink" title="4 组装视图"></a>4 组装视图</h3><p>要点</p>
+<ol>
+<li>List (selection: Binding<set<selectionvalue>)</set<selectionvalue></li>
+</ol>
+<h3 id="5-过滤器视图"><a href="#5-过滤器视图" class="headerlink" title="5 过滤器视图"></a>5 过滤器视图</h3><p>要点</p>
+<ol>
+<li>相同控件在不同平台上的外观</li>
+<li>preview 中样例的 .constant 用法</li>
+<li>数组相加</li>
+<li>通用规范：复杂条件，注意使用括号</li>
+</ol>
+<h3 id="6-组合列表和过滤器视图"><a href="#6-组合列表和过滤器视图" class="headerlink" title="6 组合列表和过滤器视图"></a>6 组合列表和过滤器视图</h3><h3 id="7-复用-CircleImage"><a href="#7-复用-CircleImage" class="headerlink" title="7 复用 CircleImage"></a>7 复用 CircleImage</h3><p>要点</p>
+<ol>
+<li>属性默认值</li>
+</ol>
+<h3 id="8-macOS-上的地图视图"><a href="#8-macOS-上的地图视图" class="headerlink" title="8 macOS 上的地图视图"></a>8 macOS 上的地图视图</h3><p>要点</p>
+<ol>
+<li>善用 extension 分治代码</li>
+</ol>
+<h3 id="9-构建细节视图"><a href="#9-构建细节视图" class="headerlink" title="9 构建细节视图"></a>9 构建细节视图</h3><h3 id="10-Master-Detail-视图"><a href="#10-Master-Detail-视图" class="headerlink" title="10 Master Detail 视图"></a>10 Master Detail 视图</h3><p>要点</p>
+<ol>
+<li>mac (iPad) 上的应用布局，NavigationView</li>
+</ol>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

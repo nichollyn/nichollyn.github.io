@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
+
+<script data-ad-client="ca-pub-8791711604224644" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -57,7 +59,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theinfinitegame.tech/images/ward%20fellow%20by%20take%20a%20bullet%20for%20them.png">
 <meta property="article:published_time" content="2020-03-21T02:22:05.000Z">
-<meta property="article:modified_time" content="2020-03-21T06:05:12.496Z">
+<meta property="article:modified_time" content="2020-04-05T02:00:54.622Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="programming">
 <meta property="article:tag" content="unity">
@@ -246,10 +248,6 @@
         <div class="post-meta">
 
           
-            <i class="fa fa-thumb-tack"></i>
-            <font color="7D26CD">置顶</font>
-            <span class="post-meta-divider">|</span>
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -307,24 +305,18 @@
 <blockquote>
 <p>Whenever the wolf leader around him receives deadly ballistic damage, the heroic white wolf guard will take a deep leap and block this damage for his boss.</p>
 </blockquote>
-<p>Here is the video demonstration:</p>
+<p>Here is the video demonstration on Youtube:</p>
 <video src="https://www.youtube.com/watch?v=LCN8_GVhync" type="video/mp4" controls="controls" width="100%" height="100%">
 </video>
 
 
 <p>And here is the schematic diagram:</p>
-<img src="/images/ward fellow by take a bullet for them.png" width="68%" height="68%" style="margin: 10 auto;">
-
-
+<p><img src="/images/ward fellow by take a bullet for them.png" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>The realization of the jumping block is very interesting 🤪. It is a combination of mathematics and physics.</p>
 <p>Let’s skip the unimportant part and look directly at the most critical code:</p>
 <figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> A callback invoked when we find a particle(i.e. our bullet) is flying toward something</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="collisionInstance"&gt;</span>a manager contains information about the particle<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="estimatedArrival"&gt;</span>estimated time of flight<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">OnParticleHeadingToTarget</span>(<span class="params">ParticleCollisionInstance collisionInstance, <span class="keyword">float</span> estimatedArrival</span>)</span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">// Check if the bullet is flying toward our fellow</span></span><br><span class="line">    <span class="keyword">if</span> (collisionInstance != <span class="literal">null</span> &amp;&amp; collisionInstance.HeadingTarget == wolfFellow.gameObject)</span><br><span class="line">    {</span><br><span class="line">        <span class="comment">// Calculate which point should I jump in order to take the bullet for my fellow</span></span><br><span class="line">        jumpSpot = collisionInstance.EvaluateNecessaryArrival(<span class="number">4f</span>, <span class="keyword">out</span> <span class="keyword">float</span> time);</span><br><span class="line">        <span class="comment">// of course, you should look at the bullet when you try to take it.</span></span><br><span class="line">        lookSpot = collisionInstance.gameObject.transform.position;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> Every creature has its react time when something happens</span></span><br><span class="line">        <span class="keyword">float</span> reactTime = (_dollAction <span class="keyword">as</span> WolfDollAction).WardJumpToApexDuration;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (reactTime &lt;= time)</span><br><span class="line">        {</span><br><span class="line">            Invoke(<span class="keyword">nameof</span>(WardFellow), time - reactTime);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Ward fellow, for wolf guard, warding is implemented by jump to take bullet for fellow</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">WardFellow</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    WolfDollAction wolfAction = _dollAction <span class="keyword">as</span> WolfDollAction;</span><br><span class="line"></span><br><span class="line">    wolfAction.TriggerJumpWard(wolfFellow, jumpSpot, lookSpot);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>the mathematical part, <code>EvaluateNecessaryArrival</code>：</p>
 <figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Evaluate necessary arrival which we must pass through</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="distanceToHeadingTarget"&gt;</span>distance for the arrival to the target<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="estimatedTime"&gt;</span>out parameter, a estimated time by when we arrive<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>the vector of the must-pass arrival<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Vector3 <span class="title">EvaluateNecessaryArrival</span>(<span class="params"><span class="keyword">float</span> distanceToHeadingTarget, <span class="keyword">out</span> <span class="keyword">float</span> estimatedTime</span>)</span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">// Target</span></span><br><span class="line">    <span class="keyword">var</span> heading = HeadingTargetSpot - transform.position;</span><br><span class="line">    <span class="comment">// Distance</span></span><br><span class="line">    <span class="keyword">var</span> currentDistance = heading.magnitude;</span><br><span class="line">    <span class="comment">// Direction</span></span><br><span class="line">    <span class="keyword">var</span> direction = heading / currentDistance;</span><br><span class="line"></span><br><span class="line">    Vector3 arrival = HeadingTargetSpot + direction * -distanceToHeadingTarget;</span><br><span class="line">    estimatedTime = (currentDistance - distanceToHeadingTarget) / MainFlyingParticleVelocity.magnitude;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arrival;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-
-
 <p>It’s not that difficult, right? 🙊  Hoping you enjoy this skill. 😬</p>
 <script>
         document.querySelectorAll('.github-emoji')

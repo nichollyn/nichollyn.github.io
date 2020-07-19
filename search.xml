@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>whats-new-in-swift-5.3</title>
+    <title>Swift 5.3 新特性</title>
     <url>/programming/whats-new-in-swift-5-3/</url>
     <content><![CDATA[<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggwdc1o5lmj315o0rswg0.jpg" alt="swift-evolution-4"></p>
 <p>Swift 5.3 有不少变化，这其中包括多模式 catch 语句，多拖尾闭包，以及 Swift Package Manager 的一些重要改变。</p>

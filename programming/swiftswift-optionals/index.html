@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="处理缺失的数据我们已经会使用 Int 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？ 你可能会说，“我可以暂时存成 0”，但这样一来你就会混淆新生儿和你不知道年龄的用户。你应该用一个特殊的数字，比如 1000 或者 -1 来代表 “未知”，这两个数字都不可能是年龄，但你能记得住这些特殊数字的含义吗？ Swift 的解决方案称为">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」 处理缺失的数据我们已经会使用 Int 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？ 你可能会说，“我可以暂时存成 0”，但这样一来你就会混淆新生儿和你不知道年龄的用户。你应该用一个特殊的数字，比如 1000 或者 -1 来代表 “未知”，这两个数字都不可能是年龄，但你能记得住这些特殊数字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速 Swift 教程之十 | 可选型">
 <meta property="og:url" content="https://theinfinitegame.tech/programming/swiftswift-optionals/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="处理缺失的数据我们已经会使用 Int 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？ 你可能会说，“我可以暂时存成 0”，但这样一来你就会混淆新生儿和你不知道年龄的用户。你应该用一个特殊的数字，比如 1000 或者 -1 来代表 “未知”，这两个数字都不可能是年龄，但你能记得住这些特殊数字的含义吗？ Swift 的解决方案称为">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」 处理缺失的数据我们已经会使用 Int 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？ 你可能会说，“我可以暂时存成 0”，但这样一来你就会混淆新生儿和你不知道年龄的用户。你应该用一个特殊的数字，比如 1000 或者 -1 来代表 “未知”，这两个数字都不可能是年龄，但你能记得住这些特殊数字">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-25T09:27:30.000Z">
-<meta property="article:modified_time" content="2019-12-28T06:29:12.278Z">
+<meta property="article:modified_time" content="2020-12-20T03:39:50.170Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="swift">
 <meta property="article:tag" content="编程">
@@ -281,14 +281,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.1k</span>
+              <span>4.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -300,52 +300,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="处理缺失的数据"><a href="#处理缺失的数据" class="headerlink" title="处理缺失的数据"></a>处理缺失的数据</h1><p>我们已经会使用 <code>Int</code> 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？</p>
+        <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="处理缺失的数据"><a href="#处理缺失的数据" class="headerlink" title="处理缺失的数据"></a>处理缺失的数据</h1><p>我们已经会使用 <code>Int</code> 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？</p>
 <p>你可能会说，“我可以暂时存成 0”，但这样一来你就会混淆新生儿和你不知道年龄的用户。你应该用一个特殊的数字，比如 1000 或者 -1 来代表 “未知”，这两个数字都不可能是年龄，但你能记得住这些特殊数字的含义吗？</p>
 <p>Swift 的解决方案称为 <em>optional</em> ，即可选型。你可以基于任意类型创建可选型。一个可选型整数可以有诸如 1 或者 1000 这样的数字，也可能没有任何值，即值可以缺失， Swift 里表示缺失是用 <code>nil</code> 。</p>
 <p>为了把一个类型变成可选型，只需要在类型后面加一个问号。举个例子，我们可以这样把一个整数变成可选型：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age: <span class="type">Int?</span> = <span class="literal">nil</span></span><br></pre></td></tr></tbody></table></figure>
-
 <a id="more"></a>
 
 <p>这个可选型现在并不保有任何整数，但是如果之后我们知道了年龄值，我们可以给它重新赋值。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">38</span></span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="解包可选型"><a href="#解包可选型" class="headerlink" title="解包可选型"></a>解包可选型</h1><p>可选型字符串可能包含一个 “Hello” 或者 <code>nil</code> 。</p>
 <p>考虑这样一个可选字符串：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: <span class="type">String?</span> = <span class="literal">nil</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>当我们调用 <code>name.count</code> 时会发生什么呢？一个真的字符串有 <code>count</code> 属性，它存储字符串的字符数量。但它是 <code>nil</code> 时，并没有 <code>count</code> 属性。</p>
 <p>因此，试图直接使用 <code>name.count</code> 是不安全的， Swift 也不允许。取而代之的是，我们必须先检查可选型里面有些什么，这个过程被称为 <em>解包</em> 。</p>
 <p>解包可选型的一种常见做法是采用 <code>if let</code> 语法，它是一种有条件的解包。如果可选型里有值，你就可以使用它，如果没有则条件失败。</p>
 <p>举个例子：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> unwrapped = name {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(unwrapped.count) letters"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Missing name."</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>如果 <code>name</code> 持有一个字符串，这个字符串会被放进一个叫 <code>unwrapped</code> 的常规字符串，然后我们就可以读取它的 <code>count</code><br>属性。另一种情况，如果 <code>name</code> 是 nil， 那么 <code>else</code> 中的代码将被执行。</p>
 <hr>
 <h1 id="用-guard-解包可选型"><a href="#用-guard-解包可选型" class="headerlink" title="用 guard 解包可选型"></a>用 guard 解包可选型</h1><p><code>if let</code> 的一个替代方案是 <code>guard let</code> ，后者也可以用来解包可选型。 <code>guard let</code> 会为你解包，但是当它发现可选型里是 <code>nil</code> 时会期望你退出它所处的函数，循环或者条件。</p>
 <p>因此， <code>if let</code> 和 <code>guard let</code> 的主要区别在于 <code>guard let</code> 之后可选型还可以继续使用。</p>
 <p>让我们尝试一下 <code>greet ()</code> 函数。它将接收一个可选字符串作为唯一的参数，当它解包发现这个参数是 <code>nil</code> 时会打印消息并且退出函数。因为可选型 <code>unwrapped</code> 在 <code>guard let</code> 的语句块结束之后作用，我们可以在函数最后打印这个解包后的字符串。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> name: String?)</span></span> {</span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> unwrapped = name <span class="keyword">else</span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You didn't provide a name!"</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  }</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello, \(unwrapped)!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="keyword">_</span> name: String?)</span></span> {</span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> unwrapped = name <span class="keyword">else</span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"You didn't provide a name!"</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  }</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello, \(unwrapped)!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>通过使用 <code>guard let</code> ，你可以在函数的前面解决可选型的解包问题，在这之后的代码就可以愉快地使用解包后的值而不必担心出错了。</p>
 <hr>
 <h1 id="强制解包"><a href="#强制解包" class="headerlink" title="强制解包"></a>强制解包</h1><p>可选型代表可能存在也可能不存在的数据，而某些时候你是 <em>确切</em> 知道一个可选型的值并不是 <code>nil</code> 。在这种情况下， Swift 允许你强制解包这个可选型：通过把一个可选型转换为非可选型的方式。</p>
 <p>举个例子，下面你试图将一个字符串转换成 <code>Int</code> ，就像这样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"5"</span></span><br><span class="line"><span class="keyword">let</span> num = <span class="type">Int</span>(str)</span><br></pre></td></tr></tbody></table></figure>
-
 <p>上面的代码中 <code>num</code> 其实是一个可选型 <code>Int</code> 。因为你有可能尝试转换一个不是数字的字符串导致转换失败。</p>
 <p>尽管 Swift 不确定转换能否成功，你自己是知道你的结果是否可以安全地执行强制解包。这个强制解包是通过在 <code>Int (str)</code> 之后添加 <code>!</code> 来完成的。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="type">Int</span>(str)!</span><br></pre></td></tr></tbody></table></figure>
-
 <p>通过强制解包， Swift 将立刻解包 <code>num</code> ，把它变成一个常规的 <code>Int</code> 而不是 <code>Int?</code> 。但是假如你是错的，比方说 <code>str</code> 是某个不能转换成数字的字符串，那么你的代码将崩溃。</p>
 <p>强制解包的操作符常常被戏称为崩溃操作符。因此，只有当你确信强制解包是安全的你才能这么做。</p>
 <hr>
 <h1 id="隐式解包可选型"><a href="#隐式解包可选型" class="headerlink" title="隐式解包可选型"></a>隐式解包可选型</h1><p>像常规可选型一样，隐式解包可选型可能包含一个值也可能包含 <code>nil</code> 。不过，跟常规可选型不一样的是，隐式解包可选型时不需要再解包，你可以把它们当做非可选型一样使用。</p>
 <p>隐式解包可选型是通过类型名之后添加感叹号来声明的，就像这样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age: <span class="type">Int!</span> = <span class="literal">nil</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>由于它们表现起来就像已经被解包过的样子，你并不需要 <code>if let</code> 或者 <code>guard let</code> 这样的代码来测试它们。不过，当你试图使用它们而它们实际上没有值时，即它们的值是 <code>nil</code> 时，你的代码将崩溃。</p>
 <p>隐式解包可选型存在的意义在于，有些情况某个变量一开始时是 <code>nil</code> ，但当你需要用到它之前它总会有值。如果你可以确信这一点，那么采用隐式解包可选型可以省去一直写 <code>if let</code> 的麻烦。</p>
 <p>值得一提的是，如果条件允许采用常规可选型，安全起见最好总是采用常规可选型。</p>
@@ -353,58 +346,46 @@
 <h1 id="空合运算符"><a href="#空合运算符" class="headerlink" title="空合运算符"></a>空合运算符</h1><p>空合运算符解包一个可选型，如果可选型包含值则返回这个值，如果可选型不包含值，即可选型的值是 <code>nil</code> ，那么返回某个默认值。两种情况，返回值都不再是可选型：它要么是可选型里包含的有效值，要么是一个备选的默认值。</p>
 <p>下面是一个接收整数作为唯一参数并且返回可选型字符串的函数：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">username</span><span class="params">(<span class="keyword">for</span> id: Int)</span></span> -&gt; <span class="type">String?</span> {</span><br><span class="line">  <span class="keyword">if</span> id == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Taylor Swift"</span></span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>如果我们以 ID 15 来调用这个函数，我们将得到 <code>nil</code> 。通过空合运算符，我们可以提供一个叫 “Anonymous” 的默认值，就像这样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = username (<span class="keyword">for</span>: <span class="number">15</span>) ?? <span class="string">"Anonymous"</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>它将检查 <code>username ()</code> 函数返回的值：如果是一个字符串，它将被解包并放入 <code>user</code> ，如果是 <code>nil</code> ，则使用 “Anonymous” 替代。</p>
 <hr>
 <h1 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h1><p>在使用可选型时， Swift 为我们提供了一种快捷方式：假如你试图访问形如 <code>a.b.c</code> 这样的代码并且 <code>b</code> 是可选型，你可以在 <code>b</code> 后面写一个问号来启用 <em>可选链</em> ： <code>a.b?.c</code> 。</p>
 <p>当代码运行时， Swift 会检查 <code>b</code> 是否有值，如果它是 <code>nil</code> ，那么这行代码剩下的部分将被忽略。Swift 会立即返回 <code>nil</code> 。但是如果 <code>b</code> 有值，它将被解包，代码执行将继续。</p>
 <p>下面是一个名字的数组：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> names = [<span class="string">"John"</span>, <span class="string">"Paul"</span>, <span class="string">"George"</span>, <span class="string">"Ringo"</span>]</span><br></pre></td></tr></tbody></table></figure>
-
 <p>我们将使用数组的 <code>first</code> 属性，如果数组里第一个名字有值的话返回这个名字，如果数组为空则返回 <code>nil</code> 。在结果之上，我们调用 <code>uppercased ()</code> 把它变成一个全大写的字符串：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> beatle = names.first?.uppercased ()</span><br></pre></td></tr></tbody></table></figure>
-
 <p>上面的问号就是可选链。如果 <code>first</code> 返回 <code>nil</code> ，那么 Swift 就不会尝试将它转换成全大写，它会将 <code>beatle</code> 立即设置为 <code>nil</code> 。</p>
 <hr>
 <h1 id="可选型-try"><a href="#可选型-try" class="headerlink" title="可选型 try"></a>可选型 try</h1><p>让我们回忆一下可能抛出错误的函数那一节的知识，看下面的代码：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PasswordError</span>: <span class="title">Error</span> </span>{</span><br><span class="line">  <span class="keyword">case</span> obvious</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkPassword</span><span class="params">(<span class="number">_</span> password: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span> {</span><br><span class="line">  <span class="keyword">if</span> password == <span class="string">"password"</span> {</span><br><span class="line">    <span class="keyword">throw</span> <span class="type">PasswordError</span>.obvious</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> {</span><br><span class="line">  <span class="keyword">try</span> checkPassword (<span class="string">"password"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"That password is good!"</span>)</span><br><span class="line">} <span class="keyword">catch</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"You can't use that password."</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PasswordError</span>: <span class="title">Error</span> </span>{</span><br><span class="line">  <span class="keyword">case</span> obvious</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkPassword</span><span class="params">(<span class="keyword">_</span> password: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span> {</span><br><span class="line">  <span class="keyword">if</span> password == <span class="string">"password"</span> {</span><br><span class="line">    <span class="keyword">throw</span> <span class="type">PasswordError</span>.obvious</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> {</span><br><span class="line">  <span class="keyword">try</span> checkPassword (<span class="string">"password"</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"That password is good!"</span>)</span><br><span class="line">} <span class="keyword">catch</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"You can't use that password."</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>通过 <code>do</code> ， <code>try</code> 和 <code>catch</code> ，我们得以运行可能抛出错误的函数，并且优雅地处理错误。</p>
 <p>上面的 <code>try</code> 写法其实有另外两种选择，这两种选项都能加深你对可选型和强制解包的理解。</p>
 <p>第一个是 <code>try?</code> ，它将可能抛出错误的函数转换成返回可选型的函数。如果函数抛出错误，那你就会得到 <code>nil</code> 作为函数的执行结果，否则你会得到将返回值包装之后的可选型。</p>
 <p>尝试使用 <code>try?</code> 来执行 <code>checkPassword ()</code> ，像下面这样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> result = <span class="keyword">try</span>? checkPassword (<span class="string">"password"</span>) {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Result was \(result)"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"D'oh."</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>另外一种选择是 <code>try!</code> ，当你确信函数一定不会失败时你可以采用它。如果函数实际抛出了错误，你的代码将崩溃。</p>
 <p>使用 <code>try!</code> 来重写前面的代码：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>! checkPassword (<span class="string">"sekrit"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"OK!"</span>)</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="失败构造器"><a href="#失败构造器" class="headerlink" title="失败构造器"></a>失败构造器</h1><p>当我们说到强制解包的时候，我用了下面的代码：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"5"</span></span><br><span class="line"><span class="keyword">let</span> num = <span class="type">Int</span>(str)</span><br></pre></td></tr></tbody></table></figure>
-
 <p>它将一个字符串转换成一个整数，但由于你可以传入任意字符串，你得到的实际上是一个可选型整数。</p>
 <p>这里用到一种叫做 <em>失败构造器</em> 的东西：它是一种可能成功也可能失败的构造器。你在结构体或者类里面用 <code>init?()</code> 来实现失败构造器。如果某些东西出错，它将返回 <code>nil</code> 。因此这种构造器返回的是某种类型的可选型，你用之前需要解包。</p>
 <p>举个例子，我们现在要求 <code>Person</code> 结构体必须通过一个 9 字符的 ID 字符串来构造。只要不是 9 个字符，都会返回 <code>nil</code> 。</p>
 <p>Swift 代码如下：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>?(id: <span class="type">String</span>) {</span><br><span class="line">    <span class="keyword">if</span> id.<span class="built_in">count</span> == <span class="number">9</span> {</span><br><span class="line">      <span class="keyword">self</span>.id = id</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>Swift 知道每个变量的类型，但有的时候你知道的信息比 Swift 更多。举个例子，这里有三个类：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>{ }</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fish</span>: <span class="title">Animal</span> </span>{ }</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Woof!"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>我们创建几个 <code>Fish</code> 和几个 <code>Dog</code> ，然后把它们放进一个数组，像下面这样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pets = [<span class="type">Fish</span>(), <span class="type">Dog</span>(), <span class="type">Fish</span>(), <span class="type">Dog</span>()]</span><br></pre></td></tr></tbody></table></figure>
-
 <p>Swift 知道 <code>Fish</code> 和 <code>Dog</code> 都继承自 <code>Animal</code> 类，因此它通过类型推断将 <code>pets</code> 创建为一个 <code>Animal</code> 类型的数组。</p>
 <p>如果我们想遍历 <code>pets</code> 数组，让所有的狗发出叫声，我们需要执行一次类型转换： Swift 将检查每个 pet 是否 <code>Dog</code> 对象，以便我们调用 <code>makeNoise ()</code> 方法。</p>
 <p>这里用到了一个关键字 <code>as?</code> ，它将返回一个可选型：类型转换失败时返回 <code>nil</code> ，成功则返回转换后的类型。</p>
 <p>Swift 代码如下：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> pet <span class="keyword">in</span> pets {</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> dog = pet <span class="keyword">as</span>? <span class="type">Dog</span> {</span><br><span class="line">    dog.makeNoise ()</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>让我们来总结一下。</p>
 <ol>
@@ -419,25 +400,7 @@
 <li>你可以使用类型转换将一个类型转换为另一个类型。 </li>
 </ol>
 <hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
     </div>
 
     
@@ -681,12 +644,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

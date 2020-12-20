@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="协议协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。 举个例子，我们可以写一个函数接收 id 属性，但我们并不精确地关心用的是哪一种数据类型。让我们从 Identifiable 协议开始，这个协议要求所有遵循协议的类型必须有一个 id 字符串属性，并且这个字符串可读写。 123protocol Identifiable">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」 协议协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。 举个例子，我们可以写一个函数接收 id 属性，但我们并不精确地关心用的是哪一种数据类型。让我们从 Identifiable 协议开始，这个协议要求所有遵循协议的类型必须有一个 id 字符串属性，并且这个字符串可读写。 123p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速 Swift 教程之九 | 协议">
 <meta property="og:url" content="https://theinfinitegame.tech/programming/swiftswift-protocol/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="协议协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。 举个例子，我们可以写一个函数接收 id 属性，但我们并不精确地关心用的是哪一种数据类型。让我们从 Identifiable 协议开始，这个协议要求所有遵循协议的类型必须有一个 id 字符串属性，并且这个字符串可读写。 123protocol Identifiable">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」 协议协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。 举个例子，我们可以写一个函数接收 id 属性，但我们并不精确地关心用的是哪一种数据类型。让我们从 Identifiable 协议开始，这个协议要求所有遵循协议的类型必须有一个 id 字符串属性，并且这个字符串可读写。 123p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-25T09:17:33.000Z">
-<meta property="article:modified_time" content="2019-12-28T06:29:14.488Z">
+<meta property="article:modified_time" content="2020-12-20T03:39:46.140Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="swift">
 <meta property="article:tag" content="编程">
@@ -281,14 +281,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -300,61 +300,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。</p>
+        <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。</p>
 <p>举个例子，我们可以写一个函数接收 <code>id</code> 属性，但我们并不精确地关心用的是哪一种数据类型。让我们从 <code>Identifiable</code> 协议开始，这个协议要求所有遵循协议的类型必须有一个 <code>id</code> 字符串属性，并且这个字符串可读写。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span> { <span class="keyword">get</span> <span class="keyword">set</span> }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>我们无法创建协议的实例，因为协议只是一种描述，它本身并非一种类型。但是我们可以创建遵循它的结构体。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>最后，我们还可以写一个 <code>displayID ()</code> 函数，它接收 <code>Identifiable</code> 对象：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">displayID</span><span class="params">(thing: Identifiable)</span></span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"My ID is \(thing.id)"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <a id="more"></a>
 
 <hr>
 <h1 id="协议继承"><a href="#协议继承" class="headerlink" title="协议继承"></a>协议继承</h1><p>一个协议可以继承另一个协议，这个过程称为协议继承。跟类不一样的是，你可以同一时间继承多个协议。</p>
 <p>接下来我们将定义三个协议： <code>Payable</code> 要求遵循它的类型实现 <code>calculateWages ()</code> 方法， <code>NeedsTraining</code> 要求遵循它的类型实现 <code>study ()</code> 方法，而 <code>HasVacation</code> 要求遵循它的类型实现 <code>takeVacation ()</code> 方法：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Payable</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">calculateWages</span><span class="params">()</span></span> -&gt; <span class="type">Int</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">NeedsTraining</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">study</span><span class="params">()</span></span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">HasVacation</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">takeVacation</span><span class="params">(days: Int)</span></span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>现在我们可以创建一个 <code>Employee</code> 协议，将上面的三个协议合并在一起。我们还不打算添加额外的东西，因此简单地写一对花括号就行：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Employee</span>: <span class="title">Payable</span>, <span class="title">NeedsTraining</span>, <span class="title">HasVacation</span> </span>{ }</span><br></pre></td></tr></tbody></table></figure>
-
 <p>现在我们就可以创建遵循这个单一协议的类型，而不是分别遵循三个协议的类型。</p>
 <hr>
 <h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><p>扩展使得你可以为已经存在的类型添加方法，实现它们设计时没有做的事情。</p>
 <p>举个例子，我们可以为 <code>Int</code> 类型添加一个扩展方法 <code>squared ()</code> ，用来返回当前数的平方。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">squared</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span> * <span class="keyword">self</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>尝试一下。创建一个整数，你会发现现在这个整数有了 <code>squared ()</code> 方法：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> number = <span class="number">8</span></span><br><span class="line">number.squared ()</span><br></pre></td></tr></tbody></table></figure>
-
 <p>Swift 不允许你通过扩展添加存储属性，但可以用扩展添加计算属性。举个例子，我们给整数添加一个 <code>isEven</code> 的计算属性，这个属性返回当前数值是否为偶数：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> isEven: <span class="type">Bool</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span> % <span class="number">2</span> == <span class="number">0</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="协议扩展"><a href="#协议扩展" class="headerlink" title="协议扩展"></a>协议扩展</h1><p>协议可以描述某个类型应当有某种方法，但并没有提供方法的代码。扩展实现有具体代码的方法，但一次只能作用于一个数据类型，你没办法同时给多个类型添加相同的代码。</p>
 <p>协议扩展同时解决了这两个问题：它们就像常规扩展一样，差异只在于你并不是只扩展一个特定的类型，比如 <code>Int</code> ，你扩展是的一个协议，因而所有遵循这个协议的类型都会发生改变。</p>
 <p>举个例子，下面有一个包含了一些名字的数组和一个同样包含了一些名字的集合：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pythons = [<span class="string">"Eric"</span>, <span class="string">"Graham"</span>, <span class="string">"John"</span>, <span class="string">"Michael"</span>, <span class="string">"Terry"</span>, <span class="string">"Terry"</span>]</span><br><span class="line"><span class="keyword">let</span> beatles = <span class="type">Set</span>([<span class="string">"John"</span>, <span class="string">"Paul"</span>, <span class="string">"George"</span>, <span class="string">"Ringo"</span>])</span><br></pre></td></tr></tbody></table></figure>
-
 <p>Swift 的数组和集合都遵循一个叫 <code>Collection</code> 的协议，因此我们可以给 <code>Collection</code> 协议扩展一个叫 <code>summarize ()</code> 的方法，这个方法逐一打印 <code>Collection</code> 里的元素。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Collection</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">summarize</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"There are \(count) of us:"</span>)</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> <span class="keyword">self</span> {</span><br><span class="line">      <span class="built_in">print</span>(name)</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p><code>Array</code> 和 <code>Set</code> 都将获得这个方法。让我们来尝试一下：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pythons.summarize ()</span><br><span class="line">beatles.summarize ()</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="面向协议编程"><a href="#面向协议编程" class="headerlink" title="面向协议编程"></a>面向协议编程</h1><p>协议扩展可以为我们自己的协议方法提供默认实现。这使得类型遵循协议变得更加容易，并且允许我们 “面向协议编程”—— 这是一种利用协议和协议扩展来加工代码的方式。</p>
 <p>首先，我们这里有一个叫 <code>Identifiable</code> 的协议，它要求所有遵循协议的类型都有一个叫 <code>id</code> 的属性和叫一个叫 <code>identify ()</code> 的方法：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span> { <span class="keyword">get</span> <span class="keyword">set</span> }</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">identify</span><span class="params">()</span></span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>虽然我们可以让每个遵循这个协议的类型书写它们自己的 <code>identify ()</code> 方法，但协议扩展允许我们可以提供一个默认实现：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">identify</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"My ID is \(id)."</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>现在当我们再声明一个遵循 <code>Identifiable</code> 协议的类型时，它会自动获得 <code>identify ()</code> 方法的实现：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> paul = <span class="type">User</span>(id: <span class="string">"Paul"</span>)</span><br><span class="line">paul.identify ()</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>让我们来总结一下。</p>
 <ol>
@@ -365,25 +352,7 @@
 <li>面向协议编程是这样一种实践：它把程序架构按照一系列协议来设计，然后利用协议扩展来提供默认实现。 </li>
 </ol>
 <hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
     </div>
 
     
@@ -627,12 +596,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

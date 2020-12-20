@@ -51,12 +51,12 @@
   };
 </script>
 
-  <meta name="description" content="抽样分布比例想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。 在本节教程中，我将解释一个总体比例的抽样分布是长什么样。你知道巴黎有 10% 的学生认为自己是嬉皮士，这意味着总体比例，用 $ \">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」 抽样分布比例想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。 在本节教程中，我将解释一个总体比例的抽样分布是长什么样。你知道巴黎有 10% 的学生认为自">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速统计教程之十七 | 样本比例的抽样分布">
 <meta property="og:url" content="https://theinfinitegame.tech/data-science/statistics-sampling-distribution-of-sample-proportion/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="抽样分布比例想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。 在本节教程中，我将解释一个总体比例的抽样分布是长什么样。你知道巴黎有 10% 的学生认为自己是嬉皮士，这意味着总体比例，用 $ \">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」 抽样分布比例想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。 在本节教程中，我将解释一个总体比例的抽样分布是长什么样。你知道巴黎有 10% 的学生认为自">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theinfinitegame.tech/images/sdp_1.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/sdp_2.jpg">
@@ -65,7 +65,7 @@
 <meta property="og:image" content="https://theinfinitegame.tech/images/sdp_5.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/sdp_6.jpg">
 <meta property="article:published_time" content="2020-01-31T09:08:32.000Z">
-<meta property="article:modified_time" content="2020-02-02T03:04:57.184Z">
+<meta property="article:modified_time" content="2020-12-20T03:40:38.860Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="数据科学">
@@ -288,7 +288,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -307,7 +307,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="抽样分布比例"><a href="#抽样分布比例" class="headerlink" title="抽样分布比例"></a>抽样分布比例</h1><p>想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。</p>
+        <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="抽样分布比例"><a href="#抽样分布比例" class="headerlink" title="抽样分布比例"></a>抽样分布比例</h1><p>想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。</p>
 <p>在本节教程中，我将解释一个总体比例的抽样分布是长什么样。你知道巴黎有 10% 的学生认为自己是嬉皮士，这意味着总体比例，用 $ \pi $ 注记，等于 0.10 。现在想象我们从这个总体中抽取 200 个学生。样本的比例，用 $ p $ 注记，将会是一个接近 0.10 的数字，比如 0.09 或者 0.12 。</p>
 <p>如果抽取了 5 组样本，样本比例可能如下：</p>
 <img src="/images/sdp_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
@@ -339,25 +340,7 @@
 <li>相似的逻辑也适用于样本。我们也只有样本比例 p 。对于样本比例的抽样分布来说，我们的确有均值和标准差。只要知道总体的比例，抽样分布的这些参数也很容易计算出来。</li>
 </ul>
 <hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
     </div>
 
     
@@ -601,12 +584,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

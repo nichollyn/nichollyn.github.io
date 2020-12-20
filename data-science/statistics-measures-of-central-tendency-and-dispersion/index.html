@@ -51,12 +51,12 @@
   };
 </script>
 
-  <meta name="description" content="众数、中位数和平均数在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：众数 (mode) ，中位数 (median) 和 平均数 (mean) 。 这三个 m 通常被称为集中趋势的度量。 找到众数很容易，它是出现频次最高的值。 换句话说，就是最常见的结果。 如果测量定类或定序变量，众数通常用作衡量集中趋势。 在下面这个饼图中，可以看到西班牙主要球">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」 众数、中位数和平均数在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：众数 (mode) ，中位数 (median) 和 平均数 (mean) 。 这三个 m 通常被称为集中趋势的度量。 找到众数很容易，它是出现频次最高的值。 换句话说，就是最常见的结果。 如果测量定类或定序变量，众数通常用作衡量集中趋势。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速统计教程之三 | 测量集中趋势和离散程度">
 <meta property="og:url" content="https://theinfinitegame.tech/data-science/statistics-measures-of-central-tendency-and-dispersion/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="众数、中位数和平均数在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：众数 (mode) ，中位数 (median) 和 平均数 (mean) 。 这三个 m 通常被称为集中趋势的度量。 找到众数很容易，它是出现频次最高的值。 换句话说，就是最常见的结果。 如果测量定类或定序变量，众数通常用作衡量集中趋势。 在下面这个饼图中，可以看到西班牙主要球">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」 众数、中位数和平均数在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：众数 (mode) ，中位数 (median) 和 平均数 (mean) 。 这三个 m 通常被称为集中趋势的度量。 找到众数很容易，它是出现频次最高的值。 换句话说，就是最常见的结果。 如果测量定类或定序变量，众数通常用作衡量集中趋势。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theinfinitegame.tech/images/two_mode.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/median.jpg">
@@ -76,7 +76,7 @@
 <meta property="og:image" content="https://theinfinitegame.tech/images/variance.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/variance_2.jpg">
 <meta property="article:published_time" content="2019-12-31T07:28:52.000Z">
-<meta property="article:modified_time" content="2020-01-06T01:48:13.219Z">
+<meta property="article:modified_time" content="2020-12-20T03:41:18.783Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="数据科学">
@@ -299,7 +299,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.4k</span>
+              <span>5.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -318,16 +318,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="众数、中位数和平均数"><a href="#众数、中位数和平均数" class="headerlink" title="众数、中位数和平均数"></a>众数、中位数和平均数</h1><p>在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：<strong>众数</strong> (mode) ，<strong>中位数</strong> (median) 和 <strong>平均数</strong> (mean) 。</p>
+        <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="众数、中位数和平均数"><a href="#众数、中位数和平均数" class="headerlink" title="众数、中位数和平均数"></a>众数、中位数和平均数</h1><p>在前一篇教程中，我们学会通过图表概述分布。这同样适用于描述分布的中心位置，有三种主要方式，它们分别是：<strong>众数</strong> (mode) ，<strong>中位数</strong> (median) 和 <strong>平均数</strong> (mean) 。</p>
 <p>这三个 m 通常被称为集中趋势的度量。</p>
 <p>找到众数很容易，<strong>它是出现频次最高的值。</strong> 换句话说，就是最常见的结果。</p>
 <p>如果测量定类或定序变量，<em>众数通常用作衡量集中趋势。</em></p>
 <p>在下面这个饼图中，可以看到西班牙主要球赛中球员来自哪些大洲。</p>
-<div id="echarts8458" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts1106" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts8458'));
+        var myChart = echarts.init(document.getElementById('echarts1106'));
         // 指定图表的配置项和数据
         var option = {
     title : {
@@ -387,7 +388,7 @@
 
 <p>数值是从低到高排列的。但是，在这种情况下，没有单个中间值。该如何解决这个问题呢？我们取两个中间数值的平均值 7 和 8 相加除以 2 等于 7.5 。因此，中位数是 7.5 。请注意，中位数将分布分为两个相等的部分。 50％ 的值低于中位数， 50％ 的值高于中位数。</p>
 <p>集中趋势的第三个衡量指标，是最常用的一个，也可能是你已经非常熟悉的，就是平均数。</p>
-<p><strong>平均数是所有观测值之和除以观测个数</strong>。</p>
+<p>__平均数是所有观测值之和除以观测个数__。</p>
 <p>$$ \bar x = \frac {\sum {x}}{n} $$</p>
 <p>上面是用于计算平均值的公式。它看起来比较复杂，公式的含义是： x 横线表示变量 x 的平均数，等于 x 的总和除以样本个数，由 n 表示。</p>
 <p>举个例子，借用 Tomas Bayez 的研究。公式告诉我们首先求总和， 6 加 7 ，加 7 ，加 8 ，加 8 ，加 8 ，加 9 ，等于 53 ，现在再除以 n 。样本量是 7 ，因此 53 除以 7 等于 7.6 平均数是 7.6 。</p>
@@ -423,7 +424,7 @@
 
 <p>可以这样切分，将得分最低的 25％ 划为一组，得分最高的 25％ 划为一组，中间的两个 25％ 再分两组。</p>
 <p>这种划分分布方式称为四分位距，一共有三个 <strong>四分位</strong> ，以下称为 Q1 ， Q2 ， Q3 。</p>
-<p>如你所见，第二个四分位 Q2 将分布分为两个相等的部分。毕竟， 50％ 的值低于该值， 50％ 高于该值。<br>因此 Q2 与中位数相同。 <strong>四分位距是第三和第一个四分位之间的距离</strong>。换句话说，四分位距是 Q3 减去 Q1 。下面让我通过纹身占比来展示计算过程。</p>
+<p>如你所见，第二个四分位 Q2 将分布分为两个相等的部分。毕竟， 50％ 的值低于该值， 50％ 高于该值。<br>因此 Q2 与中位数相同。 __四分位距是第三和第一个四分位之间的距离__。换句话说，四分位距是 Q3 减去 Q1 。下面让我通过纹身占比来展示计算过程。</p>
 <img src="/images/range_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
 <p>这是第二队的分布情况。首先，寻找中位数或者换句话说 Q2 。这很简单，中间数值是 15 ；可以通过查找中位数左侧数值的中间值找到 Q1 ，是 8.7 ；可以通过相同的策略在右侧找到 Q3 是 19.3 。现在，四分位距是 Q3 减去 Q1 即 19.3 减去 8.7 等于 10.6 。四分位距的主要优点是它不受异常值的影响，因为它没有考虑低于 Q1 或高于 Q3 的观测值。然而，在研究中寻找潜在的异常值可能仍然有用。 <strong>根据经验，如果观测值低于第一个四分位 1.5 个四分位距或高于第三个四分位 1.5 个四分位距则为异常值。</strong></p>
@@ -438,7 +439,7 @@
 <p>我们来看一下第一队的箱形图，如果比较两个箱形图，我们立即就能看到两个分布的变异性差别很大。</p>
 <img src="/images/range_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
-<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>请记住，分布的中心只能告诉你部分信息。为了了解的更完整，还要 <strong>评估分布的变异性</strong>。箱线图使用三个四分位数，异常值以及剔除异常值后的数据范围，以紧凑的方式显示分布的重要信息。</p>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>请记住，分布的中心只能告诉你部分信息。为了了解的更完整，还要 __评估分布的变异性__。箱线图使用三个四分位数，异常值以及剔除异常值后的数据范围，以紧凑的方式显示分布的重要信息。</p>
 <hr>
 <h1 id="方差和标准差"><a href="#方差和标准差" class="headerlink" title="方差和标准差"></a>方差和标准差</h1><p>在足球运动员中，纹身越来越受欢迎。试想，你想知道球员纹身的身体占比。</p>
 <img src="/images/tatto.jpg" width="68%" height="68%" style="margin: 10 auto;">
@@ -451,7 +452,7 @@
 <img src="/images/variance.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
 <p>第一步是计算平均值，这些值的平均值等于 15 ； 第二步是从每个观测值中减去平均值。我们来取第一个值，0 从这个值中减去平均值 0 减去 15 是负 15 。我们对样本中所有的值都这样计算。算完后，我们发现有负数，也有正数。这并不奇怪，因为均值是这些数值的中间点或平衡点。事实上，均值的负差和正差相抵 ，结果的总和等于 0 。换句话说，这些值的总和等于 0 。</p>
-<p>因此，我们不使用 <strong>原始差值</strong>，而是使用 <strong>差的平方</strong> 。</p>
+<p>因此，我们不使用 <strong>原始差值__，而是使用 __差的平方</strong> 。</p>
 <p>接下来，我们对所有这些计算值进行平方。</p>
 <p>根据公式，接下来我们需要将所有这些值相加。现在得数是平方差的总和，换句话说，平方和。这个数等于 639.74 。然后将平方和除以 n 减 1 。在我们的例子中， n 是 11 ，所以 n 减去 1 等于 10 。 639.74 除以 10 等于 63.97 ，这就是方差。</p>
 <p><strong>方差越大，变异性越大。这意味着方差越大，数值越离散。</strong></p>
@@ -463,25 +464,7 @@
 <p>$$ s = \sqrt {\frac {\sum {(x - \bar x)^2}}{n - 1}} $$</p>
 <p>因此在我们的例子中，第一队的标准差是 6.33 的平方根，等于 2.52 。第二队的标准差是 63.97 的平方根，等于 8.0 。标准差是最常使用的离散度量。然而，在许多统计方法中，方差也起着重要作用。在本节教程中，大家了解了它们密不可分，可以轻松从一个推演出另一个。</p>
 <hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
     </div>
 
     
@@ -725,12 +708,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

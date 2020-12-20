@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="创建你自己的类Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。 类和结构体的第一个区别是类没有逐一成员构造器。这意味着只要你的类里有属性，你就必须自行创建构造器。 举个例子： 123456789class Dog {  var name: String  var breed: String  init(name: Str">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」 创建你自己的类Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。 类和结构体的第一个区别是类没有逐一成员构造器。这意味着只要你的类里有属性，你就必须自行创建构造器。 举个例子： 123456789class Dog {  var name: String  var breed: St">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速 Swift 教程之八 | 类">
 <meta property="og:url" content="https://theinfinitegame.tech/programming/swiftswift-classes/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="创建你自己的类Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。 类和结构体的第一个区别是类没有逐一成员构造器。这意味着只要你的类里有属性，你就必须自行创建构造器。 举个例子： 123456789class Dog {  var name: String  var breed: String  init(name: Str">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」 创建你自己的类Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。 类和结构体的第一个区别是类没有逐一成员构造器。这意味着只要你的类里有属性，你就必须自行创建构造器。 举个例子： 123456789class Dog {  var name: String  var breed: St">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-25T02:10:59.000Z">
-<meta property="article:modified_time" content="2019-12-28T06:28:56.065Z">
+<meta property="article:modified_time" content="2020-12-20T03:40:20.341Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="swift">
 <meta property="article:tag" content="编程">
@@ -281,7 +281,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -300,14 +300,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="创建你自己的类"><a href="#创建你自己的类" class="headerlink" title="创建你自己的类"></a>创建你自己的类</h1><p>Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。</p>
+        <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="创建你自己的类"><a href="#创建你自己的类" class="headerlink" title="创建你自己的类"></a>创建你自己的类</h1><p>Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。</p>
 <p>类和结构体的第一个区别是类没有逐一成员构造器。这意味着只要你的类里有属性，你就必须自行创建构造器。</p>
 <p>举个例子：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> breed: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>, breed: <span class="type">String</span>) {</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="keyword">self</span>.breed = breed</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>创建类的实例跟创建结构体的实例方式一样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> poppy = <span class="type">Dog</span>(name: <span class="string">"Poppy"</span>, breed: <span class="string">"Poodle"</span>)</span><br></pre></td></tr></tbody></table></figure>
-
 <a id="more"></a>
 
 <hr>
@@ -315,69 +314,52 @@
 <p>这个过程被称为 <em>类继承</em> 或者 <em>子类化</em> ， 被继承的类称为 “父类” 或者 “超类”， 而新的类称为 “子类” 。</p>
 <p>下面是一个 <code>Dog</code> 类：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> breed: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>, breed: <span class="type">String</span>) {</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="keyword">self</span>.breed = breed</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>现在让我们基于 <code>Dog</code> 来创建一个新的类 <code>Poodle</code> 。默认情况下，它会继承 <code>Dog</code> 的所有属性以及构造器。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Poodle</span>: <span class="title">Dog</span> </span>{</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>不过，我们也可以为 <code>Poodle</code> 创建自己的构造器。我们知道这个类的 <code>breed</code> 属性总是 “Poodle”，因此我们可以创建一个只有 <code>name</code> 属性的构造器。并且，我们可以在 <code>Poodle</code> 的构造器里直接调用 <code>Dog</code> 的构造器，以便发生和 <code>Dog</code> 相同的构造过程。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Poodle</span>: <span class="title">Dog</span> </span>{</span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>) {</span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(name: name, breed: <span class="string">"Poodle"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>出于安全性考虑， Swift 会要求你总是在子类里调用 <code>super.init ()</code> ，以防止类在构造时来自父类的一些重要工作被遗漏。</p>
 <hr>
 <h1 id="重写方法"><a href="#重写方法" class="headerlink" title="重写方法"></a>重写方法</h1><p>子类可以将父类的方法替换为自己的实现，这个过程被称为 <em>重写</em> 。 让我们给 <code>Dog</code> 类添加一个 <code>makeNoise ()</code> 方法：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Woof!"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>如果你创建一个 <code>Poodle</code> 类继承自 <code>Dog</code> ，它会继承 <code>makeNoise ()</code> 方法。 “Woof!”:</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Poodle</span>: <span class="title">Dog</span> </span>{</span><br><span class="line">}</span><br><span class="line"><span class="keyword">let</span> poppy = <span class="type">Poodle</span>()</span><br><span class="line">poppy.makeNoise ()</span><br></pre></td></tr></tbody></table></figure>
-
 <p>方法重写使得我们可以为 <code>Poodle</code> 类重新实现 <code>makeNoise ()</code> 。</p>
 <p>Swift 要求我们在重写方法时用 <code>override func</code> 而不是 <code>func</code> ，这个限定防止你在自己不知情的情况下偶然重写方法。另外，试图重写一个父类中并不存在的方法，你会遭遇错误。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Poodle</span>: <span class="title">Dog</span> </span>{</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Yip!"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>通过这个修改， <code>poppy.makeNoise ()</code> 将打印出 “Yip!”，而不是 “Woof!”。</p>
 <hr>
 <h1 id="Final-类"><a href="#Final-类" class="headerlink" title="Final 类"></a>Final 类</h1><p>尽管类继承十分有用，并且苹果的平台在许多地方要求你大量使用它，有的时候你会希望阻止其他开发者基于你的类构建新的类。</p>
 <p>Swift 给了我们 <code>final</code> 关键字用于实现这种意图：当你把一个类声明为 <code>final</code> 时，将没有类能够继承它。这意味着没有人能通过重写方法来改变这个类的行为。</p>
 <p>只需要把 <code>final</code> 关键字放在类前面，就像这样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> breed: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>, breed: <span class="type">String</span>) {</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="keyword">self</span>.breed = breed</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="复制对象"><a href="#复制对象" class="headerlink" title="复制对象"></a>复制对象</h1><p>类和结构体的第三个区别是它们被复制的方式。当你复制一个结构体时，原始对象和复制体是不一样的两个东西，改变其中一个并不会改变另外一个。当你复制一个 <em>类</em> 时，原始对象和复制体都指向相同的东西，所以改变其中一个也会改变另一个。</p>
 <p>举个例子，有一个简单的 <code>Singer</code> 类，它有一个带有默认值的 <code>name</code> 属性：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singer</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"Taylor Swift"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>当我们创建一个这个类的实例并且打印它的 <code>name</code> 时，我们会得到 “Taylor Swift” ：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> singer = <span class="type">Singer</span>()</span><br><span class="line"><span class="built_in">print</span>(singer.name)</span><br></pre></td></tr></tbody></table></figure>
-
 <p>当我们基于第一个实例创建第二实例并且改变第二个实例的 <code>name</code> 时：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> singerCopy = singer</span><br><span class="line">singerCopy.name = <span class="string">"Justin Bieber"</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>由于类的工作机制， <code>singer</code> 和 <code>singerCopy</code> 指向内存里的同一个对象。所以当我们打印 <code>singer</code> 的 <code>name</code> 时，我们也会得 “Justin Bieber”：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(singer.name)</span><br></pre></td></tr></tbody></table></figure>
-
 <p>另一方面，假如 <code>Singer</code> 是一个结构体，那第二次我们还将得到 “Taylor Swift” ：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Singer</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"Taylor Swift"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="析构器"><a href="#析构器" class="headerlink" title="析构器"></a>析构器</h1><p>类和结构体的第四个区别是类有 <em>析构器</em> ，它是一个类的实例被销毁时执行的代码。</p>
 <p>这里有一个 <code>Person</code> 类，它有一个 <code>name</code> 属性，一个简单的构造器，以及一个打印信息的 <code>printGreeting ()</code> 方法：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"John Doe"</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>() {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(name) is alive!"</span>)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">printGreeting</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, I'm \(name)"</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>我们将利用循环创建几个 <code>Person</code> 类的实例，每次循环流转的时候，一个新的 <code>Person</code> 都会被创建，之后被销毁：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="number">3</span> {</span><br><span class="line">  <span class="keyword">let</span> person = <span class="type">Person</span>()</span><br><span class="line">  person.printGreeting ()</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="keyword">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="number">3</span> {</span><br><span class="line">  <span class="keyword">let</span> person = <span class="type">Person</span>()</span><br><span class="line">  person.printGreeting ()</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>来到我们的析构器。每当 <code>Person</code> 实例被销毁时，它的析构器都会被执行。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">deinit</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(name) is no more!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="可变性"><a href="#可变性" class="headerlink" title="可变性"></a>可变性</h1><p>类和结构体的最后一个区别是它们处理常量的方式。如果你有一个常量结构体，它有一个变量属性，那么这个变量属性是无法修改的。</p>
 <p>但是，如果它是一个常量类，也有一个变量属性，那么这个变量属性是可以被修改的。基于这个区别，类的方法在改变属性时，并不需要 <code>mutating</code> 关键字，而结构体则需要。</p>
 <p>这个区别意味着你可以修改类中的任何变量属性，即便类的实例本身被声明为常量。以下代码完全合法：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singer</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"Taylor Swift"</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> taylor = <span class="type">Singer</span>()</span><br><span class="line">taylor.name = <span class="string">"Ed Sheeran"</span></span><br><span class="line"><span class="built_in">print</span>(taylor.name)</span><br></pre></td></tr></tbody></table></figure>
-
 <p>如果你不想属性被修改，那么你必须直接将属性声明为常量。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singer</span> </span>{</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">"Taylor Swift"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>让我们来总结一下。</p>
 <ol>
@@ -390,25 +372,7 @@
 <li>类不像结构体那样受常量的强制约束。如果类的一个属性被声明为变量，那么无论类的实例是否以变量的方式创建，这个属性都可以被修改。 </li>
 </ol>
 <hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
     </div>
 
     
@@ -652,12 +616,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

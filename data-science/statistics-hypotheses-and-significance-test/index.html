@@ -51,12 +51,12 @@
   };
 </script>
 
-  <meta name="description" content="假设教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。 当研究人员对于他们感兴趣的参数有所期待时，我们在讨论的是 统计假设 (statistical hypotheses) 。这一节将介绍">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」 假设教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。 当研究人员对于他们感兴趣的参数有所期待时，我们在讨论的是 统计假设 (statistical">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速统计教程之二十一 | 假设检验和显著性检验">
 <meta property="og:url" content="https://theinfinitegame.tech/data-science/statistics-hypotheses-and-significance-test/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="假设教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。 当研究人员对于他们感兴趣的参数有所期待时，我们在讨论的是 统计假设 (statistical hypotheses) 。这一节将介绍">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」 假设教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。 当研究人员对于他们感兴趣的参数有所期待时，我们在讨论的是 统计假设 (statistical">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theinfinitegame.tech/images/hypo_1.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/hypo_2.jpg">
@@ -81,7 +81,7 @@
 <meta property="og:image" content="https://theinfinitegame.tech/images/tam_6.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/tam_7.jpg">
 <meta property="article:published_time" content="2020-02-02T05:57:35.000Z">
-<meta property="article:modified_time" content="2020-02-02T13:15:49.363Z">
+<meta property="article:modified_time" content="2020-12-20T03:41:29.052Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="数据科学">
@@ -304,7 +304,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.4k</span>
+              <span>4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -323,7 +323,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h1><p>教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。</p>
+        <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h1><p>教程来到最后一个模块，很快我要放假了。明天我将背起行囊，出发去潜水。好吧，让我们再谨慎一点，我并不完全确定明天我能成行。我的航班可能延误，我可能睡过头误了航班，或者可能生病导致无法去潜水。总之，我期望明天出发，但我并不能完全地确定。或者说，不能 100% 确定。</p>
 <p>当研究人员对于他们感兴趣的参数有所期待时，我们在讨论的是 <strong>统计假设 (statistical hypotheses)</strong> 。这一节将介绍统计假设。他们构成了 <strong>显著性检验 (significance testing)</strong> 方法中最主要的部分。一个统计假设，其实就是一个关于总体的期望。通常，假设会被形式化为一条对总体参数持有特定值或者落在特定范围的声明。这种声明是基于研究或者理论。基于样本的信息，我们评价一个假设靠谱与否。这个过程我们称为显著性检验，它是一种用样本数据来检验提前形式化的假设的方法。就像置信区间一样，显著性检验是一种推断统计学的方法。毕竟，我们也是用样本数据来推断关于总体参数的结论。</p>
 <img src="/images/hypo_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
@@ -403,25 +404,7 @@
 
 <p>因为我们现在做了双尾检验，所以我们的临时结论现在变成了有经验的美国潜水者在携带平均氧气量，潜到平均深度后，能待在水下的平均时间不等于 60 分钟。</p>
 <hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
     </div>
 
     
@@ -665,12 +648,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

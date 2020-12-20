@@ -272,7 +272,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.2k</span>
+              <span>7.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -295,7 +295,7 @@
 <li>本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本</li>
 <li>关键词： 分治、 UOP</li>
 </ul>
-<p>欢迎关注公众号「Swift 花园」</p>
+<p>欢迎关注微信公众号「Swift 花园」</p>
 <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><blockquote>
 <p><em>我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。</em></p>
 </blockquote>
@@ -373,14 +373,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.1k</span>
+              <span>4.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -392,7 +392,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="处理缺失的数据"><a href="#处理缺失的数据" class="headerlink" title="处理缺失的数据"></a>处理缺失的数据</h1><p>我们已经会使用 <code>Int</code> 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？</p>
+          <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="处理缺失的数据"><a href="#处理缺失的数据" class="headerlink" title="处理缺失的数据"></a>处理缺失的数据</h1><p>我们已经会使用 <code>Int</code> 这样的类型来存储像 5 这样的数值。不过，当你想要存储用户年龄这样的属性，并且你还不知道该用户的年龄时你该怎么做呢？</p>
 <p>你可能会说，“我可以暂时存成 0”，但这样一来你就会混淆新生儿和你不知道年龄的用户。你应该用一个特殊的数字，比如 1000 或者 -1 来代表 “未知”，这两个数字都不可能是年龄，但你能记得住这些特殊数字的含义吗？</p>
 <p>Swift 的解决方案称为 <em>optional</em> ，即可选型。你可以基于任意类型创建可选型。一个可选型整数可以有诸如 1 或者 1000 这样的数字，也可能没有任何值，即值可以缺失， Swift 里表示缺失是用 <code>nil</code> 。</p>
 <p>为了把一个类型变成可选型，只需要在类型后面加一个问号。举个例子，我们可以这样把一个整数变成可选型：</p>
@@ -469,14 +470,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -488,13 +489,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。</p>
+          <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>协议是一种描述某个类型必须有某些属性和方法的方式。你告知 Swift 某个类型将使用某个协议，这个过程称为协议适配或者协议遵循。</p>
 <p>举个例子，我们可以写一个函数接收 <code>id</code> 属性，但我们并不精确地关心用的是哪一种数据类型。让我们从 <code>Identifiable</code> 协议开始，这个协议要求所有遵循协议的类型必须有一个 <code>id</code> 字符串属性，并且这个字符串可读写。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span> { <span class="keyword">get</span> <span class="keyword">set</span> }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>我们无法创建协议的实例，因为协议只是一种描述，它本身并非一种类型。但是我们可以创建遵循它的结构体。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>最后，我们还可以写一个 <code>displayID ()</code> 函数，它接收 <code>Identifiable</code> 对象：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">displayID</span><span class="params">(thing: Identifiable)</span></span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"My ID is \(thing.id)"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
           <!--noindex-->
@@ -569,7 +569,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -588,11 +588,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="创建你自己的类"><a href="#创建你自己的类" class="headerlink" title="创建你自己的类"></a>创建你自己的类</h1><p>Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。</p>
+          <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="创建你自己的类"><a href="#创建你自己的类" class="headerlink" title="创建你自己的类"></a>创建你自己的类</h1><p>Swift 的类也能让你创建带有属性和方法的新类型，这一点和结构体很相似，但是它们之间有五个显著的区别。下面让我一一为你说明。</p>
 <p>类和结构体的第一个区别是类没有逐一成员构造器。这意味着只要你的类里有属性，你就必须自行创建构造器。</p>
 <p>举个例子：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> breed: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>, breed: <span class="type">String</span>) {</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="keyword">self</span>.breed = breed</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>创建类的实例跟创建结构体的实例方式一样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> poppy = <span class="type">Dog</span>(name: <span class="string">"Poppy"</span>, breed: <span class="string">"Poodle"</span>)</span><br></pre></td></tr></tbody></table></figure>
           <!--noindex-->
@@ -667,7 +667,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.9k</span>
+              <span>5.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -686,16 +686,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="创建你自己的结构体"><a href="#创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
+          <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="创建你自己的结构体"><a href="#创建你自己的结构体" class="headerlink" title="创建你自己的结构体"></a>创建你自己的结构体</h1><p>Swift 允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 <code>struct</code> 。Struct 可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。</p>
 <p>让我们以一个简单的例子开始：创建一个 <code>Sport</code> 结构体，它有一个叫 <code>name</code> 的字符串变量。在结构体中，这种变量被称为 <em>属性</em> 。因此，这是一个拥有一个属性的结构体。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sport</span> </span>{</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>类型定义完成，现在让我们来创建和使用它的实例：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tennis = <span class="type">Sport</span>(name: <span class="string">"Tennis"</span>)</span><br><span class="line"><span class="built_in">print</span>(tennis.name)</span><br></pre></td></tr></tbody></table></figure>
-
 <p><code>name</code> 和 <code>tennis</code> 都是变量，因而我们可以像常规变量那样修改它们：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tennis.name = <span class="string">"Lawn tennis"</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>属性可以像常规变量那样拥有默认值，并且依赖 Swift 的类型推断。</p>
           <!--noindex-->
             <div class="post-button">
@@ -859,12 +857,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

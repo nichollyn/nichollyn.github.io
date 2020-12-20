@@ -51,12 +51,12 @@
   };
 </script>
 
-  <meta name="description" content="分步计划比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意你的方法。 这一节中，我将以分布计划的方">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」 分步计划比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速统计教程之二十二 | 分步计划和置信区间">
 <meta property="og:url" content="https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="分步计划比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意你的方法。 这一节中，我将以分布计划的方">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」 分步计划比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theinfinitegame.tech/images/sbs_1.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/sbs_2.jpg">
@@ -68,7 +68,7 @@
 <meta property="og:image" content="https://theinfinitegame.tech/images/sbs_7.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/sbs_8.jpg">
 <meta property="article:published_time" content="2020-02-03T01:47:28.000Z">
-<meta property="article:modified_time" content="2020-02-03T12:21:50.853Z">
+<meta property="article:modified_time" content="2020-12-20T03:40:35.032Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="数据科学">
@@ -291,7 +291,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.7k</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -310,7 +310,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="分步计划"><a href="#分步计划" class="headerlink" title="分步计划"></a>分步计划</h1><p>比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意你的方法。</p>
+        <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="分步计划"><a href="#分步计划" class="headerlink" title="分步计划"></a>分步计划</h1><p>比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意你的方法。</p>
 <p>这一节中，我将以分布计划的方式来引导你。想象你问了一个容量是 500 个持证潜水者的简单随机样本，他们的潜水时长是多少个小时。假设你发现 0.57 的比例有超过 35 小时的潜水经验，时长均值是 35.5 小时，均值是 8 小时。在我们的样本中，<br>潜水经验的变量分布近似正态。下面是分布计划全图：</p>
 <img src="/images/sbs_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
@@ -352,25 +353,7 @@
 <img src="/images/sbs_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
 
 <hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
     </div>
 
     
@@ -614,12 +597,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="算术操作符到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 + 和 - 。 Swift 中有大量的操作符。 下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 var ）： 12let firstScore &#x3D; 12let secondScore &#x3D; 4  让我们用 + 和 - 把它们相">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」 算术操作符到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 + 和 - 。 Swift 中有大量的操作符。 下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 var ）： 12let firstScore &#x3D; 12let secondScore">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极速 Swift 教程之三 | 操作符与条件">
 <meta property="og:url" content="https://theinfinitegame.tech/programming/swiftswift-operators-and-conditions/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="算术操作符到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 + 和 - 。 Swift 中有大量的操作符。 下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 var ）： 12let firstScore &#x3D; 12let secondScore &#x3D; 4  让我们用 + 和 - 把它们相">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」 算术操作符到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 + 和 - 。 Swift 中有大量的操作符。 下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 var ）： 12let firstScore &#x3D; 12let secondScore">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-23T13:41:32.000Z">
-<meta property="article:modified_time" content="2019-12-28T06:29:10.003Z">
+<meta property="article:modified_time" content="2020-12-20T03:39:56.771Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="swift">
 <meta property="article:tag" content="编程">
@@ -281,7 +281,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.5k</span>
+              <span>4.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -300,103 +300,80 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="算术操作符"><a href="#算术操作符" class="headerlink" title="算术操作符"></a>算术操作符</h1><p>到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 <code>+</code> 和 <code>-</code> 。 Swift 中有大量的操作符。</p>
+        <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="算术操作符"><a href="#算术操作符" class="headerlink" title="算术操作符"></a>算术操作符</h1><p>到目前为止，你已经了解了 Swift 的所有基本类型，现在让我们利用操作符把它们放在一起来使用。操作符指的是那些看起来像数学符号的玩意，比如 <code>+</code> 和 <code>-</code> 。 Swift 中有大量的操作符。</p>
 <p>下面有一些测试用的变量（这里特指数学里的变量，不局限于 Swift 的 <code>var</code> ）：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstScore = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> secondScore = <span class="number">4</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>让我们用 <code>+</code> 和 <code>-</code> 把它们相加或者相减：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> total = firstScore + secondScore</span><br><span class="line"><span class="keyword">let</span> difference = firstScore - secondScore</span><br></pre></td></tr></tbody></table></figure>
-
 <p>我们还可以用 <code>*</code> 和 <code>/</code> 来执行乘法和除法：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> product = firstScore * secondScore</span><br><span class="line"><span class="keyword">let</span> divided = firstScore /secondScore</span><br></pre></td></tr></tbody></table></figure>
-
 <p>Swift 有一个用于计算除法的余数的特殊操作符： <code>%</code> 。它可以计算一个数 <code>A</code> 用若干个数 <code>B</code> 填充后，剩余的空间。</p>
 <p>举个例子，如果我们把 <code>secondScore</code> 设置为 4 ，那么当我们做 <code>13 % secondScore</code> 这个操作时，我们会得到 1 ，因为 4 可以填充 13 三次，余数为 1 ：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> remainder = <span class="number">13</span> % secondScore</span><br></pre></td></tr></tbody></table></figure>
-
 <a id="more"></a>
 
 <hr>
 <h1 id="操作符重载"><a href="#操作符重载" class="headerlink" title="操作符重载"></a>操作符重载</h1><p>Swift 支持 “操作符重载”，这是一种简明的说法，具体指的是操作符的行为可以根据它使用时的具体情境来决定。举个例子， <code>+</code> 可以用来相加整数，就像这样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> meaningOfLife = <span class="number">42</span></span><br><span class="line"><span class="keyword">let</span> doubleMeaning = <span class="number">42</span> + <span class="number">42</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>同时， <code>+</code> 也可以用来连接字符串，就像这样：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fakers = <span class="string">"Fakers gonna"</span></span><br><span class="line"><span class="keyword">let</span> action = fakers + <span class="string">"fake"</span></span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fakers = <span class="string">"Fakers gonna "</span></span><br><span class="line"><span class="keyword">let</span> action = fakers + <span class="string">"fake"</span></span><br></pre></td></tr></tbody></table></figure>
 <p>你甚至还可以使用 <code>+</code> 来连接数组，就像这样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstHalf = [<span class="string">"John"</span>, <span class="string">"Paul"</span>]</span><br><span class="line"><span class="keyword">let</span> secondHalf = [<span class="string">"George"</span>, <span class="string">"Ringo"</span>]</span><br><span class="line"><span class="keyword">let</span> beatles = firstHalf + secondHalf</span><br></pre></td></tr></tbody></table></figure>
-
 <p>记住， Swift 是一门类型安全的语言。这意味着它不允许你混用类型。举个例子，你不能把一个整数加到一个字符串上，因为这么做没有意义。</p>
 <hr>
 <h1 id="复合赋值操作符"><a href="#复合赋值操作符" class="headerlink" title="复合赋值操作符"></a>复合赋值操作符</h1><p>Swift 提供了一些把操作符和赋值组合起来的速记操作符，以便你可以用一次操作同时完成计算和赋值。它们看起来很像你已经认识的那些操作符，比如 <code>+</code> ，<code>-</code> ，<code>*</code> ，和 <code>/</code> ，不过需要在尾部再加上一个 <code>=</code> ，以表示把计算结果赋给操作数。</p>
 <p>举个例子，如果有人考试考了 95 分，但是需要罚去 5 分，你可以这么写：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">95</span></span><br><span class="line">score -= <span class="number">5</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>类似地，你可以利用 += 来拼接字符串：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quote = <span class="string">"The rain in Spain falls mainly on the"</span></span><br><span class="line">quote += <span class="string">"Spaniards"</span></span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quote = <span class="string">"The rain in Spain falls mainly on the "</span></span><br><span class="line">quote += <span class="string">"Spaniards"</span></span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <h1 id="比较操作符"><a href="#比较操作符" class="headerlink" title="比较操作符"></a>比较操作符</h1><p>Swift 提供了几个比较操作符，这些符号的工作方式跟你在数学中使用它们的方式很相似。</p>
 <p>先来两个测试用的变量：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstScore = <span class="number">6</span></span><br><span class="line"><span class="keyword">let</span> secondScore = <span class="number">4</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>有两个可以用来检查相等的操作符。 <code>==</code> （发音 “等于”）检查两个值是否相等，而 <code>!=</code> （发音 “不等于”）则检查两个值是否不相等：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firstScore == secondScore</span><br><span class="line">firstScore != secondScore</span><br></pre></td></tr></tbody></table></figure>
-
 <p>还有四个用来检查两个值哪一个比较大，哪一个比较小或者相等的操作符。就跟数学里的符号一样：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firstScore &lt; secondScore</span><br><span class="line">firstScore &gt;= secondScore</span><br></pre></td></tr></tbody></table></figure>
-
 <p>上面的这些操作符用在字符串上也是可以的，因为字符串都有一个自然的字母顺序。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Taylor"</span> &lt;= <span class="string">"Swift"</span></span><br></pre></td></tr></tbody></table></figure>
-
 <hr>
 <h1 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h1><p>你现在应该已经意识到你可以使用 <code>if</code> 语句来书写一些条件了。当你给到 Swift 一个条件时，如果条件成立， Swift 会运行你在 <code>if</code> 语句块里写的代码。</p>
 <p>尝试一下。 你可以用上 Swift 最基础的函数，它叫做 <code>print ()</code> ：你提供一些文本给它，它将这些文本打印出来。</p>
 <p>让我们用条件来检测二十一点扑克游戏的赢家：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>花括号 <code>{</code> 和 <code>}</code> 之间的代码，在条件成立时会被执行。如果条件不成立时你想执行另外的代码，可以使用 <code>else</code> 语句：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"普通点数。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 普通点数。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>你还可以使用 <code>else if</code> 来串联多个条件：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">2</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Aces，好手气！"</span>)</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"普通点数。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard + secondCard == <span class="number">2</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Aces，好手气！"</span>)</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span> firstCard + secondCard == <span class="number">21</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"21 点！"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 普通点数。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <h1 id="组合条件"><a href="#组合条件" class="headerlink" title="组合条件"></a>组合条件</h1><p>Swift 提供两种操作符，以便我们把条件组合在一起，它们是 <code>&amp;&amp;</code>（发音 “与”）和 <code>||</code> （发音 “或”）。</p>
 <p>举个例子，为了检查两个人的年龄是否都超过某个值，我们可以这么写：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age1 = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> age2 = <span class="number">21</span></span><br><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> &amp;&amp; age2 &gt; <span class="number">18</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"两个人都超过 18 岁。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age1 = <span class="number">12</span></span><br><span class="line"><span class="keyword">let</span> age2 = <span class="number">21</span></span><br><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> &amp;&amp; age2 &gt; <span class="number">18</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 两个人都超过 18 岁。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>上面的 <code>print ()</code> 调用只有当两个年龄都大于 18 时才会被执行，而给到的两个年龄并不满足都大于 18 。实际上， Swift 并不会真的把两个条件都检查一遍，它不需要检查 <code>age2</code> 是否大于 18 ，因为当它发现 <code>age1</code> 大于 18 这个条件已经不成立时，就不会再继续检查后面的条件。</p>
 <p>与 <code>&amp;&amp;</code> 不同的是，只要有任意一个条件通过测试， <code>||</code> 检查就会被认定为通过。 举个例子，下面的代码在任一年龄大于 18 时就会打印一条消息：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> || age2 &gt; <span class="number">18</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"有一个人超过 18 岁。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> age1 &gt; <span class="number">18</span> || age2 &gt; <span class="number">18</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 有一个人超过 18 岁。"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>你可以在一个检查中使用多次 <code>&amp;&amp;</code> 和 <code>||</code> ，但是切记不要把条件写得太过复杂，因为那样很难阅读！</p>
 <hr>
 <h1 id="三元操作符"><a href="#三元操作符" class="headerlink" title="三元操作符"></a>三元操作符</h1><p>Swift 还提供一种不常用的操作符，叫做三元操作符。它的名字源自它可以一次协同三个操作数工作的特点。首先，它会先检查第一个数里指定的条件是否满足，如果满足则返回第二个数，否则返回第三个数。</p>
 <p>三元操作符是把 <code>true</code> 和 <code>false</code> 两种情况一次性考虑进去的符号，它包含问号和冒号两个部分，因此阅读起来更麻烦一些。下面是一些例子：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(firstCard == secondCard ? <span class="string">"牌是一样的"</span> : <span class="string">"牌不一样"</span>)</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstCard = <span class="number">11</span></span><br><span class="line"><span class="keyword">let</span> secondCard = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(firstCard == secondCard ? <span class="string">" 牌是一样的 &amp; quot;</span> : <span class="string">" 牌不一样 &amp; quot;</span>)</span><br></pre></td></tr></tbody></table></figure>
 <p>上面的代码检查两张牌是否一样，如果一样则打印 “牌是一样的”，否则打印 “牌不一样”。我们也可以换成常规的条件语句来达到一样的检测效果：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard == secondCard {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"牌是一样的"</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"牌不一样"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstCard == secondCard {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 牌是一样的 &amp; quot;</span>)</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 牌不一样 &amp; quot;</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <h1 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h1><p>如果你需要用到多个 <code>if</code> 和 <code>else if</code> ，那你可以使用另一种结构：<code>switch case</code>，它会让你的代码看起来更清晰。采用 <code>switch</code> 语句，你只需要写一次条件，然后列出所有可能的结果，并针对所有的结果编写对应的处理代码。</p>
 <p>让我们来尝试一下，下面是一个值为 <code>sunny</code> 字符串的名叫 <code>weather</code> 的常量：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> weather = <span class="string">"sunny"</span></span><br></pre></td></tr></tbody></table></figure>
-
 <p>我们可以使用 <code>switch</code> 语句块来打印下面四种消息中的一种：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather {</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得带伞"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得保暖"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得戴墨镜"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"天气不错！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather {</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 记得带伞 &amp; quot;</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 记得保暖 &amp; quot;</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 记得戴墨镜 &amp; quot;</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 天气不错！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>最后一条 case 是 <code>default</code> ，它是不能省略的，因为 Swift 需要确保你覆盖了所有可能的 case ，即不能有遗漏的情况。所以只要天气不是 <code>rain</code> ， <code>snow</code> ，或者 <code>sunny</code> ， 默认的情况的 case 就会被运行。</p>
 <p>Swift 只会运行某一个 case 里的代码。如果你希望继续执行下一个 case 的代码，你需要用到 <code>fallthrough</code> 关键字，就像这样：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather {</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得带伞"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得保暖"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"记得戴墨镜"</span>)</span><br><span class="line">  <span class="keyword">fallthrough</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"天气不错！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> weather {</span><br><span class="line"><span class="keyword">case</span> <span class="string">"rain"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 记得带伞 &amp; quot;</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"snow"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 记得保暖 &amp; quot;</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"sunny"</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 记得戴墨镜 &amp; quot;</span>)</span><br><span class="line">  <span class="keyword">fallthrough</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 天气不错！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <h1 id="范围操作符"><a href="#范围操作符" class="headerlink" title="范围操作符"></a>范围操作符</h1><p>Swift 提供了两种方式给我们创建范围： 它们是 <code>..&lt;</code> 和 <code>...</code> 操作符。半开放范围操作符 <code>..&lt;</code> ，创建的范围不包含右边的值。而闭合范围操作符 <code>...</code> ，创建的范围包含右边的值。</p>
 <p>范围 <code>1..&lt;5</code> 包含数字 1 ，2 ，3 和 4 ， 而范围 <code>1...5</code> 包含数字 1 ，2 ，3 ，4 和 5 。</p>
 <p>对于 switch 语句块来说，范围非常有用。因为你可以把它们用于你的每条 case 。举个例子，假设我们根据某人的考试成绩打印不同的消息：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> score = <span class="number">85</span></span><br><span class="line"><span class="keyword">switch</span> score {</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>..&lt;<span class="number">50</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你需要加把劲了。"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="number">50</span>..&lt;<span class="number">85</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"做的不错。"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"你真棒！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> score = <span class="number">85</span></span><br><span class="line"><span class="keyword">switch</span> score {</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>..&lt;<span class="number">50</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 你需要加把劲了。"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="number">50</span>..&lt;<span class="number">85</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 做的不错。"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" 你真棒！"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>如前面提到的，这里必须有一个 <code>default case</code> 来确保所有的可能都被覆盖到。</p>
 <hr>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>让我们来总结一下。</p>
@@ -409,25 +386,7 @@
 <li>我们可以用 <code>..&lt;</code> 或者 <code>...</code> 来创建范围，具体用哪一个取决于要不要包含后面那个值，即范围是否闭合。 </li>
 </ul>
 <hr>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
     </div>
 
     
@@ -671,12 +630,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">226k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:25</span>
 </div>
 
         

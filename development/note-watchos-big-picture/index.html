@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -78,7 +78,7 @@
     isPost: true
   };
 </script>
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
   <title>watchOS 学习笔记 | Big Picture | The Infinite Game</title>
   
 
@@ -110,6 +110,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
 </head>
 
@@ -381,7 +383,11 @@
       <div class="popular-posts-title"><a href="/development/note-ios-map-api/" rel="bookmark">iOS 笔记 | 地图 API</a></div>
     </li>
   </ul>
-
+<div class="post-widgets">
+    <div class="likely">
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script>
         <div class="reward-container">
   <div></div>
   <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
@@ -503,7 +509,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#watchOS-应用"><span class="nav-number">1.</span> <span class="nav-text">watchOS 应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Watch-app-和扩展"><span class="nav-number">2.</span> <span class="nav-text">Watch app 和扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#这些年-watchOS-的变化"><span class="nav-number">3.</span> <span class="nav-text">这些年 watchOS 的变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多于一个用户接口"><span class="nav-number">4.</span> <span class="nav-text">多于一个用户接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notification"><span class="nav-number">4.0.1.</span> <span class="nav-text">Notification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glances-Dock"><span class="nav-number">4.0.2.</span> <span class="nav-text">Glances &#x2F; Dock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complications"><span class="nav-number">4.0.3.</span> <span class="nav-text">Complications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Siri"><span class="nav-number">4.0.4.</span> <span class="nav-text">Siri</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#资料"><span class="nav-number">5.</span> <span class="nav-text">资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#watchOS-%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">watchOS 应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Watch-app-%E5%92%8C%E6%89%A9%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">Watch app 和扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%99%E4%BA%9B%E5%B9%B4-watchOS-%E7%9A%84%E5%8F%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">这些年 watchOS 的变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E4%BA%8E%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.</span> <span class="nav-text">多于一个用户接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notification"><span class="nav-number">4.0.1.</span> <span class="nav-text">Notification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glances-Dock"><span class="nav-number">4.0.2.</span> <span class="nav-text">Glances &#x2F; Dock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complications"><span class="nav-number">4.0.3.</span> <span class="nav-text">Complications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Siri"><span class="nav-number">4.0.4.</span> <span class="nav-text">Siri</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -519,7 +525,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -532,7 +538,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -587,12 +593,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
         

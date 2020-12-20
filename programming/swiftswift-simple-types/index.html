@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -76,7 +76,7 @@
     isPost: true
   };
 </script>
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
   <title>极速 Swift 教程之一 | 简单类型 | The Infinite Game</title>
   
 
@@ -108,6 +108,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
 </head>
 
@@ -414,7 +416,11 @@
       <div class="popular-posts-title"><a href="/programming/swiftswift-structs/" rel="bookmark">极速 Swift 教程之七 | 结构体</a></div>
     </li>
   </ul>
-
+<div class="post-widgets">
+    <div class="likely">
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script>
         <div class="reward-container">
   <div></div>
   <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
@@ -536,7 +542,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串和整型"><span class="nav-number">2.</span> <span class="nav-text">字符串和整型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多行字符串"><span class="nav-number">3.</span> <span class="nav-text">多行字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#双精度浮点型和布尔型"><span class="nav-number">4.</span> <span class="nav-text">双精度浮点型和布尔型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串插值"><span class="nav-number">5.</span> <span class="nav-text">字符串插值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常量"><span class="nav-number">6.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型注解"><span class="nav-number">7.</span> <span class="nav-text">类型注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%95%B4%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">字符串和整型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">3.</span> <span class="nav-text">多行字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8C%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E5%9E%8B%E5%92%8C%E5%B8%83%E5%B0%94%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">双精度浮点型和布尔型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8F%92%E5%80%BC"><span class="nav-number">5.</span> <span class="nav-text">字符串插值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">6.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%B3%A8%E8%A7%A3"><span class="nav-number">7.</span> <span class="nav-text">类型注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -552,7 +558,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -565,7 +571,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -620,12 +626,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
         

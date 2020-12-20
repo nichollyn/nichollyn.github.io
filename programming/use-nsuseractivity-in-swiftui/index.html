@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+  <script data-ad-client="ca-pub-8791711604224644" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://theinfinitegame.tech').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="欢迎关注公众号「Swift 花园」  译自 https:&#x2F;&#x2F;swiftui-lab.com&#x2F;nsuseractivity-with-swiftui&#x2F;   译者注：作者为了扩展他的 SwiftUI 应用去研究了 NSUserActivity，发现关于 NSUserActivity 的大量信息都已经过时了。比如，绝大多数关于 Handoff 的文章都是 Handoff 特性刚有的时候发布的，而那个时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 SwiftUI 中使用 NSUserActivity">
+<meta property="og:url" content="https://theinfinitegame.tech/programming/use-nsuseractivity-in-swiftui/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="欢迎关注公众号「Swift 花园」  译自 https:&#x2F;&#x2F;swiftui-lab.com&#x2F;nsuseractivity-with-swiftui&#x2F;   译者注：作者为了扩展他的 SwiftUI 应用去研究了 NSUserActivity，发现关于 NSUserActivity 的大量信息都已经过时了。比如，绝大多数关于 Handoff 的文章都是 Handoff 特性刚有的时候发布的，而那个时">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1glu3tdup4dj318y0u0he0.jpg">
+<meta property="article:published_time" content="2020-12-20T03:04:55.000Z">
+<meta property="article:modified_time" content="2020-12-20T03:10:41.846Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="SwiftUI">
+<meta property="article:tag" content="iOS 开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1glu3tdup4dj318y0u0he0.jpg">
+
+<link rel="canonical" href="https://theinfinitegame.tech/programming/use-nsuseractivity-in-swiftui/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
+  <title>在 SwiftUI 中使用 NSUserActivity | The Infinite Game</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/use-nsuseractivity-in-swiftui/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在 SwiftUI 中使用 NSUserActivity
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-20 11:04:55" itemprop="dateCreated datePublished" datetime="2020-12-20T11:04:55+08:00">2020-12-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>14k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glu3tdup4dj318y0u0he0.jpg" alt="chewy-EV9_vVMZTcg-unsplash"></p>
+<p>欢迎关注公众号「Swift 花园」</p>
+<blockquote>
+<p>译自 <a href="https://swiftui-lab.com/nsuseractivity-with-swiftui/" target="_blank" rel="noopener">https://swiftui-lab.com/nsuseractivity-with-swiftui/</a></p>
+</blockquote>
+<blockquote>
+<p>译者注：作者为了扩展他的 SwiftUI 应用去研究了 NSUserActivity，发现关于 NSUserActivity 的大量信息都已经过时了。比如，绝大多数关于 Handoff 的文章都是 Handoff 特性刚有的时候发布的，而那个时候还没有 scene 的概念，所有逻辑都是通过 application 的 delegate 处理的。之后 scene 出现了，许多代码被移到了 scene delegate，原来的 Handoff 示例也就失效了。如果你是刚开始学习 NSUserActivity，一定会感到困惑，而现在 SwiftUI 也支持用户活动，但现在又没有 scene 了，变化更大，所以作者认为需要写一篇新的文档来介绍 SwiftUI 中 NSUserActivity 的使用。</p>
+</blockquote>
+<p>NSUserActivity 令人费解的另一个原因是它是一个可以用来处理多个不相干功能的东西。它的各项属性只在某些情况下相关，多数情况下却是没有关联的。</p>
+<p>下面是有关 NSUserActivity 的一些总结：</p>
+<ul>
+<li><strong>Universal Links</strong>: Universal links 是可以在关联应用或者 Safari 中打开的 URL。</li>
+<li><strong>SiriKit</strong>: Siri 可以调起你的应用并且告知你它想要做什么。</li>
+<li><strong>Spotlight</strong>: 定义你的应用可以做的动作，这些动作会被引入 Spotlight 的搜索结果中。</li>
+<li><strong>Handoff</strong>: 即 “接力”，指一个应用可以继续另一个应用的工作，或者一台设备上的相同应用可以继续另一个设备上的应用的工作。</li>
+</ul>
+<p>这篇文档会提供一系列示例，逐步介绍 SwiftUI 中提供的用于处理 NSUserActivity 的方法，其中上面提到的每一种情况都会有示例。</p>
+<h3 id="重要的笔记"><a href="#重要的笔记" class="headerlink" title="重要的笔记"></a>重要的笔记</h3><p>SwiftUI 中跟 NSUserActivity 有关的方法包括：<strong>onOpenURL ()</strong>, <strong>userActivity ()</strong>, <strong>onContinueUserActivity ()</strong> 和 <strong>handlesExternalEvents ()</strong>。注意，这些方法只有当你的应用采用的是 SwiftUI 应用生命周期时才能工作。如果你的项目还是使用 scene delegate，引入这几个方法会在控制台输出下面的消息：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cannot use Scene methods for URL, NSUserActivity, and other External Events </span><br><span class="line">without using SwiftUI Lifecycle. Without SwiftUI Lifecycle, </span><br><span class="line">advertising and handling External Events wastes resources, and will have unpredictable results.</span><br></pre></td></tr></tbody></table></figure>
+
+<p>个人经验，上面的消息中提到的不可预测的结果，实际上完全可以预测：所有这些方法都将被忽略。</p>
+<h3 id="User-Activity-的两面"><a href="#User-Activity-的两面" class="headerlink" title="User Activity 的两面"></a>User Activity 的两面</h3><p>根据 Apple 的 <a href="https://developer.apple.com/documentation/foundation/nsuseractivity" target="_blank" rel="noopener">官方文档</a>，一个用户活动（user activity）对象代表了某个应用在某个时刻的状态：</p>
+<blockquote>
+<p>An <strong>NSUserActivity</strong> object provides a lightweight way to capture the state of your app and put it to use later. You create user activity objects and use them to capture information about what the user was doing, such as viewing app content, editing a document, viewing a web page, or watching a video. When the system launches your app and an activity object is available, your app can use the information in that object to restore itself to an appropriate state.</p>
+<p>某个 <strong>NSUserActivity</strong> 对象提供一种捕捉你的应用状态的轻量级方式。你创建 user activity 对象，并用它们来捕获用户正在做的事情的信息，比如查看应用内容，编辑文档，阅览网页，或者观看视频。当系统启动你的应用时，如果活动对象可用，你的应用可以利用对象中的信息把应用还原成合适的状态。</p>
+</blockquote>
+<p>理解了概念，我们就可以区分用户活动中的两个关键时刻：其一，用户活动创建（稍后说明何时、如何创建）；其二，系统决定启动或者恢复某个应用，并且为应用提供一个 NSUserActivity，以便应用展示相关的 UI。我们接下来会学习如何在应用中对用户活动做出反应。</p>
+<p>注意，尽管一个应用可以有多个 scene，但某个时刻只有一个 scene 会获得用户活动。在本文中我们还将了解到获取用户活动的 scene 是如何被确定的…</p>
+<hr>
+<h3 id="Universal-Links"><a href="#Universal-Links" class="headerlink" title="Universal Links"></a>Universal Links</h3><h5 id="介绍-onOpenURL"><a href="#介绍-onOpenURL" class="headerlink" title="** 介绍 onOpenURL ()**"></a>** 介绍 onOpenURL ()**</h5><p>Universal Links 对于把应用集成到网站十分有用。建立 Universal Links 需要几个步骤，Apple 为其提供了详细的文档：<a href="https://developer.apple.com/ios/universal-links/" target="_blank" rel="noopener">Universal Links</a>。</p>
+<p>在 SwiftUI 中使用 <strong>NSUserActivity</strong> 的所有用法中，Universal Links 是最容易实现的。尽管 Universal Links 本质上是使用 NSUserActivity 来启动或者恢复你的应用，但假如你的应用是走 SwiftUI 应用生命周期，你却根本看不到 NSUserActivity 的踪影！</p>
+<p>在 UIKit 里实现 Universal Links ，一般是在 scene delegate 里这么做：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">scene</span><span class="params">(<span class="number">_</span> scene: UIScene, <span class="keyword">continue</span> userActivity: NSUserActivity)</span></span> {</span><br><span class="line">    <span class="keyword">if</span> userActivity.activityType == <span class="type">NSUserActivityTypeBrowsingWeb</span>  {</span><br><span class="line">        doSomethingWith (url: userActivity.webpageURL)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>但现在没有了 scene delegate，我们只需要简单地使用 <code>onOpenURL</code> 方法，它会得到 <code>URL</code> 对象，而不是 NSUserActivity 对象：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">SomeView</span>()</span><br><span class="line">            .onOpenURL { url <span class="keyword">in</span></span><br><span class="line">                doSomethingWith (url: url)</span><br><span class="line">            }</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doSomethingWith</span><span class="params">(url: URL?)</span></span> {</span><br><span class="line">        ...</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="SiriKit"><a href="#SiriKit" class="headerlink" title="SiriKit"></a>SiriKit</h3><h5 id="介绍-onContinueUserActivity"><a href="#介绍-onContinueUserActivity" class="headerlink" title="** 介绍 onContinueUserActivity ()**"></a>** 介绍 onContinueUserActivity ()**</h5><p>我们可以给一个应用中的特定部分定义快捷指令。在 iOS 中，这个动作可以借助 “快捷指令” 应用来实现，但我们也可以在应用内通过代码实现。UIKit 有一些专门的 UI 元素来处理这件事，但 SwiftUI 中并没有直接可用的方法，所以这一节中的例子会包含一个 UIViewControllerRepresentable，它的作用是提供一个按钮，点击这个按钮可以打开系统的模态表单，让用户创建或者编辑快捷指令。</p>
+<p>一旦快捷指令创建，我们就可以调用 Siri 指令来执行它。它会启动或者恢复我们的应用，并且通过 NSUserActivity 提供用户希望我们执行的快捷指令的细节信息。SwiftUI 对此为我们提供了一个 <strong>onContinueUserActivity ()</strong></p>
+<p>在下面的例子中，通过指令 “Hey Siri, show random animal” （或者某些其它的预置指令），系统会启动我们的应用并导航到某个随机的动物视图。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> Intents</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 </span></span><br><span class="line"><span class="keyword">let</span> aType = <span class="string">"com.example.show-animal"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Animal</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> image: <span class="type">String</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> animals = [<span class="type">Animal</span>(id: <span class="number">1</span>, name: <span class="string">"Lion"</span>, image: <span class="string">"lion"</span>),</span><br><span class="line">               <span class="type">Animal</span>(id: <span class="number">2</span>, name: <span class="string">"Fox"</span>, image: <span class="string">"fox"</span>),</span><br><span class="line">               <span class="type">Animal</span>(id: <span class="number">3</span>, name: <span class="string">"Panda"</span>, image: <span class="string">"panda-bear"</span>),</span><br><span class="line">               <span class="type">Animal</span>(id: <span class="number">4</span>, name: <span class="string">"Elephant"</span>, image: <span class="string">"elephant"</span>)]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selection: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">NavigationView</span> {</span><br><span class="line">            <span class="type">List</span>(animals) { animal <span class="keyword">in</span></span><br><span class="line">                <span class="type">NavigationLink</span>(</span><br><span class="line">                    destination: <span class="type">AnimalDetail</span>(animal: animal),</span><br><span class="line">                    tag: animal.id,</span><br><span class="line">                    selection: $selection,</span><br><span class="line">                    label: { <span class="type">AnimalRow</span>(animal: animal) })</span><br><span class="line">            }</span><br><span class="line">            .navigationTitle (<span class="string">"Animal Gallery"</span>)</span><br><span class="line">            .onContinueUserActivity (aType, perform: { userActivity <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">self</span>.selection = <span class="type">Int</span>.random (<span class="keyword">in</span>: <span class="number">0</span>...(animals.<span class="built_in">count</span> - <span class="number">1</span>))</span><br><span class="line">            })</span><br><span class="line">            </span><br><span class="line">        }.navigationViewStyle (<span class="type">StackNavigationViewStyle</span>())</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AnimalRow</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> animal: <span class="type">Animal</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">HStack</span> {</span><br><span class="line">            <span class="type">Image</span>(animal.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .frame (width: <span class="number">60</span>, height: <span class="number">60</span>)</span><br><span class="line"></span><br><span class="line">            <span class="type">Text</span>(animal.name)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AnimalDetail</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> showAddToSiri: <span class="type">Bool</span> = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">let</span> animal: <span class="type">Animal</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> shortcut: <span class="type">INShortcut</span> = {</span><br><span class="line">        <span class="keyword">let</span> activity = <span class="type">NSUserActivity</span>(activityType: aType)</span><br><span class="line">        activity.title = <span class="string">"Display a random animal"</span></span><br><span class="line">        activity.suggestedInvocationPhrase = <span class="string">"Show Random Animal"</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="type">INShortcut</span>(userActivity: activity)</span><br><span class="line">    }()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span>(spacing: <span class="number">20</span>) {</span><br><span class="line">            <span class="type">Text</span>(animal.name)</span><br><span class="line">                .font (.title)</span><br><span class="line"></span><br><span class="line">            <span class="type">Image</span>(animal.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .scaledToFit ()</span><br><span class="line">            </span><br><span class="line">            <span class="type">SiriButton</span>(shortcut: shortcut).frame (height: <span class="number">34</span>)</span><br><span class="line"></span><br><span class="line">            <span class="type">Spacer</span>()</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>下面是用于创建快捷指令和编辑模态表单的 <strong>UIViewControllerRepresentable</strong>：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> IntentsUI</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SiriButton</span>: <span class="title">UIViewControllerRepresentable</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> shortcut: <span class="type">INShortcut</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeUIViewController</span><span class="params">(context: Context)</span></span> -&gt; <span class="type">SiriUIViewController</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">SiriUIViewController</span>(shortcut: shortcut)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">updateUIViewController</span><span class="params">(<span class="number">_</span> uiViewController: SiriUIViewController, context: Context)</span></span> {</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SiriUIViewController</span>: <span class="title">UIViewController</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> shortcut: <span class="type">INShortcut</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(shortcut: <span class="type">INShortcut</span>) {</span><br><span class="line">        <span class="keyword">self</span>.shortcut = shortcut</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(nibName: <span class="literal">nil</span>, bundle: <span class="literal">nil</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder: <span class="type">NSCoder</span>) {</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init (coder:) has not been implemented"</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> {</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad ()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> button = <span class="type">INUIAddVoiceShortcutButton</span>(style: .blackOutline)</span><br><span class="line">        button.shortcut = shortcut</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.view.addSubview (button)</span><br><span class="line">        view.centerXAnchor.constraint (equalTo: button.centerXAnchor).isActive = <span class="literal">true</span></span><br><span class="line">        view.centerYAnchor.constraint (equalTo: button.centerYAnchor).isActive = <span class="literal">true</span></span><br><span class="line">        button.translatesAutoresizingMaskIntoConstraints = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">        button.delegate = <span class="keyword">self</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIAddVoiceShortcutButtonDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">present</span><span class="params">(<span class="number">_</span> addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, <span class="keyword">for</span> addVoiceShortcutButton: INUIAddVoiceShortcutButton)</span></span> {</span><br><span class="line">        addVoiceShortcutViewController.delegate = <span class="keyword">self</span></span><br><span class="line">        addVoiceShortcutViewController.modalPresentationStyle = .formSheet</span><br><span class="line">        present (addVoiceShortcutViewController, animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">present</span><span class="params">(<span class="number">_</span> editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, <span class="keyword">for</span> addVoiceShortcutButton: INUIAddVoiceShortcutButton)</span></span> {</span><br><span class="line">        editVoiceShortcutViewController.delegate = <span class="keyword">self</span></span><br><span class="line">        editVoiceShortcutViewController.modalPresentationStyle = .formSheet</span><br><span class="line">        present (editVoiceShortcutViewController, animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIAddVoiceShortcutViewControllerDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addVoiceShortcutViewController</span><span class="params">(<span class="number">_</span> controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addVoiceShortcutViewControllerDidCancel</span><span class="params">(<span class="number">_</span> controller: INUIAddVoiceShortcutViewController)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIEditVoiceShortcutViewControllerDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewController</span><span class="params">(<span class="number">_</span> controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewController</span><span class="params">(<span class="number">_</span> controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewControllerDidCancel</span><span class="params">(<span class="number">_</span> controller: INUIEditVoiceShortcutViewController)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="Spotlight"><a href="#Spotlight" class="headerlink" title="Spotlight"></a>Spotlight</h3><h5 id="介绍-userActivity"><a href="#介绍-userActivity" class="headerlink" title="** 介绍 userActivity ()**"></a>** 介绍 userActivity ()**</h5><p>Spotlight 的搜索结果可以包含应用中的通用活动。为了让 Spotlight 学会你的活动，你需要在这些活动出现时对外发布，以便 Spotlight 发现它们。要在 SwiftUI 中发布 NSUserActivities，我们需要使用 <strong>userActivity ()</strong> modifier。</p>
+<p>在下面的例子中，我们有一个售卖冰淇淋的应用。每当我们选择了某个冰淇淋尺寸，应用将对外发布冰淇淋尺寸；每当有用户搜索冰淇淋时，我们的应用将出现在搜索结果中。如果用户选择了我们的应用对于的搜索结果项，我们的应用将被调起，并且将用户带到最后公布的冰淇淋尺寸。</p>
+<p>注意，系统会优化 <strong>userActivity ()</strong> 闭包的调用时机。然而不幸的是，这一点并没有文档说明。系统很聪明，知道该如何保存当前的信息，避免不停更新。在调试的时候，建议你最好在 userActivity 闭包中加入打印语句。</p>
+<p>下面的例子中还包含了一个 “Forget” 按钮，这对于调试十分有帮助。它会清除掉已经发布的用户活动，以便将应用从 Spotlight 的搜索结果中移除。注意，NSUserActivity 有一个可选属性：<strong>expirationDate</strong>，如果将其置为 <code>nil</code>，则活动永远不会过期。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> Intents</span><br><span class="line"><span class="keyword">import</span> CoreSpotlight</span><br><span class="line"><span class="keyword">import</span> CoreServices</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 </span></span><br><span class="line"><span class="keyword">let</span> aType = <span class="string">"com.example.icecream-selection"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamSize</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> price: <span class="type">Float</span></span><br><span class="line">    <span class="keyword">let</span> image: <span class="type">String</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sizes = [</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">1</span>, name: <span class="string">"Small"</span>, price: <span class="number">1.0</span>, image: <span class="string">"small"</span>),</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">2</span>, name: <span class="string">"Medium"</span>, price: <span class="number">1.45</span>, image: <span class="string">"medium"</span>),</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">3</span>, name: <span class="string">"Large"</span>, price: <span class="number">1.9</span>, image: <span class="string">"large"</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selection: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">NavigationView</span> {</span><br><span class="line">            <span class="type">List</span>(sizes) { size <span class="keyword">in</span></span><br><span class="line">                <span class="type">NavigationLink</span>(destination: <span class="type">IceCreamDetail</span>(icecream: size),</span><br><span class="line">                               tag: size.id,</span><br><span class="line">                               selection: $selection,</span><br><span class="line">                               label: { <span class="type">IceCreamRow</span>(icecream: size) })</span><br><span class="line">            }</span><br><span class="line">            .navigationTitle (<span class="string">"Ice Creams"</span>)</span><br><span class="line">            .toolbar {</span><br><span class="line">                <span class="type">Button</span>(<span class="string">"Forget"</span>) {</span><br><span class="line">                    <span class="type">NSUserActivity</span>.deleteAllSavedUserActivities {</span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">"done!"</span>)</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">        }</span><br><span class="line">        .onContinueUserActivity (aType, perform: { userActivity <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> icecreamId = userActivity.userInfo?[<span class="string">"sizeId"</span>] <span class="keyword">as</span>? <span class="type">NSNumber</span> {</span><br><span class="line">                selection = icecreamId.intValue</span><br><span class="line"></span><br><span class="line">            }</span><br><span class="line">        })</span><br><span class="line">        .navigationViewStyle (<span class="type">StackNavigationViewStyle</span>())</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamRow</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> icecream: <span class="type">IceCreamSize</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">HStack</span> {</span><br><span class="line">            <span class="type">Image</span>(icecream.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .frame (width: <span class="number">80</span>, height: <span class="number">80</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="type">VStack</span>(alignment: .leading) {</span><br><span class="line">                <span class="type">Text</span>(<span class="string">"\(icecream.name)"</span>).font (.title).fontWeight (.bold)</span><br><span class="line">                <span class="type">Text</span>(<span class="string">"$ \(String (format:"</span>%<span class="number">0</span>.2f<span class="string">", icecream.price))"</span>).font (.subheadline)</span><br><span class="line">                <span class="type">Spacer</span>()</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamDetail</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> icecream: <span class="type">IceCreamSize</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Text</span>(<span class="string">"\(icecream.name)"</span>).font (.title).fontWeight (.bold)</span><br><span class="line">            <span class="type">Text</span>(<span class="string">"$ \(String (format:"</span>%<span class="number">0</span>.2f<span class="string">", icecream.price))"</span>).font (.subheadline)</span><br><span class="line"></span><br><span class="line">            <span class="type">Image</span>(icecream.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .scaledToFit ()</span><br><span class="line">            </span><br><span class="line">            <span class="type">Spacer</span>()</span><br><span class="line">        }</span><br><span class="line">        .userActivity (aType) { userActivity <span class="keyword">in</span></span><br><span class="line">            userActivity.isEligibleForSearch = <span class="literal">true</span></span><br><span class="line">            userActivity.title = <span class="string">"\(icecream.name) Ice Cream"</span></span><br><span class="line">            userActivity.userInfo = [<span class="string">"sizeId"</span>: icecream.id]</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> attributes = <span class="type">CSSearchableItemAttributeSet</span>(itemContentType: kUTTypeItem <span class="keyword">as</span> <span class="type">String</span>)</span><br><span class="line">            </span><br><span class="line">            attributes.contentDescription = <span class="string">"Get a delicious ice cream now!"</span></span><br><span class="line">            attributes.thumbnailData = <span class="type">UIImage</span>(named: icecream.image)?.pngData ()</span><br><span class="line">            userActivity.contentAttributeSet = attributes</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"Advertising: \(icecream.name)"</span>)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="Handoff-接力"><a href="#Handoff-接力" class="headerlink" title="Handoff - 接力"></a>Handoff - 接力</h3><p>基于已经介绍的方法，我们可以创建一个接力应用了。这将是一个可以在另外的设备上接力工作的应用。两个设备上的应用可以是同一个应用或者不同的应用。这种情况通常发生在我们分发了应用的两个不同版本的时候：比如一个是 iOS 版本，另一个是 macOS 版本。</p>
+<p>为了让接力能够工作，相关的应用都需要注册在同一个开发者团队的标识下面，并且在所有参与的应用的 Info.plist 中配置 <strong>NSUserActivityTypes</strong> 实体。</p>
+<p>有关于接力的更多实现细节，可以参考 Apple 的 <a href="https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Handoff/AdoptingHandoff/AdoptingHandoff.html" target="_blank" rel="noopener">网站</a>。</p>
+<p>下面的示例实现了一个简单的 web 浏览器，通过调用 <strong>userActivity ()</strong> 发布用户正在浏览的页面以及他在页面上滚动的位置。</p>
+<p>假如用户切换到了另一个设备，当同一个应用被调起或者恢复时，<strong>onContinueUserActivity ()</strong> 闭包将被调用，应用可以借此打开同一个页面，并且滚动到他在之前设备上浏览到的页面位置。</p>
+<p>用户活动可以通过 userInfo 字典的形式提供负载数据，它是我们存放特定于接力活动信息的地方。在这个示例中，即页面滚动位置（百分比）和所打开页面的 URL。此外，还包含了发布此活动的应用的 bundle id，它只是用来调试的信息，便于我们准确地知道发生的事情。</p>
+<p>注意，示例的代码在 iOS 和 macOS 上都能工作，这是为了让你能够同时创建两个应用，并且测试 iOS 设备和 Mac 设备之间的接力。</p>
+<p>最后，虽然跟 NSUserActivity 无关，这个示例还封装了一个 WKWebView，这是演示 javascript 事件（这个示例中的 <code>onScroll</code>）如何更新你的 SwiftUI 视图绑定的绝佳示例。完整的 WebView 代码可以从下面的 gist 文件找到：<a href="https://gist.github.com/swiftui-lab/a873bf413770db6fd1a525fa424ce8cd" target="_blank" rel="noopener">WebView.swift</a></p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 </span></span><br><span class="line"><span class="keyword">let</span> activityType = <span class="string">"com.example.openpage"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">StateObject</span> <span class="keyword">var</span> data = <span class="type">WebViewData</span>()</span><br><span class="line">    </span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> reload: <span class="type">Bool</span> = <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">HStack</span> {</span><br><span class="line">                <span class="type">TextField</span>(<span class="string">""</span>, text: $data.urlBar, onCommit: { <span class="keyword">self</span>.loadUrl (data.urlBar) })</span><br><span class="line">                    .textFieldStyle (<span class="type">RoundedBorderTextFieldStyle</span>())</span><br><span class="line">                    .disableAutocorrection (<span class="literal">true</span>)</span><br><span class="line">                    .modifier (<span class="type">KeyboardModifier</span>())</span><br><span class="line">                    .frame (maxWidth: .infinity)</span><br><span class="line">                    .overlay (<span class="type">ProgressView</span>().opacity (<span class="keyword">self</span>.data.loading ? <span class="number">1</span> : <span class="number">0</span>).scaleEffect (<span class="number">0.5</span>), alignment: .trailing)</span><br><span class="line">                </span><br><span class="line">                </span><br><span class="line">                <span class="type">Button</span>(action: {</span><br><span class="line">                    <span class="keyword">self</span>.data.scrollOnLoad = <span class="keyword">self</span>.data.scrollPercent</span><br><span class="line">                    <span class="keyword">self</span>.reload.toggle ()</span><br><span class="line">                }, label: { <span class="type">Image</span>(systemName: <span class="string">"arrow.clockwise"</span>) })</span><br><span class="line">                </span><br><span class="line">                <span class="type">Button</span>(<span class="string">"Go"</span>) {</span><br><span class="line">                    <span class="keyword">self</span>.loadUrl (data.urlBar)</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            .padding (.horizontal, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">            <span class="type">Text</span>(<span class="string">"\(data.scrollPercent)"</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="type">WebView</span>(data: data)</span><br><span class="line">                .id (reload)</span><br><span class="line">                .onAppear { loadUrl (data.urlBar) }</span><br><span class="line">        }</span><br><span class="line">        .userActivity (activityType, element: data.url) { url, activity <span class="keyword">in</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> bundleid = <span class="type">Bundle</span>.main.bundleIdentifier ?? <span class="string">""</span></span><br><span class="line">            </span><br><span class="line">            activity.addUserInfoEntries (from: [<span class="string">"scrollPercent"</span>: data.scrollPercent,</span><br><span class="line">                                               <span class="string">"page"</span>: data.url?.absoluteString ?? <span class="string">""</span>,</span><br><span class="line">                                               <span class="string">"setby"</span>: bundleid])</span><br><span class="line">            </span><br><span class="line">            logUserActivity (activity, label: <span class="string">"activity"</span>)</span><br><span class="line">        }</span><br><span class="line">        .onContinueUserActivity (activityType, perform: { userActivity <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> page = userActivity.userInfo?[<span class="string">"page"</span>] <span class="keyword">as</span>? <span class="type">String</span> {</span><br><span class="line">                <span class="comment">// Load handoff page</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">self</span>.data.url?.absoluteString != page {</span><br><span class="line">                    <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: page)</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// Restore handoff scroll position</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> scrollPercent = userActivity.userInfo?[<span class="string">"scrollPercent"</span>] <span class="keyword">as</span>? <span class="type">Float</span> {</span><br><span class="line">                    <span class="keyword">self</span>.data.scrollOnLoad = scrollPercent</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">            logUserActivity (userActivity, label: <span class="string">"on activity"</span>)</span><br><span class="line">        })</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">loadUrl</span><span class="params">(<span class="number">_</span> string: String)</span></span> {</span><br><span class="line">        <span class="keyword">if</span> string.hasPrefix (<span class="string">"http"</span>) {</span><br><span class="line">            <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: string)</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: <span class="string">"https://"</span> + string)</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.data.urlBar = <span class="keyword">self</span>.data.url?.absoluteString ?? string</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">logUserActivity</span><span class="params">(<span class="number">_</span> activity: NSUserActivity, label: String = <span class="string">""</span>)</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(label) TYPE = \(activity.activityType)"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(label) INFO = \(activity.userInfo ?? [:])"</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">KeyboardModifier</span>: <span class="title">ViewModifier</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">body</span><span class="params">(content: Content)</span></span> -&gt; some <span class="type">View</span> {</span><br><span class="line">        #<span class="keyword">if</span> os (iOS)</span><br><span class="line">            <span class="keyword">return</span> content</span><br><span class="line">                .keyboardType (.<span class="type">URL</span>)</span><br><span class="line">                .textContentType (.<span class="type">URL</span>)</span><br><span class="line">        #<span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> content</span><br><span class="line">        #endif</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="Scene-选择"><a href="#Scene-选择" class="headerlink" title="Scene 选择"></a>Scene 选择</h3><h5 id="介绍-handlesExternalEvents"><a href="#介绍-handlesExternalEvents" class="headerlink" title="** 介绍 handlesExternalEvents ()**"></a>** 介绍 handlesExternalEvents ()**</h5><p>当系统启动或者恢复我们的应用的时候，它必须确定哪个 scene 能够接受到用户活动（某一个时刻只有一个能接收到）。为了帮助它做出这个决策，我们的应用可以用上 <strong>handlesExternalEvents ()</strong> 方法。不幸运是，写这篇文档的时候 (Xcode 12, beta 6)，这个方法貌似不起作用，而且 macOS 上虽然有支持，但缺少平台定义文件。</p>
+<p>所以我这里将通过注释来说明它的工作方式，等将来真正可用时，我会更新这篇文章。</p>
+<p>这个方法有两个版本。一个用于 WindowGroup 场景：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handlesExternalEvents</span><span class="params">(matching conditions: Set&lt;String&gt;)</span></span> -&gt; some <span class="type">Scene</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>另一个用于视图：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handlesExternalEvents</span><span class="params">(preferring: Set&lt;String&gt;, allowing: Set&lt;String&gt;)</span></span> -&gt; some <span class="type">View</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>两种版本中我们都会指定一个字符串 <code>Set</code>，系统用它来跟 NSUserActivity 的 <strong>targetContentIdentifier</strong> 属性做比对。假如找到匹配项，对应的 scene 会被选用。如果不指定这个 <code>Set</code>，或者没有找到匹配项，则实际行为由具体平台决定。例如，在 iPadOS 上会选择一个已经现有的 scene，而在 macOS 上，新的 scene 会被创建。</p>
+<p>在只支持一个 scene 的系统上，这个方法将被忽略。</p>
+<p>注意，<strong>targetContentIdentifier</strong> 在 <strong>UNNotificationContent</strong> 和 <strong>UIApplicationShortcutItem</strong> 中也有提供，因此 <strong>handlesExternalEvents ()</strong> 大概率也会支持它们。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Apple 关于 NSUserActivity 的文档资料非常多，所以我建议你去查阅这些文档。但目前 缺少 SwiftUI 的示例。这篇文章的目的就是为你提供一些在 SwiftUI 中实践 NSUserActivity 的启动代码。</p>
+<hr>
+<p>封面来自 <a href="https://unsplash.com/@chewy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener">Chewy</a> on <a href="https://unsplash.com/s/photos/nature?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/whats-new-in-swift-5-3/" rel="bookmark">Swift 5.3 新特性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/break-down-complexity-with-pipelines/" rel="bookmark">用 “流水线” 设计拆解复杂处理流程</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/ui-programming-howto/" rel="bookmark">聊一聊 UI 代码要怎么写 | 分治篇</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-optionals/" rel="bookmark">极速 Swift 教程之十 | 可选型</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/swiftswift-protocol/" rel="bookmark">极速 Swift 教程之九 | 协议</a></div>
+    </li>
+  </ul>
+<div class="post-widgets">
+    <div class="likely">
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script>
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://theinfinitegame.tech/programming/use-nsuseractivity-in-swiftui/" title="在 SwiftUI 中使用 NSUserActivity">https://theinfinitegame.tech/programming/use-nsuseractivity-in-swiftui/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+              <a href="/tags/SwiftUI/" rel="tag"># SwiftUI</a>
+              <a href="/tags/iOS-%E5%BC%80%E5%8F%91/" rel="tag"># iOS 开发</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/programming/whats-new-in-swift-5-3/" rel="prev" title="Swift 5.3 新特性">
+      <i class="fa fa-chevron-left"></i> Swift 5.3 新特性
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">重要的笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Activity-%E7%9A%84%E4%B8%A4%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">User Activity 的两面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Universal-Links"><span class="nav-number">3.</span> <span class="nav-text">Universal Links</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-onOpenURL"><span class="nav-number">3.0.1.</span> <span class="nav-text">** 介绍 onOpenURL ()**</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SiriKit"><span class="nav-number">4.</span> <span class="nav-text">SiriKit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-onContinueUserActivity"><span class="nav-number">4.0.1.</span> <span class="nav-text">** 介绍 onContinueUserActivity ()**</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spotlight"><span class="nav-number">5.</span> <span class="nav-text">Spotlight</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-userActivity"><span class="nav-number">5.0.1.</span> <span class="nav-text">** 介绍 userActivity ()**</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handoff-%E6%8E%A5%E5%8A%9B"><span class="nav-number">6.</span> <span class="nav-text">Handoff - 接力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scene-%E9%80%89%E6%8B%A9"><span class="nav-number">7.</span> <span class="nav-text">Scene 选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-handlesExternalEvents"><span class="nav-number">7.0.1.</span> <span class="nav-text">** 介绍 handlesExternalEvents ()**</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+      <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">244k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:42</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

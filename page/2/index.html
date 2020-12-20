@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -59,9 +59,7 @@
 <meta property="og:description" content="Stay hungry, stay foolish.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="tech">
-<meta property="article:tag" content=" life">
-<meta property="article:tag" content=" philosophy">
+<meta property="article:tag" content="tech, life, philosophy">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://theinfinitegame.tech/page/2/">
@@ -75,7 +73,7 @@
     isPost: false
   };
 </script>
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
   <title>The Infinite Game</title>
   
 
@@ -107,6 +105,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
 </head>
 
@@ -222,6 +222,158 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/uncategorized/note-swiftui-dynamic-user-notification-on-apple-watch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/uncategorized/note-swiftui-dynamic-user-notification-on-apple-watch/" class="post-title-link" itemprop="url">note-swiftui-dynamic-user-notification-on-apple-watch</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-01 17:08:42" itemprop="dateCreated datePublished" datetime="2020-03-01T17:08:42+08:00">2020-03-01</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>14k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>title: SwiftUI 应用 | 浇水提醒 app<br>top: false<br>date: 2020-03-01 17:08:42<br>tags:</p>
+<ul>
+<li>watchOS</li>
+<li>development</li>
+<li>swiftui<br>categories: development<br>description:</li>
+</ul>
+<hr>
+<h1 id="用-SwiftUI-在-Apple-Watch-上构建动态通知"><a href="#用-SwiftUI-在-Apple-Watch-上构建动态通知" class="headerlink" title="用 SwiftUI 在 Apple Watch 上构建动态通知"></a>用 SwiftUI 在 Apple Watch 上构建动态通知</h1><blockquote>
+<p>译自 <a href="https://augmentedcode.io/2020/02/02/dynamic-user-notification-on-apple-watch-with-swiftui/" target="_blank" rel="noopener">Dynamic user notification on Apple Watch with SwiftUI</a><br>源码地址：<a href="https://github.com/laevandus/WaterMyPlants" target="_blank" rel="noopener">WaterMyPlants</a></p>
+</blockquote>
+<p>集成了推送或者本地通知的 app 可以定制 apple watch 上的通知。本文是关于如何在 apple watch 上实现动态通知的笔记。样例工程实现一个提醒给植物浇水的功能。我们会聚焦在添加通知视图，省略从 iOS app 发送通知的步骤。</p>
+<h2 id="为-Apple-Watch-添加富文本通知添加构建目标"><a href="#为-Apple-Watch-添加富文本通知添加构建目标" class="headerlink" title="为 Apple Watch 添加富文本通知添加构建目标"></a>为 Apple Watch 添加富文本通知添加构建目标</h2><p>如果工程里没有 App Watch app ，你需要添加它。在 Xcode 中，我们新增一个构建目标，并配置成包含通知场景。打开 New -&gt; Target:</p>
+<p><img src="/images/watch_app_target.png" width="80%" height="80%" style="margin: 10 auto;"></p>
+<p>确保 User Interface 选择，并且 “Include Notification Scene” 选中。我们将会把它嵌入当前的 iOS app ，所以 “Embed in Companion App” 要选择当前 app 。值得一提的是，从 iOS 13 和 WatchOS 6 开始，Apple Watch app 已经可以独立存在了。</p>
+<p><img src="/images/watch_app_target_2.png" width="80%" height="80%" style="margin: 10 auto;"></p>
+<p>点击完成，Xcode 会询问激活新的 scheme ，点击激活，它会自动选择新建的目标，所以我们可以直接开始写代码了。先检查工程，会发现 Xcode 加了两个目标：watch app 和 extension。App 包含了 storyboard ，而 extension 包含了所有的代码。 storyboard 是提供基于 <code>WKHostingController</code> 的子类的 HostingController 演示用的场景。这个类负责承载你的 Apple Watch app 的 SwiftUI 视图。另外，还有两个场景，分别是静态和动态通知。我们对动态通知感兴趣，在 storyboard 里可以看见动态视图是由 <code>NotificationController</code> 提供的，它是 <code>WKUserNotificationHostingController</code> 的子类，承载通知的 SwiftUI 视图。这里就是我们给通知提供自定义界面的地方。如果通知的分类和 storyboard 里预先定义的匹配，就会选择动态通知视图。</p>
+<h2 id="解析通知的-payload-并设置动态通知视图"><a href="#解析通知的-payload-并设置动态通知视图" class="headerlink" title="解析通知的 payload 并设置动态通知视图"></a>解析通知的 payload 并设置动态通知视图</h2><p>NotificationController 的职责是消费用户通知的 payload ，并生成 SwiftUI 视图来展示它们。用户通知是从 <code>didReceive</code> 函数接收的，我们需要释放信息，用于视图。在本地测试的时候，我们可以把测试数据写在 <code>PushNotificationPayload.apns</code> 文件里。因为我们要展示的是关于植物的信息，所有我们添加一个植物对象到文件中。同时，我们还需要把通知分类修改成某个有含义的字符串。确保你设置新的分类时正确更新 storyboard 。</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"aps"</span>: {</span><br><span class="line">        <span class="attr">"alert"</span>: {</span><br><span class="line">            <span class="attr">"body"</span>: <span class="string">"Test message"</span>,</span><br><span class="line">            <span class="attr">"title"</span>: <span class="string">"Optional title"</span>,</span><br><span class="line">            <span class="attr">"subtitle"</span>: <span class="string">"Optional subtitle"</span></span><br><span class="line">        },</span><br><span class="line">        <span class="attr">"category"</span>: <span class="string">"WATERING_REMINDER"</span>,</span><br><span class="line">        <span class="attr">"thread-id"</span>: <span class="string">"plantid123"</span></span><br><span class="line">    },</span><br><span class="line">     </span><br><span class="line">    <span class="attr">"plant"</span>: {</span><br><span class="line">        <span class="attr">"id"</span>: <span class="string">"plantid123"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"Aloe"</span>,</span><br><span class="line">        <span class="attr">"lastDate"</span>: <span class="number">1579937802</span>,</span><br><span class="line">        <span class="attr">"nextDate"</span>: <span class="number">1580515200</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/watch_app_target_3.png" width="50%" height="50%" style="margin: 10 auto;"></p>
+<p>当我们访问 <code>UNNotification.request.content.userInfo</code> 拿到植物的信息时，我们可以用 <code>Decodable</code> 和 <code>JSONDecoder</code> 将代表植物的字典转换成值类型。 <code>JSONDecoder</code> 接收 <code>JSON</code> 数据，所以我们先用 <code>JSONSerialization</code> 包装数据，然后把包装的结果传给 <code>JSONDecoder</code> 。 或者我们也可以手动从 <code>userInfo</code> 字典里读取所有的值，然后创建出植物类型。留意，我们需要用 view model 来提供数据给 SwiftUI ，而不是直接使用 <code>Plant</code> 类型。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Plant</span>: <span class="title">Decodable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> lastDate: <span class="type">Date</span></span><br><span class="line">    <span class="keyword">let</span> nextDate: <span class="type">Date</span></span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">do</span> {</span><br><span class="line">        <span class="keyword">let</span> plantInfo = notification.request.content.userInfo [<span class="string">"plant"</span>] <span class="keyword">as</span>! [<span class="type">String</span>: <span class="type">Any</span>]</span><br><span class="line">        <span class="keyword">let</span> data = <span class="keyword">try</span> <span class="type">JSONSerialization</span>.data (withJSONObject: plantInfo, options: [])</span><br><span class="line">        <span class="keyword">let</span> decoder = <span class="type">JSONDecoder</span>()</span><br><span class="line">        decoder.dateDecodingStrategy = .secondsSince1970</span><br><span class="line">        <span class="keyword">let</span> plant = <span class="keyword">try</span> decoder.decode (<span class="type">Plant</span>.<span class="keyword">self</span>, from: data)</span><br><span class="line">        viewModel = <span class="type">NotificationViewModel</span>(plant: plant)</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">catch</span> <span class="keyword">let</span> nsError <span class="keyword">as</span> <span class="type">NSError</span> {</span><br><span class="line">        <span class="built_in">print</span>(nsError.localizedDescription)</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+<p>另外，我们想要添加三个用户可以执行的动作：标记植物已经浇水，推后提醒，或者安排明天再提醒。这些动作是用 <code>UNNotificationAction</code> 实例表示。当用户点击任意其中一个时，<code>UNUserNotificationCenter</code> 的委托方法会被调用，并且带有该动作的 <code>identifier</code> 。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> doneTitle = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationAction_Done"</span>, comment: <span class="string">"Done button title in notification."</span>)</span><br><span class="line"><span class="keyword">let</span> laterTitle = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationAction_Later"</span>, comment: <span class="string">"Later button title in notification."</span>)</span><br><span class="line"><span class="keyword">let</span> tomorrowTitle = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationAction_Tomorrow"</span>, comment: <span class="string">"Tomorrow button title in notification."</span>)</span><br><span class="line">notificationActions = [</span><br><span class="line">    <span class="type">UNNotificationAction</span>(identifier: <span class="string">"water_done"</span>, title: doneTitle, options: []),</span><br><span class="line">    <span class="type">UNNotificationAction</span>(identifier: <span class="string">"water_later"</span>, title: laterTitle, options: []),</span><br><span class="line">    <span class="type">UNNotificationAction</span>(identifier: <span class="string">"water_tomorrow"</span>, title: tomorrowTitle, options: [])</span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure>
+<p><code>NotificationController</code> 的完整实现如下：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">NotificationController</span>: <span class="title">WKUserNotificationHostingController</span>&lt;<span class="title">NotificationView</span>&gt; </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> viewModel: <span class="type">NotificationViewModel?</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> body: <span class="type">NotificationView</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">NotificationView</span>(viewModel: viewModel!)</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> notification: UNNotification)</span></span> {</span><br><span class="line">        <span class="keyword">do</span> {</span><br><span class="line">            <span class="keyword">let</span> plantInfo = notification.request.content.userInfo [<span class="string">"plant"</span>] <span class="keyword">as</span>! [<span class="type">String</span>: <span class="type">Any</span>]</span><br><span class="line">            <span class="keyword">let</span> data = <span class="keyword">try</span> <span class="type">JSONSerialization</span>.data (withJSONObject: plantInfo, options: [])</span><br><span class="line">            <span class="keyword">let</span> decoder = <span class="type">JSONDecoder</span>()</span><br><span class="line">            decoder.dateDecodingStrategy = .secondsSince1970</span><br><span class="line">            <span class="keyword">let</span> plant = <span class="keyword">try</span> decoder.decode (<span class="type">Plant</span>.<span class="keyword">self</span>, from: data)</span><br><span class="line">            viewModel = <span class="type">NotificationViewModel</span>(plant: plant)</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">catch</span> <span class="keyword">let</span> nsError <span class="keyword">as</span> <span class="type">NSError</span> {</span><br><span class="line">            <span class="built_in">print</span>(nsError.localizedDescription)</span><br><span class="line">        }</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">let</span> doneTitle = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationAction_Done"</span>, comment: <span class="string">"Done button title in notification."</span>)</span><br><span class="line">        <span class="keyword">let</span> laterTitle = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationAction_Later"</span>, comment: <span class="string">"Later button title in notification."</span>)</span><br><span class="line">        <span class="keyword">let</span> tomorrowTitle = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationAction_Tomorrow"</span>, comment: <span class="string">"Tomorrow button title in notification."</span>)</span><br><span class="line">        notificationActions = [</span><br><span class="line">            <span class="type">UNNotificationAction</span>(identifier: <span class="string">"water_done"</span>, title: doneTitle, options: []),</span><br><span class="line">            <span class="type">UNNotificationAction</span>(identifier: <span class="string">"water_later"</span>, title: laterTitle, options: []),</span><br><span class="line">            <span class="type">UNNotificationAction</span>(identifier: <span class="string">"water_tomorrow"</span>, title: tomorrowTitle, options: [])</span><br><span class="line">        ]</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="呈现通知的-NotificationView"><a href="#呈现通知的-NotificationView" class="headerlink" title="呈现通知的 NotificationView"></a>呈现通知的 NotificationView</h2><p>上面提到 view model <code>NotificationViewModel</code> 为 NotificationView 提供文本，它主要处理日期的格式化字符。 </p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NotificationViewModel</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> plant: <span class="type">Plant</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">init</span>(plant: <span class="type">Plant</span>) {</span><br><span class="line">        <span class="keyword">self</span>.plant = plant</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> title: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">return</span> plant.name</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> subtitle: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_Subtitle"</span>, comment: <span class="string">"Notification suggestion text"</span>)</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> dateFormatter: <span class="type">DateFormatter</span> = {</span><br><span class="line">        <span class="keyword">let</span> formatter = <span class="type">DateFormatter</span>()</span><br><span class="line">        formatter.dateFormat = <span class="type">DateFormatter</span>.dateFormat (fromTemplate: <span class="string">"dMMMM"</span>, options: <span class="number">0</span>, locale: .current)</span><br><span class="line">        <span class="keyword">return</span> formatter</span><br><span class="line">    }()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> lastWatering: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> format = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_LastWatering"</span>, comment: <span class="string">"Last watering date."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(format: format, dateFormatter.string (from: plant.lastDate))</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> nextWatering: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> format = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_NextWatering"</span>, comment: <span class="string">"Next watering date."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(format: format, dateFormatter.string (from: plant.nextDate))</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>SwiftUI 视图很简单，4 个文本。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NotificationView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> viewModel: <span class="type">NotificationViewModel</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Text</span>(viewModel.title).font (.title)</span><br><span class="line">            <span class="type">Text</span>(viewModel.subtitle).font (.subheadline)</span><br><span class="line">            <span class="type">Divider</span>()</span><br><span class="line">            <span class="type">Text</span>(viewModel.lastWatering).font (.body).multilineTextAlignment (.center)</span><br><span class="line">            <span class="type">Text</span>(viewModel.nextWatering).font (.body).multilineTextAlignment (.center)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/images/watch_notification_1.png" width="30%" height="30%" style="margin: 10 auto;"></p>
+<p><img src="/images/watch_notification_2.png" width="30%" height="30%" style="margin: 10 auto;"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们往一个 iOS app 中添加了 watch app ，实现一个通知分类的动态通知视图。我们学习了如何解析通知数据，添加动作按钮。下一步是在 companion iOS app 里基于按钮的 identifier 处理对应通知动作。</p>
+<hr>
+<h1 id="拉取和显示数据"><a href="#拉取和显示数据" class="headerlink" title="拉取和显示数据"></a>拉取和显示数据</h1><p> 这一节的主题是从 compasion iOS app 的 CoreData 存储中获取数据，需要借助 WatchConnectivity framework 。</p>
+<h2 id="iOS-和-WatchOS-app-之间的-session"><a href="#iOS-和-WatchOS-app-之间的-session" class="headerlink" title="iOS 和 WatchOS app 之间的 session"></a>iOS 和 WatchOS app 之间的 session</h2><p> iOS app 用 CoreData 来存储植物列表，记录了每株植物上一次和下一次浇水的日期。在这里，没有 web 服务，所有的东西都存在设备上。那么如何把持久化存储中的数据拿给 WatchOS app 使用呢？</p>
+<p>我们会用到 WatchConnectivity framework 来做 iOS 和 WatchOS app 之间的交互。连接是在 iOS 和 WatchOS app 上都激活 <code>WCSession</code> 来实现的。因此，第一步是添加一个管理 <code>WCSession</code> 的类到 iOS 工程，我们不妨称它为 WatchConnectivityProvider (稍后也会添加一个相似的类到 WatchOS app)。它的主要职能是建立 <code>WCSession</code> ，处理 <code>WCSessionDelegate</code> ，其中包含从 CoreData 存储拉取数据。因此，有一个叫 <code>NSPersistentContainer</code> 的参数会提供对 <code>CoreData</code> 栈的访问 (借由访问 performBackgroundTask 函数)。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">WatchConnectivityProvider</span>: <span class="title">NSObject</span>, <span class="title">WCSessionDelegate</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> persistentContainer: <span class="type">NSPersistentContainer</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> session: <span class="type">WCSession</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">init</span>(session: <span class="type">WCSession</span> = .<span class="keyword">default</span>, persistentContainer: <span class="type">NSPersistentContainer</span>) {</span><br><span class="line">        <span class="keyword">self</span>.persistentContainer = persistentContainer</span><br><span class="line">        <span class="keyword">self</span>.session = session</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        session.delegate = <span class="keyword">self</span></span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+<p><code>WCSession</code> 是通过调用 activate () 来激活，激活过程是异步的。激活的响应通过 <code>session (_:activationDidCompleteWith:error:)</code> 委托访问返回。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">connect</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="keyword">guard</span> <span class="type">WCSession</span>.isSupported () <span class="keyword">else</span> {</span><br><span class="line">        os_log (.debug, log: .watch, <span class="string">"watch session is not supported"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    os_log (.debug, log: .watch, <span class="string">"activating watch session"</span>)</span><br><span class="line">    session.activate ()</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">session</span><span class="params">(<span class="number">_</span> session: WCSession, </span></span></span><br><span class="line"><span class="function"><span class="params">             activationDidCompleteWith activationState: WCSessionActivationState, </span></span></span><br><span class="line"><span class="function"><span class="params">             error: Error?)</span></span> {</span><br><span class="line">    os_log (.debug, </span><br><span class="line">               log: .watch, </span><br><span class="line">               <span class="string">"did finish activating session % lu (error: % s)"</span>, </span><br><span class="line">               activationState == .activated, </span><br><span class="line">               error?.localizedDescription ?? <span class="string">"none"</span>) </span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>在 watchOS extension target 那边，我们会添加相似的代码，不过名字不一样，叫 “PhoneConnectivityProvider” 。当两个类都创建完成后，我们需要初始化并调用 connect ，分别在 <code>SceneDelegate</code> (iOS) 和 <code>ExtensionDelegate</code> (watchOS) 中完成。注意，在 iOS app 这边，我们需要实现两个委托方面，不过目前我们简单打印就可以了。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sessionDidBecomeInactive</span><span class="params">(<span class="number">_</span> session: WCSession)</span></span> {</span><br><span class="line">    os_log (.debug, log: .watch, <span class="string">"session became inactive"</span>)</span><br><span class="line">}</span><br><span class="line">     </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sessionDidDeactivate</span><span class="params">(<span class="number">_</span> session: WCSession)</span></span> {</span><br><span class="line">    os_log (.debug, log: .watch, <span class="string">"session deactivated"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>为了测试 session ，我们需要先编译并运行，然后在编译运行 watchOS app 。如果一切工作正常， Xcode 调试窗口会打印出消息： “did finish activating session 1 (error: none)”. 这表明 session 已经建立并且正在运行，我们可以两个 app 间发送消息了。</p>
+<h2 id="Fetching-plants-from-iOS-app"><a href="#Fetching-plants-from-iOS-app" class="headerlink" title="Fetching plants from iOS app"></a>Fetching plants from iOS app</h2><p>因为 iOS 和 watchOS app 之间的通信依赖字典，所以第一步是定义一组两个 app 共享使用的 key 。这样可以减少误拼写的风险，所以我们可以添加新文件，并且同时包含到 iOS app target 和 watchOS extension target 中去。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">WatchCommunication</span> </span>{</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> requestKey = <span class="string">"request"</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> responseKey = <span class="string">"response"</span></span><br><span class="line">     </span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Content</span>: <span class="title">String</span> </span>{</span><br><span class="line">        <span class="keyword">case</span> allPlants</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>第二步是在 <code>PhoneConnectivityProvider</code> (watchOS app extension target) 中实现一个 <code>refreshAllPlants (completionHandler)</code> 函数，用来发送消息给 iOS app ，并且等待植物数据的数组返回。 <code>WCSession</code> 有一个叫  <code>sendMessage (_:replyHandler:errorHandler:)</code> 的函数，我们可以用它来发送一个字典给 iOS app ，然后等待 reply handler 。我们会用 WatchCommunication.requestKey 和 WatchCommunication.Content.allPlants 枚举的 rawValue 来构建消息。这种模式便于后续扩展，你只要添加更到 case 到枚举就可以了。在 reply handler 中，我们期望得到一个字典的数组，描述所有的植物。让我们先看一眼完整的实现，然后再讨论字典是如何被转换成 <code>Plant</code> 值类型的。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">refreshAllPlants</span><span class="params">(withCompletionHandler completionHandler: @escaping <span class="params">([Plant]?)</span></span></span> -&gt; <span class="type">Void</span>) {</span><br><span class="line">    <span class="keyword">guard</span> session.activationState == .activated <span class="keyword">else</span> {</span><br><span class="line">        os_log (.debug, log: .phone, <span class="string">"session is not active"</span>)</span><br><span class="line">        completionHandler (<span class="literal">nil</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">let</span> message = [<span class="type">WatchCommunication</span>.requestKey: <span class="type">WatchCommunication</span>.<span class="type">Content</span>.allPlants.rawValue]</span><br><span class="line">    session.sendMessage (message, replyHandler: { (payload) <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">let</span> plantDictionaries = payload [<span class="type">WatchCommunication</span>.requestKey] <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">Any</span>]]</span><br><span class="line">        os_log (.debug, log: .phone, <span class="string">"received % lu plants"</span>, plantDictionaries?.<span class="built_in">count</span> ?? <span class="number">0</span>)</span><br><span class="line">             </span><br><span class="line">        <span class="keyword">let</span> decoder = <span class="type">JSONDecoder</span>()</span><br><span class="line">        decoder.dateDecodingStrategy = .secondsSince1970</span><br><span class="line">        <span class="keyword">let</span> plants = plantDictionaries?.compactMap ({ <span class="type">Plant</span>(dictionary: $<span class="number">0</span>, decoder: decoder) })</span><br><span class="line">        <span class="type">DispatchQueue</span>.main.async {</span><br><span class="line">            completionHandler (plants)</span><br><span class="line">        }</span><br><span class="line">    }, errorHandler: { error <span class="keyword">in</span></span><br><span class="line">        os_log (.debug, log: .phone, <span class="string">"sending message failed: % s"</span>, error.localizedDescription)</span><br><span class="line">    })</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>iOS app 上处理 CoreData 和 Plant 类型的是一个 NSManagedObject 子类的对象。watchOS app extension 定义了它自己的 <code>Plant</code> 值类型，因为它并没有 CoreData 栈。为了将字典转换成值类型，我们可以使用 “Storing struct in UserDefault” 中描述的方法，只需要额外配置 <code>JSONDecoder</code> 使用的 <code>dateDecodingStrategy</code>  为 <code>secondsSince1970</code> 。理由是我们希望以自 1970 年之后的秒数来存储日期。转换字典到值类型的过程用到了 <code>JSONSerialization</code> ，它只支持 <code>NSString</code> ， <code>NSNumber</code> ， <code>NSArray</code> ， <code>NSDictionary</code> ， 或者 <code>NSNull</code> 。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Plant value type in WatchOS app extension</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Plant</span>: <span class="title">Identifiable</span>, <span class="title">Decodable</span>, <span class="title">DictionaryDecodable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> lastWateringDate: <span class="type">Date</span></span><br><span class="line">    <span class="keyword">let</span> nextWateringDate: <span class="type">Date</span></span><br><span class="line">}</span><br><span class="line"><span class="comment">// Plant class in iOS app</span></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Plant</span>: <span class="title">NSManagedObject</span>, <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="meta">@NSManaged</span> <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line">    <span class="meta">@NSManaged</span> <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">     </span><br><span class="line">    <span class="meta">@NSManaged</span> <span class="keyword">var</span> lastWateringDate: <span class="type">Date</span></span><br><span class="line">    <span class="meta">@NSManaged</span> <span class="keyword">var</span> nextWateringDate: <span class="type">Date</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>第三步是在 iOS app 端处理消息，并且提供数据给 watchOS app 。我们需要做的是实现 session 的委托，从 CoreData 栈中获取字典数据。 先看下完整实现，然后逐一拆解。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">session</span><span class="params">(<span class="number">_</span> session: WCSession, didReceiveMessage message: [String: <span class="keyword">Any</span>], replyHandler: @escaping <span class="params">([String: <span class="keyword">Any</span>])</span></span></span> -&gt; <span class="type">Void</span>) {</span><br><span class="line">    os_log (.debug, log: .watch, <span class="string">"did receive message: % s"</span>, message [<span class="type">WatchCommunication</span>.requestKey] <span class="keyword">as</span>? <span class="type">String</span> ?? <span class="string">"unknown"</span>)</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> contentString = message [<span class="type">WatchCommunication</span>.requestKey] <span class="keyword">as</span>? <span class="type">String</span> , <span class="keyword">let</span> content = <span class="type">WatchCommunication</span>.<span class="type">Content</span>(rawValue: contentString) <span class="keyword">else</span> {</span><br><span class="line">        replyHandler ([:])</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">switch</span> content {</span><br><span class="line">    <span class="keyword">case</span> .allPlants:</span><br><span class="line">        persistentContainer.performBackgroundTask { (managedObjectContext) <span class="keyword">in</span>            </span><br><span class="line">            <span class="keyword">let</span> all = <span class="type">Plant</span>.allPlantsDictionaryRepresentation () <span class="keyword">as</span>! [[<span class="type">String</span>: <span class="type">Any</span>]]</span><br><span class="line">            <span class="comment">// Replace Date with Double</span></span><br><span class="line">            <span class="keyword">let</span> converted = all.<span class="built_in">map</span> { (plantDictionary) -&gt; [<span class="type">String</span>: <span class="type">Any</span>] <span class="keyword">in</span></span><br><span class="line">                plantDictionary.mapValues { (value) -&gt; <span class="type">Any</span> <span class="keyword">in</span></span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">let</span> date = value <span class="keyword">as</span>? <span class="type">Date</span> {</span><br><span class="line">                        <span class="keyword">return</span> date.timeIntervalSince1970</span><br><span class="line">                    }</span><br><span class="line">                    <span class="keyword">else</span> {</span><br><span class="line">                        <span class="keyword">return</span> value</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }                </span><br><span class="line">            <span class="keyword">let</span> response = [<span class="type">WatchCommunication</span>.responseKey: converted]</span><br><span class="line">            replyHandler (response)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>第一步是查看接收到的字典，看看 watchOS app 请求的是哪些内容。然后我们访问持久化存储，获取表示 Plant 的字典，把其他的日期转换成 1970 年后秒数的形式 (以便 watchOS app 能够在字典上使用 <code>JSONSerialization</code>)，然后把数据发送回 watchOS app 。注意，从 CoreData 中获取字典形式的 Plant 很容易：我们首先是请求 <code>NSDictionary</code> 类型的数据，并且将结果类型属性设置为 <code>.dictionaryResultType</code> 。对于各庞大的模型，我们可能还会用到属性集合 (propertiesToFetch) 。不过目前，所有的属性都被添加到字典中了。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Plant</span> </span>{</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> entityName = <span class="string">"Plant"</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">makeDictionaryRequest</span><span class="params">()</span></span> -&gt; <span class="type">NSFetchRequest</span>&lt;<span class="type">NSDictionary</span>&gt; {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">NSFetchRequest</span>&lt;<span class="type">NSDictionary</span>&gt;(entityName: entityName)</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">allPlantsDictionaryRepresentation</span><span class="params">()</span></span> -&gt; [<span class="type">NSDictionary</span>] {</span><br><span class="line">        <span class="keyword">let</span> request = makeDictionaryRequest ()</span><br><span class="line">        request.resultType = .dictionaryResultType</span><br><span class="line">        <span class="keyword">do</span> {</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">try</span> request.execute ()</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">catch</span> <span class="keyword">let</span> nsError <span class="keyword">as</span> <span class="type">NSError</span> {</span><br><span class="line">            os_log (.debug, log: .plants, <span class="string">"failed fetching all plants with error % s % s"</span>, nsError, nsError.userInfo)</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="用-SwiftUI-在-watchOS-app-中构建-UI"><a href="#用-SwiftUI-在-watchOS-app-中构建-UI" class="headerlink" title="用 SwiftUI 在 watchOS app 中构建 UI"></a>用 SwiftUI 在 watchOS app 中构建 UI</h2><p>Xcode 中 watchOS app 的模板是借助 storyboard 初始化 <code>HostingController</code>， 这个控制器负责提供初始的 SwiftUI 视图。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HostingController</span>: <span class="title">WKHostingController</span>&lt;<span class="title">PlantListView</span>&gt; </span>{</span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> connectivityProvider: <span class="type">PhoneConnectivityProvider</span> = {</span><br><span class="line">        <span class="keyword">let</span> provider = <span class="type">PhoneConnectivityProvider</span>()</span><br><span class="line">        provider.connect ()</span><br><span class="line">        <span class="keyword">return</span> provider</span><br><span class="line">    }()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> listViewModel = <span class="type">PlantListViewModel</span>(connectivityProvider: connectivityProvider)</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> body: <span class="type">PlantListView</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">PlantListView</span>(viewModel: listViewModel)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><code>PlantListView</code> 是一个显示植物列表的简单视图，它用 <code>PhoneConnectivityProvider</code> 的 <code>refreshAllPlants (withCompletionHandler:)</code> 来处理刷新植物的逻辑。 SwiftUI 视图会在 view model 改变时自动更新。这是因为 view model 的 <code>plants</code> 属性使用了 <code>@Published</code> 属性包装器，而 view model 本身是 <code>ObservableObject</code> ，这是 SwiftUI 视图中为 view model 采用的属性包装器 (更多信息可以阅读 refreshing SwiftUI view in MVVM in SwiftUI) 。注意，这里的 view model 是 SwiftUI 视图显现时刷新内容的。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">PlantListViewModel</span>: <span class="title">ObservableObject</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> connectivityProvider: <span class="type">PhoneConnectivityProvider</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">init</span>(plants: [<span class="type">Plant</span>] = [], connectivityProvider: <span class="type">PhoneConnectivityProvider</span>) {</span><br><span class="line">        <span class="keyword">self</span>.plants = plants</span><br><span class="line">        <span class="keyword">self</span>.connectivityProvider = connectivityProvider</span><br><span class="line">        refresh ()</span><br><span class="line">    }</span><br><span class="line">    @<span class="type">Published</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> plants: [<span class="type">Plant</span>]</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">refresh</span><span class="params">()</span></span> {</span><br><span class="line">        connectivityProvider.refreshAllPlants { [<span class="keyword">weak</span> <span class="keyword">self</span>] (plants) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> plants = plants <span class="keyword">else</span> { <span class="keyword">return</span> }</span><br><span class="line">            <span class="keyword">self</span>?.plants = plants</span><br><span class="line">        }</span><br><span class="line">    }    </span><br><span class="line">}</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PlantListView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">ObservedObject</span> <span class="keyword">var</span> viewModel: <span class="type">PlantListViewModel</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">List</span>(<span class="keyword">self</span>.viewModel.plants) { plant <span class="keyword">in</span></span><br><span class="line">                <span class="type">PlantCell</span>(viewModel: <span class="type">PlantCellViewModel</span>(plant: plant))</span><br><span class="line">            }</span><br><span class="line">        }.onAppear {</span><br><span class="line">            <span class="keyword">self</span>.viewModel.refresh ()</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><code>PlantListView</code> 用 <code>PlantCell</code> 来显示独立的视图。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PlantCell</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> viewModel: <span class="type">PlantCellViewModel</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span>(spacing: <span class="number">4</span>) {</span><br><span class="line">            <span class="type">Text</span>(viewModel.title).font (.headline).multilineTextAlignment (.center)</span><br><span class="line">            <span class="type">Text</span>(viewModel.subtitle).font (.footnote).multilineTextAlignment (.center)</span><br><span class="line">        }.padding (<span class="number">8</span>)</span><br><span class="line">            .frame (minWidth: <span class="number">0</span>, maxWidth: .greatestFiniteMagnitude)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PlantCellViewModel</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> plant: <span class="type">Plant</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> title: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">return</span> plant.name</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">let</span> dateFormatter: <span class="type">DateFormatter</span> = {</span><br><span class="line">        <span class="keyword">let</span> formatter = <span class="type">DateFormatter</span>()</span><br><span class="line">        formatter.dateFormat = <span class="type">DateFormatter</span>.dateFormat (fromTemplate: <span class="string">"dMMMM"</span>, options: <span class="number">0</span>, locale: .current)</span><br><span class="line">        <span class="keyword">return</span> formatter</span><br><span class="line">    }()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> subtitle: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> format = <span class="type">NSLocalizedString</span>(<span class="string">"PlantCellView_NextWatering"</span>, comment: <span class="string">"Next watering date."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(format: format, <span class="type">Self</span>.dateFormatter.string (from: plant.nextWateringDate))</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>我们在 iOS 和 watchOS app 上都添加 <code>WCSessions</code> ，实现相关的委托方法以处理 session 和接收到的消息。然后，我们定义一个简单的通信模式，并在 watchOS app 端实现刷新植物的方法，在 iOS 端实现 CoreData 集成。当数据访问创建完成后，我们在 watchOS app 上用 SwiftUI 视图显示植物的列表。</p>
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1166,149 +1318,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/development/note-watchos-big-picture/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/development/note-watchos-big-picture/" class="post-title-link" itemprop="url">watchOS 学习笔记 | Big Picture</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-20 11:42:05" itemprop="dateCreated datePublished" datetime="2020-02-20T11:42:05+08:00">2020-02-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/development/" itemprop="url" rel="index">
-                    <span itemprop="name">development</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="watchOS-应用"><a href="#watchOS-应用" class="headerlink" title="watchOS 应用"></a>watchOS 应用</h1><p>相比 macOS，iOS 和 tvOS ，watchOS (目前为止) 并非是完全独立的平台，一定程度上依赖配对的 iPhone 。</p>
-<blockquote>
-<p>watchOS 6.0 之后，watch app 可以独立发布和安装，也就说，应用生态上可以独立了。但是，某些功能要想发挥最大的效用，还要借助 iPhone 设备的计算能力。毕竟，后者目前还是要强大很多。可以这么理解，当需要用到 watch 本身不具备的硬件能力时，如视频拍摄，你仍可以把 watch 视为控制器。这个跟人们看待早期智能手表的视角一致。</p>
-</blockquote>
-<h1 id="Watch-app-和扩展"><a href="#Watch-app-和扩展" class="headerlink" title="Watch app 和扩展"></a>Watch app 和扩展</h1><p>watchOS app 跟 iOS app 最显著的差异是前者被严格的分成了两部分。第一部分称为 Watch app —— 有点混淆对吧？正常理解，两部分加起来才是一个完整的 app 。但字面上，这个主要由 UI 构成的部分就叫 Watch app ，所以我们干脆以 UI 来代表，第二个部分是 WatchKit 扩展。两部分有各自独立的数据容器，如果需要共享容器中的文件，需要用到 <strong>App Groups</strong> 。</p>
-<p>watch OS 6 引入 SwiftUI 后，情况变得有些复杂。因为 SwiftUI 中，UI 即代码。原来的 watch app 部分只有一个 hosting view 。</p>
-<h1 id="这些年-watchOS-的变化"><a href="#这些年-watchOS-的变化" class="headerlink" title="这些年 watchOS 的变化"></a>这些年 watchOS 的变化</h1><p>watchOS 1 中，app UI 运行在 watch 上，但扩展运行在 iPhone 上。扩展可以很容易地与设备上的其他 iOS app 通信，但扩展和 watch UI 之间的通信是设备间的，因此整个 app 运行很慢。</p>
-<p>watchOS 2 中，扩展被移到了 watch 上。watch app 和 iOS app 通信需要借助 <strong>WatchConnectivty framework</strong> 。因为扩展处于 watch 上，所以能用到 SDK 自然变少了。当然，后来各种缺失的 SDK 也被陆续添加到 watchOS 中。</p>
-<p>watchOS 4 中，扩展和 UI 被合为一个进程运行。当然，这一点对开发者来说相对无感，唯一的效果是 app 运行的更快了。</p>
-<p>watch OS 5 以前，WatchKit app 需要依赖 iPhone 的连接来完成大部分通信。它只能连接 iPhone 连接过的 “已知 Wi-Fi 网络” 。watch OS 5 引入了连接全新 WiFi 网络的能力。</p>
-<p>在 watch OS 5 及之前的版本，watch app 总是要求有一个伴生的 iOS app 。watch app 是内置在 iOS app bundle 中，它的安装也是通过先安装 iOS app ，再间接下载到 watch 上来完成的。最近的 watch OS 6 ，watch app 真正意义上宣布独立。你既可以采用之前的 iOS app + watch app 的方式， 也可以只开发独立的 watch app 。watch app 不再是内置在 iOS app 中，两者被分隔在各自平台的 App Store 发布。因此，对于因特网的连接方式，最新的建议是 借助 <strong>URLSession</strong> ，<strong>CloudKit</strong> 等直接下载数据到 watch ，只有在真的需要跟 iPhone 交换数据时才用到 <strong>WatchConnectivity</strong> 。</p>
-<hr>
-<h1 id="多于一个用户接口"><a href="#多于一个用户接口" class="headerlink" title="多于一个用户接口"></a>多于一个用户接口</h1><p>iOS app 通常有一个主要的用户入口。人们想到 iOS app 的时候，通常想到的是主界面上的图标。当然，也有各种扩展可以访问 app 的不同部分，但是通常被认为是主 app 的附属。你使用 app 的主要姿势是打开主 app 。</p>
-<p>来到 watchOS ，情况大不相同。主 UI ，根据你的用例，很有可能不是最常被使用的部分。其主要原因在于 iPhone 和 Apple Watch 完全不同的交互模式。你不可能像在 iPhone 上那样在 watch 的屏幕上花很长的时间浏览内容吧？很显然，那很不舒服。</p>
-<p>对于 watchOS ，Apple 一直重复的关键词是 <strong>glances</strong> 或者说 <strong>glanceable</strong> 。期望的 app 交互方式是：抬起手腕，看表，做一两个点击（或者甚至都不点击），或者转一下数字表冠，然后放下手腕，回到现实。这一系列动作的平均时间是以秒计的。实际上，建议是在 2 秒内让用户找到目标信息 (glanceable) 或者执行动作 (actionable) 。</p>
-<p>如果你用过 watchOS app ，你应该知道通过主 app 找到目标信息需要一点技巧。首先，你要在主屏上那一堆六边形网格中找到 app ，然后点击，等待加载，然后在 app 的不同屏之间寻找你要的东西。基于此，也取决于你的 app 类型，极有可能你的主 UI 只会偶尔被用到。 WatchKit app 实际上提供了一些其他的入口来交互，它们可能更重要。</p>
-<h3 id="Notification"><a href="#Notification" class="headerlink" title="Notification"></a>Notification</h3><p>通知实际上是 watch 的一个绝佳的应用场景。花不到一秒的时间看一眼手表，比从口袋里掏出手机来省事不少吧？许多人会告诉你，他们戴 watch 的主要用途就是看通知。</p>
-<p>但是，通知用的好不好，对不对，主要还是取决于你的 app 类型，通知的目的。比如，你的目的是不定期的通知用户某些事情发生了，通知可以是你的 app 很重要的一部分。典型的，提醒事项 app 。</p>
-<p>watchOS 上通知的 UI 有三种变体：</p>
-<ul>
-<li>只有预制的静态信息</li>
-<li>非交互式的动态信息</li>
-<li>可交互的动态信息，watchOS 5 引入 </li>
-</ul>
-<p>watch OS 6 允许推送绕过 iPhone ，只到达 Apple Watch 的远程通知。</p>
-<h3 id="Glances-Dock"><a href="#Glances-Dock" class="headerlink" title="Glances / Dock"></a>Glances / Dock</h3><p>watchOS 1 开始，引入了一种被叫做 <strong>glance</strong> 的界面，卡片式，可点击，水平滚动。借助 storyboard 上单独的场景构建。</p>
-<p>watchOS 3 开始，<strong>glance</strong> 被废弃，由 <strong>dock</strong> 取代，后者是通过按压表侧的长按钮访问。它的工作方式和 glance 相似，但是卡片的外观是基于主 app 的实际 UI (类似 iOS 上的体验)，通过系统对 app 生命周期某些节点的快照来实现。当你完成滚动，选择了某个 app 后，系统会唤醒这个 app ，不久之后这个 app 实际的 live 视图会更新 dock 的静态图片。</p>
-<p>watch OS 4 之后，dock 变成竖向滚动，跟 iOS 的体验更相似。</p>
-<h3 id="Complications"><a href="#Complications" class="headerlink" title="Complications"></a>Complications</h3><p>“<strong>Complications</strong>“ 是 Apple 给表盘上的各种 widget 取的一个比较有逼格的名字。</p>
-<img src="/images/watch-complications.png" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>Complications 有很多不同的家族，为不同的表盘设计 —— 圆形的，矩形的，小的，大的。这些 complictions 的共同点是展示信息的空间极其有限，一直可见（激活状态），因此需要保持最新状态。</p>
-<p>你可以想象，complication 的特点是不可能通过让 app 持续运行在后台，并且完全访问表盘的方式来实现的。因为这样做电池撑不住。</p>
-<p>Apple 的解决方案是你需要周期性的提前提供一个包含给定时间范围的 <strong>timeline</strong> 数据给 complication 用于显示。系统存储这份数据，到时间点了自动切换到正确的状态。你不能在 complication 里随意显示内容 —— 你只能从给定的 complication 家族中选择预先定义好的模板，然后填充一些精心准备的，允许系统在必要时简化以便适配可用空间的数据。</p>
-<p>这里面的一个挑战是：如何找出有用的东西，填充到这么小的空间里 —— 同时这也是一个能简化工作的约束，因为你只有有限的选项。</p>
-<p>Apple 一开始就说了，complications 只对部分 app 有意义 —— 因而并非每个 app 都有一些关键信息，可以展示为一个数字或者一行文本。不过，从 watchOS 3 开始，官方建议所有的 app 都实现一个 complication ，即便这个 complication 只是一个静态的启动器。（个人认为这个要求对用户的意义在于，用户可以在表盘上添加特定 app 的 complication ，仅仅作为启动器也是有价值的）。技术层面，系统可以针对当前表格的启动器，做一些优化，以便 app 启动更快。</p>
-<h3 id="Siri"><a href="#Siri" class="headerlink" title="Siri"></a>Siri</h3><p>最后一个入口就是 Siri 了， watchOS 5 以后，Siri 可以用于更多的用例，例如发消息，todo list 等等。</p>
-<hr>
-<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p><a href="https://mackuba.eu/2018/12/18/watchkit-adventure-1-the-big-picture/" target="_blank" rel="noopener">MacKuba 关于 WatchKit 的文章 1</a></p>
-<p><a href="https://mackuba.eu/2019/03/06/watchkit-adventure-2-mvc/" target="_blank" rel="noopener">MacKuba 关于 WatchKit 的文章 2</a></p>
-<p><a href="https://github.com/mackuba/SmogWatch" target="_blank" rel="noopener">MacKuba 的一个 apple watch 项目</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1381,7 +1390,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1394,7 +1403,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1449,12 +1458,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
         

@@ -1,157 +1,211 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://theinfinitegame.tech/programming/swiftswift-structs/</loc>
+    <lastmod>2020-12-20</lastmod>
+  </url>
+  <url>
+    <loc>https://theinfinitegame.tech/thinking/the-four-sins-of-spending-time/</loc>
+    <lastmod>2020-12-20</lastmod>
+  </url>
+  <url>
+    <loc>https://theinfinitegame.tech/programming/ui-programming-howto/</loc>
+    <lastmod>2020-12-20</lastmod>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/whats-new-in-swift-5-3/</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>  <url>
+    <lastmod>2020-12-20</lastmod>
+  </url>
+  <url>
+    <loc>https://theinfinitegame.tech/programming/use-nsuseractivity-in-swiftui/</loc>
+    <lastmod>2020-12-20</lastmod>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/development/note-watchos-minimum-viable-complication/</loc>
     <lastmod>2020-04-05</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/unity-portfolio/tfaces-game-match-hero-progress-daily-20191221/</loc>
     <lastmod>2020-04-05</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/unity-portfolio/tfaces-game-match-hero-progress-daily-20200310/</loc>
     <lastmod>2020-04-05</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/development/programming-use-pipeline-to-tackle-complexity/</loc>
     <lastmod>2020-03-17</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/development/note-swiftui-mvvm/</loc>
     <lastmod>2020-03-02</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/uncategorized/note-swiftui-dynamic-user-notification-on-apple-watch/</loc>
     <lastmod>2020-03-02</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/uncategorized/outline-swiftui-tutorials/</loc>
     <lastmod>2020-03-01</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-confidence-interval-for-proportion/</loc>
     <lastmod>2020-02-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/</loc>
     <lastmod>2020-02-27</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/social-science/quantitative-method-philosophy-of-science/</loc>
     <lastmod>2020-02-26</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/development/note-ios-map-api/</loc>
     <lastmod>2020-02-26</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/social-science/quantitative-method-origin/</loc>
     <lastmod>2020-02-26</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/social-science/quantitative-methods-what-science-is/</loc>
     <lastmod>2020-02-26</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/development/note-watchos-big-picture/</loc>
     <lastmod>2020-02-20</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/computer-tech/ar-arkit-overview/</loc>
     <lastmod>2020-02-17</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-probability-distributions/</loc>
     <lastmod>2020-02-17</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-type-i-and-type-ii-errors/</loc>
     <lastmod>2020-02-03</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/</loc>
     <lastmod>2020-02-03</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-hypotheses-and-significance-test/</loc>
     <lastmod>2020-02-02</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-sample-size/</loc>
     <lastmod>2020-02-02</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-sampling-distribution-of-sample-proportion/</loc>
     <lastmod>2020-02-02</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-sampling-distribution-and-central-limit-theorem/</loc>
     <lastmod>2020-02-02</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-sample-and-sampling/</loc>
     <lastmod>2020-01-31</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-binomial-distribution/</loc>
     <lastmod>2020-01-19</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-the-normal-distribution/</loc>
     <lastmod>2020-01-18</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-mean-and-variance-of-random-variable/</loc>
     <lastmod>2020-01-16</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-conditional-probability-and-independence/</loc>
     <lastmod>2020-01-11</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-probability-and-sets/</loc>
     <lastmod>2020-01-11</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-sample-space-events-tree-diagrams/</loc>
     <lastmod>2020-01-10</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-probability-and-randomness/</loc>
     <lastmod>2020-01-09</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-regression/</loc>
     <lastmod>2020-01-09</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-correlation/</loc>
     <lastmod>2020-01-08</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-descriptive-statistics/</loc>
     <lastmod>2020-01-06</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-measures-of-central-tendency-and-dispersion/</loc>
     <lastmod>2020-01-06</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-basic-introduction/</loc>
     <lastmod>2020-01-06</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/data-science/statistics-z-scores/</loc>
     <lastmod>2020-01-06</lastmod>
-  </url>  <url>
-    <loc>https://theinfinitegame.tech/thinking/the-four-sins-of-spending-time/</loc>
-    <lastmod>2020-01-06</lastmod>
-  </url>  <url>
-    <loc>https://theinfinitegame.tech/programming/ui-programming-howto/</loc>
-    <lastmod>2020-01-01</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/break-down-complexity-with-pipelines/</loc>
     <lastmod>2019-12-31</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/uncategorized/csta-k12-standards/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
-    <loc>https://theinfinitegame.tech/programming/swiftswift-structs/</loc>
-    <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-simple-types/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-protocol/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-optionals/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-operators-and-conditions/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-looping/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-functions/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-closures/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-classes/</loc>
     <lastmod>2019-12-28</lastmod>
-  </url>  <url>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/programming/swiftswift-complex-types/</loc>
     <lastmod>2019-12-28</lastmod>
   </url>
-</urlset>
+</urlset> 

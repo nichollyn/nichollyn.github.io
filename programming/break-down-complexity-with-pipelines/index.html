@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -82,7 +82,7 @@
     isPost: true
   };
 </script>
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
   <title>用 “流水线” 设计拆解复杂处理流程 | The Infinite Game</title>
   
 
@@ -114,6 +114,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
 </head>
 
@@ -442,6 +444,9 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/use-nsuseractivity-in-swiftui/" rel="bookmark">在 SwiftUI 中使用 NSUserActivity</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/programming/whats-new-in-swift-5-3/" rel="bookmark">Swift 5.3 新特性</a></div>
     </li>
     <li class="popular-posts-item">
@@ -453,11 +458,12 @@
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/programming/swiftswift-protocol/" rel="bookmark">极速 Swift 教程之九 | 协议</a></div>
     </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/programming/swiftswift-classes/" rel="bookmark">极速 Swift 教程之八 | 类</a></div>
-    </li>
   </ul>
-
+<div class="post-widgets">
+    <div class="likely">
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script>
         <div class="reward-container">
   <div></div>
   <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
@@ -579,7 +585,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重构的具体背景"><span class="nav-number">2.</span> <span class="nav-text">重构的具体背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重构的设计思路-——-“流水线”-概念的提炼"><span class="nav-number">3.</span> <span class="nav-text">重构的设计思路 —— “流水线” 概念的提炼</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管道的具体实现"><span class="nav-number">4.</span> <span class="nav-text">管道的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#节点的实现方案和意义"><span class="nav-number">4.1.</span> <span class="nav-text">节点的实现方案和意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锋面的实现方案和意义"><span class="nav-number">4.2.</span> <span class="nav-text">锋面的实现方案和意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流动和连通性的实现方案"><span class="nav-number">4.3.</span> <span class="nav-text">流动和连通性的实现方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E7%9A%84%E5%85%B7%E4%BD%93%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">重构的具体背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF-%E2%80%94%E2%80%94-%E2%80%9C%E6%B5%81%E6%B0%B4%E7%BA%BF%E2%80%9D-%E6%A6%82%E5%BF%B5%E7%9A%84%E6%8F%90%E7%82%BC"><span class="nav-number">3.</span> <span class="nav-text">重构的设计思路 —— “流水线” 概念的提炼</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%A1%E9%81%93%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.</span> <span class="nav-text">管道的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88%E5%92%8C%E6%84%8F%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text">节点的实现方案和意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%8B%E9%9D%A2%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88%E5%92%8C%E6%84%8F%E4%B9%89"><span class="nav-number">4.2.</span> <span class="nav-text">锋面的实现方案和意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E5%8A%A8%E5%92%8C%E8%BF%9E%E9%80%9A%E6%80%A7%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88"><span class="nav-number">4.3.</span> <span class="nav-text">流动和连通性的实现方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -595,7 +601,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -608,7 +614,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -663,12 +669,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
         

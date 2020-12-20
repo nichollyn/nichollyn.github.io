@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -51,16 +51,16 @@
   };
 </script>
 
-  <meta name="description" content="本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本 关键词： 分治、 UOP  引子 我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。  所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分算法。 本文基于 Android 客">
+  <meta name="description" content="本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本 关键词： 分治、 UOP  欢迎关注公众号「Swift 花园」 引子 我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。  所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聊一聊 UI 代码要怎么写 | 分治篇">
 <meta property="og:url" content="https://theinfinitegame.tech/programming/ui-programming-howto/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本 关键词： 分治、 UOP  引子 我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。  所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分算法。 本文基于 Android 客">
+<meta property="og:description" content="本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本 关键词： 分治、 UOP  欢迎关注公众号「Swift 花园」 引子 我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。  所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theinfinitegame.tech/images/MVC-vs-MVP-vs-MVVM.jpg">
 <meta property="article:published_time" content="2019-12-27T02:52:07.000Z">
-<meta property="article:modified_time" content="2020-01-01T05:18:55.852Z">
+<meta property="article:modified_time" content="2020-12-20T03:11:14.769Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="编程">
 <meta property="article:tag" content="UI">
@@ -78,7 +78,7 @@
     isPost: true
   };
 </script>
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
   <title>聊一聊 UI 代码要怎么写 | 分治篇 | The Infinite Game</title>
   
 
@@ -110,6 +110,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
 </head>
 
@@ -304,6 +306,7 @@
 <li>本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本</li>
 <li>关键词： 分治、 UOP</li>
 </ul>
+<p>欢迎关注公众号「Swift 花园」</p>
 <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><blockquote>
 <p><em>我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。</em></p>
 </blockquote>
@@ -385,6 +388,9 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/programming/use-nsuseractivity-in-swiftui/" rel="bookmark">在 SwiftUI 中使用 NSUserActivity</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/programming/whats-new-in-swift-5-3/" rel="bookmark">Swift 5.3 新特性</a></div>
     </li>
     <li class="popular-posts-item">
@@ -396,11 +402,12 @@
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/programming/swiftswift-protocol/" rel="bookmark">极速 Swift 教程之九 | 协议</a></div>
     </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/programming/swiftswift-classes/" rel="bookmark">极速 Swift 教程之八 | 类</a></div>
-    </li>
   </ul>
-
+<div class="post-widgets">
+    <div class="likely">
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script>
         <div class="reward-container">
   <div></div>
   <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
@@ -522,7 +529,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从-MVC-说起"><span class="nav-number">2.</span> <span class="nav-text">从 MVC 说起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI-写在何处"><span class="nav-number">3.</span> <span class="nav-text">UI 写在何处</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-编程的两个阶段"><span class="nav-number">3.1.</span> <span class="nav-text">UI 编程的两个阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负担过重的-Controller"><span class="nav-number">3.2.</span> <span class="nav-text">负担过重的 Controller</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UOP——-分治-UI-控制逻辑的利器"><span class="nav-number">4.</span> <span class="nav-text">UOP—— 分治 UI 控制逻辑的利器</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E-MVC-%E8%AF%B4%E8%B5%B7"><span class="nav-number">2.</span> <span class="nav-text">从 MVC 说起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI-%E5%86%99%E5%9C%A8%E4%BD%95%E5%A4%84"><span class="nav-number">3.</span> <span class="nav-text">UI 写在何处</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="nav-number">3.1.</span> <span class="nav-text">UI 编程的两个阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E6%8B%85%E8%BF%87%E9%87%8D%E7%9A%84-Controller"><span class="nav-number">3.2.</span> <span class="nav-text">负担过重的 Controller</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UOP%E2%80%94%E2%80%94-%E5%88%86%E6%B2%BB-UI-%E6%8E%A7%E5%88%B6%E9%80%BB%E8%BE%91%E7%9A%84%E5%88%A9%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">UOP—— 分治 UI 控制逻辑的利器</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -538,7 +545,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -551,7 +558,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -606,12 +613,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
         

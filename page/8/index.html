@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -59,9 +59,7 @@
 <meta property="og:description" content="Stay hungry, stay foolish.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="tech">
-<meta property="article:tag" content=" life">
-<meta property="article:tag" content=" philosophy">
+<meta property="article:tag" content="tech, life, philosophy">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://theinfinitegame.tech/page/8/">
@@ -75,7 +73,7 @@
     isPost: false
   };
 </script>
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
   <title>The Infinite Game</title>
   
 
@@ -107,6 +105,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
 </head>
 
@@ -222,6 +222,112 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-descriptive-statistics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-descriptive-statistics/" class="post-title-link" itemprop="url">极速统计教程之二 | 数据可视化</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-31 09:34:47" itemprop="dateCreated datePublished" datetime="2019-12-31T09:34:47+08:00">2019-12-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>当我们向他人呈现数据时，通常需要将数据 “<strong>总结</strong>” 成各种图表的形式，例如频率表、饼图、条形图、散点图和直方图等。</p>
+</blockquote>
+<h1 id="统计案例、变量和测量级别"><a href="#统计案例、变量和测量级别" class="headerlink" title="统计案例、变量和测量级别"></a>统计案例、变量和测量级别</h1><blockquote>
+<p>如果你对足球非常感兴趣，你想知道所有细节：比如某个球员有多少进球，某个球队赢了多少场比赛或者在某场足球比赛中有多少次点球。统计学知识，将帮助你成为足球或任何其他运动的真正专家。</p>
+</blockquote>
+<p>进球得分，赢得比赛，判罚点球，这些都可以被看作 <strong>变量</strong> 和 <strong>统计案例</strong> 。</p>
+<blockquote>
+<p><strong>变量</strong> 是事件或者人物的特征， <strong>统计案例</strong> 就是那个事或那个人。</p>
+</blockquote>
+<p>来讲得更具体一点。想象一下，你最喜欢的球队，你对足员的某些特征感兴趣：你想知道他 / 她的体重，头发颜色，年龄以及在最近的比赛中得分的总数。所有这些球员的特征都是变量，球员本身就是统计案例。</p>
+<p>另一个例子，可能你对个别球员的特征不是那么感兴趣，而对他们所效力的球队特征感兴趣。例如，你可能想了解每个西班牙球队，以及它们所在的城市，他们队服的主色调是什么，以及球队去年有多少进球。这些特征也都是变量。但是，这里的统计案例不是个别球员，而是这些人所效力的球队。</p>
+<p>在一项研究中，<em>案例可以是许多不同的事物。</em> 可以是个别球员和球队，也可以是公司，学校甚至是国家。</p>
+<p><strong>案例的每个特征都可以成为变量</strong> —— 只要它符合一个基本的标准：即是变化的</p>
+<p>这是什么意思呢？ 让我们回到示例。以球队为案例，并以团队所在的城市为变量。你关注每个西班牙球队，所以会有很多不同的城市：一支球队来自巴塞罗那，其他球队来自马德里，瓦伦西亚或塞维利亚。换句话说，城市是有变化的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-descriptive-statistics/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -511,7 +617,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
+          <p>欢迎关注公众号「Swift 花园」</p>
+<blockquote>
 <p>导致我们浪费时间的是我们的<strong>认知错误</strong>。</p>
 </blockquote>
 <p>你是否经历过这样的场景。邻居过来串门，喋喋不休，我们频频点头回应，哪怕当下已经心急如焚；同事开始闲聊琐碎，而我们沉浸其中，不曾意识到本该用来工作的时间正在一点一点溜走；从熟人那里收到微信，对方说：“我可以向你讨教点事情吗？”，我们爽快答应，因为抹不开面子拒绝别人？</p>
@@ -637,106 +744,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/ui-programming-howto/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/programming/ui-programming-howto/" class="post-title-link" itemprop="url">聊一聊 UI 代码要怎么写 | 分治篇</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-27 10:52:07" itemprop="dateCreated datePublished" datetime="2019-12-27T10:52:07+08:00">2019-12-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>本文的主要价值： 提供一份软件开发中分治 UI 逻辑的实践样本</li>
-<li>关键词： 分治、 UOP</li>
-</ul>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><blockquote>
-<p><em>我们知道，分治策略是人们解决问题的一种基本策略。问题规模越大，内部包含的差异化的细节越多，越需要执行分治策略。</em></p>
-</blockquote>
-<p>所谓化整为零，化繁为简，逐个击破讲的都是分治。在计算机领域，我们要列举分治的例子，大的可以聊到七层网络模型（本质上分层也是一种分治），小的可以讲起二分算法。</p>
-<p>本文基于 Android 客户端开发中经常涉及的交互逻辑编程展开，表达我对于 UI 分治在软件开发中如何实践的理解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/programming/ui-programming-howto/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -809,7 +816,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -822,7 +829,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -877,12 +884,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
         

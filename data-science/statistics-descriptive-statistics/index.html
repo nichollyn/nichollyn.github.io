@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -84,7 +84,7 @@
     isPost: true
   };
 </script>
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
   <title>极速统计教程之二 | 数据可视化 | The Infinite Game</title>
   
 
@@ -116,6 +116,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
 </head>
 
@@ -797,7 +799,11 @@
       <div class="popular-posts-title"><a href="/data-science/statistics-confidence-interval-for-proportion/" rel="bookmark">极速统计教程之十九 | 比例的置信区间和置信水平</a></div>
     </li>
   </ul>
-
+<div class="post-widgets">
+    <div class="likely">
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script>
         <div class="reward-container">
   <div></div>
   <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
@@ -919,7 +925,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#统计案例、变量和测量级别"><span class="nav-number">1.</span> <span class="nav-text">统计案例、变量和测量级别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#区分测量级别的意义"><span class="nav-number">1.1.</span> <span class="nav-text">区分测量级别的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据矩阵"><span class="nav-number">2.</span> <span class="nav-text">数据矩阵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信息图和各种数据分布形状"><span class="nav-number">3.</span> <span class="nav-text">信息图和各种数据分布形状</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定类变量"><span class="nav-number">3.1.</span> <span class="nav-text">定类变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#饼图和柱状图的优劣"><span class="nav-number">3.2.</span> <span class="nav-text">饼图和柱状图的优劣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定量变量"><span class="nav-number">3.3.</span> <span class="nav-text">定量变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E6%A1%88%E4%BE%8B%E3%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E6%B5%8B%E9%87%8F%E7%BA%A7%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">统计案例、变量和测量级别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%88%86%E6%B5%8B%E9%87%8F%E7%BA%A7%E5%88%AB%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">区分测量级别的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9F%A9%E9%98%B5"><span class="nav-number">2.</span> <span class="nav-text">数据矩阵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%9B%BE%E5%92%8C%E5%90%84%E7%A7%8D%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83%E5%BD%A2%E7%8A%B6"><span class="nav-number">3.</span> <span class="nav-text">信息图和各种数据分布形状</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%B1%BB%E5%8F%98%E9%87%8F"><span class="nav-number">3.1.</span> <span class="nav-text">定类变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A5%BC%E5%9B%BE%E5%92%8C%E6%9F%B1%E7%8A%B6%E5%9B%BE%E7%9A%84%E4%BC%98%E5%8A%A3"><span class="nav-number">3.2.</span> <span class="nav-text">饼图和柱状图的优劣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E9%87%8F%E5%8F%98%E9%87%8F"><span class="nav-number">3.3.</span> <span class="nav-text">定量变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -935,7 +941,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -948,7 +954,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1003,12 +1009,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
         

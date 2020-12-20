@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -59,9 +59,7 @@
 <meta property="og:description" content="Stay hungry, stay foolish.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="tech">
-<meta property="article:tag" content=" life">
-<meta property="article:tag" content=" philosophy">
+<meta property="article:tag" content="tech, life, philosophy">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://theinfinitegame.tech/page/4/">
@@ -75,7 +73,7 @@
     isPost: false
   };
 </script>
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
   <title>The Infinite Game</title>
   
 
@@ -107,6 +105,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
 </head>
 
@@ -222,6 +222,150 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-step-by-step-plan-and-ci/" class="post-title-link" itemprop="url">极速统计教程之二十二 | 分步计划和置信区间</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-03 09:47:28" itemprop="dateCreated datePublished" datetime="2020-02-03T09:47:28+08:00">2020-02-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="分步计划"><a href="#分步计划" class="headerlink" title="分步计划"></a>分步计划</h1><p>比较以下两种期望。一，你期望超过半数的持证美国潜水者有超过 35 小时的潜水经验。二，所有持证美国潜水者的平均潜水时长超过 35 小时。第一眼，两个期望看起来很相似。但是，在第一个例子中，你面对的是比例，你感兴趣的是潜水经验超过 35 小时的潜水者的比例。而第二个例子中，你关心的是均值。你想知道潜水时长的均值。因此，当实施显著性检验时，你需要特别注意你的方法。</p>
+<p>这一节中，我将以分布计划的方式来引导你。想象你问了一个容量是 500 个持证潜水者的简单随机样本，他们的潜水时长是多少个小时。假设你发现 0.57 的比例有超过 35 小时的潜水经验，时长均值是 35.5 小时，均值是 8 小时。在我们的样本中，<br>潜水经验的变量分布近似正态。下面是分布计划全图：</p>
+<img src="/images/sbs_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>第一步，评估你面对的是比例还是均值，这个我们已经讨论过。第一个例子是比例，第二个例子是均值。</p>
+<p>第二步，形式化你的假设。在比例的例子中，零假设是：$ \pi = \pi_0 $ ，在均值的例子中，零假设是 $ \mu = \mu_0 $ 。我们可以有三种类型的备选假设：如果你做双尾检验，是 $ \pi\neq\pi_0 $ 或者 $ \mu\neq\mu_0 $ ；如果你做单尾的右尾检验，是 $ \pi\geq\pi_0 $ 或者 $ \mu\geq\mu_0 $ ；如果你做单尾的左尾检验，是 $ \pi\leq\pi_0 $ ，$ \mu\leq\mu_0 $ 。我们零假设是： $ \pi=0.5,\mu=35 $ ，备选假设是 $ \pi\geq0.5,\mu\geq35 $ 。因此我们需要实施右尾检验。</p>
+<p>第三步，检查你的假定是否满足。在两个例子中，随机化都是必要的。你的样本必须通过随机抽样的方法收集，或者说，随机化的实验。在比例的例子中，根据零假设的比例，样本容量乘以比例以及 1 减去样本容量再乘以比例，必须等于或者大于 15 。均值的例子则要求总体分布近似正态。但实践中，这一点只有样本容量很小，且做的是单尾检验时才重要。对于我们的例子，所有的假定都满足。</p>
+<p>第四步，确定显著性水平 $ \alpha $ 。常用的显著性水平是 0.05 。我们的检验将基于 $ \alpha=0.05 $ 。</p>
+<p>第五步，计算检验统计量。在比例的例子中，公式是 $ z = \frac {p-\pi_0}{se_0} , se_0 = \sqrt {\frac {\pi_0 (1-\pi_0)}{n}} $ ，在均值的例子中，公式是 $ t = \frac {\bar x-\mu_0}{se_0} , se_0 = \frac {s}{n} $ 。注意，在比例的案例中，我们使用 z 分布，而在均值的案例中，我们使用 t 分布。</p>
+<p>第六步，抽取相关的抽样分布，展示零假设和检验统计量，补上拒绝域和对应的临界值。在比例的案例中，</p>
+<p>第七步，评估你的检验统计量是否落在拒绝域内。</p>
+<p>第八步，决定是否拒绝零假设。</p>
+<p>第九步，解释你的发现。</p>
+<p>在下结论之前，值得提醒的是，不拒绝零值假设并不暗含你就可以接受零值假设。在第二个例子中，我们不拒绝零值假设，即潜水时长等于 35 小时的假设，但并不能得出潜水时长就等于 35 小时的结论。</p>
+<hr>
+<h1 id="显著性检验和置信区间"><a href="#显著性检验和置信区间" class="headerlink" title="显著性检验和置信区间"></a>显著性检验和置信区间</h1><p>假设你问样本容量为 500 的水肺潜水者他们潜水了多少个小时，均值是 36 小时，标准差是 8 小时，变量的样本分布近似于正态。基于样本信息，你希望推断总体的参数 $ \mu $ ，这是我们所知的推断统计学 —— 基于样本信息得出样本所在总体的结论。  </p>
+<p>推断统计学有两种方法。其一，通过均值的置信区间来推断区间估计。其二，用显著性检验来推断点估计。在这一节中，我将向你展示这两种方法其实关联密切。</p>
+<img src="/images/sbs_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>假定你预期潜水时长的均值不是 35 小时，你将做一个显著性检验。我们对均值感兴趣，检验统计量如下：</p>
+<img src="/images/sbs_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>零假设是： $ \mu = 35 $ ，备选假设是： $ \mu \neq 35 $ 。我们的假定满足，分析基于简单随机样本并且样本足够大，并且样本近似正态分布。检验统计量等于 36 减去 35 ，除以 8 除以 500 的平方根，等于 2.80 。抽样分布看起来是这样的。</p>
+<img src="/images/sbs_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我们可以通过查询 t 表找到对应双尾检验显著性水平 0.05 的临界点是 $ \pm1.984 $ 。因此我们的检验统计量落在拒绝域内。我们将拒绝零假设，得出潜水时长不等于 35 小时的结论。</p>
+<p>现在，如果我们构造 95% 的置信区间，会发生什么呢？公式如下：样本均值，加减 95% 置信水平对应的 t 分数，乘以标准误差，这个标准误差等于标准差除以样本容量的平方根。相关的 t 分数是 1.984 ，代入公式，得到置信区间是 35.29 到 36.71 。由此我们有信心说，通过无限重复的抽样， 95% 的情况下区间会包含实际的总体均值。这个区间给了我们关于总体均值的一个有说服力的范围。和显著性测试一样，这个置信区间也告诉我们，总体的样本均值不是 35 。通常，双尾显著性检验的结果与置信区间的结果是一致的。</p>
+<img src="/images/sbs_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>更准确的说，如果双尾显著性检验的 P 值等于或者小于 0.05 ，那么 95% 置信区间也不包含零假设的值。类似的，如果双尾检验的 P 值大于 0.05 ，那么 95% 置信区间将包含零假设的值。</p>
+<img src="/images/sbs_5_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>这听起来很合理，对吧？它以下图表示。你会看到，观察值 36 落在拒绝域内，而对应的置信区间也不包含零假设的总体均值。</p>
+<img src="/images/sbs_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>现在假设观察到的均值是 35.5 ，而不是 36 ，这样的话，我们的检验统计量将变成 1.40 ，它不落在拒绝域内。我们因此不拒绝零假设，相似的，置信区间的两个端点编程 34.79 和 36.21 ，则包含了零假设的均值 35 。</p>
+<img src="/images/sbs_7.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>我们可以有信息说，通过无限重复抽样， 95% 的情况区间会包含实际的总体均值。这意味着零假设有说服力，我们不该拒绝零假设。也说明了，构建置信区间的方法和双尾假设检验的方法虽然看起来不同，但是数学上是相关的，彼此一致。</p>
+<img src="/images/sbs_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -653,115 +797,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-sampling-distribution-of-sample-proportion/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-sampling-distribution-of-sample-proportion/" class="post-title-link" itemprop="url">极速统计教程之十七 | 样本比例的抽样分布</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-31 17:08:32" itemprop="dateCreated datePublished" datetime="2020-01-31T17:08:32+08:00">2020-01-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="抽样分布比例"><a href="#抽样分布比例" class="headerlink" title="抽样分布比例"></a>抽样分布比例</h1><p>想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。</p>
-<p>在本节教程中，我将解释一个总体比例的抽样分布是长什么样。你知道巴黎有 10% 的学生认为自己是嬉皮士，这意味着总体比例，用 $ \pi $ 注记，等于 0.10 。现在想象我们从这个总体中抽取 200 个学生。样本的比例，用 $ p $ 注记，将会是一个接近 0.10 的数字，比如 0.09 或者 0.12 。</p>
-<p>如果抽取了 5 组样本，样本比例可能如下：</p>
-<img src="/images/sdp_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>这样样本比例的直方图可能如下：</p>
-<img src="/images/sdp_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>有五个值，全部都出现一次，它们的概率都是 0.2 。现在，你抽取 25 组样本，分布可能如下：</p>
-<img src="/images/sdp_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>抽取 50 个样本，分布如下：</p>
-<img src="/images/sdp_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>无限多组样本，分布如下：</p>
-<img src="/images/sdp_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
-<p>这是样本比例的抽样分布，分布的均值是 0.10 ，等于总体的比例。为了表明我们是处理抽样分布的均值，均值被注记为 $ \mu_p $ ，下标 p 是为了说明我们正在处理的分布的分数不是个体的分数，而是样本比例。如你所见，逻辑上和样本均值的抽样分布一模一样。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-sampling-distribution-of-sample-proportion/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -834,7 +869,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -847,7 +882,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -902,12 +937,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
         

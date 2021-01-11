@@ -226,6 +226,202 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/development/eight-swiftui-misuses-and-correction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/development/eight-swiftui-misuses-and-correction/" class="post-title-link" itemprop="url">八个常见的 SwiftUI 误用及对应的正确打开方式</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-11 20:49:56" itemprop="dateCreated datePublished" datetime="2021-01-11T20:49:56+08:00">2021-01-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/development/" itemprop="url" rel="index">
+                    <span itemprop="name">development</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>译自 <a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/articles/224/common-swiftui-mistakes-and-how-to-fix-them">https://www.hackingwithswift.com/articles/224/common-swiftui-mistakes-and-how-to-fix-them</a></p>
+</blockquote>
+<p>SwiftUI 是一个庞大且复杂的框架。使用这个框架编程无疑是享受的，但犯错的机会也不少见。这篇文章我将带大家速览 SwiftUI 初学者常犯的一些错误，并提供修正方案。</p>
+<p>其中的一些错误是由于简单的误解导致。由于 SwiftUI 太大，这种情况其实容易出现。而另一些错误则与深入理解 SwiftUI 的工作方式有关，还有一些是原有的思维方式导致 —— 你可能花了很多时间编写 view 和 modifier，但没有想到用 SwiftUI 的方式简化结果。</p>
+<p>开门见山，你不需要猜我会给你准备什么菜，这里我直接把八条误用先简明扼要地罗列如下，然后我们逐条深入展开：</p>
+<ol>
+<li><p>添加不必要的 View 和 Modifier</p>
+</li>
+<li><p>在需要用 <code>@StateObject</code> 的地方用了 <code>@ObservedObject</code></p>
+</li>
+<li><p>Modifier 顺序错误</p>
+</li>
+<li><p>给属性包装器添加属性观察者</p>
+</li>
+<li><p>在需要用描边框的地方使用了描形状</p>
+</li>
+<li><p>Alert 和 Sheet 与可选状态的使用</p>
+</li>
+<li><p>尝试改变 SwiftUI 视图后面的东西</p>
+</li>
+<li><p>用错误的范围动态创建视图</p>
+</li>
+</ol>
+<hr>
+<h3 id="1-添加不必要的-View-和-Modifier"><a href="#1-添加不必要的-View-和-Modifier" class="headerlink" title="1 添加不必要的 View 和 Modifier"></a>1 添加不必要的 View 和 Modifier</h3><p>让我们从最常见的一个误用开始，它会让我们编写更多的 SwiftUI 代码。这种误用的部分原因通常是我们在解决问题时编写了许多代码，但是最后忘记整理代码。还有的时候，则是旧习惯作祟，尤其是当编写者是从 UIKit 或者其他 UI 框架转到 SwiftUI 上。</p>
+<p>比如，你可能希望用一个红色矩形填满屏幕？然后你像下面这样编写代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Rectangle</span>()</span><br><span class="line">    .fill (<span class="type">Color</span>.red)</span><br></pre></td></tr></tbody></table></figure>
+<p>的确，上面的代码可以工作 —— 它能准确地得到你想要的效果。但是其中一半的代码是不必要的，因为你只需要像下面这样写也能实现一样的效果：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Color</span>.red</span><br></pre></td></tr></tbody></table></figure>
+<p>这是因为在 SwiftUI 中，所有的颜色和形状都自动遵循了 View 协议，你可以把它们直接当成视图来使用。</p>
+<p>你可能也会经常看见形状裁切，因为为了实现特定形状，应用 <code>clipShape ()</code> 是件很自然的事情。例如，可以像下面这样让我们的红色矩形拥有圆角：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Color</span>.red</span><br><span class="line">    .clipShape (<span class="type">RoundedRectangle</span>(cornerRadius: <span class="number">50</span>))</span><br></pre></td></tr></tbody></table></figure>
+<p>但这也是不要的 —— 借助 <code>cornerRadius ()</code> modifier，代码可以简化如下：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Color</span>.red</span><br><span class="line">    .cornerRadius (<span class="number">50</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>移除这类的冗余代码需要时间，因为你需要转变思维习惯，这一点对于 SwiftUI 的初学者来说更加困难。 因此，假如你一开始采用了这些更长版本的代码，不必担忧，多加训练。</p>
+<h3 id="2-在需要用-StateObject-的地方用了-ObservedObject"><a href="#2-在需要用-StateObject-的地方用了-ObservedObject" class="headerlink" title="2 在需要用 @StateObject 的地方用了 @ObservedObject"></a>2 在需要用 <code>@StateObject</code> 的地方用了 <code>@ObservedObject</code></h3><p>SwiftUI 提供了众多属性包装器，帮助我们构建数据响应式的用户界面，其中最重要的当属 <code>@State</code>， <code>@StateObject</code> 和 <code>@ObservedObject</code>。掌握它们的使用场景非常重要，因为误用它们会给你的代码带来各种问题。</p>
+<p>第一个比较直接：<code>@State</code> 用于值类型属性，并且属性由当前视图拥有。因此，整数，字符串，数组等，都是应用 <code>@State</code> 的绝佳场景。</p>
+<p>后两者则有点令人困惑，你可能会经常看到下面这样的代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataModel</span>: <span class="title">ObservableObject</span> </span>{</span><br><span class="line">    @<span class="type">Published</span> <span class="keyword">var</span> username = <span class="string">"@twostraws"</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">ObservedObject</span> <span class="keyword">var</span> model = <span class="type">DataModel</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Text</span>(model.username)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>可以明确的说，这么做是错误的，并且极有可能在你的应用中带来问题。</p>
+<blockquote>
+<p>译者注：基于代码片段说这样写一定是错误的，这个表述是不严谨的。作者应该是隐含假设了 <code>ContentView</code> 是应用的顶级视图（通常来说，如果你不改工程模板的默认输出，<code>ContentView</code> 也确实是顶级视图）。对于顶级视图来说，SwiftUI 2.0 应当使用 <code>@StateObject</code> ，它是为了解决 <code>@ObservedObject</code> 或者 <code>@EnvironmentObject</code> 对象的所有权问题。但是对于附属于顶级视图的视图层级，各子视图的数据源可以是 <code>@ObservedObject</code> 或者 <code>@EnvironmentObject</code>，因为它们的生命周期受顶级视图管理，进而可以由顶级视图统一保证数据的可用性。</p>
+</blockquote>
+<p>正如我前面说到的，<code>@State</code> 表示某个值类型属性由当前视图拥有，这里的 “拥有” 很重要。而 <code>@StateObject</code> 则相当于引用类型版本的 <code>@State</code>。</p>
+<p>因此，上面的代码应该改成这样：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="type">StateObject</span> model = <span class="type">DataModel</span>()</span><br></pre></td></tr></tbody></table></figure>
+<p>当你使用 <code>@ObservedObject</code> 来创建某个对象实例时，你的视图并不拥有这个对象实例，也就是说，这个实例可以在任何时候被销毁（译者注：视图无法了解也无法干预这个时机）。狡猾的是，对象在视图还需要用它时被销毁的情况只是偶尔发生，所以你可能认为你的代码很完美。</p>
+<p>需要记住的重点是 <code>@State</code> 和 <code>@StateObject</code> 表示 “视图拥有数据”，而 <code>@ObservedObject</code> 和 <code>@EnvironmentObject</code> 则没有。</p>
+<h3 id="3-Modifier-顺序错误"><a href="#3-Modifier-顺序错误" class="headerlink" title="3 Modifier 顺序错误"></a>3 Modifier 顺序错误</h3><p>Modifier 的顺序在 SwiftUI 中至关重要。顺序错误不仅会导致布局在上视觉上的偏差，也会导致其行为的错误。</p>
+<p>解释这个问题最经典的例子是 <code>padding</code> 和 <code>background</code> 的使用，如下：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br><span class="line">    .padding ()</span><br></pre></td></tr></tbody></table></figure>
+<p>由于我们在 <code>background</code> 颜色之后应用 <code>padding</code>，颜色只会被直接应用在文本周围，而不是被添加留白之后的文本周围。如果你希望留白和文本背景都是绿色，应该将代码改成下面这样：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .padding ()</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br></pre></td></tr></tbody></table></figure>
+<p>当你尝试调整视图位置时，这个原理会让事情变得更有趣。</p>
+<p>例如，<code>offset ()</code> modifier 会修改一个视图被渲染的位置，但并不实际改变视图的位置。也就是说，应用在 <code>offset</code> 之后的 modifier 表现得就像 <code>offset</code> 从未发生过。</p>
+<p>尝试下面的代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .offset (x: <span class="number">15</span>, y: <span class="number">15</span>)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br></pre></td></tr></tbody></table></figure>
+<p>你会发现文本偏移了，但背景颜色没有偏移。现在，尝试交换 <code>offset ()</code> 和 <code>background ()</code> 的位置：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br><span class="line">    .offset (x: <span class="number">15</span>, y: <span class="number">15</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>现在你会看到文本和背景都移动了。</p>
+<p>另外，<code>position ()</code> modifier 会改变一个视图在其父节点中的渲染位置，但这一点是借助它先在视图周围应用一个可伸展尺寸的 frame 来实现的。</p>
+<p>尝试下面的代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br><span class="line">    .position (x: <span class="number">150</span>, y: <span class="number">150</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>你会发现背景颜色紧贴在文本四周，并且整个视图被放置在左上角。现在，尝试对调 <code>background ()</code> 和 <code>position ()</code>：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .position (x: <span class="number">150</span>, y: <span class="number">150</span>)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br></pre></td></tr></tbody></table></figure>
+<p>这一回你会发现整个屏幕都变成绿色了。还是因为 <code>position ()</code> 要求 SwiftUI 放置一个可伸缩尺寸的 frame 在文本视图周围，这导致视图自动占满了所有的可用空间。然后我们给视图上了绿色，所以整个屏幕呈现绿色。</p>
+<p>你所应有的绝大多数 modifier 都创建了新视图 —— 应用一个 <code>position</code> 或者 <code>background</code> 时，你实际上是在将现有的视图包装起来。这个机制对于我们大有用处，我们可以多次应用 modifier，比如添加多层留白和背景：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .padding ()</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br><span class="line">    .padding ()</span><br><span class="line">    .background (<span class="type">Color</span>.blue)</span><br></pre></td></tr></tbody></table></figure>
+<p>或者应用多个 shadows 以创建很深的阴影效果：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .foregroundColor (.white)</span><br><span class="line">    .shadow (color: .black, radius: <span class="number">10</span>)</span><br><span class="line">    .shadow (color: .black, radius: <span class="number">10</span>)</span><br><span class="line">    .shadow (color: .black, radius: <span class="number">10</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="4-给属性包装器添加属性观察者"><a href="#4-给属性包装器添加属性观察者" class="headerlink" title="4 给属性包装器添加属性观察者"></a>4 给属性包装器添加属性观察者</h3><p>某些情况下你可能会为属性包装器添加诸如 <code>didSet</code> 这样的属性观察者，但它不会如你预期的那样工作。</p>
+<p>例如，如果你在使用滑块，希望在滑块值改变时执行某种动作，你可能会下面这样编写代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> rating = <span class="number">0.0</span> {</span><br><span class="line">        <span class="keyword">didSet</span> {</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"Rating changed to \(rating)"</span>)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Slider</span>(value: $rating)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>但是，这个 <code>didSet</code> 属性观察者永远都不会被调用，因为属性的值是由绑定直接修改的，而不是每次创建一个新值。</p>
+<p>对此，SwiftUI 原生的方式是使用 <code>onChange ()</code> modifier，如下：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> rating = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Slider</span>(value: $rating)</span><br><span class="line">            .onChange (of: rating) { value <span class="keyword">in</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"Rating changed to \(value)"</span>)</span><br><span class="line">            }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>不过，我个人更喜欢一种不同的方案：我使用基于 Binding 的扩展来返回新的绑定，其中的 <code>get</code> 和 <code>set</code> 包装的值和之前一样，但是在新值得到时也会调用处理函数：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Binding</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">onChange</span><span class="params">(<span class="keyword">_</span> handler: @escaping <span class="params">(Value)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; <span class="type">Binding</span>&lt;<span class="type">Value</span>&gt; {</span><br><span class="line">        <span class="type">Binding</span>(</span><br><span class="line">            <span class="keyword">get</span>: { <span class="keyword">self</span>.wrappedValue },</span><br><span class="line">            <span class="keyword">set</span>: { newValue <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">self</span>.wrappedValue = newValue</span><br><span class="line">                handler (newValue)</span><br><span class="line">            }</span><br><span class="line">        )</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>有了这个扩展，我们就可以把绑定的动作直接附着在滑块视图上：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> rating = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Slider</span>(value: $rating.onChange (sliderChanged))</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sliderChanged</span><span class="params">(<span class="keyword">_</span> value: Double)</span></span> {</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Rating changed to \(value)"</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>挑选最适合你的方案。</p>
+<h3 id="5-在需要用描边框的地方使用了描形状"><a href="#5-在需要用描边框的地方使用了描形状" class="headerlink" title="5 在需要用描边框的地方使用了描形状"></a>5 在需要用描边框的地方使用了描形状</h3><p>不理解 <code>stroke ()</code> 和 <code>strokeBorder</code> 的区别是初学者常犯的错误。尝试下面的代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Circle</span>()</span><br><span class="line">    .stroke (<span class="type">Color</span>.red, lineWidth: <span class="number">20</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>注意看，你会发现圆的左边缘和右边缘怎么不见了？（译者：这里预设你是竖屏运行程序，高度大于宽高）这是因为 <code>stroke ()</code> modifier 会把描边居中对齐在形状的轮廓线上，所以一个 20 个点的红色描边会绘制 10 个点到形状的边缘线外部，10 个点在边缘线内部 —— 这就导致了你看到圆形的左右超出屏幕的现象。</p>
+<p>作为对照，<code>strokeBorder ()</code> 则是把整个描边都绘制在形状内部，所以它不会放大形状的边框。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Circle</span>()</span><br><span class="line">    .strokeBorder (<span class="type">Color</span>.red, lineWidth: <span class="number">20</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>相比于使用 <code>strokeBorder ()</code>，使用 <code>stroke ()</code> 有一个好处是它返回的是一个新形状，而不是一个新视图。这使得你可以创建出某些本来难以实现的效果，比如给一个形状描两次边：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Circle</span>()</span><br><span class="line">    .stroke (style: <span class="type">StrokeStyle</span>(lineWidth: <span class="number">20</span>, dash: [<span class="number">10</span>]))</span><br><span class="line">    .stroke (style: <span class="type">StrokeStyle</span>(lineWidth: <span class="number">20</span>, dash: [<span class="number">10</span>]))</span><br><span class="line">    .frame (width: <span class="number">280</span>, height: <span class="number">280</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="6-Alert-和-Sheet-与可选状态的使用"><a href="#6-Alert-和-Sheet-与可选状态的使用" class="headerlink" title="6 Alert 和 Sheet 与可选状态的使用"></a>6 Alert 和 Sheet 与可选状态的使用</h3><p>当你在学习使用 sheet 和可选型的时候，很容易想到把 sheet 的展示绑定到像下面这样的 Boolean：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">String</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selectedUser: <span class="type">User?</span></span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> showingAlert = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Button</span>(<span class="string">"Show Alert"</span>) {</span><br><span class="line">                selectedUser = <span class="type">User</span>(id: <span class="string">"@twostraws"</span>)</span><br><span class="line">                showingAlert = <span class="literal">true</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        .alert (isPresented: $showingAlert) {</span><br><span class="line">            <span class="type">Alert</span>(title: <span class="type">Text</span>(<span class="string">"Hello, \(selectedUser!.id)"</span>))</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>当然，这可以正确工作 —— 而且这个方案容易理解。但是一旦你越过了初级阶段，你就应当考虑换成可选型的实现方案。这个方案去掉了 Boolean，也不必强制解包。唯一的要求是你所监听的目标需要遵循 <code>Identifiable</code>。</p>
+<p>举个例子，我们可以在 <code>selectedUser</code> 发生变化的任何时候展示警告弹窗，就像下面这样：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selectedUser: <span class="type">User?</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Button</span>(<span class="string">"Show Alert"</span>) {</span><br><span class="line">                selectedUser = <span class="type">User</span>(id: <span class="string">"@twostraws"</span>)</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        .alert (item: $selectedUser) { user <span class="keyword">in</span></span><br><span class="line">            <span class="type">Alert</span>(title: <span class="type">Text</span>(<span class="string">"Hello, \(user.id)"</span>))</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这会使得你的代码更加易于读写，并且避免因为强制解包可能带来的麻烦。</p>
+<h3 id="7-尝试改变-SwiftUI-视图后面的东西"><a href="#7-尝试改变-SwiftUI-视图后面的东西" class="headerlink" title="7 尝试改变 SwiftUI 视图后面的东西"></a>7 尝试改变 SwiftUI 视图后面的东西</h3><p>SwiftUI 初学者最常犯的一个错误是他们常常试图去改变 SwiftUI 视图的背景。代码通常长下面这个样子：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">            .background (<span class="type">Color</span>.red)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这会展示一个白色的屏幕，中间是红色背景色只匹配文本区域的文本视图。而大多数人的本意其实是想让整个屏幕的背景呈现出红色。这个时候他们会想，SwiftUI 背后究竟是什么样的 UIKit 视图呢？</p>
+<p>当然，背后肯定是有一个 UIKit 视图，它由 <code>UIHostingController</code> 管理，角色类似于一个 UIKit 视图控制器。但是假如你通过 SwiftUI 试图去踏足 UIKit 的领地，你的改动很可能会让 SwiftUI 呈现出奇怪的结果，或者你甚至都没法直接改动 UIKit。</p>
+<p>实际上，想到达成大多数人想要的效果，SwiftUI 里的实现方式应该是像下面这样的：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .frame (maxWidth: .infinity, maxHeight: .infinity)</span><br><span class="line">    .background (<span class="type">Color</span>.red)</span><br><span class="line">    .ignoresSafeArea ()</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="8-动态视图的范围参数错误"><a href="#8-动态视图的范围参数错误" class="headerlink" title="8 动态视图的范围参数错误"></a>8 动态视图的范围参数错误</h3><p>有多个 SwiftUI 视图的构造器允许我们传入范围，这个事实让许多复杂视图的创建过程变得十分简单。</p>
+<p>例如，假设我们想要展示一个拥有 4 个项目的列表，我们只需要这样写：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> rowCount = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">List</span>(<span class="number">0</span>..&lt;rowCount) { row <span class="keyword">in</span></span><br><span class="line">                <span class="type">Text</span>(<span class="string">"Row \(row)"</span>)</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这样写本身没问题，不过一旦你需要在运行时改变范围时，问题就来了。你看我已经用 <code>@State</code> 属性包装器把想要改变的行数变成可修改的，所以我们可以用一个按钮来修改它的值：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(<span class="string">"Add Row"</span>) {</span><br><span class="line">    rowCount += <span class="number">1</span></span><br><span class="line">}</span><br><span class="line">.padding (.top)</span><br></pre></td></tr></tbody></table></figure>
+<p>运行代码，点击按钮，Xcode 调试输出会输出警告，而列表视图纹丝不动 —— 这个方案不管用。</p>
+<p>问题出在你既没有为列表的参数提供 <code>Identifiable</code> 协议实现，也没有提供指定的 id 参数，以此告诉 SwiftUI 这个范围会动态变化：（译者：实际上并不是 “告诉 SwiftUI 范围会动态变化”，而是明确范围的项怎样才算变化。<code>Identifiable</code> 或者 id 参数明确了两个项之间是如何区别。能够区别开的项目才能侦测变化）。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>(<span class="number">0</span>..&lt;rowCount, id: \.<span class="keyword">self</span>) { row <span class="keyword">in</span></span><br><span class="line">    <span class="type">Text</span>(<span class="string">"Row \(row)"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>代码改成这样就没问题了。</p>
+<hr>
+<p>封面来自 <a target="_blank" rel="noopener" href="https://unsplash.com/@zmachacek?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Zdeněk Macháček</a> on <a target="_blank" rel="noopener" href="https://unsplash.com/s/photos/owl?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/programming/use-nsuseractivity-in-swiftui/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -853,114 +1049,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/development/note-swiftui-mvvm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/development/note-swiftui-mvvm/" class="post-title-link" itemprop="url">SwiftUI 笔记 | MVVM In SwiftUI</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-02 10:51:18" itemprop="dateCreated datePublished" datetime="2020-03-02T10:51:18+08:00">2020-03-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/development/" itemprop="url" rel="index">
-                    <span itemprop="name">development</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>欢迎关注微信公众号「Swift 花园」</p>
-<blockquote>
-<p>译自 <a target="_blank" rel="noopener" href="https://augmentedcode.io/2020/01/05/mvvm-in-swiftui/">MVVM in SwiftUI</a></p>
-</blockquote>
-<p>让我们用 MVVM (model-view-view model) 来构建一个应用，其中的每个 SwiftUI 视图都有自己的 model 。这会是一个拥有两个视图的 app : 一个电影列表以及一个用于添加电影的表单。新增的电影存在在 <code>MovieStore</code> ，它由两个 view models 共享。我们将通过 environment 来共享 MovieStore ，也就说，当我们需要时，会从 environment 中读取。</p>
-<h2 id="用-Movie-和-MovieStore-来表示数据"><a href="#用-Movie-和-MovieStore-来表示数据" class="headerlink" title="用 Movie 和 MovieStore 来表示数据"></a>用 Movie 和 MovieStore 来表示数据</h2><p>Movie 是一个很小的结构体，只存储了标题和评分。标题和评分都是可变的，因为我们需要在 AddMovieView 里更新它们。这个结构体也遵循 <code>Identifiable</code> 协议，因为我们将用 List 视图来展示所有的电影。List 需要能够标识内容中的每一项，而遵循这个协议是最简单的方式。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Movie</span>: <span class="title">Equatable</span>, <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id = <span class="type">UUID</span>()</span><br><span class="line">    <span class="keyword">var</span> fullTitle: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> givenRating: <span class="type">Rating</span> = .notSeen</span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Movie</span> </span>{</span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Rating</span>: <span class="title">Int</span>, <span class="title">CaseIterable</span> </span>{</span><br><span class="line">        <span class="keyword">case</span> notSeen, terrible, poor, decent, good, excellent</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>MovieStore 也很简单，不过实际的 app 会包含更多的逻辑：持久化，删除等等。我们用 <code>Published</code> 属性包装器来为订阅者自动提供发布。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">MovieStore</span> </span>{</span><br><span class="line">    @<span class="type">Published</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> allMovies = [<span class="type">Movie</span>]()</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(<span class="keyword">_</span> movie: Movie)</span></span> {</span><br><span class="line">        allMovies.append (movie)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>为了将共享的 <code>MovieStore</code> 插入环境，我们需要使用自定义的 EnvironmentKey 。自定义 key 仅仅只是一个遵循  <code>EnvironmentKey</code> 协议的自定义 key 。我们需要提供类型和默认值。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MovieStoreKey</span>: <span class="title">EnvironmentKey</span> </span>{</span><br><span class="line">    <span class="keyword">typealias</span> <span class="type">Value</span> = <span class="type">MovieStore</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> defaultValue = <span class="type">MovieStore</span>()</span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">EnvironmentValues</span> </span>{</span><br><span class="line">    <span class="keyword">var</span> movieStore: <span class="type">MovieStore</span> {</span><br><span class="line">        <span class="keyword">get</span> {</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">self</span>[<span class="type">MovieStoreKey</span>]</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">set</span> {</span><br><span class="line">            <span class="keyword">self</span>[<span class="type">MovieStoreKey</span>] = newValue</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>如果我们不插入自己的 <code>MovieStore</code> 实例到 environment ，那就会使用 defaultValue 默认值。典型情况下，我们会在视图体系之外初始化这个特定实例。</p>
-<h2 id="SceneDelegate-和-MovieScene-呈现"><a href="#SceneDelegate-和-MovieScene-呈现" class="headerlink" title="SceneDelegate 和 MovieScene 呈现"></a>SceneDelegate 和 MovieScene 呈现</h2><p>MovieStore 作为依赖项，在构造函数被传给 view model 。我们将使用存储在 SceneDelegate 的实例。再次申明，在实际的 app 中，这种依赖项很可能是处于一个独立的容器或者别的类似的东西。 MovieListView 是我们要呈现的第一个视图，因此我们会初始化 view model ， view ，并且插入 MovieStore 实例到 environment ，以便后续使用。 (movieStore keypath 是通过 EnvironmentValues 的 extension 来定义的)。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">SceneDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIWindowSceneDelegate</span> </span>{</span><br><span class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow?</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> movieStore = <span class="type">MovieStore</span>()</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">scene</span><span class="params">(<span class="keyword">_</span> scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)</span></span> {</span><br><span class="line">        <span class="keyword">let</span> viewModel = <span class="type">MovieListView</span>.<span class="type">ViewModel</span>(movieStore: movieStore)</span><br><span class="line">        <span class="keyword">let</span> contentView = <span class="type">MovieListView</span>(viewModel: viewModel).environment (\.movieStore, movieStore)</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> windowScene = scene <span class="keyword">as</span>? <span class="type">UIWindowScene</span> <span class="keyword">else</span> { <span class="keyword">return</span> }</span><br><span class="line">        <span class="keyword">let</span> window = <span class="type">UIWindow</span>(windowScene: windowScene)</span><br><span class="line">        window.rootViewController = <span class="type">UIHostingController</span>(rootView: contentView)</span><br><span class="line">        <span class="keyword">self</span>.window = window</span><br><span class="line">        window.makeKeyAndVisible ()</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="MovieListView-和对应的-ViewModel"><a href="#MovieListView-和对应的-ViewModel" class="headerlink" title="MovieListView 和对应的 ViewModel"></a>MovieListView 和对应的 ViewModel</h2><p>在 SwiftUI 中，view model 遵循 <code>ObservableObject</code> 协议，使用 @Published 属性包装器。 ObservableObject 的默认实现提供了 <code>objectWillChange</code> publisher 。 @Published 属性包装器能在属性将要改变时自动发射这个 publisher 。在 MovieListView 中，我们用 @ObservedObject 属性包装器声明 view model 属性。这会使得该视图订阅 objectWillChange publisher ，并且在 objectWillChange 发动时自动刷新视图。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MovieListView</span> </span>{</span><br><span class="line">    <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewModel</span>: <span class="title">ObservableObject</span> </span>{</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">let</span> movieStore: <span class="type">MovieStore</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">var</span> cancellables = [<span class="type">AnyCancellable</span>]()</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">init</span>(movieStore: <span class="type">MovieStore</span>) {</span><br><span class="line">            <span class="keyword">self</span>.movieStore = movieStore</span><br><span class="line">            cancellables.append (movieStore.$allMovies.assign (to: \.movies, on: <span class="keyword">self</span>))</span><br><span class="line">        }</span><br><span class="line">         </span><br><span class="line">        @<span class="type">Published</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> movies = [<span class="type">Movie</span>]()</span><br><span class="line">        @<span class="type">Published</span> <span class="keyword">var</span> isPresentingAddMovie = <span class="literal">false</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MovieListView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">Environment</span>(\.<span class="keyword">self</span>) <span class="keyword">var</span> environment</span><br><span class="line">    @<span class="type">ObservedObject</span> <span class="keyword">var</span> viewModel: <span class="type">ViewModel</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">NavigationView</span> {</span><br><span class="line">            <span class="type">List</span>(<span class="keyword">self</span>.viewModel.movies) { movie <span class="keyword">in</span></span><br><span class="line">                <span class="type">Text</span>(movie.fullTitle)</span><br><span class="line">            }.navigationBarTitle (<span class="string">"Movies"</span>)</span><br><span class="line">                .navigationBarItems (trailing: navigationBarTrailingItem)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> navigationBarTrailingItem: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Button</span>(action: {</span><br><span class="line">            <span class="keyword">self</span>.viewModel.isPresentingAddMovie = <span class="literal">true</span></span><br><span class="line">        }, label: {</span><br><span class="line">            <span class="type">Image</span>(systemName: <span class="string">"plus"</span>).frame (minWidth: <span class="number">32</span>, minHeight: <span class="number">32</span>)</span><br><span class="line">        }).sheet (isPresented: <span class="keyword">self</span>.$viewModel.isPresentingAddMovie) {</span><br><span class="line">            <span class="keyword">self</span>.makeAddMovieView ()</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">makeAddMovieView</span><span class="params">()</span></span> -&gt; <span class="type">AddMovieView</span> {</span><br><span class="line">        <span class="keyword">let</span> movieStore = environment [<span class="type">MovieStoreKey</span>]</span><br><span class="line">        <span class="keyword">let</span> viewModel = <span class="type">AddMovieView</span>.<span class="type">ViewModel</span>(movieStore: movieStore)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">AddMovieView</span>(viewModel: viewModel)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>你会注意到，MovieStore 时用了两份，一份在 view model 中，一份放在环境中。</p>
-<p><code>AddMovieView</code> 和它的 view model 是在用户点击导航栏上的加号按钮时被创建的。环境属性包装器可以被用于获取整个环境或者借助特定键获取某个值。在这个案例中我们访问了整个环境对象，然后在需要的时候借助 MovieStoreKey 访问 MovieStore 。或者你也可以使用 @Environment (.movieStore) var movieStore 来代替。</p>
-<h2 id="AddMovieView-和对应的-ViewModel"><a href="#AddMovieView-和对应的-ViewModel" class="headerlink" title="AddMovieView 和对应的 ViewModel"></a>AddMovieView 和对应的 ViewModel</h2><p><code>AddMovieView</code> 的 view model 是随着 MovieStore 一同被初始化的，它内部呈现了一个 Movie 实例。 Published 属性包装器和 MovieListView 的 view model 里的用法相似。 内部的 movie 对象是一个私有的属性， TextField 和 Picker 都采用双向 Binding 。 Binding 是一种 view 和 model 间的双向连接方式。另外，还有一个 <code>canSave</code> 属性，它是用来控制导航栏上的保存按钮是否启用。保持按钮只有在标题有填充的时才启用。</p>
-<p>简单复习一下视图更新的流程：TextField 或者 Picker 会利用 Binding 来更新私有属性 <code>newMovie</code> 。 因为 newMovie 属性使用了 @Published 属性包装器，它会发射 ObservableObject 的 objectWillChange publisher 。 SwiftUI 自动订阅 objectWillChange ，因为 view model 的属性用了 @ObservedObject 。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">AddMovieView</span> </span>{</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ViewModel</span>: <span class="title">ObservableObject</span> </span>{</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">let</span> movieStore: <span class="type">MovieStore</span></span><br><span class="line">         </span><br><span class="line">        <span class="keyword">init</span>(movieStore: <span class="type">MovieStore</span>) {</span><br><span class="line">            <span class="keyword">self</span>.movieStore = movieStore</span><br><span class="line">        }</span><br><span class="line">         </span><br><span class="line">        @<span class="type">Published</span> <span class="keyword">private</span> <span class="keyword">var</span> newMovie = <span class="type">Movie</span>(fullTitle: <span class="string">""</span>)</span><br><span class="line">         </span><br><span class="line">        <span class="built_in">lazy</span> <span class="keyword">var</span> title = <span class="type">Binding</span>&lt;<span class="type">String</span>&gt;(<span class="keyword">get</span>: {</span><br><span class="line">            <span class="keyword">self</span>.newMovie.fullTitle</span><br><span class="line">        }, <span class="keyword">set</span>: {</span><br><span class="line">            <span class="keyword">self</span>.newMovie.fullTitle = $<span class="number">0</span></span><br><span class="line">        })</span><br><span class="line">         </span><br><span class="line">        <span class="built_in">lazy</span> <span class="keyword">var</span> rating = <span class="type">Binding</span>&lt;<span class="type">Movie</span>.<span class="type">Rating</span>&gt;(<span class="keyword">get</span>: {</span><br><span class="line">            <span class="keyword">self</span>.newMovie.givenRating</span><br><span class="line">        }, <span class="keyword">set</span>: {</span><br><span class="line">            <span class="keyword">self</span>.newMovie.givenRating = $<span class="number">0</span></span><br><span class="line">        })</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">var</span> canSave: <span class="type">Bool</span> {</span><br><span class="line">            <span class="keyword">return</span> !newMovie.fullTitle.isEmpty</span><br><span class="line">        }</span><br><span class="line">         </span><br><span class="line">        <span class="function"><span class="keyword">func</span> <span class="title">save</span><span class="params">()</span></span> {</span><br><span class="line">            movieStore.add (newMovie)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AddMovieView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">Environment</span>(\.presentationMode) <span class="keyword">private</span> <span class="keyword">var</span> presentationMode</span><br><span class="line">    @<span class="type">ObservedObject</span> <span class="keyword">var</span> viewModel: <span class="type">ViewModel</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">NavigationView</span> {</span><br><span class="line">            <span class="type">Form</span> {</span><br><span class="line">                titleSection</span><br><span class="line">                ratingSection</span><br><span class="line">            }.navigationBarTitle (<span class="string">"Add Movie"</span>, displayMode: .inline)</span><br><span class="line">                .navigationBarItems (leading: leadingBarItem, trailing: trailingBarItem)</span><br><span class="line">                .navigationViewStyle (<span class="type">StackNavigationViewStyle</span>())</span><br><span class="line">             </span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> titleSection: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Section</span>() {</span><br><span class="line">            <span class="type">TextField</span>(<span class="string">"Title"</span>, text: viewModel.title)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> ratingSection: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Section</span>() {</span><br><span class="line">            <span class="type">Picker</span>(<span class="type">LocalizedStringKey</span>(<span class="string">"Rating"</span>), selection: viewModel.rating) {</span><br><span class="line">                <span class="type">ForEach</span>(<span class="type">Movie</span>.<span class="type">Rating</span>.allCases, id: \.rawValue) {</span><br><span class="line">                    <span class="type">Text</span>($<span class="number">0</span>.localizedName).tag ($<span class="number">0</span>)</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> leadingBarItem: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Button</span>(action: { <span class="keyword">self</span>.presentationMode.wrappedValue.dismiss () }, label: {</span><br><span class="line">            <span class="type">Text</span>(<span class="string">"Cancel"</span>)</span><br><span class="line">        })</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> trailingBarItem: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Button</span>(action: {</span><br><span class="line">            <span class="keyword">self</span>.viewModel.save ()</span><br><span class="line">            <span class="keyword">self</span>.presentationMode.wrappedValue.dismiss ()</span><br><span class="line">        }, label: {</span><br><span class="line">            <span class="type">Text</span>(<span class="string">"Save"</span>).disabled (!<span class="keyword">self</span>.viewModel.canSave)</span><br><span class="line">        })</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们创建了一个只有两个视图的简单 app 。两个视图都有各自的 view model ，并且都依赖 MovieStore 。一个 view model 中触发了 MovieStore 的改变，这些改变会被另一个 view model 观察到。另外，我们还了解了 SwiftUI 的 environment 以及如何从 view model 中触发 view 更新。</p>
-<hr>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1033,7 +1121,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1092,7 +1180,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1101,12 +1189,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">226k</span>
+    <span title="站点总字数">233k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:25</span>
+    <span title="站点阅读时长">3:32</span>
 </div>
 
         

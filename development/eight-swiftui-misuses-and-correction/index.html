@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+  <script data-ad-client="ca-pub-8791711604224644" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://theinfinitegame.tech').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"b2t":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="译自 https:&#x2F;&#x2F;www.hackingwithswift.com&#x2F;articles&#x2F;224&#x2F;common-swiftui-mistakes-and-how-to-fix-them  SwiftUI 是一个庞大且复杂的框架。使用这个框架编程无疑是享受的，但犯错的机会也不少见。这篇文章我将带大家速览 SwiftUI 初学者常犯的一些错误，并提供修正方案。 其中的一些错误是由于简单的误解导致。由">
+<meta property="og:type" content="article">
+<meta property="og:title" content="八个常见的 SwiftUI 误用及对应的正确打开方式">
+<meta property="og:url" content="https://theinfinitegame.tech/development/eight-swiftui-misuses-and-correction/index.html">
+<meta property="og:site_name" content="The Infinite Game">
+<meta property="og:description" content="译自 https:&#x2F;&#x2F;www.hackingwithswift.com&#x2F;articles&#x2F;224&#x2F;common-swiftui-mistakes-and-how-to-fix-them  SwiftUI 是一个庞大且复杂的框架。使用这个框架编程无疑是享受的，但犯错的机会也不少见。这篇文章我将带大家速览 SwiftUI 初学者常犯的一些错误，并提供修正方案。 其中的一些错误是由于简单的误解导致。由">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-11T12:49:56.000Z">
+<meta property="article:modified_time" content="2021-01-11T12:51:01.333Z">
+<meta property="article:author" content="猫克杯">
+<meta property="article:tag" content="development">
+<meta property="article:tag" content="swiftui">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://theinfinitegame.tech/development/eight-swiftui-misuses-and-correction/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css">
+  <title>八个常见的 SwiftUI 误用及对应的正确打开方式 | The Infinite Game</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="The Infinite Game" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Infinite Game</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>热门</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/nichollyn" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/development/eight-swiftui-misuses-and-correction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          八个常见的 SwiftUI 误用及对应的正确打开方式
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-11 20:49:56" itemprop="dateCreated datePublished" datetime="2021-01-11T20:49:56+08:00">2021-01-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/development/" itemprop="url" rel="index">
+                    <span itemprop="name">development</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>译自 <a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/articles/224/common-swiftui-mistakes-and-how-to-fix-them">https://www.hackingwithswift.com/articles/224/common-swiftui-mistakes-and-how-to-fix-them</a></p>
+</blockquote>
+<p>SwiftUI 是一个庞大且复杂的框架。使用这个框架编程无疑是享受的，但犯错的机会也不少见。这篇文章我将带大家速览 SwiftUI 初学者常犯的一些错误，并提供修正方案。</p>
+<p>其中的一些错误是由于简单的误解导致。由于 SwiftUI 太大，这种情况其实容易出现。而另一些错误则与深入理解 SwiftUI 的工作方式有关，还有一些是原有的思维方式导致 —— 你可能花了很多时间编写 view 和 modifier，但没有想到用 SwiftUI 的方式简化结果。</p>
+<p>开门见山，你不需要猜我会给你准备什么菜，这里我直接把八条误用先简明扼要地罗列如下，然后我们逐条深入展开：</p>
+<ol>
+<li><p>添加不必要的 View 和 Modifier</p>
+</li>
+<li><p>在需要用 <code>@StateObject</code> 的地方用了 <code>@ObservedObject</code></p>
+</li>
+<li><p>Modifier 顺序错误</p>
+</li>
+<li><p>给属性包装器添加属性观察者</p>
+</li>
+<li><p>在需要用描边框的地方使用了描形状</p>
+</li>
+<li><p>Alert 和 Sheet 与可选状态的使用</p>
+</li>
+<li><p>尝试改变 SwiftUI 视图后面的东西</p>
+</li>
+<li><p>用错误的范围动态创建视图</p>
+</li>
+</ol>
+<hr>
+<h3 id="1-添加不必要的-View-和-Modifier"><a href="#1-添加不必要的-View-和-Modifier" class="headerlink" title="1 添加不必要的 View 和 Modifier"></a>1 添加不必要的 View 和 Modifier</h3><p>让我们从最常见的一个误用开始，它会让我们编写更多的 SwiftUI 代码。这种误用的部分原因通常是我们在解决问题时编写了许多代码，但是最后忘记整理代码。还有的时候，则是旧习惯作祟，尤其是当编写者是从 UIKit 或者其他 UI 框架转到 SwiftUI 上。</p>
+<p>比如，你可能希望用一个红色矩形填满屏幕？然后你像下面这样编写代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Rectangle</span>()</span><br><span class="line">    .fill (<span class="type">Color</span>.red)</span><br></pre></td></tr></tbody></table></figure>
+<p>的确，上面的代码可以工作 —— 它能准确地得到你想要的效果。但是其中一半的代码是不必要的，因为你只需要像下面这样写也能实现一样的效果：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Color</span>.red</span><br></pre></td></tr></tbody></table></figure>
+<p>这是因为在 SwiftUI 中，所有的颜色和形状都自动遵循了 View 协议，你可以把它们直接当成视图来使用。</p>
+<p>你可能也会经常看见形状裁切，因为为了实现特定形状，应用 <code>clipShape ()</code> 是件很自然的事情。例如，可以像下面这样让我们的红色矩形拥有圆角：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Color</span>.red</span><br><span class="line">    .clipShape (<span class="type">RoundedRectangle</span>(cornerRadius: <span class="number">50</span>))</span><br></pre></td></tr></tbody></table></figure>
+<p>但这也是不要的 —— 借助 <code>cornerRadius ()</code> modifier，代码可以简化如下：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Color</span>.red</span><br><span class="line">    .cornerRadius (<span class="number">50</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>移除这类的冗余代码需要时间，因为你需要转变思维习惯，这一点对于 SwiftUI 的初学者来说更加困难。 因此，假如你一开始采用了这些更长版本的代码，不必担忧，多加训练。</p>
+<h3 id="2-在需要用-StateObject-的地方用了-ObservedObject"><a href="#2-在需要用-StateObject-的地方用了-ObservedObject" class="headerlink" title="2 在需要用 @StateObject 的地方用了 @ObservedObject"></a>2 在需要用 <code>@StateObject</code> 的地方用了 <code>@ObservedObject</code></h3><p>SwiftUI 提供了众多属性包装器，帮助我们构建数据响应式的用户界面，其中最重要的当属 <code>@State</code>， <code>@StateObject</code> 和 <code>@ObservedObject</code>。掌握它们的使用场景非常重要，因为误用它们会给你的代码带来各种问题。</p>
+<p>第一个比较直接：<code>@State</code> 用于值类型属性，并且属性由当前视图拥有。因此，整数，字符串，数组等，都是应用 <code>@State</code> 的绝佳场景。</p>
+<p>后两者则有点令人困惑，你可能会经常看到下面这样的代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataModel</span>: <span class="title">ObservableObject</span> </span>{</span><br><span class="line">    @<span class="type">Published</span> <span class="keyword">var</span> username = <span class="string">"@twostraws"</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">ObservedObject</span> <span class="keyword">var</span> model = <span class="type">DataModel</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Text</span>(model.username)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>可以明确的说，这么做是错误的，并且极有可能在你的应用中带来问题。</p>
+<blockquote>
+<p>译者注：基于代码片段说这样写一定是错误的，这个表述是不严谨的。作者应该是隐含假设了 <code>ContentView</code> 是应用的顶级视图（通常来说，如果你不改工程模板的默认输出，<code>ContentView</code> 也确实是顶级视图）。对于顶级视图来说，SwiftUI 2.0 应当使用 <code>@StateObject</code> ，它是为了解决 <code>@ObservedObject</code> 或者 <code>@EnvironmentObject</code> 对象的所有权问题。但是对于附属于顶级视图的视图层级，各子视图的数据源可以是 <code>@ObservedObject</code> 或者 <code>@EnvironmentObject</code>，因为它们的生命周期受顶级视图管理，进而可以由顶级视图统一保证数据的可用性。</p>
+</blockquote>
+<p>正如我前面说到的，<code>@State</code> 表示某个值类型属性由当前视图拥有，这里的 “拥有” 很重要。而 <code>@StateObject</code> 则相当于引用类型版本的 <code>@State</code>。</p>
+<p>因此，上面的代码应该改成这样：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="type">StateObject</span> model = <span class="type">DataModel</span>()</span><br></pre></td></tr></tbody></table></figure>
+<p>当你使用 <code>@ObservedObject</code> 来创建某个对象实例时，你的视图并不拥有这个对象实例，也就是说，这个实例可以在任何时候被销毁（译者注：视图无法了解也无法干预这个时机）。狡猾的是，对象在视图还需要用它时被销毁的情况只是偶尔发生，所以你可能认为你的代码很完美。</p>
+<p>需要记住的重点是 <code>@State</code> 和 <code>@StateObject</code> 表示 “视图拥有数据”，而 <code>@ObservedObject</code> 和 <code>@EnvironmentObject</code> 则没有。</p>
+<h3 id="3-Modifier-顺序错误"><a href="#3-Modifier-顺序错误" class="headerlink" title="3 Modifier 顺序错误"></a>3 Modifier 顺序错误</h3><p>Modifier 的顺序在 SwiftUI 中至关重要。顺序错误不仅会导致布局在上视觉上的偏差，也会导致其行为的错误。</p>
+<p>解释这个问题最经典的例子是 <code>padding</code> 和 <code>background</code> 的使用，如下：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br><span class="line">    .padding ()</span><br></pre></td></tr></tbody></table></figure>
+<p>由于我们在 <code>background</code> 颜色之后应用 <code>padding</code>，颜色只会被直接应用在文本周围，而不是被添加留白之后的文本周围。如果你希望留白和文本背景都是绿色，应该将代码改成下面这样：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .padding ()</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br></pre></td></tr></tbody></table></figure>
+<p>当你尝试调整视图位置时，这个原理会让事情变得更有趣。</p>
+<p>例如，<code>offset ()</code> modifier 会修改一个视图被渲染的位置，但并不实际改变视图的位置。也就是说，应用在 <code>offset</code> 之后的 modifier 表现得就像 <code>offset</code> 从未发生过。</p>
+<p>尝试下面的代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .offset (x: <span class="number">15</span>, y: <span class="number">15</span>)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br></pre></td></tr></tbody></table></figure>
+<p>你会发现文本偏移了，但背景颜色没有偏移。现在，尝试交换 <code>offset ()</code> 和 <code>background ()</code> 的位置：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br><span class="line">    .offset (x: <span class="number">15</span>, y: <span class="number">15</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>现在你会看到文本和背景都移动了。</p>
+<p>另外，<code>position ()</code> modifier 会改变一个视图在其父节点中的渲染位置，但这一点是借助它先在视图周围应用一个可伸展尺寸的 frame 来实现的。</p>
+<p>尝试下面的代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br><span class="line">    .position (x: <span class="number">150</span>, y: <span class="number">150</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>你会发现背景颜色紧贴在文本四周，并且整个视图被放置在左上角。现在，尝试对调 <code>background ()</code> 和 <code>position ()</code>：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .position (x: <span class="number">150</span>, y: <span class="number">150</span>)</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br></pre></td></tr></tbody></table></figure>
+<p>这一回你会发现整个屏幕都变成绿色了。还是因为 <code>position ()</code> 要求 SwiftUI 放置一个可伸缩尺寸的 frame 在文本视图周围，这导致视图自动占满了所有的可用空间。然后我们给视图上了绿色，所以整个屏幕呈现绿色。</p>
+<p>你所应有的绝大多数 modifier 都创建了新视图 —— 应用一个 <code>position</code> 或者 <code>background</code> 时，你实际上是在将现有的视图包装起来。这个机制对于我们大有用处，我们可以多次应用 modifier，比如添加多层留白和背景：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .padding ()</span><br><span class="line">    .background (<span class="type">Color</span>.green)</span><br><span class="line">    .padding ()</span><br><span class="line">    .background (<span class="type">Color</span>.blue)</span><br></pre></td></tr></tbody></table></figure>
+<p>或者应用多个 shadows 以创建很深的阴影效果：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .font (.largeTitle)</span><br><span class="line">    .foregroundColor (.white)</span><br><span class="line">    .shadow (color: .black, radius: <span class="number">10</span>)</span><br><span class="line">    .shadow (color: .black, radius: <span class="number">10</span>)</span><br><span class="line">    .shadow (color: .black, radius: <span class="number">10</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="4-给属性包装器添加属性观察者"><a href="#4-给属性包装器添加属性观察者" class="headerlink" title="4 给属性包装器添加属性观察者"></a>4 给属性包装器添加属性观察者</h3><p>某些情况下你可能会为属性包装器添加诸如 <code>didSet</code> 这样的属性观察者，但它不会如你预期的那样工作。</p>
+<p>例如，如果你在使用滑块，希望在滑块值改变时执行某种动作，你可能会下面这样编写代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> rating = <span class="number">0.0</span> {</span><br><span class="line">        <span class="keyword">didSet</span> {</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"Rating changed to \(rating)"</span>)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Slider</span>(value: $rating)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>但是，这个 <code>didSet</code> 属性观察者永远都不会被调用，因为属性的值是由绑定直接修改的，而不是每次创建一个新值。</p>
+<p>对此，SwiftUI 原生的方式是使用 <code>onChange ()</code> modifier，如下：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> rating = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Slider</span>(value: $rating)</span><br><span class="line">            .onChange (of: rating) { value <span class="keyword">in</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"Rating changed to \(value)"</span>)</span><br><span class="line">            }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>不过，我个人更喜欢一种不同的方案：我使用基于 Binding 的扩展来返回新的绑定，其中的 <code>get</code> 和 <code>set</code> 包装的值和之前一样，但是在新值得到时也会调用处理函数：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Binding</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">onChange</span><span class="params">(<span class="keyword">_</span> handler: @escaping <span class="params">(Value)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; <span class="type">Binding</span>&lt;<span class="type">Value</span>&gt; {</span><br><span class="line">        <span class="type">Binding</span>(</span><br><span class="line">            <span class="keyword">get</span>: { <span class="keyword">self</span>.wrappedValue },</span><br><span class="line">            <span class="keyword">set</span>: { newValue <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">self</span>.wrappedValue = newValue</span><br><span class="line">                handler (newValue)</span><br><span class="line">            }</span><br><span class="line">        )</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>有了这个扩展，我们就可以把绑定的动作直接附着在滑块视图上：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> rating = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Slider</span>(value: $rating.onChange (sliderChanged))</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sliderChanged</span><span class="params">(<span class="keyword">_</span> value: Double)</span></span> {</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Rating changed to \(value)"</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>挑选最适合你的方案。</p>
+<h3 id="5-在需要用描边框的地方使用了描形状"><a href="#5-在需要用描边框的地方使用了描形状" class="headerlink" title="5 在需要用描边框的地方使用了描形状"></a>5 在需要用描边框的地方使用了描形状</h3><p>不理解 <code>stroke ()</code> 和 <code>strokeBorder</code> 的区别是初学者常犯的错误。尝试下面的代码：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Circle</span>()</span><br><span class="line">    .stroke (<span class="type">Color</span>.red, lineWidth: <span class="number">20</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>注意看，你会发现圆的左边缘和右边缘怎么不见了？（译者：这里预设你是竖屏运行程序，高度大于宽高）这是因为 <code>stroke ()</code> modifier 会把描边居中对齐在形状的轮廓线上，所以一个 20 个点的红色描边会绘制 10 个点到形状的边缘线外部，10 个点在边缘线内部 —— 这就导致了你看到圆形的左右超出屏幕的现象。</p>
+<p>作为对照，<code>strokeBorder ()</code> 则是把整个描边都绘制在形状内部，所以它不会放大形状的边框。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Circle</span>()</span><br><span class="line">    .strokeBorder (<span class="type">Color</span>.red, lineWidth: <span class="number">20</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>相比于使用 <code>strokeBorder ()</code>，使用 <code>stroke ()</code> 有一个好处是它返回的是一个新形状，而不是一个新视图。这使得你可以创建出某些本来难以实现的效果，比如给一个形状描两次边：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Circle</span>()</span><br><span class="line">    .stroke (style: <span class="type">StrokeStyle</span>(lineWidth: <span class="number">20</span>, dash: [<span class="number">10</span>]))</span><br><span class="line">    .stroke (style: <span class="type">StrokeStyle</span>(lineWidth: <span class="number">20</span>, dash: [<span class="number">10</span>]))</span><br><span class="line">    .frame (width: <span class="number">280</span>, height: <span class="number">280</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="6-Alert-和-Sheet-与可选状态的使用"><a href="#6-Alert-和-Sheet-与可选状态的使用" class="headerlink" title="6 Alert 和 Sheet 与可选状态的使用"></a>6 Alert 和 Sheet 与可选状态的使用</h3><p>当你在学习使用 sheet 和可选型的时候，很容易想到把 sheet 的展示绑定到像下面这样的 Boolean：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">User</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">String</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selectedUser: <span class="type">User?</span></span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> showingAlert = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Button</span>(<span class="string">"Show Alert"</span>) {</span><br><span class="line">                selectedUser = <span class="type">User</span>(id: <span class="string">"@twostraws"</span>)</span><br><span class="line">                showingAlert = <span class="literal">true</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        .alert (isPresented: $showingAlert) {</span><br><span class="line">            <span class="type">Alert</span>(title: <span class="type">Text</span>(<span class="string">"Hello, \(selectedUser!.id)"</span>))</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>当然，这可以正确工作 —— 而且这个方案容易理解。但是一旦你越过了初级阶段，你就应当考虑换成可选型的实现方案。这个方案去掉了 Boolean，也不必强制解包。唯一的要求是你所监听的目标需要遵循 <code>Identifiable</code>。</p>
+<p>举个例子，我们可以在 <code>selectedUser</code> 发生变化的任何时候展示警告弹窗，就像下面这样：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selectedUser: <span class="type">User?</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Button</span>(<span class="string">"Show Alert"</span>) {</span><br><span class="line">                selectedUser = <span class="type">User</span>(id: <span class="string">"@twostraws"</span>)</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        .alert (item: $selectedUser) { user <span class="keyword">in</span></span><br><span class="line">            <span class="type">Alert</span>(title: <span class="type">Text</span>(<span class="string">"Hello, \(user.id)"</span>))</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这会使得你的代码更加易于读写，并且避免因为强制解包可能带来的麻烦。</p>
+<h3 id="7-尝试改变-SwiftUI-视图后面的东西"><a href="#7-尝试改变-SwiftUI-视图后面的东西" class="headerlink" title="7 尝试改变 SwiftUI 视图后面的东西"></a>7 尝试改变 SwiftUI 视图后面的东西</h3><p>SwiftUI 初学者最常犯的一个错误是他们常常试图去改变 SwiftUI 视图的背景。代码通常长下面这个样子：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">            .background (<span class="type">Color</span>.red)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这会展示一个白色的屏幕，中间是红色背景色只匹配文本区域的文本视图。而大多数人的本意其实是想让整个屏幕的背景呈现出红色。这个时候他们会想，SwiftUI 背后究竟是什么样的 UIKit 视图呢？</p>
+<p>当然，背后肯定是有一个 UIKit 视图，它由 <code>UIHostingController</code> 管理，角色类似于一个 UIKit 视图控制器。但是假如你通过 SwiftUI 试图去踏足 UIKit 的领地，你的改动很可能会让 SwiftUI 呈现出奇怪的结果，或者你甚至都没法直接改动 UIKit。</p>
+<p>实际上，想到达成大多数人想要的效果，SwiftUI 里的实现方式应该是像下面这样的：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line">    .frame (maxWidth: .infinity, maxHeight: .infinity)</span><br><span class="line">    .background (<span class="type">Color</span>.red)</span><br><span class="line">    .ignoresSafeArea ()</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="8-动态视图的范围参数错误"><a href="#8-动态视图的范围参数错误" class="headerlink" title="8 动态视图的范围参数错误"></a>8 动态视图的范围参数错误</h3><p>有多个 SwiftUI 视图的构造器允许我们传入范围，这个事实让许多复杂视图的创建过程变得十分简单。</p>
+<p>例如，假设我们想要展示一个拥有 4 个项目的列表，我们只需要这样写：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> rowCount = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">List</span>(<span class="number">0</span>..&lt;rowCount) { row <span class="keyword">in</span></span><br><span class="line">                <span class="type">Text</span>(<span class="string">"Row \(row)"</span>)</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>这样写本身没问题，不过一旦你需要在运行时改变范围时，问题就来了。你看我已经用 <code>@State</code> 属性包装器把想要改变的行数变成可修改的，所以我们可以用一个按钮来修改它的值：</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(<span class="string">"Add Row"</span>) {</span><br><span class="line">    rowCount += <span class="number">1</span></span><br><span class="line">}</span><br><span class="line">.padding (.top)</span><br></pre></td></tr></tbody></table></figure>
+<p>运行代码，点击按钮，Xcode 调试输出会输出警告，而列表视图纹丝不动 —— 这个方案不管用。</p>
+<p>问题出在你既没有为列表的参数提供 <code>Identifiable</code> 协议实现，也没有提供指定的 id 参数，以此告诉 SwiftUI 这个范围会动态变化：（译者：实际上并不是 “告诉 SwiftUI 范围会动态变化”，而是明确范围的项怎样才算变化。<code>Identifiable</code> 或者 id 参数明确了两个项之间是如何区别。能够区别开的项目才能侦测变化）。</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>(<span class="number">0</span>..&lt;rowCount, id: \.<span class="keyword">self</span>) { row <span class="keyword">in</span></span><br><span class="line">    <span class="type">Text</span>(<span class="string">"Row \(row)"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>代码改成这样就没问题了。</p>
+<hr>
+<p>封面来自 <a target="_blank" rel="noopener" href="https://unsplash.com/@zmachacek?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Zdeněk Macháček</a> on <a target="_blank" rel="noopener" href="https://unsplash.com/s/photos/owl?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/development/note-swiftui-mvvm/" rel="bookmark">SwiftUI 笔记 | MVVM In SwiftUI</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/development/note-swiftui-dynamic-user-notification-on-apple-watch/" rel="bookmark">SwiftUI 应用 | 浇水提醒 app</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/development/programming-use-pipeline-to-tackle-complexity/" rel="bookmark">用 “流水线” 设计拆解复杂处理流程</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/development/note-ios-map-api/" rel="bookmark">iOS 笔记 | 地图 API</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/development/note-watchos-minimum-viable-complication/" rel="bookmark">watchOS 学习笔记 | 最小可行 Complication</a></div>
+    </li>
+  </ul>
+<div class="post-widgets">
+    <div class="likely">
+        <div class="twitter">Tweet</div>
+        <div class="facebook">Share</div>
+        <div class="linkedin">Linkedin</div>
+        <div class="gplus">Plus</div>
+        <div class="vkontakte">Share</div>
+        <div class="odnoklassniki">Class</div>
+        <div class="telegram">Send</div>
+        <div class="whatsapp">Send</div>
+        <div class="pinterest">Pin</div>
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script>
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="猫克杯 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="猫克杯 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>猫克杯
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://theinfinitegame.tech/development/eight-swiftui-misuses-and-correction/" title="八个常见的 SwiftUI 误用及对应的正确打开方式">https://theinfinitegame.tech/development/eight-swiftui-misuses-and-correction/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/development/" rel="tag"># development</a>
+              <a href="/tags/swiftui/" rel="tag"># swiftui</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/programming/use-nsuseractivity-in-swiftui/" rel="prev" title="在 SwiftUI 中使用 NSUserActivity">
+      <i class="fa fa-chevron-left"></i> 在 SwiftUI 中使用 NSUserActivity
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B7%BB%E5%8A%A0%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84-View-%E5%92%8C-Modifier"><span class="nav-number">1.</span> <span class="nav-text">1 添加不必要的 View 和 Modifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%A8%E9%9C%80%E8%A6%81%E7%94%A8-StateObject-%E7%9A%84%E5%9C%B0%E6%96%B9%E7%94%A8%E4%BA%86-ObservedObject"><span class="nav-number">2.</span> <span class="nav-text">2 在需要用 @StateObject 的地方用了 @ObservedObject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Modifier-%E9%A1%BA%E5%BA%8F%E9%94%99%E8%AF%AF"><span class="nav-number">3.</span> <span class="nav-text">3 Modifier 顺序错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BB%99%E5%B1%9E%E6%80%A7%E5%8C%85%E8%A3%85%E5%99%A8%E6%B7%BB%E5%8A%A0%E5%B1%9E%E6%80%A7%E8%A7%82%E5%AF%9F%E8%80%85"><span class="nav-number">4.</span> <span class="nav-text">4 给属性包装器添加属性观察者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%9C%A8%E9%9C%80%E8%A6%81%E7%94%A8%E6%8F%8F%E8%BE%B9%E6%A1%86%E7%9A%84%E5%9C%B0%E6%96%B9%E4%BD%BF%E7%94%A8%E4%BA%86%E6%8F%8F%E5%BD%A2%E7%8A%B6"><span class="nav-number">5.</span> <span class="nav-text">5 在需要用描边框的地方使用了描形状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Alert-%E5%92%8C-Sheet-%E4%B8%8E%E5%8F%AF%E9%80%89%E7%8A%B6%E6%80%81%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">6 Alert 和 Sheet 与可选状态的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%B0%9D%E8%AF%95%E6%94%B9%E5%8F%98-SwiftUI-%E8%A7%86%E5%9B%BE%E5%90%8E%E9%9D%A2%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="nav-number">7.</span> <span class="nav-text">7 尝试改变 SwiftUI 视图后面的东西</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E5%8A%A8%E6%80%81%E8%A7%86%E5%9B%BE%E7%9A%84%E8%8C%83%E5%9B%B4%E5%8F%82%E6%95%B0%E9%94%99%E8%AF%AF"><span class="nav-number">8.</span> <span class="nav-text">8 动态视图的范围参数错误</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫克杯"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">猫克杯</p>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nichollyn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nichollyn" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kai-wen-mao-66" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kai-wen-mao-66" rel="noopener" target="_blank"><i class="fa fa-fw fa-quora"></i>知乎</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+      <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫克杯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">233k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:32</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'f79533'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

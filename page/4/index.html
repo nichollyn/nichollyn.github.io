@@ -226,6 +226,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-type-i-and-type-ii-errors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-type-i-and-type-ii-errors/" class="post-title-link" itemprop="url">极速统计教程之二十三 | 第一类错误和第二类错误</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-03 13:58:06" itemprop="dateCreated datePublished" datetime="2020-02-03T13:58:06+08:00">2020-02-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>欢迎关注微信公众号「Swift 花园」</p>
+<h1 id="第一类错误和第二类错误"><a href="#第一类错误和第二类错误" class="headerlink" title="第一类错误和第二类错误"></a>第一类错误和第二类错误</h1><p>回忆一下此前提到过的庭审的例子。被告方的辩护律师的观点是被告是无辜的，公诉方则试图说服陪审团和法官被告是有罪的。举证有罪的责任在于原告。被告只有在原告提供有力证据驳斥被告假定无罪的情况下才能被认定为有罪。</p>
+<p>在审判时，有四种可能的结果。一，被告确实有罪且被判有罪，这是个正确的决定。二，被告确实无辜且被判无罪，这也是正确的决定。三，被告实际上是无辜的，但被判有罪，这是错误的决定。四，被告实际上有罪的，但是被判无罪，这也是错误的决定。</p>
+<p>这也是我们在实施显著性检验时会发生的情况。辩方观点类似零假设为真，而被告有罪则等效于零假设为假。判被告有罪类似拒绝零假设，而无罪释放则等同于不拒绝零假设。这会导致四种可能的情形。其中的两种，你做了正确的决定，包括零假设的确为真并且你没有拒绝它以及零假设的确为假并且你拒绝了它。但也有两种你做了错误的决定，包括零假设为真而你拒绝了它以及零假设的确为假而你没有拒绝它。第一个错误我们称为 <strong>第一类错误 (type I error)</strong> ，或者说 <strong>伪阳性 (false positive)</strong> 。第个错误我们称为 <strong>第二类错误 (type II error)</strong> ，或者说 <strong>伪阴性 (false negative)</strong> 。</p>
+<img src="/images/t1t2_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
+
+<p>让我给你举个例子。想象你的零假设是：美国的持证水肺潜水者总体， 50% 有超过 35 小时的潜水经验。换言之， $ \pi = 0.5 $ 。备选假设是它是另外一个百分比，换言之， $ \pi \neq 0.5 $ 。你问了一组简单随机抽样的 500 个美国潜水者，你发现有 0.56 的比例有超过 35 小时的潜水经验。现在，假定你的零假设实际上是真的，当你决定基于你的样本数据拒绝零假设时，一个第一类错误就出现了。 </p>
+<img src="/images/t1t2_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-type-i-and-type-ii-errors/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-step-by-step-plan-and-ci/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -656,104 +755,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-inference-and-confidence-interval/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-inference-and-confidence-interval/" class="post-title-link" itemprop="url">极速统计教程之十八 | 均值的推断和置信区间</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-01 11:03:48" itemprop="dateCreated datePublished" datetime="2020-02-01T11:03:48+08:00">2020-02-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>欢迎关注微信公众号「Swift 花园」</p>
-<h1 id="统计推断"><a href="#统计推断" class="headerlink" title="统计推断"></a>统计推断</h1><p>这一节我们以睡眠为例。假设你通常每晚睡 8 个小时，你突然做了年轻爸爸或者年轻妈妈，你的睡眠时间减少到每晚 5 个小时，这意味着每晚减少 3 个小时，相当于每周 20 个小时，每年 1000 个小时，差不多 40 天。换言之，如果你家宝宝继续保持他 / 她的睡眠时间，一年之后你会比之前少睡 大约 40 天。</p>
-<p>回到统计学，想象你想要知道你家乡的年轻父母在孩子刚出生那一年减少了多少睡眠。在这一节中我们将讨论统计推断。我们会基于样本信息，得出关于总体的结论。我们将会区分两种统计推断的方法，一种叫 <strong>统计估计 (statistical estimation)</strong> ，另一种叫 <strong>假设检验 (hypothesis testing)</strong> 。在这篇教程中，我们将先了解统计估计。 </p>
-<p>有两种方式估计总体参数的值，其一叫 <strong>点估计 (point estimate)</strong> ，它是一个对于总体参数的最佳猜想。其二是 <strong>区间估计 (interval estimate)</strong> ，它是一个我们预期参数会落在的范围。 </p>
-<p>想象我们抽取了 60 个受试者样本，有了第一个小孩后每晚减少的睡眠小时数均值为 2.6 小时。这个均值是一个对于总体均值很好的点估计。换言之，$ \bar x $ ，是一个对于 $ \mu $ 的很好的点估计。不过，单一的点估计无法告诉我们估计是否接近我们感兴趣的总体参数。因此，研究人员通常还希望知道点估计可能的准确度。他们借由计算区间估计来显示这种准确度。</p>
-<p>区间估计是一个最有可能包含总体实际参数值的数字区间。基于我们的样本均值 2.6 小时，我们可以预测，比如说，你家乡新生儿父母每晚睡眠减少的平均小时数介于 2.3 小时到 2.9 小时之间。</p>
-<p>这个区间包含总体参数值的概率，被我们称为 <strong>置信水平 (confidence level)</strong> ，置信水平总是一个接近 1 的值，多数情况下是 0.95 。接下来我们将讨论有 95% 置信水平的区间。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-inference-and-confidence-interval/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -826,7 +827,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -885,7 +886,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -894,12 +895,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">226k</span>
+    <span title="站点总字数">233k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:25</span>
+    <span title="站点阅读时长">3:32</span>
 </div>
 
         

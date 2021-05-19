@@ -51,16 +51,16 @@
   };
 </script>
 
-  <meta name="description" content="欢迎关注微信公众号「Swift 花园」  译自 https:&#x2F;&#x2F;swiftui-lab.com&#x2F;nsuseractivity-with-swiftui&#x2F;   译者注：作者为了扩展他的 SwiftUI 应用去研究了 NSUserActivity，发现关于 NSUserActivity 的大量信息都已经过时了。比如，绝大多数关于 Handoff 的文章都是 Handoff 特性刚有的时候发布的，而那">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」  译自 https:&#x2F;&#x2F;swiftui-lab.com&#x2F;nsuseractivity-with-swiftui&#x2F; 译者注：作者为了扩展他的 SwiftUI 应用去研究了 NSUserActivity，发现关于 NSUserActivity 的大量信息都已经过时了。比如，绝大多数关于 Handoff 的文章都是 Handoff 特性刚有的时候发布的，而那个时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 SwiftUI 中使用 NSUserActivity">
 <meta property="og:url" content="https://theinfinitegame.tech/programming/use-nsuseractivity-in-swiftui/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」  译自 https:&#x2F;&#x2F;swiftui-lab.com&#x2F;nsuseractivity-with-swiftui&#x2F;   译者注：作者为了扩展他的 SwiftUI 应用去研究了 NSUserActivity，发现关于 NSUserActivity 的大量信息都已经过时了。比如，绝大多数关于 Handoff 的文章都是 Handoff 特性刚有的时候发布的，而那">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」  译自 https:&#x2F;&#x2F;swiftui-lab.com&#x2F;nsuseractivity-with-swiftui&#x2F; 译者注：作者为了扩展他的 SwiftUI 应用去研究了 NSUserActivity，发现关于 NSUserActivity 的大量信息都已经过时了。比如，绝大多数关于 Handoff 的文章都是 Handoff 特性刚有的时候发布的，而那个时">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1glu3tdup4dj318y0u0he0.jpg">
 <meta property="article:published_time" content="2020-12-20T03:04:55.000Z">
-<meta property="article:modified_time" content="2020-12-20T03:45:13.003Z">
+<meta property="article:modified_time" content="2020-12-20T03:45:45.749Z">
 <meta property="article:author" content="猫克杯">
 <meta property="article:tag" content="编程">
 <meta property="article:tag" content="SwiftUI">
@@ -307,8 +307,6 @@
 <p>欢迎关注微信公众号「Swift 花园」</p>
 <blockquote>
 <p>译自 <a target="_blank" rel="noopener" href="https://swiftui-lab.com/nsuseractivity-with-swiftui/">https://swiftui-lab.com/nsuseractivity-with-swiftui/</a></p>
-</blockquote>
-<blockquote>
 <p>译者注：作者为了扩展他的 SwiftUI 应用去研究了 NSUserActivity，发现关于 NSUserActivity 的大量信息都已经过时了。比如，绝大多数关于 Handoff 的文章都是 Handoff 特性刚有的时候发布的，而那个时候还没有 scene 的概念，所有逻辑都是通过 application 的 delegate 处理的。之后 scene 出现了，许多代码被移到了 scene delegate，原来的 Handoff 示例也就失效了。如果你是刚开始学习 NSUserActivity，一定会感到困惑，而现在 SwiftUI 也支持用户活动，但现在又没有 scene 了，变化更大，所以作者认为需要写一篇新的文档来介绍 SwiftUI 中 NSUserActivity 的使用。</p>
 </blockquote>
 <p>NSUserActivity 令人费解的另一个原因是它是一个可以用来处理多个不相干功能的东西。它的各项属性只在某些情况下相关，多数情况下却是没有关联的。</p>
@@ -320,7 +318,7 @@
 <li><strong>Handoff</strong>: 即 “接力”，指一个应用可以继续另一个应用的工作，或者一台设备上的相同应用可以继续另一个设备上的应用的工作。</li>
 </ul>
 <p>这篇文档会提供一系列示例，逐步介绍 SwiftUI 中提供的用于处理 NSUserActivity 的方法，其中上面提到的每一种情况都会有示例。</p>
-<h3 id="重要的笔记"><a href="#重要的笔记" class="headerlink" title="重要的笔记"></a>重要的笔记</h3><p>SwiftUI 中跟 NSUserActivity 有关的方法包括：<strong>onOpenURL ()</strong>, <strong>userActivity ()</strong>, <strong>onContinueUserActivity ()</strong> 和 **handlesExternalEvents ()**。注意，这些方法只有当你的应用采用的是 SwiftUI 应用生命周期时才能工作。如果你的项目还是使用 scene delegate，引入这几个方法会在控制台输出下面的消息：</p>
+<h3 id="重要的笔记"><a href="#重要的笔记" class="headerlink" title="重要的笔记"></a>重要的笔记</h3><p>SwiftUI 中跟 NSUserActivity 有关的方法包括：<strong>onOpenURL ()</strong>, <strong>userActivity ()</strong>, <strong>onContinueUserActivity ()</strong> 和 <strong>handlesExternalEvents ()</strong>。注意，这些方法只有当你的应用采用的是 SwiftUI 应用生命周期时才能工作。如果你的项目还是使用 scene delegate，引入这几个方法会在控制台输出下面的消息：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cannot use Scene methods for URL, NSUserActivity, and other External Events </span><br><span class="line">without using SwiftUI Lifecycle. Without SwiftUI Lifecycle, </span><br><span class="line">advertising and handling External Events wastes resources, and will have unpredictable results.</span><br></pre></td></tr></tbody></table></figure>
 <p>个人经验，上面的消息中提到的不可预测的结果，实际上完全可以预测：所有这些方法都将被忽略。</p>
 <h3 id="User-Activity-的两面"><a href="#User-Activity-的两面" class="headerlink" title="User Activity 的两面"></a>User Activity 的两面</h3><p>根据 Apple 的 <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/foundation/nsuseractivity">官方文档</a>，一个用户活动（user activity）对象代表了某个应用在某个时刻的状态：</p>
@@ -336,22 +334,16 @@
 <p>在 UIKit 里实现 Universal Links ，一般是在 scene delegate 里这么做：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">scene</span><span class="params">(<span class="keyword">_</span> scene: UIScene, <span class="keyword">continue</span> userActivity: NSUserActivity)</span></span> {</span><br><span class="line">    <span class="keyword">if</span> userActivity.activityType == <span class="type">NSUserActivityTypeBrowsingWeb</span>  {</span><br><span class="line">        doSomethingWith (url: userActivity.webpageURL)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>但现在没有了 scene delegate，我们只需要简单地使用 <code>onOpenURL</code> 方法，它会得到 <code>URL</code> 对象，而不是 NSUserActivity 对象：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">SomeView</span>()</span><br><span class="line">            .onOpenURL { url <span class="keyword">in</span></span><br><span class="line">                doSomethingWith (url: url)</span><br><span class="line">            }</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doSomethingWith</span><span class="params">(url: URL?)</span></span> {</span><br><span class="line">        ...</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<hr>
-<h3 id="SiriKit"><a href="#SiriKit" class="headerlink" title="SiriKit"></a>SiriKit</h3><h5 id="介绍-onContinueUserActivity"><a href="#介绍-onContinueUserActivity" class="headerlink" title="介绍 onContinueUserActivity ()"></a>介绍 onContinueUserActivity ()</h5><p>我们可以给一个应用中的特定部分定义快捷指令。在 iOS 中，这个动作可以借助 “快捷指令” 应用来实现，但我们也可以在应用内通过代码实现。UIKit 有一些专门的 UI 元素来处理这件事，但 SwiftUI 中并没有直接可用的方法，所以这一节中的例子会包含一个 UIViewControllerRepresentable，它的作用是提供一个按钮，点击这个按钮可以打开系统的模态表单，让用户创建或者编辑快捷指令。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">SomeView</span>()</span><br><span class="line">            .onOpenURL { url <span class="keyword">in</span></span><br><span class="line">                doSomethingWith (url: url)</span><br><span class="line">            }</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doSomethingWith</span><span class="params">(url: URL?)</span></span> {</span><br><span class="line">        ...</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></h2><h3 id="SiriKit"><a href="#SiriKit" class="headerlink" title="SiriKit"></a>SiriKit</h3><h5 id="介绍-onContinueUserActivity"><a href="#介绍-onContinueUserActivity" class="headerlink" title="介绍 onContinueUserActivity ()"></a>介绍 onContinueUserActivity ()</h5><p>我们可以给一个应用中的特定部分定义快捷指令。在 iOS 中，这个动作可以借助 “快捷指令” 应用来实现，但我们也可以在应用内通过代码实现。UIKit 有一些专门的 UI 元素来处理这件事，但 SwiftUI 中并没有直接可用的方法，所以这一节中的例子会包含一个 UIViewControllerRepresentable，它的作用是提供一个按钮，点击这个按钮可以打开系统的模态表单，让用户创建或者编辑快捷指令。</p>
 <p>一旦快捷指令创建，我们就可以调用 Siri 指令来执行它。它会启动或者恢复我们的应用，并且通过 NSUserActivity 提供用户希望我们执行的快捷指令的细节信息。SwiftUI 对此为我们提供了一个 <strong>onContinueUserActivity ()</strong></p>
 <p>在下面的例子中，通过指令 “Hey Siri, show random animal” （或者某些其它的预置指令），系统会启动我们的应用并导航到某个随机的动物视图。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> Intents</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 </span></span><br><span class="line"><span class="keyword">let</span> aType = <span class="string">"com.example.show-animal"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Animal</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> image: <span class="type">String</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> animals = [<span class="type">Animal</span>(id: <span class="number">1</span>, name: <span class="string">"Lion"</span>, image: <span class="string">"lion"</span>),</span><br><span class="line">               <span class="type">Animal</span>(id: <span class="number">2</span>, name: <span class="string">"Fox"</span>, image: <span class="string">"fox"</span>),</span><br><span class="line">               <span class="type">Animal</span>(id: <span class="number">3</span>, name: <span class="string">"Panda"</span>, image: <span class="string">"panda-bear"</span>),</span><br><span class="line">               <span class="type">Animal</span>(id: <span class="number">4</span>, name: <span class="string">"Elephant"</span>, image: <span class="string">"elephant"</span>)]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selection: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">NavigationView</span> {</span><br><span class="line">            <span class="type">List</span>(animals) { animal <span class="keyword">in</span></span><br><span class="line">                <span class="type">NavigationLink</span>(</span><br><span class="line">                    destination: <span class="type">AnimalDetail</span>(animal: animal),</span><br><span class="line">                    tag: animal.id,</span><br><span class="line">                    selection: $selection,</span><br><span class="line">                    label: { <span class="type">AnimalRow</span>(animal: animal) })</span><br><span class="line">            }</span><br><span class="line">            .navigationTitle (<span class="string">"Animal Gallery"</span>)</span><br><span class="line">            .onContinueUserActivity (aType, perform: { userActivity <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">self</span>.selection = <span class="type">Int</span>.random (<span class="keyword">in</span>: <span class="number">0</span>...(animals.<span class="built_in">count</span> - <span class="number">1</span>))</span><br><span class="line">            })</span><br><span class="line">            </span><br><span class="line">        }.navigationViewStyle (<span class="type">StackNavigationViewStyle</span>())</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AnimalRow</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> animal: <span class="type">Animal</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">HStack</span> {</span><br><span class="line">            <span class="type">Image</span>(animal.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .frame (width: <span class="number">60</span>, height: <span class="number">60</span>)</span><br><span class="line"></span><br><span class="line">            <span class="type">Text</span>(animal.name)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AnimalDetail</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> showAddToSiri: <span class="type">Bool</span> = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">let</span> animal: <span class="type">Animal</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> shortcut: <span class="type">INShortcut</span> = {</span><br><span class="line">        <span class="keyword">let</span> activity = <span class="type">NSUserActivity</span>(activityType: aType)</span><br><span class="line">        activity.title = <span class="string">"Display a random animal"</span></span><br><span class="line">        activity.suggestedInvocationPhrase = <span class="string">"Show Random Animal"</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="type">INShortcut</span>(userActivity: activity)</span><br><span class="line">    }()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span>(spacing: <span class="number">20</span>) {</span><br><span class="line">            <span class="type">Text</span>(animal.name)</span><br><span class="line">                .font (.title)</span><br><span class="line"></span><br><span class="line">            <span class="type">Image</span>(animal.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .scaledToFit ()</span><br><span class="line">            </span><br><span class="line">            <span class="type">SiriButton</span>(shortcut: shortcut).frame (height: <span class="number">34</span>)</span><br><span class="line"></span><br><span class="line">            <span class="type">Spacer</span>()</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>下面是用于创建快捷指令和编辑模态表单的 <strong>UIViewControllerRepresentable</strong>：</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> IntentsUI</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SiriButton</span>: <span class="title">UIViewControllerRepresentable</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> shortcut: <span class="type">INShortcut</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeUIViewController</span><span class="params">(context: Context)</span></span> -&gt; <span class="type">SiriUIViewController</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">SiriUIViewController</span>(shortcut: shortcut)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">updateUIViewController</span><span class="params">(<span class="keyword">_</span> uiViewController: SiriUIViewController, context: Context)</span></span> {</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SiriUIViewController</span>: <span class="title">UIViewController</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> shortcut: <span class="type">INShortcut</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(shortcut: <span class="type">INShortcut</span>) {</span><br><span class="line">        <span class="keyword">self</span>.shortcut = shortcut</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(nibName: <span class="literal">nil</span>, bundle: <span class="literal">nil</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder: <span class="type">NSCoder</span>) {</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init (coder:) has not been implemented"</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> {</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad ()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> button = <span class="type">INUIAddVoiceShortcutButton</span>(style: .blackOutline)</span><br><span class="line">        button.shortcut = shortcut</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.view.addSubview (button)</span><br><span class="line">        view.centerXAnchor.constraint (equalTo: button.centerXAnchor).isActive = <span class="literal">true</span></span><br><span class="line">        view.centerYAnchor.constraint (equalTo: button.centerYAnchor).isActive = <span class="literal">true</span></span><br><span class="line">        button.translatesAutoresizingMaskIntoConstraints = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">        button.delegate = <span class="keyword">self</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIAddVoiceShortcutButtonDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">present</span><span class="params">(<span class="keyword">_</span> addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, <span class="keyword">for</span> addVoiceShortcutButton: INUIAddVoiceShortcutButton)</span></span> {</span><br><span class="line">        addVoiceShortcutViewController.delegate = <span class="keyword">self</span></span><br><span class="line">        addVoiceShortcutViewController.modalPresentationStyle = .formSheet</span><br><span class="line">        present (addVoiceShortcutViewController, animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">present</span><span class="params">(<span class="keyword">_</span> editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, <span class="keyword">for</span> addVoiceShortcutButton: INUIAddVoiceShortcutButton)</span></span> {</span><br><span class="line">        editVoiceShortcutViewController.delegate = <span class="keyword">self</span></span><br><span class="line">        editVoiceShortcutViewController.modalPresentationStyle = .formSheet</span><br><span class="line">        present (editVoiceShortcutViewController, animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIAddVoiceShortcutViewControllerDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addVoiceShortcutViewController</span><span class="params">(<span class="keyword">_</span> controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addVoiceShortcutViewControllerDidCancel</span><span class="params">(<span class="keyword">_</span> controller: INUIAddVoiceShortcutViewController)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIEditVoiceShortcutViewControllerDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewController</span><span class="params">(<span class="keyword">_</span> controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewController</span><span class="params">(<span class="keyword">_</span> controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewControllerDidCancel</span><span class="params">(<span class="keyword">_</span> controller: INUIEditVoiceShortcutViewController)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<hr>
-<h3 id="Spotlight"><a href="#Spotlight" class="headerlink" title="Spotlight"></a>Spotlight</h3><h5 id="介绍-userActivity"><a href="#介绍-userActivity" class="headerlink" title="介绍 userActivity ()"></a>介绍 userActivity ()</h5><p>Spotlight 的搜索结果可以包含应用中的通用活动。为了让 Spotlight 学会你的活动，你需要在这些活动出现时对外发布，以便 Spotlight 发现它们。要在 SwiftUI 中发布 NSUserActivities，我们需要使用 <strong>userActivity ()</strong> modifier。</p>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> IntentsUI</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SiriButton</span>: <span class="title">UIViewControllerRepresentable</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> shortcut: <span class="type">INShortcut</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeUIViewController</span><span class="params">(context: Context)</span></span> -&gt; <span class="type">SiriUIViewController</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">SiriUIViewController</span>(shortcut: shortcut)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">updateUIViewController</span><span class="params">(<span class="keyword">_</span> uiViewController: SiriUIViewController, context: Context)</span></span> {</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SiriUIViewController</span>: <span class="title">UIViewController</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> shortcut: <span class="type">INShortcut</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(shortcut: <span class="type">INShortcut</span>) {</span><br><span class="line">        <span class="keyword">self</span>.shortcut = shortcut</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(nibName: <span class="literal">nil</span>, bundle: <span class="literal">nil</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder: <span class="type">NSCoder</span>) {</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init (coder:) has not been implemented"</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> {</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad ()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> button = <span class="type">INUIAddVoiceShortcutButton</span>(style: .blackOutline)</span><br><span class="line">        button.shortcut = shortcut</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.view.addSubview (button)</span><br><span class="line">        view.centerXAnchor.constraint (equalTo: button.centerXAnchor).isActive = <span class="literal">true</span></span><br><span class="line">        view.centerYAnchor.constraint (equalTo: button.centerYAnchor).isActive = <span class="literal">true</span></span><br><span class="line">        button.translatesAutoresizingMaskIntoConstraints = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">        button.delegate = <span class="keyword">self</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIAddVoiceShortcutButtonDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">present</span><span class="params">(<span class="keyword">_</span> addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, <span class="keyword">for</span> addVoiceShortcutButton: INUIAddVoiceShortcutButton)</span></span> {</span><br><span class="line">        addVoiceShortcutViewController.delegate = <span class="keyword">self</span></span><br><span class="line">        addVoiceShortcutViewController.modalPresentationStyle = .formSheet</span><br><span class="line">        present (addVoiceShortcutViewController, animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">present</span><span class="params">(<span class="keyword">_</span> editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, <span class="keyword">for</span> addVoiceShortcutButton: INUIAddVoiceShortcutButton)</span></span> {</span><br><span class="line">        editVoiceShortcutViewController.delegate = <span class="keyword">self</span></span><br><span class="line">        editVoiceShortcutViewController.modalPresentationStyle = .formSheet</span><br><span class="line">        present (editVoiceShortcutViewController, animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIAddVoiceShortcutViewControllerDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addVoiceShortcutViewController</span><span class="params">(<span class="keyword">_</span> controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addVoiceShortcutViewControllerDidCancel</span><span class="params">(<span class="keyword">_</span> controller: INUIAddVoiceShortcutViewController)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SiriUIViewController</span>: <span class="title">INUIEditVoiceShortcutViewControllerDelegate</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewController</span><span class="params">(<span class="keyword">_</span> controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewController</span><span class="params">(<span class="keyword">_</span> controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">editVoiceShortcutViewControllerDidCancel</span><span class="params">(<span class="keyword">_</span> controller: INUIEditVoiceShortcutViewController)</span></span> {</span><br><span class="line">        controller.dismiss (animated: <span class="literal">true</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></h2><h3 id="Spotlight"><a href="#Spotlight" class="headerlink" title="Spotlight"></a>Spotlight</h3><h5 id="介绍-userActivity"><a href="#介绍-userActivity" class="headerlink" title="介绍 userActivity ()"></a>介绍 userActivity ()</h5><p>Spotlight 的搜索结果可以包含应用中的通用活动。为了让 Spotlight 学会你的活动，你需要在这些活动出现时对外发布，以便 Spotlight 发现它们。要在 SwiftUI 中发布 NSUserActivities，我们需要使用 <strong>userActivity ()</strong> modifier。</p>
 <p>在下面的例子中，我们有一个售卖冰淇淋的应用。每当我们选择了某个冰淇淋尺寸，应用将对外发布冰淇淋尺寸；每当有用户搜索冰淇淋时，我们的应用将出现在搜索结果中。如果用户选择了我们的应用对于的搜索结果项，我们的应用将被调起，并且将用户带到最后公布的冰淇淋尺寸。</p>
 <p>注意，系统会优化 <strong>userActivity ()</strong> 闭包的调用时机。然而不幸的是，这一点并没有文档说明。系统很聪明，知道该如何保存当前的信息，避免不停更新。在调试的时候，建议你最好在 userActivity 闭包中加入打印语句。</p>
 <p>下面的例子中还包含了一个 “Forget” 按钮，这对于调试十分有帮助。它会清除掉已经发布的用户活动，以便将应用从 Spotlight 的搜索结果中移除。注意，NSUserActivity 有一个可选属性：<strong>expirationDate</strong>，如果将其置为 <code>nil</code>，则活动永远不会过期。</p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> Intents</span><br><span class="line"><span class="keyword">import</span> CoreSpotlight</span><br><span class="line"><span class="keyword">import</span> CoreServices</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 </span></span><br><span class="line"><span class="keyword">let</span> aType = <span class="string">"com.example.icecream-selection"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamSize</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> price: <span class="type">Float</span></span><br><span class="line">    <span class="keyword">let</span> image: <span class="type">String</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sizes = [</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">1</span>, name: <span class="string">"Small"</span>, price: <span class="number">1.0</span>, image: <span class="string">"small"</span>),</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">2</span>, name: <span class="string">"Medium"</span>, price: <span class="number">1.45</span>, image: <span class="string">"medium"</span>),</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">3</span>, name: <span class="string">"Large"</span>, price: <span class="number">1.9</span>, image: <span class="string">"large"</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selection: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">NavigationView</span> {</span><br><span class="line">            <span class="type">List</span>(sizes) { size <span class="keyword">in</span></span><br><span class="line">                <span class="type">NavigationLink</span>(destination: <span class="type">IceCreamDetail</span>(icecream: size),</span><br><span class="line">                               tag: size.id,</span><br><span class="line">                               selection: $selection,</span><br><span class="line">                               label: { <span class="type">IceCreamRow</span>(icecream: size) })</span><br><span class="line">            }</span><br><span class="line">            .navigationTitle (<span class="string">"Ice Creams"</span>)</span><br><span class="line">            .toolbar {</span><br><span class="line">                <span class="type">Button</span>(<span class="string">"Forget"</span>) {</span><br><span class="line">                    <span class="type">NSUserActivity</span>.deleteAllSavedUserActivities {</span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">"done!"</span>)</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">        }</span><br><span class="line">        .onContinueUserActivity (aType, perform: { userActivity <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> icecreamId = userActivity.userInfo?[<span class="string">"sizeId"</span>] <span class="keyword">as</span>? <span class="type">NSNumber</span> {</span><br><span class="line">                selection = icecreamId.intValue</span><br><span class="line"></span><br><span class="line">            }</span><br><span class="line">        })</span><br><span class="line">        .navigationViewStyle (<span class="type">StackNavigationViewStyle</span>())</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamRow</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> icecream: <span class="type">IceCreamSize</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">HStack</span> {</span><br><span class="line">            <span class="type">Image</span>(icecream.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .frame (width: <span class="number">80</span>, height: <span class="number">80</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="type">VStack</span>(alignment: .leading) {</span><br><span class="line">                <span class="type">Text</span>(<span class="string">"\(icecream.name)"</span>).font (.title).fontWeight (.bold)</span><br><span class="line">                <span class="type">Text</span>(<span class="string">"$ \(String (format: "</span>%<span class="number">0</span>.2f<span class="string">", icecream.price))"</span>).font (.subheadline)</span><br><span class="line">                <span class="type">Spacer</span>()</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamDetail</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> icecream: <span class="type">IceCreamSize</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Text</span>(<span class="string">"\(icecream.name)"</span>).font (.title).fontWeight (.bold)</span><br><span class="line">            <span class="type">Text</span>(<span class="string">"$ \(String (format: "</span>%<span class="number">0</span>.2f<span class="string">", icecream.price))"</span>).font (.subheadline)</span><br><span class="line"></span><br><span class="line">            <span class="type">Image</span>(icecream.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .scaledToFit ()</span><br><span class="line">            </span><br><span class="line">            <span class="type">Spacer</span>()</span><br><span class="line">        }</span><br><span class="line">        .userActivity (aType) { userActivity <span class="keyword">in</span></span><br><span class="line">            userActivity.isEligibleForSearch = <span class="literal">true</span></span><br><span class="line">            userActivity.title = <span class="string">"\(icecream.name) Ice Cream"</span></span><br><span class="line">            userActivity.userInfo = [<span class="string">"sizeId"</span>: icecream.id]</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> attributes = <span class="type">CSSearchableItemAttributeSet</span>(itemContentType: kUTTypeItem <span class="keyword">as</span> <span class="type">String</span>)</span><br><span class="line">            </span><br><span class="line">            attributes.contentDescription = <span class="string">"Get a delicious ice cream now!"</span></span><br><span class="line">            attributes.thumbnailData = <span class="type">UIImage</span>(named: icecream.image)?.pngData ()</span><br><span class="line">            userActivity.contentAttributeSet = attributes</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"Advertising: \(icecream.name)"</span>)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<hr>
-<h3 id="Handoff-接力"><a href="#Handoff-接力" class="headerlink" title="Handoff - 接力"></a>Handoff - 接力</h3><p>基于已经介绍的方法，我们可以创建一个接力应用了。这将是一个可以在另外的设备上接力工作的应用。两个设备上的应用可以是同一个应用或者不同的应用。这种情况通常发生在我们分发了应用的两个不同版本的时候：比如一个是 iOS 版本，另一个是 macOS 版本。</p>
+<h2 id="-2"><a href="#-2" class="headerlink" title=""></a><figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> Intents</span><br><span class="line"><span class="keyword">import</span> CoreSpotlight</span><br><span class="line"><span class="keyword">import</span> CoreServices</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 </span></span><br><span class="line"><span class="keyword">let</span> aType = <span class="string">"com.example.icecream-selection"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamSize</span>: <span class="title">Identifiable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> price: <span class="type">Float</span></span><br><span class="line">    <span class="keyword">let</span> image: <span class="type">String</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sizes = [</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">1</span>, name: <span class="string">"Small"</span>, price: <span class="number">1.0</span>, image: <span class="string">"small"</span>),</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">2</span>, name: <span class="string">"Medium"</span>, price: <span class="number">1.45</span>, image: <span class="string">"medium"</span>),</span><br><span class="line">    <span class="type">IceCreamSize</span>(id: <span class="number">3</span>, name: <span class="string">"Large"</span>, price: <span class="number">1.9</span>, image: <span class="string">"large"</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> selection: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">NavigationView</span> {</span><br><span class="line">            <span class="type">List</span>(sizes) { size <span class="keyword">in</span></span><br><span class="line">                <span class="type">NavigationLink</span>(destination: <span class="type">IceCreamDetail</span>(icecream: size),</span><br><span class="line">                               tag: size.id,</span><br><span class="line">                               selection: $selection,</span><br><span class="line">                               label: { <span class="type">IceCreamRow</span>(icecream: size) })</span><br><span class="line">            }</span><br><span class="line">            .navigationTitle (<span class="string">"Ice Creams"</span>)</span><br><span class="line">            .toolbar {</span><br><span class="line">                <span class="type">Button</span>(<span class="string">"Forget"</span>) {</span><br><span class="line">                    <span class="type">NSUserActivity</span>.deleteAllSavedUserActivities {</span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">"done!"</span>)</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">        }</span><br><span class="line">        .onContinueUserActivity (aType, perform: { userActivity <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> icecreamId = userActivity.userInfo?[<span class="string">"sizeId"</span>] <span class="keyword">as</span>? <span class="type">NSNumber</span> {</span><br><span class="line">                selection = icecreamId.intValue</span><br><span class="line"></span><br><span class="line">            }</span><br><span class="line">        })</span><br><span class="line">        .navigationViewStyle (<span class="type">StackNavigationViewStyle</span>())</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamRow</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> icecream: <span class="type">IceCreamSize</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">HStack</span> {</span><br><span class="line">            <span class="type">Image</span>(icecream.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .frame (width: <span class="number">80</span>, height: <span class="number">80</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="type">VStack</span>(alignment: .leading) {</span><br><span class="line">                <span class="type">Text</span>(<span class="string">"\(icecream.name)"</span>).font (.title).fontWeight (.bold)</span><br><span class="line">                <span class="type">Text</span>(<span class="string">"$ \(String (format: "</span>%<span class="number">0</span>.2f<span class="string">", icecream.price))"</span>).font (.subheadline)</span><br><span class="line">                <span class="type">Spacer</span>()</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IceCreamDetail</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> icecream: <span class="type">IceCreamSize</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Text</span>(<span class="string">"\(icecream.name)"</span>).font (.title).fontWeight (.bold)</span><br><span class="line">            <span class="type">Text</span>(<span class="string">"$ \(String (format: "</span>%<span class="number">0</span>.2f<span class="string">", icecream.price))"</span>).font (.subheadline)</span><br><span class="line"></span><br><span class="line">            <span class="type">Image</span>(icecream.image)</span><br><span class="line">                .resizable ()</span><br><span class="line">                .scaledToFit ()</span><br><span class="line">            </span><br><span class="line">            <span class="type">Spacer</span>()</span><br><span class="line">        }</span><br><span class="line">        .userActivity (aType) { userActivity <span class="keyword">in</span></span><br><span class="line">            userActivity.isEligibleForSearch = <span class="literal">true</span></span><br><span class="line">            userActivity.title = <span class="string">"\(icecream.name) Ice Cream"</span></span><br><span class="line">            userActivity.userInfo = [<span class="string">"sizeId"</span>: icecream.id]</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> attributes = <span class="type">CSSearchableItemAttributeSet</span>(itemContentType: kUTTypeItem <span class="keyword">as</span> <span class="type">String</span>)</span><br><span class="line">            </span><br><span class="line">            attributes.contentDescription = <span class="string">"Get a delicious ice cream now!"</span></span><br><span class="line">            attributes.thumbnailData = <span class="type">UIImage</span>(named: icecream.image)?.pngData ()</span><br><span class="line">            userActivity.contentAttributeSet = attributes</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"Advertising: \(icecream.name)"</span>)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></h2><h3 id="Handoff-接力"><a href="#Handoff-接力" class="headerlink" title="Handoff - 接力"></a>Handoff - 接力</h3><p>基于已经介绍的方法，我们可以创建一个接力应用了。这将是一个可以在另外的设备上接力工作的应用。两个设备上的应用可以是同一个应用或者不同的应用。这种情况通常发生在我们分发了应用的两个不同版本的时候：比如一个是 iOS 版本，另一个是 macOS 版本。</p>
 <p>为了让接力能够工作，相关的应用都需要注册在同一个开发者团队的标识下面，并且在所有参与的应用的 Info.plist 中配置 <strong>NSUserActivityTypes</strong> 实体。</p>
 <p>有关于接力的更多实现细节，可以参考 Apple 的 <a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Handoff/AdoptingHandoff/AdoptingHandoff.html">网站</a>。</p>
 <p>下面的示例实现了一个简单的 web 浏览器，通过调用 <strong>userActivity ()</strong> 发布用户正在浏览的页面以及他在页面上滚动的位置。</p>
@@ -359,9 +351,7 @@
 <p>用户活动可以通过 userInfo 字典的形式提供负载数据，它是我们存放特定于接力活动信息的地方。在这个示例中，即页面滚动位置（百分比）和所打开页面的 URL。此外，还包含了发布此活动的应用的 bundle id，它只是用来调试的信息，便于我们准确地知道发生的事情。</p>
 <p>注意，示例的代码在 iOS 和 macOS 上都能工作，这是为了让你能够同时创建两个应用，并且测试 iOS 设备和 Mac 设备之间的接力。</p>
 <p>最后，虽然跟 NSUserActivity 无关，这个示例还封装了一个 WKWebView，这是演示 javascript 事件（这个示例中的 <code>onScroll</code>）如何更新你的 SwiftUI 视图绑定的绝佳示例。完整的 WebView 代码可以从下面的 gist 文件找到：<a target="_blank" rel="noopener" href="https://gist.github.com/swiftui-lab/a873bf413770db6fd1a525fa424ce8cd">WebView.swift</a></p>
-<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 </span></span><br><span class="line"><span class="keyword">let</span> activityType = <span class="string">"com.example.openpage"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">StateObject</span> <span class="keyword">var</span> data = <span class="type">WebViewData</span>()</span><br><span class="line">    </span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> reload: <span class="type">Bool</span> = <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">HStack</span> {</span><br><span class="line">                <span class="type">TextField</span>(<span class="string">""</span>, text: $data.urlBar, onCommit: { <span class="keyword">self</span>.loadUrl (data.urlBar) })</span><br><span class="line">                    .textFieldStyle (<span class="type">RoundedBorderTextFieldStyle</span>())</span><br><span class="line">                    .disableAutocorrection (<span class="literal">true</span>)</span><br><span class="line">                    .modifier (<span class="type">KeyboardModifier</span>())</span><br><span class="line">                    .frame (maxWidth: .infinity)</span><br><span class="line">                    .overlay (<span class="type">ProgressView</span>().opacity (<span class="keyword">self</span>.data.loading ? <span class="number">1</span> : <span class="number">0</span>).scaleEffect (<span class="number">0.5</span>), alignment: .trailing)</span><br><span class="line">                </span><br><span class="line">                </span><br><span class="line">                <span class="type">Button</span>(action: {</span><br><span class="line">                    <span class="keyword">self</span>.data.scrollOnLoad = <span class="keyword">self</span>.data.scrollPercent</span><br><span class="line">                    <span class="keyword">self</span>.reload.toggle ()</span><br><span class="line">                }, label: { <span class="type">Image</span>(systemName: <span class="string">"arrow.clockwise"</span>) })</span><br><span class="line">                </span><br><span class="line">                <span class="type">Button</span>(<span class="string">"Go"</span>) {</span><br><span class="line">                    <span class="keyword">self</span>.loadUrl (data.urlBar)</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            .padding (.horizontal, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">            <span class="type">Text</span>(<span class="string">"\(data.scrollPercent)"</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="type">WebView</span>(data: data)</span><br><span class="line">                .id (reload)</span><br><span class="line">                .onAppear { loadUrl (data.urlBar) }</span><br><span class="line">        }</span><br><span class="line">        .userActivity (activityType, element: data.url) { url, activity <span class="keyword">in</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> bundleid = <span class="type">Bundle</span>.main.bundleIdentifier ?? <span class="string">""</span></span><br><span class="line">            </span><br><span class="line">            activity.addUserInfoEntries (from: [<span class="string">"scrollPercent"</span>: data.scrollPercent,</span><br><span class="line">                                               <span class="string">"page"</span>: data.url?.absoluteString ?? <span class="string">""</span>,</span><br><span class="line">                                               <span class="string">"setby"</span>: bundleid])</span><br><span class="line">            </span><br><span class="line">            logUserActivity (activity, label: <span class="string">"activity"</span>)</span><br><span class="line">        }</span><br><span class="line">        .onContinueUserActivity (activityType, perform: { userActivity <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> page = userActivity.userInfo?[<span class="string">"page"</span>] <span class="keyword">as</span>? <span class="type">String</span> {</span><br><span class="line">                <span class="comment">// Load handoff page</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">self</span>.data.url?.absoluteString != page {</span><br><span class="line">                    <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: page)</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// Restore handoff scroll position</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> scrollPercent = userActivity.userInfo?[<span class="string">"scrollPercent"</span>] <span class="keyword">as</span>? <span class="type">Float</span> {</span><br><span class="line">                    <span class="keyword">self</span>.data.scrollOnLoad = scrollPercent</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">            logUserActivity (userActivity, label: <span class="string">"on activity"</span>)</span><br><span class="line">        })</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">loadUrl</span><span class="params">(<span class="keyword">_</span> string: String)</span></span> {</span><br><span class="line">        <span class="keyword">if</span> string.hasPrefix (<span class="string">"http"</span>) {</span><br><span class="line">            <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: string)</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: <span class="string">"https://"</span> + string)</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.data.urlBar = <span class="keyword">self</span>.data.url?.absoluteString ?? string</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">logUserActivity</span><span class="params">(<span class="keyword">_</span> activity: NSUserActivity, label: String = <span class="string">""</span>)</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(label) TYPE = \(activity.activityType)"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(label) INFO = \(activity.userInfo ?? [:])"</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">KeyboardModifier</span>: <span class="title">ViewModifier</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">body</span><span class="params">(content: Content)</span></span> -&gt; <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="keyword">#if</span> os (iOS)</span><br><span class="line">            <span class="keyword">return</span> content</span><br><span class="line">                .keyboardType (.<span class="type">URL</span>)</span><br><span class="line">                .textContentType (.<span class="type">URL</span>)</span><br><span class="line">        <span class="keyword">#else</span></span><br><span class="line">            <span class="keyword">return</span> content</span><br><span class="line">        <span class="keyword">#endif</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<hr>
-<h3 id="Scene-选择"><a href="#Scene-选择" class="headerlink" title="Scene 选择"></a>Scene 选择</h3><h5 id="介绍-handlesExternalEvents"><a href="#介绍-handlesExternalEvents" class="headerlink" title="介绍 handlesExternalEvents ()"></a>介绍 handlesExternalEvents ()</h5><p>当系统启动或者恢复我们的应用的时候，它必须确定哪个 scene 能够接受到用户活动（某一个时刻只有一个能接收到）。为了帮助它做出这个决策，我们的应用可以用上 <strong>handlesExternalEvents ()</strong> 方法。不幸运是，写这篇文档的时候 (Xcode 12, beta 6)，这个方法貌似不起作用，而且 macOS 上虽然有支持，但缺少平台定义文件。</p>
+<h2 id="-3"><a href="#-3" class="headerlink" title=""></a><figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 </span></span><br><span class="line"><span class="keyword">let</span> activityType = <span class="string">"com.example.openpage"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">StateObject</span> <span class="keyword">var</span> data = <span class="type">WebViewData</span>()</span><br><span class="line">    </span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> reload: <span class="type">Bool</span> = <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">HStack</span> {</span><br><span class="line">                <span class="type">TextField</span>(<span class="string">""</span>, text: $data.urlBar, onCommit: { <span class="keyword">self</span>.loadUrl (data.urlBar) })</span><br><span class="line">                    .textFieldStyle (<span class="type">RoundedBorderTextFieldStyle</span>())</span><br><span class="line">                    .disableAutocorrection (<span class="literal">true</span>)</span><br><span class="line">                    .modifier (<span class="type">KeyboardModifier</span>())</span><br><span class="line">                    .frame (maxWidth: .infinity)</span><br><span class="line">                    .overlay (<span class="type">ProgressView</span>().opacity (<span class="keyword">self</span>.data.loading ? <span class="number">1</span> : <span class="number">0</span>).scaleEffect (<span class="number">0.5</span>), alignment: .trailing)</span><br><span class="line">                </span><br><span class="line">                </span><br><span class="line">                <span class="type">Button</span>(action: {</span><br><span class="line">                    <span class="keyword">self</span>.data.scrollOnLoad = <span class="keyword">self</span>.data.scrollPercent</span><br><span class="line">                    <span class="keyword">self</span>.reload.toggle ()</span><br><span class="line">                }, label: { <span class="type">Image</span>(systemName: <span class="string">"arrow.clockwise"</span>) })</span><br><span class="line">                </span><br><span class="line">                <span class="type">Button</span>(<span class="string">"Go"</span>) {</span><br><span class="line">                    <span class="keyword">self</span>.loadUrl (data.urlBar)</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            .padding (.horizontal, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">            <span class="type">Text</span>(<span class="string">"\(data.scrollPercent)"</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="type">WebView</span>(data: data)</span><br><span class="line">                .id (reload)</span><br><span class="line">                .onAppear { loadUrl (data.urlBar) }</span><br><span class="line">        }</span><br><span class="line">        .userActivity (activityType, element: data.url) { url, activity <span class="keyword">in</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> bundleid = <span class="type">Bundle</span>.main.bundleIdentifier ?? <span class="string">""</span></span><br><span class="line">            </span><br><span class="line">            activity.addUserInfoEntries (from: [<span class="string">"scrollPercent"</span>: data.scrollPercent,</span><br><span class="line">                                               <span class="string">"page"</span>: data.url?.absoluteString ?? <span class="string">""</span>,</span><br><span class="line">                                               <span class="string">"setby"</span>: bundleid])</span><br><span class="line">            </span><br><span class="line">            logUserActivity (activity, label: <span class="string">"activity"</span>)</span><br><span class="line">        }</span><br><span class="line">        .onContinueUserActivity (activityType, perform: { userActivity <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> page = userActivity.userInfo?[<span class="string">"page"</span>] <span class="keyword">as</span>? <span class="type">String</span> {</span><br><span class="line">                <span class="comment">// Load handoff page</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">self</span>.data.url?.absoluteString != page {</span><br><span class="line">                    <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: page)</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// Restore handoff scroll position</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> scrollPercent = userActivity.userInfo?[<span class="string">"scrollPercent"</span>] <span class="keyword">as</span>? <span class="type">Float</span> {</span><br><span class="line">                    <span class="keyword">self</span>.data.scrollOnLoad = scrollPercent</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">            logUserActivity (userActivity, label: <span class="string">"on activity"</span>)</span><br><span class="line">        })</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">loadUrl</span><span class="params">(<span class="keyword">_</span> string: String)</span></span> {</span><br><span class="line">        <span class="keyword">if</span> string.hasPrefix (<span class="string">"http"</span>) {</span><br><span class="line">            <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: string)</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">self</span>.data.url = <span class="type">URL</span>(string: <span class="string">"https://"</span> + string)</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.data.urlBar = <span class="keyword">self</span>.data.url?.absoluteString ?? string</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">logUserActivity</span><span class="params">(<span class="keyword">_</span> activity: NSUserActivity, label: String = <span class="string">""</span>)</span></span> {</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(label) TYPE = \(activity.activityType)"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(label) INFO = \(activity.userInfo ?? [:])"</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">KeyboardModifier</span>: <span class="title">ViewModifier</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">body</span><span class="params">(content: Content)</span></span> -&gt; <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="keyword">#if</span> os (iOS)</span><br><span class="line">            <span class="keyword">return</span> content</span><br><span class="line">                .keyboardType (.<span class="type">URL</span>)</span><br><span class="line">                .textContentType (.<span class="type">URL</span>)</span><br><span class="line">        <span class="keyword">#else</span></span><br><span class="line">            <span class="keyword">return</span> content</span><br><span class="line">        <span class="keyword">#endif</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></h2><h3 id="Scene-选择"><a href="#Scene-选择" class="headerlink" title="Scene 选择"></a>Scene 选择</h3><h5 id="介绍-handlesExternalEvents"><a href="#介绍-handlesExternalEvents" class="headerlink" title="介绍 handlesExternalEvents ()"></a>介绍 handlesExternalEvents ()</h5><p>当系统启动或者恢复我们的应用的时候，它必须确定哪个 scene 能够接受到用户活动（某一个时刻只有一个能接收到）。为了帮助它做出这个决策，我们的应用可以用上 <strong>handlesExternalEvents ()</strong> 方法。不幸运是，写这篇文档的时候 (Xcode 12, beta 6)，这个方法貌似不起作用，而且 macOS 上虽然有支持，但缺少平台定义文件。</p>
 <p>所以我这里将通过注释来说明它的工作方式，等将来真正可用时，我会更新这篇文章。</p>
 <p>这个方法有两个版本。一个用于 WindowGroup 场景：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handlesExternalEvents</span><span class="params">(matching conditions: Set&lt;String&gt;)</span></span> -&gt; <span class="keyword">some</span> <span class="type">Scene</span></span><br></pre></td></tr></tbody></table></figure>
@@ -534,7 +524,569 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">重要的笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Activity-%E7%9A%84%E4%B8%A4%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">User Activity 的两面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Universal-Links"><span class="nav-number">3.</span> <span class="nav-text">Universal Links</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-onOpenURL"><span class="nav-number">3.0.1.</span> <span class="nav-text">介绍 onOpenURL ()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SiriKit"><span class="nav-number">4.</span> <span class="nav-text">SiriKit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-onContinueUserActivity"><span class="nav-number">4.0.1.</span> <span class="nav-text">介绍 onContinueUserActivity ()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spotlight"><span class="nav-number">5.</span> <span class="nav-text">Spotlight</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-userActivity"><span class="nav-number">5.0.1.</span> <span class="nav-text">介绍 userActivity ()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handoff-%E6%8E%A5%E5%8A%9B"><span class="nav-number">6.</span> <span class="nav-text">Handoff - 接力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scene-%E9%80%89%E6%8B%A9"><span class="nav-number">7.</span> <span class="nav-text">Scene 选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-handlesExternalEvents"><span class="nav-number">7.0.1.</span> <span class="nav-text">介绍 handlesExternalEvents ()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">重要的笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Activity-%E7%9A%84%E4%B8%A4%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">User Activity 的两面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Universal-Links"><span class="nav-number">3.</span> <span class="nav-text">Universal Links</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-onOpenURL"><span class="nav-number">3.0.1.</span> <span class="nav-text">介绍 onOpenURL ()</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+struct ContentView: View {
+    var body: some View {
+        SomeView()
+            .onOpenURL { url in
+                doSomethingWith (url: url)
+            }
+    }
+    
+    func doSomethingWith(url: URL?) {
+        ...
+    }
+}
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SiriKit"><span class="nav-number">1.</span> <span class="nav-text">SiriKit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-onContinueUserActivity"><span class="nav-number">1.0.1.</span> <span class="nav-text">介绍 onContinueUserActivity ()</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+import SwiftUI
+import IntentsUI
+
+struct SiriButton: UIViewControllerRepresentable {
+    public let shortcut: INShortcut
+    
+    func makeUIViewController(context: Context) -&gt; SiriUIViewController {
+        return SiriUIViewController(shortcut: shortcut)
+    }
+    
+    func updateUIViewController(_ uiViewController: SiriUIViewController, context: Context) {
+    }
+}
+
+class SiriUIViewController: UIViewController {
+    let shortcut: INShortcut
+    
+    init(shortcut: INShortcut) {
+        self.shortcut &#x3D; shortcut
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError(&quot;init (coder:) has not been implemented&quot;)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad ()
+        
+        let button &#x3D; INUIAddVoiceShortcutButton(style: .blackOutline)
+        button.shortcut &#x3D; shortcut
+        
+        self.view.addSubview (button)
+        view.centerXAnchor.constraint (equalTo: button.centerXAnchor).isActive &#x3D; true
+        view.centerYAnchor.constraint (equalTo: button.centerYAnchor).isActive &#x3D; true
+        button.translatesAutoresizingMaskIntoConstraints &#x3D; false
+
+        button.delegate &#x3D; self
+    }
+}
+
+extension SiriUIViewController: INUIAddVoiceShortcutButtonDelegate {
+    func present(_ addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
+        addVoiceShortcutViewController.delegate &#x3D; self
+        addVoiceShortcutViewController.modalPresentationStyle &#x3D; .formSheet
+        present (addVoiceShortcutViewController, animated: true)
+    }
+    
+    func present(_ editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
+        editVoiceShortcutViewController.delegate &#x3D; self
+        editVoiceShortcutViewController.modalPresentationStyle &#x3D; .formSheet
+        present (editVoiceShortcutViewController, animated: true)
+    }
+}
+
+extension SiriUIViewController: INUIAddVoiceShortcutViewControllerDelegate {
+    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
+        controller.dismiss (animated: true)
+    }
+
+    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
+        controller.dismiss (animated: true)
+    }
+}
+
+extension SiriUIViewController: INUIEditVoiceShortcutViewControllerDelegate {
+    func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?) {
+        controller.dismiss (animated: true)
+    }
+
+    func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID) {
+        controller.dismiss (animated: true)
+    }
+
+    func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
+        controller.dismiss (animated: true)
+    }
+}
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spotlight"><span class="nav-number">1.</span> <span class="nav-text">Spotlight</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-userActivity"><span class="nav-number">1.0.1.</span> <span class="nav-text">介绍 userActivity ()</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-2"><span class="nav-number"></span> <span class="nav-text">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+import SwiftUI
+import Intents
+import CoreSpotlight
+import CoreServices
+
+&#x2F;&#x2F; 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 
+let aType &#x3D; &quot;com.example.icecream-selection&quot;
+
+struct IceCreamSize: Identifiable {
+    let id: Int
+    let name: String
+    let price: Float
+    let image: String
+}
+
+let sizes &#x3D; [
+    IceCreamSize(id: 1, name: &quot;Small&quot;, price: 1.0, image: &quot;small&quot;),
+    IceCreamSize(id: 2, name: &quot;Medium&quot;, price: 1.45, image: &quot;medium&quot;),
+    IceCreamSize(id: 3, name: &quot;Large&quot;, price: 1.9, image: &quot;large&quot;)
+]
+
+struct ContentView: View {
+    @State private var selection: Int? &#x3D; nil
+    
+    var body: some View {
+        NavigationView {
+            List(sizes) { size in
+                NavigationLink(destination: IceCreamDetail(icecream: size),
+                               tag: size.id,
+                               selection: $selection,
+                               label: { IceCreamRow(icecream: size) })
+            }
+            .navigationTitle (&quot;Ice Creams&quot;)
+            .toolbar {
+                Button(&quot;Forget&quot;) {
+                    NSUserActivity.deleteAllSavedUserActivities {
+                        print(&quot;done!&quot;)
+                    }
+                }
+            }
+            
+        }
+        .onContinueUserActivity (aType, perform: { userActivity in
+            if let icecreamId &#x3D; userActivity.userInfo?[&quot;sizeId&quot;] as? NSNumber {
+                selection &#x3D; icecreamId.intValue
+
+            }
+        })
+        .navigationViewStyle (StackNavigationViewStyle())
+    }
+}
+
+struct IceCreamRow: View {
+    let icecream: IceCreamSize
+    
+    var body: some View {
+        HStack {
+            Image(icecream.image)
+                .resizable ()
+                .frame (width: 80, height: 80)
+            
+            VStack(alignment: .leading) {
+                Text(&quot;\(icecream.name)&quot;).font (.title).fontWeight (.bold)
+                Text(&quot;$ \(String (format: &quot;%0.2f&quot;, icecream.price))&quot;).font (.subheadline)
+                Spacer()
+            }
+        }
+    }
+}
+
+struct IceCreamDetail: View {
+    let icecream: IceCreamSize
+    
+    var body: some View {
+        VStack {
+            Text(&quot;\(icecream.name)&quot;).font (.title).fontWeight (.bold)
+            Text(&quot;$ \(String (format: &quot;%0.2f&quot;, icecream.price))&quot;).font (.subheadline)
+
+            Image(icecream.image)
+                .resizable ()
+                .scaledToFit ()
+            
+            Spacer()
+        }
+        .userActivity (aType) { userActivity in
+            userActivity.isEligibleForSearch &#x3D; true
+            userActivity.title &#x3D; &quot;\(icecream.name) Ice Cream&quot;
+            userActivity.userInfo &#x3D; [&quot;sizeId&quot;: icecream.id]
+            
+            let attributes &#x3D; CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+            
+            attributes.contentDescription &#x3D; &quot;Get a delicious ice cream now!&quot;
+            attributes.thumbnailData &#x3D; UIImage(named: icecream.image)?.pngData ()
+            userActivity.contentAttributeSet &#x3D; attributes
+            
+            print(&quot;Advertising: \(icecream.name)&quot;)
+        }
+    }
+}
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Handoff-%E6%8E%A5%E5%8A%9B"><span class="nav-number">1.</span> <span class="nav-text">Handoff - 接力</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-3"><span class="nav-number"></span> <span class="nav-text">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+import SwiftUI
+
+&#x2F;&#x2F; 要记得把下面的声明添加到 Info.plist 文件的 NSUserActivityTypes 数组中 
+let activityType &#x3D; &quot;com.example.openpage&quot;
+
+struct ContentView: View {
+    @StateObject var data &#x3D; WebViewData()
+    
+    @State private var reload: Bool &#x3D; false
+    
+    var body: some View {
+        VStack {
+            HStack {
+                TextField(&quot;&quot;, text: $data.urlBar, onCommit: { self.loadUrl (data.urlBar) })
+                    .textFieldStyle (RoundedBorderTextFieldStyle())
+                    .disableAutocorrection (true)
+                    .modifier (KeyboardModifier())
+                    .frame (maxWidth: .infinity)
+                    .overlay (ProgressView().opacity (self.data.loading ? 1 : 0).scaleEffect (0.5), alignment: .trailing)
+                
+                
+                Button(action: {
+                    self.data.scrollOnLoad &#x3D; self.data.scrollPercent
+                    self.reload.toggle ()
+                }, label: { Image(systemName: &quot;arrow.clockwise&quot;) })
+                
+                Button(&quot;Go&quot;) {
+                    self.loadUrl (data.urlBar)
+                }
+            }
+            .padding (.horizontal, 4)
+
+            Text(&quot;\(data.scrollPercent)&quot;)
+            
+            WebView(data: data)
+                .id (reload)
+                .onAppear { loadUrl (data.urlBar) }
+        }
+        .userActivity (activityType, element: data.url) { url, activity in
+            
+            let bundleid &#x3D; Bundle.main.bundleIdentifier ?? &quot;&quot;
+            
+            activity.addUserInfoEntries (from: [&quot;scrollPercent&quot;: data.scrollPercent,
+                                               &quot;page&quot;: data.url?.absoluteString ?? &quot;&quot;,
+                                               &quot;setby&quot;: bundleid])
+            
+            logUserActivity (activity, label: &quot;activity&quot;)
+        }
+        .onContinueUserActivity (activityType, perform: { userActivity in
+            if let page &#x3D; userActivity.userInfo?[&quot;page&quot;] as? String {
+                &#x2F;&#x2F; Load handoff page
+                if self.data.url?.absoluteString !&#x3D; page {
+                    self.data.url &#x3D; URL(string: page)
+                }
+                
+                &#x2F;&#x2F; Restore handoff scroll position
+                if let scrollPercent &#x3D; userActivity.userInfo?[&quot;scrollPercent&quot;] as? Float {
+                    self.data.scrollOnLoad &#x3D; scrollPercent
+                }
+            }
+            
+            logUserActivity (userActivity, label: &quot;on activity&quot;)
+        })
+    }
+    
+    func loadUrl(_ string: String) {
+        if string.hasPrefix (&quot;http&quot;) {
+            self.data.url &#x3D; URL(string: string)
+        } else {
+            self.data.url &#x3D; URL(string: &quot;https:&#x2F;&#x2F;&quot; + string)
+        }
+        
+        self.data.urlBar &#x3D; self.data.url?.absoluteString ?? string
+    }
+}
+
+func logUserActivity(_ activity: NSUserActivity, label: String &#x3D; &quot;&quot;) {
+    print(&quot;\(label) TYPE &#x3D; \(activity.activityType)&quot;)
+    print(&quot;\(label) INFO &#x3D; \(activity.userInfo ?? [:])&quot;)
+}
+
+struct KeyboardModifier: ViewModifier {
+    func body(content: Content) -&gt; some View {
+        #if os (iOS)
+            return content
+                .keyboardType (.URL)
+                .textContentType (.URL)
+        #else
+            return content
+        #endif
+    }
+}
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scene-%E9%80%89%E6%8B%A9"><span class="nav-number">1.</span> <span class="nav-text">Scene 选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-handlesExternalEvents"><span class="nav-number">1.0.1.</span> <span class="nav-text">介绍 handlesExternalEvents ()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -602,7 +1154,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -618,12 +1170,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

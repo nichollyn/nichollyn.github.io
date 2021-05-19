@@ -405,16 +405,13 @@
 </blockquote>
 <p>集成了推送或者本地通知的 app 可以定制 apple watch 上的通知。本文是关于如何在 apple watch 上实现动态通知的笔记。样例工程实现一个提醒给植物浇水的功能。我们会聚焦在添加通知视图，省略从 iOS app 发送通知的步骤。</p>
 <h2 id="为-Apple-Watch-添加富文本通知添加构建目标"><a href="#为-Apple-Watch-添加富文本通知添加构建目标" class="headerlink" title="为 Apple Watch 添加富文本通知添加构建目标"></a>为 Apple Watch 添加富文本通知添加构建目标</h2><p>如果工程里没有 App Watch app ，你需要添加它。在 Xcode 中，我们新增一个构建目标，并配置成包含通知场景。打开 New -&gt; Target:</p>
-<img src="/images/watch_app_target.png" width="80%" height="80%" style="margin: 10 auto;">
-
+<p><img src="/images/watch_app_target.png" width="80%" height="80%" style="margin: 10 auto;"></p>
 <p>确保 User Interface 选择，并且 “Include Notification Scene” 选中。我们将会把它嵌入当前的 iOS app ，所以 “Embed in Companion App” 要选择当前 app 。值得一提的是，从 iOS 13 和 WatchOS 6 开始，Apple Watch app 已经可以独立存在了。</p>
-<img src="/images/watch_app_target_2.png" width="80%" height="80%" style="margin: 10 auto;">
-
+<p><img src="/images/watch_app_target_2.png" width="80%" height="80%" style="margin: 10 auto;"></p>
 <p>点击完成，Xcode 会询问激活新的 scheme ，点击激活，它会自动选择新建的目标，所以我们可以直接开始写代码了。先检查工程，会发现 Xcode 加了两个目标：watch app 和 extension。App 包含了 storyboard ，而 extension 包含了所有的代码。 storyboard 是提供基于 <code>WKHostingController</code> 的子类的 HostingController 演示用的场景。这个类负责承载你的 Apple Watch app 的 SwiftUI 视图。另外，还有两个场景，分别是静态和动态通知。我们对动态通知感兴趣，在 storyboard 里可以看见动态视图是由 <code>NotificationController</code> 提供的，它是 <code>WKUserNotificationHostingController</code> 的子类，承载通知的 SwiftUI 视图。这里就是我们给通知提供自定义界面的地方。如果通知的分类和 storyboard 里预先定义的匹配，就会选择动态通知视图。</p>
 <h2 id="解析通知的-payload-并设置动态通知视图"><a href="#解析通知的-payload-并设置动态通知视图" class="headerlink" title="解析通知的 payload 并设置动态通知视图"></a>解析通知的 payload 并设置动态通知视图</h2><p>NotificationController 的职责是消费用户通知的 payload ，并生成 SwiftUI 视图来展示它们。用户通知是从 <code>didReceive</code> 函数接收的，我们需要释放信息，用于视图。在本地测试的时候，我们可以把测试数据写在 <code>PushNotificationPayload.apns</code> 文件里。因为我们要展示的是关于植物的信息，所有我们添加一个植物对象到文件中。同时，我们还需要把通知分类修改成某个有含义的字符串。确保你设置新的分类时正确更新 storyboard 。</p>
 <figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"aps"</span>: {</span><br><span class="line">        <span class="attr">"alert"</span>: {</span><br><span class="line">            <span class="attr">"body"</span>: <span class="string">"Test message"</span>,</span><br><span class="line">            <span class="attr">"title"</span>: <span class="string">"Optional title"</span>,</span><br><span class="line">            <span class="attr">"subtitle"</span>: <span class="string">"Optional subtitle"</span></span><br><span class="line">        },</span><br><span class="line">        <span class="attr">"category"</span>: <span class="string">"WATERING_REMINDER"</span>,</span><br><span class="line">        <span class="attr">"thread-id"</span>: <span class="string">"plantid123"</span></span><br><span class="line">    },</span><br><span class="line">     </span><br><span class="line">    <span class="attr">"plant"</span>: {</span><br><span class="line">        <span class="attr">"id"</span>: <span class="string">"plantid123"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"Aloe"</span>,</span><br><span class="line">        <span class="attr">"lastDate"</span>: <span class="number">1579937802</span>,</span><br><span class="line">        <span class="attr">"nextDate"</span>: <span class="number">1580515200</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<img src="/images/watch_app_target_3.png" width="50%" height="50%" style="margin: 10 auto;">
-
+<p><img src="/images/watch_app_target_3.png" width="50%" height="50%" style="margin: 10 auto;"></p>
 <p>当我们访问 <code>UNNotification.request.content.userInfo</code> 拿到植物的信息时，我们可以用 <code>Decodable</code> 和 <code>JSONDecoder</code> 将代表植物的字典转换成值类型。 <code>JSONDecoder</code> 接收 <code>JSON</code> 数据，所以我们先用 <code>JSONSerialization</code> 包装数据，然后把包装的结果传给 <code>JSONDecoder</code> 。 或者我们也可以手动从 <code>userInfo</code> 字典里读取所有的值，然后创建出植物类型。留意，我们需要用 view model 来提供数据给 SwiftUI ，而不是直接使用 <code>Plant</code> 类型。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Plant</span>: <span class="title">Decodable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> lastDate: <span class="type">Date</span></span><br><span class="line">    <span class="keyword">let</span> nextDate: <span class="type">Date</span></span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">do</span> {</span><br><span class="line">        <span class="keyword">let</span> plantInfo = notification.request.content.userInfo [<span class="string">"plant"</span>] <span class="keyword">as</span>! [<span class="type">String</span>: <span class="type">Any</span>]</span><br><span class="line">        <span class="keyword">let</span> data = <span class="keyword">try</span> <span class="type">JSONSerialization</span>.data (withJSONObject: plantInfo, options: [])</span><br><span class="line">        <span class="keyword">let</span> decoder = <span class="type">JSONDecoder</span>()</span><br><span class="line">        decoder.dateDecodingStrategy = .secondsSince1970</span><br><span class="line">        <span class="keyword">let</span> plant = <span class="keyword">try</span> decoder.decode (<span class="type">Plant</span>.<span class="keyword">self</span>, from: data)</span><br><span class="line">        viewModel = <span class="type">NotificationViewModel</span>(plant: plant)</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">catch</span> <span class="keyword">let</span> nsError <span class="keyword">as</span> <span class="type">NSError</span> {</span><br><span class="line">        <span class="built_in">print</span>(nsError.localizedDescription)</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
 <p>另外，我们想要添加三个用户可以执行的动作：标记植物已经浇水，推后提醒，或者安排明天再提醒。这些动作是用 <code>UNNotificationAction</code> 实例表示。当用户点击任意其中一个时，<code>UNUserNotificationCenter</code> 的委托方法会被调用，并且带有该动作的 <code>identifier</code> 。</p>
@@ -425,10 +422,8 @@
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NotificationViewModel</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> plant: <span class="type">Plant</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">init</span>(plant: <span class="type">Plant</span>) {</span><br><span class="line">        <span class="keyword">self</span>.plant = plant</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> title: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">return</span> plant.name</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> subtitle: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_Subtitle"</span>, comment: <span class="string">"Notification suggestion text"</span>)</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> dateFormatter: <span class="type">DateFormatter</span> = {</span><br><span class="line">        <span class="keyword">let</span> formatter = <span class="type">DateFormatter</span>()</span><br><span class="line">        formatter.dateFormat = <span class="type">DateFormatter</span>.dateFormat (fromTemplate: <span class="string">"dMMMM"</span>, options: <span class="number">0</span>, locale: .current)</span><br><span class="line">        <span class="keyword">return</span> formatter</span><br><span class="line">    }()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> lastWatering: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> format = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_LastWatering"</span>, comment: <span class="string">"Last watering date."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(format: format, dateFormatter.string (from: plant.lastDate))</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> nextWatering: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> format = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_NextWatering"</span>, comment: <span class="string">"Next watering date."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(format: format, dateFormatter.string (from: plant.nextDate))</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>SwiftUI 视图很简单，4 个文本。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NotificationView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> viewModel: <span class="type">NotificationViewModel</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Text</span>(viewModel.title).font (.title)</span><br><span class="line">            <span class="type">Text</span>(viewModel.subtitle).font (.subheadline)</span><br><span class="line">            <span class="type">Divider</span>()</span><br><span class="line">            <span class="type">Text</span>(viewModel.lastWatering).font (.body).multilineTextAlignment (.center)</span><br><span class="line">            <span class="type">Text</span>(viewModel.nextWatering).font (.body).multilineTextAlignment (.center)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<img src="/images/watch_notification_1.png" width="30%" height="30%" style="margin: 10 auto;">
-
-<img src="/images/watch_notification_2.png" width="30%" height="30%" style="margin: 10 auto;">
-
+<p><img src="/images/watch_notification_1.png" width="30%" height="30%" style="margin: 10 auto;"></p>
+<p><img src="/images/watch_notification_2.png" width="30%" height="30%" style="margin: 10 auto;"></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们往一个 iOS app 中添加了 watch app ，实现一个通知分类的动态通知视图。我们学习了如何解析通知数据，添加动作按钮。下一步是在 companion iOS app 里基于按钮的 identifier 处理对应通知动作。</p>
 <hr>
 <h1 id="拉取和显示数据"><a href="#拉取和显示数据" class="headerlink" title="拉取和显示数据"></a>拉取和显示数据</h1><p> 这一节的主题是从 compasion iOS app 的 CoreData 存储中获取数据，需要借助 WatchConnectivity framework 。</p>
@@ -512,7 +507,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
+              <span>3.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -566,8 +561,8 @@
 <li>演示 overlay， shadow</li>
 </ol>
 <h3 id="5-让-UIKit-和-SwiftUI-一起工作"><a href="#5-让-UIKit-和-SwiftUI-一起工作" class="headerlink" title="5 让 UIKit 和 SwiftUI 一起工作"></a>5 让 UIKit 和 SwiftUI 一起工作</h3><ol>
-<li>如何在 SwiftUI 中使用 UIKit 里的视图？关键词：wrap, UIViewRepresentable 协议<br> 进阶资源：wrap，协议</li>
-<li>[学习曲线] 跳过，后续再来说明。<br> MapKit 相关知识点</li>
+<li>如何在 SwiftUI 中使用 UIKit 里的视图？关键词：wrap, UIViewRepresentable 协议<br>进阶资源：wrap，协议</li>
+<li>[学习曲线] 跳过，后续再来说明。<br>MapKit 相关知识点</li>
 </ol>
 <h3 id="6-构成视图-Compose-Views-——-需要练习"><a href="#6-构成视图-Compose-Views-——-需要练习" class="headerlink" title="6 构成视图 (Compose Views) —— (需要练习)"></a>6 构成视图 (Compose Views) —— (需要练习)</h3><p>要点：</p>
 <ol>
@@ -647,7 +642,7 @@
 <h1 id="第三章-App-设计和布局"><a href="#第三章-App-设计和布局" class="headerlink" title="第三章 App 设计和布局"></a>第三章 App 设计和布局</h1><h1 id="构成复杂界面"><a href="#构成复杂界面" class="headerlink" title="构成复杂界面"></a>构成复杂界面</h1><h2 id="1-Home-视图"><a href="#1-Home-视图" class="headerlink" title="1 Home 视图"></a>1 Home 视图</h2><p>要点</p>
 <p>Home 界面<br>   进阶：心智模式：干扰和专注，简单和复杂 （通知）</p>
 <h2 id="2-分类列表"><a href="#2-分类列表" class="headerlink" title="2 分类列表"></a>2 分类列表</h2><p>要点</p>
-<ol start="0">
+<ol>
 <li>分类 =&gt; 建立层级 （“抽屉”、容器）=&gt; 寻找</li>
 <li>用字典将地标分组</li>
 <li>重温 List、ForEach、keypath 的用法</li>
@@ -708,8 +703,8 @@
 <ol>
 <li>UIViewRepresentable</li>
 <li>UIPageControl, UIControl<br>进阶资源：“控件”</li>
-<li><strong>target-action pattern</strong> , *<strong>delegate</strong>， <strong>#selector</strong></li>
-<li>**@objc 关键字 **</li>
+<li><strong>target-action pattern</strong> , <strong>*delegate</strong>， <strong>#selector</strong></li>
+<li><strong>@objc 关键字 </strong></li>
 <li>可选进阶：起名字，一个名字在多个层次中使用<br>PageControl, UIPageControl</li>
 <li>可选进阶：PageViewController 和 PageControl 之间如何联动</li>
 </ol>
@@ -727,7 +722,7 @@
 <h3 id="3-创建细节视图"><a href="#3-创建细节视图" class="headerlink" title="3 创建细节视图"></a>3 创建细节视图</h3><p>要点</p>
 <ol>
 <li>适配不同尺寸的屏幕</li>
-<li>**where 语句 **</li>
+<li><strong>where 语句 </strong></li>
 <li>scaleToFill, scaleToFit</li>
 </ol>
 <h3 id="4-添加-watchOS-的地图视图"><a href="#4-添加-watchOS-的地图视图" class="headerlink" title="4 添加 watchOS 的地图视图"></a>4 添加 watchOS 的地图视图</h3><p>要点</p>
@@ -737,7 +732,7 @@
 </ol>
 <h3 id="5-创建跨平台的列表视图"><a href="#5-创建跨平台的列表视图" class="headerlink" title="5 创建跨平台的列表视图"></a>5 创建跨平台的列表视图</h3><p>要点</p>
 <ol>
-<li>** 泛型 <strong>，</strong> 类型推断 **</li>
+<li><strong> 泛型 </strong>，<strong> 类型推断 </strong></li>
 <li>对应修改 iOS scheme 的 Home 视图，LandmarkList 的初始化，重温拖尾闭包。</li>
 <li>LandmarkList 预览怎么解决？ #if, #else, #endif, typealias</li>
 </ol>
@@ -748,7 +743,7 @@
 </ol>
 <h3 id="7-创建自定义的通知接口"><a href="#7-创建自定义的通知接口" class="headerlink" title="7 创建自定义的通知接口"></a>7 创建自定义的通知接口</h3><p>要点</p>
 <ol>
-<li>** 如何正确地使用通知？**</li>
+<li><strong> 如何正确地使用通知？</strong></li>
 <li>构建通知视图：swift 的 init 模式</li>
 <li>通知控制：WKUserNotificationHostingController, #didReceive, </li>
 <li>UNNotification</li>
@@ -758,7 +753,7 @@
 <hr>
 <h2 id="创建-macOS-app"><a href="#创建-macOS-app" class="headerlink" title="创建 macOS app"></a>创建 macOS app</h2><h3 id="1-创建-macOS-目标"><a href="#1-创建-macOS-目标" class="headerlink" title="1 创建 macOS 目标"></a>1 创建 macOS 目标</h3><p>要点</p>
 <ol>
-<li>Deployment Target<br>进阶资源：** 软件兼容（向前兼容）<strong>，</strong> 版本号 **</li>
+<li>Deployment Target<br>进阶资源：<strong> 软件兼容（向前兼容）</strong>，<strong> 版本号 </strong></li>
 </ol>
 <h3 id="2-共享数据和-Assets"><a href="#2-共享数据和-Assets" class="headerlink" title="2 共享数据和 Assets"></a>2 共享数据和 Assets</h3><p>要点</p>
 <ol>
@@ -766,7 +761,7 @@
 </ol>
 <h3 id="3-Row-视图"><a href="#3-Row-视图" class="headerlink" title="3 Row 视图"></a>3 Row 视图</h3><h3 id="4-组装视图"><a href="#4-组装视图" class="headerlink" title="4 组装视图"></a>4 组装视图</h3><p>要点</p>
 <ol>
-<li>List (selection: Binding&lt;Set<selectionvalue>)</selectionvalue></li>
+<li>List (selection: Binding<set<selectionvalue>)</set<selectionvalue></li>
 </ol>
 <h3 id="5-过滤器视图"><a href="#5-过滤器视图" class="headerlink" title="5 过滤器视图"></a>5 过滤器视图</h3><p>要点</p>
 <ol>
@@ -880,8 +875,7 @@
 <p>亚里士多德被认为是第一个经验主义者，他认为关于自然的基本真理来自感官经验。我们可以通过演绎推理获取更多知识，但观察是所有知识的基础。亚里士多德不相信天赋观念 (innate ideas) 。其实，他创造了 “白板” 这个词，指出每个人生下来就是一块白板。我们的知识并不是预先确定的，大脑可以接受任何概念。</p>
 <p>当然，亚里士多德不是激进的经验主义者。他不反对理性思维加入进来，他也不反对用一些抽象的、不能直接观察的概念。</p>
 <p>我觉得伽利略算是温和的经验主义者。他很注重观察法和实验法，但他也极度依赖逻辑推理。伽利略有句名言 “自然之书以数学语言写就”。他完全不排斥运用思想实验，也在他的假说中引入不可观测的性质。</p>
-<img src="/images/sci-phil_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sci-phil_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>后来的经验主义者如培根，尤其是休谟和逻辑实证主义者，都是绝对经验主义者，坚信只有感官经验才能获得世界的真知。他们认为建立在无法被直接观测的共相上的论断没有意义。</p>
 <p>现代的经验主义就是范弗拉森的建构经验主义。它强调感官经验在归纳法和演绎法中都有作用，但它也允许理论术语存在，对应不能直接观测的实体。建构经验主义的目标是提出实证上恰当的解释，只要它表述的世界与观测到的一致，即可被接受。建构经验主义者会说因为存在不可观测的性质，真假无法判断。这承认了知识是暂时的，因为未来总存在发现新的反例的可能。</p>
 <hr>
@@ -902,8 +896,7 @@
 <p>认识论的观点越来越实证主义 (positivistic) ，这意味着科学家认为我们可以通过观察和实验来获取有关世界本质的知识。这种现实实证观点大多应用于自然现象方面，但随着社会科学发展并成为独特的科学领域，问题来了：现实主义观点是否适用于社会学和心理学现象呢？</p>
 <p>根据 <strong>客观主义 (objectivism)</strong> 的观点，现实主义本体论立场确实适用于心理学和社会学现象，比如智力和社会凝聚力是外部的、独立的性质，是独立于我们的心理表征的。</p>
 <p>客观主义可以建构主义 (constructivism) 做对比。</p>
-<img src="/images/sci-phil_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sci-phil_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>根据建构主义，社会现象的本质取决于所涉及的社会角色。这意味着现实不是独立和外在的，而被认为是基于观察者和情境的心理建构。比如，快乐或女性气质这些属性不是外在的，不是永恒的，也不能被客观定义。要如何看待这些属性以及它们的意义，取决于观察者的文化背景、社会族群及特定的历史时期。那么，如果心理现实和社会现实是建构的、主观的、难以捉摸的，我们如何了解它呢？怎样的认识论立场适合建构主义的本体论立场？</p>
 <p>事实上，有一组互相联系的观念，统称为 <strong>解释主义 (interpretivism)</strong> 。解释主义的观点都假设研究者关于社会现象的经历或观察，可能与这些社会现象亲历者的经历大相径庭。所以重点应该放在参与者的角度来解读现象。</p>
 <p>我想讲的三个解释主义观点是 <strong>解释学 (hermeneutics)</strong> 、 <strong>现象学 (phenomenology)</strong> 和 <strong>诠释社会学 (verstehen)</strong> ，它们在如何获得心理学和社会现实的理解上有些微差别。</p>
@@ -1161,7 +1154,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -1177,12 +1170,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

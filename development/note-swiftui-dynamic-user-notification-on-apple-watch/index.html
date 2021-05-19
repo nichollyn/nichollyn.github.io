@@ -66,9 +66,9 @@
 <meta property="article:published_time" content="2020-03-01T09:08:42.000Z">
 <meta property="article:modified_time" content="2020-12-20T03:42:32.198Z">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="watchOS">
-<meta property="article:tag" content="development">
 <meta property="article:tag" content="swiftui">
+<meta property="article:tag" content="development">
+<meta property="article:tag" content="watchOS">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://theinfinitegame.tech/images/watch_app_target.png">
 
@@ -313,16 +313,13 @@
 </blockquote>
 <p>集成了推送或者本地通知的 app 可以定制 apple watch 上的通知。本文是关于如何在 apple watch 上实现动态通知的笔记。样例工程实现一个提醒给植物浇水的功能。我们会聚焦在添加通知视图，省略从 iOS app 发送通知的步骤。</p>
 <h2 id="为-Apple-Watch-添加富文本通知添加构建目标"><a href="#为-Apple-Watch-添加富文本通知添加构建目标" class="headerlink" title="为 Apple Watch 添加富文本通知添加构建目标"></a>为 Apple Watch 添加富文本通知添加构建目标</h2><p>如果工程里没有 App Watch app ，你需要添加它。在 Xcode 中，我们新增一个构建目标，并配置成包含通知场景。打开 New -&gt; Target:</p>
-<img src="/images/watch_app_target.png" width="80%" height="80%" style="margin: 10 auto;">
-
+<p><img src="/images/watch_app_target.png" width="80%" height="80%" style="margin: 10 auto;"></p>
 <p>确保 User Interface 选择，并且 “Include Notification Scene” 选中。我们将会把它嵌入当前的 iOS app ，所以 “Embed in Companion App” 要选择当前 app 。值得一提的是，从 iOS 13 和 WatchOS 6 开始，Apple Watch app 已经可以独立存在了。</p>
-<img src="/images/watch_app_target_2.png" width="80%" height="80%" style="margin: 10 auto;">
-
+<p><img src="/images/watch_app_target_2.png" width="80%" height="80%" style="margin: 10 auto;"></p>
 <p>点击完成，Xcode 会询问激活新的 scheme ，点击激活，它会自动选择新建的目标，所以我们可以直接开始写代码了。先检查工程，会发现 Xcode 加了两个目标：watch app 和 extension。App 包含了 storyboard ，而 extension 包含了所有的代码。 storyboard 是提供基于 <code>WKHostingController</code> 的子类的 HostingController 演示用的场景。这个类负责承载你的 Apple Watch app 的 SwiftUI 视图。另外，还有两个场景，分别是静态和动态通知。我们对动态通知感兴趣，在 storyboard 里可以看见动态视图是由 <code>NotificationController</code> 提供的，它是 <code>WKUserNotificationHostingController</code> 的子类，承载通知的 SwiftUI 视图。这里就是我们给通知提供自定义界面的地方。如果通知的分类和 storyboard 里预先定义的匹配，就会选择动态通知视图。</p>
 <h2 id="解析通知的-payload-并设置动态通知视图"><a href="#解析通知的-payload-并设置动态通知视图" class="headerlink" title="解析通知的 payload 并设置动态通知视图"></a>解析通知的 payload 并设置动态通知视图</h2><p>NotificationController 的职责是消费用户通知的 payload ，并生成 SwiftUI 视图来展示它们。用户通知是从 <code>didReceive</code> 函数接收的，我们需要释放信息，用于视图。在本地测试的时候，我们可以把测试数据写在 <code>PushNotificationPayload.apns</code> 文件里。因为我们要展示的是关于植物的信息，所有我们添加一个植物对象到文件中。同时，我们还需要把通知分类修改成某个有含义的字符串。确保你设置新的分类时正确更新 storyboard 。</p>
 <figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"aps"</span>: {</span><br><span class="line">        <span class="attr">"alert"</span>: {</span><br><span class="line">            <span class="attr">"body"</span>: <span class="string">"Test message"</span>,</span><br><span class="line">            <span class="attr">"title"</span>: <span class="string">"Optional title"</span>,</span><br><span class="line">            <span class="attr">"subtitle"</span>: <span class="string">"Optional subtitle"</span></span><br><span class="line">        },</span><br><span class="line">        <span class="attr">"category"</span>: <span class="string">"WATERING_REMINDER"</span>,</span><br><span class="line">        <span class="attr">"thread-id"</span>: <span class="string">"plantid123"</span></span><br><span class="line">    },</span><br><span class="line">     </span><br><span class="line">    <span class="attr">"plant"</span>: {</span><br><span class="line">        <span class="attr">"id"</span>: <span class="string">"plantid123"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"Aloe"</span>,</span><br><span class="line">        <span class="attr">"lastDate"</span>: <span class="number">1579937802</span>,</span><br><span class="line">        <span class="attr">"nextDate"</span>: <span class="number">1580515200</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<img src="/images/watch_app_target_3.png" width="50%" height="50%" style="margin: 10 auto;">
-
+<p><img src="/images/watch_app_target_3.png" width="50%" height="50%" style="margin: 10 auto;"></p>
 <p>当我们访问 <code>UNNotification.request.content.userInfo</code> 拿到植物的信息时，我们可以用 <code>Decodable</code> 和 <code>JSONDecoder</code> 将代表植物的字典转换成值类型。 <code>JSONDecoder</code> 接收 <code>JSON</code> 数据，所以我们先用 <code>JSONSerialization</code> 包装数据，然后把包装的结果传给 <code>JSONDecoder</code> 。 或者我们也可以手动从 <code>userInfo</code> 字典里读取所有的值，然后创建出植物类型。留意，我们需要用 view model 来提供数据给 SwiftUI ，而不是直接使用 <code>Plant</code> 类型。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Plant</span>: <span class="title">Decodable</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> id: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> lastDate: <span class="type">Date</span></span><br><span class="line">    <span class="keyword">let</span> nextDate: <span class="type">Date</span></span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">do</span> {</span><br><span class="line">        <span class="keyword">let</span> plantInfo = notification.request.content.userInfo [<span class="string">"plant"</span>] <span class="keyword">as</span>! [<span class="type">String</span>: <span class="type">Any</span>]</span><br><span class="line">        <span class="keyword">let</span> data = <span class="keyword">try</span> <span class="type">JSONSerialization</span>.data (withJSONObject: plantInfo, options: [])</span><br><span class="line">        <span class="keyword">let</span> decoder = <span class="type">JSONDecoder</span>()</span><br><span class="line">        decoder.dateDecodingStrategy = .secondsSince1970</span><br><span class="line">        <span class="keyword">let</span> plant = <span class="keyword">try</span> decoder.decode (<span class="type">Plant</span>.<span class="keyword">self</span>, from: data)</span><br><span class="line">        viewModel = <span class="type">NotificationViewModel</span>(plant: plant)</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">catch</span> <span class="keyword">let</span> nsError <span class="keyword">as</span> <span class="type">NSError</span> {</span><br><span class="line">        <span class="built_in">print</span>(nsError.localizedDescription)</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
 <p>另外，我们想要添加三个用户可以执行的动作：标记植物已经浇水，推后提醒，或者安排明天再提醒。这些动作是用 <code>UNNotificationAction</code> 实例表示。当用户点击任意其中一个时，<code>UNUserNotificationCenter</code> 的委托方法会被调用，并且带有该动作的 <code>identifier</code> 。</p>
@@ -333,10 +330,8 @@
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NotificationViewModel</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> plant: <span class="type">Plant</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">init</span>(plant: <span class="type">Plant</span>) {</span><br><span class="line">        <span class="keyword">self</span>.plant = plant</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> title: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">return</span> plant.name</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> subtitle: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_Subtitle"</span>, comment: <span class="string">"Notification suggestion text"</span>)</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> dateFormatter: <span class="type">DateFormatter</span> = {</span><br><span class="line">        <span class="keyword">let</span> formatter = <span class="type">DateFormatter</span>()</span><br><span class="line">        formatter.dateFormat = <span class="type">DateFormatter</span>.dateFormat (fromTemplate: <span class="string">"dMMMM"</span>, options: <span class="number">0</span>, locale: .current)</span><br><span class="line">        <span class="keyword">return</span> formatter</span><br><span class="line">    }()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> lastWatering: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> format = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_LastWatering"</span>, comment: <span class="string">"Last watering date."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(format: format, dateFormatter.string (from: plant.lastDate))</span><br><span class="line">    }</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> nextWatering: <span class="type">String</span> {</span><br><span class="line">        <span class="keyword">let</span> format = <span class="type">NSLocalizedString</span>(<span class="string">"NotificationView_NextWatering"</span>, comment: <span class="string">"Next watering date."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">String</span>(format: format, dateFormatter.string (from: plant.nextDate))</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>SwiftUI 视图很简单，4 个文本。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NotificationView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    <span class="keyword">let</span> viewModel: <span class="type">NotificationViewModel</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">VStack</span> {</span><br><span class="line">            <span class="type">Text</span>(viewModel.title).font (.title)</span><br><span class="line">            <span class="type">Text</span>(viewModel.subtitle).font (.subheadline)</span><br><span class="line">            <span class="type">Divider</span>()</span><br><span class="line">            <span class="type">Text</span>(viewModel.lastWatering).font (.body).multilineTextAlignment (.center)</span><br><span class="line">            <span class="type">Text</span>(viewModel.nextWatering).font (.body).multilineTextAlignment (.center)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<img src="/images/watch_notification_1.png" width="30%" height="30%" style="margin: 10 auto;">
-
-<img src="/images/watch_notification_2.png" width="30%" height="30%" style="margin: 10 auto;">
-
+<p><img src="/images/watch_notification_1.png" width="30%" height="30%" style="margin: 10 auto;"></p>
+<p><img src="/images/watch_notification_2.png" width="30%" height="30%" style="margin: 10 auto;"></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们往一个 iOS app 中添加了 watch app ，实现一个通知分类的动态通知视图。我们学习了如何解析通知数据，添加动作按钮。下一步是在 companion iOS app 里基于按钮的 identifier 处理对应通知动作。</p>
 <hr>
 <h1 id="拉取和显示数据"><a href="#拉取和显示数据" class="headerlink" title="拉取和显示数据"></a>拉取和显示数据</h1><p> 这一节的主题是从 compasion iOS app 的 CoreData 存储中获取数据，需要借助 WatchConnectivity framework 。</p>
@@ -376,16 +371,16 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/development/note-watchos-minimum-viable-complication/" rel="bookmark">watchOS 学习笔记 | 最小可行 Complication</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/development/note-watchos-big-picture/" rel="bookmark">watchOS 学习笔记 | Big Picture</a></div>
-    </li>
-    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/development/eight-swiftui-misuses-and-correction/" rel="bookmark">八个常见的 SwiftUI 误用及对应的正确打开方式</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/development/note-swiftui-mvvm/" rel="bookmark">SwiftUI 笔记 | MVVM In SwiftUI</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/development/note-watchos-minimum-viable-complication/" rel="bookmark">watchOS 学习笔记 | 最小可行 Complication</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/development/note-watchos-big-picture/" rel="bookmark">watchOS 学习笔记 | Big Picture</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/development/programming-use-pipeline-to-tackle-complexity/" rel="bookmark">用 “流水线” 设计拆解复杂处理流程</a></div>
@@ -445,9 +440,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/watchOS/" rel="tag"># watchOS</a>
-              <a href="/tags/development/" rel="tag"># development</a>
               <a href="/tags/swiftui/" rel="tag"># swiftui</a>
+              <a href="/tags/development/" rel="tag"># development</a>
+              <a href="/tags/watchOS/" rel="tag"># watchOS</a>
           </div>
 
         
@@ -595,7 +590,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -611,12 +606,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

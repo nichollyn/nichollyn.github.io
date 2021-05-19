@@ -312,7 +312,6 @@
 <p>如果你不需要用到 <code>for</code> 循环提供给你的常量，你可以用下划线替代，这样 Swift 就会忽略这个你没有用到的值：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="keyword">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="number">5</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Zzz..."</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <a id="more"></a>
-
 <hr>
 <h1 id="While-循环"><a href="#While-循环" class="headerlink" title="While 循环"></a>While 循环</h1><p>第二种书写循环的方式是使用 <code>while</code> ：给定一个检查的条件，循环运行代码直到条件不成立。</p>
 <p>举个例子，我们可以使用 <code>while</code> 循环来模拟一个躲猫猫游戏：从 1 开始数数，数到的数会打印出来。数完 20 个数之后打印 “准备好了没？我来啦！”</p>
@@ -349,7 +348,7 @@
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> {</span><br><span class="line">  <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="built_in">print</span>(i)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <h1 id="无限循环"><a href="#无限循环" class="headerlink" title="无限循环"></a>无限循环</h1><p>通常来说，我们用 <code>while</code> 循环来实现无限循环：它指的是那种不会自动停止的循环，或者说只有我们想要它停止时才停止的循环。你的智能手机里的 App 都用到了无限循环，因为它们一旦开始运行，就会持续运行，不断地接收输入事件，做出响应。</p>
-<p>最简单的无限循环是用 <code>true</code> 作为条件。 <code>true</code> 使得循环可以无限重复地执行。 ** 警告：** 如果你采用 <code>while true</code> 来实现循环，确保你在循环内会有一个条件检查以退出这个无限循环。</p>
+<p>最简单的无限循环是用 <code>true</code> 作为条件。 <code>true</code> 使得循环可以无限重复地执行。 <strong> 警告：</strong> 如果你采用 <code>while true</code> 来实现循环，确保你在循环内会有一个条件检查以退出这个无限循环。</p>
 <p>举个例子， 我们用 <code>while true</code> 来模拟约翰・凯奇的《4’33”》这首歌。这首歌真的很奇葩，因为整个首歌的 4 分 33 秒都是沉默，没声。</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span> {</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">" "</span>)</span><br><span class="line">  counter += <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> counter == <span class="number">273</span> {</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <hr>
@@ -593,7 +592,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -609,12 +608,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

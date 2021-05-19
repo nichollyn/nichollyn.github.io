@@ -315,52 +315,38 @@
         <p>欢迎关注微信公众号「Swift 花园」</p>
 <p>对于离散随机变量，有一个最重要的概率分布，它是 <strong>二项分布 (binomial distribution)</strong> 。二项分布处于二元数据。因为二元数据的情况非常多，所以二项分布使用频繁。</p>
 <p>让我们从例子开始，你会在这些例子中看到两种结果。比如，参加会议是否迟到，投票赞成或者反对，噪音等级超过 80 分贝或者没有。当你收集这类现象的试验时，成功或者失败的数字服从二项分布。例如，你可以考虑每 25 个与会人员，有多少个迟到，或者投反对票的人有几个。</p>
-<img src="/images/bd_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>下面是你可以确定一个随机变量服从二项分布的条件：首先，每一个试验成功的概率相同；其次，试验在统计上是独立的 —— 即一个试验的结果不会影响其他试验。</p>
-<img src="/images/bd_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>实际上，你发现二项分布的三个要素。首先，试验现象有两种结果，并且成功概率是常量。这种实验被称为 <strong>伯努利试验验 (Bernoulli trial)</strong> 。其次，你观察试验结果 n 次。第三，你对成功的结果计数，记为 x 。这三个元素被结合成一个公式，它给出了在 n 次试验中取得特定数量成功结果的概率。公式如下：</p>
-<p>$$ P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,…,n $$</p>
-<p>你可以直接把 n，x 和 p 填进公式从而获得答案。</p>
-<img src="/images/bd_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<script type="math/tex; mode=display">P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,...,n</script><p>你可以直接把 n，x 和 p 填进公式从而获得答案。</p>
+<p><img src="/images/bd_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>如公式所示，随机变量 x 只能取 0 到 n 的值。这很合理，因为你只能有有限次成功，0 ，1 ， 2 ，直到 n 。因此这个公式是一个概率质量函数，它直接给出了匹配每个可能的 x 的概率值，你不必像考虑概率密度函数那样考虑区间。</p>
-<img src="/images/bd_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>感叹号不常见，它表示 <strong>阶乘法 (factorial)</strong> ，即把所有从 1 到指定的整数全部相乘的结果。例如， 4 阶乘等于 1 乘以 2 乘以 3 乘以 4 。 公式前部的这个阶乘的除法实际上是给出了无视顺序，从 n 个元素中选出 x 个元素的方法，它也被称为 <strong>二项系数 ( binomial coefficient)</strong> ，有的时候也速记为 $ C^x_n $ 。</p>
 <p>现在，让我们把二项公式应用到特定的例子里吧。想象你每天通勤的路线上需要经过一座吊桥。这桥有 10% 的时间是打开的，但打开时机是随机的。那么你在一周中碰到 0 ， 1， 2 ，直到 5 天的概率是多少呢？</p>
-<img src="/images/bd_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>实验有 5 次试验，遇到打开的桥的概率是 0.1 。因此，这里的二项分布的概率如下：</p>
-<img src="/images/bd_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>如果你把 6 个概率和 x 相乘并加总，你会发现这个值等于 1 。本应如此。</p>
 <a id="more"></a>
-
 <p>让我们借助同一个例子，移到一个相关的问题，如果 5 天内最多一天遭遇打开的吊桥，这个概率怎么算呢？可以很好地利用上面的概率表，我们要找的是没遇到打开的吊桥和有一天遇到打开的吊桥的情况，两个概率之和是 0.92 。</p>
-<img src="/images/bd_8.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_8.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>为了回答最后一个问题，我们需要利用累积的二项概率分布，即给定所有结果，低于或者等于某个成功数量的概率。方程如下：</p>
-<p>$$ F (x) = P (X \leq x) = \sum_{k = 0}^{x} \frac {n!}{k!(n - k)!} p^k (1 - p)^{n - k} $$</p>
-<p>这个公式跟二项概率质量函数几乎相同，除了在前面做了求和，并且把所有的 x 替换成了符号 k 。</p>
+<script type="math/tex; mode=display">F (x) = P (X \leq x) = \sum_{k = 0}^{x} \frac {n!}{k!(n - k)!} p^k (1 - p)^{n - k}</script><p>这个公式跟二项概率质量函数几乎相同，除了在前面做了求和，并且把所有的 x 替换成了符号 k 。</p>
 <p>现在让我们来看一下二项分布的形状。它是离散的，意味着它只会给出 0 , 1 , 2, 之类的概率。</p>
-<img src="/images/bd_9.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_9.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>有趣的是，二项分布的形状会根据参数的变化而变化。基于参考，分布可以是 <strong>右偏态 (right-skewed)</strong> 的，或者 <strong>左偏态的 (left-skewed)</strong> 的，或者是对称的。</p>
-<img src="/images/bd_10.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_10.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>这三个分布显示 20 个成功概率不同的试验。第一个成功概率是 0.1 ，第二个成功概率是 0.5 ，第三个是 0.9 。</p>
-<img src="/images/bd_11.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_11.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>一般来说，成功概率更低的二项分布是右偏态的，而成功概率高的是左偏态的。通过水平对齐，你会发现中间分布的顶点低于两边的，因此它更分散。这是二项分布很有趣的一个属性。实际上，二项分布的标准差取决于 p ，均值也是。二项分布的均值就等于 p ，它的标准差等于 n 乘以 p 乘以 (1 - p)，然后求平方根。当 p 等于 0 或者 1 时，标准差等于 0 。当 p 等于 0.5 时，它的标准差达到最大。</p>
-<img src="/images/bd_12.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_12.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
 <li>二项分布是一个离散概率分布，用于只有两个独立互斥结果的随机变量 —— 成功或者失败。它给出了对于随机变量的 n 个结果，其中 x 个成功的概率。也叫做试验成功的概率。</li>
 <li>二项分布假定所有试验的概率 p 都是固定的，它的均值等于 n 乘以 p ，标准差等于 n 乘以 p 乘以 (1 - p)，然后求平方根。</li>
-<li>二项分布根据 p 的变化可以向右或者向左偏斜，或者对称。当 p 接近 0 时是右偏态，当 p 接近 1 时是左偏态。二项分布公式如下：<br>$$ P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,…,n $$<br>速记为 $$ X \sim B (N, P) $$</li>
-<li>二项分布的累积概率分布公式如下：<br>$$ F (x) = P (X \leq x) = \sum_{k = 0}^{x} \frac {n!}{k!(n - k)!} p^k (1 - p)^{n - k} $$</li>
+<li>二项分布根据 p 的变化可以向右或者向左偏斜，或者对称。当 p 接近 0 时是右偏态，当 p 接近 1 时是左偏态。二项分布公式如下：<script type="math/tex; mode=display">P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,...,n</script>速记为 <script type="math/tex">X \sim B (N, P)</script></li>
+<li>二项分布的累积概率分布公式如下：<script type="math/tex; mode=display">F (x) = P (X \leq x) = \sum_{k = 0}^{x} \frac {n!}{k!(n - k)!} p^k (1 - p)^{n - k}</script></li>
 </ul>
 <hr>
 
@@ -591,7 +577,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -607,12 +593,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

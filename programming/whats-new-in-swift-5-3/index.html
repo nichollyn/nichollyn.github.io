@@ -334,7 +334,7 @@
 <p>理论上并不要求 <code>label:</code> 要跟在前一个闭包的 <code>}</code> 后面，所以你甚至可以像下面这样书写：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BadContentView</span>: <span class="title">View</span> </span>{</span><br><span class="line">    @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> showOptions = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {</span><br><span class="line">        <span class="type">Button</span> {</span><br><span class="line">            <span class="keyword">self</span>.showOptions.toggle ()</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        label: {</span><br><span class="line">            <span class="type">Image</span>(systemName: <span class="string">"gear"</span>)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>不过，我会建议你当心代码的可读性 —— 像上面的 <code>label</code> 那样的代码块，在 Swift 里看起来更像是标签化的代码块，而不是 <code>Button</code> 构造器的第二个参数。</p>
-<p>** 注：** 有关 Swift 的多拖尾闭包特性的讨论非常热烈。我想提醒大家的是，像这种类型的语法变动一开始看起来可能会有点别扭，我们需要耐心，给它时间，在实践中体会它带来的结果。</p>
+<p><strong> 注：</strong> 有关 Swift 的多拖尾闭包特性的讨论非常热烈。我想提醒大家的是，像这种类型的语法变动一开始看起来可能会有点别扭，我们需要耐心，给它时间，在实践中体会它带来的结果。</p>
 <h3 id="为枚举自动生成的-Comparable-实现"><a href="#为枚举自动生成的-Comparable-实现" class="headerlink" title="为枚举自动生成的 Comparable 实现"></a>为枚举自动生成的 Comparable 实现</h3><p><a target="_blank" rel="noopener" href="https://github.com/apple/swift-evolution/blob/master/proposals/0266-synthesized-comparable-for-enumerations.md">SE-0266</a> 使得我们可以为枚举生成 <code>Comparable</code> 实现，同时不要求我们声明关联值，或者要求关联值本身必须是 <code>Comparable</code> 的。这个特性让我们可以在同类型的枚举之间用 <code>&lt;</code>，<code>&gt;</code> 和类似的比较操作符来进行比较。</p>
 <p>例如，假设我们有一个枚举，它描述了衣服的尺寸，我们可以要求 Swift 为它自动生成 <code>Comparable</code> 实现，代码如下：</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Size</span>: <span class="title">Comparable</span> </span>{</span><br><span class="line">    <span class="keyword">case</span> small</span><br><span class="line">    <span class="keyword">case</span> medium</span><br><span class="line">    <span class="keyword">case</span> large</span><br><span class="line">    <span class="keyword">case</span> extraLarge</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
@@ -615,7 +615,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -631,12 +631,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

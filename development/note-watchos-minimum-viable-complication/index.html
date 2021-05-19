@@ -51,12 +51,12 @@
   };
 </script>
 
-  <meta name="description" content="欢迎关注微信公众号「Swift 花园」  要做一个 watch app，逻辑上，你会先想到从主 UI 开始。毕竟，notfication 和 complication 是可选的。人们说到 app ，通常指的就是主 UI 。   但是，如果要做一个在表盘用于浏览空气质量指数的 watch app ，你会先想到 complication 。 watchOS 设计的三大准则之一是 glanceable">
+  <meta name="description" content="欢迎关注微信公众号「Swift 花园」  要做一个 watch app，逻辑上，你会先想到从主 UI 开始。毕竟，notfication 和 complication 是可选的。人们说到 app ，通常指的就是主 UI 。 但是，如果要做一个在表盘用于浏览空气质量指数的 watch app ，你会先想到 complication 。 watchOS 设计的三大准则之一是 glanceable ，意">
 <meta property="og:type" content="article">
 <meta property="og:title" content="watchOS 学习笔记 | 最小可行 Complication">
 <meta property="og:url" content="https://theinfinitegame.tech/development/note-watchos-minimum-viable-complication/index.html">
 <meta property="og:site_name" content="The Infinite Game">
-<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」  要做一个 watch app，逻辑上，你会先想到从主 UI 开始。毕竟，notfication 和 complication 是可选的。人们说到 app ，通常指的就是主 UI 。   但是，如果要做一个在表盘用于浏览空气质量指数的 watch app ，你会先想到 complication 。 watchOS 设计的三大准则之一是 glanceable">
+<meta property="og:description" content="欢迎关注微信公众号「Swift 花园」  要做一个 watch app，逻辑上，你会先想到从主 UI 开始。毕竟，notfication 和 complication 是可选的。人们说到 app ，通常指的就是主 UI 。 但是，如果要做一个在表盘用于浏览空气质量指数的 watch app ，你会先想到 complication 。 watchOS 设计的三大准则之一是 glanceable ，意">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theinfinitegame.tech/images/minimum-complication-watch-app.jpg">
 <meta property="og:image" content="https://theinfinitegame.tech/images/timeline1.png">
@@ -71,8 +71,8 @@
 <meta property="article:published_time" content="2020-02-20T06:43:35.000Z">
 <meta property="article:modified_time" content="2020-12-20T03:42:21.634Z">
 <meta property="article:author" content="猫克杯">
-<meta property="article:tag" content="watchOS">
 <meta property="article:tag" content="development">
+<meta property="article:tag" content="watchOS">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://theinfinitegame.tech/images/minimum-complication-watch-app.jpg">
 
@@ -314,18 +314,13 @@
         <p>欢迎关注微信公众号「Swift 花园」</p>
 <blockquote>
 <p>要做一个 watch app，逻辑上，你会先想到从主 UI 开始。毕竟，notfication 和 complication 是可选的。人们说到 app ，通常指的就是主 UI 。</p>
-</blockquote>
-<blockquote>
 <p>但是，如果要做一个在表盘用于浏览空气质量指数的 watch app ，你会先想到 complication 。 watchOS 设计的三大准则之一是 <strong>glanceable</strong> ，意味着用户能在扫一眼手表，以尽快的方式看到想要的信息，理想的时间最多几秒钟。 complication 可以让看到这些信息，比从 app 启动栏访问主 UI 快得多。</p>
-</blockquote>
-<blockquote>
 <p>不同于 iOS ，watchOS 的应用并不要求主 UI 一定得是最常用的使用方式 —— 如果用例使得通知和 complication 更合理的话。主 UI 可以充当用户想要查看更具体信息或者特定的动作时的 “回退” 方案。</p>
 </blockquote>
 <p>那么，为什么我们不跳过 view controller ，直接尝试构建一个 complication 呢？</p>
 <p>以下是 Kuba 构建的一个简单的 MVP 版本的 watch app ，只有一个 complication (支持 1~2 种变体)。这个 app 没有 UI ，主试图只有一个黑盒子，一行 WKInterface* 对象相关的代码都没有。</p>
 <p>这个没有 UI 的 watch app 的用途是获取空气质量的信息（PM10，PM2.5，$ NO_2 $ 等)，每个小时更新一次，但足够用了。</p>
-<img src="/images/minimum-complication-watch-app.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/minimum-complication-watch-app.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>下面先了解一些基础知识。</p>
 <hr>
 <h1 id="Complication-时间线"><a href="#Complication-时间线" class="headerlink" title="Complication 时间线"></a>Complication 时间线</h1><p>管理 complications 的 API 单独从 WatchKit 分离出来，位于 ClockKit 中，以 <code>CLK</code> 前缀标识。</p>
@@ -333,11 +328,9 @@
 <p>Apple 也不可能采用 7 天 24 小时的方式让应用在后台运行扩展 —— 电池撑不住。</p>
 <p>所以工作方式实际上是这样的：你的应用指定一个 <strong>complication data source</strong>  (<code>CLKComplicationDataSource</code>) ，然后每当它接收到新的数据时 (无论运行在前台或者后台)，它告诉 <strong>complication server</strong> (<code>CLKComplicationServer</code>) 通过数据源刷新数据。数据源返回一个 <strong>timeline</strong> 数据 (一个 <code>CLKComplicationTimelineEntry</code> 的对象) —— timeline 告诉 watchOS complication 在给定时间点到下一个时间点之前应该显示什么数字、文本、图标或者它们的组合。系统缓存这份数据。并且在正确的时间点自动更新显示的内容 —— 你的 app 只有在需要返回 timeline 时才会被唤起，但实际上也可以做到不需要唤起。你可以预先准备一整天的内容，只要你的数据足够提前。</p>
 <p>下图是一个经典的天气 app 的例子，点标记 timeline 实体，上面的线显示每个实体被展示的时长。</p>
-<img src="/images/timeline1.png" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/timeline1.png" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>而这个是日历 app 的 complication ：</p>
-<img src="/images/timeline2.png" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/timeline2.png" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>取决于 app 类型，你需要的数据可能是未来的，过去的，两者都有，或者只需要当前状态。</p>
 <p>在 Kuba 的案例中，他用的是过去的数据 —— 因为 PM10 这种数据不可能精确预测，它受到很多因素影响，某些是人为的 (比如烧煤取暖这类日常活动)</p>
 <h1 id="Time-Travel"><a href="#Time-Travel" class="headerlink" title="Time Travel"></a>Time Travel</h1><p>Timeline 的设计还用到 watchOS 的另外一个特性，叫做 <strong>“Time Travel”</strong> ，它使得你可以在表盘上向前或者向后滚动时间，并更新 complication —— 这使得你可以看到诸如一场比赛中比分变化的过程，或者一只股票在一天中股价变化的过程。</p>
@@ -382,12 +375,10 @@
 <li>SmogWatch WatchKit Extension, 包含所有的 WatchKit 代码</li>
 </ul>
 <p>在导航栏中选择 “SmogWatch WatchKit App” 目标运行。</p>
-<img src="/images/sim-new-app.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sim-new-app.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <h1 id="设计模板"><a href="#设计模板" class="headerlink" title="设计模板"></a>设计模板</h1><p>如上文所提，为了让事情更简单，我们只是实现 Modular Small 和 Circular Small complication 家族。不过默认情况下所有的 complication 家族都是启用的，所以你需要禁用掉其他的。</p>
 <p>打开 “SmogWatch WatchKit Extension” target 的配置页，在 “General” tab 你会看见一个可以触发 complication 家族的列表：</p>
-<img src="/images/enabled-complications.png" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/enabled-complications.png" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>接下来，要确定每个 complication 家族要采用什么模板。在 <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/clockkit">CloudKit 文档</a> 中，找到 Modular Small 家族。在它的页面上，你会看到 7 种可用的模板类以及它们的效果截屏。</p>
 <p>在我们的案例中，我们主要显示小数字，所以下面几种选项可能是合理的：</p>
 <ul>
@@ -397,11 +388,9 @@
 <li>以两行文本显示</li>
 </ul>
 <p>最后，我选择了像下面这样的样式：</p>
-<img src="/images/modular-small.png" width="10%" height="10%" style="margin: 10 auto;">
-
+<p><img src="/images/modular-small.png" width="10%" height="10%" style="margin: 10 auto;"></p>
 <p>这个方案解决了展示 app 是什么的类型，同时也支持解释不同类型参数的问题，缺陷是使得字体更小了，尤其是 3 个数字的情况。尽管仍然可读，但是 Circular Small 版本肯定效果不好。因此，对于 Circular Small ，选项相似，也选择了两行文本的版本。</p>
-<img src="/images/circular-small.png" width="7%" height="7%" style="margin: 10 auto;">
-
+<p><img src="/images/circular-small.png" width="7%" height="7%" style="margin: 10 auto;"></p>
 <p>上面这个可读性差很多，但是 Circular Small 是非常通用的 complication 家族，因此基本上对所有使用者都是一个挑战。Apple 自己的 complications ，比如世界时钟，日出、日落，看起来也没有好多少。我们这里可以放弃 “PM” ，但这样一来又搞不清 app 是干什么用的，所以折中，把 “PM10” 缩短为 “PM” 。有可能上面用图标效果会更好，读者可以尝试一下。</p>
 <hr>
 <h1 id="实现-Complication-数据源"><a href="#实现-Complication-数据源" class="headerlink" title="实现 Complication 数据源"></a>实现 Complication 数据源</h1><p>现在，打开样板代码 <code>ComplicationController</code> 类，这里已经数据源协议所有要求的方法了，一些是空实现，但其中大多数我们并不需要。</p>
@@ -419,8 +408,7 @@
 <p>如果系统向我们请求其他我们不支持的 complication 类别的话，我们在默认 case 抛出断言 —— 但这不应该发生，因为我们已经禁用所有其他类型的 complication 。用 <code>preconditionFailure</code> 触发崩溃是为了确保自己不忘掉一些东西，最终版本其实应该返回 nil 更安全。</p>
 <p>之所以先说这部分，是因为无论你在这个模板返回了什么，它都会被系统缓存。如果你改变了代码再次运行，你不会看到任何效果 —— 你需要从模拟器中删除 app ，重新安装以便更新版本。</p>
 <p>现在，当你运行 app ，你可以编辑表盘（通过用力按压 MacBook 的 touchpad ，或者在菜单 Hardware &gt; Touch Pressure），选择一个 complication 空间，并且选择你的 complication ：</p>
-<img src="/images/watch-face-editing-1.png" width="25%" height="25%" style="margin: 10 auto;">
-
+<p><img src="/images/watch-face-editing-1.png" width="25%" height="25%" style="margin: 10 auto;"></p>
 <p>注意，默认你的 app 名是 app target 的完整名，这会有点长。为了把它改成更可读的，打开 WatchKit app target 的 <code>Info.plist</code> (注意，是 app 而不是 extension 的) 然后把 “Bundle display name” 改成 “SmogWatch” 。</p>
 <p>当你退出编辑模式并返回表盘，你会看到你放置 complication 的地方有一个空白的空间 —— 别急，我们接下来就着手处理这块。</p>
 <h1 id="getSupportedTimeTravelDirections"><a href="#getSupportedTimeTravelDirections" class="headerlink" title="getSupportedTimeTravelDirections"></a>getSupportedTimeTravelDirections</h1><p>这个方法告知系统你的 app 在过去、未来、两个方向或者只有当前时刻拥有数据。因为之前提到过去的数据已经不再使用了，所以只有返回 <code>.forward</code> 或者空列表是有意义的。由于我们并不需要预测未来的空气质量，所以我们只需要返回一个空的列表：</p>
@@ -433,8 +421,7 @@
 <p>下面是 <code>getCurrentTimelineEntry</code> 的初始版本:</p>
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getCurrentTimelineEntry</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">for</span> complication: CLKComplication,</span></span></span><br><span class="line"><span class="function"><span class="params">    withHandler handler: @escaping <span class="params">(CLKComplicationTimelineEntry?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line">{</span><br><span class="line">    <span class="keyword">let</span> entry: <span class="type">CLKComplicationTimelineEntry</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">switch</span> complication.family {</span><br><span class="line">    <span class="keyword">case</span> .modularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateModularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM10"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"75"</span>)</span><br><span class="line">        entry = <span class="type">CLKComplicationTimelineEntry</span>(date: <span class="type">Date</span>(), complicationTemplate: template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">case</span> .circularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateCircularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"75"</span>)</span><br><span class="line">        entry = <span class="type">CLKComplicationTimelineEntry</span>(date: <span class="type">Date</span>(), complicationTemplate: template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">preconditionFailure</span>(<span class="string">"Complication family not supported"</span>)</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    handler (entry)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>当你添加了以上两个方法，编译运行你的 app 到模拟器。你应该会在 complication 里看到我们配置的模板和数值：</p>
-<img src="/images/watch-complication-75.png" width="25%" height="25%" style="margin: 10 auto;">
-
+<p><img src="/images/watch-complication-75.png" width="25%" height="25%" style="margin: 10 auto;"></p>
 <p>如果你还是没有看到效果，那可能是因为系统缓存了之前编译版本的状态。为了强制加载 complication ，你可以进入编辑模式，切到不同的 complication ，退出编辑模式。 然后再进入编辑模式，切回你的 complication 。</p>
 <h1 id="可选的方法"><a href="#可选的方法" class="headerlink" title="可选的方法"></a>可选的方法</h1><p>在数据源协议中还有一些其他的协议，但针对我们的用途，我们只需要用到 <code>getTimelineEntries (for:after:limit:withHandler:)</code> 。这个方法询问我们早前传入的 timeline 时点之后的时点。当我们写的 app 需要提前了解某个时点时，会用到这个方法。例如，天气预报，日历事件，todo list 上预定的任务等。不过，大部分 app 只需要显示当前实体就够了。</p>
 <p>我们在这个 app 中使用这个 API 的作用是，我们很可能需要在时点过去之后将未来版本的数据标记为过时。如果你查看的是 6 个小时前的空气质量，它很可能是没什么价值的，因为当前的空气很有可能已经发生显著的变化。在 Krakow ，这种变化可能发生在 2 个小时内。例如，起风或者风停了。所以，我们可能在几小时后自动隐藏掉当前数值，借助添加一个几小时后的 “重置” 数据来实现。如果我们成功地在每个小时更新了数据，那么备选的第二个时点的数据永远不会被展示，但是如果有些东西出错了，那么当时间变化足够长，会在时点到来时借助这个 API 来更新数据。</p>
@@ -476,8 +463,7 @@
 <figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getCurrentTimelineEntry</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">for</span> complication: CLKComplication,</span></span></span><br><span class="line"><span class="function"><span class="params">    withHandler handler: @escaping <span class="params">(CLKComplicationTimelineEntry?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line">{</span><br><span class="line">    <span class="keyword">let</span> store = <span class="type">DataStore</span>()</span><br><span class="line">    <span class="keyword">let</span> entry: <span class="type">CLKComplicationTimelineEntry</span></span><br><span class="line">    <span class="keyword">let</span> date: <span class="type">Date</span></span><br><span class="line">    <span class="keyword">let</span> valueLabel: <span class="type">String</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> lastMeasurement = store.lastMeasurementDate, <span class="keyword">let</span> level = store.currentLevel {</span><br><span class="line">        valueLabel = <span class="type">String</span>(<span class="type">Int</span>(level.rounded ()))</span><br><span class="line">        date = lastMeasurement</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        valueLabel = <span class="string">"--"</span></span><br><span class="line">        date = <span class="type">Date</span>()</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">switch</span> complication.family {</span><br><span class="line">    <span class="keyword">case</span> .modularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateModularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM10"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: valueLabel)</span><br><span class="line">        entry = <span class="type">CLKComplicationTimelineEntry</span>(date: date, complicationTemplate: template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">case</span> .circularSmall:</span><br><span class="line">        <span class="keyword">let</span> template = <span class="type">CLKComplicationTemplateCircularSmallStackText</span>()</span><br><span class="line">        template.line1TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: <span class="string">"PM"</span>)</span><br><span class="line">        template.line2TextProvider = <span class="type">CLKSimpleTextProvider</span>(text: valueLabel)</span><br><span class="line">        entry = <span class="type">CLKComplicationTimelineEntry</span>(date: date, complicationTemplate: template)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">preconditionFailure</span>(<span class="string">"Complication family not supported"</span>)</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    handler (entry)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>现在，当我们运行 app 时，点击 home 按钮返回表盘时，我们会看到一个刚刚借助 API 加载的真实数据：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ExtensionDelegate: applicationDidFinishLaunching ()</span><br><span class="line">KrakowPiosDataLoader: sending request to http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz with</span><br><span class="line">query={"viewTypeEntityId": "pm10", "measType": "Auto", "viewType": "Parameter", "dateRange": "Day",</span><br><span class="line">"date": "24.02.2019", "channels": [148]} ...</span><br><span class="line">KrakowPiosDataLoader: received response: 1553 bytes</span><br><span class="line">KrakowPiosDataLoader: saving data: 46.4462 at 2019-02-24 10:00:00 +0000</span><br></pre></td></tr></tbody></table></figure>
-<img src="/images/watch-complication-46.png" width="34%" height="34%" style="margin: 10 auto;">
-
+<p><img src="/images/watch-complication-46.png" width="34%" height="34%" style="margin: 10 auto;"></p>
 <hr>
 <h1 id="安排更新"><a href="#安排更新" class="headerlink" title="安排更新"></a>安排更新</h1><p>最后的拼图是确保我们可以按照有规律的间隔加载新的数据并重新加载 complication 。有一些场景你可以更新 complications ：</p>
 <ul>
@@ -604,8 +590,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/watchOS/" rel="tag"># watchOS</a>
               <a href="/tags/development/" rel="tag"># development</a>
+              <a href="/tags/watchOS/" rel="tag"># watchOS</a>
           </div>
 
         
@@ -753,7 +739,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -769,12 +755,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

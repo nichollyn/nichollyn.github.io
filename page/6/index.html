@@ -294,16 +294,12 @@
           <p>欢迎关注微信公众号「Swift 花园」</p>
 <h1 id="正态分布-normal-distribution-的函数形式"><a href="#正态分布-normal-distribution-的函数形式" class="headerlink" title="正态分布 (normal distribution) 的函数形式"></a>正态分布 (normal distribution) 的函数形式</h1><p>在所有的概率分布中，有一个特别出众，我们经常遇到。它就是 <strong>正态分布 (normal distribution)</strong> 。</p>
 <p>在本节中，我们会学习它的重要属性。正态分布又被称为 <strong>高斯分布 (gaussian distribution)</strong> 。它是对称的，钟形，以均值 μ 和 标准差 σ 为特征。分布的最高点是均值的位置，宽度则由标准差指定。均值 μ 和 标准差 σ 被称为正态分布的 <strong>参数 (parameters)</strong> 。</p>
-<img src="/images/nd_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>正态分布的累积概率分布是一个 <strong>S 函数曲线 (sigmoideal shape)</strong> ，均值处于概率为 0.5 的地方，标准差决定了曲线的陡峭程度。</p>
-<img src="/images/nd_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/nd_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>随机变量 X 有一个均值 μ ，标准差 σ 的正态分布，可以速记为：</p>
-<p>$$ X \sim N (\mu, \sigma^2) $$ </p>
-<p>而下面这个等式描述了完整的概率密度：</p>
-<p>$$ f (x)=\frac {1}{\sqrt {2\pi}\sigma} e^{-0.5\left (\frac {x-\mu}{\sigma}\right)^2} $$ </p>
-<p>这个方程之所以重要，并非因为它第一眼看起来很复杂 —— 包含了三个重要的数学常量，$ \pi $，$ e $ 和 2 的平方根，还因为它连接了统计国王和物理世界。这个方程可以描述粒子扩散的过程。如果你释放一个扩散物，比如放一块糖到茶里，茶里的糖将按照这个方程的规律扩散。不仅流体是这样，大气中的颗粒物，道路交通，社会中的信息，都遵循这个分布的规律。</p>
+<script type="math/tex; mode=display">X \sim N (\mu, \sigma^2)</script><p>而下面这个等式描述了完整的概率密度：</p>
+<script type="math/tex; mode=display">f (x)=\frac {1}{\sqrt {2\pi}\sigma} e^{-0.5\left (\frac {x-\mu}{\sigma}\right)^2}</script><p>这个方程之所以重要，并非因为它第一眼看起来很复杂 —— 包含了三个重要的数学常量，$ \pi $，$ e $ 和 2 的平方根，还因为它连接了统计国王和物理世界。这个方程可以描述粒子扩散的过程。如果你释放一个扩散物，比如放一块糖到茶里，茶里的糖将按照这个方程的规律扩散。不仅流体是这样，大气中的颗粒物，道路交通，社会中的信息，都遵循这个分布的规律。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/data-science/statistics-the-normal-distribution/#more" rel="contents">
@@ -401,8 +397,7 @@
 <p>以下将一个随机变量的平均数以 $ μ $ 注记，它表示对许多观测值预期的平均结果，因此也被称为随机变量的 <strong>期望值 (expected value)</strong> ，以 $ E $ 注记。</p>
 <p>一个离散随机变量的平均数是所有可能的值乘以概率权重之后的均值，因此它等于每个可能的值乘以概率，然后加总。对于连续随机变量，同样的规则也适用。为了应对连续性，加总的计算被替换成积分 (integral) ，概率也不像离散那样被定义为 i ，而是 x 的函数。 </p>
 <p>举个例子，假设你正在一个熟悉的街区日常漫步，路上会经过三个交通灯。每等一个交通灯会使整个漫步多花 2 分钟。对于这三组交通灯的等待，你记录了等 0 个 到等 3 个的频率，下面是概率表：</p>
-<img src="/images/mvorv_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/mvorv_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>你预期的等待时间计算方法如下，最后会得到 2 分 12 秒。有趣的是， 2 分 12 秒这个值实际永远不会发生。你要么不用等，要么就是等 2， 4， 6 分钟中的某个时间。</p>
 <p>现在，让我们来审视一下随机变量的平均数。如果我们给随机变量 x 乘上一个系数再加上一个值， 变成 $ a + bx $ ，那么平均值会变成 $ μ_{a+bx} $ 。</p>
           <!--noindex-->
@@ -503,8 +498,7 @@
 <p>即 <strong><em>X</em></strong> 为随机变量，$ x_1, x_2, x_3, … $ 为随机变量的值。</p>
 <p>随机变量有两种，一种是 <strong>离散的 (discrete)</strong> ，一种是 <strong>连续的 (continuous)</strong> 。离散随机变量可以有一组可数数量的不同值，比如 0 / 1 / 2 / 3 。实际上，如果一个随机变量只能取得有限数量的不同值，那它必定是离散的。离散随机变量的例子很多，比如一个家庭里小孩的数量。连续随机变量则可以取得无限数量的可能值。它通常是测量。为了演示无限性，假设一个身高值测出来是 3.1 米，如果换更精确的测量仪器，也许能测到 3.14 米。更精确的仪器，也许还能测到 3.145 米。换言之，通过更精确的测量，或者放大操作，无限数量的结果是可能的。年龄，温度，速度，这些都可以是连续随机变量的例子。</p>
 <p>随机变量的值可以很方便地通过随机分布来呈现。随机分布的呈现形式可以是表格，图或者数学方程，并且是通过随机变量的每个取值关联的概率列表来定义的。</p>
-<img src="/images/pd_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/pd_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>根据定义，每个随机变量都有一个概率分布，离散随机变量的概率分布叫 <strong>概率质量函数</strong> ，而连续随机变量的概率分布叫概率密度函数。至于为什么有这种区别，稍后解释。</p>
           <!--noindex-->
             <div class="post-button">
@@ -602,17 +596,13 @@
 <p>对有趣现象的计数，在日常生活中常常转换成比例，最终变为概率。利用概率估算的力量，可以更好地理解这些现象之间的关系或做出预测。 <strong>联合概率 (joint probability)</strong> 和 <strong>边际概率 (marginal probability)</strong> 是两个在这种情况下会用到的重要概率类型。在这一节教程中，我将解释联合概率和边际概率的含义，并展示它们的属性。</p>
 </blockquote>
 <p>想象你在沙滩上观察你的海滩同伴。你会注意到三种不同类型的活动 —— 它们是互斥的。有的休息，他们都坐在或躺在沙滩上。有的玩，这些人到处乱跑，建造沙堡或站在水中。最后，有的在游泳。此外，你还可以按性别区分。所以你观察到的每个人都是一个案例.</p>
-<img src="/images/conditional_p_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/conditional_p_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>在数据集中，性别和活动是变量。你最终得到以下结果的列联表。总共计了 113 人，其中有 79 人在休息，有 20 人在玩，并且他们中只有 14 人在游泳。女性和男性的数量，分别是 62 和 51 。</p>
-<img src="/images/conditional_p_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/conditional_p_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>这些数字实际上是每行和每列变量位于此表边缘的总和，因此被称为边际值。请注意，这与口语上 “边缘的”，即并不重要的，并不是一回事。在表中边际值代表对于单个变量的说明，没有关于任何其他变量。例如说休息的人数不考虑性别。</p>
-<img src="/images/conditional_p_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/conditional_p_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>现在，我们打开这个频率表通过将每个单元格数字除以总数 113 得到比例的表格。</p>
-<img src="/images/conditional_p_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/conditional_p_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>在此表中，中心块包含六个位置，它们加起来等于一。同时，每列中的比例加总到底部的边缘行中的值，每行中的比例加总到右边的边缘列中的值。并且边缘行的值加起来等于边缘列的值加起来。</p>
           <!--noindex-->
             <div class="post-button">
@@ -708,15 +698,12 @@
           <p>欢迎关注微信公众号「Swift 花园」</p>
 <h1 id="集合基础-——-理论概念"><a href="#集合基础-——-理论概念" class="headerlink" title="集合基础 —— 理论概念"></a>集合基础 —— 理论概念</h1><p>在这篇教程中，我将介绍一些重要概念，它们是关于 <strong>集合 (set)</strong> ，即项的数据集。这对于理解概念以及得出概率的计算规则十分有用。同时，集合的特殊性还在于它不仅可用于概率演算，还用在逻辑学中。</p>
 <p>让我们开始吧。如之前的教程中提到的，样本空间是随机现象所有结果的数据集。举个例子，抛一枚硬币两次，有四种可能的结果。事件是样本空间的子集。例如，最后一次抛硬币你得到正面朝上。</p>
-<img src="/images/set_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/set_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>我们看到，一个样本空间可以两个或更多结果完全不同的事件。比如，抛硬币两次，0 次正面朝上，1 次正面朝上， 2 次正面朝上。它们被称为 <strong>互斥 (disjoint)</strong> 的事件。另外一个术语叫 <strong>互不相容 (mutually exclusive)</strong> 。</p>
 <p>有一对特殊的互斥事件，某个事件和它的对立面 (即这个事件不发生的事件)。这种上下文中，对立的事件被称为 <strong>补集 (complement)</strong> 。比如，这里可以是没有正面朝上和其他三种情况互为补集。</p>
-<img src="/images/set_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/set_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>你也可以有多个事件共同填满完整的样本空间。这些事件被称为 <strong>完全穷尽 (collectively exhaustive)</strong> 事件。如果它们彼此不重叠，就是 <strong>相互独立，完全穷尽 (disjoint collectively exhaustive)</strong> 。互斥事件相关联的概率之和小于或者等于 1 ，完全穷尽事件的概率之和等于 1 。</p>
-<img src="/images/set_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/set_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>直觉上很容易理解这些概念，它们可以通过 <strong>文氏图 (Venn diagrams)</strong> 来表达。文氏图通过简单的几何形状来呈现集合或者集合的部分。</p>
           <!--noindex-->
             <div class="post-button">
@@ -864,7 +851,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -880,12 +867,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

@@ -393,20 +393,15 @@
 <h1 id="抽样分布比例"><a href="#抽样分布比例" class="headerlink" title="抽样分布比例"></a>抽样分布比例</h1><p>想象你住在巴黎，你知道所有的学生中有 0.10 的比例把自己看做嬉皮士。你想要知道这个比例的抽样分布是什么样的。注意，在这里计算总体均值是没有什么意义的。因为你感兴趣的变量是一个二元标量。学生们可以选择认定自己是或者不是嬉皮士。均值和这样一个二元变量无关。</p>
 <p>在本节教程中，我将解释一个总体比例的抽样分布是长什么样。你知道巴黎有 10% 的学生认为自己是嬉皮士，这意味着总体比例，用 $ \pi $ 注记，等于 0.10 。现在想象我们从这个总体中抽取 200 个学生。样本的比例，用 $ p $ 注记，将会是一个接近 0.10 的数字，比如 0.09 或者 0.12 。</p>
 <p>如果抽取了 5 组样本，样本比例可能如下：</p>
-<img src="/images/sdp_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdp_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>这样样本比例的直方图可能如下：</p>
-<img src="/images/sdp_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdp_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>有五个值，全部都出现一次，它们的概率都是 0.2 。现在，你抽取 25 组样本，分布可能如下：</p>
-<img src="/images/sdp_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdp_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>抽取 50 个样本，分布如下：</p>
-<img src="/images/sdp_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdp_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>无限多组样本，分布如下：</p>
-<img src="/images/sdp_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdp_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>这是样本比例的抽样分布，分布的均值是 0.10 ，等于总体的比例。为了表明我们是处理抽样分布的均值，均值被注记为 $ \mu_p $ ，下标 p 是为了说明我们正在处理的分布的分数不是个体的分数，而是样本比例。如你所见，逻辑上和样本均值的抽样分布一模一样。</p>
           <!--noindex-->
             <div class="post-button">
@@ -503,20 +498,16 @@
 <h1 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h1><p>研究人员经常会用样本来推断样本所处的总体。为了做这件事，他们需要用到统计世界中非常重要的一种概率分布 —— <strong>抽样分布 (sampling distribution)</strong> 。</p>
 <p>这一节中，我将向你解释抽样分布是什么。需要特别注意的是，抽样分布是帮助研究人员基于仅仅一个样本得出关于总体结论的桥梁。另外说明，在这节教程中，我们假装自己知道总体是什么样的。因为在研究实践中，我们通过永远都无法得知总体的全貌。这一步对于理解推断统计学至关重要。</p>
 <p>好吧，让我们进入正题。想象有一群北欧的嬉皮士组织了一场胡子节庆典。庆典将在挪威首都奥斯陆附近的一个小岛举行。显然，你能想到庆典的受众是有胡子的男性。组织售出了 5,000 张门票，并且提供了往来小岛的免费运送。</p>
-<img src="/images/sdl_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdl_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>拥有门票的人将在奥斯陆的港口集结。组织将他们随即分装到运送乘客前往该岛的船上，每条船搭载 30 名庆典的粉丝。</p>
-<img src="/images/sdl_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdl_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>现在，有一艘船迷失在挪威的群岛间。雪上加霜的是，手机网络崩溃了，因此组织无法联系上船长，船上的乘客也无法联系上组织。所有组织决定派出一些雇员去搜寻走失的船只。你正是其中的一名雇员。在历经里半个多小时的搜寻后，你看到一艘失事的船，上面有大约 30 个人。Yes，终于找到他们了。你正准备通过对讲机向组织报告失联船只已找到，这时你再看了一眼船上的乘客。你发现乘客都是一些带着小孩的家庭。这很奇怪，去胡子节的船上，不是应该都是一些随机选取的有胡子的成年男人吗？而不是一些带着小孩的年轻家庭。你认定这艘船不太可能是你要找的船，决定继续搜寻。果然，不久之后证明你的决定是明智的。你前面遇到的那艘船是一艘运送人们去另外一个岛上的家庭公园的船。</p>
 <p>为什么要讲这个故事呢？这么说吧，如果你理解上面那个故事里 “你” 决策的原因，你就会理解抽样分布背后的基本思想。它是这样的，如果你从总体中抽取一个简单随机样本，那么它是不太可能强烈地区域于样本所处的总体的。在我们的案例中，人们正前往胡子节，他们构成了总体。一艘载有 30 个从总体中随机选取的人的船就是一个简单随机样本。</p>
-<img src="/images/sdl_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdl_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>实际上，所有从奥斯陆港口前往庆典小岛的船都可以看做是一个简单随机样本。当然，每艘船都和其他船不一样，但大部分船都会包含大比例的有胡子的男人。不太可能有一艘船上都是各种年轻家庭。当然，有某些家庭参加胡子节是可能的，但是随机遇到一艘船，全部都是年轻家庭，则是非常不太可能发生的。</p>
-<img src="/images/sdl_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sdl_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>假设你决定测量每艘船的平均胡子长度。每艘船有 30 个人。想象 5,000 个庆典参与者的平均胡子长度时 10.3 毫米，即均值是 10.3 毫米。你还知道胡子的长度在总体中服从一个钟形的分布。在一艘船上，你可能遇到胡子平均长度是 9.4 毫米，另一艘则可能是 10.8 。但是，不太可能遇到一艘船，上面的人平均胡子长度是 3.4 毫米，或者 19.2 毫米。因为这些船上的人的胡子的平均值可以看作是样本的均值，我们用 $ \bar x $ 来注记。</p>
-<img src="/images/sdl_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
+<p><img src="/images/sdl_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/data-science/statistics-sampling-distribution-and-central-limit-theorem/#more" rel="contents">
@@ -614,14 +605,11 @@
 </blockquote>
 <p>想象你试图知道伦敦有多少学生以嬉皮士自居，但你几乎不可能去问全部的学生这个问题。所以你决定采样，比方说 200 个调查对象，并估计有多少人把自己看做嬉皮士。</p>
 <p>关于统计的一个好处是，它能基于仅仅这 200 个调查对象，即样本，帮助你得出关于伦敦所有学生的结论，即目标总体。这一节中，我将详细解释样本和目标总体。</p>
-<img src="/images/sampling_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>如果你从目标总体约 300,000 个学生中选择 200 个调查对象作为样本，基本上你正在聚焦于总体的一个子集。如果你测量一组变量，比如性别，年龄，所在学校，等等。你可以做所有的计算，比如单一变量分析，包括众数、平均数和标准差，或者双变量分析，计算皮尔逊相关系数或者做回归分析。所有这些数字性总结都完全是基于样本，它们被称为 <strong>统计数字 (statistics)</strong> 。通常，这种总结样本数据的方法被称为 <strong>描述统计 (descriptive statistics)</strong> 。不过，在实际的研究实践中，我们经常对特定样本的总结不感兴趣 —— 我们的实际目标是对潜在的目标总体做出推断。</p>
-<img src="/images/sampling_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>在我们的案例中，所有 300,000 个学生都在伦敦。如果我们借由样本中得到的数据推断关于总体的结论，那我们就是在使用 <strong>推断统计学 (inferential statistics)</strong> 的方法。 统计数字以罗马字母显示。例如，$ \bar x $ 代表平均数， s 是样本的标准差。 参数则以希腊字母显示， μ 代表总体的平均值， σ 代表总体的标准差。 </p>
-<img src="/images/sampling_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/sampling_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>想象你问这 200 个调查对象他们觉得自己有多大程度上把自己看做嬉皮士。他们可以从 0 到 10 表示自己嬉皮士的程度， 0 代表他 / 她根本不认为自己是嬉皮士，而 10 代表一个人完全将自己视为嬉皮士。</p>
 <p>现在想象样本的 “嬉皮士值” 均值是 3.12 ，核心问题变成：目标总体的均值是多少？推断统计学可以帮助我们解答这类问题。</p>
           <!--noindex-->
@@ -718,26 +706,19 @@
           <p>欢迎关注微信公众号「Swift 花园」</p>
 <p>对于离散随机变量，有一个最重要的概率分布，它是 <strong>二项分布 (binomial distribution)</strong> 。二项分布处于二元数据。因为二元数据的情况非常多，所以二项分布使用频繁。</p>
 <p>让我们从例子开始，你会在这些例子中看到两种结果。比如，参加会议是否迟到，投票赞成或者反对，噪音等级超过 80 分贝或者没有。当你收集这类现象的试验时，成功或者失败的数字服从二项分布。例如，你可以考虑每 25 个与会人员，有多少个迟到，或者投反对票的人有几个。</p>
-<img src="/images/bd_1.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>下面是你可以确定一个随机变量服从二项分布的条件：首先，每一个试验成功的概率相同；其次，试验在统计上是独立的 —— 即一个试验的结果不会影响其他试验。</p>
-<img src="/images/bd_2.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>实际上，你发现二项分布的三个要素。首先，试验现象有两种结果，并且成功概率是常量。这种实验被称为 <strong>伯努利试验验 (Bernoulli trial)</strong> 。其次，你观察试验结果 n 次。第三，你对成功的结果计数，记为 x 。这三个元素被结合成一个公式，它给出了在 n 次试验中取得特定数量成功结果的概率。公式如下：</p>
-<p>$$ P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,…,n $$</p>
-<p>你可以直接把 n，x 和 p 填进公式从而获得答案。</p>
-<img src="/images/bd_3.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<script type="math/tex; mode=display">P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,...,n</script><p>你可以直接把 n，x 和 p 填进公式从而获得答案。</p>
+<p><img src="/images/bd_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>如公式所示，随机变量 x 只能取 0 到 n 的值。这很合理，因为你只能有有限次成功，0 ，1 ， 2 ，直到 n 。因此这个公式是一个概率质量函数，它直接给出了匹配每个可能的 x 的概率值，你不必像考虑概率密度函数那样考虑区间。</p>
-<img src="/images/bd_4.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>感叹号不常见，它表示 <strong>阶乘法 (factorial)</strong> ，即把所有从 1 到指定的整数全部相乘的结果。例如， 4 阶乘等于 1 乘以 2 乘以 3 乘以 4 。 公式前部的这个阶乘的除法实际上是给出了无视顺序，从 n 个元素中选出 x 个元素的方法，它也被称为 <strong>二项系数 ( binomial coefficient)</strong> ，有的时候也速记为 $ C^x_n $ 。</p>
 <p>现在，让我们把二项公式应用到特定的例子里吧。想象你每天通勤的路线上需要经过一座吊桥。这桥有 10% 的时间是打开的，但打开时机是随机的。那么你在一周中碰到 0 ， 1， 2 ，直到 5 天的概率是多少呢？</p>
-<img src="/images/bd_5.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>实验有 5 次试验，遇到打开的桥的概率是 0.1 。因此，这里的二项分布的概率如下：</p>
-<img src="/images/bd_6.jpg" width="68%" height="68%" style="margin: 10 auto;">
-
+<p><img src="/images/bd_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
 <p>如果你把 6 个概率和 x 相乘并加总，你会发现这个值等于 1 。本应如此。</p>
           <!--noindex-->
             <div class="post-button">
@@ -885,7 +866,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备 - 20000913 </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">闽ICP备20000913号 </a>
       <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021302000298" rel="noopener" target="_blank">闽公网安备35021302000298号 </a>
   </div>
 
@@ -901,12 +882,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">232k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:31</span>
 </div>
 
         

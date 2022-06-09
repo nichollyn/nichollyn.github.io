@@ -226,6 +226,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-binomial-distribution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="猫克杯">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Infinite Game">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/data-science/statistics-binomial-distribution/" class="post-title-link" itemprop="url">极速统计教程之十四 | 二项分布</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-19 12:57:01" itemprop="dateCreated datePublished" datetime="2020-01-19T12:57:01+08:00">2020-01-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-science/" itemprop="url" rel="index">
+                    <span itemprop="name">data-science</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>欢迎关注微信公众号「Swift 花园」</p>
+<p>对于离散随机变量，有一个最重要的概率分布，它是 <strong>二项分布 (binomial distribution)</strong> 。二项分布处于二元数据。因为二元数据的情况非常多，所以二项分布使用频繁。</p>
+<p>让我们从例子开始，你会在这些例子中看到两种结果。比如，参加会议是否迟到，投票赞成或者反对，噪音等级超过 80 分贝或者没有。当你收集这类现象的试验时，成功或者失败的数字服从二项分布。例如，你可以考虑每 25 个与会人员，有多少个迟到，或者投反对票的人有几个。</p>
+<p><img src="/images/bd_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>下面是你可以确定一个随机变量服从二项分布的条件：首先，每一个试验成功的概率相同；其次，试验在统计上是独立的 —— 即一个试验的结果不会影响其他试验。</p>
+<p><img src="/images/bd_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>实际上，你发现二项分布的三个要素。首先，试验现象有两种结果，并且成功概率是常量。这种实验被称为 <strong>伯努利试验验 (Bernoulli trial)</strong> 。其次，你观察试验结果 n 次。第三，你对成功的结果计数，记为 x 。这三个元素被结合成一个公式，它给出了在 n 次试验中取得特定数量成功结果的概率。公式如下：</p>
+<script type="math/tex; mode=display">P (x) = \frac {n!}{x!(n - x)!} p^x (1 - p)^{n-x}, x = 0,1,2,...,n</script><p>你可以直接把 n，x 和 p 填进公式从而获得答案。</p>
+<p><img src="/images/bd_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>如公式所示，随机变量 x 只能取 0 到 n 的值。这很合理，因为你只能有有限次成功，0 ，1 ， 2 ，直到 n 。因此这个公式是一个概率质量函数，它直接给出了匹配每个可能的 x 的概率值，你不必像考虑概率密度函数那样考虑区间。</p>
+<p><img src="/images/bd_4.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>感叹号不常见，它表示 <strong>阶乘法 (factorial)</strong> ，即把所有从 1 到指定的整数全部相乘的结果。例如， 4 阶乘等于 1 乘以 2 乘以 3 乘以 4 。 公式前部的这个阶乘的除法实际上是给出了无视顺序，从 n 个元素中选出 x 个元素的方法，它也被称为 <strong>二项系数 ( binomial coefficient)</strong> ，有的时候也速记为 $ C^x_n $ 。</p>
+<p>现在，让我们把二项公式应用到特定的例子里吧。想象你每天通勤的路线上需要经过一座吊桥。这桥有 10% 的时间是打开的，但打开时机是随机的。那么你在一周中碰到 0 ， 1， 2 ，直到 5 天的概率是多少呢？</p>
+<p><img src="/images/bd_5.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>实验有 5 次试验，遇到打开的桥的概率是 0.1 。因此，这里的二项分布的概率如下：</p>
+<p><img src="/images/bd_6.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
+<p>如果你把 6 个概率和 x 相乘并加总，你会发现这个值等于 1 。本应如此。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-science/statistics-binomial-distribution/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-the-normal-distribution/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -626,107 +734,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://theinfinitegame.tech/data-science/statistics-probability-and-sets/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="猫克杯">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Infinite Game">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/data-science/statistics-probability-and-sets/" class="post-title-link" itemprop="url">极速统计教程之九 | 概率和集合</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-10 16:50:24" itemprop="dateCreated datePublished" datetime="2020-01-10T16:50:24+08:00">2020-01-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-science/" itemprop="url" rel="index">
-                    <span itemprop="name">data-science</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>欢迎关注微信公众号「Swift 花园」</p>
-<h1 id="集合基础-——-理论概念"><a href="#集合基础-——-理论概念" class="headerlink" title="集合基础 —— 理论概念"></a>集合基础 —— 理论概念</h1><p>在这篇教程中，我将介绍一些重要概念，它们是关于 <strong>集合 (set)</strong> ，即项的数据集。这对于理解概念以及得出概率的计算规则十分有用。同时，集合的特殊性还在于它不仅可用于概率演算，还用在逻辑学中。</p>
-<p>让我们开始吧。如之前的教程中提到的，样本空间是随机现象所有结果的数据集。举个例子，抛一枚硬币两次，有四种可能的结果。事件是样本空间的子集。例如，最后一次抛硬币你得到正面朝上。</p>
-<p><img src="/images/set_1.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>我们看到，一个样本空间可以两个或更多结果完全不同的事件。比如，抛硬币两次，0 次正面朝上，1 次正面朝上， 2 次正面朝上。它们被称为 <strong>互斥 (disjoint)</strong> 的事件。另外一个术语叫 <strong>互不相容 (mutually exclusive)</strong> 。</p>
-<p>有一对特殊的互斥事件，某个事件和它的对立面 (即这个事件不发生的事件)。这种上下文中，对立的事件被称为 <strong>补集 (complement)</strong> 。比如，这里可以是没有正面朝上和其他三种情况互为补集。</p>
-<p><img src="/images/set_2.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>你也可以有多个事件共同填满完整的样本空间。这些事件被称为 <strong>完全穷尽 (collectively exhaustive)</strong> 事件。如果它们彼此不重叠，就是 <strong>相互独立，完全穷尽 (disjoint collectively exhaustive)</strong> 。互斥事件相关联的概率之和小于或者等于 1 ，完全穷尽事件的概率之和等于 1 。</p>
-<p><img src="/images/set_3.jpg" width="68%" height="68%" style="margin: 10 auto;"></p>
-<p>直觉上很容易理解这些概念，它们可以通过 <strong>文氏图 (Venn diagrams)</strong> 来表达。文氏图通过简单的几何形状来呈现集合或者集合的部分。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/data-science/statistics-probability-and-sets/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -799,7 +806,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -858,7 +865,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -867,12 +874,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">232k</span>
+    <span title="站点总字数">238k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">3:37</span>
 </div>
 
         

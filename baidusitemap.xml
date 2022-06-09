@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://theinfinitegame.tech/uncategorized/swift5-7-new-feature/</loc>
+    <lastmod>2022-06-09</lastmod>
+  </url>
+  <url>
+    <loc>https://theinfinitegame.tech/programming/break-down-complexity-with-pipelines/</loc>
+    <lastmod>2022-02-03</lastmod>
+  </url>
+  <url>
     <loc>https://theinfinitegame.tech/development/eight-swiftui-misuses-and-correction/</loc>
     <lastmod>2021-01-11</lastmod>
   </url>
@@ -10,10 +18,6 @@
   </url>
   <url>
     <loc>https://theinfinitegame.tech/computer-tech/ar-arkit-overview/</loc>
-    <lastmod>2020-12-20</lastmod>
-  </url>
-  <url>
-    <loc>https://theinfinitegame.tech/programming/break-down-complexity-with-pipelines/</loc>
     <lastmod>2020-12-20</lastmod>
   </url>
   <url>
